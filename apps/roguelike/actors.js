@@ -36,23 +36,23 @@ class Actor {
     react(actor) { return null; }
 
     tryMove(nx, ny) { // returns true if the turn should end here
+        if (nx < 0 || nx == Game.map.width || ny < 0 || ny == Game.map.height) return;
         let ntile = Game.map.data[ny][nx]; // new tile to move to
         if (ntile.actors.length == 0 && ! ntile.blocked()) {
             this.move(nx, ny);
-            return true;
-        } else {
-            if (ntile.blocked()) {
-                return false;
-            }
-
+        } else if (ntile.actors.length > 0) {
             for (var i = 0; i < ntile.actors.length; i++) {
-                if (ntile.actors[i].options.visible) {
-                    return this.interact(ntile.actors[i]);
+                let actor = ntile.actors[i];
+                if (actor.options.visible) {
+                    this.interact(actor);
+                    if (actor.isDead()) this.move(nx, ny);
+                    return;
                 }
             }
+        }
 
+        if (! ntile.blocked()) {
             this.move(nx, ny);
-            return true;
         }
     }
 
@@ -70,15 +70,19 @@ class Actor {
 
     attack(actor) {
         let cb = this.options.combat;
-        console.log(addPrefix(this.options.name) + cb.description + actor.options.name.toLowerCase() + "!");
+
+        console.log(
+            addPrefix(this.options.name)
+            + cb.description
+            + actor.options.name.toLowerCase() + "!"
+        );
+
         actor.damage(cb.strength);
     }
 
     damage(hp) {
         this.options.combat.hp -= hp;
-        if (this.options.combat.hp <= 0) {
-            this.death();
-        }
+        if (this.isDead()) this.death();
     }
 
     death() {
@@ -93,6 +97,8 @@ class Actor {
         console.log("A " + this.options.name + " has died!");
 
     }
+
+    isDead() { return this.options.combat.hp <= 0; }
 }
 
 /* Hostile actors */
@@ -250,7 +256,7 @@ class Player extends Actor {
         var diff = ROT.DIRS[4][keyMap[code]];
         var nx = this.x + diff[0];
         var ny = this.y + diff[1];
-        if (! this.tryMove(nx, ny)) return; // failed to move to this tile
+        this.tryMove(nx, ny)
         Game.HUD.update();
         window.removeEventListener("keydown", this);
         Game.engine.unlock();
