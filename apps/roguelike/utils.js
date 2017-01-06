@@ -100,6 +100,10 @@ class HUD {
 
     getStats() {
         var p = Game.player;
-        return "HP: " + p.options.combat.hp + "\nSTR: " + p.options.combat.strength;
+        return "<h2>"
+               + "Health: " + p.options.combat.hp + "<br>"
+               + "Strength: " + p.options.combat.strength + "<br>"
+               + "Position: " + "(" + p.x + ", " + p.y +")" 
+               + "</h2>";
     }
 }

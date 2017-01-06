@@ -3,9 +3,9 @@ let vowels = ['a', 'e', 'i', 'o', 'u'];
 function addPrefix(name) {
     if (name != "You") {
         if (name[0] in vowels)
-            return "An" + name;
+            return "An " + name;
         else
-            return "A" + name;
+            return "A " + name;
     } else {
         return name;
     }
@@ -129,7 +129,7 @@ class Goblin extends Actor  {
     interact(actor) { }
 
     react(actor) {
-        console.log("The goblin reacts and does nothing!");
+        this.attack(actor);
     }
 
 }
@@ -226,7 +226,7 @@ class Player extends Actor {
     interact(actor) { // returns true if we can continue to move to the tile
         if (actor.options.combat.hostile) {
             this.attack(actor);
-            if (actor.options.combat.hp > 0) actor.react(this);
+            if (! actor.isDead()) actor.react(this);
             else return true; // we can move
         } else {
             // non-combat interaction which varies from each actor to another,
