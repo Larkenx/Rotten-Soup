@@ -33,7 +33,7 @@ class Map {
             for (var j = 0; j < this.width; j++) {
                 // Grabs the symbol from the layer
                 var id = obstacles.data[i*this.width + j];
-                this.data[i][j] = new Tile(id);
+                this.data[i][j] = new Tile(j, i, id);
             }
         }
 
@@ -43,7 +43,7 @@ class Map {
                 let id = actorLayer.data[i*this.width + j]; // grab the id in the json data
                 if (id != 0) { // id of zero indicates no actor in this spot
                     let newActor = actorCreator(id, j, i); // create the new actor
-                    if (typeof newActor == typeof new Player()) this.player = newActor;
+                    if (newActor.options.symbol == "@") this.player = newActor;
                     this.actors.push(newActor); // add to the list of all actors
                     this.data[i][j].actors.push(newActor); // also push to the tiles' actors
                 }
@@ -76,21 +76,30 @@ class Map {
 }
 
 class Tile {
-    constructor(id) {
+    constructor(x, y, id) {
         this.symbol = id == 0 ? String.fromCharCode(32) : String.fromCharCode(id - 1);
         this.options = environment[this.symbol];
         this.actors = [];
+        this.x = x;
+        this.y = y;
     }
 
     blocked() {
-        if (this.options.blocked)
-            return true;
-        else if (this.actors.length == 0)
-            return false;
-        else
-            for (var i = 0; i < this.actors; i++)
-                if (this.actors[i].options.blocked)
-                    return true;
-        return false;
+        return this.options.blocked;
+    }
+}
+
+class HUD {
+    constructor() {
+        $('body').append("<div id='hud'>" + this.getStats() + "</div>");
+    }
+
+    update() {
+        document.getElementById('hud').innerHTML = this.getStats();
+    }
+
+    getStats() {
+        var p = Game.player;
+        return "HP: " + p.options.combat.hp + "\nSTR: " + p.options.combat.strength;
     }
 }

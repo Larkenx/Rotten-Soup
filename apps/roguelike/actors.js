@@ -1,3 +1,16 @@
+let vowels = ['a', 'e', 'i', 'o', 'u'];
+
+function addPrefix(name) {
+    if (name != "You") {
+        if (name[0] in vowels)
+            return "An" + name;
+        else
+            return "A" + name;
+    } else {
+        return name;
+    }
+}
+
 class Actor {
     constructor(x, y, options) {
         this.x = x;
@@ -5,6 +18,7 @@ class Actor {
         this.options = options;
     }
 
+    /* Called by the ROT.js game scheduler to indicate a turn */
     act() { return null; }
 
     examine() { return this.options.description; }
@@ -15,24 +29,73 @@ class Actor {
         return Math.sqrt(Math.pow(this.x - actor.x, 2) + Math.pow(this.y -  actor.y, 2));
     }
 
+    /* Used to perform an action against another actor */
+    interact(actor) { return null; }
+
+    /* Used to react to the interaction of another actor */
+    react(actor) { return null; }
+
+    tryMove(nx, ny) { // returns true if the turn should end here
+        let ntile = Game.map.data[ny][nx]; // new tile to move to
+        if (ntile.actors.length == 0 && ! ntile.blocked()) {
+            this.move(nx, ny);
+            return true;
+        } else {
+            if (ntile.blocked()) {
+                return false;
+            }
+
+            for (var i = 0; i < ntile.actors.length; i++) {
+                if (ntile.actors[i].options.visible) {
+                    return this.interact(ntile.actors[i]);
+                }
+            }
+
+            this.move(nx, ny);
+            return true;
+        }
+    }
+
     move(nx, ny) {
         let ntile = Game.map.data[ny][nx]; // new tile to move to
-        if (ntile.blocked()) {
-            console.log("Cannot move to (" + nx + "," + ny + ")");
-            return false;
-        }
-
         let ctile = Game.map.data[this.y][this.x]; // current tile
         ctile.actors.pop(this); // remove this actor from this tile
-        Game.drawTile(this.x, this.y, ctile); // redraw the tile, with this actor removed
+        Game.drawTile(ctile); // redraw the tile, with this actor removed
         ntile.actors.push(this); // add this actor to the new tile
 
         this.x = nx; // update x,y coords to new coords
         this.y = ny;
         Game.drawActor(this); // draw the actor at the new spot
-        return true;
+    }
+
+    attack(actor) {
+        let cb = this.options.combat;
+        console.log(addPrefix(this.options.name) + cb.description + actor.options.name.toLowerCase() + "!");
+        actor.damage(cb.strength);
+    }
+
+    damage(hp) {
+        this.options.combat.hp -= hp;
+        if (this.options.combat.hp <= 0) {
+            this.death();
+        }
+    }
+
+    death() {
+        let ctile = Game.map.data[this.y][this.x];
+        // remove this actor from the global actors list and the occupied tile
+        ctile.actors.pop(this);
+        Game.map.actors.pop(this);
+        // dump the contents of the actor's inventory (items) onto the ground.
+        if (this.inventory) ctile.actors.concat(this.inventory);
+        // redraw the tile, either with an appropriate actor or the tile symbol
+        Game.drawFirstActor(ctile);
+        console.log("A " + this.options.name + " has died!");
+
     }
 }
+
+/* Hostile actors */
 
 class Goblin extends Actor  {
 
@@ -45,25 +108,27 @@ class Goblin extends Actor  {
             bg:"transparent",
             visible:true,
             blocked:true,
-            hp:10,
-            att:10,
+            combat : { /* options.combat, dedicated to all things related to combat */
+                description:" attacks ",
+                hostile:true,
+                hp:10,
+                strength:2,
+                invulnerable:false,
+            }
         });
     }
 
     act() { }
-}
 
-class Item  { // extends Actor
-    constructor(x, y, name, attributes, quantity) {
-        this.name = name;
-        this.attributes = attributes;
-        this.quantity = quantity;
+    interact(actor) { }
+
+    react(actor) {
+        console.log("The goblin reacts and does nothing!");
     }
 
-    hasAttribute(attribute) {
-        return (attributes[attribute] != null);
-    }
 }
+
+/* Non-hostile Actors */
 
 class Store extends Actor {
 
@@ -72,7 +137,7 @@ class Store extends Actor {
             name:"Store",
             description:"A store filled with gold and goodies",
             symbol: "$",
-            fg :"lightgreen",
+            fg :"darkgreen",
             bg:"transparent",
             visible:true,
             blocked:true
@@ -81,6 +146,12 @@ class Store extends Actor {
         this.exchangeRate = 0.5;
         this.gold = 1000;
     }
+
+    act() { }
+
+    interact(actor) { }
+
+    react(actor) { }
 
     /* Returns the number of items available for a given item */
     stock(item) {
@@ -97,18 +168,41 @@ class Store extends Actor {
     }
 }
 
+class Item  { // extends Actor
+    constructor(x, y, name, attributes, quantity) {
+        this.name = name;
+        this.attributes = attributes;
+        this.quantity = quantity;
+    }
+
+    hasAttribute(attribute) {
+        return (attributes[attribute] != null);
+    }
+
+    act() { }
+
+    interact() { }
+
+    react() { }
+}
+
 class Player extends Actor {
 
     constructor(x, y) {
         super(x, y, {
-            name:"Player",
+            name:"You",
             description:"It's you!",
             symbol:"@",
             fg :"yellow",
             bg:"transparent",
             visible:true,
-            hp:10,
-            att:10,
+            blocked:true,
+            combat : { /* options.combat, dedicated to all things related to combat */
+                description:" attack the ",
+                hp:10,
+                strength:5,
+                invulnerable:false,
+            }
         });
         this.inventory = [];
     }
@@ -121,6 +215,24 @@ class Player extends Actor {
          * to the event listener. This anticipates the player object
          * to have a handleEvent method! */
         window.addEventListener("keydown", this);
+    }
+
+    interact(actor) { // returns true if we can continue to move to the tile
+        if (actor.options.combat.hostile) {
+            this.attack(actor);
+            if (actor.options.combat.hp > 0) actor.react(this);
+            else return true; // we can move
+        } else {
+            // non-combat interaction which varies from each actor to another,
+            // so we will design non-combat based actors to simply perform actions
+            // in a reactionary manner so that it offloads player code blocks.
+            actor.react(this);
+            return actor.options.blocked;
+        }
+    }
+
+    react(actor) {
+        // dodge?
     }
 
     handleEvent(evt) {
@@ -138,10 +250,14 @@ class Player extends Actor {
         var diff = ROT.DIRS[4][keyMap[code]];
         var nx = this.x + diff[0];
         var ny = this.y + diff[1];
-        if (! this.move(nx, ny)) return; // failed to move to this tile
-
+        if (! this.tryMove(nx, ny)) return; // failed to move to this tile
+        Game.HUD.update();
         window.removeEventListener("keydown", this);
         Game.engine.unlock();
+    }
+
+    death() {
+        alert("YOU DIED");
     }
 
 }

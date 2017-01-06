@@ -3,6 +3,7 @@
 /* Create game object to hold the display and initialize game */
 var Game = {
     display: null,
+    HUD: null,
     player: null,
     engine: null,
     map: null,
@@ -27,6 +28,7 @@ var Game = {
         this.engine = new ROT.Engine(scheduler); // Create new engine with the newly created scheduler
         this.engine.start(); // Start the engine
         this.drawMap();
+        this.HUD = new HUD();
     },
 
     loadMap: function (handle) {
@@ -66,18 +68,30 @@ var Game = {
         this.createPlayer(freeCells);
     },
 
+    /* Draw Functions */
+
     drawMap: function () {
         for (var y = 0; y < this.map.height; y++)
             for (var x = 0; x < this.map.width; x++)
-                Game.drawTile(x, y, this.map.data[y][x]);
+                Game.drawTile(this.map.data[y][x]);
 
         Game.drawActors();
     },
 
-    drawTile: function (x, y, tile) {
-        Game.display.draw(x, y, tile.symbol, tile.options.fg);
+    drawTile: function (tile) {
+        Game.display.draw(tile.x, tile.y, tile.symbol, tile.options.fg);
     },
 
+    drawFirstActor: function(tile) {
+        for (var i = 0; i < tile.actors.length; i++) {
+            if (tile.actors[i].options.visible) {
+                Game.drawActor(tile.actors[i]);
+                return;
+            }
+        }
+        // if we reach this point, no actors were drawable
+        Game.drawTile(tile);
+    },
 
     drawActors: function () {
         for (var i = 0; i < this.map.actors.length; i++) {
