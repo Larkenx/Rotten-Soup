@@ -17,8 +17,8 @@ var Game = {
             width: this.map.width,
             height: this.map.height,
             fontSize: 25,
-            fontFamily: "menlo",
-            forceSquareRation: true
+            fontFamily: "Consolas",
+            spacing:1.1,
         }
         this.display = new ROT.Display(options);
         document.body.appendChild(this.display.getContainer());
@@ -79,7 +79,7 @@ var Game = {
     },
 
     drawTile: function (tile) {
-        Game.display.draw(tile.x, tile.y, tile.symbol, tile.options.fg);
+        Game.display.draw(tile.x, tile.y, tile.symbol, tile.options.fg, "black");
     },
 
     drawFirstActor: function(tile) {
