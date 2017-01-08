@@ -109,7 +109,7 @@ class Goblin extends Actor  {
         super(x, y, {
             name:"goblin",
             description:"A mean, green goblin!",
-            symbol:"g",
+            symbol:"G",
             fg :"green",
             bg:"transparent",
             visible:true,
