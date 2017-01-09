@@ -17,7 +17,7 @@ var Game = {
             width: this.map.width,
             height: this.map.height,
             fontSize: 24,
-            fontFamily: "metrickal",
+            fontFamily: "menlo",
             spacing:1.2,
         };
         this.display = new ROT.Display(options);
@@ -104,3 +104,5 @@ var Game = {
     }
 
 };
+
+Game.loadMap("/apps/roguelike/maps/expanded_start.json");

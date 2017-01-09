@@ -95,8 +95,24 @@ class HUD {
         var p = Game.player;
         var cb = p.options.combat;
         /* HP Bar */
-        buffer += "<h3 class='w3-third'><i>Hitpoints </i>" + cb.hp + "/" + cb.maxhp + "</h3>"
+        buffer += "<div class='w3-row'><div class='w3-quarter'><i>Hitpoints </i>"
+                    + cb.hp + "/" + cb.maxhp + "</div>";
         buffer += this.createBar("hpbar", "w3-red");
+        buffer += "</div>"
+
+        /* Stamina Bar */
+        buffer += "<div class='w3-row'><span class='w3-50'><i>Stamina </i>"
+                    + cb.stamina + "/" + cb.maxstamina + "</span>";
+        buffer += this.createBar("staminabar", "w3-green");
+        buffer += "</div>"
+
+        /* Mana Bar */
+        buffer += "<div class='w3-row'><span style='width:100px;'><i>Mana </i>"
+                    + cb.mana + "/" + cb.maxmana + "</span>";
+        buffer += this.createBar("manabar", "w3-blue");
+        buffer += "</div>"
+
+        /* end of HUD */
         buffer += "</div>";
 
 
@@ -108,7 +124,7 @@ class HUD {
     }
 
     createBar(barID, color) {
-        return "<div class='w3-margin-top w3-progress-container w3-black w3-rest'>"
+        return "<div class='w3-progress-container w3-black w3-third'>"
                + "<div id='" + barID
                + "' class='w4-progressbar w3-round " + color
                + "' style=width:100%>"

@@ -1,0 +1,25 @@
+@font-face {
+    font-family: Metrickal;
+    src: url(../fonts/Metrickal.otf);
+}
+@font-face {
+    font-family: VT323;
+    src: url(../fonts/VT323.ttf);
+}
+
+.w3-menlo {
+    font-family: 'menlo', monospace;
+}
+
+html {
+    background-color : black;
+}
+
+#hud {
+    color: white;
+    width: 800px;
+}
+
+.w3-50 {
+    width: 200px;
+}

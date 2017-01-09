@@ -115,7 +115,11 @@ class Player extends Actor {
             combat : { /* options.combat, dedicated to all things related to combat */
                 description:" attack the ",
                 maxhp:100,
+                maxstamina:25,
+                maxmana:25,
                 hp:100,
+                stamina:25,
+                mana:25,
                 strength:7,
                 invulnerable:false,
             }
@@ -195,7 +199,11 @@ class Goblin extends Actor  {
                 description:" attacks ",
                 hostile:true,
                 maxhp:10,
+                maxstamina:15,
+                maxmana:5,
                 hp:10,
+                stamina:15,
+                mana:5,
                 strength:2,
                 invulnerable:false,
             }
