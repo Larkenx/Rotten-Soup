@@ -91,7 +91,28 @@ class Tile {
 
 class HUD {
     constructor() {
-        var buffer = "<div id='hud' class='w3-container w3-roguefont w3-black'>";
+        $('body').append(
+            "<div id='hud' class='w3-container w3-roguefont w3-black'>"
+            + this.getStats() + "</div>");
+    }
+
+    update() {
+        document.getElementById('hud').innerHTML = this.getStats();
+    }
+
+    createBar(barID, color, width) {
+        let cb = Game.player.options.combat;
+        let pct = ((cb.hp / cb.maxhp)*100).toFixed(1) + "%";
+        return "<div class='w3-progress-container w3-black w3-third'>"
+               + "<div id='" + barID
+               + "' class='w4-progressbar w3-round " + color
+               + "' style=width:100%>"
+               + "<div class='w3-center w3-text-white'>" + pct
+               + "</div></div></div>";
+   }
+
+    getStats() {
+        var buffer = "";
         var p = Game.player;
         var cb = p.options.combat;
         /* HP Bar */
@@ -101,41 +122,16 @@ class HUD {
         buffer += "</div>"
 
         /* Stamina Bar */
-        buffer += "<div class='w3-row'><span class='w3-50'><i>Stamina </i>"
+        buffer += "<div class='w3-row'><span class='w3-quarter'><i>Stamina </i>"
                     + cb.stamina + "/" + cb.maxstamina + "</span>";
         buffer += this.createBar("staminabar", "w3-green");
         buffer += "</div>"
 
         /* Mana Bar */
-        buffer += "<div class='w3-row'><span style='width:100px;'><i>Mana </i>"
+        buffer += "<div class='w3-row'><span class='w3-quarter''><i>Mana </i>"
                     + cb.mana + "/" + cb.maxmana + "</span>";
         buffer += this.createBar("manabar", "w3-blue");
         buffer += "</div>"
-
-        /* end of HUD */
-        buffer += "</div>";
-
-
-        $('body').append(buffer);
-    }
-
-    update() {
-        document.getElementById('hud').innerHTML = this.getStats();
-    }
-
-    createBar(barID, color) {
-        return "<div class='w3-progress-container w3-black w3-third'>"
-               + "<div id='" + barID
-               + "' class='w4-progressbar w3-round " + color
-               + "' style=width:100%>"
-               + "<div class='w3-center w3-text-white'>100%</div>"
-               + "</div></div>";
-   }
-
-    getStats() {
-        var p = Game.player;
-        return "<h2 class='w3-roguefont'>"
-               + "Position: " + "(" + p.x + ", " + p.y +")"
-               + "</h2>";
+        return buffer;
     }
 }
