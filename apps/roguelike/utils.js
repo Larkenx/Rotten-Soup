@@ -91,19 +91,35 @@ class Tile {
 
 class HUD {
     constructor() {
-        $('body').append("<div id='hud'>" + this.getStats() + "</div>");
+        var buffer = "<div id='hud' class='w3-container w3-roguefont w3-black'>";
+        var p = Game.player;
+        var cb = p.options.combat;
+        /* HP Bar */
+        buffer += "<h3 class='w3-third'><i>Hitpoints </i>" + cb.hp + "/" + cb.maxhp + "</h3>"
+        buffer += this.createBar("hpbar", "w3-red");
+        buffer += "</div>";
+
+
+        $('body').append(buffer);
     }
 
     update() {
         document.getElementById('hud').innerHTML = this.getStats();
     }
 
+    createBar(barID, color) {
+        return "<div class='w3-margin-top w3-progress-container w3-black w3-rest'>"
+               + "<div id='" + barID
+               + "' class='w4-progressbar w3-round " + color
+               + "' style=width:100%>"
+               + "<div class='w3-center w3-text-white'>100%</div>"
+               + "</div></div>";
+   }
+
     getStats() {
         var p = Game.player;
-        return "<h2>"
-               + "Health: " + p.options.combat.hp + "<br>"
-               + "Strength: " + p.options.combat.strength + "<br>"
-               + "Position: " + "(" + p.x + ", " + p.y +")" 
+        return "<h2 class='w3-roguefont'>"
+               + "Position: " + "(" + p.x + ", " + p.y +")"
                + "</h2>";
     }
 }

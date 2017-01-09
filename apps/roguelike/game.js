@@ -16,10 +16,10 @@ var Game = {
         var options = {
             width: this.map.width,
             height: this.map.height,
-            fontSize: 25,
-            fontFamily: "Consolas",
-            spacing:1.1,
-        }
+            fontSize: 24,
+            fontFamily: "metrickal",
+            spacing:1.2,
+        };
         this.display = new ROT.Display(options);
         document.body.appendChild(this.display.getContainer());
         // Set the ROT engine and scheduler
@@ -38,11 +38,11 @@ var Game = {
             })
                 .done(function(data) {
                     Game.map = new Map(data);
-                    if (Game.map == null) throw "Failed to load map!";
+                    if (Game.map === null) throw "Failed to load map!";
                     Game.init();
                 });
 
-            return Game.map != null;
+            return Game.map !== null;
         }
         catch (error) {
             console.log("Map creation failed: " + error);
@@ -62,7 +62,7 @@ var Game = {
             if (val) return;
 
             var key = x+","+y;
-            freeCells.push(key)
+            freeCells.push(key);
             Game.map[key] = ".";
         });
         this.createPlayer(freeCells);
@@ -103,4 +103,4 @@ var Game = {
         Game.display.draw(actor.x, actor.y, actor.options.symbol, actor.options.fg, actor.options.bg);
     }
 
-}
+};

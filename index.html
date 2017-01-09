@@ -3,6 +3,31 @@
     <head>
         <meta http-equiv="content-type" content="text/html; charset=UTF8">
         <title>Text-Game</title>
+        <!-- W3CSS for style -->
+        <link rel="stylesheet" href="http://www.w3schools.com/lib/w3.css">
+        <!--  Fonts -->
+        <style>
+        @font-face {
+            font-family: Metrickal;
+            src: url(assets/fonts/Metrickal.otf);
+        }
+        @font-face {
+            font-family: VT323;
+            src: url(assets/fonts/VT323.ttf);
+        }
+
+        .w3-roguefont {
+            font-family: 'metrickal', monospace;
+        }
+
+        html {
+            background-color : black;
+        }
+
+        #hud {
+            color: white;
+        }
+        </style>
         <!-- Libraries  -->
         <script src="/assets/js/rot.min.js"></script>
         <script src="/assets/js/jquery.min.js"></script>
@@ -11,16 +36,13 @@
         <script src="/apps/roguelike/options.js"></script>
         <script src="/apps/roguelike/utils.js"></script>
         <script src="/apps/roguelike/game.js"></script>
-    </head>
-    <body /onload="Game.loadMap('apps/roguelike/maps/expanded_start.json')">
-    </body>
-</html>
-<style>
-html {
-    background-color : black;
-}
 
-#hud {
-    color: white;
-}
-</style>
+    </head>
+    <body>
+    </body>
+    <script>
+    $(function() {
+        Game.loadMap("/apps/roguelike/maps/expanded_start.json");
+    })
+    </script>
+</html>

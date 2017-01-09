@@ -101,6 +101,83 @@ class Actor {
     isDead() { return this.options.combat.hp <= 0; }
 }
 
+class Player extends Actor {
+
+    constructor(x, y) {
+        super(x, y, {
+            name:"You",
+            description:"It's you!",
+            symbol:"@",
+            fg :"yellow",
+            bg:"transparent",
+            visible:true,
+            blocked:true,
+            combat : { /* options.combat, dedicated to all things related to combat */
+                description:" attack the ",
+                maxhp:100,
+                hp:100,
+                strength:7,
+                invulnerable:false,
+            }
+        });
+        this.inventory = [];
+    }
+
+    act() {
+        /* For our player's action, we lock the engine (turn based) */
+        Game.engine.lock();
+        /* We are creating an event handler here, but we are doing this
+         * with a unique parameter by passing the player struct directly
+         * to the event listener. This anticipates the player object
+         * to have a handleEvent method! */
+        window.addEventListener("keydown", this);
+    }
+
+    interact(actor) { // returns true if we can continue to move to the tile
+        if (actor.options.combat.hostile) {
+            this.attack(actor);
+            if (! actor.isDead()) actor.react(this);
+            else return true; // we can move
+        } else {
+            // non-combat interaction which varies from each actor to another,
+            // so we will design non-combat based actors to simply perform actions
+            // in a reactionary manner so that it offloads player code blocks.
+            actor.react(this);
+            return actor.options.blocked;
+        }
+    }
+
+    react(actor) {
+        // dodge?
+    }
+
+    handleEvent(evt) {
+        var code = evt.keyCode;
+
+        var keyMap = {
+            87 : 0, // D
+            68 : 1, // W
+            83 : 2, // S
+            65 : 3 // A
+        };
+
+        if (! (code in keyMap)) return; // invalid key press
+
+        var diff = ROT.DIRS[4][keyMap[code]];
+        var nx = this.x + diff[0];
+        var ny = this.y + diff[1];
+        this.tryMove(nx, ny)
+        Game.HUD.update();
+        window.removeEventListener("keydown", this);
+        Game.engine.unlock();
+    }
+
+    death() {
+        alert("YOU DIED");
+    }
+
+}
+
 /* Hostile actors */
 
 class Goblin extends Actor  {
@@ -109,7 +186,7 @@ class Goblin extends Actor  {
         super(x, y, {
             name:"goblin",
             description:"A mean, green goblin!",
-            symbol:"G",
+            symbol:"g",
             fg :"green",
             bg:"transparent",
             visible:true,
@@ -117,6 +194,7 @@ class Goblin extends Actor  {
             combat : { /* options.combat, dedicated to all things related to combat */
                 description:" attacks ",
                 hostile:true,
+                maxhp:10,
                 hp:10,
                 strength:2,
                 invulnerable:false,
@@ -190,82 +268,6 @@ class Item  { // extends Actor
     interact() { }
 
     react() { }
-}
-
-class Player extends Actor {
-
-    constructor(x, y) {
-        super(x, y, {
-            name:"You",
-            description:"It's you!",
-            symbol:"@",
-            fg :"yellow",
-            bg:"transparent",
-            visible:true,
-            blocked:true,
-            combat : { /* options.combat, dedicated to all things related to combat */
-                description:" attack the ",
-                hp:10,
-                strength:5,
-                invulnerable:false,
-            }
-        });
-        this.inventory = [];
-    }
-
-    act() {
-        /* For our player's action, we lock the engine (turn based) */
-        Game.engine.lock();
-        /* We are creating an event handler here, but we are doing this
-         * with a unique parameter by passing the player struct directly
-         * to the event listener. This anticipates the player object
-         * to have a handleEvent method! */
-        window.addEventListener("keydown", this);
-    }
-
-    interact(actor) { // returns true if we can continue to move to the tile
-        if (actor.options.combat.hostile) {
-            this.attack(actor);
-            if (! actor.isDead()) actor.react(this);
-            else return true; // we can move
-        } else {
-            // non-combat interaction which varies from each actor to another,
-            // so we will design non-combat based actors to simply perform actions
-            // in a reactionary manner so that it offloads player code blocks.
-            actor.react(this);
-            return actor.options.blocked;
-        }
-    }
-
-    react(actor) {
-        // dodge?
-    }
-
-    handleEvent(evt) {
-        var code = evt.keyCode;
-
-        var keyMap = {
-            87 : 0, // D
-            68 : 1, // W
-            83 : 2, // S
-            65 : 3 // A
-        };
-
-        if (! (code in keyMap)) return; // invalid key press
-
-        var diff = ROT.DIRS[4][keyMap[code]];
-        var nx = this.x + diff[0];
-        var ny = this.y + diff[1];
-        this.tryMove(nx, ny)
-        Game.HUD.update();
-        window.removeEventListener("keydown", this);
-        Game.engine.unlock();
-    }
-
-    death() {
-        alert("YOU DIED");
-    }
-
 }
 
 class Ladder extends Actor {
