@@ -102,7 +102,17 @@ class HUD {
 
     createBar(barID, color, width) {
         let cb = Game.player.options.combat;
-        let pct = ((cb.hp / cb.maxhp)*100).toFixed(1) + "%";
+        var num = cb.mana;
+        var denom = cb.maxmana;
+        if (barID == "hpbar") {
+            num = cb.hp;
+            denom = cb.maxhp;
+        } else if (barID == "staminabar") {
+            num = cb.stamina;
+            denom = cb.maxstamina;
+        }
+
+        let pct = ((num / denom)*100).toFixed(1) + "%";
         return "<div class='w3-progress-container w3-black w3-third'>"
                + "<div id='" + barID
                + "' class='w4-progressbar w3-round " + color
