@@ -126,7 +126,7 @@ class HUD {
         var p = Game.player;
         var cb = p.options.combat;
         /* HP Bar */
-        buffer += "<div class='w3-row w3-margin-top'><div class='w3-quarter'><i>Hitpoints </i>"
+        buffer += "<div class='w3-row w3-card-4 w3-margin-top'><div class='w3-quarter'><i>Hitpoints </i>"
                     + cb.hp + "/" + cb.maxhp + "</div>";
         buffer += this.createBar("hpbar", "w3-red");
         buffer += "</div>"

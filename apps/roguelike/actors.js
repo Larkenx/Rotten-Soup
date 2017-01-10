@@ -11,11 +11,44 @@ function addPrefix(name) {
     }
 }
 
+class SimpleAI {
+
+    constructor() {}
+
+    moveTowardsPlayer(actor) {
+        var callback = function(nx,ny) {
+            if (nx < 0 || nx == Game.map.width || ny < 0 || ny == Game.map.height) return false;
+            let ntile = Game.map.data[ny][nx]; // new tile to move to
+            if (ntile.actors.length == 0 && ! ntile.blocked()) {
+                return true;
+            } else if (ntile.actors.length > 0 && ! ntile.blocked()) {
+                for (var i = 0; i < ntile.actors.length; i++) {
+                    let actor = ntile.actors[i];
+                    if (actor.options.visible) {
+                        return false;
+                    }
+                }
+                return true;
+            } else {
+                return ntile.blocked();
+            }
+        };
+
+        var dijkstra = new ROT.Path.Dijkstra(actor.x, actor.y, callback);
+
+        dijkstra.compute(Game.player.x, Game.player.y, function(x, y) {
+            console.log(x + "," + y);
+        });
+    }
+
+}
+
 class Actor {
     constructor(x, y, options) {
         this.x = x;
         this.y = y;
         this.options = options;
+        this.cb = this.options.combat;
     }
 
     /* Called by the ROT.js game scheduler to indicate a turn */
@@ -68,21 +101,46 @@ class Actor {
         Game.drawActor(this); // draw the actor at the new spot
     }
 
+    /* attacks another actor */
     attack(actor) {
-        let cb = this.options.combat;
-
         console.log(
             addPrefix(this.options.name)
-            + cb.description
+            + this.cb.description
             + actor.options.name.toLowerCase() + "!"
         );
 
-        actor.damage(cb.strength);
+        actor.damage(this.cb.strength);
+        this.options.combat.stamina -= 2.5;
     }
 
+    /* Reduce hp. If less than 0, causes death */
     damage(hp) {
         this.options.combat.hp -= hp;
         if (this.isDead()) this.death();
+    }
+
+    /* Restore HP up to maxhp */
+    heal(hp) {
+        if (this.cb.hp + hp > this.cb.maxhp)
+            this.cb.hp = this.cb.maxhp;
+        else
+            this.cb.hp += hp;
+    }
+
+    /* Restores stamina up to max */
+    recover(stamina) {
+        if (this.cb.stamina + stamina > this.cb.maxstamina)
+            this.cb.stamina = this.cb.maxstamina;
+        else
+            this.cb.stamina += stamina;
+    }
+
+    /* Restores mana up to max */
+    restore(mana) {
+        if (this.cb.mana + mana > this.cb.maxmana)
+            this.cb.mana = this.cb.maxmana;
+        else
+            this.cb.mana += mana;
     }
 
     death() {
@@ -98,7 +156,7 @@ class Actor {
 
     }
 
-    isDead() { return this.options.combat.hp <= 0; }
+    isDead() { return this.cb.hp <= 0; }
 }
 
 class Player extends Actor {
@@ -113,15 +171,21 @@ class Player extends Actor {
             visible:true,
             blocked:true,
             combat : { /* options.combat, dedicated to all things related to combat */
-                description:" attack the ",
+                description:["attack", "stab", "jab", "smash", "strike", "assail"],
+                /* stat caps */
                 maxhp:100,
                 maxstamina:25,
                 maxmana:25,
+                /* current stats */
                 hp:100,
                 stamina:25,
                 mana:25,
                 strength:7,
-                invulnerable:false,
+                /* Per-turn effects */
+                staminaRecovery:5,
+                hpRecovery:10,
+                manaRecovery:5,
+                invulnerable:false
             }
         });
         this.inventory = [];
@@ -157,23 +221,62 @@ class Player extends Actor {
 
     handleEvent(evt) {
         var code = evt.keyCode;
-
+        var endturn = function() {
+            Game.HUD.update();
+            window.removeEventListener("keydown", this);
+            Game.engine.unlock();
+        };
+        /*
+        y k u    7 8 9
+         \|/      \|/
+        h-+-l    4-5-6
+         /|\      /|\
+        b j n    1 2 3
+       vi-keys   numpad
+       */
         var keyMap = {
-            87 : 0, // D
-            68 : 1, // W
-            83 : 2, // S
-            65 : 3 // A
+            /* Arrow Key movement */
+            39 : 2,
+            37: 6,
+            38 : 0,
+            40 : 4,
+            /* Num Pad Movement */
+            104 : 0,
+            105 : 1,
+            102 : 2,
+            99 : 3,
+            98 : 4,
+            97 : 5,
+            100 : 6,
+            103 : 7,
+            /* vi movement */
+            75 : 0,
+            85 : 1,
+            76 : 2,
+            78 : 3,
+            74 : 4,
+            66 : 5,
+            72 : 6,
+            89 : 7,
+            /* Rest */
+            190: "rest"
         };
 
-        if (! (code in keyMap)) return; // invalid key press
+        if (! (code in keyMap)) return; // invalid key press, do nothing
 
-        var diff = ROT.DIRS[4][keyMap[code]];
-        var nx = this.x + diff[0];
-        var ny = this.y + diff[1];
-        this.tryMove(nx, ny)
-        Game.HUD.update();
-        window.removeEventListener("keydown", this);
-        Game.engine.unlock();
+        if ("rest" == keyMap[code]) { // Rest
+            this.recover(this.cb.staminaRecovery);
+            this.heal(this.cb.hpRecovery);
+            this.restore(this.cb.manaRecovery);
+            endturn();
+            return;
+        } else {
+            var diff = ROT.DIRS[8][keyMap[code]];
+            var nx = this.x + diff[0];
+            var ny = this.y + diff[1];
+            this.tryMove(nx, ny)
+            endturn();
+        }
     }
 
     death() {
@@ -198,6 +301,7 @@ class Goblin extends Actor  {
             combat : { /* options.combat, dedicated to all things related to combat */
                 description:" attacks ",
                 hostile:true,
+                range:6,
                 maxhp:10,
                 maxstamina:15,
                 maxmana:5,
@@ -208,11 +312,19 @@ class Goblin extends Actor  {
                 invulnerable:false,
             }
         });
+        this.AI = new SimpleAI();
     }
 
-    act() { }
+    act() {
+        if (this.distanceTo(Game.player) < 6) {
+            console.log("Goblin in range!");
+            this.AI.moveTowardsPlayer(this);
+        }
+    }
 
-    interact(actor) { }
+    interact(actor) {
+        this.attack(actor);
+    }
 
     react(actor) {
         this.attack(actor);

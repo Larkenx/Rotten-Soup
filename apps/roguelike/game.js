@@ -17,7 +17,7 @@ var Game = {
             width: this.map.width,
             height: this.map.height,
             fontSize: 24,
-            fontFamily: "menlo",
+            fontFamily: "menlo, consolas",
             spacing:1.2,
         };
         this.display = new ROT.Display(options);
@@ -25,6 +25,12 @@ var Game = {
         // Set the ROT engine and scheduler
         var scheduler = new ROT.Scheduler.Simple();
         scheduler.add(this.player, true); // Add the player to the scheduler
+        for (var i = 0; i < this.map.actors.length; i++) {
+            if (this.map.actors[i] !== this.player) {
+                scheduler.add(this.map.actors[i], true);
+            }
+        }
+
         this.engine = new ROT.Engine(scheduler); // Create new engine with the newly created scheduler
         this.engine.start(); // Start the engine
         this.drawMap();
@@ -105,4 +111,4 @@ var Game = {
 
 };
 
-Game.loadMap("/apps/roguelike/maps/expanded_start.json");
+Game.loadMap("/apps/roguelike/maps/start_map.json");
