@@ -84,8 +84,15 @@ class Tile {
         this.y = y;
     }
 
+    /* Indicates whether or not a tile is blocked; however, this excludes the player
+     * for AI purposes. */
     blocked() {
-        return this.options.blocked;
+        if (this.options.blocked) return true;
+        for (var actor of this.actors) {
+            if (actor.options.blocked && actor != Game.player)
+                return true;
+        }
+        return false;
     }
 }
 

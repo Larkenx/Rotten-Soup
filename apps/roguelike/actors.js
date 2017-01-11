@@ -11,36 +11,76 @@ function addPrefix(name) {
     }
 }
 
-class SimpleAI {
+/* Returns the tiles adjacent to the given tile */
+function adjTiles(tile) {
+    let adjacentTiles = [];
+    for (var dist of ROT.DIRS[8]) {
+        let nx = tile.x + dist[0];
+        let ny = tile.y + dist[1];
+        if (nx < 0 || nx == Game.map.width || ny < 0 || ny == Game.map.height)
+            continue; // out of bounds, skip
+        else
+            adjacentTiles.push(Game.map.data[ny][nx]);
+    }
+    return adjacentTiles;
+}
 
-    constructor() {}
-
-    moveTowardsPlayer(actor) {
-        var callback = function(nx,ny) {
-            if (nx < 0 || nx == Game.map.width || ny < 0 || ny == Game.map.height) return false;
-            let ntile = Game.map.data[ny][nx]; // new tile to move to
-            if (ntile.actors.length == 0 && ! ntile.blocked()) {
-                return true;
-            } else if (ntile.actors.length > 0 && ! ntile.blocked()) {
-                for (var i = 0; i < ntile.actors.length; i++) {
-                    let actor = ntile.actors[i];
-                    if (actor.options.visible) {
-                        return false;
-                    }
-                }
-                return true;
-            } else {
-                return ntile.blocked();
-            }
-        };
-
-        var dijkstra = new ROT.Path.Dijkstra(actor.x, actor.y, callback);
-
-        dijkstra.compute(Game.player.x, Game.player.y, function(x, y) {
-            console.log(x + "," + y);
-        });
+/* bfs that accepts two tiles start and finish. returns
+ * the parent map of tiles, which can be used to backtrack from sink to src
+ * for the shortest path from start to finish */
+function bfs(start, finish) {
+    let graph = Game.map.data;
+    let parents = {};
+    var visited = new Array(graph.height);
+    var visit = function(tile) {
+        visited[tile.y][tile.x] = true;
+    }
+    // initialize unions/sets and visited matrix
+    for (var y = 0; y < graph.height; y++) {
+        visited[y] = new Array(graph.width);
+        for (var x = 0; x < graph.width; x++) {
+            // we will mark a tile as visited if it's blocked
+            visited[y][x] = graph[y][x].blocked();
+            // initially all tiles will be their own parent
+            parents[graph[y][x]] = graph[y][x];
+        }
     }
 
+    var Q = [];
+    Q.push(start);
+    visit(start);
+    while (Q.length > 0) {
+        let u = Q.shift();
+        for (let v of adjTiles(u)) {
+            if (! visited[v.y][v.x]) {
+                parents[v] = u;
+                Q.push(v);
+                visit(v);
+            }
+        }
+    }
+
+    return bfs_backtrack(start, finish, parents);
+
+}
+
+function bfs_backtrack(start, finish, parents) {
+    let path = [];
+    if (start == finish) {
+        return src; // already there?
+    } else {
+        var current = finish;
+        while (current != start) {
+            path.unshift(current);
+            var next = parents[current];
+            if (current == next && next != start) {
+                return null; // no path exists from src to sink
+            }
+            current = next;
+        }
+        path.push(current); // also add in the start
+    }
+    return path;
 }
 
 class Actor {
@@ -71,7 +111,7 @@ class Actor {
     tryMove(nx, ny) { // returns true if the turn should end here
         if (nx < 0 || nx == Game.map.width || ny < 0 || ny == Game.map.height) return;
         let ntile = Game.map.data[ny][nx]; // new tile to move to
-        if (ntile.actors.length == 0 && ! ntile.blocked()) {
+        if (ntile.actors.length == 0 && ! ntile.options.blocked) {
             this.move(nx, ny);
         } else if (ntile.actors.length > 0) {
             for (var i = 0; i < ntile.actors.length; i++) {
@@ -84,7 +124,7 @@ class Actor {
             }
         }
 
-        if (! ntile.blocked()) {
+        if (! ntile.options.blocked) {
             this.move(nx, ny);
         }
     }
@@ -308,18 +348,31 @@ class Goblin extends Actor  {
                 hp:10,
                 stamina:15,
                 mana:5,
-                strength:2,
+                strength:10,
                 invulnerable:false,
             }
         });
-        this.AI = new SimpleAI();
     }
 
     act() {
-        if (this.distanceTo(Game.player) < 6) {
+        Game.engine.lock();
+        if (this.distanceTo(Game.player) < 9) {
             console.log("Goblin in range!");
-            this.AI.moveTowardsPlayer(this);
+            let graph = Game.map.data;
+            let src = graph[this.y][this.x];
+            let sink = graph[Game.player.y][Game.player.x];
+            let route = bfs(src, sink);
+            if (route == null) {
+                // Goblin cannot reach the player. Do something else?
+                // wait.....
+            } else {
+                if (route.length == 1) {
+
+                }
+            }
         }
+
+        Game.engine.unlock();
     }
 
     interact(actor) {
