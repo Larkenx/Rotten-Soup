@@ -57,15 +57,23 @@ class Actor {
 
     tryMove(nx, ny) { // returns true if the turn should end here
         if (nx < 0 || nx == Game.map.width || ny < 0 || ny == Game.map.height) return;
+
+        var r = $.Deferred();
+        var callback = function() {
+            
+        }
+
         let ntile = Game.map.data[ny][nx]; // new tile to move to
         if (ntile.actors.length == 0 && ! ntile.options.blocked) {
-            this.move(nx, ny);
+            this.move(nx, ny, callback);
         } else if (ntile.actors.length > 0) {
             for (var i = 0; i < ntile.actors.length; i++) {
                 let actor = ntile.actors[i];
                 if (actor.options.visible) {
                     this.interact(actor);
-                    if (actor.isDead()) this.move(nx, ny);
+                    if (actor.isDead()) {
+                        this.move(nx, ny);
+                    }
                     return;
                 }
             }
@@ -140,7 +148,7 @@ class Actor {
         if (this.inventory) ctile.actors.concat(this.inventory);
         // redraw the tile, either with an appropriate actor or the tile symbol
         // Game.drawFirstActor(ctile);
-        console.log(this.options.name + " has died!");
+        console.log("A " + this.options.name + " has died!");
 
     }
 
@@ -306,13 +314,10 @@ class Goblin extends Actor  {
 
     act() {
         Game.engine.lock();
-        console.log("Goblin's move!");
         if (this.distanceTo(Game.player) < 9) {
             var pathToPlayer = [];
             Game.player.path.compute(this.x, this.y, function(x, y) {
                 pathToPlayer.push([x, y]);
-                // console.log("computing path");
-                // Game.display.draw(x, y, "%", "red", "red");
             });
             if (pathToPlayer.length >= 2) {
                 let newPos = pathToPlayer[1]; // 1 past the current position
@@ -329,7 +334,7 @@ class Goblin extends Actor  {
     }
 
     react(actor) {
-        this.attack(actor);
+        // dodge?
     }
 
 }
