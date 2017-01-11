@@ -131,6 +131,7 @@ class Actor {
     }
 
     death() {
+        Game.engine._scheduler.remove(this);
         let ctile = Game.map.data[this.y][this.x];
         // remove this actor from the global actors list and the occupied tile
         ctile.actors.pop(this);
@@ -138,8 +139,8 @@ class Actor {
         // dump the contents of the actor's inventory (items) onto the ground.
         if (this.inventory) ctile.actors.concat(this.inventory);
         // redraw the tile, either with an appropriate actor or the tile symbol
-        Game.drawFirstActor(ctile);
-        console.log("A " + this.options.name + " has died!");
+        // Game.drawFirstActor(ctile);
+        console.log(this.options.name + " has died!");
 
     }
 
@@ -313,8 +314,10 @@ class Goblin extends Actor  {
                 // console.log("computing path");
                 // Game.display.draw(x, y, "%", "red", "red");
             });
-            let newPos = pathToPlayer[1]; // 1 past the current position
-            this.tryMove(newPos[0], newPos[1]);
+            if (pathToPlayer.length >= 2) {
+                let newPos = pathToPlayer[1]; // 1 past the current position
+                this.tryMove(newPos[0], newPos[1]);
+            }
         }
 
 

@@ -5,6 +5,7 @@ var Game = {
     display: null,
     HUD: null,
     player: null,
+    scheduler: null,
     engine: null,
     map: null,
 
@@ -23,15 +24,15 @@ var Game = {
         this.display = new ROT.Display(options);
         document.body.appendChild(this.display.getContainer());
         // Set the ROT engine and scheduler
-        var scheduler = new ROT.Scheduler.Simple();
-        scheduler.add(this.player, true); // Add the player to the scheduler
+        this.scheduler = new ROT.Scheduler.Simple();
+        this.scheduler.add(this.player, true); // Add the player to the scheduler
         for (var i = 0; i < this.map.actors.length; i++) {
             if (this.map.actors[i] !== this.player) {
-                scheduler.add(this.map.actors[i], true);
+                this.scheduler.add(this.map.actors[i], true);
             }
         }
 
-        this.engine = new ROT.Engine(scheduler); // Create new engine with the newly created scheduler
+        this.engine = new ROT.Engine(this.scheduler); // Create new engine with the newly created scheduler
         this.engine.start(); // Start the engine
         this.drawMap();
         this.HUD = new HUD();
