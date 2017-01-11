@@ -111,4 +111,4 @@ var Game = {
 
 };
 
-Game.loadMap("/apps/roguelike/maps/expanded_start.json");
+Game.loadMap("/apps/roguelike/maps/start_map.json");

@@ -25,62 +25,9 @@ function adjTiles(tile) {
     return adjacentTiles;
 }
 
-/* bfs that accepts two tiles start and finish. returns
- * the parent map of tiles, which can be used to backtrack from sink to src
- * for the shortest path from start to finish */
-function bfs(start, finish) {
-    let graph = Game.map.data;
-    let parents = {};
-    var visited = new Array(graph.height);
-    var visit = function(tile) {
-        visited[tile.y][tile.x] = true;
-    }
-    // initialize unions/sets and visited matrix
-    for (var y = 0; y < graph.height; y++) {
-        visited[y] = new Array(graph.width);
-        for (var x = 0; x < graph.width; x++) {
-            // we will mark a tile as visited if it's blocked
-            visited[y][x] = graph[y][x].blocked();
-            // initially all tiles will be their own parent
-            parents[graph[y][x]] = graph[y][x];
-        }
-    }
-
-    var Q = [];
-    Q.push(start);
-    visit(start);
-    while (Q.length > 0) {
-        let u = Q.shift();
-        for (let v of adjTiles(u)) {
-            if (! visited[v.y][v.x]) {
-                parents[v] = u;
-                Q.push(v);
-                visit(v);
-            }
-        }
-    }
-
-    return bfs_backtrack(start, finish, parents);
-
-}
-
-function bfs_backtrack(start, finish, parents) {
-    let path = [];
-    if (start == finish) {
-        return src; // already there?
-    } else {
-        var current = finish;
-        while (current != start) {
-            path.unshift(current);
-            var next = parents[current];
-            if (current == next && next != start) {
-                return null; // no path exists from src to sink
-            }
-            current = next;
-        }
-        path.push(current); // also add in the start
-    }
-    return path;
+function dijkstra_callback(x, y) {
+    if (x <= 0 || x == Game.map.width || y <= 0 || y == Game.map.height) return false;
+    return ! Game.map.data[y][x].options.blocked;
 }
 
 class Actor {
@@ -228,12 +175,14 @@ class Player extends Actor {
                 invulnerable:false
             }
         });
+        this.path = new ROT.Path.Dijkstra(this.x, this.y, dijkstra_callback);
         this.inventory = [];
     }
 
     act() {
         /* For our player's action, we lock the engine (turn based) */
         Game.engine.lock();
+        if (Game.HUD) Game.HUD.update();
         /* We are creating an event handler here, but we are doing this
          * with a unique parameter by passing the player struct directly
          * to the event listener. This anticipates the player object
@@ -262,7 +211,6 @@ class Player extends Actor {
     handleEvent(evt) {
         var code = evt.keyCode;
         var endturn = function() {
-            Game.HUD.update();
             window.removeEventListener("keydown", this);
             Game.engine.unlock();
         };
@@ -315,6 +263,7 @@ class Player extends Actor {
             var nx = this.x + diff[0];
             var ny = this.y + diff[1];
             this.tryMove(nx, ny)
+            this.path = new ROT.Path.Dijkstra(this.x, this.y, dijkstra_callback);
             endturn();
         }
     }
@@ -356,21 +305,18 @@ class Goblin extends Actor  {
 
     act() {
         Game.engine.lock();
+        console.log("Goblin's move!");
         if (this.distanceTo(Game.player) < 9) {
-            console.log("Goblin in range!");
-            let graph = Game.map.data;
-            let src = graph[this.y][this.x];
-            let sink = graph[Game.player.y][Game.player.x];
-            let route = bfs(src, sink);
-            if (route == null) {
-                // Goblin cannot reach the player. Do something else?
-                // wait.....
-            } else {
-                if (route.length == 1) {
-
-                }
-            }
+            var pathToPlayer = [];
+            Game.player.path.compute(this.x, this.y, function(x, y) {
+                pathToPlayer.push([x, y]);
+                // console.log("computing path");
+                // Game.display.draw(x, y, "%", "red", "red");
+            });
+            let newPos = pathToPlayer[1]; // 1 past the current position
+            this.tryMove(newPos[0], newPos[1]);
         }
+
 
         Game.engine.unlock();
     }
