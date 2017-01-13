@@ -7,6 +7,14 @@
     src: url(../fonts/VT323.ttf);
 }
 
+.w3-deathfont {
+    font-family: 'Creepster';
+}
+
+.w3-gamefont {
+    font-family: 'Press Start 2P';
+}
+
 .w3-menlo {
     font-family: 'menlo', monospace;
 }

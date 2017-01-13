@@ -2,6 +2,7 @@
 
 /* Create game object to hold the display and initialize game */
 var Game = {
+    newGame: true,
     display: null,
     HUD: null,
     player: null,
@@ -10,19 +11,26 @@ var Game = {
     map: null,
 
     init: function () {
+        // Mark this as a new game
         // Load the map and link the game to the player
-        console.log(this.map);
         this.player = this.map.player;
         // Set up the display
         var options = {
             width: this.map.width,
             height: this.map.height,
             fontSize: 24,
-            fontFamily: "menlo, consolas",
+            fontFamily:"menlo, consolas",
             spacing:1.2,
+            forceSquareRatio:true
         };
+
         this.display = new ROT.Display(options);
-        document.body.appendChild(this.display.getContainer());
+        if (! this.newGame) {
+            $('canvas').remove();
+        }
+        $('body').prepend(this.display.getContainer());
+
+
         // Set the ROT engine and scheduler
         this.scheduler = new ROT.Scheduler.Simple();
         this.scheduler.add(this.player, true); // Add the player to the scheduler
@@ -35,7 +43,13 @@ var Game = {
         this.engine = new ROT.Engine(this.scheduler); // Create new engine with the newly created scheduler
         this.engine.start(); // Start the engine
         this.drawMap();
-        this.HUD = new HUD();
+        if (this.newGame)
+            this.HUD = new HUD();
+        else {
+            this.HUD.update();
+        }
+        this.newGame = false;
+
     },
 
     loadMap: function (handle) {
@@ -76,7 +90,6 @@ var Game = {
     },
 
     /* Draw Functions */
-
     drawMap: function () {
         for (var y = 0; y < this.map.height; y++)
             for (var x = 0; x < this.map.width; x++)
@@ -112,4 +125,4 @@ var Game = {
 
 };
 
-Game.loadMap("/apps/roguelike/maps/start_map.json");
+Game.loadMap("/apps/roguelike/maps/expanded_start.json");

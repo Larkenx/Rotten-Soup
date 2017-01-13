@@ -73,6 +73,21 @@ class Map {
         console.log(buf);
     }
 
+
+    /* Returns the tiles adjacent to the given tile */
+    adjTiles(tile) {
+        let adjacentTiles = [];
+        for (var dist of ROT.DIRS[8]) {
+            let nx = tile.x + dist[0];
+            let ny = tile.y + dist[1];
+            if (nx < 0 || nx == this.width || ny < 0 || ny == this.height)
+                continue; // out of bounds, skip
+            else
+                adjacentTiles.push(this.data[ny][nx]);
+        }
+        return adjacentTiles;
+    }
+
 }
 
 class Tile {
@@ -120,12 +135,10 @@ class HUD {
         }
 
         let pct = ((num / denom)*100) + "%";
-        return "<div class='w3-progress-container w3-black w3-third'>"
-               + "<div id='" + barID
-               + "' class='w4-progressbar w3-border w3-round " + color
-               + "' style=width:" + pct + ">"
-               + "<div class='w3-center w3-text-white'>" + pct
-               + "</div></div></div>";
+        return `<div class='w3-progress-container w3-black w3-third'>
+                  <div id='${barID}'
+                  class='w4-progressbar w3-border w3-round ${color}' style='width:${pct}'>
+                  <div class='w3-center w3-text-white'>${pct}</div></div></div>`;
    }
 
     getStats() {
@@ -151,4 +164,28 @@ class HUD {
         buffer += "</div>"
         return buffer;
     }
+
+    deathScreen() {
+        var modal = `<div id="deathScreen" class="w3-modal" >
+                  <div class="w3-container w3-border w3-black w3-modal-content w3-animate-top w3-card-8" style='width:400px;'>
+                      <span style='text-align:center; margin:0 auto;'
+                      class='w3-text-red w3-wide w3-text-shadow'>
+                        <i style='font-size:100px;' class='w3-deathfont'>YOU DIED</i>
+                      </span>
+                      <div class="w3-padding-16">
+                          <button class="w3-btn-block w3-ripple w3-text-shadow w3-green" onclick="Game.HUD.newGame()">
+                          <b>Try Again?</b>
+                          </button>
+                      </div>
+                  </div>
+                </div>`;
+
+        $('#hud').append(modal);
+        document.getElementById('deathScreen').style.display = "block";
+    }
+
+    newGame() {
+        Game.loadMap("/apps/roguelike/maps/expanded_start.json");
+    }
+
 }

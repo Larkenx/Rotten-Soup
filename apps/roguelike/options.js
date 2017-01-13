@@ -7,7 +7,5 @@ let environment = {
     'T' : {fg: "lightgreen", bg: "green", name: "tree", descritpion: "A tree!", blocked : true}
 };
 
-/*
 for (var symbol in environment)
-    environment[symbol].bg = "transparent";
-*/
+    environment[symbol].bg = "black";

@@ -11,20 +11,6 @@ function addPrefix(name) {
     }
 }
 
-/* Returns the tiles adjacent to the given tile */
-function adjTiles(tile) {
-    let adjacentTiles = [];
-    for (var dist of ROT.DIRS[8]) {
-        let nx = tile.x + dist[0];
-        let ny = tile.y + dist[1];
-        if (nx < 0 || nx == Game.map.width || ny < 0 || ny == Game.map.height)
-            continue; // out of bounds, skip
-        else
-            adjacentTiles.push(Game.map.data[ny][nx]);
-    }
-    return adjacentTiles;
-}
-
 function dijkstra_callback(x, y) {
     if (x <= 0 || x == Game.map.width || y <= 0 || y == Game.map.height) return false;
     return ! Game.map.data[y][x].options.blocked;
@@ -39,7 +25,9 @@ class Actor {
     }
 
     /* Called by the ROT.js game scheduler to indicate a turn */
-    act() { return null; }
+    act() {
+        if (Game.HUD) Game.HUD.update();
+    }
 
     examine() { return this.options.description; }
 
@@ -57,23 +45,17 @@ class Actor {
 
     tryMove(nx, ny) { // returns true if the turn should end here
         if (nx < 0 || nx == Game.map.width || ny < 0 || ny == Game.map.height) return;
-
-        var r = $.Deferred();
-        var callback = function() {
-            
-        }
-
         let ntile = Game.map.data[ny][nx]; // new tile to move to
         if (ntile.actors.length == 0 && ! ntile.options.blocked) {
-            this.move(nx, ny, callback);
+            this.move(nx, ny);
         } else if (ntile.actors.length > 0) {
             for (var i = 0; i < ntile.actors.length; i++) {
                 let actor = ntile.actors[i];
                 if (actor.options.visible) {
-                    this.interact(actor);
-                    if (actor.isDead()) {
+                    if (! actor.isDead())
+                        this.interact(actor);
+                    if (actor.isDead())
                         this.move(nx, ny);
-                    }
                     return;
                 }
             }
@@ -149,7 +131,6 @@ class Actor {
         // redraw the tile, either with an appropriate actor or the tile symbol
         // Game.drawFirstActor(ctile);
         console.log("A " + this.options.name + " has died!");
-
     }
 
     isDead() { return this.cb.hp <= 0; }
@@ -163,7 +144,7 @@ class Player extends Actor {
             description:"It's you!",
             symbol:"@",
             fg :"yellow",
-            bg:"transparent",
+            bg:"black",
             visible:true,
             blocked:true,
             combat : { /* options.combat, dedicated to all things related to combat */
@@ -189,9 +170,9 @@ class Player extends Actor {
     }
 
     act() {
+        super.act();
         /* For our player's action, we lock the engine (turn based) */
         Game.engine.lock();
-        if (Game.HUD) Game.HUD.update();
         /* We are creating an event handler here, but we are doing this
          * with a unique parameter by passing the player struct directly
          * to the event listener. This anticipates the player object
@@ -278,7 +259,14 @@ class Player extends Actor {
     }
 
     death() {
-        alert("YOU DIED");
+        super.death();
+        window.removeEventListener("keydown", this);
+        this.cb.hp = 0;
+        Game.HUD.update();
+        Game.HUD.deathScreen();
+        Game.scheduler.remove(Game.player);
+        Game.scheduler.clear();
+
     }
 
 }
@@ -293,7 +281,7 @@ class Goblin extends Actor  {
             description:"A mean, green goblin!",
             symbol:"g",
             fg :"green",
-            bg:"transparent",
+            bg:"black",
             visible:true,
             blocked:true,
             combat : { /* options.combat, dedicated to all things related to combat */
@@ -313,6 +301,7 @@ class Goblin extends Actor  {
     }
 
     act() {
+        super.act();
         Game.engine.lock();
         if (this.distanceTo(Game.player) < 9) {
             var pathToPlayer = [];
@@ -324,7 +313,6 @@ class Goblin extends Actor  {
                 this.tryMove(newPos[0], newPos[1]);
             }
         }
-
 
         Game.engine.unlock();
     }
@@ -358,7 +346,7 @@ class Store extends Actor {
         this.gold = 1000;
     }
 
-    act() { }
+    act() { super.act(); }
 
     interact(actor) { }
 
@@ -390,7 +378,7 @@ class Item  { // extends Actor
         return (attributes[attribute] != null);
     }
 
-    act() { }
+    act() { super.act(); }
 
     interact() { }
 
