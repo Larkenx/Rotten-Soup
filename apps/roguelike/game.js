@@ -16,8 +16,8 @@ var Game = {
         this.player = this.map.player;
         // Set up the display
         var options = {
-            width: this.map.width,
-            height: this.map.height,
+            width: 30,
+            height: 20,
             fontSize: 24,
             fontFamily:"menlo, consolas",
             spacing:1.2,

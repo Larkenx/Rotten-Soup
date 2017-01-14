@@ -167,7 +167,7 @@ class HUD {
 
     deathScreen() {
         var modal = `<div id="deathScreen" class="w3-modal" >
-                  <div class="w3-container w3-border w3-black w3-modal-content w3-animate-top w3-card-8" style='width:400px;'>
+                  <div class="w3-container w3-border w3-black w3-modal-content w3-animate-opacity w3-card-8" style='width:400px;'>
                       <span style='text-align:center; margin:0 auto;'
                       class='w3-text-red w3-wide w3-text-shadow'>
                         <i style='font-size:100px;' class='w3-deathfont'>YOU DIED</i>

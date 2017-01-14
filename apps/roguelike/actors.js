@@ -1,5 +1,16 @@
 let vowels = ['a', 'e', 'i', 'o', 'u'];
 
+/* Ranged attack? */
+// for (var dir of ROT.DIRS) {
+//     for (var i = 0; i < range_of_mob; i++) {
+//     let tile = Game.map[mob.x + dir.x*i][mob.y + dir.y*i];
+//         if  (tile.contains(player))
+//             mob.attack(player);
+//         else if (tile.blocked)
+//             continue;
+//     }
+// }
+
 function addPrefix(name) {
     if (name != "You") {
         if (name[0] in vowels)
