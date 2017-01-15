@@ -2,7 +2,7 @@
 
 /* Create game object to hold the display and initialize game */
 var Game = {
-    newGame: true,
+    overview: null,
     display: null,
     HUD: null,
     player: null,
@@ -10,26 +10,29 @@ var Game = {
     engine: null,
     map: null,
 
+    /* Set up the entire game display for the HTML document */
     init: function () {
-        // Mark this as a new game
-        // Load the map and link the game to the player
-        this.player = this.map.player;
-        // Set up the display
+
+        // 1. First, Set up the ROT.JS game display
         var options = {
             width: 30,
             height: 20,
             fontSize: 24,
             fontFamily:"menlo, consolas",
             spacing:1.2,
-            forceSquareRatio:true
+            forceSquareRatio:false
         };
-
         this.display = new ROT.Display(options);
-        if (! this.newGame) {
-            $('canvas').remove();
-        }
-        $('body').prepend(this.display.getContainer());
 
+        // 2. The game map is loaded immediately via the loadMap function
+        this.player = this.map.player; // so just link the player to the game here
+
+        // 3. Set up the HUD now that the player is linked and we can grab its info
+        this.HUD = new HUD();
+
+        // 4. Finally, set up a game overview which will automatically arrange all
+        // of the above components in their proper location.
+        this.overview = new GameOverview();
 
         // Set the ROT engine and scheduler
         this.scheduler = new ROT.Scheduler.Simple();
@@ -43,13 +46,6 @@ var Game = {
         this.engine = new ROT.Engine(this.scheduler); // Create new engine with the newly created scheduler
         this.engine.start(); // Start the engine
         this.drawMap();
-        if (this.newGame)
-            this.HUD = new HUD();
-        else {
-            this.HUD.update();
-        }
-        this.newGame = false;
-
     },
 
     loadMap: function (handle) {

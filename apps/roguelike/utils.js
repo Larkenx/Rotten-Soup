@@ -113,13 +113,13 @@ class Tile {
 
 class HUD {
     constructor() {
-        $('body').append(
-            "<div id='hud' class='w3-container w3-roguefont w3-black'>"
-            + this.getStats() + "</div>");
+        this.template = `<div id='hud' class='w3-rest w3-container w3-black'>
+                            ${this.getStats()}
+                         </div>`;
     }
 
     update() {
-        document.getElementById('hud').innerHTML = this.getStats();
+        $('#hud').html(this.getStats());
     }
 
     createBar(barID, color, width) {
@@ -135,34 +135,78 @@ class HUD {
         }
 
         let pct = ((num / denom)*100) + "%";
-        return `<div class='w3-progress-container w3-black w3-third'>
+        return `<div class='w3-rest'><div class=' w3-progress-container w3-black'>
                   <div id='${barID}'
-                  class='w4-progressbar w3-border w3-round ${color}' style='width:${pct}'>
-                  <div class='w3-center w3-text-white'>${pct}</div></div></div>`;
+                  class='w3-progressbar w3-border w3-round ${color}' style='width:${pct}'>
+                    <div class='w3-center w3-text-white'>
+                        <b>${pct}</b>
+                    </div>
+                  </div>
+                </div></div>`;
    }
 
     getStats() {
-        var buffer = "";
         var p = Game.player;
         var cb = p.options.combat;
         /* HP Bar */
-        buffer += "<div class='w3-row w3-card-4 w3-margin-top'><div class='w3-quarter'><i>Hitpoints </i>"
-                    + cb.hp + "/" + cb.maxhp + "</div>";
-        buffer += this.createBar("hpbar", "w3-red");
-        buffer += "</div>"
-
-        /* Stamina Bar */
-        buffer += "<div class='w3-row w3-margin-top'><span class='w3-quarter'><i>Stamina </i>"
-                    + cb.stamina + "/" + cb.maxstamina + "</span>";
-        buffer += this.createBar("staminabar", "w3-green");
-        buffer += "</div>"
+        var buffer = `
+        <div class='w3-row'>
+            <div class="w3-col" style="width:165px">
+                <i>Health: </i><b>${cb.hp}/${cb.maxhp}</b>
+            </div>
+            ${this.createBar("hpbar", "w3-red")}
+        </div><p>`;
 
         /* Mana Bar */
-        buffer += "<div class='w3-row w3-margin-top'><span class='w3-quarter''><i>Mana </i>"
-                    + cb.mana + "/" + cb.maxmana + "</span>";
-        buffer += this.createBar("manabar", "w3-blue");
-        buffer += "</div>"
+        buffer += `
+        <div class='w3-row'>
+            <div class="w3-col" style="width:165px">
+                <i>Mana: </i><b>${cb.mana}/${cb.maxmana}</b>
+            </div>
+            ${this.createBar("manabar", "w3-blue")}
+        </div>`;
+
         return buffer;
+    }
+
+
+}
+
+/* A class to hold all of the displays, e.g the console,
+ * the abilities menu, the HUD, the game view itself. */
+class GameOverview {
+
+    constructor() {
+        /* We will organize the overall game 'display', where display
+         * is the entire HTML page in which Rotten Soup is played, in the following,
+         * design:
+         *
+         *  -The game itself (ASCII graphics) will be in a left rectangle,
+         *  occupying approx. 75% of the left of the HTML doc.
+         *  -The HUD, containing info about health, abilities, and stats, will
+         *  exist to the right of the game, occupying about 25% of the right half
+         *  of the screen.
+         *  -Directly below the HUD, we will have a minimap of the game itself
+         *  -Finally, below the game we will have a console that logs information
+         *  about the game as you play, such as "You attack the goblin!".
+          */
+        var gdc = Game.display.getContainer();
+        var hud = Game.HUD.template;
+        var totalWidth = 515;
+        // <h1 class="w3-deathfont w3-text-white" style='text-align:center;'>RottenSoup</h1>
+        this.boilerplate = `
+            <div id='gameOverview' class='w3-row'>
+                <div id="gameDisplay" class="w3-border w3-col" style='width:${totalWidth}px'></div>
+                ${hud}
+            </div>
+        `;
+
+        $('body').prepend(this.boilerplate);
+        $('#gameDisplay').html(gdc);
+    }
+
+    resize() {
+
     }
 
     deathScreen() {
@@ -173,19 +217,20 @@ class HUD {
                         <i style='font-size:100px;' class='w3-deathfont'>YOU DIED</i>
                       </span>
                       <div class="w3-padding-16">
-                          <button class="w3-btn-block w3-ripple w3-text-shadow w3-green" onclick="Game.HUD.newGame()">
+                          <button class="w3-btn-block w3-ripple w3-text-shadow w3-green" onclick="Game.overview.newGame()">
                           <b>Try Again?</b>
                           </button>
                       </div>
                   </div>
                 </div>`;
-
-        $('#hud').append(modal);
+        $('#gameOverview').append(modal);
         document.getElementById('deathScreen').style.display = "block";
     }
 
     newGame() {
+        $('body').empty();
         Game.loadMap("/apps/roguelike/maps/expanded_start.json");
     }
+
 
 }

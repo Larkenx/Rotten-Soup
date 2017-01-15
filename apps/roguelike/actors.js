@@ -274,7 +274,7 @@ class Player extends Actor {
         window.removeEventListener("keydown", this);
         this.cb.hp = 0;
         Game.HUD.update();
-        Game.HUD.deathScreen();
+        Game.overview.deathScreen();
         Game.scheduler.remove(Game.player);
         Game.scheduler.clear();
 
