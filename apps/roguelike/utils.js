@@ -113,13 +113,14 @@ class Tile {
 
 class HUD {
     constructor() {
-        this.template = `<div id='hud' class='w3-rest w3-container w3-black'>
+        this.template = `<div id='hud' class='w3-col w3-border w3-container w3-black' style="width:450px; height:487px">
                             ${this.getStats()}
+                            ${this.getAbilities()}
                          </div>`;
     }
 
     update() {
-        $('#hud').html(this.getStats());
+        $('#hud').html(this.getStats() + this.getAbilities());
     }
 
     createBar(barID, color, width) {
@@ -135,40 +136,43 @@ class HUD {
         }
 
         let pct = ((num / denom)*100) + "%";
-        return `<div class='w3-rest'><div class=' w3-progress-container w3-black'>
-                  <div id='${barID}'
-                  class='w3-progressbar w3-border w3-round ${color}' style='width:${pct}'>
-                    <div class='w3-center w3-text-white'>
-                        <b>${pct}</b>
-                    </div>
+        return `<div class='w3-progress-container w3-black w3-half'>
+                  <div id='${barID}' class='w3-progressbar w3-center w3-text-white w3-border w3-round ${color}' style='width:${pct}'>
+                    <b>${pct}</b>
                   </div>
-                </div></div>`;
+                </div>`;
    }
 
     getStats() {
         var p = Game.player;
         var cb = p.options.combat;
         /* HP Bar */
-        var buffer = `
-        <div class='w3-row'>
-            <div class="w3-col" style="width:165px">
-                <i>Health: </i><b>${cb.hp}/${cb.maxhp}</b>
-            </div>
-            ${this.createBar("hpbar", "w3-red")}
-        </div><p>`;
+        var buffer = `<h3 class="w3-fredoka w3-text-white w3-row w3-center"><i>Larken</i> the Devourer</h3>
+            <div class="w3-row-padding w3-padding-4" style="width:400px">
+                <div class="w3-col" style="width:165px">
+                    <i>Health: </i>
+                    <b>${cb.hp}/${cb.maxhp}</b>
+                </div>
+                ${this.createBar("hpbar", "w3-red")}
+            </div>`;
 
         /* Mana Bar */
         buffer += `
-        <div class='w3-row'>
-            <div class="w3-col" style="width:165px">
-                <i>Mana: </i><b>${cb.mana}/${cb.maxmana}</b>
-            </div>
-            ${this.createBar("manabar", "w3-blue")}
-        </div>`;
+            <div class="w3-row-padding w3-padding-4" style="width:400px">
+                <div class="w3-col" style="width:165px">
+                    <i>Mana: </i>
+                    <b>${cb.mana}/${cb.maxmana}</b>
+                </div>
+                ${this.createBar("manabar", "w3-blue")}
+            </div>`;
 
         return buffer;
     }
 
+    // <div class="w3-row-padding w3-padding-4" style="width:400px"> </div>
+    getAbilities() {
+        return "<h3 id='exists' class='w3-fredoka w3-text-white w3-row w3-center'>Abilities</h3>";
+    }
 
 }
 
@@ -192,16 +196,14 @@ class GameOverview {
           */
         var gdc = Game.display.getContainer();
         var hud = Game.HUD.template;
-        var totalWidth = 515;
-        // <h1 class="w3-deathfont w3-text-white" style='text-align:center;'>RottenSoup</h1>
-        this.boilerplate = `
-            <div id='gameOverview' class='w3-row'>
-                <div id="gameDisplay" class="w3-border w3-col" style='width:${totalWidth}px'></div>
-                ${hud}
-            </div>
-        `;
+        var totalWidth = 485;
+        this.boilerplate = `<div id='gameOverview' class='w3-padding-16 w3-row'>
+                <div id="gameDisplay" class="w3-border w3-col" style='width:${totalWidth}px;'></div>
+                </div>
+            <footer class='w3-container w3-center w3-black'>Created by Steven Myers </footer>`;
 
         $('body').prepend(this.boilerplate);
+        $('#gameOverview').append(hud);
         $('#gameDisplay').html(gdc);
     }
 

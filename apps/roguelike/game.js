@@ -17,7 +17,7 @@ var Game = {
         var options = {
             width: 30,
             height: 20,
-            fontSize: 24,
+            fontSize: 20,
             fontFamily:"menlo, consolas",
             spacing:1.2,
             forceSquareRatio:false
@@ -94,9 +94,28 @@ var Game = {
         Game.drawActors();
     },
 
+    drawViewPort: function() {
+        // check corners of the map
+
+        // iterate in a 30x20 grid around the player
+        let p = Game.player;
+        for (var y = 0; y < 15; y++) {
+            for (var x = 0; x < 10; x++) {
+                var ctile = Game.map.data[p.y + y][p.x + x];
+                if (ctile) {
+                    
+                }
+            }
+        }
+    },
+
     drawTile: function (tile) {
         Game.display.draw(tile.x, tile.y, tile.symbol, tile.options.fg, "black");
     },
+
+    drawTile2: function(x, y, tile) {
+        Game.display.draw(x, y, tile.symbol, tile.options.fg, "black");
+    }
 
     drawFirstActor: function(tile) {
         for (var i = 0; i < tile.actors.length; i++) {

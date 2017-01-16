@@ -1,3 +1,12 @@
+html, body {
+    height: 100%;
+    margin: 0 -5%;
+}
+
+footer {
+    height: 5%;
+}
+
 @font-face {
     font-family: Metrickal;
     src: url(../fonts/Metrickal.otf);
@@ -11,6 +20,14 @@
     font-family: 'Creepster';
 }
 
+.w3-indieflower {
+    font-family: 'Indie Flower', cursive;
+}
+
+.w3-fredoka {
+    font-family: 'Fredoka One', cursive;
+}
+
 .w3-gamefont {
     font-family: 'Press Start 2P';
 }
@@ -21,6 +38,10 @@
 
 html {
     background-color : black;
+}
+
+#gameOverview {
+    padding-left: 5%;
 }
 
 #hud {
