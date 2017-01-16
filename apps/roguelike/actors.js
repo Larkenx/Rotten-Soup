@@ -11,6 +11,23 @@ let vowels = ['a', 'e', 'i', 'o', 'u'];
 //     }
 // }
 
+// ranged_attack: function() {
+//     let p = Game.player;
+//     var combine = function(arr, di) {
+//       return [arr[0]*di + p.x, arr[1]*di + p.y];
+//     }
+//
+//     for (var i = 0; i < 10; i++) {
+//       for (var dir of ROT.DIRS[8]) {
+//         var delta = combine(dir, i); // [x,y]
+//         if (delta[0] < 0 || delta[0] == Game.map.width || delta[1] < 0 || delta[1] == Game.map.height)
+//           continue;
+//         else
+//           this.drawFirstActor(Game.map.data[delta[1]][delta[0]]);
+//       }
+//     }
+// },
+
 function addPrefix(name) {
     if (name != "You") {
         if (name[0] in vowels)
@@ -264,6 +281,7 @@ class Player extends Actor {
             var nx = this.x + diff[0];
             var ny = this.y + diff[1];
             this.tryMove(nx, ny)
+            Game.drawViewPort();
             this.path = new ROT.Path.Dijkstra(this.x, this.y, dijkstra_callback);
             endturn();
         }

@@ -45,7 +45,7 @@ var Game = {
 
         this.engine = new ROT.Engine(this.scheduler); // Create new engine with the newly created scheduler
         this.engine.start(); // Start the engine
-        this.drawMap();
+        this.drawViewPort();
     },
 
     loadMap: function (handle) {
@@ -94,19 +94,43 @@ var Game = {
         Game.drawActors();
     },
 
-    drawViewPort: function() {
-        // check corners of the map
 
-        // iterate in a 30x20 grid around the player
-        let p = Game.player;
-        for (var y = 0; y < 15; y++) {
-            for (var x = 0; x < 10; x++) {
-                var ctile = Game.map.data[p.y + y][p.x + x];
-                if (ctile) {
-                    
-                }
-            }
+    // for (var x = 0; x < 15; x++) {
+    //   for (var y = 0; y < 12; y++) {
+    //     let da = [p.x + x, p.y + y]; // lower right quadrant
+    //     let db = [p.x - x, p.y - y]; // upper left quadrant
+    //     let dc = [p.x + x, p.y - y]; // upper right quadrant
+    //     let dd = [p.x - x, p.y + y]; // lower left quadrant
+    //     if (! (da[0] < 0 || da[0] == Game.map.width || da[1] < 0 || da[1] == Game.map.height))
+    //       this.drawTile2(x*2, y*2, this.map.data[da[1]][da[0]]);
+    //
+    //     if (! (db[0] < 0 || db[0] == Game.map.width || db[1] < 0 || db[1] == Game.map.height))
+    //       this.drawTile2(x, y, this.map.data[db[1]][db[0]]);
+    //
+    //     if (! (dc[0] < 0 || dc[0] == Game.map.width || dc[1] < 0 || dc[1] == Game.map.height))
+    //       this.drawTile2(x*2, y, this.map.data[dc[1]][dc[0]]);
+    //
+    //     if (! (dd[0] < 0 || dd[0] == Game.map.width || dd[1] < 0 || dd[1] == Game.map.height))
+    //       this.drawTile2(x, y*2, this.map.data[dd[1]][dd[0]]);
+    //   }
+    // }
+
+
+    drawViewPort: function() {
+      let p = Game.player;
+      // 30 wide, 20 height
+      var dx = 0;
+      var dy = 0;
+      for (var x = p.x - 15; x <= p.x + 15; x++) {
+        for (var y = p.y - 10; y <= p.y + 10; y++) {
+          if (x < 0 || x >= this.map.width || y < 0 || y >= this.map.height)
+            continue;
+          else
+            this.drawFirstActor2(dx, dy++, this.map.data[y][x]);
         }
+        dx++;
+        dy = 0;
+      }
     },
 
     drawTile: function (tile) {
@@ -115,7 +139,7 @@ var Game = {
 
     drawTile2: function(x, y, tile) {
         Game.display.draw(x, y, tile.symbol, tile.options.fg, "black");
-    }
+    },
 
     drawFirstActor: function(tile) {
         for (var i = 0; i < tile.actors.length; i++) {
@@ -128,6 +152,17 @@ var Game = {
         Game.drawTile(tile);
     },
 
+    drawFirstActor2: function(x, y, tile) {
+      for (var i = 0; i < tile.actors.length; i++) {
+          if (tile.actors[i].options.visible) {
+              Game.drawActor2(x, y, tile.actors[i]);
+              return;
+          }
+      }
+      // if we reach this point, no actors were drawable
+      Game.drawTile2(x, y, tile);
+    },
+
     drawActors: function () {
         for (var i = 0; i < this.map.actors.length; i++) {
             Game.drawActor(this.map.actors[i]);
@@ -136,7 +171,11 @@ var Game = {
 
     drawActor: function (actor) {
         Game.display.draw(actor.x, actor.y, actor.options.symbol, actor.options.fg, actor.options.bg);
-    }
+    },
+
+    drawActor2: function(x, y, actor) {
+      Game.display.draw(x, y, actor.options.symbol, actor.options.fg, actor.options.bg);
+    },
 
 };
 

@@ -113,7 +113,7 @@ class Tile {
 
 class HUD {
     constructor() {
-        this.template = `<div id='hud' class='w3-col w3-border w3-container w3-black' style="width:450px; height:487px">
+        this.template = `<div id='hud' class='w3-col w3-border w3-container w3-black' style="width:430px; height:487px">
                             ${this.getStats()}
                             ${this.getAbilities()}
                          </div>`;
@@ -196,11 +196,9 @@ class GameOverview {
           */
         var gdc = Game.display.getContainer();
         var hud = Game.HUD.template;
-        var totalWidth = 485;
+        var totalWidth = 430;
         this.boilerplate = `<div id='gameOverview' class='w3-padding-16 w3-row'>
-                <div id="gameDisplay" class="w3-border w3-col" style='width:${totalWidth}px;'></div>
-                </div>
-            <footer class='w3-container w3-center w3-black'>Created by Steven Myers </footer>`;
+                <div id="gameDisplay" class="w3-border w3-col" style='width:${totalWidth}px;'></div>`;
 
         $('body').prepend(this.boilerplate);
         $('#gameOverview').append(hud);
