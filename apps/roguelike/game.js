@@ -15,12 +15,12 @@ var Game = {
 
         // 1. First, Set up the ROT.JS game display
         var options = {
-            width: 30,
-            height: 20,
-            fontSize: 20,
+            width: 35,
+            height: 25,
+            fontSize: 14,
             fontFamily:"menlo, consolas, monospace",
             spacing:1.2,
-            forceSquareRatio:false
+            forceSquareRatio:true
         };
         this.width = options.width;
         this.height = options.height;
@@ -94,8 +94,8 @@ var Game = {
 
     drawViewPort: function() {
       var camera = { // camera x,y resides in the upper left corner
-        x:this.player.x - Game.width / 2,
-        y:this.player.y - Game.height / 2,
+        x:this.player.x - Math.floor(Game.width / 2),
+        y:this.player.y - Math.floor(Game.height / 2),
         width:Game.width,
         height:Game.height,
       };
@@ -123,12 +123,13 @@ var Game = {
     },
 
     drawTile: function(x, y, tile) {
-        Game.display.draw(x, y, tile.symbol, tile.options.fg, "black");
+        Game.display.draw(x, y, tile.symbol, tile.options.fg, tile.options.bg);
     },
 
     drawFirstActor: function(x, y, tile) {
       for (var i = 0; i < tile.actors.length; i++) {
           if (tile.actors[i].options.visible) {
+              Game.drawTile(x, y, tile);
               Game.drawActor(x, y, tile.actors[i]);
               return;
           }
@@ -138,7 +139,7 @@ var Game = {
     },
 
     drawActor: function(x, y, actor) {
-      Game.display.draw(x, y, actor.options.symbol, actor.options.fg, actor.options.bg);
+      Game.display.draw(x, y, actor.options.symbol, actor.options.fg);
     },
 
 };

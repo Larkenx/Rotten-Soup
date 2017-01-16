@@ -80,7 +80,7 @@ class Actor {
         } else if (ntile.actors.length > 0) {
             for (var i = 0; i < ntile.actors.length; i++) {
                 let actor = ntile.actors[i];
-                if (actor.options.visible) {
+                if (actor.options.blocked && actor.options.visible) {
                     if (! actor.isDead())
                         this.interact(actor);
                     if (actor.isDead())
@@ -92,7 +92,7 @@ class Actor {
 
         if (! ntile.options.blocked) {
             this.move(nx, ny);
-            return
+            return;
         }
     }
 
@@ -311,8 +311,8 @@ class Goblin extends Actor  {
             name:"goblin",
             description:"A mean, green goblin!",
             symbol:"g",
-            fg :"green",
-            bg:"black",
+            fg :"darkgreen",
+            bg:"seagreen",
             visible:true,
             blocked:true,
             combat : { /* options.combat, dedicated to all things related to combat */
@@ -349,7 +349,9 @@ class Goblin extends Actor  {
     }
 
     interact(actor) {
-        this.attack(actor);
+        if (actor === Game.player) {
+          this.attack(actor);
+        }
     }
 
     react(actor) {
