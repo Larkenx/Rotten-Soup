@@ -198,10 +198,10 @@ class GameOverview {
         var hud = Game.HUD.template;
         var canvasWidth = $('canvas').attr("width");
         var canvasHeight = $('canvas').attr("height");
-        var totalWidth = canvasWidth || 600;
-        var totalHeight = canvasHeight || 600;
+        var totalWidth = canvasWidth || 555;
+        var totalHeight = canvasHeight || 555;
         this.boilerplate = `<div id='gameOverview' class='w3-padding-16 w3-row'>
-                <div id="gameDisplay" class="w3-border w3-col" style='width:${totalWidth}px; height:${totalHeight}'></div>`;
+                <div id="gameDisplay" class="w3-border w3-col" style='width:${totalWidth}px; height:${totalHeight}px'></div>`;
 
         $('body').prepend(this.boilerplate);
         $('#gameOverview').append(hud);

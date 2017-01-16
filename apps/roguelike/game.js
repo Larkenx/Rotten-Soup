@@ -15,9 +15,9 @@ var Game = {
 
         // 1. First, Set up the ROT.JS game display
         var options = {
-            width: 35,
+            width: 25,
             height: 25,
-            fontSize: 14,
+            fontSize: 18,
             fontFamily:"menlo, consolas, monospace",
             spacing:1.2,
             forceSquareRatio:true
@@ -123,7 +123,7 @@ var Game = {
     },
 
     drawTile: function(x, y, tile) {
-        Game.display.draw(x, y, tile.symbol, tile.options.fg, tile.options.bg);
+        Game.display.draw(x, y, tile.symbol, tile.options.fg, "black");
     },
 
     drawFirstActor: function(x, y, tile) {
@@ -139,7 +139,7 @@ var Game = {
     },
 
     drawActor: function(x, y, actor) {
-      Game.display.draw(x, y, actor.options.symbol, actor.options.fg);
+      Game.display.draw(x, y, actor.options.symbol, actor.options.fg, "black");
     },
 
 };
