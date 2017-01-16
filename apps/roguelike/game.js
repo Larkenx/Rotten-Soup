@@ -137,11 +137,7 @@ var Game = {
       Game.drawTile(x, y, tile);
     },
 
-
-
-
-
-    drawActor2: function(x, y, actor) {
+    drawActor: function(x, y, actor) {
       Game.display.draw(x, y, actor.options.symbol, actor.options.fg, actor.options.bg);
     },
 
