@@ -76,6 +76,7 @@ class Actor {
         let ntile = Game.map.data[ny][nx]; // new tile to move to
         if (ntile.actors.length == 0 && ! ntile.options.blocked) {
             this.move(nx, ny);
+            return;
         } else if (ntile.actors.length > 0) {
             for (var i = 0; i < ntile.actors.length; i++) {
                 let actor = ntile.actors[i];
@@ -91,6 +92,7 @@ class Actor {
 
         if (! ntile.options.blocked) {
             this.move(nx, ny);
+            return
         }
     }
 
@@ -98,12 +100,13 @@ class Actor {
         let ntile = Game.map.data[ny][nx]; // new tile to move to
         let ctile = Game.map.data[this.y][this.x]; // current tile
         ctile.actors.pop(this); // remove this actor from this tile
-        Game.drawTile(ctile); // redraw the tile, with this actor removed
+        // Game.drawTile(ctile); // redraw the tile, with this actor removed
         ntile.actors.push(this); // add this actor to the new tile
 
         this.x = nx; // update x,y coords to new coords
         this.y = ny;
-        Game.drawActor(this); // draw the actor at the new spot
+        // Game.drawActor(this); // draw the actor at the new spot
+        Game.drawViewPort();
     }
 
     /* attacks another actor */
@@ -157,7 +160,7 @@ class Actor {
         // dump the contents of the actor's inventory (items) onto the ground.
         if (this.inventory) ctile.actors.concat(this.inventory);
         // redraw the tile, either with an appropriate actor or the tile symbol
-        // Game.drawFirstActor(ctile);
+        Game.drawViewPort();
         console.log("A " + this.options.name + " has died!");
     }
 
@@ -281,7 +284,6 @@ class Player extends Actor {
             var nx = this.x + diff[0];
             var ny = this.y + diff[1];
             this.tryMove(nx, ny)
-            Game.drawViewPort();
             this.path = new ROT.Path.Dijkstra(this.x, this.y, dijkstra_callback);
             endturn();
         }

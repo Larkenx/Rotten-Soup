@@ -22,6 +22,8 @@ var Game = {
             spacing:1.2,
             forceSquareRatio:false
         };
+        this.width = options.width;
+        this.height = options.height;
         this.display = new ROT.Display(options);
 
         // 2. The game map is loaded immediately via the loadMap function
@@ -45,7 +47,12 @@ var Game = {
 
         this.engine = new ROT.Engine(this.scheduler); // Create new engine with the newly created scheduler
         this.engine.start(); // Start the engine
+        // this.drawMap();
         this.drawViewPort();
+    },
+
+    inbounds: function(x, y) {
+      return ! (x < 0 || x >= this.map.width || y < 0 || y >= this.map.height);
     },
 
     loadMap: function (handle) {
@@ -85,93 +92,54 @@ var Game = {
         this.createPlayer(freeCells);
     },
 
-    /* Draw Functions */
-    drawMap: function () {
-        for (var y = 0; y < this.map.height; y++)
-            for (var x = 0; x < this.map.width; x++)
-                Game.drawTile(this.map.data[y][x]);
-
-        Game.drawActors();
-    },
-
-
-    // for (var x = 0; x < 15; x++) {
-    //   for (var y = 0; y < 12; y++) {
-    //     let da = [p.x + x, p.y + y]; // lower right quadrant
-    //     let db = [p.x - x, p.y - y]; // upper left quadrant
-    //     let dc = [p.x + x, p.y - y]; // upper right quadrant
-    //     let dd = [p.x - x, p.y + y]; // lower left quadrant
-    //     if (! (da[0] < 0 || da[0] == Game.map.width || da[1] < 0 || da[1] == Game.map.height))
-    //       this.drawTile2(x*2, y*2, this.map.data[da[1]][da[0]]);
-    //
-    //     if (! (db[0] < 0 || db[0] == Game.map.width || db[1] < 0 || db[1] == Game.map.height))
-    //       this.drawTile2(x, y, this.map.data[db[1]][db[0]]);
-    //
-    //     if (! (dc[0] < 0 || dc[0] == Game.map.width || dc[1] < 0 || dc[1] == Game.map.height))
-    //       this.drawTile2(x*2, y, this.map.data[dc[1]][dc[0]]);
-    //
-    //     if (! (dd[0] < 0 || dd[0] == Game.map.width || dd[1] < 0 || dd[1] == Game.map.height))
-    //       this.drawTile2(x, y*2, this.map.data[dd[1]][dd[0]]);
-    //   }
-    // }
-
-
     drawViewPort: function() {
-      let p = Game.player;
-      // 30 wide, 20 height
+      var camera = { // camera x,y resides in the upper left corner
+        x:this.player.x - Game.width / 2,
+        y:this.player.y - Game.height / 2,
+        width:Game.width,
+        height:Game.height,
+      };
+      var startingPos = [camera.x, camera.y];
+      if (camera.x <= 0) // far left
+        startingPos[0] = 0;
+      if (camera.x + camera.width >= Game.map.width) // far right
+        startingPos[0] = Game.map.width - camera.width;
+
+      if (camera.y <= 0) // at the top of the map
+        startingPos[1] = 0;
+      if (camera.y + camera.height >= Game.map.height) { // at the bottom of the map
+        startingPos[1] = Game.map.height - camera.height;
+      }
+      var endingPos = [startingPos[0] + camera.width, startingPos[1] + camera.height];
       var dx = 0;
       var dy = 0;
-      for (var x = p.x - 15; x <= p.x + 15; x++) {
-        for (var y = p.y - 10; y <= p.y + 10; y++) {
-          if (x < 0 || x >= this.map.width || y < 0 || y >= this.map.height)
-            continue;
-          else
-            this.drawFirstActor2(dx, dy++, this.map.data[y][x]);
+      // console.log(`Drawing from ${startingPos} to ${endingPos}`);
+      for (var x = startingPos[0]; x < endingPos[0]; x++) {
+        for (var y = startingPos[1]; y < endingPos[1]; y++) {
+          this.drawFirstActor(dx, dy++, this.map.data[y][x]);
         }
-        dx++;
-        dy = 0;
+        dx++; dy = 0;
       }
     },
 
-    drawTile: function (tile) {
-        Game.display.draw(tile.x, tile.y, tile.symbol, tile.options.fg, "black");
-    },
-
-    drawTile2: function(x, y, tile) {
+    drawTile: function(x, y, tile) {
         Game.display.draw(x, y, tile.symbol, tile.options.fg, "black");
     },
 
-    drawFirstActor: function(tile) {
-        for (var i = 0; i < tile.actors.length; i++) {
-            if (tile.actors[i].options.visible) {
-                Game.drawActor(tile.actors[i]);
-                return;
-            }
-        }
-        // if we reach this point, no actors were drawable
-        Game.drawTile(tile);
-    },
-
-    drawFirstActor2: function(x, y, tile) {
+    drawFirstActor: function(x, y, tile) {
       for (var i = 0; i < tile.actors.length; i++) {
           if (tile.actors[i].options.visible) {
-              Game.drawActor2(x, y, tile.actors[i]);
+              Game.drawActor(x, y, tile.actors[i]);
               return;
           }
       }
       // if we reach this point, no actors were drawable
-      Game.drawTile2(x, y, tile);
+      Game.drawTile(x, y, tile);
     },
 
-    drawActors: function () {
-        for (var i = 0; i < this.map.actors.length; i++) {
-            Game.drawActor(this.map.actors[i]);
-        }
-    },
 
-    drawActor: function (actor) {
-        Game.display.draw(actor.x, actor.y, actor.options.symbol, actor.options.fg, actor.options.bg);
-    },
+
+
 
     drawActor2: function(x, y, actor) {
       Game.display.draw(x, y, actor.options.symbol, actor.options.fg, actor.options.bg);
@@ -180,3 +148,43 @@ var Game = {
 };
 
 Game.loadMap("/apps/roguelike/maps/expanded_start.json");
+
+/* Old Draw Functions (static maps/no scrolling) */
+/*
+
+drawMap: function () {
+    for (var y = 0; y < this.map.height; y++)
+        for (var x = 0; x < this.map.width; x++)
+            Game.drawTile(this.map.data[y][x]);
+
+    Game.drawActors();
+},
+
+
+
+drawTile: function (tile) {
+    Game.display.draw(tile.x, tile.y, tile.symbol, tile.options.fg, "black");
+},
+
+
+drawFirstActor: function(tile) {
+    for (var i = 0; i < tile.actors.length; i++) {
+        if (tile.actors[i].options.visible) {
+            Game.drawActor(tile.actors[i]);
+            return;
+        }
+    }
+    // if we reach this point, no actors were drawable
+    Game.drawTile(tile);
+},
+
+drawActors: function () {
+    for (var i = 0; i < this.map.actors.length; i++) {
+        Game.drawActor(this.map.actors[i]);
+    }
+},
+
+drawActor: function (actor) {
+    Game.display.draw(actor.x, actor.y, actor.options.symbol, actor.options.fg, actor.options.bg);
+},
+*/
