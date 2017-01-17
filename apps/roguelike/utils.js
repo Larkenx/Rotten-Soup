@@ -113,7 +113,7 @@ class Tile {
 
 class HUD {
     constructor() {
-        this.template = `<div id='hud' class='w3-col w3-border w3-container w3-black' style="width:430px; height:487px">
+        this.template = `<div id='hud' class='w3-col w3-border w3-container w3-black' style="width:400px; height:555px">
                             ${this.getStats()}
                             ${this.getAbilities()}
                          </div>`;
@@ -171,11 +171,35 @@ class HUD {
 
     // <div class="w3-row-padding w3-padding-4" style="width:400px"> </div>
     getAbilities() {
-        return "<h3 id='exists' class='w3-fredoka w3-text-white w3-row w3-center'>Abilities</h3>";
+        return "<h3 id='abilities' class='w3-fredoka w3-text-white w3-row w3-center'>Abilities</h3>";
     }
 
 }
 
+class Console {
+  constructor() {
+    //   <h3 class='w3-fredoka w3-text-white w3-row w3-left-align'>Console</h3>
+      this.template = `<div id="console" class=" w3-container w3-border w3-black w3-row" style="width:955px; height:200px;">
+
+                        <ul id="history" class="w3-container" style="list-style-type:none; width:85%; height:80%; overflow: auto;">
+                            <li>Welcome traveler...</li>
+                        </ul>
+                       </div>`;
+  }
+
+  log(message, type) {
+      var buttons = {
+          'defend' : `<i class="fa fa-shield w3-text-blue" style="font-size:18px"></i>`,
+          'attack' : ``
+      }
+      var button = type ? buttons[type] : "";
+      $('#history').append(`<li>${button} ${message}</li>`);
+      var history = document.getElementById('history');
+      history.scrollTop = history.scrollHeight;
+  }
+
+
+}
 /* A class to hold all of the displays, e.g the console,
  * the abilities menu, the HUD, the game view itself. */
 class GameOverview {
@@ -196,19 +220,24 @@ class GameOverview {
           */
         var gdc = Game.display.getContainer();
         var hud = Game.HUD.template;
-        var canvasWidth = $('canvas').attr("width");
-        var canvasHeight = $('canvas').attr("height");
-        var totalWidth = canvasWidth || 555;
-        var totalHeight = canvasHeight || 555;
-        this.boilerplate = `<div id='gameOverview' class='w3-padding-16 w3-row'>
-                <div id="gameDisplay" class="w3-border w3-col" style='width:${totalWidth}px; height:${totalHeight}px'></div>`;
+        var cons = Game.console.template;
+        // var canvasWidth = $('canvas').attr("width");
+        // var canvasHeight = $('canvas').attr("height");
+        var totalWidth = 555;
+        var totalHeight = 555;
+        this.boilerplate = `<div id='gameOverview' class='w3-container'>
+                                <div id="rowone" class='w3-row'>
+                                    <div id="gameDisplay" class="w3-border w3-col" style='width:${totalWidth}px; height:${totalHeight}px'></div>
+                                    ${hud}
+                                </div>
+                                ${cons}
+                            </div>`;
 
         $('body').prepend(this.boilerplate);
-        $('#gameOverview').append(hud);
-        $('#gameDisplay').html(gdc);
-    }
+        $('#gameDisplay').html(gdc); // attach the game canvas
 
-    resize() {
+        /* Testing */
+        for (var i = 0; i < 100; i++) Game.console.log(`<i>${i} bottles of beer</i>`, 'defend');
 
     }
 

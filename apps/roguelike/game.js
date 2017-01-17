@@ -5,6 +5,7 @@ var Game = {
     overview: null,
     display: null,
     HUD: null,
+    console: null,
     player: null,
     scheduler: null,
     engine: null,
@@ -32,7 +33,10 @@ var Game = {
         // 3. Set up the HUD now that the player is linked and we can grab its info
         this.HUD = new HUD();
 
-        // 4. Finally, set up a game overview which will automatically arrange all
+        // 4. Set up a console for game output
+        this.console = new Console();
+
+        // 5. Set up a game overview which will automatically arrange all
         // of the above components in their proper location.
         this.overview = new GameOverview();
 

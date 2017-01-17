@@ -31,9 +31,9 @@ let vowels = ['a', 'e', 'i', 'o', 'u'];
 function addPrefix(name) {
     if (name != "You") {
         if (name[0] in vowels)
-            return "An " + name;
+            return "an " + name;
         else
-            return "A " + name;
+            return "a " + name;
     } else {
         return name;
     }
@@ -93,6 +93,8 @@ class Actor {
         if (! ntile.options.blocked) {
             this.move(nx, ny);
             return;
+        } else {
+            Game.console.log("You can't move in that direction!", 'information');
         }
     }
 
@@ -111,14 +113,23 @@ class Actor {
 
     /* attacks another actor */
     attack(actor) {
-        console.log(
-            addPrefix(this.options.name)
-            + this.cb.description
-            + actor.options.name.toLowerCase() + "!"
-        );
-
-        actor.damage(this.cb.strength);
-        this.options.combat.stamina -= 2.5;
+        var dice = Math.random(); // floating point between [0, 1)
+        var dmg = Math.floor(this.cb.strength * Math.random() * (1 - this.cb.strmod) + this.cb.strmod);
+        if (dice >= this.cb.hitchance) {
+            if (actor.cb.dodgechance) {
+                dice = Math.random(); // roll again for a dodge (for the other actor)
+                if (dice >= actor.cb.dodgechance) { // actor failed to dodge
+                    actor.damage(dmg);
+                } else { // actor succesfully dodged
+                    Game.console.log(`${actor.name.capitalize()} successfully dodged an attack from ${addPrefix(this.name)}.`);
+                }
+            } else { // this actor can't dodge!
+                actor.damage(dmg);
+                Game.console.log(`${addPrefix(this.name).capitalize()} failed to attack ${addPrefix(actor.name)}.`);
+            }
+        } else {
+            Game.console.log(`${addPrefix(this.name).capitalize()} failed to attack ${addPrefix(actor.name)}.`);
+        }
     }
 
     /* Reduce hp. If less than 0, causes death */
@@ -179,18 +190,19 @@ class Player extends Actor {
             visible:true,
             blocked:true,
             combat : { /* options.combat, dedicated to all things related to combat */
-                description:["attack", "stab", "jab", "smash", "strike", "assail"],
+                description:["attack", "stab", "jab at", "smash", "strike at",],
                 /* stat caps */
                 maxhp:100,
-                maxstamina:25,
                 maxmana:25,
                 /* current stats */
                 hp:100,
-                stamina:25,
                 mana:25,
                 strength:7,
+                /* probailistic stats */
+                hitchance: .8,
+                strmod: .3,
+                dodgechance: .25,
                 /* Per-turn effects */
-                staminaRecovery:5,
                 hpRecovery:10,
                 manaRecovery:5,
                 invulnerable:false
@@ -226,7 +238,7 @@ class Player extends Actor {
     }
 
     react(actor) {
-        // dodge?
+        //
     }
 
     handleEvent(evt) {
@@ -287,6 +299,15 @@ class Player extends Actor {
             this.path = new ROT.Path.Dijkstra(this.x, this.y, dijkstra_callback);
             endturn();
         }
+    }
+
+    attack() {
+        super.attack();
+        console.log(
+            addPrefix(this.options.name)
+            + this.cb.description
+            + actor.options.name.toLowerCase() + "!"
+        );
     }
 
     death() {
