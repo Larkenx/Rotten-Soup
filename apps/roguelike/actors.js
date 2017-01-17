@@ -113,6 +113,7 @@ class Actor {
 
     /* attacks another actor */
     attack(actor) {
+        console.log(addPrefix(this.name()).capitalize() + this.cb.description[0] + addPrefix(actor.name()));
         var dice = Math.random(); // floating point between [0, 1)
         var dmg = Math.floor(this.cb.strength * Math.random() * (1 - this.cb.strmod) + this.cb.strmod);
         if (dice >= this.cb.hitchance) {
@@ -120,15 +121,25 @@ class Actor {
                 dice = Math.random(); // roll again for a dodge (for the other actor)
                 if (dice >= actor.cb.dodgechance) { // actor failed to dodge
                     actor.damage(dmg);
+                    Game.console.log(
+                        `${addPrefix(this.name).capitalize()}
+                         ${this.cb.description[0]}
+                         ${addPrefix(actor.name)}.`, 'attack'
+                     );
                 } else { // actor succesfully dodged
-                    Game.console.log(`${actor.name.capitalize()} successfully dodged an attack from ${addPrefix(this.name)}.`);
+                    Game.console.log(`${actor.name.capitalize()} successfully dodged an attack from ${addPrefix(this.name)}.`, 'dodge');
                 }
+
             } else { // this actor can't dodge!
                 actor.damage(dmg);
-                Game.console.log(`${addPrefix(this.name).capitalize()} failed to attack ${addPrefix(actor.name)}.`);
+                Game.console.log(
+                    `${addPrefix(this.name).capitalize()}
+                     ${this.cb.description[0]}
+                     ${addPrefix(actor.name)}.`, 'attack'
+                 );
             }
         } else {
-            Game.console.log(`${addPrefix(this.name).capitalize()} failed to attack ${addPrefix(actor.name)}.`);
+            Game.console.log(`${addPrefix(this.name).capitalize()} failed to attack ${addPrefix(actor.name)}.`, 'missed');
         }
     }
 
@@ -190,7 +201,7 @@ class Player extends Actor {
             visible:true,
             blocked:true,
             combat : { /* options.combat, dedicated to all things related to combat */
-                description:["attack", "stab", "jab at", "smash", "strike at",],
+                description:["attacked", "stabbed", "jabbed", "smashed"],
                 /* stat caps */
                 maxhp:100,
                 maxmana:25,
@@ -301,15 +312,6 @@ class Player extends Actor {
         }
     }
 
-    attack() {
-        super.attack();
-        console.log(
-            addPrefix(this.options.name)
-            + this.cb.description
-            + actor.options.name.toLowerCase() + "!"
-        );
-    }
-
     death() {
         super.death();
         window.removeEventListener("keydown", this);
@@ -337,7 +339,7 @@ class Goblin extends Actor  {
             visible:true,
             blocked:true,
             combat : { /* options.combat, dedicated to all things related to combat */
-                description:" attacks ",
+                description:[" attacks "],
                 hostile:true,
                 range:6,
                 maxhp:10,
