@@ -28,8 +28,12 @@ let vowels = ['a', 'e', 'i', 'o', 'u'];
 //     }
 // },
 
+function capitalize(s) {
+    return string.charAt(0).toUpperCase() + string.slice(1);
+}
+
 function addPrefix(name) {
-    if (name != "You") {
+    if (name != "you") {
         if (name[0] in vowels)
             return "an " + name;
         else
@@ -113,34 +117,14 @@ class Actor {
 
     /* attacks another actor */
     attack(actor) {
-        console.log(addPrefix(this.name()).capitalize() + this.cb.description[0] + addPrefix(actor.name()));
+        console.log(capitalize(addPrefix(this.name())) + this.cb.description[0] + addPrefix(actor.name()));
+        /* Components for printing console events */
+        var evtdamage = `${capitalize(addPrefix(this.name))} ${this.cb.description[0]} ${addPrefix(actor.name)}.`;
+        var evtmissed = `${capitalize(addPrefix(this.name))} failed to attack ${addPrefix(actor.name)}.`;
+        /* Components for calculating hit chance, dodge chance, and total damage dealt */
         var dice = Math.random(); // floating point between [0, 1)
-        var dmg = Math.floor(this.cb.strength * Math.random() * (1 - this.cb.strmod) + this.cb.strmod);
-        if (dice >= this.cb.hitchance) {
-            if (actor.cb.dodgechance) {
-                dice = Math.random(); // roll again for a dodge (for the other actor)
-                if (dice >= actor.cb.dodgechance) { // actor failed to dodge
-                    actor.damage(dmg);
-                    Game.console.log(
-                        `${addPrefix(this.name).capitalize()}
-                         ${this.cb.description[0]}
-                         ${addPrefix(actor.name)}.`, 'attack'
-                     );
-                } else { // actor succesfully dodged
-                    Game.console.log(`${actor.name.capitalize()} successfully dodged an attack from ${addPrefix(this.name)}.`, 'dodge');
-                }
+        var roll = function() { dice = Math.random(); }
 
-            } else { // this actor can't dodge!
-                actor.damage(dmg);
-                Game.console.log(
-                    `${addPrefix(this.name).capitalize()}
-                     ${this.cb.description[0]}
-                     ${addPrefix(actor.name)}.`, 'attack'
-                 );
-            }
-        } else {
-            Game.console.log(`${addPrefix(this.name).capitalize()} failed to attack ${addPrefix(actor.name)}.`, 'missed');
-        }
     }
 
     /* Reduce hp. If less than 0, causes death */
@@ -183,7 +167,6 @@ class Actor {
         if (this.inventory) ctile.actors.concat(this.inventory);
         // redraw the tile, either with an appropriate actor or the tile symbol
         Game.drawViewPort();
-        console.log("A " + this.options.name + " has died!");
     }
 
     isDead() { return this.cb.hp <= 0; }
@@ -193,7 +176,7 @@ class Player extends Actor {
 
     constructor(x, y) {
         super(x, y, {
-            name:"You",
+            name:"you",
             description:"It's you!",
             symbol:"@",
             fg :"yellow",
@@ -201,7 +184,7 @@ class Player extends Actor {
             visible:true,
             blocked:true,
             combat : { /* options.combat, dedicated to all things related to combat */
-                description:["attacked", "stabbed", "jabbed", "smashed"],
+                description:[" attacked ", " stabbed ", " jabbed ", " smashed "],
                 /* stat caps */
                 maxhp:100,
                 maxmana:25,
@@ -209,10 +192,6 @@ class Player extends Actor {
                 hp:100,
                 mana:25,
                 strength:7,
-                /* probailistic stats */
-                hitchance: .8,
-                strmod: .3,
-                dodgechance: .25,
                 /* Per-turn effects */
                 hpRecovery:10,
                 manaRecovery:5,
