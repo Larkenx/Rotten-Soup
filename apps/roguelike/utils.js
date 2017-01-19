@@ -189,9 +189,11 @@ class Console {
 
   log(message, type) {
       var buttons = {
-          'defend' : `<i class="fa fa-shield w3-text-blue" style="font-size:18px"></i>`,
-          'attack' : ``
-      }
+          'defend' : '<i class="fa fa-shield w3-text-blue" style="font-size:18px"></i>',
+          'attack' : '<img src="images/sword.png">',
+          'death' : '',
+          'information': ''
+      };
       var button = type ? buttons[type] : "";
       $('#history').append(`<li>${button} ${message}</li>`);
       var history = document.getElementById('history');
@@ -231,7 +233,7 @@ class GameOverview {
                                     ${hud}
                                 </div>
                                 ${cons}
-                            </div>`;
+                            </div><img src="apps/roguelike/images/sword.png">`;
 
         $('body').prepend(this.boilerplate);
         $('#gameDisplay').html(gdc); // attach the game canvas

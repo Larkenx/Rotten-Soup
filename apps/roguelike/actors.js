@@ -29,7 +29,7 @@ let vowels = ['a', 'e', 'i', 'o', 'u'];
 // },
 
 function capitalize(s) {
-    return string.charAt(0).toUpperCase() + string.slice(1);
+    return s.charAt(0).toUpperCase() + s.slice(1);
 }
 
 function addPrefix(name) {
@@ -80,7 +80,7 @@ class Actor {
         let ntile = Game.map.data[ny][nx]; // new tile to move to
         if (ntile.actors.length == 0 && ! ntile.options.blocked) {
             this.move(nx, ny);
-            return;
+            return true;
         } else if (ntile.actors.length > 0) {
             for (var i = 0; i < ntile.actors.length; i++) {
                 let actor = ntile.actors[i];
@@ -89,17 +89,17 @@ class Actor {
                         this.interact(actor);
                     if (actor.isDead())
                         this.move(nx, ny);
-                    return;
+                    return true;
                 }
             }
         }
 
         if (! ntile.options.blocked) {
             this.move(nx, ny);
-            return;
-        } else {
-            Game.console.log("You can't move in that direction!", 'information');
+            return true;
         }
+
+        return false;
     }
 
     move(nx, ny) {
@@ -117,13 +117,18 @@ class Actor {
 
     /* attacks another actor */
     attack(actor) {
-        console.log(capitalize(addPrefix(this.name())) + this.cb.description[0] + addPrefix(actor.name()));
+        // console.log(capitalize(addPrefix(this.name())) + this.cb.description[0] + addPrefix(actor.name()));
         /* Components for printing console events */
-        var evtdamage = `${capitalize(addPrefix(this.name))} ${this.cb.description[0]} ${addPrefix(actor.name)}.`;
-        var evtmissed = `${capitalize(addPrefix(this.name))} failed to attack ${addPrefix(actor.name)}.`;
+        // var evtmissed = `${capitalize(addPrefix(this.name))} failed to attack ${addPrefix(actor.name)}.`;
+
         /* Components for calculating hit chance, dodge chance, and total damage dealt */
         var dice = Math.random(); // floating point between [0, 1)
         var roll = function() { dice = Math.random(); }
+
+        /* Perform the attack */
+        var evtdamage = `${capitalize(addPrefix(this.name()))}${this.cb.description[0]}${addPrefix(actor.name())}.`;
+        Game.console.log(evtdamage);
+        actor.damage(this.cb.str - actor.cb.def);
 
     }
 
@@ -131,6 +136,7 @@ class Actor {
     damage(hp) {
         this.options.combat.hp -= hp;
         if (this.isDead()) this.death();
+
     }
 
     /* Restore HP up to maxhp */
@@ -167,6 +173,12 @@ class Actor {
         if (this.inventory) ctile.actors.concat(this.inventory);
         // redraw the tile, either with an appropriate actor or the tile symbol
         Game.drawViewPort();
+
+        if (this === Game.player) {
+            Game.console.log(`You died!.`, "death");
+        } else {
+            Game.console.log(`You killed the ${this.name()}.`, "death");
+        }
     }
 
     isDead() { return this.cb.hp <= 0; }
@@ -191,7 +203,8 @@ class Player extends Actor {
                 /* current stats */
                 hp:100,
                 mana:25,
-                strength:7,
+                str:5,
+                def:5,
                 /* Per-turn effects */
                 hpRecovery:10,
                 manaRecovery:5,
@@ -237,6 +250,7 @@ class Player extends Actor {
             window.removeEventListener("keydown", this);
             Game.engine.unlock();
         };
+
         /*
         y k u    7 8 9
          \|/      \|/
@@ -273,7 +287,12 @@ class Player extends Actor {
             190: "rest"
         };
 
-        if (! (code in keyMap)) return; // invalid key press, do nothing
+        if (! (code in keyMap)) { // invalid key press, retry turn
+            Game.console.log("Unknown command", 'information');
+            window.removeEventListener("keydown", this);
+            window.addEventListener("keydown", this);
+            return;
+        }
 
         if ("rest" == keyMap[code]) { // Rest
             this.recover(this.cb.staminaRecovery);
@@ -285,7 +304,11 @@ class Player extends Actor {
             var diff = ROT.DIRS[8][keyMap[code]];
             var nx = this.x + diff[0];
             var ny = this.y + diff[1];
-            this.tryMove(nx, ny)
+            if (! this.tryMove(nx, ny)) {
+                window.removeEventListener("keydown", this);
+                window.addEventListener("keydown", this);
+                return;
+            }
             this.path = new ROT.Path.Dijkstra(this.x, this.y, dijkstra_callback);
             endturn();
         }
@@ -318,16 +341,18 @@ class Goblin extends Actor  {
             visible:true,
             blocked:true,
             combat : { /* options.combat, dedicated to all things related to combat */
-                description:[" attacks "],
+                description:[" attacked "],
+                /* max stats */
+                maxhp:10,
+                maxmana:5,
+                /* current stats */
+                hp:10,
+                mana:5,
+                str:10,
+                def: 1,
+                /* misc */
                 hostile:true,
                 range:6,
-                maxhp:10,
-                maxstamina:15,
-                maxmana:5,
-                hp:10,
-                stamina:15,
-                mana:5,
-                strength:10,
                 invulnerable:false,
             }
         });
