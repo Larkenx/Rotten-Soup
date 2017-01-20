@@ -126,9 +126,13 @@ class Actor {
         var roll = function() { dice = Math.random(); }
 
         /* Perform the attack */
-        var evtdamage = `${capitalize(addPrefix(this.name()))}${this.cb.description[0]}${addPrefix(actor.name())}.`;
-        Game.console.log(evtdamage);
-        actor.damage(this.cb.str - actor.cb.def);
+        var dmg = this.cb.str - actor.cb.def;
+        var evtdamage = `${capitalize(addPrefix(this.name()))}${this.cb.description[0]}${addPrefix(actor.name())} and dealt ${dmg} damage.`;
+        if (Game.player === this)
+            Game.console.log(evtdamage, 'player_move');
+        else
+            Game.console.log(evtdamage, 'attack');
+        actor.damage(dmg);
 
     }
 
@@ -201,6 +205,8 @@ class Player extends Actor {
                 maxhp:100,
                 maxmana:25,
                 /* current stats */
+                xp:0,
+                level:1,
                 hp:100,
                 mana:25,
                 str:5,
@@ -244,8 +250,19 @@ class Player extends Actor {
         //
     }
 
+    level_up() {
+
+    }
+
     handleEvent(evt) {
+        /* If a user presses shift or ctrl */
+        var modifiers = [ROT.VK_SHIFT, ROT.VK_CONTROL, ROT.VK_ALT];
         var code = evt.keyCode;
+        if (code in modifiers) {
+            console.log(code);
+            window.removeEventListener("keydown", this);
+            return;
+        }
         var endturn = function() {
             window.removeEventListener("keydown", this);
             Game.engine.unlock();
@@ -298,6 +315,7 @@ class Player extends Actor {
             this.recover(this.cb.staminaRecovery);
             this.heal(this.cb.hpRecovery);
             this.restore(this.cb.manaRecovery);
+            Game.console.log("You rest for a turn", 'player_move');
             endturn();
             return;
         } else {

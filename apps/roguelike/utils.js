@@ -113,7 +113,7 @@ class Tile {
 
 class HUD {
     constructor() {
-        this.template = `<div id='hud' class='w3-col w3-border w3-container w3-black' style="width:400px; height:555px">
+        this.template = `<div id='hud' class='w3-col w3-border w3-container w3-black w3-text-yellow' style="width:430px; height:555px">
                             ${this.getStats()}
                             ${this.getAbilities()}
                          </div>`;
@@ -137,8 +137,8 @@ class HUD {
 
         let pct = ((num / denom)*100) + "%";
         return `<div class='w3-progress-container w3-black w3-half'>
-                  <div id='${barID}' class='w3-progressbar w3-center w3-text-white w3-border w3-round ${color}' style='width:${pct}'>
-                    <b>${pct}</b>
+                  <div id='${barID}' class='w3-progressbar w3-center w3-text-white  w3-round ${color}' style='width:${pct}'>
+                    <!-- <b>${pct}</b> -->
                   </div>
                 </div>`;
    }
@@ -147,47 +147,61 @@ class HUD {
         var p = Game.player;
         var cb = p.options.combat;
         /* HP Bar */
-        var buffer = `<h3 class="w3-fredoka w3-text-white w3-row w3-center"><i>Larken</i> the Devourer</h3>
+        var buffer = `<h3 class="w3-text-orange w3-row-padding w3-center w3-border-bottom"><b>Larken</b> <span class="w3-text-red">the Devourer</span></h3>
             <div class="w3-row-padding w3-padding-4" style="width:400px">
                 <div class="w3-col" style="width:165px">
-                    <i>Health: </i>
-                    <b>${cb.hp}/${cb.maxhp}</b>
+                    Health: <b><span class="w3-text-white">${cb.hp}</span>/${cb.maxhp}</b>
                 </div>
-                ${this.createBar("hpbar", "w3-red")}
+                ${this.createBar("hpbar", "w3-green")}
             </div>`;
 
         /* Mana Bar */
         buffer += `
             <div class="w3-row-padding w3-padding-4" style="width:400px">
                 <div class="w3-col" style="width:165px">
-                    <i>Mana: </i>
-                    <b>${cb.mana}/${cb.maxmana}</b>
+                    Mana: <b><span class="w3-text-white">${cb.mana}</span>/${cb.maxmana}</b>
                 </div>
                 ${this.createBar("manabar", "w3-blue")}
             </div>`;
+
+        /* Skill Levels */
+        buffer += `
+        <div class="w3-row-padding w3-padding-8 " style="width:400px">
+            <div class="w3-container w3-col" style="width:165px">
+                XP: ${cb.xp} <p>
+                Level: ${cb.level} <p>
+            </div>
+            <div class="w3-container w3-col" style="width:165px">
+                Str: ${cb.str} <p>
+                Def: ${cb.def} <p>
+            </div>
+        </div>`;
+
 
         return buffer;
     }
 
     // <div class="w3-row-padding w3-padding-4" style="width:400px"> </div>
     getAbilities() {
-        return "<h3 id='abilities' class='w3-fredoka w3-text-white w3-row w3-center'>Abilities</h3>";
+        return "" // "<h4 id='abilities' class='w3-text-white w3-row w3-center'>Abilities</h4>";
     }
 
 }
 
 class Console {
   constructor() {
-    //   <h3 class='w3-fredoka w3-text-white w3-row w3-left-align'>Console</h3>
-      this.template = `<div id="console" class=" w3-container w3-border w3-black w3-row" style="width:955px; height:200px;">
+      this.message_history = [];
+      this.template = `<div id="console" class=" w3-container w3-border w3-black w3-row" style="width:985px; height:190px;">
 
-                        <ul id="history" class="w3-container" style="list-style-type:none; width:85%; height:80%; overflow: auto;">
-                            <li>Welcome traveler...</li>
+                        <ul id="history" class="w3-container" style="list-style-type:none; width:85%; height:80%; overflow: hidden;">
                         </ul>
                        </div>`;
+
+
   }
 
   log(message, type) {
+      /* Commenting out the buttons stuff for now in favor of simple printing
       var buttons = {
           'defend' : '<i class="fa fa-shield w3-text-blue" style="font-size:18px"></i>',
           'attack' : '<img src="images/sword.png">',
@@ -195,7 +209,16 @@ class Console {
           'information': ''
       };
       var button = type ? buttons[type] : "";
-      $('#history').append(`<li>${button} ${message}</li>`);
+      */
+      var message_color = {
+          'defend' : 'w3-text-blue',
+          'attack' : 'w3-text-red',
+          'death' : 'w3-text-crimson',
+          'information': 'w3-text-yellow',
+          'player_move' : 'w3-text-grey',
+      }
+
+      $('#history').append(`<li><span class=${message_color[type]}>${message}</span></li>`);
       var history = document.getElementById('history');
       history.scrollTop = history.scrollHeight;
   }
@@ -233,13 +256,13 @@ class GameOverview {
                                     ${hud}
                                 </div>
                                 ${cons}
-                            </div><img src="apps/roguelike/images/sword.png">`;
+                            </div>`;
 
         $('body').prepend(this.boilerplate);
         $('#gameDisplay').html(gdc); // attach the game canvas
-
+        Game.console.log('Welcome to RottenSoup!', 'information');
         /* Testing */
-        for (var i = 0; i < 100; i++) Game.console.log(`<i>${i} bottles of beer</i>`, 'defend');
+        // for (var i = 0; i < 100; i++) Game.console.log(`<i>${i} bottles of beer</i>`, 'defend');
 
     }
 
