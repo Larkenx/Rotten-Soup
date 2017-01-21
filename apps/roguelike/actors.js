@@ -2,7 +2,7 @@ let vowels = ['a', 'e', 'i', 'o', 'u'];
 let xp_levels = [50];
 
 for (var i = 1; i < 100; i++) {
-    xp_levels.push(1.3*xp_levels[i-1]);
+    xp_levels.push(1.5*xp_levels[i-1]);
 }
 
 /* Ranged attack? */
@@ -215,7 +215,7 @@ class Player extends Actor {
                 level:1,
                 hp:75,
                 mana:25,
-                str:10,
+                str:9,
                 def:5,
                 /* Per-turn effects */
                 hpRecovery:10,
@@ -266,6 +266,8 @@ class Player extends Actor {
         /* This function will prompt the player to select what skills they want
         to level up after reaching a new level */
         this.cb.level++;
+        this.cb.hp = this.cb.maxhp;
+        this.cb.mana = this.cb.maxmana;
         Game.console.log(`You leveled up! You are now Level ${this.cb.level}.`, 'level_up');
         Game.console.log(`Choose what skill you want to level up:`, 'level_up');
         Game.console.log(`1) Str 2) Def 3) Hitpoints 4) Mana`, 'level_up');
@@ -279,10 +281,10 @@ class Player extends Actor {
                 cb.def++;
                 Game.console.log("You increased a defence level!", 'level_up');
             } else if (code == ROT.VK_3) {
-                cb.maxhp++;
+                cb.maxhp += 5;
                 Game.console.log("You increased your number of hitpoints!", 'level_up');
             } else if (code == ROT.VK_4) {
-                cb.mana++;
+                cb.mana += 5;
                 Game.console.log("You increased your amount of mana!", 'level_up');
             } else {
                 return;

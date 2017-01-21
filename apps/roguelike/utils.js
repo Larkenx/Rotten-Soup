@@ -168,8 +168,8 @@ class HUD {
         buffer += `
         <div class="w3-row-padding w3-padding-8 " style="width:400px">
             <div class="w3-container w3-col" style="width:165px">
-                XP: ${cb.xp} <p>
                 Level: ${cb.level} <p>
+                XP: ${cb.xp} <p>
             </div>
             <div class="w3-container w3-col" style="width:165px">
                 Str: ${cb.str} <p>
@@ -183,7 +183,7 @@ class HUD {
 
     // <div class="w3-row-padding w3-padding-4" style="width:400px"> </div>
     getAbilities() {
-        return "" // "<h4 id='abilities' class='w3-text-white w3-row w3-center'>Abilities</h4>";
+        return ""; // "<h4 id='abilities' class='w3-text-white w3-row w3-center'>Abilities</h4>";
     }
 
 }
@@ -194,6 +194,7 @@ and have it queue up things for the player to decide to do with keydown event ha
 
 class Console {
   constructor() {
+      this.current_count = 0;
       this.message_history = [];
       this.template = `<div id="console" class=" w3-container w3-border w3-black w3-row" style="width:985px; height:190px;">
 
@@ -223,11 +224,17 @@ class Console {
           'level_up' : 'w3-text-green',
           'alert' : 'w3-text-orange',
       }
-
+      this.message_history.push([message, type]);
+      this.current_count++;
       $('#history').append(`<li><span class=${message_color[type]}>${message}</span></li>`);
       var history = document.getElementById('history');
       history.scrollTop = history.scrollHeight;
   }
+
+  act() {
+
+  }
+
 
 
 }

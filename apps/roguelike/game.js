@@ -19,7 +19,7 @@ var Game = {
             width: 25,
             height: 25,
             fontSize: 18,
-            fontFamily:"menlo, consolas, monospace",
+            fontFamily:"inconsolata, menlo, consolas, monospace",
             spacing:1.2,
             forceSquareRatio:true
         };
