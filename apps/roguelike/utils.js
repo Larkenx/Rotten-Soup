@@ -216,6 +216,8 @@ class Console {
           'death' : 'w3-text-crimson',
           'information': 'w3-text-yellow',
           'player_move' : 'w3-text-grey',
+          'level_up' : 'w3-text-green',
+          'alert' : 'w3-text-orange',
       }
 
       $('#history').append(`<li><span class=${message_color[type]}>${message}</span></li>`);

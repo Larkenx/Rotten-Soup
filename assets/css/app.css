@@ -37,12 +37,12 @@ footer {
 }
 
 html {
-    background-color : #607d8b;
+    background-color : #494949;
 }
 
 #gameOverview {
-    width: 75%;
-    margin: 0 auto;
+    padding-left: 5%;
+    padding-top: 1%;
 }
 
 #hud {

@@ -1,4 +1,9 @@
 let vowels = ['a', 'e', 'i', 'o', 'u'];
+let xp_levels = [50];
+
+for (var i = 1; i < 100; i++) {
+    xp_levels.push(1.3*xp_levels[i-1]);
+}
 
 /* Ranged attack? */
 // for (var dir of ROT.DIRS) {
@@ -76,7 +81,7 @@ class Actor {
     react(actor) { return null; }
 
     tryMove(nx, ny) { // returns true if the turn should end here
-        if (nx < 0 || nx == Game.map.width || ny < 0 || ny == Game.map.height) return;
+        if (nx < 0 || nx == Game.map.width || ny < 0 || ny == Game.map.height) return false;
         let ntile = Game.map.data[ny][nx]; // new tile to move to
         if (ntile.actors.length == 0 && ! ntile.options.blocked) {
             this.move(nx, ny);
@@ -87,8 +92,6 @@ class Actor {
                 if (actor.options.blocked && actor.options.visible) {
                     if (! actor.isDead())
                         this.interact(actor);
-                    if (actor.isDead())
-                        this.move(nx, ny);
                     return true;
                 }
             }
@@ -167,6 +170,8 @@ class Actor {
             this.cb.mana += mana;
     }
 
+
+
     death() {
         Game.engine._scheduler.remove(this);
         let ctile = Game.map.data[this.y][this.x];
@@ -202,14 +207,14 @@ class Player extends Actor {
             combat : { /* options.combat, dedicated to all things related to combat */
                 description:[" attacked ", " stabbed ", " jabbed ", " smashed "],
                 /* stat caps */
-                maxhp:100,
+                maxhp:75,
                 maxmana:25,
                 /* current stats */
                 xp:0,
                 level:1,
-                hp:100,
+                hp:75,
                 mana:25,
-                str:5,
+                str:10,
                 def:5,
                 /* Per-turn effects */
                 hpRecovery:10,
@@ -250,9 +255,40 @@ class Player extends Actor {
         //
     }
 
-    level_up() {
-
+    gain_xp(xp) {
+        this.cb.xp += xp;
+        if (xp_levels[this.cb.level - 1] <= this.cb.xp)
+            this.level_up();
     }
+
+    level_up() {
+        /* This function will prompt the player to select what skills they want
+        to level up after reaching a new level */
+        this.cb.level++;
+        Game.console.log(`You leveled up! You are now Level ${this.cb.level}.`, 'level_up');
+        Game.console.log(`Choose what skill you want to level up:`, 'level_up');
+        Game.console.log(`a) Str b) Def c) Hitpoints d) Mana`, 'level_up');
+        var prompt = function(evt) {
+            var cb = Game.player.cb;
+            var code = evt.keyCode;
+            if (code == ROT.VK_A) {
+                cb.str++;
+            } else if (code == ROT.VK_B) {
+                cb.def++;
+            } else if (code == ROT.VK_C) {
+                cb.maxhp++;
+            } else if (code == ROT.VK_D) {
+                cb.mana++;
+            } else {
+                return;
+            }
+            window.removeEventListener(this);
+        }
+
+        window.addEventListener("keydown", prompt);
+    }
+
+
 
     handleEvent(evt) {
         /* If a user presses shift or ctrl */
@@ -332,6 +368,33 @@ class Player extends Actor {
         }
     }
 
+    tryMove(nx, ny) { // returns true if the turn should end here
+        if (nx < 0 || nx == Game.map.width || ny < 0 || ny == Game.map.height) return;
+        let ntile = Game.map.data[ny][nx]; // new tile to move to
+        if (ntile.actors.length == 0 && ! ntile.options.blocked) {
+            this.move(nx, ny);
+            return true;
+        } else if (ntile.actors.length > 0) {
+            for (var i = 0; i < ntile.actors.length; i++) {
+                let actor = ntile.actors[i];
+                if (actor.options.blocked && actor.options.visible) {
+                    if (! actor.isDead())
+                        this.interact(actor);
+                    if (actor.isDead())
+                        this.gain_xp(actor.cb.maxhp);
+                    return true;
+                }
+            }
+        }
+
+        if (! ntile.options.blocked) {
+            this.move(nx, ny);
+            return true;
+        }
+
+        return false;
+    }
+
     death() {
         super.death();
         window.removeEventListener("keydown", this);
@@ -358,6 +421,7 @@ class Goblin extends Actor  {
             bg:"seagreen",
             visible:true,
             blocked:true,
+            chasing:false,
             combat : { /* options.combat, dedicated to all things related to combat */
                 description:[" attacked "],
                 /* max stats */
@@ -380,6 +444,8 @@ class Goblin extends Actor  {
         super.act();
         Game.engine.lock();
         if (this.distanceTo(Game.player) < 9) {
+            if (! this.chasing) Game.console.log('A goblin sees you.', 'alert');
+            this.chasing = true;
             var pathToPlayer = [];
             Game.player.path.compute(this.x, this.y, function(x, y) {
                 pathToPlayer.push([x, y]);
@@ -388,6 +454,8 @@ class Goblin extends Actor  {
                 let newPos = pathToPlayer[1]; // 1 past the current position
                 this.tryMove(newPos[0], newPos[1]);
             }
+        } else {
+
         }
 
         Game.engine.unlock();
