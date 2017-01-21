@@ -268,21 +268,27 @@ class Player extends Actor {
         this.cb.level++;
         Game.console.log(`You leveled up! You are now Level ${this.cb.level}.`, 'level_up');
         Game.console.log(`Choose what skill you want to level up:`, 'level_up');
-        Game.console.log(`a) Str b) Def c) Hitpoints d) Mana`, 'level_up');
+        Game.console.log(`1) Str 2) Def 3) Hitpoints 4) Mana`, 'level_up');
         var prompt = function(evt) {
             var cb = Game.player.cb;
             var code = evt.keyCode;
             if (code == ROT.VK_1) {
                 cb.str++;
+                Game.console.log("You increased a strength level!", 'level_up');
             } else if (code == ROT.VK_2) {
                 cb.def++;
+                Game.console.log("You increased a defence level!", 'level_up');
             } else if (code == ROT.VK_3) {
                 cb.maxhp++;
+                Game.console.log("You increased your number of hitpoints!", 'level_up');
             } else if (code == ROT.VK_4) {
                 cb.mana++;
+                Game.console.log("You increased your amount of mana!", 'level_up');
             } else {
                 return;
             }
+            Game.HUD.update();
+            window.removeEventListener("keydown", prompt);
         }
 
         window.addEventListener("keydown", prompt);
@@ -342,7 +348,7 @@ class Player extends Actor {
         };
 
         if (! (code in keyMap)) { // invalid key press, retry turn
-            Game.console.log("Unknown command", 'information');
+            // Game.console.log("Unknown command", 'information');
             window.removeEventListener("keydown", this);
             window.addEventListener("keydown", this);
             return;
