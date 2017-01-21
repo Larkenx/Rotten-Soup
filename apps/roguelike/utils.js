@@ -188,6 +188,10 @@ class HUD {
 
 }
 
+/* Idea for Console: The console will inevitably need to support some form of input, especially for
+leveing up skills. Perhaps one way to do this would be to add the console to the game engine scheduler,
+and have it queue up things for the player to decide to do with keydown event handlers*/
+
 class Console {
   constructor() {
       this.message_history = [];

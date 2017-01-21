@@ -204,6 +204,7 @@ class Player extends Actor {
             bg:"black",
             visible:true,
             blocked:true,
+            leveled_up:true,
             combat : { /* options.combat, dedicated to all things related to combat */
                 description:[" attacked ", " stabbed ", " jabbed ", " smashed "],
                 /* stat caps */
@@ -271,18 +272,17 @@ class Player extends Actor {
         var prompt = function(evt) {
             var cb = Game.player.cb;
             var code = evt.keyCode;
-            if (code == ROT.VK_A) {
+            if (code == ROT.VK_1) {
                 cb.str++;
-            } else if (code == ROT.VK_B) {
+            } else if (code == ROT.VK_2) {
                 cb.def++;
-            } else if (code == ROT.VK_C) {
+            } else if (code == ROT.VK_3) {
                 cb.maxhp++;
-            } else if (code == ROT.VK_D) {
+            } else if (code == ROT.VK_4) {
                 cb.mana++;
             } else {
                 return;
             }
-            window.removeEventListener(this);
         }
 
         window.addEventListener("keydown", prompt);
@@ -294,6 +294,7 @@ class Player extends Actor {
         /* If a user presses shift or ctrl */
         var modifiers = [ROT.VK_SHIFT, ROT.VK_CONTROL, ROT.VK_ALT];
         var code = evt.keyCode;
+
         if (code in modifiers) {
             console.log(code);
             window.removeEventListener("keydown", this);
