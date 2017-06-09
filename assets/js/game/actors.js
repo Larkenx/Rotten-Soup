@@ -62,7 +62,7 @@ class Actor {
 
     /* Called by the ROT.js game scheduler to indicate a turn */
     act() {
-        if (Game.HUD) Game.HUD.update();
+        // pass
     }
 
     examine() {
@@ -123,7 +123,8 @@ class Actor {
         this.y = ny;
         // Game.drawActor(this); // draw the actor at the new spot
         Game.drawViewPort();
-        setTimeout(() => {}, 1500);
+        setTimeout(() => {
+        }, 1500);
     }
 
     /* attacks another actor */
@@ -142,9 +143,9 @@ class Actor {
         let dmg = this.cb.str - actor.cb.def;
         let evtdamage = `${capitalize(addPrefix(this.name()))}${this.cb.description[0]}${addPrefix(actor.name())} and dealt ${dmg} damage.`;
         if (Game.player === this)
-            Game.console.log(evtdamage, 'player_move');
+            Game.log(evtdamage, 'player_move');
         else
-            Game.console.log(evtdamage, 'attack');
+            Game.log(evtdamage, 'attack');
         actor.damage(dmg);
 
     }
@@ -192,9 +193,9 @@ class Actor {
         Game.drawViewPort();
 
         if (this === Game.player) {
-            Game.console.log(`You died!.`, "death");
+            Game.log(`You died!.`, "death");
         } else {
-            Game.console.log(`You killed the ${this.name()}.`, "death");
+            Game.log(`You killed the ${this.name()}.`, "death");
         }
     }
 
@@ -279,31 +280,30 @@ class Player extends Actor {
         this.cb.level++;
         this.cb.hp = this.cb.maxhp;
         this.cb.mana = this.cb.maxmana;
-        Game.console.log(`You leveled up! You are now Level ${this.cb.level}.`, 'level_up');
-        Game.console.log(`Choose what skill you want to level up:`, 'level_up');
-        Game.console.log(`1) Strength 2) Defence 3) Hitpoints 4) Mana`, 'level_up');
+        Game.log(`You leveled up! You are now Level ${this.cb.level}.`, 'level_up');
+        Game.log(`Choose what skill you want to level up:`, 'level_up');
+        Game.log(`1) Strength 2) Defence 3) Hitpoints 4) Mana`, 'level_up');
         let prompt = function (evt) {
             let cb = Game.player.cb;
             let code = evt.keyCode;
             if (code === ROT.VK_1) {
                 cb.str++;
-                Game.console.log("You increased a strength level!", 'level_up');
+                Game.log("You increased a strength level!", 'level_up');
             } else if (code === ROT.VK_2) {
                 cb.def++;
-                Game.console.log("You increased a defence level!", 'level_up');
+                Game.log("You increased a defence level!", 'level_up');
             } else if (code === ROT.VK_3) {
                 cb.maxhp += 5;
-                Game.console.log("You increased your number of hitpoints!", 'level_up');
+                Game.log("You increased your number of hitpoints!", 'level_up');
             } else if (code === ROT.VK_4) {
                 cb.maxmana += 5;
-                Game.console.log("You increased your amount of mana!", 'level_up');
+                Game.log("You increased your amount of mana!", 'level_up');
             } else {
                 return;
             }
-            Game.HUD.update();
 
             window.removeEventListener("keydown", prompt);
-        }
+        };
 
         window.addEventListener("keydown", prompt);
     }
@@ -360,7 +360,7 @@ class Player extends Actor {
         };
 
         if (!(code in keyMap)) { // invalid key press, retry turn
-            // Game.console.log("Unknown command", 'information');
+            // Game.log("Unknown command", 'information');
             window.removeEventListener("keydown", this);
             window.addEventListener("keydown", this);
             return;
@@ -370,7 +370,7 @@ class Player extends Actor {
             this.recover(this.cb.staminaRecovery);
             this.heal(this.cb.hpRecovery);
             this.restore(this.cb.manaRecovery);
-            Game.console.log("You rest for a turn", 'player_move');
+            Game.log("You rest for a turn", 'player_move');
             endturn();
             return;
         } else {
@@ -418,7 +418,6 @@ class Player extends Actor {
         super.death();
         window.removeEventListener("keydown", this);
         this.cb.hp = 0;
-        Game.HUD.update();
         Game.overview.deathScreen();
         Game.scheduler.remove(Game.player);
         Game.scheduler.clear();
@@ -464,7 +463,7 @@ class Goblin extends Actor {
         super.act();
         Game.engine.lock();
         if (this.distanceTo(Game.player) < 9) {
-            if (!this.chasing) Game.console.log('A goblin sees you.', 'alert');
+            if (!this.chasing) Game.log('A goblin sees you.', 'alert');
             this.chasing = true;
             let pathToPlayer = [];
             Game.player.path.compute(this.x, this.y, function (x, y) {
@@ -494,6 +493,10 @@ class Goblin extends Actor {
 }
 
 /* Non-hostile Actors */
+
+class LevelUp {
+
+}
 
 class Store extends Actor {
 

@@ -1,49 +1,111 @@
- function actorCreator(id, x, y) {
-     let symbol = String.fromCharCode(id - 1);
-     switch (symbol) {
-         case '$':
-            return new Store(x, y);
-         case '@':
-            return new Player(x, y);
-         case 'g':
-            return new Goblin(x, y);
-         case '<':
-            return new Ladder(x, y, symbol, "up");
-         case '>':
-            return new Ladder(x, y, symbol, "down");
-         default:
-            return null;
-     }
- }
+let actorShop = {
+    '$': (x, y) => {
+        return new Store(x, y);
+    },
+    '@': (x, y) => {
+        return new Player(x, y);
+    },
+    'g': (x, y) => {
+        return new Goblin(x, y);
+    },
+    '<': (x, y) => {
+        return new Ladder(x, y, symbol, "up");
+    },
+    '>': (x, y) => {
+        return new Ladder(x, y, symbol, "down");
+    }
+};
+
+let environment = {
+    " " : {fg : "darkgreen", bg : "forestgreen", name: "grass", description: "An empty piece of terrain."},
+    '#' : {fg : "slategray", bg : "dimgray", name: "wall", description: "An impassable wall.", blocked : true},
+    '~' : {fg : "dodgerblue", bg: "darkblue", name: "shallow water", description: "Some shallow water.", blocked : true},
+    '=' : {fg : "blue", bg : "darkblue", name: "deep water", description: "Some deep water.", blocked : true},
+    '.' : {fg : "brown", bg : "peru", name: "path", description: "A pathway!"},
+    'T' : {fg: "lightgreen", bg: "green", name: "tree", descritpion: "A tree!", blocked : true}
+};
+
+
+const flatten = arr => arr.reduce(
+    (acc, val) => acc.concat(
+        Array.isArray(val) ? flatten(val) : val
+    ),
+    []
+);
+
+function actorCreator(id, x, y) {
+    let symbol = String.fromCharCode(id - 1);
+    if (actorShop[symbol]) {
+        return actorShop[symbol](x,y);
+    } else {
+        // is a null symbol?
+        // throw "Unknown symbol";
+        return null;
+    }
+}
+
+function randomMap(width, height) {
+    // Generate a width by height sized generated map
+    let rogueMap = new ROT.Map.Rogue(width, height).create();
+    let map = {};
+    map.width = width;
+    map.height = height;
+    map.layers = [{"data":[]},{"data":[]}];
+    freeCells = [];
+    // Initialize obstacles and actors
+    for (let j = 0; j < height; j++) {
+        map.layers[0].data.push([]);
+        map.layers[1].data.push([]);
+        for (let i = 0; i < width; i++) {
+            if (rogueMap.map[j][i]) {
+                map.layers[0].data[j].push(36);
+            } else {
+                map.layers[0].data[j].push(47);
+                freeCells.push({x:i, y:j});
+            }
+            map.layers[1].data[j].push(0);
+        }
+    }
+
+    // Randomly select starting position for player
+    let start = freeCells[Math.floor(Math.random() * freeCells.length)];
+    map.layers[1].data[start.y][start.x] = 65; // set random spot to be the player
+
+    // Flatten the layers to mimic Tiled map data
+    map.layers[0].data = flatten(map.layers[0].data);
+    map.layers[1].data = flatten(map.layers[1].data);
+    return map;
+
+}
 
 class Map {
     constructor(json) {
-        if (! json) throw "Bad map creation";
+        if (!json) throw "Bad map creation";
         let obstacles = json.layers[0];
         let actorLayer = json.layers[1];
         this.player = null;
-        this.width = obstacles.width;
-        this.height = obstacles.height;
+        this.width = json.width;
+        this.height = json.height;
         this.actors = []; // store all of the actors in array
         this.data = new Array(this.height); // stores all tiles in the game
 
-        console.log("Creating game map...");
+        console.log("Loading game map...");
         for (let i = 0; i < this.height; i++) {
             this.data[i] = new Array(this.width);
             for (let j = 0; j < this.width; j++) {
                 // Grabs the symbol from the layer
-                let id = obstacles.data[i*this.width + j];
+                let id = obstacles.data[i * this.width + j];
                 this.data[i][j] = new Tile(j, i, id);
             }
         }
 
-        console.log("Creating actors...");
+        console.log("Loading actors...");
         for (let i = 0; i < this.height; i++) {
             for (let j = 0; j < this.width; j++) {
-                let id = actorLayer.data[i*this.width + j]; // grab the id in the json data
-                if (id != 0) { // id of zero indicates no actor in this spot
+                let id = actorLayer.data[i * this.width + j]; // grab the id in the json data
+                if (id !== 0) { // id of zero indicates no actor in this spot
                     let newActor = actorCreator(id, j, i); // create the new actor
-                    if (newActor.options.symbol == "@") this.player = newActor;
+                    if (newActor.options.symbol === "@") this.player = newActor;
                     this.actors.push(newActor); // add to the list of all actors
                     this.data[i][j].actors.push(newActor); // also push to the tiles' actors
                 }
@@ -63,12 +125,12 @@ class Map {
         for (let i = 0; i < this.actors.length; i++) {
             let actor = this.actors[i];
             /* to calculate where the actor should go, we have to consider
-            the new line character in each line of the buffer, which is equal
-            to the actor's y coord. */
-            let index = actor.y*this.width + actor.x + actor.y;
+             the new line character in each line of the buffer, which is equal
+             to the actor's y coord. */
+            let index = actor.y * this.width + actor.x + actor.y;
             buf = buf.substr(0, index)
-             + actor.options.symbol
-             + buf.substr(index+1);
+                + actor.options.symbol
+                + buf.substr(index + 1);
         }
         console.log(buf);
     }
@@ -80,9 +142,7 @@ class Map {
         for (let dist of ROT.DIRS[8]) {
             let nx = tile.x + dist[0];
             let ny = tile.y + dist[1];
-            if (nx < 0 || nx == this.width || ny < 0 || ny == this.height)
-                continue; // out of bounds, skip
-            else
+            if (! (nx < 0 || nx === this.width || ny < 0 || ny === this.height))
                 adjacentTiles.push(this.data[ny][nx]);
         }
         return adjacentTiles;
@@ -92,7 +152,7 @@ class Map {
 
 class Tile {
     constructor(x, y, id) {
-        this.symbol = id == 0 ? String.fromCharCode(32) : String.fromCharCode(id - 1);
+        this.symbol = id === 0 ? String.fromCharCode(32) : String.fromCharCode(id - 1);
         this.options = environment[this.symbol];
         this.actors = [];
         this.x = x;
@@ -104,142 +164,16 @@ class Tile {
     blocked() {
         if (this.options.blocked) return true;
         for (let actor of this.actors) {
-            if (actor.options.blocked && actor != Game.player)
+            if (actor.options.blocked && actor !== Game.player)
                 return true;
         }
         return false;
     }
 }
-
-class HUD {
-    constructor() {
-        this.template = `<div id='hud' class='w3-col w3-border w3-container w3-black w3-text-yellow' style="width:430px; height:555px">
-                            ${this.getStats()}
-                            ${this.getAbilities()}
-                         </div>`;
-    }
-
-    update() {
-        $('#hud').html(this.getStats() + this.getAbilities());
-    }
-
-    createBar(barID, color, width) {
-        let cb = Game.player.options.combat;
-        let num = cb.mana;
-        let denom = cb.maxmana;
-        if (barID == "hpbar") {
-            num = cb.hp;
-            denom = cb.maxhp;
-        } else if (barID == "staminabar") {
-            num = cb.stamina;
-            denom = cb.maxstamina;
-        }
-
-        let pct = ((num / denom)*100) + "%";
-        return `<div class='w3-progress-container w3-black w3-half'>
-                  <div id='${barID}' class='w3-progressbar w3-center w3-text-white  w3-round ${color}' style='width:${pct}'>
-                    <!-- <b>${pct}</b> -->
-                  </div>
-                </div>`;
-   }
-
-    getStats() {
-        let p = Game.player;
-        let cb = p.options.combat;
-        /* HP Bar */
-        let buffer = `<h3 class="w3-text-orange w3-row-padding w3-center w3-border-bottom"><b>Larken</b> <span class="w3-text-red">the Devourer</span></h3>
-            <div class="w3-row-padding w3-padding-4" style="width:400px">
-                <div class="w3-col" style="width:165px">
-                    Health: <b><span class="w3-text-white">${cb.hp}</span>/${cb.maxhp}</b>
-                </div>
-                ${this.createBar("hpbar", "w3-green")}
-            </div>`;
-
-        /* Mana Bar */
-        buffer += `
-            <div class="w3-row-padding w3-padding-4" style="width:400px">
-                <div class="w3-col" style="width:165px">
-                    Mana: <b><span class="w3-text-white">${cb.mana}</span>/${cb.maxmana}</b>
-                </div>
-                ${this.createBar("manabar", "w3-blue")}
-            </div>`;
-
-        /* Skill Levels */
-        buffer += `
-        <div class="w3-row-padding w3-padding-8 " style="width:400px">
-            <div class="w3-container w3-col" style="width:165px">
-                Level: ${cb.level} <p>
-                XP: ${cb.xp} <p>
-            </div>
-            <div class="w3-container w3-col" style="width:165px">
-                Str: ${cb.str} <p>
-                Def: ${cb.def} <p>
-            </div>
-        </div>`;
-
-
-        return buffer;
-    }
-
-    // <div class="w3-row-padding w3-padding-4" style="width:400px"> </div>
-    getAbilities() {
-        return ""; // "<h4 id='abilities' class='w3-text-white w3-row w3-center'>Abilities</h4>";
-    }
-
-}
-
-/* Idea for Console: The console will inevitably need to support some form of input, especially for
-leveing up skills. Perhaps one way to do this would be to add the console to the game engine scheduler,
-and have it queue up things for the player to decide to do with keydown event handlers*/
-
-class Console {
-  constructor() {
-      this.current_count = 0;
-      this.message_history = [];
-      this.template = `<div id="console" class=" w3-container w3-border w3-black w3-row" style="width:985px; height:190px;">
-
-                        <ul id="history" class="w3-container" style="list-style-type:none; width:85%; height:80%; overflow: hidden;">
-                        </ul>
-                       </div>`;
-
-
-  }
-
-  log(message, type) {
-      /* Commenting out the buttons stuff for now in favor of simple printing
-      let buttons = {
-          'defend' : '<i class="fa fa-shield w3-text-blue" style="font-size:18px"></i>',
-          'attack' : '<img src="images/sword.png">',
-          'death' : '',
-          'information': ''
-      };
-      let button = type ? buttons[type] : "";
-      */
-      let message_color = {
-          'defend' : 'w3-text-blue',
-          'attack' : 'w3-text-red',
-          'death' : 'w3-text-crimson',
-          'information': 'w3-text-yellow',
-          'player_move' : 'w3-text-grey',
-          'level_up' : 'w3-text-green',
-          'alert' : 'w3-text-orange',
-      }
-      this.message_history.push([message, type]);
-      this.current_count++;
-      $('#history').append(`<li><span class=${message_color[type]}>${message}</span></li>`);
-      let history = document.getElementById('history');
-      history.scrollTop = history.scrollHeight;
-  }
-
-  act() {
-
-  }
-
-
-
-}
 /* A class to hold all of the displays, e.g the console,
- * the abilities menu, the HUD, the game view itself. */
+ * the abilities menu, the HUD, the game view itself.
+ * one class to rule them, one class to bind them.... */
+
 class GameOverview {
 
     constructor() {
@@ -255,7 +189,7 @@ class GameOverview {
          *  -Directly below the HUD, we will have a minimap of the game itself
          *  -Finally, below the game we will have a console that logs information
          *  about the game as you play, such as "You attack the goblin!".
-          */
+         */
         let gdc = Game.display.getContainer();
         let hud = Game.HUD.template;
         let cons = Game.console.template;
@@ -275,6 +209,7 @@ class GameOverview {
         $('#gameDisplay').html(gdc); // attach the game canvas
         Game.console.log('Welcome to RottenSoup!', 'information');
         /* Testing */
+        ``
         // for (let i = 0; i < 100; i++) Game.console.log(`<i>${i} bottles of beer</i>`, 'defend');
 
     }

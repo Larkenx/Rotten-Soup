@@ -1,13 +1,3 @@
-/* A game created to mimic some elements Dungeon Crawl Stone Soup in Rot.JS */
-
-/* FOV functions */
-lightPasses = (x, y) => {
-    if (x <= 0 || x === Game.map.width || y <= 0 || y === Game.map.height) return false;
-    return !Game.map.data[y][x].options.blocked;
-};
-
-let fov = new ROT.FOV.PreciseShadowcasting(lightPasses);
-
 /* Create game object to hold the display and initialize game */
 let Game = {
     overview: null,
@@ -18,15 +8,15 @@ let Game = {
     scheduler: null,
     engine: null,
     map: null,
+    message_history: [["Welcome to Rotten Soup", "yellow"]],
 
-    /* Set up the entire game display for the HTML document */
     init: function () {
-
-        // 1. First, Set up the ROT.JS game display
+        this.map = new Map(expanded_start);
+        // Set up the ROT.JS game display
         let options = {
-            width: 25,
-            height: 25,
-            fontSize: 18,
+            width: 38.75,
+            height: 30,
+            fontSize: 17,
             fontFamily: "menlo",
             spacing: 1.2,
             forceSquareRatio: true
@@ -34,21 +24,9 @@ let Game = {
         this.width = options.width;
         this.height = options.height;
         this.display = new ROT.Display(options);
+        this.player = this.map.player;
 
-        // 2. The game map is loaded immediately via the loadMap function
-        this.player = this.map.player; // so just link the player to the game here
-
-        // 3. Set up the HUD now that the player is linked and we can grab its info
-        this.HUD = new HUD();
-
-        // 4. Set up a console for game output
-        this.console = new Console();
-
-        // 5. Set up a game overview which will automatically arrange all
-        // of the above components in their proper location.
-        this.overview = new GameOverview();
-
-        // Set the ROT engine and scheduler
+        // Set up the ROT engine and scheduler
         this.scheduler = new ROT.Scheduler.Simple();
         this.scheduler.add(this.player, true); // Add the player to the scheduler
         for (let i = 0; i < this.map.actors.length; i++) {
@@ -59,49 +37,32 @@ let Game = {
 
         this.engine = new ROT.Engine(this.scheduler); // Create new engine with the newly created scheduler
         this.engine.start(); // Start the engine
-        // this.drawMap();
         this.drawViewPort();
+    },
+
+    log: function(message, type) {
+        let message_color = {
+            'defend': 'blue',
+            'attack': 'red',
+            'death': 'crimson',
+            'information': 'yellow',
+            'player_move': 'grey',
+            'level_up': 'green',
+            'alert': 'orange',
+        };
+        this.message_history.push([message, message_color[type]]);
+        $('#fix_scroll').stop().animate({
+            scrollTop: $('#fix_scroll')[0].scrollHeight
+        }, 800);
     },
 
     inbounds: function (x, y) {
         return !(x < 0 || x >= this.map.width || y < 0 || y >= this.map.height);
     },
 
-    loadMap: function (handle) {
-        try {
-            $.getJSON(handle, function (data) {
-                return data;
-            })
-                .done(function (data) {
-                    Game.map = new Map(data);
-                    if (Game.map === null) throw "Failed to load map!";
-                    Game.init();
-                });
+    /* TODO: Find a way to change the map - its actors - while preserving the player object. */
+    changeLevels: function () {
 
-            return Game.map !== null;
-        }
-        catch (error) {
-            console.log("Map creation failed: " + error);
-            return false;
-        }
-    },
-
-    generateMap: function () {
-        let digger = new ROT.Map.Cellular();
-        let freeCells = [];
-
-        /* cells with 1/2 probability */
-        digger.randomize(0.5);
-
-        /* generate and show four generations */
-        digger.create(function (x, y, val) {
-            if (val) return;
-
-            let key = x + "," + y;
-            freeCells.push(key);
-            Game.map[key] = ".";
-        });
-        this.createPlayer(freeCells);
     },
 
     drawViewPort: function () {
@@ -125,7 +86,6 @@ let Game = {
         let endingPos = [startingPos[0] + camera.width, startingPos[1] + camera.height];
         let dx = 0;
         let dy = 0;
-        // console.log(`Drawing from ${startingPos} to ${endingPos}`);
         for (let x = startingPos[0]; x < endingPos[0]; x++) {
             for (let y = startingPos[1]; y < endingPos[1]; y++) {
                 this.drawFirstActor(dx, dy++, this.map.data[y][x]);
@@ -156,9 +116,6 @@ let Game = {
     },
 
 };
-
-Game.loadMap("assets/maps/expanded_start.json");
-
 /* Old Draw Functions (static maps/no scrolling) */
 /*
 
