@@ -12,10 +12,11 @@ let Game = {
     minimap: null,
     visible_tiles: {},
     seen_tiles: {},
+    map_revealed: true,
 
     init: function () {
-        // this.map = new Map(expanded_start);
-        this.map = new Map(randomMap(50,50));
+        this.map = new Map(expanded_start);
+        // this.map = new Map(randomMap(50,50));
         // Set up the ROT.JS game display
         let options = {
             width: 38.75,
@@ -155,7 +156,7 @@ let Game = {
         for (let y = 0; y < this.map.height; y++) {
             for (let x = 0; x < this.map.width; x++) {
                 let tile = this.map.data[y][x];
-                if (tile.x + ',' + tile.y in this.seen_tiles)
+                if (this.map_revealed || (tile.x + ',' + tile.y in this.seen_tiles))
                     this.minimap.draw(x, y, " ", tile.options.fg, tile.options.bg);
             }
         }
