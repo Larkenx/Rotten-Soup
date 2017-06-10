@@ -11,16 +11,18 @@ let Game = {
     message_history: [["Welcome to Rotten Soup", "yellow"]],
     minimap: null,
     visible_tiles: {},
+    seen_tiles: {},
 
     init: function () {
-        this.map = new Map(expanded_start);
+        // this.map = new Map(expanded_start);
+        this.map = new Map(randomMap(50,50));
         // Set up the ROT.JS game display
         let options = {
             width: 38.75,
             height: 30,
             fontSize: 17,
             fontFamily: "menlo",
-            fontStyle: "bold",
+            // fontStyle: "bold",
             spacing: 1.2,
             forceSquareRatio: true
         };
@@ -76,6 +78,7 @@ let Game = {
 
     drawViewPort: function () {
         // Clear the last visible tiles that were available to be seen
+        Object.assign(this.seen_tiles, this.visible_tiles);
         this.visible_tiles = {};
         /* FOV Computation */
         let fov = new ROT.FOV.PreciseShadowcasting(function(x,y) {
@@ -152,22 +155,8 @@ let Game = {
         for (let y = 0; y < this.map.height; y++) {
             for (let x = 0; x < this.map.width; x++) {
                 let tile = this.map.data[y][x];
-                this.minimap.draw(x, y, " ", tile.options.fg, tile.options.bg);
-            }
-        }
-        // Draw viewport on minimap
-        let camera = { // camera x,y resides in the upper left corner
-            x: this.player.x - Math.floor(Game.width / 2),
-            y: this.player.y - Math.floor(Game.height / 2),
-            width: Math.ceil(Game.width),
-            height: Game.height,
-        };
-        for (let x = camera.x; x < (camera.x + camera.width); x++) {
-            for (let y = camera.y; y < (camera.y + camera.height); y++) {
-                if (this.inbounds(x,y)) {
-                    let tile = this.map.data[y][x];
+                if (tile.x + ',' + tile.y in this.seen_tiles)
                     this.minimap.draw(x, y, " ", tile.options.fg, tile.options.bg);
-                }
             }
         }
 
