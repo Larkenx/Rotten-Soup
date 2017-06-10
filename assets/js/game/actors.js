@@ -123,25 +123,17 @@ class Actor {
         this.y = ny;
         // Game.drawActor(this); // draw the actor at the new spot
         Game.drawViewPort();
+        Game.drawMiniMap();
         setTimeout(() => {
         }, 1500);
     }
 
     /* attacks another actor */
     attack(actor) {
-        // console.log(capitalize(addPrefix(this.name())) + this.cb.description[0] + addPrefix(actor.name()));
-        /* Components for printing console events */
-        // let evtmissed = `${capitalize(addPrefix(this.name))} failed to attack ${addPrefix(actor.name)}.`;
-
-        /* Components for calculating hit chance, dodge chance, and total damage dealt */
-        let dice = Math.random(); // floating point between [0, 1)
-        let roll = function () {
-            dice = Math.random();
-        }
-
         /* Perform the attack */
         let dmg = this.cb.str - actor.cb.def;
-        let evtdamage = `${capitalize(addPrefix(this.name()))}${this.cb.description[0]}${addPrefix(actor.name())} and dealt ${dmg} damage.`;
+        let len = this.cb.description.length;
+        let evtdamage = `${capitalize(addPrefix(this.name()))}${this.cb.description[Math.floor(Math.random() * len)]}${addPrefix(actor.name())} and dealt ${dmg} damage.`;
         if (Game.player === this)
             Game.log(evtdamage, 'player_move');
         else
@@ -370,7 +362,7 @@ class Player extends Actor {
             this.recover(this.cb.staminaRecovery);
             this.heal(this.cb.hpRecovery);
             this.restore(this.cb.manaRecovery);
-            Game.log("You rest for a turn", 'player_move');
+            Game.log("You rest for a turn.", 'player_move');
             endturn();
             return;
         } else {
