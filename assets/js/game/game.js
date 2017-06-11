@@ -22,7 +22,6 @@ let Game = {
         this.levels["expanded_start"] = this.map;
         this.levels["dungeon1"] = new Map(randomMap(50,50));
         this.playerStart = this.map.playerStart;
-        // this.map = new Map(randomMap(50,50));
         // Set up the ROT.JS game display
         let options = {
             width: 38.75,
@@ -36,7 +35,6 @@ let Game = {
         this.width = options.width;
         this.height = options.height;
         this.display = new ROT.Display(options);
-        console.log(this.playerStart);
         this.player = new Player(this.playerStart[0], this.playerStart[1]);
         this.map.actors.push(this.player); // add to the list of all actors
         this.map.data[this.playerStart[1]][this.playerStart[0]].actors.push(this.player); // also push to the tiles' actors

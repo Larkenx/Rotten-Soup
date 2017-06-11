@@ -124,8 +124,6 @@ class Actor {
         // Game.drawActor(this); // draw the actor at the new spot
         Game.drawViewPort();
         Game.drawMiniMap();
-        // setTimeout(() => {
-        // }, 500);
     }
 
     /* attacks another actor */
