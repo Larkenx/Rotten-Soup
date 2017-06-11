@@ -28,9 +28,9 @@ let Game = {
             width: 38.75,
             height: 30,
             fontSize: 17,
-            fontFamily: "menlo",
+            fontFamily: "inconsolata",
             // fontStyle: "bold",
-            spacing: 1.2,
+            spacing: 1.0,
             forceSquareRatio: true
         };
         this.width = options.width;
@@ -182,11 +182,20 @@ let Game = {
             for (let x = 0; x < this.map.width; x++) {
                 let tile = this.map.data[y][x];
                 if (this.map_revealed || (tile.x + ',' + tile.y in this.seen_tiles))
-                    this.minimap.draw(x, y, " ", tile.options.fg, tile.options.bg);
+                    if (tile.x + ',' + tile.y in this.visible_tiles)
+                        this.minimap.draw(x, y, " ", tile.options.fg, this.brightenColor(tile.options.bg));
+                    else
+                        this.minimap.draw(x, y, " ", tile.options.fg, tile.options.bg);
             }
         }
 
         // Draw the actor in the mini-map
         this.minimap.draw(this.player.x, this.player.y, "@", this.player.fg, "yellow");
     },
+
+    brightenColor: function(color) {
+        let hsl_color = ROT.Color.rgb2hsl(ROT.Color.fromString(color));
+        hsl_color[2] *= 1.5;
+        return  ROT.Color.toRGB(ROT.Color.hsl2rgb(hsl_color));
+    }
 };

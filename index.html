@@ -60,11 +60,29 @@
         </v-layout>
         <!-- Game Console / Messages -->
         <v-layout row style="padding: 0px; margin:-5px 5px 0px 0px;">
-            <v-list id="fix_scroll" class="bordered hud console" style="overflow:scroll; padding: 8px; position: relative;">
+            <v-list id="fix_scroll" class="bordered hud console" style="overflow:hidden; padding: 8px; position: relative;">
                 <v-list-item v-for="(message, index) in getMessages()" v-bind:key="index">
                     <p><b v-bind:style="{color : message[1]}">{{message[0]}}</b></p>
                 </v-list-item>
             </v-list>
+        </v-layout>
+        <!-- Death Screen Modal - Shown when YOU DIED -->
+        <v-layout row justify-center>
+            <v-dialog v-model="dialog" persistent>
+                <!--<v-btn primary light slot="activator">Open Dialog</v-btn>-->
+                <v-card>
+                    <v-card-row>
+                        <v-card-title>Use Google's location service?</v-card-title>
+                    </v-card-row>
+                    <v-card-row>
+                        <v-card-text>Let Google help apps determine location. This means sending anonymous location data to Google, even when no apps are running.</v-card-text>
+                    </v-card-row>
+                    <v-card-row actions>
+                        <v-btn class="green--text darken-1" flat="flat" @click.native="dialog = false">Disagree</v-btn>
+                        <v-btn class="green--text darken-1" flat="flat" @click.native="dialog = false">Agree</v-btn>
+                    </v-card-row>
+                </v-card>
+            </v-dialog>
         </v-layout>
     </v-container>
 
@@ -75,7 +93,8 @@
         el: '#app',
         data: {
             game: Game,
-            messages: Game.message_history
+            messages: Game.message_history,
+            dialog: false,
         },
         methods: {
             getHP () {
@@ -98,11 +117,14 @@
             },
             getMessages() {
                 return Game.message_history;
+            },
+            openDeathDialog() {
+                this.dialog = true;
             }
-
         },
         created () {
             Game.init();
+            this.openDeathDialog();
         },
         mounted () {
             $('#game_container').html(Game.display.getContainer());
