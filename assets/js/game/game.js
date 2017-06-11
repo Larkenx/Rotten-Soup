@@ -5,8 +5,11 @@ let Game = {
     HUD: null,
     console: null,
     player: null,
+    playerStart: null,
     scheduler: null,
     engine: null,
+    levels: {},
+    currentLevel: "expanded_start",
     map: null,
     message_history: [["Welcome to Rotten Soup", "yellow"]],
     minimap: null,
@@ -15,7 +18,10 @@ let Game = {
     map_revealed: true,
 
     init: function () {
-        this.map = new Map(expanded_start);
+        this.map = new Map(TileMaps["expanded_start"]);
+        this.levels["expanded_start"] = this.map;
+        this.levels["dungeon1"] = new Map(randomMap(50,50));
+        this.playerStart = this.map.playerStart;
         // this.map = new Map(randomMap(50,50));
         // Set up the ROT.JS game display
         let options = {
@@ -30,8 +36,16 @@ let Game = {
         this.width = options.width;
         this.height = options.height;
         this.display = new ROT.Display(options);
-        this.player = this.map.player;
+        console.log(this.playerStart);
+        this.player = new Player(this.playerStart[0], this.playerStart[1]);
+        this.map.actors.push(this.player); // add to the list of all actors
+        this.map.data[this.playerStart[1]][this.playerStart[0]].actors.push(this.player); // also push to the tiles' actors
+        this.scheduleAllActors();
+        this.drawViewPort();
+        this.initializeMinimap();
+    },
 
+    scheduleAllActors: function() {
         // Set up the ROT engine and scheduler
         this.scheduler = new ROT.Scheduler.Simple();
         this.scheduler.add(this.player, true); // Add the player to the scheduler
@@ -40,11 +54,11 @@ let Game = {
                 this.scheduler.add(this.map.actors[i], true);
             }
         }
-
         this.engine = new ROT.Engine(this.scheduler); // Create new engine with the newly created scheduler
         this.engine.start(); // Start the engine
-        this.drawViewPort();
+    },
 
+    initializeMinimap: function () {
         /* Create a ROT.JS display for the minimap! */
         this.minimap = new ROT.Display({
             width: this.map.width, height: this.map.height, fontSize:5, spacing:1.0, forceSquareRatio: true
@@ -73,7 +87,18 @@ let Game = {
     },
 
     /* TODO: Find a way to change the map - its actors - while preserving the player object. */
-    changeLevels: function () {
+    changeLevels: function (newLevel) {
+        // Save the old map
+        this.levels[this.currentLevel] = this.map; // add the old map to 'levels'
+        // Add the new map to the game
+        this.map = this.levels[newLevel];
+        this.playerStart = this.map.playerStart;
+        console.log(this.playerStart);
+        this.player.tryMove(this.playerStart[0], this.playerStart[1]);
+        this.scheduleAllActors();
+        this.drawViewPort();
+        this.initializeMinimap();
+        $('#minimap_container').html(this.minimap.getContainer()); // resetting the canvas / minimap display fixes ghosting
 
     },
 
@@ -165,42 +190,3 @@ let Game = {
         this.minimap.draw(this.player.x, this.player.y, "@", this.player.fg, "yellow");
     },
 };
-/* Old Draw Functions (static maps/no scrolling) */
-/*
-
- drawMap: function () {
- for (let y = 0; y < this.map.height; y++)
- for (let x = 0; x < this.map.width; x++)
- Game.drawTile(this.map.data[y][x]);
-
- Game.drawActors();
- },
-
-
-
- drawTile: function (tile) {
- Game.display.draw(tile.x, tile.y, tile.symbol, tile.options.fg, "black");
- },
-
-
- drawFirstActor: function(tile) {
- for (let i = 0; i < tile.actors.length; i++) {
- if (tile.actors[i].options.visible) {
- Game.drawActor(tile.actors[i]);
- return;
- }
- }
- // if we reach this point, no actors were drawable
- Game.drawTile(tile);
- },
-
- drawActors: function () {
- for (let i = 0; i < this.map.actors.length; i++) {
- Game.drawActor(this.map.actors[i]);
- }
- },
-
- drawActor: function (actor) {
- Game.display.draw(actor.x, actor.y, actor.options.symbol, actor.options.fg, actor.options.bg);
- },
- */

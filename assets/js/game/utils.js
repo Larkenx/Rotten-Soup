@@ -16,29 +16,20 @@ let actorShop = {
     }
 };
 
-
-
 let environment = {
-    " " : {fg : "black", bg : "black", name: "grass", description: "An empty piece of terrain.", visible:true},
-    '#' : {fg : "slategray", bg : "slategray", name: "wall", description: "An impassable wall.", blocked : true, visible: false},
-    '~' : {fg : "dodgerblue", bg: "dodgerblue", name: "shallow water", description: "Some shallow water.", blocked : true, visible:true},
-    '=' : {fg : "blue", bg : "blue", name: "deep water", description: "Some deep water.", blocked : true, visible:true},
-    '.' : {fg : "brown", bg : "black", name: "path", description: "A pathway!", visible:true},
-    'T' : {fg: "lightgreen", bg: "lightgreen", name: "tree", descritpion: "A tree!", blocked : true, visible: false}
+    " ": {fg: "black", bg: "black", name: "grass", description: "An empty piece of terrain.", visible: true},
+    '#': { fg: "slategray", bg: "slategray", name: "wall", description: "An impassable wall.", blocked: true, visible: false},
+    '~': { fg: "dodgerblue", bg: "dodgerblue", name: "shallow water", description: "Some shallow water.", blocked: true, visible: true},
+    '=': {fg: "blue", bg: "blue", name: "deep water", description: "Some deep water.", blocked: true, visible: true},
+    '.': {fg: "brown", bg: "black", name: "path", description: "A pathway!", visible: true},
+    'T': {fg: "lightgreen", bg: "lightgreen", name: "tree", descritpion: "A tree!", blocked: true, visible: false}
 };
 
+const flatten = arr => arr.reduce((acc, val) => acc.concat(Array.isArray(val) ? flatten(val) : val), []);
 
-const flatten = arr => arr.reduce(
-    (acc, val) => acc.concat(
-        Array.isArray(val) ? flatten(val) : val
-    ),
-    []
-);
-
-function actorCreator(id, x, y) {
-    let symbol = String.fromCharCode(id - 1);
+function actorCreator(symbol, x, y) {
     if (actorShop[symbol]) {
-        return actorShop[symbol](x,y);
+        return actorShop[symbol](x, y);
     } else {
         // is a null symbol?
         // throw "Unknown symbol";
@@ -46,13 +37,15 @@ function actorCreator(id, x, y) {
     }
 }
 
+/* This is a random dungeon map generator. It essentially generates identical
+ * JSON data to that of a TILED map, with the unnecessary properties left out */
 function randomMap(width, height) {
     // Generate a width by height sized generated map
     let rogueMap = new ROT.Map.Rogue(width, height).create();
     let map = {};
     map.width = width;
     map.height = height;
-    map.layers = [{"data":[]},{"data":[]}];
+    map.layers = [{"data": []}, {"data": []}];
     freeCells = [];
     // Initialize obstacles and actors
     for (let j = 0; j < height; j++) {
@@ -63,7 +56,7 @@ function randomMap(width, height) {
                 map.layers[0].data[j].push(36);
             } else {
                 map.layers[0].data[j].push(47);
-                freeCells.push({x:i, y:j});
+                freeCells.push({x: i, y: j});
             }
             map.layers[1].data[j].push(0);
         }
@@ -77,7 +70,6 @@ function randomMap(width, height) {
     map.layers[0].data = flatten(map.layers[0].data);
     map.layers[1].data = flatten(map.layers[1].data);
     return map;
-
 }
 
 class Map {
@@ -85,7 +77,7 @@ class Map {
         if (!json) throw "Bad map creation";
         let obstacles = json.layers[0];
         let actorLayer = json.layers[1];
-        this.player = null;
+        this.playerStart = null;
         this.width = json.width;
         this.height = json.height;
         this.actors = []; // store all of the actors in array
@@ -106,13 +98,18 @@ class Map {
             for (let j = 0; j < this.width; j++) {
                 let id = actorLayer.data[i * this.width + j]; // grab the id in the json data
                 if (id !== 0) { // id of zero indicates no actor in this spot
-                    let newActor = actorCreator(id, j, i); // create the new actor
-                    if (newActor.options.symbol === "@") this.player = newActor;
-                    this.actors.push(newActor); // add to the list of all actors
-                    this.data[i][j].actors.push(newActor); // also push to the tiles' actors
+                    let symbol = String.fromCharCode(id - 1);
+                    let newActor = actorCreator(symbol, j, i); // create the new actor
+                    if (symbol === "@") {
+                        this.playerStart = [j,i];
+                    } else {
+                        this.actors.push(newActor); // add to the list of all actors
+                        this.data[i][j].actors.push(newActor); // also push to the tiles' actors
+                    }
                 }
             }
         }
+        if (this.playerStart === null) throw "Error - no player starting position!";
     }
 
     print() {
@@ -144,7 +141,7 @@ class Map {
         for (let dist of ROT.DIRS[8]) {
             let nx = tile.x + dist[0];
             let ny = tile.y + dist[1];
-            if (! (nx < 0 || nx === this.width || ny < 0 || ny === this.height))
+            if (!(nx < 0 || nx === this.width || ny < 0 || ny === this.height))
                 adjacentTiles.push(this.data[ny][nx]);
         }
         return adjacentTiles;
@@ -172,72 +169,4 @@ class Tile {
         return false;
     }
 }
-/* A class to hold all of the displays, e.g the console,
- * the abilities menu, the HUD, the game view itself.
- * one class to rule them, one class to bind them.... */
 
-class GameOverview {
-
-    constructor() {
-        /* We will organize the overall game 'display', where display
-         * is the entire HTML page in which Rotten Soup is played, in the following,
-         * design:
-         *
-         *  -The game itself (ASCII graphics) will be in a left rectangle,
-         *  occupying approx. 75% of the left of the HTML doc.
-         *  -The HUD, containing info about health, abilities, and stats, will
-         *  exist to the right of the game, occupying about 25% of the right half
-         *  of the screen.
-         *  -Directly below the HUD, we will have a minimap of the game itself
-         *  -Finally, below the game we will have a console that logs information
-         *  about the game as you play, such as "You attack the goblin!".
-         */
-        let gdc = Game.display.getContainer();
-        let hud = Game.HUD.template;
-        let cons = Game.console.template;
-        // let canvasWidth = $('canvas').attr("width");
-        // let canvasHeight = $('canvas').attr("height");
-        let totalWidth = 555;
-        let totalHeight = 555;
-        this.boilerplate = `<div id='gameOverview' class='w3-container'>
-                                <div id="rowone" class='w3-row'>
-                                    <div id="gameDisplay" class="w3-border w3-col" style='width:${totalWidth}px; height:${totalHeight}px'></div>
-                                    ${hud}
-                                </div>
-                                ${cons}
-                            </div>`;
-
-        $('body').prepend(this.boilerplate);
-        $('#gameDisplay').html(gdc); // attach the game canvas
-        Game.console.log('Welcome to RottenSoup!', 'information');
-        /* Testing */
-        ``
-        // for (let i = 0; i < 100; i++) Game.console.log(`<i>${i} bottles of beer</i>`, 'defend');
-
-    }
-
-    deathScreen() {
-        let modal = `<div id="deathScreen" class="w3-modal" >
-                  <div class="w3-container w3-border w3-black w3-modal-content w3-animate-opacity w3-card-8" style='width:400px;'>
-                      <span style='text-align:center; margin:0 auto;'
-                      class='w3-text-red w3-wide w3-text-shadow'>
-                        <i style='font-size: 75px;' class='w3-deathfont'>YOU DIED</i>
-                      </span>
-                      <div class="w3-padding-16">
-                          <button class="w3-btn-block w3-ripple w3-text-shadow w3-green" onclick="Game.overview.newGame()">
-                          <b>Try Again?</b>
-                          </button>
-                      </div>
-                  </div>
-                </div>`;
-        $('#gameOverview').append(modal);
-        document.getElementById('deathScreen').style.display = "block";
-    }
-
-    newGame() {
-        $('body').empty();
-        Game.loadMap("/RottenSoup/assets/maps/expanded_start.json");
-    }
-
-
-}
