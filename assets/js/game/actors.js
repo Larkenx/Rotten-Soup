@@ -137,7 +137,8 @@ class Actor {
         else
             Game.log(evtdamage, 'attack');
         actor.damage(dmg);
-
+        // if (actor.symbol === "@")
+        //     Game.log("You were slain by a " + this.name());
     }
 
     /* Reduce hp. If less than 0, causes death */
@@ -183,7 +184,7 @@ class Actor {
         Game.drawViewPort();
 
         if (this === Game.player) {
-            Game.log(`You died!.`, "death");
+            Game.log(`You died!`, "death");
         } else {
             Game.log(`You killed the ${this.name()}.`, "death");
         }

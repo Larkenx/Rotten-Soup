@@ -17,22 +17,18 @@
 
 </head>
 <body>
-<div id="app" style="width: 100%; height: 100%;">
-    <v-container style="padding: 0px;">
+<div id="app">
+    <v-container class="bordered" style="padding: 0px; width:1150px; margin: 0 auto;">
         <!-- Game Display and HUD -->
-        <v-layout row wrap style="padding: 0; margin:0;">
+        <v-layout id="row1" row wrap style="padding: 0; margin:0;">
             <!-- Game Display-->
-            <v-flex xs8 column style="padding: 0px;">
-                <div style="margin:0; padding:0;" class="bordered" id="game_container"></div>
+            <v-flex column style="padding: 0px;">
+                <div style="margin:0; padding:0;" class="" id="game_container"></div>
             </v-flex>
             <!-- HUD-->
-            <v-flex class="bordered hud" xs4 column style="padding: 0px 0px 0px 0px; margin:0px 0px 0px -5px;" align-center>
-                <!-- Mini-map -->
-                <v-layout row align-center>
-                    <div id="minimap_container" class="flex" style="margin: 0 auto;"></div>
-                </v-layout>
+            <v-flex class="hud elevation-0" column style="width: 440px; margin: 0 auto; padding-top: 5px;">
                 <!-- Health Bar -->
-                <v-layout row align-center style="padding: 0px 0px 0px 5px; margin-bottom: -10px;">
+                <v-layout row align-center style=" margin-bottom: -10px;">
                     <v-flex xs2 col>
                         <b>Health </b>
                     </v-flex>
@@ -44,7 +40,7 @@
                     </v-flex>
                 </v-layout>
                 <!-- Magic Bar -->
-                <v-layout row align-center style="padding: 0px 0px 0px 5px;">
+                <v-layout row align-center>
                     <v-flex xs2 col>
                         <b>Mana</b>
                     </v-flex>
@@ -56,28 +52,73 @@
                         {{getMana()}} / {{getMaxMana()}}
                     </v-flex>
                 </v-layout>
+                <!-- Skills -->
+                <v-layout class="skills" row style="margin-top: 10px;">
+                    <v-flex xs12 col><b>Stats</b></v-flex>
+                </v-layout>
+                <v-layout class="skills" row style="margin-left: 10px;">
+                    <v-flex xs12 col><b>DEF {{getCB().def}}</b></v-flex>
+                </v-layout>
+                <v-layout class="skills" row style="margin-left: 10px;">
+                    <v-flex col><b>STR {{getCB().str}}</b></v-flex>
+                </v-layout>
+                <!-- Mini-map -->
+                <v-layout class="skills" row>
+                    <v-layout xs12 column align-center style="margin: 10px auto;"><b>Minimap</b></v-layout>
+                </v-layout>
+                <v-layout row align-center>
+                    <div id="minimap_container" class="flex" style="margin: 0 auto;"></div>
+                </v-layout>
             </v-flex>
         </v-layout>
         <!-- Game Console / Messages -->
-        <v-layout row style="padding: 0px; margin:-5px 5px 0px 0px;">
-            <v-list id="fix_scroll" class="bordered hud console" style="overflow:hidden; padding: 8px; position: relative;">
+        <v-layout id="row2" row style="padding: 10px 0 0 0; margin: 0px">
+            <v-list id="fix_scroll" class="hud console" style="overflow:hidden; padding: 8px; position: relative;">
                 <v-list-item v-for="(message, index) in getMessages()" v-bind:key="index">
                     <p><b v-bind:style="{color : message[1]}">{{message[0]}}</b></p>
                 </v-list-item>
             </v-list>
         </v-layout>
-        <!-- Death Screen Modal - Shown when YOU DIED -->
+        <v-container class="bordered modal elevation-24" v-if="playerIsDead()" align-center>
+               <pre>
+                     _____  _____
+                    <     `/     |
+                     >          (
+                    |   _     _  |
+                    |  |_) | |_) |
+                    |  | \ | |   |
+                    |            |
+     ______.______%_|            |__________  _____
+   _/                                       \|     |
+  |                    Here lies
+  |_____.-._________      '@'   ____/|___________|
+                    |            |
+                    |            |
+                    |            |
+                    |            |
+                    |   _        <
+                    |__/         |
+                     / `--.      |
+                   %|            |%
+               |/.%%|          -< @%%%
+               `\%`@|     v      |@@%@%%
+             .%%%@@@|%    |    % @@@%%@%%%%
+        _.%%%%%%@@@@@@%%_/%\_%@@%%@@@@@@@%%%%%%
+        </pre>
+            <v-layout>
+                <v-btn success class="btn--light-flat-pressed" v-on:click.native="startNewGame()" style="margin: 0 auto;"><b>Play Again?</b></v-btn>
+            </v-layout>
+        </v-container>
     </v-container>
 
 </div>
-
 <script>
-    new Vue({
+    let vm = new Vue({
         el: '#app',
-        data: {
-            game: Game,
-            messages: Game.message_history,
-            dialog: false,
+        data () {
+            return {
+                game: Game,
+            };
         },
         methods: {
             getHP () {
@@ -101,18 +142,30 @@
             getMessages() {
                 return Game.message_history;
             },
-            openDeathDialog() {
-                this.dialog = true;
+            getCB() {
+                return Game.player.cb;
+            },
+            playerIsDead() {
+                if (Game.player === null)
+                    return false;
+                else
+                    return Game.player.isDead();
+            },
+            startNewGame() {
+                console.log("Starting new game...");
+                $('#fix_scroll').empty();
+                Game.init();
+                $('#game_container').html(Game.display.getContainer());
+                $('#minimap_container').html(Game.minimap.getContainer());
             }
         },
         created () {
             Game.init();
-            this.openDeathDialog();
         },
         mounted () {
             $('#game_container').html(Game.display.getContainer());
             $('#minimap_container').html(Game.minimap.getContainer());
-
+//            Game.player.death();
         },
     })
 </script>
@@ -120,13 +173,14 @@
 </html>
 <style>
     body {
-        line-height: 0;
+        /*line-height: 0;*/
         background-color: black;
     }
 
     .console {
         width: 100%;
         height: 150px;
+        line-height: 0;
     }
 
     .hud {
@@ -141,8 +195,23 @@
         border-width: 5px;
         border-color: darkgrey;
     }
+
     something {
-        color: #b8b8b8;
+        color: #4b4b4b;
+    }
+
+    .modal {
+        background-color: black;
+        color: white;
+        /*width: 500px;*/
+        padding: 10px;
+        height: 600px;
+        position: absolute;
+        left: 40%;
+        top: 5%;
+        margin-left: -150px;
+        z-index: 2;
+        /*margin-top: -150px;*/
     }
 
     canvas {

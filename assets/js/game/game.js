@@ -11,13 +11,14 @@ let Game = {
     levels: {},
     currentLevel: "expanded_start",
     map: null,
-    message_history: [["Welcome to Rotten Soup", "yellow"]],
+    message_history: [],
     minimap: null,
     visible_tiles: {},
     seen_tiles: {},
     map_revealed: true,
 
     init: function () {
+        this.log("Welcome to Rotten Soup", "information");
         this.map = new Map(TileMaps["expanded_start"]);
         this.levels["expanded_start"] = this.map;
         this.levels["dungeon1"] = new Map(randomMap(50,50));
@@ -59,7 +60,7 @@ let Game = {
     initializeMinimap: function () {
         /* Create a ROT.JS display for the minimap! */
         this.minimap = new ROT.Display({
-            width: this.map.width, height: this.map.height, fontSize:5, spacing:1.0, forceSquareRatio: true
+            width: this.map.width, height: this.map.height, fontSize:3, spacing:1.0, forceSquareRatio: true
         });
         this.drawMiniMap();
     },
