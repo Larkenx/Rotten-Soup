@@ -124,8 +124,6 @@ class Actor {
         // Game.drawActor(this); // draw the actor at the new spot
         Game.drawViewPort();
         Game.drawMiniMap();
-        setTimeout(() => {
-        }, 1500);
     }
 
     /* attacks another actor */
@@ -139,7 +137,8 @@ class Actor {
         else
             Game.log(evtdamage, 'attack');
         actor.damage(dmg);
-
+        // if (actor.symbol === "@")
+        //     Game.log("You were slain by a " + this.name());
     }
 
     /* Reduce hp. If less than 0, causes death */
@@ -185,7 +184,7 @@ class Actor {
         Game.drawViewPort();
 
         if (this === Game.player) {
-            Game.log(`You died!.`, "death");
+            Game.log(`You died!`, "death");
         } else {
             Game.log(`You killed the ${this.name()}.`, "death");
         }
@@ -410,7 +409,6 @@ class Player extends Actor {
         super.death();
         window.removeEventListener("keydown", this);
         this.cb.hp = 0;
-        Game.overview.deathScreen();
         Game.scheduler.remove(Game.player);
         Game.scheduler.clear();
 

@@ -11,32 +11,31 @@ let Game = {
     levels: {},
     currentLevel: "expanded_start",
     map: null,
-    message_history: [["Welcome to Rotten Soup", "yellow"]],
+    message_history: [],
     minimap: null,
     visible_tiles: {},
     seen_tiles: {},
     map_revealed: true,
 
     init: function () {
+        this.log("Welcome to Rotten Soup", "information");
         this.map = new Map(TileMaps["expanded_start"]);
         this.levels["expanded_start"] = this.map;
         this.levels["dungeon1"] = new Map(randomMap(50,50));
         this.playerStart = this.map.playerStart;
-        // this.map = new Map(randomMap(50,50));
         // Set up the ROT.JS game display
         let options = {
             width: 38.75,
             height: 30,
             fontSize: 17,
-            fontFamily: "menlo",
+            fontFamily: "inconsolata",
             // fontStyle: "bold",
-            spacing: 1.2,
+            spacing: 1.0,
             forceSquareRatio: true
         };
         this.width = options.width;
         this.height = options.height;
         this.display = new ROT.Display(options);
-        console.log(this.playerStart);
         this.player = new Player(this.playerStart[0], this.playerStart[1]);
         this.map.actors.push(this.player); // add to the list of all actors
         this.map.data[this.playerStart[1]][this.playerStart[0]].actors.push(this.player); // also push to the tiles' actors
@@ -62,7 +61,7 @@ let Game = {
     initializeMinimap: function () {
         /* Create a ROT.JS display for the minimap! */
         this.minimap = new ROT.Display({
-            width: this.map.width, height: this.map.height, fontSize:5, spacing:1.0, forceSquareRatio: true
+            width: this.map.width, height: this.map.height, fontSize:3, spacing:1.0, forceSquareRatio: true
         });
         this.drawMiniMap();
     },
@@ -182,11 +181,20 @@ let Game = {
             for (let x = 0; x < this.map.width; x++) {
                 let tile = this.map.data[y][x];
                 if (this.map_revealed || (tile.x + ',' + tile.y in this.seen_tiles))
-                    this.minimap.draw(x, y, " ", tile.options.fg, tile.options.bg);
+                    if (tile.x + ',' + tile.y in this.visible_tiles)
+                        this.minimap.draw(x, y, " ", tile.options.fg, this.brightenColor(tile.options.bg));
+                    else
+                        this.minimap.draw(x, y, " ", tile.options.fg, tile.options.bg);
             }
         }
 
         // Draw the actor in the mini-map
         this.minimap.draw(this.player.x, this.player.y, "@", this.player.fg, "yellow");
     },
+
+    brightenColor: function(color) {
+        let hsl_color = ROT.Color.rgb2hsl(ROT.Color.fromString(color));
+        hsl_color[2] *= 1.5;
+        return  ROT.Color.toRGB(ROT.Color.hsl2rgb(hsl_color));
+    }
 };
