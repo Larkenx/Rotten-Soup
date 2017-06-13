@@ -115,9 +115,9 @@ class Actor {
     move(nx, ny) {
         let ntile = Game.map.data[ny][nx]; // new tile to move to
         let ctile = Game.map.data[this.y][this.x]; // current tile
-        ctile.actors.pop(this); // remove this actor from this tile
+        ctile.actors.shift(this); // remove this actor from this tile
         // Game.drawTile(ctile); // redraw the tile, with this actor removed
-        ntile.actors.push(this); // add this actor to the new tile
+        ntile.actors.unshift(this); // add this actor to the new tile
 
         this.x = nx; // update x,y coords to new coords
         this.y = ny;
@@ -300,15 +300,8 @@ class Player extends Actor {
     }
 
     handleEvent(evt) {
-        /* If a user presses shift or ctrl */
-        let modifiers = [ROT.VK_SHIFT, ROT.VK_CONTROL, ROT.VK_ALT];
         let code = evt.keyCode;
-
-        if (code in modifiers) {
-            console.log(code);
-            window.removeEventListener("keydown", this);
-            return;
-        }
+        let shift_pressed = evt.getModifierState("Shift");
         let endturn = function () {
             window.removeEventListener("keydown", this);
             Game.engine.unlock();
@@ -346,8 +339,8 @@ class Player extends Actor {
             66: 5,
             72: 6,
             89: 7,
-            /* Rest */
-            190: "rest"
+            /* Rest, Pick Up Items, Climb Ladders */
+            188: "pick_up", 190: "rest",
         };
 
         if (!(code in keyMap)) { // invalid key press, retry turn
@@ -357,13 +350,16 @@ class Player extends Actor {
             return;
         }
 
-        if ("rest" === keyMap[code]) { // Rest
-            this.recover(this.cb.staminaRecovery);
+        if ("rest" === keyMap[code] && ! shift_pressed) { // Rest
             this.heal(this.cb.hpRecovery);
             this.restore(this.cb.manaRecovery);
             Game.log("You rest for a turn.", 'player_move');
             endturn();
             return;
+        } else if ("rest" === keyMap[code] && shift_pressed) {
+            this.climbDown();
+        } else if ("pick_up" === keyMap[code] && shift_pressed) {
+            this.climbUp();
         } else {
             let diff = ROT.DIRS[8][keyMap[code]];
             let nx = this.x + diff[0];
@@ -375,6 +371,26 @@ class Player extends Actor {
             }
             this.path = new ROT.Path.Dijkstra(this.x, this.y, dijkstra_callback);
             endturn();
+        }
+    }
+
+    climbDown() {
+        let ctile = Game.map.data[this.y][this.x];
+        if (ctile.actors.some((e) => { return e.symbol === "<";})) {
+            Game.log("You climb down the ladder...", "player_move");
+            Game.changeLevels(TileMaps['dungeon1']);
+        } else {
+            Game.log("You cannot climb down here. There's no ladder.", "information");
+        }
+    }
+
+    climbUp() {
+        let ctile = Game.map.data[this.y][this.x];
+        if (ctile.actors.some((e) => { return e.symbol === ">";})) {
+            Game.log("You climb up the ladder...", "player_move");
+            Game.changeLevels(TileMaps['expanded_start']);
+        } else {
+            Game.log("You cannot climb up here. There's no ladder.", "information");
         }
     }
 
@@ -560,7 +576,7 @@ class Ladder extends Actor {
             description: "A ladder leading " + dir,
             symbol: symbol,
             fg: "brown",
-            bg: "transparent",
+            bg: "black",
             blocked: false,
             visible: true
         });
