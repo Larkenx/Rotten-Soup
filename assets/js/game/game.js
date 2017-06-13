@@ -50,7 +50,8 @@ let Game = {
         this.scheduler = new ROT.Scheduler.Simple();
         this.scheduler.add(this.player, true); // Add the player to the scheduler
         for (let i = 0; i < this.map.actors.length; i++) {
-            if (this.map.actors[i] !== this.player) {
+            // Some 'actor' objects do not take turns, such as ladders / items
+            if (this.map.actors[i] !== this.player && this.map.actors[i].cb !== null) {
                 this.scheduler.add(this.map.actors[i], true);
             }
         }
@@ -86,7 +87,6 @@ let Game = {
         return !(x < 0 || x >= this.map.width || y < 0 || y >= this.map.height);
     },
 
-    /* TODO: Find a way to change the map - its actors - while preserving the player object. */
     changeLevels: function (newLevel) {
         // Save the old map
         this.levels[this.currentLevel] = this.map; // add the old map to 'levels'

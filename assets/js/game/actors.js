@@ -561,9 +561,9 @@ class Ladder extends Actor {
             direction: dir,
             description: "A ladder leading " + dir,
             symbol: symbol,
-            fg: "thistle",
+            fg: "brown",
             bg: "transparent",
-            blocked: true,
+            blocked: false,
             visible: true
         });
     }

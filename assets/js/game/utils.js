@@ -9,10 +9,10 @@ let actorShop = {
         return new Goblin(x, y);
     },
     '<': (x, y) => {
-        return new Ladder(x, y, symbol, "up");
+        return new Ladder(x, y, '<', "up");
     },
     '>': (x, y) => {
-        return new Ladder(x, y, symbol, "down");
+        return new Ladder(x, y, '>', "down");
     }
 };
 
