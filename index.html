@@ -117,7 +117,8 @@
         el: '#app',
         data () {
             return {
-                game: Game,
+//                player: Game.player !== null ? Game.player : null ,
+                messages: Game.message_history
             };
         },
         methods: {
@@ -140,7 +141,7 @@
                 return Game.player.cb.maxstamina;
             },
             getMessages() {
-                return Game.message_history;
+                return this.messages;
             },
             getCB() {
                 return Game.player.cb;
@@ -151,16 +152,17 @@
                 else
                     return Game.player.isDead();
             },
-            startNewGame() {
-                console.log("Starting new game...");
-                $('#fix_scroll').empty();
-                Game.init();
-                $('#game_container').html(Game.display.getContainer());
-                $('#minimap_container').html(Game.minimap.getContainer());
-            }
+//            startNewGame() {
+//                console.log("Starting new game...");
+//                $('#fix_scroll').empty();
+//                Game.init();
+//                $('#game_container').html(Game.display.getContainer());
+//                $('#minimap_container').html(Game.minimap.getContainer());
+//            }
         },
         created () {
             Game.init();
+//            setTimeout(() => {}, 2000);
         },
         mounted () {
             $('#game_container').html(Game.display.getContainer());

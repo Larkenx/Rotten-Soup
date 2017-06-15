@@ -22,6 +22,7 @@ let Game = {
         this.map = new Map(TileMaps["expanded_start"]);
         this.levels["expanded_start"] = this.map;
         this.levels["dungeon1"] = new Map(randomMap(50,50));
+        // this.map = this.levels["dungeon1"];
         this.playerStart = this.map.playerStart;
         // Set up the ROT.JS game display
         let options = {
@@ -42,11 +43,13 @@ let Game = {
         this.scheduleAllActors();
         this.drawViewPort();
         this.initializeMinimap();
+        this.engine.start(); // Start the engine
     },
 
     scheduleAllActors: function() {
         // Set up the ROT engine and scheduler
         this.scheduler = new ROT.Scheduler.Simple();
+        this.scheduler.add(new GameDisplay(), true);
         this.scheduler.add(this.player, true); // Add the player to the scheduler
         for (let i = 0; i < this.map.actors.length; i++) {
             // Some 'actor' objects do not take turns, such as ladders / items
@@ -55,7 +58,6 @@ let Game = {
             }
         }
         this.engine = new ROT.Engine(this.scheduler); // Create new engine with the newly created scheduler
-        this.engine.start(); // Start the engine
     },
 
     initializeMinimap: function () {
@@ -180,11 +182,12 @@ let Game = {
         for (let y = 0; y < this.map.height; y++) {
             for (let x = 0; x < this.map.width; x++) {
                 let tile = this.map.data[y][x];
-                if (this.map_revealed || (tile.x + ',' + tile.y in this.seen_tiles))
+                if (this.map_revealed || this.seen_tiles[tile.x + ',' + tile.y] !== null) {
                     if (tile.x + ',' + tile.y in this.visible_tiles)
                         this.minimap.draw(x, y, " ", tile.options.fg, this.brightenColor(tile.options.bg));
                     else
                         this.minimap.draw(x, y, " ", tile.options.fg, tile.options.bg);
+                }
             }
         }
 
@@ -196,5 +199,10 @@ let Game = {
         let hsl_color = ROT.Color.rgb2hsl(ROT.Color.fromString(color));
         hsl_color[2] *= 1.5;
         return  ROT.Color.toRGB(ROT.Color.hsl2rgb(hsl_color));
+    },
+
+    updateDisplay: function() {
+        this.drawViewPort();
+        this.drawMiniMap();
     }
 };

@@ -57,7 +57,8 @@ class Actor {
         this.x = x;
         this.y = y;
         this.options = options;
-        this.cb = this.options.combat;
+        if (this.options !== null)
+            this.cb = this.options.combat;
     }
 
     /* Called by the ROT.js game scheduler to indicate a turn */
@@ -122,8 +123,8 @@ class Actor {
         this.x = nx; // update x,y coords to new coords
         this.y = ny;
         // Game.drawActor(this); // draw the actor at the new spot
-        Game.drawViewPort();
-        Game.drawMiniMap();
+        // Game.drawViewPort();
+        // Game.drawMiniMap();
     }
 
     /* attacks another actor */
@@ -350,7 +351,7 @@ class Player extends Actor {
             return;
         }
 
-        if ("rest" === keyMap[code] && ! shift_pressed) { // Rest
+        if ("rest" === keyMap[code] && !shift_pressed) { // Rest
             this.heal(this.cb.hpRecovery);
             this.restore(this.cb.manaRecovery);
             Game.log("You rest for a turn.", 'player_move');
@@ -376,7 +377,9 @@ class Player extends Actor {
 
     climbDown() {
         let ctile = Game.map.data[this.y][this.x];
-        if (ctile.actors.some((e) => { return e.symbol === "<";})) {
+        if (ctile.actors.some((e) => {
+                return e.symbol === "<";
+            })) {
             Game.log("You climb down the ladder...", "player_move");
             Game.changeLevels(TileMaps['dungeon1']);
         } else {
@@ -386,7 +389,9 @@ class Player extends Actor {
 
     climbUp() {
         let ctile = Game.map.data[this.y][this.x];
-        if (ctile.actors.some((e) => { return e.symbol === ">";})) {
+        if (ctile.actors.some((e) => {
+                return e.symbol === ">";
+            })) {
             Game.log("You climb up the ladder...", "player_move");
             Game.changeLevels(TileMaps['expanded_start']);
         } else {
@@ -479,10 +484,7 @@ class Goblin extends Actor {
                 let newPos = pathToPlayer[1]; // 1 past the current position
                 this.tryMove(newPos[0], newPos[1]);
             }
-        } else {
-
         }
-
         Game.engine.unlock();
     }
 
@@ -583,5 +585,15 @@ class Ladder extends Actor {
     }
 
     act() {
+    }
+}
+
+class GameDisplay {
+    constructor() { }
+
+    act() {
+        Game.engine.lock();
+        Game.updateDisplay();
+        Game.engine.unlock();
     }
 }
