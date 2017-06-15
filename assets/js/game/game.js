@@ -20,8 +20,11 @@ let Game = {
     init: function () {
         this.log("Welcome to Rotten Soup", "information");
         this.map = new Map(TileMaps["expanded_start"]);
-        this.levels["expanded_start"] = this.map;
+        this.levels["expanded_start"] = new Map(TileMaps["expanded_start"]);
         this.levels["dungeon1"] = new Map(randomMap(50,50));
+        this.levels["dungeon2"] = new Map(randomMap(50,50));
+        this.levels["dungeon3"] = new Map(randomMap(50,50));
+
         // this.map = this.levels["dungeon1"];
         this.playerStart = this.map.playerStart;
         // Set up the ROT.JS game display
@@ -93,6 +96,7 @@ let Game = {
         this.levels[this.currentLevel] = this.map; // add the old map to 'levels'
         // Add the new map to the game
         this.map = this.levels[newLevel];
+        this.currentLevel = newLevel;
         this.playerStart = this.map.playerStart;
         console.log(this.playerStart);
         this.player.tryMove(this.playerStart[0], this.playerStart[1]);

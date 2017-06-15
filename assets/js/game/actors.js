@@ -355,9 +355,7 @@ class Player extends Actor {
             this.heal(this.cb.hpRecovery);
             this.restore(this.cb.manaRecovery);
             Game.log("You rest for a turn.", 'player_move');
-            endturn();
-            return;
-        } else if ("rest" === keyMap[code] && shift_pressed) {
+        } else if ("rest" === keyMap[code] && shift_pressed) { // climb down
             this.climbDown();
         } else if ("pick_up" === keyMap[code] && shift_pressed) {
             this.climbUp();
@@ -371,31 +369,33 @@ class Player extends Actor {
                 return;
             }
             this.path = new ROT.Path.Dijkstra(this.x, this.y, dijkstra_callback);
-            endturn();
         }
+        endturn();
     }
 
     climbDown() {
         let ctile = Game.map.data[this.y][this.x];
+        console.log(ctile);
         if (ctile.actors.some((e) => {
-                return e.symbol === "<";
+                return e.options.symbol === ">";
             })) {
             Game.log("You climb down the ladder...", "player_move");
-            Game.changeLevels(TileMaps['dungeon1']);
+            Game.changeLevels('dungeon1');
         } else {
-            Game.log("You cannot climb down here. There's no ladder.", "information");
+            Game.log("You cannot climb down here.", "information");
         }
     }
 
     climbUp() {
         let ctile = Game.map.data[this.y][this.x];
+        console.log(ctile);
         if (ctile.actors.some((e) => {
-                return e.symbol === ">";
+                return e.options.symbol === "<";
             })) {
             Game.log("You climb up the ladder...", "player_move");
-            Game.changeLevels(TileMaps['expanded_start']);
+            Game.changeLevels('expanded_start');
         } else {
-            Game.log("You cannot climb up here. There's no ladder.", "information");
+            Game.log("You cannot climb up here.", "information");
         }
     }
 
@@ -589,7 +589,8 @@ class Ladder extends Actor {
 }
 
 class GameDisplay {
-    constructor() { }
+    constructor() {
+    }
 
     act() {
         Game.engine.lock();

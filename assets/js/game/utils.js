@@ -18,10 +18,24 @@ let actorShop = {
 
 let environment = {
     " ": {fg: "black", bg: "black", name: "grass", description: "An empty piece of terrain.", visible: true},
-    '#': { fg: "slategray", bg: "silver", name: "wall", description: "An impassable wall.", blocked: true, visible: false},
-    '~': { fg: "dodgerblue", bg: "dodgerblue", name: "shallow water", description: "Some shallow water.", blocked: true, visible: true},
+    '#': {
+        fg: "slategray",
+        bg: "silver",
+        name: "wall",
+        description: "An impassable wall.",
+        blocked: true,
+        visible: false
+    },
+    '~': {
+        fg: "dodgerblue",
+        bg: "dodgerblue",
+        name: "shallow water",
+        description: "Some shallow water.",
+        blocked: true,
+        visible: true
+    },
     '=': {fg: "blue", bg: "blue", name: "deep water", description: "Some deep water.", blocked: true, visible: true},
-    '.': {fg: "brown", bg: "slategray", name: "path", description: "A pathway!", visible: true},
+    '.': {fg: "brown", bg: "darkslategray", name: "path", description: "A pathway!", visible: true},
     'T': {fg: "lightgreen", bg: "darkgreen", name: "tree", descritpion: "A tree!", blocked: true, visible: false}
 };
 
@@ -32,7 +46,7 @@ function actorCreator(symbol, x, y) {
         return actorShop[symbol](x, y);
     } else {
         // is a null symbol?
-        // throw "Unknown symbol";
+        throw "Unknown symbol: " + symbol;
         return null;
     }
 }
@@ -45,12 +59,13 @@ function randomMap(width, height) {
     let map = {};
     map.width = width;
     map.height = height;
-    map.layers = [{"data": []}, {"data": []}];
+    map.layers = [{"data": []}, {"data": []}, {"data": []}];
     freeCells = [];
     // Initialize obstacles and actors
     for (let j = 0; j < height; j++) {
         map.layers[0].data.push([]);
         map.layers[1].data.push([]);
+        map.layers[2].data.push([]);
         for (let i = 0; i < width; i++) {
             if (rogueMap.map[j][i]) {
                 map.layers[0].data[j].push(36);
@@ -59,16 +74,19 @@ function randomMap(width, height) {
                 freeCells.push({x: i, y: j});
             }
             map.layers[1].data[j].push(0);
+            map.layers[2].data[j].push(0);
         }
     }
 
     // Randomly select starting position for player
     let start = freeCells[Math.floor(Math.random() * freeCells.length)];
     map.layers[1].data[start.y][start.x] = 65; // set random spot to be the player
+    map.layers[2].data[start.y][start.x] = 61; // place a ladder going back up a level underneath the player.
 
     // Flatten the layers to mimic Tiled map data
     map.layers[0].data = flatten(map.layers[0].data);
     map.layers[1].data = flatten(map.layers[1].data);
+    map.layers[2].data = flatten(map.layers[2].data);
     return map;
 }
 
@@ -76,14 +94,17 @@ class Map {
     constructor(json) {
         if (!json) throw "Bad map creation";
         let obstacles = json.layers[0];
-        let actorLayer = json.layers[1];
+        let firstActorLayer = json.layers[1];
+        let secondActorLayer = null;
+        if (json.layers[2] !== null)
+            secondActorLayer = json.layers[2];
         this.playerStart = null;
         this.width = json.width;
         this.height = json.height;
         this.actors = []; // store all of the actors in array
         this.data = new Array(this.height); // stores all tiles in the game
 
-        console.log("Loading game map...");
+        console.log("Loading game map and actors...");
         for (let i = 0; i < this.height; i++) {
             this.data[i] = new Array(this.width);
             for (let j = 0; j < this.width; j++) {
@@ -93,15 +114,24 @@ class Map {
             }
         }
 
-        console.log("Loading actors...");
+        this.processActorLayer(firstActorLayer);
+        if (secondActorLayer !== null)
+            this.processActorLayer(secondActorLayer);
+
+
+        if (this.playerStart === null) throw "Error - no player starting position!";
+    }
+
+    processActorLayer(layer) {
+        // console.log("Loading actors...");
         for (let i = 0; i < this.height; i++) {
             for (let j = 0; j < this.width; j++) {
-                let id = actorLayer.data[i * this.width + j]; // grab the id in the json data
+                let id = layer.data[i * this.width + j]; // grab the id in the json data
                 if (id !== 0) { // id of zero indicates no actor in this spot
                     let symbol = String.fromCharCode(id - 1);
                     let newActor = actorCreator(symbol, j, i); // create the new actor
                     if (symbol === "@") {
-                        this.playerStart = [j,i];
+                        this.playerStart = [j, i];
                     } else {
                         this.actors.push(newActor); // add to the list of all actors
                         this.data[i][j].actors.push(newActor); // also push to the tiles' actors
@@ -109,8 +139,8 @@ class Map {
                 }
             }
         }
-        if (this.playerStart === null) throw "Error - no player starting position!";
     }
+
 
     print() {
         let buf = "";
