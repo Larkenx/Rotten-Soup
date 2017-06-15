@@ -94,12 +94,14 @@ let Game = {
     changeLevels: function (newLevel) {
         // Save the old map
         this.levels[this.currentLevel] = this.map; // add the old map to 'levels'
+        // Unshift player from ladder position (so that when resurfacing, no player is present)
+        this.map.data[this.player.y][this.player.x].actors.shift(this.player);
         // Add the new map to the game
         this.map = this.levels[newLevel];
         this.currentLevel = newLevel;
         this.playerStart = this.map.playerStart;
         console.log(this.playerStart);
-        this.player.tryMove(this.playerStart[0], this.playerStart[1]);
+        this.player.move(this.playerStart[0], this.playerStart[1]);
         this.scheduleAllActors();
         this.drawViewPort();
         this.initializeMinimap();
