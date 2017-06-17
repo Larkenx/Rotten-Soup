@@ -152,13 +152,13 @@
                 else
                     return Game.player.isDead();
             },
-//            startNewGame() {
-//                console.log("Starting new game...");
-//                $('#fix_scroll').empty();
-//                Game.init();
-//                $('#game_container').html(Game.display.getContainer());
-//                $('#minimap_container').html(Game.minimap.getContainer());
-//            }
+            startNewGame() {
+                console.log("Starting new game...");
+                $('#fix_scroll').empty();
+                Game.init();
+                $('#game_container').html(Game.display.getContainer());
+                $('#minimap_container').html(Game.minimap.getContainer());
+            }
         },
         created () {
             Game.init();

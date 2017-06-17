@@ -13,6 +13,9 @@ let actorShop = {
     },
     '>': (x, y) => {
         return new Ladder(x, y, '>', "down");
+    },
+    'r': (x, y) => {
+        return new Rat(x, y);
     }
 };
 
@@ -98,7 +101,7 @@ class Map {
         let secondActorLayer = null;
         if (json.layers[2] !== null)
             secondActorLayer = json.layers[2];
-        this.playerStart = null;
+        this.playerLocation = null; // this field is used exclusively for saving the player's last location before they change levels
         this.width = json.width;
         this.height = json.height;
         this.actors = []; // store all of the actors in array
@@ -131,7 +134,7 @@ class Map {
                     let symbol = String.fromCharCode(id - 1);
                     let newActor = actorCreator(symbol, j, i); // create the new actor
                     if (symbol === "@") {
-                        this.playerStart = [j, i];
+                        this.playerLocation = [j, i];
                     } else {
                         this.actors.push(newActor); // add to the list of all actors
                         this.data[i][j].actors.push(newActor); // also push to the tiles' actors

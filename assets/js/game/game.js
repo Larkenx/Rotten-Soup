@@ -5,7 +5,7 @@ let Game = {
     HUD: null,
     console: null,
     player: null,
-    playerStart: null,
+    playerLocation: null,
     scheduler: null,
     engine: null,
     levels: {},
@@ -26,7 +26,7 @@ let Game = {
         this.levels["dungeon3"] = new Map(randomMap(50,50));
 
         // this.map = this.levels["dungeon1"];
-        this.playerStart = this.map.playerStart;
+        this.playerLocation = this.map.playerLocation;
         // Set up the ROT.JS game display
         let options = {
             width: 38.75,
@@ -40,9 +40,9 @@ let Game = {
         this.width = options.width;
         this.height = options.height;
         this.display = new ROT.Display(options);
-        this.player = new Player(this.playerStart[0], this.playerStart[1]);
+        this.player = new Player(this.playerLocation[0], this.playerLocation[1]);
         this.map.actors.push(this.player); // add to the list of all actors
-        this.map.data[this.playerStart[1]][this.playerStart[0]].actors.push(this.player); // also push to the tiles' actors
+        this.map.data[this.playerLocation[1]][this.playerLocation[0]].actors.push(this.player); // also push to the tiles' actors
         this.scheduleAllActors();
         this.drawViewPort();
         this.initializeMinimap();
@@ -92,6 +92,7 @@ let Game = {
     },
 
     changeLevels: function (newLevel) {
+        this.map.playerLocation = [Game.player.x, Game.player.y];
         // Save the old map
         this.levels[this.currentLevel] = this.map; // add the old map to 'levels'
         // Unshift player from ladder position (so that when resurfacing, no player is present)
@@ -99,9 +100,8 @@ let Game = {
         // Add the new map to the game
         this.map = this.levels[newLevel];
         this.currentLevel = newLevel;
-        this.playerStart = this.map.playerStart;
-        console.log(this.playerStart);
-        this.player.move(this.playerStart[0], this.playerStart[1]);
+        this.playerLocation = this.map.playerLocation;
+        this.player.move(this.playerLocation[0], this.playerLocation[1]);
         this.scheduleAllActors();
         this.drawViewPort();
         this.initializeMinimap();
