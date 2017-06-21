@@ -52,18 +52,13 @@ function dijkstra_callback(x, y) {
     return !Game.map.data[y][x].options.blocked;
 }
 
-class Actor {
+/* Entities are in-game objects that exist in the map. They have symbols,
+ * foregrounds, backgrounds, descriptions, names, visibility, and blocked properties. */
+class Entity {
     constructor(x, y, options) {
         this.x = x;
         this.y = y;
         this.options = options;
-        if (this.options !== null)
-            this.cb = this.options.combat;
-    }
-
-    /* Called by the ROT.js game scheduler to indicate a turn */
-    act() {
-        // pass
     }
 
     examine() {
@@ -72,6 +67,27 @@ class Actor {
 
     name() {
         return this.options.name;
+    }
+}
+
+class Actor extends Entity {
+    constructor(x, y, options) {
+        super(x, y, options);
+        if (this.options !== null) {
+            this.cb = this.options.combat;
+            this.cb.equipment = {
+                head: null,
+                torso: null,
+                legs: null,
+                left: null,
+                right: null,
+            }
+        }
+    }
+
+    /* Called by the ROT.js game scheduler to indicate a turn */
+    act() {
+        // pass
     }
 
     distanceTo(actor) { // linear distance, no obstacles factored in
@@ -438,8 +454,6 @@ class Player extends Actor {
 
 }
 
-/* Hostile actors */
-
 class Goblin extends Actor {
 
     constructor(x, y) {
@@ -506,7 +520,7 @@ class Rat extends Actor {
     constructor(x, y) {
         super(x, y, {
             name: "rat",
-            description: "A mean, green goblin!",
+            description: "A fat rat!",
             symbol: "r",
             fg: "grey",
             bg: "seagreen",
@@ -558,13 +572,7 @@ class Rat extends Actor {
 
 }
 
-/* Non-hostile Actors */
-
-class LevelUp {
-
-}
-
-class Store extends Actor {
+class Store extends Entity {
 
     constructor(x, y) {
         super(x, y, {
@@ -606,11 +614,9 @@ class Store extends Actor {
     }
 }
 
-class Item { // extends Actor
-    constructor(x, y, name, attributes, quantity) {
-        this.name = name;
-        this.attributes = attributes;
-        this.quantity = quantity;
+class Item extends Entity { // extends Actor
+    constructor(x, y, options) {
+        super(x, y, options);
     }
 
     hasAttribute(attribute) {
@@ -628,7 +634,7 @@ class Item { // extends Actor
     }
 }
 
-class Ladder extends Actor {
+class Ladder extends Entity {
     constructor(x, y, symbol, dir) {
         super(x, y, {
             name: "ladder",
