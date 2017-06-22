@@ -442,10 +442,8 @@ class Player extends Actor {
                 if (actor instanceof Actor && actor.options.blocked && actor.options.visible) {
                     if (!actor.isDead()) {
                         this.interact(actor);
-                    } else {
-                        this.gain_xp(actor.cb.maxhp);
+                        return true;
                     }
-                    return true;
                 }
             }
         }

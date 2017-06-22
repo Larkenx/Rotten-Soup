@@ -13,13 +13,12 @@ let Game = {
     map: null,
     message_history: [],
     minimap: null,
-    visible_tiles: {},
-    seen_tiles: {},
-    map_revealed: true,
 
     init: function () {
         this.log("Welcome to Rotten Soup", "information");
         this.map = new Map(TileMaps["expanded_start"]);
+        this.map.revealed = true;
+
         this.levels["expanded_start"] = new Map(TileMaps["expanded_start"]);
         this.levels["dungeon1"] = new Map(randomMap(50,50));
         this.levels["dungeon2"] = new Map(randomMap(50,50));
@@ -111,15 +110,15 @@ let Game = {
 
     drawViewPort: function () {
         // Clear the last visible tiles that were available to be seen
-        Object.assign(this.seen_tiles, this.visible_tiles);
-        this.visible_tiles = {};
+        Object.assign(this.map.seen_tiles, this.map.visible_tiles);
+        this.map.visible_tiles = {};
         /* FOV Computation */
         let fov = new ROT.FOV.PreciseShadowcasting(function(x,y) {
             return (Game.inbounds(x,y) && Game.map.data[y][x].options.visible);
         });
 
         fov.compute(this.player.x, this.player.y, 10, function(x, y, r, visibility) {
-            Game.visible_tiles[x + ',' + y] = true;
+            Game.map.visible_tiles[x + ',' + y] = true;
         });
 
         let camera = { // camera x,y resides in the upper left corner
@@ -144,7 +143,7 @@ let Game = {
         for (let x = startingPos[0]; x < endingPos[0]; x++) {
             for (let y = startingPos[1]; y < endingPos[1]; y++) {
                 let tile = this.map.data[y][x];
-                if (tile.x + "," + tile.y in this.visible_tiles) {
+                if (tile.x + "," + tile.y in this.map.visible_tiles) {
                     this.drawFirstActor(dx, dy++, tile);
                 } else {
                     this.drawDimTile(dx,dy++, tile);
@@ -160,17 +159,11 @@ let Game = {
         let hsl_color = ROT.Color.rgb2hsl(ROT.Color.fromString(color));
         hsl_color[2] *= .25;
         color = ROT.Color.hsl2rgb(hsl_color);
-        if (tile.symbol === "#")
-            Game.display.draw(x, y, tile.symbol, ROT.Color.toRGB(color), ROT.Color.toRGB(color));
-        else
-            Game.display.draw(x, y, tile.symbol, ROT.Color.toRGB(color), "black");
+        Game.display.draw(x, y, tile.symbol, ROT.Color.toRGB(color), "black");
     },
 
     drawTile: function (x, y, tile) {
-        if (tile.symbol === "#")
-            Game.display.draw(x, y, tile.symbol, tile.options.fg, tile.options.bg);
-        else
-            Game.display.draw(x, y, tile.symbol, tile.options.fg, "black");
+        Game.display.draw(x, y, tile.symbol, tile.options.fg, "black");
     },
 
     drawFirstActor: function (x, y, tile) {
@@ -191,18 +184,28 @@ let Game = {
     },
 
     drawMiniMap: function () {
-        for (let y = 0; y < this.map.height; y++) {
-            for (let x = 0; x < this.map.width; x++) {
-                let tile = this.map.data[y][x];
-                if (this.map_revealed || this.seen_tiles[tile.x + ',' + tile.y] !== null) {
-                    if (tile.x + ',' + tile.y in this.visible_tiles)
+        if (this.map.revealed) {
+            for (let y = 0; y < this.map.height; y++) {
+                for (let x = 0; x < this.map.width; x++) {
+                    let tile = this.map.data[y][x];
+                    if (tile.x + ',' + tile.y in this.map.visible_tiles)
                         this.minimap.draw(x, y, " ", tile.options.fg, this.brightenColor(tile.options.bg));
                     else
                         this.minimap.draw(x, y, " ", tile.options.fg, tile.options.bg);
                 }
             }
+        } else {
+            for (let y = 0; y < this.map.height; y++) {
+                for (let x = 0; x < this.map.width; x++) {
+                    let tile = this.map.data[y][x];
+                    if (tile.x + ',' + tile.y in this.map.visible_tiles) {
+                        this.minimap.draw(x, y, " ", tile.options.fg, this.brightenColor(tile.options.bg));
+                    } else if (tile.x + ',' + tile.y in this.map.seen_tiles) {
+                        this.minimap.draw(x, y, " ", tile.options.fg, tile.options.bg);
+                    }
+                }
+            }
         }
-
         // Draw the actor in the mini-map
         this.minimap.draw(this.player.x, this.player.y, "@", this.player.fg, "yellow");
     },

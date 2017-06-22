@@ -44,8 +44,8 @@ let environment = {
         visible: true
     },
     '=': {symbol: String.fromCharCode(8776), fg: "blue", bg: "blue", name: "deep water", description: "Some deep water.", blocked: true, visible: true},
-    '.': {symbol: String.fromCharCode(8757), fg: "brown", bg: "darkslategray", name: "path", description: "A pathway!", visible: true},
-    'T': {symbol: String.fromCharCode(5856), fg: "lightgreen", bg: "darkgreen", name: "tree", descritpion: "A tree!", blocked: true, visible: false}
+    '.': {symbol: ".", fg: "brown", bg: "darkslategray", name: "path", description: "A pathway!", visible: true},
+    'T': {symbol:"T", fg: "lightgreen", bg: "darkgreen", name: "tree", descritpion: "A tree!", blocked: true, visible: false}
 };
 
 const flatten = arr => arr.reduce((acc, val) => acc.concat(Array.isArray(val) ? flatten(val) : val), []);
@@ -68,6 +68,7 @@ function randomMap(width, height) {
     map.width = width;
     map.height = height;
     map.layers = [{"data": []}, {"data": []}, {"data": []}];
+    map.revealed = false;
     let freeCells = [];
     // Initialize obstacles and actors
     for (let j = 0; j < height; j++) {
@@ -111,6 +112,8 @@ class Map {
         this.height = json.height;
         this.actors = []; // store all of the actors in array
         this.data = new Array(this.height); // stores all tiles in the game
+        this.visible_tiles = {};
+        this.seen_tiles = {};
 
         console.log("Loading game map and actors...");
         for (let i = 0; i < this.height; i++) {
