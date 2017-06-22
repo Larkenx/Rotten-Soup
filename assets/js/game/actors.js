@@ -118,7 +118,7 @@ class Actor extends Entity {
         } else if (ntile.actors.length > 0) {
             for (let i = 0; i < ntile.actors.length; i++) {
                 let actor = ntile.actors[i];
-                if (actor.options.blocked && actor.options.visible) {
+                if (actor instanceof Actor && actor.options.blocked && actor.options.visible) {
                     if (!actor.isDead())
                         this.interact(actor);
                     return true;
@@ -160,14 +160,14 @@ class Actor extends Entity {
 
         if (dmg > 0)
             actor.damage(dmg);
-        // if (actor.symbol === "@")
-        //     Game.log("You were slain by a " + this.name());
     }
 
     /* Reduce hp. If less than 0, causes death */
     damage(hp) {
-        this.options.combat.hp -= hp;
-        if (this.isDead()) this.death();
+        this.cb.hp -= hp;
+        if (this.isDead()) {
+            this.death();
+        }
 
     }
 
@@ -199,7 +199,7 @@ class Actor extends Entity {
         Game.engine._scheduler.remove(this);
         let ctile = Game.map.data[this.y][this.x];
         // remove this actor from the global actors list and the occupied tile
-        ctile.actors.pop(this);
+        ctile.actors.shift(this);
         Game.map.actors.pop(this);
         // dump the contents of the actor's inventory (items) onto the ground.
         if (this.inventory.length > 0) {
@@ -267,7 +267,7 @@ class Player extends Actor {
     }
 
     interact(actor) { // returns true if we can continue to move to the tile
-        if (actor.options.combat.hostile) {
+        if (actor.cb.hostile) {
             this.attack(actor);
             if (!actor.isDead()) actor.react(this);
             else return true; // we can move
@@ -281,6 +281,8 @@ class Player extends Actor {
     }
 
     react(actor) {
+        console.log("react?");
+
         //
     }
 
@@ -427,6 +429,7 @@ class Player extends Actor {
         }
     }
 
+    // TODO: Infinite leveling up against goblins over weapons/items happens here. Fix it?
     tryMove(nx, ny) { // returns true if the turn should end here
         if (nx < 0 || nx === Game.map.width || ny < 0 || ny === Game.map.height) return;
         let ntile = Game.map.data[ny][nx]; // new tile to move to
@@ -436,11 +439,12 @@ class Player extends Actor {
         } else if (ntile.actors.length > 0) {
             for (let i = 0; i < ntile.actors.length; i++) {
                 let actor = ntile.actors[i];
-                if (actor.options.blocked && actor.options.visible) {
-                    if (!actor.isDead())
+                if (actor instanceof Actor && actor.options.blocked && actor.options.visible) {
+                    if (!actor.isDead()) {
                         this.interact(actor);
-                    if (actor.isDead())
+                    } else {
                         this.gain_xp(actor.cb.maxhp);
+                    }
                     return true;
                 }
             }
