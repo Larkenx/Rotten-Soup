@@ -614,26 +614,6 @@ class Store extends Entity {
     }
 }
 
-class Item extends Entity { // extends Actor
-    constructor(x, y, options) {
-        super(x, y, options);
-    }
-
-    hasAttribute(attribute) {
-        return (attributes[attribute] !== null);
-    }
-
-    act() {
-        super.act();
-    }
-
-    interact() {
-    }
-
-    react() {
-    }
-}
-
 class Ladder extends Entity {
     constructor(x, y, symbol, dir) {
         super(x, y, {
@@ -652,13 +632,31 @@ class Ladder extends Entity {
     }
 }
 
-class GameDisplay {
-    constructor() {
-    }
-
-    act() {
-        Game.engine.lock();
-        Game.updateDisplay();
-        Game.engine.unlock();
+/* No difference between Entity & Item, but observing this inheritance for future departures (stores?) */
+class Item extends Entity {
+    constructor(x, y, options) {
+        super(x, y, options);
     }
 }
+
+class Weapon extends Item {
+
+    constructor(x,y,options) {
+        if (options.combat === null) throw `Error - no options.combat property defined. Bad weapon creation for ${options.name}`;
+        options.symbol = ')';
+        options.fg = 'yellow';
+        options.visible = true;
+        options.blocked = false;
+        options.combat.equippable = true;
+        options.combat.equipped = false;
+        super(x,y, options);
+        this.cb = this.options.combat;
+    }
+
+    /* Returns this weapon's damage stats */
+    damageInfo() {
+        return `${this.cb.rolls}d${this.cb.sides}`
+    }
+
+}
+

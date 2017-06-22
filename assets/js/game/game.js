@@ -212,3 +212,4 @@ let Game = {
         this.drawMiniMap();
     }
 };
+
