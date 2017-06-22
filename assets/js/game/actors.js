@@ -5,6 +5,12 @@ for (let i = 1; i < 100; i++) {
     xp_levels.push(1.5 * xp_levels[i - 1]);
 }
 
+function getRandomInt(min, max) {
+    min = Math.ceil(min);
+    max = Math.floor(max);
+    return Math.floor(Math.random() * (max - min + 1)) + min; //The maximum is exclusive and the minimum is inclusive
+}
+
 /* Ranged attack? */
 // for (let dir of ROT.DIRS) {
 //     for (let i = 0; i < range_of_mob; i++) {
@@ -73,16 +79,15 @@ class Entity {
 class Actor extends Entity {
     constructor(x, y, options) {
         super(x, y, options);
-        if (this.options !== null) {
-            this.cb = this.options.combat;
-            this.cb.equipment = {
-                head: null,
-                torso: null,
-                legs: null,
-                left: null,
-                right: null,
-            }
+        this.cb = this.options.combat;
+        this.cb.equipment = {
+            head: null,
+            torso: null,
+            legs: null,
+            left: null,
+            right: null,
         }
+        this.inventory = [];
     }
 
     /* Called by the ROT.js game scheduler to indicate a turn */
@@ -197,7 +202,9 @@ class Actor extends Entity {
         ctile.actors.pop(this);
         Game.map.actors.pop(this);
         // dump the contents of the actor's inventory (items) onto the ground.
-        if (this.inventory) ctile.actors.concat(this.inventory);
+        if (this.inventory.length > 0) {
+            ctile.actors.push(...this.inventory);
+        }
         // redraw the tile, either with an appropriate actor or the tile symbol
         Game.drawViewPort();
 
@@ -358,7 +365,7 @@ class Player extends Actor {
             72: 6,
             89: 7,
             /* Rest, Pick Up Items, Climb Ladders */
-            188: "pick_up", 190: "rest",
+            188: "pickup", 190: "rest",
         };
 
         if (!(code in keyMap)) { // invalid key press, retry turn
@@ -372,9 +379,11 @@ class Player extends Actor {
             this.heal(this.cb.hpRecovery);
             this.restore(this.cb.manaRecovery);
             Game.log("You rest for a turn.", 'player_move');
+        }else if ("pickup" === keyMap[code] && !shift_pressed) {
+            this.pickup();
         } else if ("rest" === keyMap[code] && shift_pressed) { // climb down
             this.climbDown();
-        } else if ("pick_up" === keyMap[code] && shift_pressed) {
+        } else if ("pickup" === keyMap[code] && shift_pressed) {
             this.climbUp();
         } else {
             let diff = ROT.DIRS[8][keyMap[code]];
@@ -390,11 +399,14 @@ class Player extends Actor {
         endturn();
     }
 
+    pickup() {
+        Game.log("Feature not yet implemented :)", "warning")
+    }
+
     climbDown() {
         let ctile = Game.map.data[this.y][this.x];
-        console.log(ctile);
         if (ctile.actors.some((e) => {
-                return e.options.symbol === ">";
+                return e instanceof Ladder && e.options.direction === "down";
             })) {
             Game.log("You climb down the ladder...", "player_move");
             Game.changeLevels('dungeon1');
@@ -405,9 +417,8 @@ class Player extends Actor {
 
     climbUp() {
         let ctile = Game.map.data[this.y][this.x];
-        console.log(ctile);
         if (ctile.actors.some((e) => {
-                return e.options.symbol === "<";
+                return e instanceof Ladder && e.options.direction === "up";
             })) {
             Game.log("You climb up the ladder...", "player_move");
             Game.changeLevels('expanded_start');
@@ -483,6 +494,7 @@ class Goblin extends Actor {
                 invulnerable: false,
             }
         });
+        this.inventory.push(createSword(this.x, this.y));
     }
 
     act() {
@@ -632,7 +644,7 @@ class Ladder extends Entity {
     }
 }
 
-/* No difference between Entity & Item, but observing this inheritance for future departures (stores?) */
+/* No difference between Entity & Item, but observing this inheritance for future departures (store related functions) */
 class Item extends Entity {
     constructor(x, y, options) {
         super(x, y, options);
@@ -641,22 +653,47 @@ class Item extends Entity {
 
 class Weapon extends Item {
 
-    constructor(x,y,options) {
+    constructor(x, y, options) {
         if (options.combat === null) throw `Error - no options.combat property defined. Bad weapon creation for ${options.name}`;
-        options.symbol = ')';
         options.fg = 'yellow';
         options.visible = true;
         options.blocked = false;
         options.combat.equippable = true;
         options.combat.equipped = false;
-        super(x,y, options);
+        super(x, y, options);
         this.cb = this.options.combat;
+    }
+
+    roll() {
+        let dmg = 0;
+        for (let i = 0; i < this.cb.rolls; i++) {
+            dmg += getRandomInt(1, this.cb.sides);
+        }
+        return dmg;
     }
 
     /* Returns this weapon's damage stats */
     damageInfo() {
         return `${this.cb.rolls}d${this.cb.sides}`
     }
-
 }
 
+class Sword extends Weapon {
+    constructor(x, y, sides, name) {
+        super(x, y, {
+            name: name,
+            symbol: String.fromCharCode(4720),
+            type: "sword",
+            combat: {
+                rolls: 3,
+                sides: sides,
+            }
+        });
+    }
+}
+
+let swordNames = ["Caledfwlch", "Hywelbane", "Brightkiller", "Excalibur", "Joyeux", "Dyrnwyn", "Johnny Corkscrew", "The Sword of Leah", "The Sword of Shannara", "The Vorpal Sword", "Seraph Blade", "Glorious", "Cortana", "Heosphorous", "Phaesphoros", "Maellartach", "The Rivan Sword", "The Sword of Shadows", "Sikanda", "Dragnipur", "Chance", "Vengeance", "Grief", "The Swords of Night and Day", "The Swords of Blood and Fire", "Snaga", "The Sword of Truth", "The Lady Vivamus", "Sword of Martin", "Verminfate", "Rapscallion sword", "Callandor", "Heron Mark Sword", "Graywand", "Scalpel", "Rhindon", "Blackfyre", "Brightroar", "Dark Siste", "Dawn", "Hearteater", "Heartsbane", "Widow's Wail", "Ice", "Lady Forlorn", "Longclaw", "Red Rain", "Albitr", "Needle", "The Black Blade", "Mournblade", "Oathkeeper", "Naegling", "Arvindr", "Ravenbrand", "Zar'roc", "Lion's Tooth", "Doomgiver", "Kanajana", "Támerlein", "Shieldbreaker", "Woundhealer", "Narsil", "Lightbringer", "Soulcutter", "Sightblinder", "Wayfinder", "Orcrist", "Stonecutter", "Townsaver", "The Sword of Gryffindor", "Farslayer", "Mindsword", "Dragonslicer", "Katopris", "Backbiter", "Undbitr", "Brisingr", "Barrow-blade", "Coinspinner", "Lhang", "Traitor", "Anglachel", "Hadhafang", "Vrangr", "The Darksword", "The Lightsword", "Herugrim", "Anaklusmos", "Gúthwinë", "Terminus Est", "Memory", "Khazid'hea", "Clamorer", "Backbiter", "Thorn", "Charon's Claw", "Twinkle", "Godsbane", "Icingdeath", "Hrunting", "Naegling", "The Sword of the Dawn", "Hill Cleaver", "Werewindle", "Kijin-marukuni-shige", "Balaraw", "Keyblade", "Hina", "Tessaiga", "Sorrow", "Singing Sword", "Sword of Chaos", "The Starsword", "Biggoron Sword", "Grayswandir", "Rain Dragon", "Shisui", "Gurthang", "Aranrúth", "Nightfall", "Sting"];
+
+function createSword(x, y) {
+    return new Sword(x, y, getRandomInt(2, 3), swordNames[getRandomInt(0, swordNames.length - 1)]);
+}

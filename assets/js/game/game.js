@@ -56,7 +56,7 @@ let Game = {
         this.scheduler.add(this.player, true); // Add the player to the scheduler
         for (let i = 0; i < this.map.actors.length; i++) {
             // Some 'actor' objects do not take turns, such as ladders / items
-            if (this.map.actors[i] !== this.player && this.map.actors[i].cb !== null) {
+            if (this.map.actors[i] !== this.player && this.map.actors[i] instanceof Actor) {
                 this.scheduler.add(this.map.actors[i], true);
             }
         }
@@ -160,11 +160,17 @@ let Game = {
         let hsl_color = ROT.Color.rgb2hsl(ROT.Color.fromString(color));
         hsl_color[2] *= .25;
         color = ROT.Color.hsl2rgb(hsl_color);
-        Game.display.draw(x, y, tile.symbol, ROT.Color.toRGB(color), "black");
+        if (tile.symbol === "#")
+            Game.display.draw(x, y, tile.symbol, ROT.Color.toRGB(color), ROT.Color.toRGB(color));
+        else
+            Game.display.draw(x, y, tile.symbol, ROT.Color.toRGB(color), "black");
     },
 
     drawTile: function (x, y, tile) {
-        Game.display.draw(x, y, tile.symbol, tile.options.fg, "black");
+        if (tile.symbol === "#")
+            Game.display.draw(x, y, tile.symbol, tile.options.fg, tile.options.bg);
+        else
+            Game.display.draw(x, y, tile.symbol, tile.options.fg, "black");
     },
 
     drawFirstActor: function (x, y, tile) {

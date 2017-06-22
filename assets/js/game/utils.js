@@ -1,4 +1,4 @@
-let actorShop = {
+let entityShop = {
     '$': (x, y) => {
         return new Store(x, y);
     },
@@ -9,27 +9,33 @@ let actorShop = {
         return new Goblin(x, y);
     },
     '<': (x, y) => {
-        return new Ladder(x, y, '<', "up");
+        return new Ladder(x, y, String.fromCharCode(9631), "up");
     },
     '>': (x, y) => {
-        return new Ladder(x, y, '>', "down");
+        return new Ladder(x, y, String.fromCharCode(9625), "down");
     },
     'r': (x, y) => {
         return new Rat(x, y);
+    },
+
+    ')': (x,y) => {
+        return createSword(x,y);
     }
 };
 
 let environment = {
-    " ": {fg: "black", bg: "black", name: "grass", description: "An empty piece of terrain.", visible: true},
+    " ": {symbol: " ", fg: "black", bg: "black", name: "grass", description: "An empty piece of terrain.", visible: true},
     '#': {
+        symbol : "#",
         fg: "slategray",
-        bg: "silver",
+        bg: "slategray",
         name: "wall",
         description: "An impassable wall.",
         blocked: true,
         visible: false
     },
     '~': {
+        symbol : '~',
         fg: "dodgerblue",
         bg: "dodgerblue",
         name: "shallow water",
@@ -37,20 +43,19 @@ let environment = {
         blocked: true,
         visible: true
     },
-    '=': {fg: "blue", bg: "blue", name: "deep water", description: "Some deep water.", blocked: true, visible: true},
-    '.': {fg: "brown", bg: "darkslategray", name: "path", description: "A pathway!", visible: true},
-    'T': {fg: "lightgreen", bg: "darkgreen", name: "tree", descritpion: "A tree!", blocked: true, visible: false}
+    '=': {symbol: String.fromCharCode(8776), fg: "blue", bg: "blue", name: "deep water", description: "Some deep water.", blocked: true, visible: true},
+    '.': {symbol: String.fromCharCode(8757), fg: "brown", bg: "darkslategray", name: "path", description: "A pathway!", visible: true},
+    'T': {symbol: String.fromCharCode(5856), fg: "lightgreen", bg: "darkgreen", name: "tree", descritpion: "A tree!", blocked: true, visible: false}
 };
 
 const flatten = arr => arr.reduce((acc, val) => acc.concat(Array.isArray(val) ? flatten(val) : val), []);
 
 function actorCreator(symbol, x, y) {
-    if (actorShop[symbol]) {
-        return actorShop[symbol](x, y);
+    if (entityShop[symbol]) {
+        return entityShop[symbol](x, y);
     } else {
         // is a null symbol?
         throw "Unknown symbol: " + symbol;
-        return null;
     }
 }
 
@@ -63,7 +68,7 @@ function randomMap(width, height) {
     map.width = width;
     map.height = height;
     map.layers = [{"data": []}, {"data": []}, {"data": []}];
-    freeCells = [];
+    let freeCells = [];
     // Initialize obstacles and actors
     for (let j = 0; j < height; j++) {
         map.layers[0].data.push([]);
@@ -122,7 +127,7 @@ class Map {
             this.processActorLayer(secondActorLayer);
 
 
-        if (this.playerStart === null) throw "Error - no player starting position!";
+        if (this.playerLocation === null) throw "Error - no player starting position!";
     }
 
     processActorLayer(layer) {
@@ -184,8 +189,9 @@ class Map {
 
 class Tile {
     constructor(x, y, id) {
-        this.symbol = id === 0 ? String.fromCharCode(32) : String.fromCharCode(id - 1);
-        this.options = environment[this.symbol];
+        let symbol = id === 0 ? String.fromCharCode(32) : String.fromCharCode(id - 1);
+        this.options = environment[symbol];
+        this.symbol = this.options.symbol;
         this.actors = [];
         this.x = x;
         this.y = y;
@@ -204,7 +210,8 @@ class Tile {
 }
 
 class GameDisplay {
-    constructor() {}
+    constructor() {
+    }
 
     act() {
         Game.engine.lock();
