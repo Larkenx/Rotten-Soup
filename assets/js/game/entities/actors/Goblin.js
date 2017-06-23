@@ -50,6 +50,8 @@ class Goblin extends Actor {
         Game.engine.unlock();
     }
 
-    interact(actor) { if (actor === Game.player) this.attack(actor); }
+    interact(actor) {
+        if (actor === Game.player) this.attack(actor);
+    }
 
 }

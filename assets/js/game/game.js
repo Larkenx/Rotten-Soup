@@ -20,9 +20,9 @@ let Game = {
         this.map.revealed = true;
 
         this.levels["expanded_start"] = new Map(TileMaps["expanded_start"]);
-        this.levels["dungeon1"] = new Map(randomMap(50,50));
-        this.levels["dungeon2"] = new Map(randomMap(50,50));
-        this.levels["dungeon3"] = new Map(randomMap(50,50));
+        this.levels["dungeon1"] = new Map(randomMap(50, 50));
+        this.levels["dungeon2"] = new Map(randomMap(50, 50));
+        this.levels["dungeon3"] = new Map(randomMap(50, 50));
 
         // this.map = this.levels["dungeon1"];
         this.playerLocation = this.map.playerLocation;
@@ -48,7 +48,7 @@ let Game = {
         this.engine.start(); // Start the engine
     },
 
-    scheduleAllActors: function() {
+    scheduleAllActors: function () {
         // Set up the ROT engine and scheduler
         this.scheduler = new ROT.Scheduler.Simple();
         this.scheduler.add(new GameDisplay(), true);
@@ -65,12 +65,12 @@ let Game = {
     initializeMinimap: function () {
         /* Create a ROT.JS display for the minimap! */
         this.minimap = new ROT.Display({
-            width: this.map.width, height: this.map.height, fontSize:3, spacing:1.0, forceSquareRatio: true
+            width: this.map.width, height: this.map.height, fontSize: 3, spacing: 1.0, forceSquareRatio: true
         });
         this.drawMiniMap();
     },
 
-    log: function(message, type) {
+    log: function (message, type) {
         let message_color = {
             'defend': 'blue',
             'attack': 'red',
@@ -113,11 +113,11 @@ let Game = {
         Object.assign(this.map.seen_tiles, this.map.visible_tiles);
         this.map.visible_tiles = {};
         /* FOV Computation */
-        let fov = new ROT.FOV.PreciseShadowcasting(function(x,y) {
-            return (Game.inbounds(x,y) && Game.map.data[y][x].options.visible);
+        let fov = new ROT.FOV.PreciseShadowcasting(function (x, y) {
+            return (Game.inbounds(x, y) && Game.map.data[y][x].options.visible);
         });
 
-        fov.compute(this.player.x, this.player.y, 10, function(x, y, r, visibility) {
+        fov.compute(this.player.x, this.player.y, 10, function (x, y, r, visibility) {
             Game.map.visible_tiles[x + ',' + y] = true;
         });
 
@@ -146,7 +146,7 @@ let Game = {
                 if (tile.x + "," + tile.y in this.map.visible_tiles) {
                     this.drawFirstActor(dx, dy++, tile);
                 } else {
-                    this.drawDimTile(dx,dy++, tile);
+                    this.drawDimTile(dx, dy++, tile);
                 }
             }
             dx++;
@@ -154,7 +154,7 @@ let Game = {
         }
     },
 
-    drawDimTile: function(x, y, tile) {
+    drawDimTile: function (x, y, tile) {
         let color = tile.options.fg;
         let hsl_color = ROT.Color.rgb2hsl(ROT.Color.fromString(color));
         hsl_color[2] *= .25;
@@ -167,7 +167,9 @@ let Game = {
     },
 
     drawFirstActor: function (x, y, tile) {
-        if (! tile) { console.log( x + ',' + y);}
+        if (!tile) {
+            console.log(x + ',' + y);
+        }
         for (let i = 0; i < tile.actors.length; i++) {
             if (tile.actors[i].options.visible) {
                 Game.drawTile(x, y, tile);
@@ -210,13 +212,13 @@ let Game = {
         this.minimap.draw(this.player.x, this.player.y, "@", this.player.fg, "yellow");
     },
 
-    brightenColor: function(color) {
+    brightenColor: function (color) {
         let hsl_color = ROT.Color.rgb2hsl(ROT.Color.fromString(color));
         hsl_color[2] *= 1.5;
-        return  ROT.Color.toRGB(ROT.Color.hsl2rgb(hsl_color));
+        return ROT.Color.toRGB(ROT.Color.hsl2rgb(hsl_color));
     },
 
-    updateDisplay: function() {
+    updateDisplay: function () {
         this.drawViewPort();
         this.drawMiniMap();
     }

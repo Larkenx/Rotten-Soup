@@ -18,15 +18,22 @@ let entityShop = {
         return new Rat(x, y);
     },
 
-    ')': (x,y) => {
-        return createSword(x,y);
+    ')': (x, y) => {
+        return createSword(x, y);
     }
 };
 
 let environment = {
-    " ": {symbol: " ", fg: "black", bg: "black", name: "grass", description: "An empty piece of terrain.", visible: true},
+    " ": {
+        symbol: " ",
+        fg: "black",
+        bg: "black",
+        name: "grass",
+        description: "An empty piece of terrain.",
+        visible: true
+    },
     '#': {
-        symbol : "#",
+        symbol: "#",
         fg: "slategray",
         bg: "slategray",
         name: "wall",
@@ -35,7 +42,7 @@ let environment = {
         visible: false
     },
     '~': {
-        symbol : '~',
+        symbol: '~',
         fg: "dodgerblue",
         bg: "dodgerblue",
         name: "shallow water",
@@ -43,9 +50,25 @@ let environment = {
         blocked: true,
         visible: true
     },
-    '=': {symbol: String.fromCharCode(8776), fg: "blue", bg: "blue", name: "deep water", description: "Some deep water.", blocked: true, visible: true},
+    '=': {
+        symbol: String.fromCharCode(8776),
+        fg: "blue",
+        bg: "blue",
+        name: "deep water",
+        description: "Some deep water.",
+        blocked: true,
+        visible: true
+    },
     '.': {symbol: ".", fg: "brown", bg: "darkslategray", name: "path", description: "A pathway!", visible: true},
-    'T': {symbol:"T", fg: "lightgreen", bg: "darkgreen", name: "tree", descritpion: "A tree!", blocked: true, visible: false}
+    'T': {
+        symbol: "T",
+        fg: "lightgreen",
+        bg: "darkgreen",
+        name: "tree",
+        descritpion: "A tree!",
+        blocked: true,
+        visible: false
+    }
 };
 
 const flatten = arr => arr.reduce((acc, val) => acc.concat(Array.isArray(val) ? flatten(val) : val), []);

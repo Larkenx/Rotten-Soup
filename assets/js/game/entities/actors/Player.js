@@ -163,7 +163,7 @@ class Player extends Actor {
             this.heal(this.cb.hpRecovery);
             this.restore(this.cb.manaRecovery);
             Game.log("You rest for a turn.", 'player_move');
-        }else if ("pickup" === keyMap[code] && !shift_pressed) {
+        } else if ("pickup" === keyMap[code] && !shift_pressed) {
             this.pickup();
         } else if ("rest" === keyMap[code] && shift_pressed) { // climb down
             this.climbDown();
