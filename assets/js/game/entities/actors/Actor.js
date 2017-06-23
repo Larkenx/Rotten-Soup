@@ -1,0 +1,207 @@
+/**
+ * Created by Larken on 6/22/2017.
+ */
+
+let vowels = ['a', 'e', 'i', 'o', 'u'];
+let xp_levels = [50];
+
+for (let i = 1; i < 100; i++) {
+    xp_levels.push(1.5 * xp_levels[i - 1]);
+}
+
+function getRandomInt(min, max) {
+    min = Math.ceil(min);
+    max = Math.floor(max);
+    return Math.floor(Math.random() * (max - min + 1)) + min; //The maximum is exclusive and the minimum is inclusive
+}
+
+/* Ranged attack? */
+// for (let dir of ROT.DIRS) {
+//     for (let i = 0; i < range_of_mob; i++) {
+//     let tile = Game.map[mob.x + dir.x*i][mob.y + dir.y*i];
+//         if  (tile.contains(player))
+//             mob.attack(player);
+//         else if (tile.blocked)
+//             continue;
+//     }
+// }
+// ranged_attack: function() {
+//     let p = Game.player;
+//     let combine = function(arr, di) {
+//       return [arr[0]*di + p.x, arr[1]*di + p.y];
+//     }
+//
+//     for (let i = 0; i < 10; i++) {
+//       for (let dir of ROT.DIRS[8]) {
+//         let delta = combine(dir, i); // [x,y]
+//         if (delta[0] < 0 || delta[0] === Game.map.width || delta[1] < 0 || delta[1] === Game.map.height)
+//           continue;
+//         else
+//           this.drawFirstActor(Game.map.data[delta[1]][delta[0]]);
+//       }
+//     }
+// },
+
+function capitalize(s) {
+    return s.charAt(0).toUpperCase() + s.slice(1);
+}
+
+function addPrefix(name) {
+    if (name !== "you") {
+        if (name[0] in vowels)
+            return "an " + name;
+        else
+            return "a " + name;
+    } else {
+        return name;
+    }
+}
+
+function dijkstra_callback(x, y) {
+    if (x <= 0 || x === Game.map.width || y <= 0 || y === Game.map.height) return false;
+    return !Game.map.data[y][x].options.blocked;
+}
+
+class Actor extends Entity {
+    constructor(x, y, options) {
+        super(x, y, options);
+        this.cb = this.options.combat;
+        this.cb.equipment = {
+            head: null,
+            torso: null,
+            legs: null,
+            left: null,
+            right: null,
+        }
+        this.inventory = [];
+    }
+
+    /* Called by the ROT.js game scheduler to indicate a turn */
+    act() {
+        // pass
+    }
+
+    distanceTo(actor) { // linear distance, no obstacles factored in
+        return Math.sqrt(Math.pow(this.x - actor.x, 2) + Math.pow(this.y - actor.y, 2));
+    }
+
+    /* Used to perform an action against another actor */
+    interact(actor) {
+        return null;
+    }
+
+    /* Used to react to the interaction of another actor */
+    react(actor) {
+        return null;
+    }
+
+    tryMove(nx, ny) { // returns true if the turn should end here
+        if (nx < 0 || nx === Game.map.width || ny < 0 || ny === Game.map.height) return false;
+        let ntile = Game.map.data[ny][nx]; // new tile to move to
+        if (ntile.actors.length === 0 && !ntile.options.blocked) {
+            this.move(nx, ny);
+            return true;
+        } else if (ntile.actors.length > 0) {
+            for (let i = 0; i < ntile.actors.length; i++) {
+                let actor = ntile.actors[i];
+                if (actor instanceof Actor && actor.options.blocked && actor.options.visible) {
+                    if (!actor.isDead())
+                        this.interact(actor);
+                    return true;
+                }
+            }
+        }
+
+        if (!ntile.options.blocked) {
+            this.move(nx, ny);
+            return true;
+        }
+
+        return false;
+    }
+
+    move(nx, ny) {
+        let ntile = Game.map.data[ny][nx]; // new tile to move to
+        let ctile = Game.map.data[this.y][this.x]; // current tile
+        ctile.actors.shift(this); // remove this actor from this tile
+        // Game.drawTile(ctile); // redraw the tile, with this actor removed
+        ntile.actors.unshift(this); // add this actor to the new tile
+
+        this.x = nx; // update x,y coords to new coords
+        this.y = ny;
+        // Game.drawActor(this); // draw the actor at the new spot
+        // Game.drawViewPort();
+        // Game.drawMiniMap();
+    }
+
+    /* attacks another actor */
+    attack(actor) {
+        let dmg = this.cb.str - actor.cb.def;
+        let len = this.cb.description.length;
+        let evtdamage = `${capitalize(addPrefix(this.name()))}${this.cb.description[Math.floor(Math.random() * len)]}${addPrefix(actor.name())} and dealt ${dmg} damage.`;
+        if (Game.player === this)
+            Game.log(evtdamage, 'player_move');
+        else
+            Game.log(evtdamage, 'attack');
+
+        if (dmg > 0)
+            actor.damage(dmg);
+    }
+
+    /* Reduce hp. If less than 0, causes death */
+    damage(hp) {
+        this.cb.hp -= hp;
+        if (this.isDead()) {
+            this.death();
+        }
+
+    }
+
+    /* Restore HP up to maxhp */
+    heal(hp) {
+        if (this.cb.hp + hp > this.cb.maxhp)
+            this.cb.hp = this.cb.maxhp;
+        else
+            this.cb.hp += hp;
+    }
+
+    /* Restores stamina up to max */
+    recover(stamina) {
+        if (this.cb.stamina + stamina > this.cb.maxstamina)
+            this.cb.stamina = this.cb.maxstamina;
+        else
+            this.cb.stamina += stamina;
+    }
+
+    /* Restores mana up to max */
+    restore(mana) {
+        if (this.cb.mana + mana > this.cb.maxmana)
+            this.cb.mana = this.cb.maxmana;
+        else
+            this.cb.mana += mana;
+    }
+
+    death() {
+        Game.engine._scheduler.remove(this);
+        let ctile = Game.map.data[this.y][this.x];
+        // remove this actor from the global actors list and the occupied tile
+        ctile.actors.shift(this);
+        Game.map.actors.pop(this);
+        // dump the contents of the actor's inventory (items) onto the ground.
+        if (this.inventory.length > 0) {
+            ctile.actors.push(...this.inventory);
+        }
+        // redraw the tile, either with an appropriate actor or the tile symbol
+        Game.drawViewPort();
+
+        if (this === Game.player) {
+            Game.log(`You died!`, "death");
+        } else {
+            Game.log(`You killed the ${this.name()}.`, "death");
+        }
+    }
+
+    isDead() {
+        return this.cb.hp <= 0;
+    }
+}
