@@ -30,18 +30,18 @@ let Game = {
         // this.map = this.levels["dungeon1"];
         this.playerLocation = this.map.playerLocation;
         // Set up the ROT.JS game display
-        let options = {
+        this.displayOptions = {
             width: 38.75,
             height: 30,
-            fontSize: 14,
-            fontFamily: '"Press Start 2P"',
-            fontStyle: "bold",
+            fontSize: 16,
+            fontFamily: 'monospace',
+            // fontStyle: "bold",
             spacing: 1.0,
             forceSquareRatio: true
         };
-        this.width = options.width;
-        this.height = options.height;
-        this.display = new ROT.Display(options);
+        this.width = this.displayOptions.width;
+        this.height = this.displayOptions.height;
+        this.display = new ROT.Display(this.displayOptions);
         this.player = new Player(this.playerLocation[0], this.playerLocation[1]);
         this.map.actors.push(this.player); // add to the list of all actors
         this.map.data[this.playerLocation[1]][this.playerLocation[0]].actors.push(this.player); // also push to the tiles' actors
@@ -49,6 +49,10 @@ let Game = {
         this.drawViewPort();
         this.initializeMinimap();
         this.engine.start(); // Start the engine
+    },
+
+    refreshDisplay() {
+        Game.display.setOptions(this.displayOptions);
     },
 
     scheduleAllActors: function () {

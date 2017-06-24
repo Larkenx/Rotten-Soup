@@ -2,7 +2,7 @@
 <html>
 <head>
     <title>Rotten Soup</title>
-    <link href="https://fonts.googleapis.com/css?family=Press+Start+2P" rel="stylesheet">
+    <!--<link href="https://fonts.googleapis.com/css?family=Droid+Sans+Mono|Press+Start+2P" rel="stylesheet">-->
     <script src="https://use.fontawesome.com/d7889c2247.js"></script>
     <!-- Vue -->
     <script src="assets/js/vue.js"></script>
@@ -29,27 +29,15 @@
 </head>
 <body>
 <div id="app">
-    <v-layout style="padding: 5px" row>
-        <v-flex xs11 col><h2>Rotten Soup</h2></v-flex>
-        <v-flex xs1 col>
-            <v-layout style="margin: 2em auto;">
-                <a style="text-decoration: none;" href="https://github.com/Larkenx/Rotten-Soup">
-                    <v-btn icon ripple >
-                        <i style="color: lightgray; margin: auto;" class="fa fa-3x fa-github" aria-hidden="true"></i>
-                    </v-btn>
-                </a>
-            </v-layout>
-        </v-flex>
-    </v-layout>
-    <v-container class="bordered" style="padding: 0px; width:1150px; margin: auto;">
+    <v-container class="bordered" style="padding: 0px; margin: auto; height: 100%;">
         <!-- Game Display and HUD -->
-        <v-layout id="row1" row wrap style="padding: 0; margin:0;">
+        <v-layout id="row1" row>
             <!-- Game Display-->
             <v-flex column style="padding: 0px;">
                 <div style="margin:0; padding:0;" class="" id="game_container"></div>
             </v-flex>
             <!-- HUD-->
-            <v-flex class="hud elevation-0" column style="width: 440px; margin: 0 auto; padding-top: 5px;">
+            <v-flex class="hud elevation-0" hidden-sm-and-down column>
                 <!-- Health Bar -->
                 <v-layout row align-center style=" margin-bottom: -10px;">
                     <v-flex xs2 col>
@@ -87,7 +75,7 @@
                 </v-layout>
                 <!-- Mini-map -->
                 <v-layout row>
-                    <v-layout xs12 column align-center style="margin: 10px auto;"><b>Minimap</b></v-layout>
+                    <v-layout xs12 column style="margin: 10px auto;"><b>Minimap</b></v-layout>
                 </v-layout>
                 <v-layout row align-center>
                     <div id="minimap_container" class="flex" style="margin: 0 auto;"></div>
@@ -99,9 +87,8 @@
                 <v-layout v-for="(row, index) in rows" class="inventory_row" row v-bind:key="index">
                     <v-flex class="inventory_slot" xs1 col v-for="(slot, i) in getInventoryRow(index)" v-bind:key="i">
                         <v-layout>
-                            <span style="margin: auto; font-size: 15px;" v-if="slot.item !== null">{{slot.item.options.symbol}}</span>
+                            <span style="margin: auto; font-size: 16px;" v-if="slot.item !== null">{{slot.item.options.symbol}}</span>
                         </v-layout>
-
                     </v-flex>
                 </v-layout>
             </v-flex>
@@ -116,38 +103,45 @@
         </v-layout>
         <!-- Death Modal -->
         <v-container class="bordered modal elevation-24" v-if="playerIsDead()" align-center>
-               <pre>
-                     _____  _____
-                    <     `/     |
-                     >          (
-                    |   _     _  |
-                    |  |_) | |_) |
-                    |  | \ | |   |
-                    |            |
-     ______.______%_|            |__________  _____
-   _/                                       \|     |
-  |                    Here lies
-  |_____.-._________      '@'   ____/|___________|
-                    |            |
-                    |            |
-                    |            |
-                    |            |
-                    |   _        <
-                    |__/         |
-                     / `--.      |
-                   %|            |%
-               |/.%%|          -< @%%%
-               `\%`@|     v      |@@%@%%
-             .%%%@@@|%    |    % @@@%%@%%%%
-        _.%%%%%%@@@@@@%%_/%\_%@@%%@@@@@@@%%%%%%
-        </pre>
+       <pre>
+             _____  _____
+            <     `/     |
+             >          (
+            |   _     _  |
+            |  |_) | |_) |
+            |  | \ | |   |
+            |            |
+______.______%_|            |__________  _____
+_/                                       \|     |
+|                    Here lies
+|_____.-._________      '@'   ____/|___________|
+            |            |
+            |            |
+            |            |
+            |            |
+            |   _        <
+            |__/         |
+             / `--.      |
+           %|            |%
+       |/.%%|          -< @%%%
+       `\%`@|     v      |@@%@%%
+     .%%%@@@|%    |    % @@@%%@%%%%
+_.%%%%%%@@@@@@%%_/%\_%@@%%@@@@@@@%%%%%%
+</pre>
             <v-layout>
                 <v-btn success class="btn--light-flat-pressed" v-on:click.native="startNewGame()"
                        style="margin: 0 auto;"><b>Play Again?</b></v-btn>
             </v-layout>
         </v-container>
+        <v-container class="" style="position: fixed; bottom: 0; margin: 0 auto">
+            <span style="color: white;">Created by Steven Myers</span>
+            <a style="text-decoration: none;" href="https://github.com/Larkenx/Rotten-Soup">
+                <v-btn icon ripple>
+                    <i style="color: lightgray; margin: auto;" class="fa fa-3x fa-github" aria-hidden="true"></i>
+                </v-btn>
+            </a>
+        </v-container>
     </v-container>
-
 </div>
 <script>
     let vm = new Vue({
@@ -190,10 +184,9 @@
             },
             getInventoryRow(n) {
                 let inventory = Game.player.inventory;
-                if (n === 0)
-                    return inventory.slice(0, Math.floor(inventory.length / 2));
-                else
-                    return inventory.slice(Math.floor(inventory.length / 2), inventory.length);
+                let offset = n * (inventory.length / this.rows.length);
+                return inventory.slice(offset, offset+(inventory.length / this.rows.length));
+
             },
             startNewGame() {
                 console.log("Starting new game...");
@@ -205,21 +198,22 @@
         },
         created () {
             Game.init();
-            Game.drawViewPort();
         },
         mounted () {
             $('#game_container').html(Game.display.getContainer());
             $('#minimap_container').html(Game.minimap.getContainer());
+            Game.drawViewPort();
+            Game.refreshDisplay();
         },
     })
 </script>
 </body>
 </html>
 <style>
-    @import url('https://fonts.googleapis.com/css?family=Press+Start+2P');
+    /*@import url('https://fonts.googleapis.com/css?family=Droid+Sans+Mono|PT+Mono');*/
     body {
         background-color: black;
-        font-family: "Press Start 2P";
+        font-family: monospace;
     }
 
     .console {
@@ -231,15 +225,9 @@
     .hud {
         background-color: black;
         color: white;
-        font-size: 10px;
-    }
-
-    .bordered {
-        padding: 0px;
-        margin: 0px;
-        border-style: solid;
-        border-width: 5px;
-        border-color: darkgrey;
+        font-size: 13px;
+        margin-left: 50px;
+        width: 30em;
     }
 
     .modal {
