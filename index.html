@@ -73,9 +73,9 @@
                     </v-flex>
                 </v-layout>
                 <!-- Skills -->
-                <v-layout row style="margin-top: 10px;">
-                    <v-flex xs12 col><b>Stats</b></v-flex>
-                </v-layout>
+                <!--<v-layout row style="margin-top: 10px;">-->
+                    <!--<v-flex xs12 col><b>Stats</b></v-flex>-->
+                <!--</v-layout>-->
                 <v-layout row style="margin-left: 10px;">
                     <v-flex xs12 col><b>DEF {{getCB().def}}</b></v-flex>
                 </v-layout>
@@ -83,16 +83,16 @@
                     <v-flex col><b>STR {{getCB().str}}</b></v-flex>
                 </v-layout>
                 <!-- Mini-map -->
-                <v-layout row>
-                    <v-layout xs12 column style="margin: 10px auto;"><b>Minimap</b></v-layout>
-                </v-layout>
+                <!--<v-layout row>-->
+                    <!--<v-layout xs12 column style="margin: 10px auto;"><b>Minimap</b></v-layout>-->
+                <!--</v-layout>-->
                 <v-layout row align-center>
-                    <div id="minimap_container" class="flex" style="margin: 0 auto;"></div>
+                    <div id="minimap_container" class="flex" style="margin: 10px auto 10px auto;"></div>
                 </v-layout>
                 <!-- Inventory -->
-                <v-layout row style="margin-top: 10px;">
-                    <v-flex xs12 col><b>Inventory</b></v-flex>
-                </v-layout>
+                <!--<v-layout row style="margin-top: 10px;">-->
+                    <!--<v-flex xs12 col><b>Inventory</b></v-flex>-->
+                <!--</v-layout>-->
                 <v-layout v-for="(row, index) in rows" class="inventory_row" row v-bind:key="index">
                     <v-flex class="inventory_slot" xs1 col v-for="(slot, i) in getInventoryRow(index)" v-bind:key="i">
                         <v-layout>
