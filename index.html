@@ -21,9 +21,9 @@
     <script src="assets/js/game/entities/items/weapons/Weapon.js"></script>
     <script src="assets/js/game/entities/items/weapons/Sword.js"></script>
     <!-- Game, Utilities, and Map -->
-    <script src="assets/js/game/utils.js"></script>
     <script src="assets/maps/expanded_start.js"></script>
-    <script src="assets/js/game/game.js"></script>
+    <script src="assets/js/game/utils.js"></script>
+    <script src="assets/js/game/Game.js"></script>
 </head>
 <body>
 <div id="app">
@@ -62,21 +62,37 @@
                     </v-flex>
                 </v-layout>
                 <!-- Skills -->
-                <v-layout class="skills" row style="margin-top: 10px;">
+                <v-layout row style="margin-top: 10px;">
                     <v-flex xs12 col><b>Stats</b></v-flex>
                 </v-layout>
-                <v-layout class="skills" row style="margin-left: 10px;">
+                <v-layout row style="margin-left: 10px;">
                     <v-flex xs12 col><b>DEF {{getCB().def}}</b></v-flex>
                 </v-layout>
-                <v-layout class="skills" row style="margin-left: 10px;">
+                <v-layout row style="margin-left: 10px;">
                     <v-flex col><b>STR {{getCB().str}}</b></v-flex>
                 </v-layout>
                 <!-- Mini-map -->
-                <v-layout class="skills" row>
+                <v-layout row>
                     <v-layout xs12 column align-center style="margin: 10px auto;"><b>Minimap</b></v-layout>
                 </v-layout>
                 <v-layout row align-center>
                     <div id="minimap_container" class="flex" style="margin: 0 auto;"></div>
+                </v-layout>
+                <!-- Inventory -->
+                <v-layout row style="margin-top: 10px;">
+                    <v-flex xs12 col><b>Items</b></v-flex>
+                </v-layout>
+                <!-- Row One-->
+                <v-layout class="inventory_row" row>
+                    <v-flex class="inventory_slot" xs1 col v-for="(slot, index) in getInventoryRow(0)" v-bind:key="index">
+                        <span v-if="slot.item !== null">{{slot.item.options.symbol}}</span>
+                    </v-flex>
+                </v-layout>
+                <!-- Row Two-->
+                <v-layout class="inventory_row "row>
+                    <v-flex class="inventory_slot" xs1 col v-for="(slot, index) in getInventoryRow(1)" v-bind:key="index">
+                        <span v-if="slot.item !== null">{{slot.item.options.symbol}}</span>
+                    </v-flex>
                 </v-layout>
             </v-flex>
         </v-layout>
@@ -88,6 +104,7 @@
                 </v-list-item>
             </v-list>
         </v-layout>
+        <!-- Death Modal -->
         <v-container class="bordered modal elevation-24" v-if="playerIsDead()" align-center>
                <pre>
                      _____  _____
@@ -127,8 +144,13 @@
         el: '#app',
         data () {
             return {
-                messages: Game.message_history
+                messages: Game.message_history,
             };
+        },
+        computed () {
+            return {
+                inventory: Game.player.inventory
+            }
         },
         methods: {
             getHP () {
@@ -154,6 +176,13 @@
                     return false;
                 else
                     return Game.player.isDead();
+            },
+            getInventoryRow(n) {
+                let inventory = Game.player.inventory;
+                if (n === 0)
+                    return inventory.slice(0, Math.floor(inventory.length / 2));
+                else
+                    return inventory.slice(Math.floor(inventory.length / 2), inventory.length);
             },
             startNewGame() {
                 console.log("Starting new game...");
@@ -210,6 +239,19 @@
         margin-left: -150px;
         z-index: 2;
         /*margin-top: -150px;*/
+    }
+
+    .inventory_row {
+        margin-left: 10px;
+    }
+
+    .inventory_slot {
+        border: 2px solid #3d3d3d;
+        border-radius: 4px;
+        margin: 2px;
+        min-width: 30px;
+        min-height: 30px;
+        text-align: center;
     }
 
     canvas {

@@ -1,4 +1,3 @@
-/* Create game object to hold the display and initialize game */
 let Game = {
     overview: null,
     display: null,
@@ -95,7 +94,7 @@ let Game = {
         // Save the old map
         this.levels[this.currentLevel] = this.map; // add the old map to 'levels'
         // Unshift player from ladder position (so that when resurfacing, no player is present)
-        this.map.data[this.player.y][this.player.x].actors.shift(this.player);
+        this.map.data[this.player.y][this.player.x].actors.shift();
         // Add the new map to the game
         this.map = this.levels[newLevel];
         this.currentLevel = newLevel;

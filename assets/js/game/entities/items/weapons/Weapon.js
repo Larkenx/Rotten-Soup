@@ -5,7 +5,6 @@ class Weapon extends Item {
 
     constructor(x, y, options) {
         if (options.combat === null) throw `Error - no options.combat property defined. Bad weapon creation for ${options.name}`;
-        options.fg = 'yellow';
         options.visible = true;
         options.blocked = false;
         options.combat.equippable = true;

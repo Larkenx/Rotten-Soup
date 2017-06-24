@@ -1,6 +1,3 @@
-/**
- * Created by Larken on 6/22/2017.
- */
 /* Entities are in-game objects that exist in the map. They have symbols,
  * foregrounds, backgrounds, descriptions, names, visibility, and blocked properties. */
 class Entity {
@@ -19,16 +16,7 @@ class Entity {
     }
 }
 
-/**
- * Created by Larken on 6/22/2017.
- */
 
-let vowels = ['a', 'e', 'i', 'o', 'u'];
-let xp_levels = [50];
-
-for (let i = 1; i < 100; i++) {
-    xp_levels.push(1.5 * xp_levels[i - 1]);
-}
 
 function getRandomInt(min, max) {
     min = Math.ceil(min);
@@ -68,6 +56,7 @@ function capitalize(s) {
 }
 
 function addPrefix(name) {
+    const vowels = ['a', 'e', 'i', 'o', 'u'];
     if (name !== "you") {
         if (name[0] in vowels)
             return "an " + name;
@@ -78,10 +67,7 @@ function addPrefix(name) {
     }
 }
 
-function dijkstra_callback(x, y) {
-    if (x <= 0 || x === Game.map.width || y <= 0 || y === Game.map.height) return false;
-    return !Game.map.data[y][x].options.blocked;
-}
+
 
 class Actor extends Entity {
     constructor(x, y, options) {
@@ -227,11 +213,12 @@ class Actor extends Entity {
     }
 }
 
-/**
- * Created by Larken on 6/22/2017.
- */
 class Item extends Entity {
     constructor(x, y, options) {
         super(x, y, options);
+    }
+
+    use () {
+        //
     }
 }

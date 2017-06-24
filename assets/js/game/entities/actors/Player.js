@@ -2,8 +2,15 @@
  * Created by Larken on 6/22/2017.
  */
 
-class Player extends Actor {
+let xp_levels = [50];
+for (let i = 1; i < 100; i++) xp_levels.push(1.5 * xp_levels[i - 1]);
 
+function dijkstra_callback(x, y) {
+    if (x <= 0 || x === Game.map.width || y <= 0 || y === Game.map.height) return false;
+    return !Game.map.data[y][x].options.blocked;
+}
+
+class Player extends Actor {
     constructor(x, y) {
         super(x, y, {
             name: "you",
@@ -18,8 +25,8 @@ class Player extends Actor {
                 /* options.combat, dedicated to all things related to combat */
                 description: [" attacked ", " stabbed ", " jabbed ", " smashed "],
                 /* stat caps */
-                maxhp: 75,
-                maxmana: 25,
+                maxhp: 50,
+                maxmana: 15,
                 /* current stats */
                 xp: 0,
                 level: 1,
@@ -28,13 +35,23 @@ class Player extends Actor {
                 str: 9,
                 def: 5,
                 /* Per-turn effects */
-                hpRecovery: 10,
-                manaRecovery: 5,
+                hpRecovery: 5,
+                manaRecovery: 2.5,
                 invulnerable: false
             }
         });
         this.path = new ROT.Path.Dijkstra(this.x, this.y, dijkstra_callback);
+        // Inventory is an array of objects that contain items and an action that can be done with that item.
+        // You can think of the objects as individual 'slots' to store the item with actions like 'use' or 'equip'.
         this.inventory = [];
+        this.inventory_idx = 0;
+        for (let i = 1; i < 25; i++) {
+            this.inventory.push({
+                id: i,
+                item: null,
+                action: null
+            });
+        }
     }
 
     act() {
@@ -60,12 +77,6 @@ class Player extends Actor {
             actor.react(this);
             return actor.options.blocked;
         }
-    }
-
-    react(actor) {
-        console.log("react?");
-
-        //
     }
 
     gain_xp(xp) {
@@ -184,7 +195,26 @@ class Player extends Actor {
     }
 
     pickup() {
-        Game.log("Feature not yet implemented :)", "warning")
+        let ctile = Game.map.data[this.y][this.x];
+        let tileItems = ctile.actors.filter(function(el) {
+            return el instanceof Item;
+        });
+        if (tileItems.length === 1) {
+            Game.log("You picked up a " + tileItems[0].options.type, "information");
+            this.addToInventory(tileItems[0]);
+            ctile.removeActor(tileItems[0]);
+        } else if (tileItems.length > 1) {
+            // open up an inventory modal of things they can pick up?
+            console.log("too many items here!");
+        } else {
+            Game.log("There's nothing on the ground here.", "information");
+        }
+    }
+
+    addToInventory(newItem) {
+        this.inventory[this.inventory_idx].item = newItem;
+        this.inventory[this.inventory_idx].action = newItem.use;
+        this.inventory_idx++;
     }
 
     climbDown() {
@@ -230,7 +260,7 @@ class Player extends Actor {
         }
 
         if (!ntile.options.blocked) {
-            this.move(nx, ny);
+            this.move(nx, ny)
             return true;
         }
 

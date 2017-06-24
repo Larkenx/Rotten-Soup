@@ -7,6 +7,7 @@ class Sword extends Weapon {
             name: name,
             symbol: String.fromCharCode(4720),
             type: "sword",
+            fg: 'purple',
             combat: {
                 rolls: 3,
                 sides: sides,
