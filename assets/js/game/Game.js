@@ -35,9 +35,9 @@ let Game = {
             height: 30,
             fontSize: 14,
             fontFamily: '"Press Start 2P"',
-            // fontStyle: "bold",
-            // spacing: 1.0,
-            // forceSquareRatio: true
+            fontStyle: "bold",
+            spacing: 1.0,
+            forceSquareRatio: true
         };
         this.width = options.width;
         this.height = options.height;

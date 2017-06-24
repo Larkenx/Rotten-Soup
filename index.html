@@ -29,8 +29,8 @@
 </head>
 <body>
 <div id="app">
-    <v-layout row>
-        <v-flex xs11 col><h1>Rotten Soup</h1></v-flex>
+    <v-layout style="padding: 5px" row>
+        <v-flex xs11 col><h2>Rotten Soup</h2></v-flex>
         <v-flex xs1 col>
             <v-layout style="margin: 2em auto;">
                 <a style="text-decoration: none;" href="https://github.com/Larkenx/Rotten-Soup">
@@ -99,7 +99,7 @@
                 <v-layout v-for="(row, index) in rows" class="inventory_row" row v-bind:key="index">
                     <v-flex class="inventory_slot" xs1 col v-for="(slot, i) in getInventoryRow(index)" v-bind:key="i">
                         <v-layout>
-                            <span style="margin: auto;" v-if="slot.item !== null">{{slot.item.options.symbol}}</span>
+                            <span style="margin: auto; font-size: 15px;" v-if="slot.item !== null">{{slot.item.options.symbol}}</span>
                         </v-layout>
 
                     </v-flex>
@@ -219,6 +219,7 @@
     @import url('https://fonts.googleapis.com/css?family=Press+Start+2P');
     body {
         background-color: black;
+        font-family: "Press Start 2P";
     }
 
     .console {
@@ -230,6 +231,7 @@
     .hud {
         background-color: black;
         color: white;
+        font-size: 10px;
     }
 
     .bordered {
