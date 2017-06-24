@@ -5,9 +5,9 @@ class Sword extends Weapon {
     constructor(x, y, sides, name) {
         super(x, y, {
             name: name,
-            symbol: String.fromCharCode(4720),
+            symbol: String.fromCharCode(8224),
             type: "sword",
-            fg: 'purple',
+            fg: 'orange',
             combat: {
                 rolls: 3,
                 sides: sides,

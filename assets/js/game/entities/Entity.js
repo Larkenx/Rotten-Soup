@@ -192,12 +192,14 @@ class Actor extends Entity {
         Game.engine._scheduler.remove(this);
         let ctile = Game.map.data[this.y][this.x];
         // remove this actor from the global actors list and the occupied tile
-        ctile.actors.shift(this);
-        Game.map.actors.pop(this);
+        ctile.removeActor(this);
+        let idx = Game.map.actors.indexOf(this);
+        Game.map.actors.splice(idx, 1);
         // dump the contents of the actor's inventory (items) onto the ground.
-        if (this.inventory.length > 0) {
-            ctile.actors.push(...this.inventory);
-        }
+        // if (this.inventory.length > 0) {
+        //     console.log(...this.inventory);
+        //     ctile.actors.push(...this.inventory.map((e) => e.item));
+        // }
         // redraw the tile, either with an appropriate actor or the tile symbol
         Game.drawViewPort();
 

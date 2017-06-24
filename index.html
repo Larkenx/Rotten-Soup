@@ -2,6 +2,8 @@
 <html>
 <head>
     <title>Rotten Soup</title>
+    <link href="https://fonts.googleapis.com/css?family=Press+Start+2P" rel="stylesheet">
+    <script src="https://use.fontawesome.com/d7889c2247.js"></script>
     <!-- Vue -->
     <script src="assets/js/vue.js"></script>
     <!-- Vuetify -->
@@ -27,7 +29,19 @@
 </head>
 <body>
 <div id="app">
-    <v-container class="bordered" style="padding: 0px; width:1150px; margin: 0 auto;">
+    <v-layout row>
+        <v-flex xs11 col><h1>Rotten Soup</h1></v-flex>
+        <v-flex xs1 col>
+            <v-layout style="margin: 2em auto;">
+                <a style="text-decoration: none;" href="https://github.com/Larkenx/Rotten-Soup">
+                    <v-btn icon ripple >
+                        <i style="color: lightgray; margin: auto;" class="fa fa-3x fa-github" aria-hidden="true"></i>
+                    </v-btn>
+                </a>
+            </v-layout>
+        </v-flex>
+    </v-layout>
+    <v-container class="bordered" style="padding: 0px; width:1150px; margin: auto;">
         <!-- Game Display and HUD -->
         <v-layout id="row1" row wrap style="padding: 0; margin:0;">
             <!-- Game Display-->
@@ -80,18 +94,14 @@
                 </v-layout>
                 <!-- Inventory -->
                 <v-layout row style="margin-top: 10px;">
-                    <v-flex xs12 col><b>Items</b></v-flex>
+                    <v-flex xs12 col><b>Inventory</b></v-flex>
                 </v-layout>
-                <!-- Row One-->
-                <v-layout class="inventory_row" row>
-                    <v-flex class="inventory_slot" xs1 col v-for="(slot, index) in getInventoryRow(0)" v-bind:key="index">
-                        <span v-if="slot.item !== null">{{slot.item.options.symbol}}</span>
-                    </v-flex>
-                </v-layout>
-                <!-- Row Two-->
-                <v-layout class="inventory_row "row>
-                    <v-flex class="inventory_slot" xs1 col v-for="(slot, index) in getInventoryRow(1)" v-bind:key="index">
-                        <span v-if="slot.item !== null">{{slot.item.options.symbol}}</span>
+                <v-layout v-for="(row, index) in rows" class="inventory_row" row v-bind:key="index">
+                    <v-flex class="inventory_slot" xs1 col v-for="(slot, i) in getInventoryRow(index)" v-bind:key="i">
+                        <v-layout>
+                            <span style="margin: auto;" v-if="slot.item !== null">{{slot.item.options.symbol}}</span>
+                        </v-layout>
+
                     </v-flex>
                 </v-layout>
             </v-flex>
@@ -145,6 +155,7 @@
         data () {
             return {
                 messages: Game.message_history,
+                rows : [1,2,3,4],
             };
         },
         computed () {
@@ -194,6 +205,7 @@
         },
         created () {
             Game.init();
+            Game.drawViewPort();
         },
         mounted () {
             $('#game_container').html(Game.display.getContainer());
@@ -204,6 +216,7 @@
 </body>
 </html>
 <style>
+    @import url('https://fonts.googleapis.com/css?family=Press+Start+2P');
     body {
         background-color: black;
     }
@@ -246,12 +259,12 @@
     }
 
     .inventory_slot {
+        margin: 2px;
         border: 2px solid #3d3d3d;
         border-radius: 4px;
-        margin: 2px;
+        /*margin: 2px;*/
         min-width: 30px;
         min-height: 30px;
-        text-align: center;
     }
 
     canvas {

@@ -30,8 +30,8 @@ class Player extends Actor {
                 /* current stats */
                 xp: 0,
                 level: 1,
-                hp: 75,
-                mana: 25,
+                hp: 50,
+                mana: 15,
                 str: 9,
                 def: 5,
                 /* Per-turn effects */
@@ -52,6 +52,7 @@ class Player extends Actor {
                 action: null
             });
         }
+        this.addToInventory(createSword(this.x,this.y));
     }
 
     act() {

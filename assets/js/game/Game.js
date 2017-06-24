@@ -1,3 +1,7 @@
+if (!ROT.isSupported()) {
+    alert("The rot.js library isn't supported by your browser.");
+}
+
 let Game = {
     overview: null,
     display: null,
@@ -29,11 +33,11 @@ let Game = {
         let options = {
             width: 38.75,
             height: 30,
-            fontSize: 17,
-            fontFamily: "inconsolata",
+            fontSize: 14,
+            fontFamily: '"Press Start 2P"',
             // fontStyle: "bold",
-            spacing: 1.0,
-            forceSquareRatio: true
+            // spacing: 1.0,
+            // forceSquareRatio: true
         };
         this.width = options.width;
         this.height = options.height;
