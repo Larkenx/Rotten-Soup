@@ -16,8 +16,6 @@ class Entity {
     }
 }
 
-
-
 function getRandomInt(min, max) {
     min = Math.ceil(min);
     max = Math.floor(max);
@@ -67,8 +65,6 @@ function addPrefix(name) {
     }
 }
 
-
-
 class Actor extends Entity {
     constructor(x, y, options) {
         super(x, y, options);
@@ -77,15 +73,30 @@ class Actor extends Entity {
             head: null,
             torso: null,
             legs: null,
-            left: null,
-            right: null,
-        }
+            weapon: null,
+        };
         this.inventory = [];
     }
 
     /* Called by the ROT.js game scheduler to indicate a turn */
     act() {
         // pass
+    }
+
+    addToInventory(newItem) {
+        this.inventory[this.inventory_idx].item = newItem;
+        this.inventory[this.inventory_idx].action = newItem.use;
+        this.inventory_idx++;
+    }
+
+    removeFromInventory(removeItem) {
+        let idx = this.inventory.indexOf(removeItem);
+        if (idx !== null) {
+            this.inventory.splice(idx, 1);
+            this.inventory_idx++;
+        } else {
+            throw "invalid item removal - check for bugs!";
+        }
     }
 
     distanceTo(actor) { // linear distance, no obstacles factored in
@@ -172,14 +183,6 @@ class Actor extends Entity {
             this.cb.hp += hp;
     }
 
-    /* Restores stamina up to max */
-    recover(stamina) {
-        if (this.cb.stamina + stamina > this.cb.maxstamina)
-            this.cb.stamina = this.cb.maxstamina;
-        else
-            this.cb.stamina += stamina;
-    }
-
     /* Restores mana up to max */
     restore(mana) {
         if (this.cb.mana + mana > this.cb.maxmana)
@@ -218,6 +221,14 @@ class Actor extends Entity {
 class Item extends Entity {
     constructor(x, y, options) {
         super(x, y, options);
+    }
+
+    hoverInfo() {
+        if (this instanceof Weapon) {
+            return `${this.options.name} - ${this.options.type}\n${this.damageInfo()}`;
+        } else {
+            return `${this.options.type}${this.options.name}\n`;
+        }
     }
 
     use () {

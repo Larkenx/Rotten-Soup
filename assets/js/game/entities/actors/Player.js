@@ -214,12 +214,6 @@ class Player extends Actor {
         }
     }
 
-    addToInventory(newItem) {
-        this.inventory[this.inventory_idx].item = newItem;
-        this.inventory[this.inventory_idx].action = newItem.use;
-        this.inventory_idx++;
-    }
-
     climbDown() {
         let ctile = Game.map.data[this.y][this.x];
         if (ctile.actors.some((e) => {

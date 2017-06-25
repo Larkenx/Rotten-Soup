@@ -34,8 +34,8 @@ let Game = {
             width: 38.75,
             height: 30,
             fontSize: 16,
-            fontFamily: 'monospace',
-            // fontStyle: "bold",
+            fontFamily: '"inconsolata", monospace',
+            fontStyle: "bold",
             spacing: 1.0,
             forceSquareRatio: true
         };

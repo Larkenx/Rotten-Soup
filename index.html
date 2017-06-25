@@ -2,13 +2,6 @@
 <html>
 <head>
     <title>Rotten Soup</title>
-    <!--<link href="https://fonts.googleapis.com/css?family=Droid+Sans+Mono|Press+Start+2P" rel="stylesheet">-->
-    <script src="https://use.fontawesome.com/d7889c2247.js"></script>
-    <!-- Vue -->
-    <script src="assets/js/vue.js"></script>
-    <!-- Vuetify -->
-    <link href="assets/css/vuetify.min.css" rel="stylesheet" type="text/css">
-    <script src="assets/js/vuetify.min.js"></script>
     <!-- Local app files -->
     <script src="assets/js/rot.js"></script>
     <script src="assets/js/jquery.min.js"></script>
@@ -26,6 +19,14 @@
     <script src="assets/maps/expanded_start.js"></script>
     <script src="assets/js/game/utils.js"></script>
     <script src="assets/js/game/Game.js"></script>
+    <link href="https://fonts.googleapis.com/css?family=Droid+Sans+Mono|Press+Start+2P" rel="stylesheet">
+    <script src="https://use.fontawesome.com/d7889c2247.js"></script>
+    <!-- Vue -->
+    <script src="assets/js/vue.js"></script>
+    <!-- Vuetify -->
+    <link href="assets/css/vuetify.min.css" rel="stylesheet" type="text/css">
+    <script src="assets/js/vuetify.min.js"></script>
+
 </head>
 <body>
 <div id="app">
@@ -38,7 +39,8 @@
                 </v-layout>
                 <!-- Game Console / Messages -->
                 <v-layout id="row2" row style="padding: 5px 0 0 0; margin: 0px">
-                    <v-list id="fix_scroll" class="console" style="overflow:hidden; padding-top: 8px; position: relative;">
+                    <v-list id="fix_scroll" class="console"
+                            style="overflow:hidden; padding-top: 8px; position: relative;">
                         <v-list-item v-for="(message, index) in getMessages()" v-bind:key="index">
                             <p><b v-bind:style="{color : message[1]}">{{message[0]}}</b></p>
                         </v-list-item>
@@ -74,7 +76,7 @@
                 </v-layout>
                 <!-- Skills -->
                 <!--<v-layout row style="margin-top: 10px;">-->
-                    <!--<v-flex xs12 col><b>Stats</b></v-flex>-->
+                <!--<v-flex xs12 col><b>Stats</b></v-flex>-->
                 <!--</v-layout>-->
                 <v-layout row style="margin-left: 10px;">
                     <v-flex xs12 col><b>DEF {{getCB().def}}</b></v-flex>
@@ -84,19 +86,21 @@
                 </v-layout>
                 <!-- Mini-map -->
                 <!--<v-layout row>-->
-                    <!--<v-layout xs12 column style="margin: 10px auto;"><b>Minimap</b></v-layout>-->
+                <!--<v-layout xs12 column style="margin: 10px auto;"><b>Minimap</b></v-layout>-->
                 <!--</v-layout>-->
                 <v-layout row align-center>
                     <div id="minimap_container" class="flex" style="margin: 10px auto 10px auto;"></div>
                 </v-layout>
                 <!-- Inventory -->
                 <!--<v-layout row style="margin-top: 10px;">-->
-                    <!--<v-flex xs12 col><b>Inventory</b></v-flex>-->
+                <!--<v-flex xs12 col><b>Inventory</b></v-flex>-->
                 <!--</v-layout>-->
                 <v-layout v-for="(row, index) in rows" class="inventory_row" row v-bind:key="index">
                     <v-flex class="inventory_slot" xs1 col v-for="(slot, i) in getInventoryRow(index)" v-bind:key="i">
-                        <v-layout>
-                            <span style="margin: auto; font-size: 20px;" v-if="slot.item !== null">{{slot.item.options.symbol}}</span>
+                        <v-layout native v-tooltip:bottom="{html : slot.item.hoverInfo() }" v-if="slot.item !== null">
+                            <span style="margin: auto; font-size: 20px;}" v-bind:style="{color: slot.item.options.fg}" >
+                                {{slot.item.options.symbol}}
+                            </span>
                         </v-layout>
                     </v-flex>
                 </v-layout>
@@ -104,43 +108,43 @@
         </v-layout>
         <!-- Death Modal -->
         <v-container class="bordered modal elevation-24" v-if="playerIsDead()" align-center>
-       <pre>
-             _____  _____
-            <     `/     |
-             >          (
-            |   _     _  |
-            |  |_) | |_) |
-            |  | \ | |   |
-            |            |
-______.______%_|            |__________  _____
-_/                                       \|     |
-|                    Here lies
-|_____.-._________      '@'   ____/|___________|
-            |            |
-            |            |
-            |            |
-            |            |
-            |   _        <
-            |__/         |
-             / `--.      |
-           %|            |%
-       |/.%%|          -< @%%%
-       `\%`@|     v      |@@%@%%
-     .%%%@@@|%    |    % @@@%%@%%%%
-_.%%%%%%@@@@@@%%_/%\_%@@%%@@@@@@@%%%%%%
-</pre>
+               <pre>
+                     _____  _____
+                    <     `/     |
+                     >          (
+                    |   _     _  |
+                    |  |_) | |_) |
+                    |  | \ | |   |
+                    |            |
+     ______.______%_|            |__________  _____
+   _/                                       \|     |
+  |                    Here lies
+  |_____.-._________      '@'   ____/|___________|
+                    |            |
+                    |            |
+                    |            |
+                    |            |
+                    |   _        <
+                    |__/         |
+                     / `--.      |
+                   %|            |%
+               |/.%%|          -< @%%%
+               `\%`@|     v      |@@%@%%
+             .%%%@@@|%    |    % @@@%%@%%%%
+        _.%%%%%%@@@@@@%%_/%\_%@@%%@@@@@@@%%%%%%
+        </pre>
             <v-layout>
                 <v-btn success class="btn--light-flat-pressed" v-on:click.native="startNewGame()"
                        style="margin: 0 auto;"><b>Play Again?</b></v-btn>
             </v-layout>
         </v-container>
         <!--<v-container class="" style="position: fixed; bottom: 0; margin: 0 auto">-->
-            <!--<span style="color: white; text-align: center">Created by Steven Myers</span>-->
-            <!--<a style="text-decoration: none;" href="https://github.com/Larkenx/Rotten-Soup">-->
-                <!--<v-btn icon ripple>-->
-                    <!--<i style="color: lightgray; margin: auto;" class="fa fa-3x fa-github" aria-hidden="true"></i>-->
-                <!--</v-btn>-->
-            <!--</a>-->
+        <!--<span style="color: white; text-align: center">Created by Steven Myers</span>-->
+        <!--<a style="text-decoration: none;" href="https://github.com/Larkenx/Rotten-Soup">-->
+        <!--<v-btn icon ripple>-->
+        <!--<i style="color: lightgray; margin: auto;" class="fa fa-3x fa-github" aria-hidden="true"></i>-->
+        <!--</v-btn>-->
+        <!--</a>-->
         <!--</v-container>-->
     </v-container>
 </div>
@@ -150,7 +154,7 @@ _.%%%%%%@@@@@@%%_/%\_%@@%%@@@@@@@%%%%%%
         data () {
             return {
                 messages: Game.message_history,
-                rows : [1,2,3,4],
+                rows: [1, 2, 3, 4],
             };
         },
         computed () {
@@ -186,7 +190,7 @@ _.%%%%%%@@@@@@%%_/%\_%@@%%@@@@@@@%%%%%%
             getInventoryRow(n) {
                 let inventory = Game.player.inventory;
                 let offset = n * (inventory.length / this.rows.length);
-                return inventory.slice(offset, offset+(inventory.length / this.rows.length));
+                return inventory.slice(offset, offset + (inventory.length / this.rows.length));
 
             },
             startNewGame() {
@@ -214,7 +218,7 @@ _.%%%%%%@@@@@@%%_/%\_%@@%%@@@@@@@%%%%%%
     /*@import url('https://fonts.googleapis.com/css?family=Droid+Sans+Mono|PT+Mono');*/
     body {
         background-color: black;
-        font-family: monospace;
+        font-family: "inconsolata", monospace;
     }
 
     .console {
@@ -256,6 +260,11 @@ _.%%%%%%@@@@@@%%_/%\_%@@%%@@@@@@@%%%%%%
         /*margin: 2px;*/
         min-width: 30px;
         min-height: 30px;
+    }
+
+    .inventory_slot:hover {
+        background-color: #698394;
+        cursor: pointer;
     }
 
     ul {
