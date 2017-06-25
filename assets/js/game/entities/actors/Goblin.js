@@ -21,7 +21,7 @@ class Goblin extends Actor {
                 /* current stats */
                 hp: 10,
                 mana: 5,
-                str: 10,
+                str: 7,
                 def: 1,
                 /* misc */
                 hostile: true,
