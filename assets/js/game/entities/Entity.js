@@ -1,3 +1,6 @@
+// handy unicode characters..?
+// ⚷	9911	⚷	26B7 CHIRON (key)
+
 /* Entities are in-game objects that exist in the map. They have symbols,
  * foregrounds, backgrounds, descriptions, names, visibility, and blocked properties. */
 class Entity {
@@ -93,10 +96,16 @@ class Actor extends Entity {
         let idx = this.inventory.indexOf(removeItem);
         if (idx !== null) {
             this.inventory.splice(idx, 1);
-            this.inventory_idx++;
+            this.inventory_idx--;
         } else {
             throw "invalid item removal - check for bugs!";
         }
+    }
+
+    /* The inventory property of actors is an array of object 'slots'. This function
+     * returns the actual items that are held at any given time */
+    items() {
+        return this.inventory.slice(0, this.inventory_idx).map((e) => e.item);
     }
 
     distanceTo(actor) { // linear distance, no obstacles factored in
@@ -154,7 +163,8 @@ class Actor extends Entity {
 
     /* attacks another actor */
     attack(actor) {
-        let dmg = this.cb.str - actor.cb.def;
+        let weapon = this.cb.equipment.weapon;
+        let dmg = weapon !== null ? this.cb.str + weapon.roll() : this.cb.str;
         let len = this.cb.description.length;
         let evtdamage = `${capitalize(addPrefix(this.name()))}${this.cb.description[Math.floor(Math.random() * len)]}${addPrefix(actor.name())} and dealt ${dmg} damage.`;
         if (Game.player === this)
@@ -222,10 +232,12 @@ class Item extends Entity {
     constructor(x, y, options) {
         super(x, y, options);
     }
+    /* UI / Front End functions */
+
 
     hoverInfo() {
         if (this instanceof Weapon) {
-            return `${this.options.name} - ${this.options.type}\n${this.damageInfo()}`;
+            return `${this.options.type}\n${this.options.name}\n${this.damageInfo()}`;
         } else {
             return `${this.options.type}${this.options.name}\n`;
         }

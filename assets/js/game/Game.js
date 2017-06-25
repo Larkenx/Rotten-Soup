@@ -33,8 +33,8 @@ let Game = {
         this.displayOptions = {
             width: 38.75,
             height: 30,
-            fontSize: 16,
-            fontFamily: '"inconsolata", monospace',
+            fontSize: 18,
+            fontFamily: '"Inconsolata", monospace',
             fontStyle: "bold",
             spacing: 1.0,
             forceSquareRatio: true

@@ -25,15 +25,15 @@ class Player extends Actor {
                 /* options.combat, dedicated to all things related to combat */
                 description: [" attacked ", " stabbed ", " jabbed ", " smashed "],
                 /* stat caps */
-                maxhp: 50,
+                maxhp: 100,
                 maxmana: 15,
                 /* current stats */
                 xp: 0,
                 level: 1,
-                hp: 50,
+                hp: 100,
                 mana: 15,
-                str: 9,
-                def: 5,
+                str: 3,
+                def: 3,
                 /* Per-turn effects */
                 hpRecovery: 5,
                 manaRecovery: 2.5,
@@ -47,9 +47,8 @@ class Player extends Actor {
         this.inventory_idx = 0;
         for (let i = 0; i < 36; i++) {
             this.inventory.push({
-                id: i,
+                // id: i,
                 item: null,
-                action: null
             });
         }
         this.addToInventory(createSword(this.x,this.y));
@@ -211,6 +210,33 @@ class Player extends Actor {
             console.log("too many items here!");
         } else {
             Game.log("There's nothing on the ground here.", "information");
+        }
+    }
+
+    equipWeapon(item) {
+        console.log(item);
+        if (! item.cb.equippable || ! item instanceof Weapon)
+            throw "Error - equipped invalid item - " + this.item.options.type;
+
+        if (item.cb.equipped) {
+            Game.log("You've already equipped that item!", "information");
+        } else {
+            // already wielding a weapon
+            if (this.cb.equipment.weapon !== null) {
+                this.cb.equipment.weapon.cb.equipped = false;
+            // no weapon equipped
+            }
+            this.cb.equipment.weapon = item;
+            item.cb.equipped = true;
+        }
+    }
+
+    unequipWeapon() {
+        if (this.cb.equipment.weapon !== null) {
+            this.cb.equipment.weapon.cb.equipped = false;
+            this.cb.equipment.weapon = null;
+        } else {
+            throw "Tried to uneqip weapon but no item was equipped."
         }
     }
 

@@ -2,6 +2,7 @@
 <html>
 <head>
     <title>Rotten Soup</title>
+    <link href="https://fonts.googleapis.com/css?family=Droid+Sans+Mono|Press+Start+2P" rel="stylesheet">
     <!-- Local app files -->
     <script src="assets/js/rot.js"></script>
     <script src="assets/js/jquery.min.js"></script>
@@ -19,7 +20,6 @@
     <script src="assets/maps/expanded_start.js"></script>
     <script src="assets/js/game/utils.js"></script>
     <script src="assets/js/game/Game.js"></script>
-    <link href="https://fonts.googleapis.com/css?family=Droid+Sans+Mono|Press+Start+2P" rel="stylesheet">
     <script src="https://use.fontawesome.com/d7889c2247.js"></script>
     <!-- Vue -->
     <script src="assets/js/vue.js"></script>
@@ -34,13 +34,10 @@
         <v-layout row>
             <v-flex column>
                 <!-- Game Display-->
-                <v-layout row style="padding: 0px;">
-                    <div style="margin:0; padding:0;" class="" id="game_container"></div>
-                </v-layout>
+                <v-layout row style="padding: 0px;"> <div style="margin:0; padding:0;" class="" id="game_container"></div></v-layout>
                 <!-- Game Console / Messages -->
                 <v-layout id="row2" row style="padding: 5px 0 0 0; margin: 0px">
-                    <v-list id="fix_scroll" class="console"
-                            style="overflow:hidden; padding-top: 8px; position: relative;">
+                    <v-list id="fix_scroll" class="console" style="overflow:hidden; padding-top: 8px; position: relative;">
                         <v-list-item v-for="(message, index) in getMessages()" v-bind:key="index">
                             <p><b v-bind:style="{color : message[1]}">{{message[0]}}</b></p>
                         </v-list-item>
@@ -51,53 +48,30 @@
             <v-flex class="hud elevation-0" hidden-sm-and-down column>
                 <!-- Health Bar -->
                 <v-layout row align-center style=" margin-bottom: -10px;">
-                    <v-flex xs2 col>
-                        <b>Health </b>
-                    </v-flex>
-                    <v-flex xs7 col>
-                        <v-progress-linear :value="(getHP() / getMaxHP()) * 100" height="10" error></v-progress-linear>
-                    </v-flex>
-                    <v-flex xs3 col>
-                        {{getHP()}} / {{getMaxHP()}}
-                    </v-flex>
+                    <v-flex xs2 col><b>Health </b></v-flex>
+                    <v-flex xs7 col> <v-progress-linear :value="(getHP() / getMaxHP()) * 100" height="10" error></v-progress-linear> </v-flex>
+                    <v-flex xs3 col> {{getHP()}} / {{getMaxHP()}}</v-flex>
                 </v-layout>
                 <!-- Magic Bar -->
                 <v-layout row align-center>
-                    <v-flex xs2 col>
-                        <b>Mana</b>
-                    </v-flex>
-                    <v-flex xs7 col>
-                        <v-progress-linear :value="(getMana() / getMaxMana()) * 100" height="10"
-                                           info></v-progress-linear>
-                    </v-flex>
-                    <v-flex xs3 col>
-                        {{getMana()}} / {{getMaxMana()}}
-                    </v-flex>
+                    <v-flex xs2 col><b>Mana</b></v-flex>
+                    <v-flex xs7 col> <v-progress-linear :value="(getMana() / getMaxMana()) * 100" height="10" info></v-progress-linear> </v-flex>
+                    <v-flex xs3 col> {{getMana()}} / {{getMaxMana()}}</v-flex>
                 </v-layout>
                 <!-- Skills -->
-                <!--<v-layout row style="margin-top: 10px;">-->
-                <!--<v-flex xs12 col><b>Stats</b></v-flex>-->
-                <!--</v-layout>-->
-                <v-layout row style="margin-left: 10px;">
-                    <v-flex xs12 col><b>DEF {{getCB().def}}</b></v-flex>
-                </v-layout>
-                <v-layout row style="margin-left: 10px;">
-                    <v-flex col><b>STR {{getCB().str}}</b></v-flex>
-                </v-layout>
+                <v-layout row style="margin-left: 10px;"> <v-flex xs12 col><b>DEF {{getCB().def}}</b></v-flex> </v-layout>
+                <v-layout row style="margin-left: 10px;"> <v-flex col><b>STR {{getCB().str}}</b></v-flex> </v-layout>
                 <!-- Mini-map -->
-                <!--<v-layout row>-->
-                <!--<v-layout xs12 column style="margin: 10px auto;"><b>Minimap</b></v-layout>-->
-                <!--</v-layout>-->
                 <v-layout row align-center>
                     <div id="minimap_container" class="flex" style="margin: 10px auto 10px auto;"></div>
                 </v-layout>
                 <!-- Inventory -->
-                <!--<v-layout row style="margin-top: 10px;">-->
-                <!--<v-flex xs12 col><b>Inventory</b></v-flex>-->
-                <!--</v-layout>-->
                 <v-layout v-for="(row, index) in rows" class="inventory_row" row v-bind:key="index">
-                    <v-flex class="inventory_slot" xs1 col v-for="(slot, i) in getInventoryRow(index)" v-bind:key="i">
-                        <v-layout native v-tooltip:bottom="{html : slot.item.hoverInfo() }" v-if="slot.item !== null">
+                    <v-flex class="" xs1 col v-for="(slot, i) in getInventoryRow(index)" v-bind:key="i"  v-bind:class="{selectedItem : colorSlot(slot), inventory_slot : ! colorSlot(slot)}">
+                        <v-layout ripple
+                                  v-on:click="slot.item.use()"
+                                  v-tooltip:bottom="{html : slot.item.hoverInfo() }"
+                                  v-if="slot.item !== null">
                             <span style="margin: auto; font-size: 20px;}" v-bind:style="{color: slot.item.options.fg}" >
                                 {{slot.item.options.symbol}}
                             </span>
@@ -107,7 +81,7 @@
             </v-flex>
         </v-layout>
         <!-- Death Modal -->
-        <v-container class="bordered modal elevation-24" v-if="playerIsDead()" align-center>
+        <v-container class="modal elevation-24" v-if="playerIsDead()" align-center>
                <pre>
                      _____  _____
                     <     `/     |
@@ -154,12 +128,14 @@
         data () {
             return {
                 messages: Game.message_history,
+                player: null,
                 rows: [1, 2, 3, 4],
             };
         },
         computed () {
             return {
-                inventory: Game.player.inventory
+                inventory: Game.player.inventory,
+                player: Game.player
             }
         },
         methods: {
@@ -199,10 +175,14 @@
                 Game.init();
                 $('#game_container').html(Game.display.getContainer());
                 $('#minimap_container').html(Game.minimap.getContainer());
+            },
+            colorSlot(slot) {
+                return slot.item !== null && slot.item.cb.equipped;
             }
         },
         created () {
             Game.init();
+            this.player = Game.player;
         },
         mounted () {
             $('#game_container').html(Game.display.getContainer());
@@ -218,7 +198,7 @@
     /*@import url('https://fonts.googleapis.com/css?family=Droid+Sans+Mono|PT+Mono');*/
     body {
         background-color: black;
-        font-family: "inconsolata", monospace;
+        font-family: "Droid Sans Mono", monospace;
     }
 
     .console {
@@ -236,6 +216,8 @@
     }
 
     .modal {
+        border: 2px solid #3d3d3d;
+        border-radius: 4px;
         background-color: black;
         color: white;
         /*width: 500px;*/
@@ -267,6 +249,20 @@
         cursor: pointer;
     }
 
+    .selectedItem {
+        background-color : green;
+        margin: 2px;
+        border: 2px solid #3d3d3d;
+        border-radius: 4px;
+        min-width: 30px;
+        min-height: 30px;
+    }
+
+    .selectedItem:hover {
+        background-color: #009e00;
+        cursor: pointer;
+    }
+
     ul {
         padding: 0;
         list-style-type: none;
@@ -275,5 +271,10 @@
     canvas {
         padding: 0;
         margin: 0;
+    }
+    /* Overriding Vuetify's tool tip so that it is centered :) */
+    [data-tooltip] {
+        position: relative;
+        text-align: center;
     }
 </style>

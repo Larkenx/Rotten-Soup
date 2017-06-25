@@ -9,8 +9,13 @@ class Weapon extends Item {
         options.blocked = false;
         options.combat.equippable = true;
         options.combat.equipped = false;
+        options.originalfg = options.fg;
         super(x, y, options);
         this.cb = this.options.combat;
+    }
+
+    use() {
+        Game.player.equipWeapon(this);
     }
 
     roll() {
@@ -21,10 +26,8 @@ class Weapon extends Item {
         return dmg;
     }
 
-
-
     /* Returns this weapon's damage stats */
     damageInfo() {
-        return `Damage ${this.cb.rolls} - ${this.cb.sides*this.cb.rolls}`
+        return `Damage ${this.cb.rolls}-${this.cb.sides*this.cb.rolls}`
     }
 }
