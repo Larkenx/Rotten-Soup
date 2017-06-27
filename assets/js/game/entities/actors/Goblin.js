@@ -29,7 +29,9 @@ class Goblin extends Actor {
                 invulnerable: false,
             }
         });
-        // this.inventory.push(createSword(this.x, this.y));
+        let roll = getRandomInt(1,10);
+        if (roll <= 2)
+            this.addToInventory(createSword(this.x, this.y));
     }
 
     act() {

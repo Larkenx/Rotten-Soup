@@ -43,14 +43,7 @@ class Player extends Actor {
         this.path = new ROT.Path.Dijkstra(this.x, this.y, dijkstra_callback);
         // Inventory is an array of objects that contain items and an action that can be done with that item.
         // You can think of the objects as individual 'slots' to store the item with actions like 'use' or 'equip'.
-        this.inventory = [];
-        this.inventory_idx = 0;
-        for (let i = 0; i < 36; i++) {
-            this.inventory.push({
-                // id: i,
-                item: null,
-            });
-        }
+
         this.addToInventory(createSword(this.x,this.y));
         this.equipWeapon(this.inventory[0].item);
     }
@@ -217,7 +210,6 @@ class Player extends Actor {
     }
 
     equipWeapon(item) {
-        console.log(item);
         if (!item.cb.equippable || !item instanceof Weapon)
             throw "Error - equipped invalid item - " + this.item.options.type;
 

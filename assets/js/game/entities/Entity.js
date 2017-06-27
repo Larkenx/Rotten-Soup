@@ -79,6 +79,13 @@ class Actor extends Entity {
             weapon: null,
         };
         this.inventory = [];
+        this.inventory_idx = 0;
+        for (let i = 0; i < 36; i++) {
+            this.inventory.push({
+                // id: i,
+                item: null,
+            });
+        }
     }
 
     /* Called by the ROT.js game scheduler to indicate a turn */
@@ -209,13 +216,18 @@ class Actor extends Entity {
         // remove this actor from the global actors list and the occupied tile
         ctile.removeActor(this);
         let idx = Game.map.actors.indexOf(this);
-        Game.map.actors.splice(idx, 1);
         // dump the contents of the actor's inventory (items) onto the ground.
         if (this.inventory.length > 0) {
-            this.items().forEach((e) => ctile.actors.push(e));
+
+            let items = this.items();
+            for (let item of items) {
+                console.log(item);
+                ctile.actors.push(item);
+            }
         }
         // redraw the tile, either with an appropriate actor or the tile symbol
         Game.drawViewPort();
+        Game.map.actors.splice(idx, 1);
 
         if (this === Game.player) {
             Game.log(`You died!`, "death");
