@@ -21,7 +21,6 @@ let Game = {
         this.log("Welcome to Rotten Soup", "information");
         this.map = new Map(TileMaps["expanded_start"]);
         this.map.revealed = true;
-
         this.levels["expanded_start"] = new Map(TileMaps["expanded_start"]);
         this.levels["dungeon1"] = new Map(randomMap(50, 50));
         this.levels["dungeon2"] = new Map(randomMap(50, 50));
@@ -30,14 +29,39 @@ let Game = {
         // this.map = this.levels["dungeon1"];
         this.playerLocation = this.map.playerLocation;
         // Set up the ROT.JS game display
+        let tileSet = document.createElement("img");
+        tileSet.src = "assets/images/tilset2.png";
         this.displayOptions = {
             width: 38.75,
             height: 30,
             fontSize: 18,
-            fontFamily: '"Inconsolata", monospace',
-            fontStyle: "bold",
-            spacing: 1.0,
-            forceSquareRatio: true
+            // fontFamily: '"Inconsolata", monospace',
+            // fontStyle: "bold",
+            // spacing: ,
+            forceSquareRatio: true,
+            /* Graphical Tile Options */
+            layout: "tile",
+            bg: "transparent",
+            tileWidth: 16,
+            tileHeight: 16,
+            tileSet: tileSet,
+            tileMap: {
+                // Entities
+                "@" : [0,0],
+                "g" : [16,0],
+                "r" : [32,0],
+                // Environment
+                "T" : [16,48],
+                "~" : [32,16],
+                "=" : [32,16],
+                "." : [16,32],
+                " " : [0, 64],
+                "#" : [0,48],
+                // Items
+                ")" : [32,48],
+                ">" : [0,16],
+                "<" : [16,16]
+             }
         };
         this.width = this.displayOptions.width;
         this.height = this.displayOptions.height;
@@ -173,6 +197,17 @@ let Game = {
         Game.display.draw(x, y, tile.symbol, tile.options.fg, "black");
     },
 
+
+    // Graphical Tile version
+    drawFirstActor: function (x, y, tile) {
+        let symbols = this.tile.actors.map((e) => e.options.symbol);
+        symbols.push(tile.symbol);
+        // if we reach this point, no actors were drawable
+        Game.display.draw(x, y, symbols);
+    },
+
+    // Original Version for ASCII
+    /*
     drawFirstActor: function (x, y, tile) {
         if (!tile) {
             console.log(x + ',' + y);
@@ -187,6 +222,7 @@ let Game = {
         // if we reach this point, no actors were drawable
         Game.drawTile(x, y, tile);
     },
+    */
 
     drawActor: function (x, y, actor) {
         Game.display.draw(x, y, actor.options.symbol, actor.options.fg, "black");

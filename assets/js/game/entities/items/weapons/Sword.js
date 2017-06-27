@@ -5,7 +5,7 @@ class Sword extends Weapon {
     constructor(x, y, sides, name) {
         super(x, y, {
             name: name,
-            symbol: String.fromCharCode(11264),
+            symbol: ")",
             type: "Sword",
             fg: 'orange',
             combat: {
