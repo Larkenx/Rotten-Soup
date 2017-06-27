@@ -51,7 +51,7 @@ class Player extends Actor {
                 item: null,
             });
         }
-        this.addToInventory(createSword(this.x,this.y));
+        this.addToInventory(createSword(this.x, this.y));
     }
 
     act() {
@@ -88,35 +88,37 @@ class Player extends Actor {
     level_up() {
         /* This function will prompt the player to select what skills they want
          to level up after reaching a new level */
-        this.cb.level++;
+        this.cb.level += 1;
+        this.cb.maxhp += 5;
+        this.cb.str += 1;
         this.cb.hp = this.cb.maxhp;
         this.cb.mana = this.cb.maxmana;
         Game.log(`You leveled up! You are now Level ${this.cb.level}.`, 'level_up');
-        Game.log(`Choose what skill you want to level up:`, 'level_up');
-        Game.log(`1) Strength 2) Defence 3) Hitpoints 4) Mana`, 'level_up');
-        let prompt = function (evt) {
-            let cb = Game.player.cb;
-            let code = evt.keyCode;
-            if (code === ROT.VK_1) {
-                cb.str++;
-                Game.log("You increased a strength level!", 'level_up');
-            } else if (code === ROT.VK_2) {
-                cb.def++;
-                Game.log("You increased a defence level!", 'level_up');
-            } else if (code === ROT.VK_3) {
-                cb.maxhp += 5;
-                Game.log("You increased your number of hitpoints!", 'level_up');
-            } else if (code === ROT.VK_4) {
-                cb.maxmana += 5;
-                Game.log("You increased your amount of mana!", 'level_up');
-            } else {
-                return;
-            }
-
-            window.removeEventListener("keydown", prompt);
-        };
-
-        window.addEventListener("keydown", prompt);
+        Game.log(`Your strength and health have improved.`, 'level_up');
+        // Game.log(`1) Strength 2) Defence 3) Hitpoints 4) Mana`, 'level_up');
+        // let prompt = function (evt) {
+        //     let cb = Game.player.cb;
+        //     let code = evt.keyCode;
+        //     if (code === ROT.VK_1) {
+        //         cb.str++;
+        //         Game.log("You increased a strength level!", 'level_up');
+        //     } else if (code === ROT.VK_2) {
+        //         cb.def++;
+        //         Game.log("You increased a defence level!", 'level_up');
+        //     } else if (code === ROT.VK_3) {
+        //         cb.maxhp += 5;
+        //         Game.log("You increased your number of hitpoints!", 'level_up');
+        //     } else if (code === ROT.VK_4) {
+        //         cb.maxmana += 5;
+        //         Game.log("You increased your amount of mana!", 'level_up');
+        //     } else {
+        //         return;
+        //     }
+        //
+        //     window.removeEventListener("keydown", prompt);
+        // };
+        //
+        // window.addEventListener("keydown", prompt);
     }
 
     handleEvent(evt) {
@@ -198,7 +200,7 @@ class Player extends Actor {
 
     pickup() {
         let ctile = Game.map.data[this.y][this.x];
-        let tileItems = ctile.actors.filter(function(el) {
+        let tileItems = ctile.actors.filter(function (el) {
             return el instanceof Item;
         });
         if (tileItems.length === 1) {
@@ -215,7 +217,7 @@ class Player extends Actor {
 
     equipWeapon(item) {
         console.log(item);
-        if (! item.cb.equippable || ! item instanceof Weapon)
+        if (!item.cb.equippable || !item instanceof Weapon)
             throw "Error - equipped invalid item - " + this.item.options.type;
 
         if (item.cb.equipped) {
@@ -224,7 +226,7 @@ class Player extends Actor {
             // already wielding a weapon
             if (this.cb.equipment.weapon !== null) {
                 this.cb.equipment.weapon.cb.equipped = false;
-            // no weapon equipped
+                // no weapon equipped
             }
             this.cb.equipment.weapon = item;
             item.cb.equipped = true;
@@ -288,6 +290,11 @@ class Player extends Actor {
         }
 
         return false;
+    }
+
+    attack(actor) {
+        let dmg = super.attack(actor);
+        this.gain_xp(dmg);
     }
 
     death() {
