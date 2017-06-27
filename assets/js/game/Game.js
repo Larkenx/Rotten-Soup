@@ -41,7 +41,7 @@ let Game = {
             forceSquareRatio: true,
             /* Graphical Tile Options */
             layout: "tile",
-            bg: "transparent",
+            // bg: "transparent",
             tileWidth: 16,
             tileHeight: 16,
             tileSet: tileSet,
@@ -174,11 +174,14 @@ let Game = {
         for (let x = startingPos[0]; x < endingPos[0]; x++) {
             for (let y = startingPos[1]; y < endingPos[1]; y++) {
                 let tile = this.map.data[y][x];
+                this.drawFirstActor(dx, dy++, tile);
+                /* // Normal FOV computation for ASCII graphics
                 if (tile.x + "," + tile.y in this.map.visible_tiles) {
                     this.drawFirstActor(dx, dy++, tile);
                 } else {
                     this.drawDimTile(dx, dy++, tile);
                 }
+                */
             }
             dx++;
             dy = 0;
@@ -200,8 +203,8 @@ let Game = {
 
     // Graphical Tile version
     drawFirstActor: function (x, y, tile) {
-        let symbols = this.tile.actors.map((e) => e.options.symbol);
-        symbols.push(tile.symbol);
+        let symbols = tile.actors.map((e) => e.options.symbol);
+        symbols.unshift(tile.symbol);
         // if we reach this point, no actors were drawable
         Game.display.draw(x, y, symbols);
     },
@@ -266,4 +269,3 @@ let Game = {
         this.drawMiniMap();
     }
 };
-
