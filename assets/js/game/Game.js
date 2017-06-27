@@ -60,7 +60,6 @@ let Game = {
                 "," : [0,16*7], ",," : [16*1,16*7],
                 // Items
                 ")" : [0,16*8], " " : [16*1, 16*9], "  " : [16*1, 16*9]
-
              }
         };
         this.width = this.displayOptions.width;

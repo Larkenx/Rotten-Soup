@@ -5,7 +5,11 @@ class Sword extends Weapon {
     constructor(x, y, sides, name) {
         super(x, y, {
             name: name,
+<<<<<<< Updated upstream
             symbol: ")",
+=======
+            symbol: String.fromCharCode(9876),
+>>>>>>> Stashed changes
             type: "Sword",
             fg: 'orange',
             combat: {
