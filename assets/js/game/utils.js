@@ -29,7 +29,8 @@ let environment = {
     '~': { symbol: '~', fg: "dodgerblue", bg: "dodgerblue", name: "shallow water", description: "Some shallow water.", blocked: true, visible: true},
     '=': { symbol: "=", fg: "blue", bg: "blue", name: "deep water", description: "Some deep water.", blocked: true, visible: true},
     '.': {symbol: ".", fg: "brown", bg: "darkslategray", name: "path", description: "A pathway!", visible: true},
-    'T': { symbol: "T", fg: "lightgreen", bg: "darkgreen", name: "tree", descritpion: "A tree!", blocked: true, visible: false}
+    'T': { symbol: "T", fg: "lightgreen", bg: "darkgreen", name: "tree", descritpion: "A tree!", blocked: true, visible: false},
+    ',': { symbol: ",", fg: "lightgreen", bg: "green", name: "grass", descritpion: "A patch of grass!", blocked: false, visible: true}
 };
 
 const flatten = arr => arr.reduce((acc, val) => acc.concat(Array.isArray(val) ? flatten(val) : val), []);

@@ -30,7 +30,7 @@ let Game = {
         this.playerLocation = this.map.playerLocation;
         // Set up the ROT.JS game display
         let tileSet = document.createElement("img");
-        tileSet.src = "assets/images/tilset2.png";
+        tileSet.src = "assets/images/tileset.png";
         this.displayOptions = {
             width: 38.75,
             height: 30,
@@ -49,18 +49,18 @@ let Game = {
                 // Entities
                 "@" : [0,0],
                 "g" : [16,0],
-                "r" : [32,0],
+                "r" : [0,16*1],
+                ">" : [0,16*2], "<": [16*1, 16*2],
                 // Environment
-                "T" : [16,48],
-                "~" : [32,16],
-                "=" : [32,16],
-                "." : [16,32],
-                " " : [0, 64],
-                "#" : [0,48],
+                "~" : [16*1,16*3], "~~" : [0,16*3],
+                "=" : [16*1,16*3], "==" : [0,16*3],
+                "." : [0,16*4], ".." : [16*1,16*4],
+                "#" : [0,16*5], "##" : [16*1,16*5],
+                "T" : [0,16*6], "TT" : [16*1,16*6],
+                "," : [0,16*7], ",," : [16*1,16*7],
                 // Items
-                ")" : [32,48],
-                ">" : [0,16],
-                "<" : [16,16]
+                ")" : [0,16*8], " " : [16*1, 16*9], "  " : [16*1, 16*9]
+
              }
         };
         this.width = this.displayOptions.width;
@@ -235,6 +235,10 @@ let Game = {
     },
 
     drawDimTile: function (x, y, tile) {
+        Game.display.draw(x, y, tile.symbol+tile.symbol);
+    },
+
+    drawDimTileASCII: function (x, y, tile) {
         let color = tile.options.fg;
         let hsl_color = ROT.Color.rgb2hsl(ROT.Color.fromString(color));
         hsl_color[2] *= .25;
@@ -250,6 +254,10 @@ let Game = {
     drawFirstActor: function (x, y, tile) {
         let symbols = tile.actors.map((e) => e.options.symbol);
         symbols.unshift(tile.symbol);
+        if ("@" in symbols) {
+            symbols.slice(symbol.indexOf("@"), 1);
+            symbols.push("@")
+        }
         // if we reach this point, no actors were drawable
         Game.display.draw(x, y, symbols);
     },

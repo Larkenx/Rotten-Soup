@@ -1,7 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="359ee7cd-d060-4cb9-a2ed-d128b311220f" name="Default" comment="" />
+    <list default="true" id="359ee7cd-d060-4cb9-a2ed-d128b311220f" name="Default" comment="Fixed FOV with textures (sort of?)">
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/maps/expanded_start.js" afterPath="$PROJECT_DIR$/assets/maps/expanded_start.js" />
+    </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
     <ignored path="$PROJECT_DIR$/tmp/" />
@@ -12,6 +15,23 @@
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
+  <component name="DockManager">
+    <window id="3">
+      <content type="file-editors">
+        <state>
+          <leaf>
+            <file leaf-file-name="tileset.png" pinned="false" current-in-tab="true">
+              <entry file="file://$PROJECT_DIR$/assets/images/tileset.png">
+                <provider selected="true" editor-type-id="images">
+                  <state />
+                </provider>
+              </entry>
+            </file>
+          </leaf>
+        </state>
+      </content>
+    </window>
+  </component>
   <component name="ExecutionTargetManager" SELECTED_TARGET="default_target" />
   <component name="FavoritesManager">
     <favorites_list name="Rotten-Soup" />
@@ -21,8 +41,8 @@
       <file leaf-file-name="index.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/index.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="386">
-              <caret line="258" column="5" lean-forward="false" selection-start-line="258" selection-start-column="5" selection-end-line="258" selection-end-column="5" />
+            <state relative-caret-position="210">
+              <caret line="149" column="14" lean-forward="true" selection-start-line="149" selection-start-column="14" selection-end-line="149" selection-end-column="14" />
               <folding>
                 <element signature="n#style#0;n#v-container#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
                 <element signature="n#style#0;n#v-layout#0;n#v-flex#0;n#v-layout#0;n#v-container#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
@@ -44,7 +64,7 @@
       <file leaf-file-name="Goblin.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/assets/js/game/entities/actors/Goblin.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="108">
+            <state relative-caret-position="0">
               <caret line="8" column="24" lean-forward="false" selection-start-line="8" selection-start-column="24" selection-end-line="8" selection-end-column="24" />
               <folding>
                 <element signature="n#!!doc;n#Goblin#0" expanded="false" />
@@ -76,19 +96,69 @@
       <file leaf-file-name="utils.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/assets/js/game/utils.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="504">
-              <caret line="28" column="21" lean-forward="false" selection-start-line="28" selection-start-column="21" selection-end-line="28" selection-end-column="21" />
+            <state relative-caret-position="486">
+              <caret line="27" column="20" lean-forward="false" selection-start-line="27" selection-start-column="20" selection-end-line="27" selection-end-column="20" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Game.js" pinned="false" current-in-tab="true">
+      <file leaf-file-name="Game.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/assets/js/game/Game.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="540">
-              <caret line="207" column="0" lean-forward="true" selection-start-line="207" selection-start-column="0" selection-end-line="207" selection-end-column="0" />
+            <state relative-caret-position="185">
+              <caret line="113" column="32" lean-forward="true" selection-start-line="113" selection-start-column="32" selection-end-line="113" selection-end-column="32" />
               <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Player.js" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/assets/js/game/entities/actors/Player.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-342">
+              <caret line="28" column="28" lean-forward="true" selection-start-line="28" selection-start-column="28" selection-end-line="28" selection-end-column="28" />
+              <folding>
+                <element signature="e#0#42#0" expanded="false" />
+                <element signature="n#!!block;n#act#0;n#Player#0" expanded="false" />
+                <element signature="e#1859#1921#0" expanded="false" />
+                <element signature="e#1958#2207#0" expanded="false" />
+                <element signature="n#!!block;n#interact#0;n#Player#0" expanded="false" />
+                <element signature="e#2372#2512#0" expanded="false" />
+                <element signature="e#2518#2843#0" expanded="false" />
+                <element signature="e#2532#2598#0" expanded="false" />
+                <element signature="n#!!block;n#gain_xp#0;n#Player#0" expanded="false" />
+                <element signature="n#!!block;n#level_up#0;n#Player#0" expanded="false" />
+                <element signature="e#3012#3134#0" expanded="false" />
+                <element signature="e#3507#4297#0" expanded="false" />
+                <element signature="e#3617#3731#0" expanded="false" />
+                <element signature="e#3760#3873#0" expanded="false" />
+                <element signature="e#3902#4029#0" expanded="false" />
+                <element signature="e#4058#4182#0" expanded="false" />
+                <element signature="e#4188#4227#0" expanded="false" />
+                <element signature="n#!!block;n#handleEvent#0;n#Player#0" expanded="false" />
+                <element signature="e#4507#4609#0" expanded="false" />
+                <element signature="e#4620#4776#0" expanded="false" />
+                <element signature="e#4798#5457#0" expanded="false" />
+                <element signature="e#4812#4836#0" expanded="false" />
+                <element signature="e#4925#4947#0" expanded="false" />
+                <element signature="e#5117#5147#0" expanded="false" />
+                <element signature="e#5185#5202#0" expanded="false" />
+                <element signature="e#5367#5407#0" expanded="false" />
+                <element signature="e#5491#5725#0" expanded="false" />
+                <element signature="e#5493#5525#0" expanded="false" />
+                <element signature="e#5782#5953#0" expanded="false" />
+                <element signature="e#6008#6046#0" expanded="false" />
+                <element signature="e#6098#6153#0" expanded="false" />
+                <element signature="e#6207#6246#0" expanded="false" />
+                <element signature="e#6252#6671#0" expanded="false" />
+                <element signature="e#6421#6579#0" expanded="false" />
+                <element signature="n#!!block;n#pickup#0;n#Player#0" expanded="false" />
+                <element signature="n#!!block;n#climbDown#0;n#Player#0" expanded="false" />
+                <element signature="n#!!block;n#climbUp#0;n#Player#0" expanded="false" />
+                <element signature="n#!!block;n#tryMove#0;n#Player#0" expanded="false" />
+                <element signature="n#!!block;n#death#0;n#Player#0" expanded="false" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -96,7 +166,7 @@
       <file leaf-file-name="Entity.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/assets/js/game/entities/Entity.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="4284">
+            <state relative-caret-position="895">
               <caret line="239" column="42" lean-forward="false" selection-start-line="239" selection-start-column="42" selection-end-line="239" selection-end-column="42" />
               <folding>
                 <element signature="n#!!doc" expanded="true" />
@@ -130,12 +200,16 @@
       <find>changeLevel</find>
       <find>let</find>
       <find>wrap</find>
+      <find>tileHeight</find>
+      <find>this.tileWidth</find>
     </findStrings>
     <replaceStrings>
       <replace>keypress</replace>
       <replace>playerLocation</replace>
       <replace>let</replace>
       <replace>var</replace>
+      <replace>this.tileHeight</replace>
+      <replace>16</replace>
     </replaceStrings>
   </component>
   <component name="Git.Settings">
@@ -172,8 +246,8 @@
         <option value="$PROJECT_DIR$/assets/js/game/entities/Entity.js" />
         <option value="$PROJECT_DIR$/index.html" />
         <option value="$PROJECT_DIR$/assets/js/game/entities/actors/Goblin.js" />
-        <option value="$PROJECT_DIR$/assets/js/game/utils.js" />
         <option value="$PROJECT_DIR$/assets/js/game/entities/items/weapons/Sword.js" />
+        <option value="$PROJECT_DIR$/assets/js/game/utils.js" />
         <option value="$PROJECT_DIR$/assets/js/game/Game.js" />
       </list>
     </option>
@@ -230,7 +304,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scratches" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -407,6 +480,7 @@
           </PATH>
         </subPane>
       </pane>
+      <pane id="Scratches" />
       <pane id="Scope" />
     </panes>
   </component>
@@ -420,15 +494,16 @@
     <property name="run.code.analysis.last.selected.profile" value="pProject Default" />
   </component>
   <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\Larken\Documents\Github\Rotten-Soup\assets\images" />
+      <recent name="C:\Users\Larken\Documents\Github\Rotten-Soup\assets\js" />
+    </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\Users\Larken\Documents\Github\Rotten-Soup\assets\js\game\entities\items\weapons" />
       <recent name="C:\Users\Larken\Documents\Github\Rotten-Soup\assets\js\game\entities\items" />
       <recent name="C:\Users\Larken\Documents\Github\Rotten-Soup\assets\js\game\entities" />
       <recent name="C:\Users\Larken\Documents\Github\Rotten-Soup\assets\js\game\entities\actors" />
       <recent name="C:\Users\Larken\Documents\Github\Rotten-Soup\assets\js\old" />
-    </key>
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="C:\Users\Larken\Documents\Github\Rotten-Soup\assets\js" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -561,6 +636,7 @@
       <workItem from="1498265021327" duration="17101000" />
       <workItem from="1498365006654" duration="6652000" />
       <workItem from="1498511747610" duration="3726000" />
+      <workItem from="1498531454923" duration="4530000" />
     </task>
     <task id="LOCAL-00001" summary="Added the visible FOV to the minimap. Made some really nice changes to the overworld and cleaned up minimap colors.">
       <created>1497205810247</created>
@@ -744,11 +820,18 @@
       <option name="project" value="LOCAL" />
       <updated>1498524770795</updated>
     </task>
-    <option name="localTasksCounter" value="27" />
+    <task id="LOCAL-00027" summary="Fixed FOV with textures (sort of?)">
+      <created>1498535112683</created>
+      <option name="number" value="00027" />
+      <option name="presentableId" value="LOCAL-00027" />
+      <option name="project" value="LOCAL" />
+      <updated>1498535112683</updated>
+    </task>
+    <option name="localTasksCounter" value="28" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="82701000" />
+    <option name="totallyTimeSpent" value="87231000" />
   </component>
   <component name="TodoView" selected-index="4">
     <todo-panel id="selected-file">
@@ -761,6 +844,7 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1066" extended-state="6" />
+    <editor active="true" />
     <layout>
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.17604166" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3294979" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
@@ -809,7 +893,8 @@
     <MESSAGE value="Inventory system is working and looking nice. Tool tips for items show item type, name, and damage if it's a weapon. Clicking on the item will equip the weapon for the player. DnD-like combat system is now implemented." />
     <MESSAGE value="Inventory system is working and looking nice. Tool tips for items show item type, name, and damage if it's a weapon. Clicking on the item will equip the weapon for the player. DnD-like combat system is now implemented. Next up is a stats rework" />
     <MESSAGE value="Pushing graphical tiles implementation" />
-    <option name="LAST_COMMIT_MESSAGE" value="Pushing graphical tiles implementation" />
+    <MESSAGE value="Fixed FOV with textures (sort of?)" />
+    <option name="LAST_COMMIT_MESSAGE" value="Fixed FOV with textures (sort of?)" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1074,9 +1159,93 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/assets/images/tilset2.png">
+      <provider selected="true" editor-type-id="images">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/assets/js/game/entities/Entity.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="895">
+          <caret line="239" column="42" lean-forward="false" selection-start-line="239" selection-start-column="42" selection-end-line="239" selection-end-column="42" />
+          <folding>
+            <element signature="n#!!doc" expanded="true" />
+            <element signature="e#62#224#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/assets/images/tileset.png">
+      <provider selected="true" editor-type-id="images">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/index.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="210">
+          <caret line="149" column="14" lean-forward="true" selection-start-line="149" selection-start-column="14" selection-end-line="149" selection-end-column="14" />
+          <folding>
+            <element signature="n#style#0;n#v-container#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#v-layout#0;n#v-flex#0;n#v-layout#0;n#v-container#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#0;n#v-layout#0;n#v-flex#0;n#v-layout#0;n#v-container#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#v-layout#1;n#v-flex#0;n#v-layout#0;n#v-container#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#v-list#0;n#v-layout#1;n#v-flex#0;n#v-layout#0;n#v-container#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#v-layout#0;n#v-flex#1;n#v-layout#0;n#v-container#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#v-layout#2;n#v-flex#1;n#v-layout#0;n#v-container#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#v-layout#3;n#v-flex#1;n#v-layout#0;n#v-container#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#0;n#v-layout#4;n#v-flex#1;n#v-layout#0;n#v-container#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#span#0;n#v-layout#0;n#v-flex#0;n#v-layout#5;n#v-flex#1;n#v-layout#0;n#v-container#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#v-container#0;n#v-container#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="false" />
+            <element signature="n#style#0;n#v-btn#0;n#v-layout#0;n#v-container#0;n#v-container#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/assets/js/game/entities/actors/Goblin.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="8" column="24" lean-forward="false" selection-start-line="8" selection-start-column="24" selection-end-line="8" selection-end-column="24" />
+          <folding>
+            <element signature="n#!!doc;n#Goblin#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/assets/js/game/entities/items/weapons/Weapon.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="486">
+          <caret line="27" column="0" lean-forward="true" selection-start-line="27" selection-start-column="0" selection-end-line="27" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/assets/js/game/entities/items/weapons/Sword.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="126">
+          <caret line="7" column="23" lean-forward="false" selection-start-line="7" selection-start-column="23" selection-end-line="7" selection-end-column="23" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/assets/js/game/utils.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="486">
+          <caret line="27" column="20" lean-forward="false" selection-start-line="27" selection-start-column="20" selection-end-line="27" selection-end-column="20" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/assets/js/game/Game.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="185">
+          <caret line="113" column="32" lean-forward="true" selection-start-line="113" selection-start-column="32" selection-end-line="113" selection-end-column="32" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/assets/js/game/entities/actors/Player.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-563">
+        <state relative-caret-position="-342">
           <caret line="28" column="28" lean-forward="true" selection-start-line="28" selection-start-column="28" selection-end-line="28" selection-end-column="28" />
           <folding>
             <element signature="e#0#42#0" expanded="false" />
@@ -1119,90 +1288,6 @@
             <element signature="n#!!block;n#tryMove#0;n#Player#0" expanded="false" />
             <element signature="n#!!block;n#death#0;n#Player#0" expanded="false" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/assets/js/game/entities/Entity.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="4284">
-          <caret line="239" column="42" lean-forward="false" selection-start-line="239" selection-start-column="42" selection-end-line="239" selection-end-column="42" />
-          <folding>
-            <element signature="n#!!doc" expanded="true" />
-            <element signature="e#62#224#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/assets/js/game/entities/actors/Goblin.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="108">
-          <caret line="8" column="24" lean-forward="false" selection-start-line="8" selection-start-column="24" selection-end-line="8" selection-end-column="24" />
-          <folding>
-            <element signature="n#!!doc;n#Goblin#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/assets/images/tilset2.png">
-      <provider selected="true" editor-type-id="images">
-        <state />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/assets/images/tileset.png">
-      <provider selected="true" editor-type-id="images">
-        <state />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/assets/js/game/utils.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="504">
-          <caret line="28" column="21" lean-forward="false" selection-start-line="28" selection-start-column="21" selection-end-line="28" selection-end-column="21" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/assets/js/game/entities/items/weapons/Weapon.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="486">
-          <caret line="27" column="0" lean-forward="true" selection-start-line="27" selection-start-column="0" selection-end-line="27" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/assets/js/game/entities/items/weapons/Sword.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="126">
-          <caret line="7" column="23" lean-forward="false" selection-start-line="7" selection-start-column="23" selection-end-line="7" selection-end-column="23" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/index.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="386">
-          <caret line="258" column="5" lean-forward="false" selection-start-line="258" selection-start-column="5" selection-end-line="258" selection-end-column="5" />
-          <folding>
-            <element signature="n#style#0;n#v-container#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#v-layout#0;n#v-flex#0;n#v-layout#0;n#v-container#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#div#0;n#v-layout#0;n#v-flex#0;n#v-layout#0;n#v-container#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#v-layout#1;n#v-flex#0;n#v-layout#0;n#v-container#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#v-list#0;n#v-layout#1;n#v-flex#0;n#v-layout#0;n#v-container#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#v-layout#0;n#v-flex#1;n#v-layout#0;n#v-container#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#v-layout#2;n#v-flex#1;n#v-layout#0;n#v-container#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#v-layout#3;n#v-flex#1;n#v-layout#0;n#v-container#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#div#0;n#v-layout#4;n#v-flex#1;n#v-layout#0;n#v-container#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#span#0;n#v-layout#0;n#v-flex#0;n#v-layout#5;n#v-flex#1;n#v-layout#0;n#v-container#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#v-container#0;n#v-container#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="false" />
-            <element signature="n#style#0;n#v-btn#0;n#v-layout#0;n#v-container#0;n#v-container#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/assets/js/game/Game.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="540">
-          <caret line="207" column="0" lean-forward="true" selection-start-line="207" selection-start-column="0" selection-end-line="207" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
