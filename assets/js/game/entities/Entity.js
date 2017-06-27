@@ -174,6 +174,8 @@ class Actor extends Entity {
 
         if (dmg > 0)
             actor.damage(dmg);
+
+        return dmg;
     }
 
     /* Reduce hp. If less than 0, causes death */
@@ -209,10 +211,9 @@ class Actor extends Entity {
         let idx = Game.map.actors.indexOf(this);
         Game.map.actors.splice(idx, 1);
         // dump the contents of the actor's inventory (items) onto the ground.
-        // if (this.inventory.length > 0) {
-        //     console.log(...this.inventory);
-        //     ctile.actors.push(...this.inventory.map((e) => e.item));
-        // }
+        if (this.inventory.length > 0) {
+            this.items().forEach((e) => ctile.actors.push(e));
+        }
         // redraw the tile, either with an appropriate actor or the tile symbol
         Game.drawViewPort();
 
