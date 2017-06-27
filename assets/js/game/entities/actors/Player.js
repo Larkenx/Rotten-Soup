@@ -51,7 +51,8 @@ class Player extends Actor {
                 item: null,
             });
         }
-        this.addToInventory(createSword(this.x, this.y));
+        this.addToInventory(createSword(this.x,this.y));
+        this.equipWeapon(this.inventory[0].item);
     }
 
     act() {

@@ -253,19 +253,15 @@ let Game = {
     drawFirstActor: function (x, y, tile) {
         let symbols = tile.actors.map((e) => e.options.symbol);
         symbols.unshift(tile.symbol);
-        if ("@" in symbols) {
-            symbols.slice(symbol.indexOf("@"), 1);
+        if (symbols.includes("@")) {
+            symbols.slice(symbols.indexOf("@"), 1);
             symbols.push("@")
         }
-        // if we reach this point, no actors were drawable
         Game.display.draw(x, y, symbols);
     },
 
     // Original Version for ASCII
     drawFirstActorASCII: function (x, y, tile) {
-        if (!tile) {
-            console.log(x + ',' + y);
-        }
         for (let i = 0; i < tile.actors.length; i++) {
             if (tile.actors[i].options.visible) {
                 Game.drawTile(x, y, tile);
