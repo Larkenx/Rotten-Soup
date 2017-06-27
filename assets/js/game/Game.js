@@ -34,7 +34,7 @@ let Game = {
         this.displayOptions = {
             width: 38.75,
             height: 30,
-            fontSize: 18,
+            // fontSize: 25,
             // fontFamily: '"Inconsolata", monospace',
             // fontStyle: "bold",
             // spacing: ,
@@ -73,6 +73,9 @@ let Game = {
         this.drawViewPort();
         this.initializeMinimap();
         this.engine.start(); // Start the engine
+        tileSet.onload = function() {
+            Game.drawViewPort();
+        }
     },
 
     refreshDisplay() {
@@ -174,14 +177,57 @@ let Game = {
         for (let x = startingPos[0]; x < endingPos[0]; x++) {
             for (let y = startingPos[1]; y < endingPos[1]; y++) {
                 let tile = this.map.data[y][x];
-                this.drawFirstActor(dx, dy++, tile);
-                /* // Normal FOV computation for ASCII graphics
                 if (tile.x + "," + tile.y in this.map.visible_tiles) {
                     this.drawFirstActor(dx, dy++, tile);
                 } else {
                     this.drawDimTile(dx, dy++, tile);
                 }
-                */
+            }
+            dx++;
+            dy = 0;
+        }
+    },
+
+    drawViewPortASCII: function () {
+        // Clear the last visible tiles that were available to be seen
+        Object.assign(this.map.seen_tiles, this.map.visible_tiles);
+        this.map.visible_tiles = {};
+        /* FOV Computation */
+        let fov = new ROT.FOV.PreciseShadowcasting(function (x, y) {
+            return (Game.inbounds(x, y) && Game.map.data[y][x].options.visible);
+        });
+
+        fov.compute(this.player.x, this.player.y, 10, function (x, y, r, visibility) {
+            Game.map.visible_tiles[x + ',' + y] = true;
+        });
+
+        let camera = { // camera x,y resides in the upper left corner
+            x: this.player.x - Math.floor(Game.width / 2),
+            y: this.player.y - Math.floor(Game.height / 2),
+            width: Math.ceil(Game.width),
+            height: Game.height,
+        };
+        let startingPos = [camera.x, camera.y];
+        if (camera.x < 0) // far left
+            startingPos[0] = 0;
+        if (camera.x + camera.width > Game.map.width) // far right
+            startingPos[0] = Game.map.width - camera.width;
+        if (camera.y <= 0) // at the top of the map
+            startingPos[1] = 0;
+        if (camera.y + camera.height > Game.map.height) { // at the bottom of the map
+            startingPos[1] = Game.map.height - camera.height;
+        }
+        let endingPos = [startingPos[0] + camera.width, startingPos[1] + camera.height];
+        let dx = 0;
+        let dy = 0;
+        for (let x = startingPos[0]; x < endingPos[0]; x++) {
+            for (let y = startingPos[1]; y < endingPos[1]; y++) {
+                let tile = this.map.data[y][x];
+                if (tile.x + "," + tile.y in this.map.visible_tiles) {
+                    this.drawFirstActor(dx, dy++, tile);
+                } else {
+                    this.drawDimTile(dx, dy++, tile);
+                }
             }
             dx++;
             dy = 0;
@@ -200,7 +246,6 @@ let Game = {
         Game.display.draw(x, y, tile.symbol, tile.options.fg, "black");
     },
 
-
     // Graphical Tile version
     drawFirstActor: function (x, y, tile) {
         let symbols = tile.actors.map((e) => e.options.symbol);
@@ -210,8 +255,7 @@ let Game = {
     },
 
     // Original Version for ASCII
-    /*
-    drawFirstActor: function (x, y, tile) {
+    drawFirstActorASCII: function (x, y, tile) {
         if (!tile) {
             console.log(x + ',' + y);
         }
@@ -225,7 +269,6 @@ let Game = {
         // if we reach this point, no actors were drawable
         Game.drawTile(x, y, tile);
     },
-    */
 
     drawActor: function (x, y, actor) {
         Game.display.draw(x, y, actor.options.symbol, actor.options.fg, "black");
