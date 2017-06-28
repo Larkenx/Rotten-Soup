@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="359ee7cd-d060-4cb9-a2ed-d128b311220f" name="Default" comment="Updated screenie">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/images/screenie.png" afterPath="$PROJECT_DIR$/assets/images/screenie.png" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/assets/images/screenie.png" afterPath="$PROJECT_DIR$/assets/images/screenshot.png" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/README.md" afterPath="$PROJECT_DIR$/README.md" />
     </list>
@@ -36,8 +36,8 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="screenie.png" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/assets/images/screenie.png">
+      <file leaf-file-name="screenshot.png" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/assets/images/screenshot.png">
           <provider selected="true" editor-type-id="images">
             <state />
           </provider>
@@ -47,8 +47,8 @@
         <entry file="file://$PROJECT_DIR$/README.md">
           <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
             <state split_layout="SPLIT">
-              <first_editor relative-caret-position="720">
-                <caret line="40" column="51" lean-forward="false" selection-start-line="40" selection-start-column="51" selection-end-line="40" selection-end-column="51" />
+              <first_editor relative-caret-position="18">
+                <caret line="1" column="43" lean-forward="true" selection-start-line="1" selection-start-column="43" selection-end-line="1" selection-end-column="43" />
                 <folding />
               </first_editor>
               <second_editor />
@@ -598,7 +598,7 @@
       <workItem from="1498511747610" duration="3726000" />
       <workItem from="1498531454923" duration="5100000" />
       <workItem from="1498539353861" duration="2397000" />
-      <workItem from="1498611935336" duration="2300000" />
+      <workItem from="1498611935336" duration="2421000" />
     </task>
     <task id="LOCAL-00001" summary="Added the visible FOV to the minimap. Made some really nice changes to the overworld and cleaned up minimap colors.">
       <created>1497205810247</created>
@@ -817,11 +817,18 @@
       <option name="project" value="LOCAL" />
       <updated>1498613453540</updated>
     </task>
-    <option name="localTasksCounter" value="32" />
+    <task id="LOCAL-00032" summary="Updated screenie">
+      <created>1498614244584</created>
+      <option name="number" value="00032" />
+      <option name="presentableId" value="LOCAL-00032" />
+      <option name="project" value="LOCAL" />
+      <updated>1498614244584</updated>
+    </task>
+    <option name="localTasksCounter" value="33" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="92498000" />
+    <option name="totallyTimeSpent" value="92619000" />
   </component>
   <component name="TodoView" selected-index="4">
     <todo-panel id="selected-file">
@@ -881,7 +888,6 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Fixing the death screen modal..." />
     <MESSAGE value="Fixed death screen modal and added a 'play again' button. Added cute tombstone ascii art for death" />
     <MESSAGE value="Still working on ladders" />
     <MESSAGE value="Added rats, fixed death screen, made sure that changing between overworld and dungeons saves player location" />
@@ -906,7 +912,8 @@
     <MESSAGE value="Merged changes. Starter sword is now equipped on spawn, player is properly above entities like ladders and swords. Player levels up after kills and increases in HP and STR." />
     <MESSAGE value="Goblins have a chance to drop swords. Fixed it so they properly drop items on death" />
     <MESSAGE value="Added sword texture to the UI for the items instead of bananas / right parens. RIP bananas" />
-    <option name="LAST_COMMIT_MESSAGE" value="Added sword texture to the UI for the items instead of bananas / right parens. RIP bananas" />
+    <MESSAGE value="Updated screenie" />
+    <option name="LAST_COMMIT_MESSAGE" value="Updated screenie" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1187,7 +1194,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/assets/images/screenie.png">
+    <entry file="file://$PROJECT_DIR$/assets/images/screenshot.png">
       <provider selected="true" editor-type-id="images">
         <state />
       </provider>
@@ -1195,8 +1202,8 @@
     <entry file="file://$PROJECT_DIR$/README.md">
       <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
         <state split_layout="SPLIT">
-          <first_editor relative-caret-position="720">
-            <caret line="40" column="51" lean-forward="false" selection-start-line="40" selection-start-column="51" selection-end-line="40" selection-end-column="51" />
+          <first_editor relative-caret-position="18">
+            <caret line="1" column="43" lean-forward="true" selection-start-line="1" selection-start-column="43" selection-end-line="1" selection-end-column="43" />
             <folding />
           </first_editor>
           <second_editor />
