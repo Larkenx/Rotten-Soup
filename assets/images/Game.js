@@ -2,6 +2,8 @@ if (!ROT.isSupported()) {
     alert("The rot.js library isn't supported by your browser.");
 }
 
+let animated = ["g", "r", "@", "~", "=", "~~", "=="];
+
 let Game = {
     overview: null,
     display: null,
@@ -10,6 +12,7 @@ let Game = {
     player: null,
     playerLocation: null,
     scheduler: null,
+    turn : 0,
     engine: null,
     levels: {},
     currentLevel: "expanded_start",
@@ -30,7 +33,7 @@ let Game = {
         this.playerLocation = this.map.playerLocation;
         // Set up the ROT.JS game display
         let tileSet = document.createElement("img");
-        tileSet.src = "assets/images/tileset-32x32.png";
+        tileSet.src = "assets/images/tileset-animated.png";
         let tileSize = 32;
         this.displayOptions = {
             width: 35,
@@ -48,20 +51,38 @@ let Game = {
             tileSet: tileSet,
             tileMap: {
                 // Entities
-                "@" : [0,0],
-                "g" : [tileSize,0],
-                "r" : [0,tileSize*1],
-                ">" : [0,tileSize*2], "<": [tileSize*1, tileSize*2],
+                "@" : [0,0], "@a" : [tileSize, 0],
+                "g" : [0,tileSize], "ga" : [tileSize, tileSize],
+                "r" : [0,tileSize*2], "ra" : [tileSize,tileSize*2],
+                ">" : [0,tileSize*3], "<": [tileSize, tileSize*3],
                 // Environment
-                "~" : [tileSize*1,tileSize*3], "~~" : [0,tileSize*3],
-                "=" : [tileSize*1,tileSize*3], "==" : [0,tileSize*3],
-                "." : [0,tileSize*4], ".." : [tileSize*1,tileSize*4],
-                "#" : [0,tileSize*5], "##" : [tileSize*1,tileSize*5],
-                "T" : [0,tileSize*6], "TT" : [tileSize*1,tileSize*6],
-                "," : [0,tileSize*7], ",," : [tileSize*1,tileSize*7],
+                "~" : [0,tileSize*4], "~~" : [0,tileSize*5],
+                "=" : [0,tileSize*4], "==" : [0,tileSize*5],
+                "~a" : [tileSize,tileSize*4], "~~a" : [tileSize,tileSize*5],
+                "=a" : [tileSize,tileSize*4], "==a" : [tileSize,tileSize*5],
+                "." : [0,tileSize*6], ".." : [tileSize,tileSize*6],
+                "#" : [0,tileSize*7], "##" : [tileSize,tileSize*7],
+                "T" : [0,tileSize*12], "TT" : [tileSize,tileSize*12],
+                "," : [0,tileSize*9], ",," : [tileSize,tileSize*9],
+                ")" : [0,tileSize*10], " " : [tileSize, tileSize*10], "  " : [tileSize, tileSize*10],
                 // Items
-                ")" : [0,tileSize*8], " " : [tileSize*1, tileSize*9], "  " : [tileSize*1, tileSize*9]
              }
+            // tileMap: {
+            //     // Entities
+            //     "@" : [0,0],
+            //     "g" : [tileSize,0],
+            //     "r" : [0,tileSize*1],
+            //     ">" : [0,tileSize*2], "<": [tileSize*1, tileSize*2],
+            //     // Environment
+            //     "~" : [tileSize*1,tileSize*3], "~~" : [0,tileSize*3],
+            //     "=" : [tileSize*1,tileSize*3], "==" : [0,tileSize*3],
+            //     "." : [0,tileSize*4], ".." : [tileSize*1,tileSize*4],
+            //     "#" : [0,tileSize*5], "##" : [tileSize*1,tileSize*5],
+            //     "T" : [0,tileSize*6], "TT" : [tileSize*1,tileSize*6],
+            //     "," : [0,tileSize*7], ",," : [tileSize*1,tileSize*7],
+            //     // Items
+            //     ")" : [0,tileSize*8], " " : [tileSize*1, tileSize*9], "  " : [tileSize*1, tileSize*9]
+            // }
         };
         this.width = this.displayOptions.width;
         this.height = this.displayOptions.height;
@@ -235,7 +256,11 @@ let Game = {
     },
 
     drawDimTile: function (x, y, tile) {
-        Game.display.draw(x, y, tile.symbol+tile.symbol);
+        let todraw = tile.symbol + tile.symbol;
+        if (animated.includes(tile.symbol) && this.turn % 2 == 0) {
+            todraw += "a";
+        }
+        Game.display.draw(x, y, todraw);
     },
 
     drawDimTileASCII: function (x, y, tile) {
@@ -257,6 +282,12 @@ let Game = {
         if (symbols.includes("@")) {
             symbols.slice(symbols.indexOf("@"), 1);
             symbols.push("@")
+        }
+        for (let i = 0; i < symbols.length; i++) {
+            let symbol = symbols[i];
+            if (animated.includes(symbol) && this.turn % 2 == 0) {
+                symbols[i] += "a";
+            }
         }
         Game.display.draw(x, y, symbols);
     },
@@ -312,6 +343,7 @@ let Game = {
     },
 
     updateDisplay: function () {
+        this.turn++;
         this.drawViewPort();
         this.drawMiniMap();
     }

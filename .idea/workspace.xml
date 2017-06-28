@@ -2,12 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="359ee7cd-d060-4cb9-a2ed-d128b311220f" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/assets/images/tileset-24x24.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/assets/images/tileset-32x32.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/assets/images/tileset.png" afterPath="$PROJECT_DIR$/assets/images/tileset-16x16.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/assets/images/tileset-animated.png" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/assets/js/game/Game.js" afterPath="$PROJECT_DIR$/assets/images/Game.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/js/game/Game.js" afterPath="$PROJECT_DIR$/assets/js/game/Game.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/maps/expanded_start.js" afterPath="$PROJECT_DIR$/assets/maps/expanded_start.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/index.html" afterPath="$PROJECT_DIR$/index.html" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
@@ -20,31 +17,86 @@
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
+  <component name="DockManager">
+    <window id="1">
+      <content type="file-editors">
+        <state>
+          <leaf>
+            <file leaf-file-name="tileset-animated.png" pinned="false" current-in-tab="true">
+              <entry file="file://$PROJECT_DIR$/assets/images/tileset-animated.png">
+                <provider selected="true" editor-type-id="images">
+                  <state />
+                </provider>
+              </entry>
+            </file>
+          </leaf>
+        </state>
+      </content>
+    </window>
+  </component>
   <component name="ExecutionTargetManager" SELECTED_TARGET="default_target" />
   <component name="FavoritesManager">
     <favorites_list name="Rotten-Soup" />
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="index.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/index.html">
+      <file leaf-file-name="Game.js" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/assets/images/Game.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-507">
-              <caret line="46" column="44" lean-forward="false" selection-start-line="46" selection-start-column="44" selection-end-line="46" selection-end-column="44" />
+            <state relative-caret-position="594">
+              <caret line="62" column="0" lean-forward="false" selection-start-line="62" selection-start-column="0" selection-end-line="62" selection-end-column="0" />
               <folding>
-                <element signature="n#style#0;n#v-layout#0;n#v-flex#0;n#v-layout#4;n#v-flex#1;n#v-layout#0;n#v-container#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#img#0;n#v-layout#0;n#v-flex#0;n#v-layout#4;n#v-flex#1;n#v-layout#0;n#v-container#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-                <marker date="1498620214781" expanded="false" signature="3152:3170" ph="..." />
+                <element signature="e#24#93#0" expanded="false" />
+                <element signature="e#4233#4294#0" expanded="false" />
+                <element signature="e#4332#4999#0" expanded="false" />
+                <element signature="e#4626#4885#0" expanded="false" />
+                <element signature="e#4798#4875#0" expanded="false" />
+                <element signature="e#5037#5290#0" expanded="false" />
+                <element signature="e#5047#5093#0" expanded="false" />
+                <element signature="e#5133#5254#0" expanded="false" />
+                <element signature="e#5327#5784#0" expanded="false" />
+                <element signature="e#5357#5595#0" expanded="false" />
+                <element signature="e#5704#5771#0" expanded="false" />
+                <element signature="e#5817#5905#0" expanded="false" />
+                <element signature="e#5946#6763#0" expanded="false" />
+                <element signature="e#6093#6123#0" expanded="false" />
+                <element signature="e#6796#8681#0" expanded="false" />
+                <element signature="e#8719#10605#0" expanded="false" />
+                <element signature="e#8905#8926#0" expanded="false" />
+                <element signature="e#8994#9086#0" expanded="false" />
+                <element signature="e#9175#9242#0" expanded="false" />
+                <element signature="e#9267#9519#0" expanded="false" />
+                <element signature="e#9906#10007#0" expanded="false" />
+                <element signature="e#10197#10599#0" expanded="false" />
+                <element signature="e#10263#10551#0" expanded="false" />
+                <element signature="e#10382#10458#0" expanded="false" />
+                <element signature="e#10464#10537#0" expanded="false" />
+                <element signature="e#10895#11165#0" expanded="false" />
+                <element signature="e#11204#11283#0" expanded="false" />
+                <element signature="e#11936#12287#0" expanded="false" />
+                <element signature="e#11991#12187#0" expanded="false" />
+                <element signature="e#12041#12177#0" expanded="false" />
+                <element signature="e#12328#12417#0" expanded="false" />
+                <element signature="e#12449#13710#0" expanded="false" />
+                <element signature="e#12482#12986#0" expanded="false" />
+                <element signature="e#12538#12976#0" expanded="false" />
+                <element signature="e#12597#12962#0" expanded="false" />
+                <element signature="e#12992#13574#0" expanded="false" />
+                <element signature="e#13048#13564#0" expanded="false" />
+                <element signature="e#13107#13550#0" expanded="false" />
+                <element signature="e#13234#13365#0" expanded="false" />
+                <element signature="e#13421#13532#0" expanded="false" />
+                <element signature="e#13749#13919#0" expanded="false" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Game.js" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/assets/js/game/Game.js">
+      <file leaf-file-name="utils.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/assets/js/game/utils.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="414">
-              <caret line="152" column="0" lean-forward="true" selection-start-line="152" selection-start-column="0" selection-end-line="152" selection-end-column="0" />
+            <state relative-caret-position="733">
+              <caret line="212" column="29" lean-forward="true" selection-start-line="212" selection-start-column="29" selection-end-line="212" selection-end-column="29" />
               <folding />
             </state>
           </provider>
@@ -56,6 +108,7 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="JavaScript File" />
+        <option value="HTML File" />
       </list>
     </option>
   </component>
@@ -125,7 +178,10 @@
         <option value="$PROJECT_DIR$/assets/js/game/entities/Entity.js" />
         <option value="$PROJECT_DIR$/README.md" />
         <option value="$PROJECT_DIR$/index.html" />
+        <option value="$PROJECT_DIR$/dev.html" />
+        <option value="$PROJECT_DIR$/assets/js/game/DevGame.js" />
         <option value="$PROJECT_DIR$/assets/js/game/Game.js" />
+        <option value="$PROJECT_DIR$/assets/images/Game.js" />
       </list>
     </option>
   </component>
@@ -261,96 +317,6 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="js" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="game" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="entities" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Rotten-Soup" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Rotten-Soup" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="assets" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="js" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="game" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="entities" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="items" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="weapons" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Rotten-Soup" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Rotten-Soup" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="assets" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="js" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="game" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="entities" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="actors" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Rotten-Soup" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Rotten-Soup" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="assets" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
               <option name="myItemId" value="images" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
@@ -369,6 +335,7 @@
     <property name="JavaScriptPreferStrict" value="false" />
     <property name="JavaScriptWeakerCompletionTypeGuess" value="true" />
     <property name="run.code.analysis.last.selected.profile" value="pProject Default" />
+    <property name="DefaultHtmlFileTemplate" value="HTML File" />
   </component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
@@ -379,8 +346,9 @@
       <recent name="C:\Users\Larken\Documents\Github\Rotten-Soup\assets\js\game\entities\items" />
     </key>
     <key name="CopyFile.RECENT_KEYS">
-      <recent name="C:\Users\Larken\Documents\Github\Rotten-Soup\assets\images\item-textures" />
       <recent name="C:\Users\Larken\Documents\Github\Rotten-Soup\assets\images" />
+      <recent name="C:\Users\Larken\Documents\Github\Rotten-Soup\assets\js\game" />
+      <recent name="C:\Users\Larken\Documents\Github\Rotten-Soup\assets\images\item-textures" />
       <recent name="C:\Users\Larken\Documents\Github\Rotten-Soup\assets\js" />
     </key>
   </component>
@@ -516,7 +484,7 @@
       <workItem from="1498511747610" duration="3726000" />
       <workItem from="1498531454923" duration="5100000" />
       <workItem from="1498539353861" duration="2397000" />
-      <workItem from="1498611935336" duration="5003000" />
+      <workItem from="1498611935336" duration="8197000" />
     </task>
     <task id="LOCAL-00001" summary="Added the visible FOV to the minimap. Made some really nice changes to the overworld and cleaned up minimap colors.">
       <created>1497205810247</created>
@@ -763,11 +731,18 @@
       <option name="project" value="LOCAL" />
       <updated>1498615321913</updated>
     </task>
-    <option name="localTasksCounter" value="36" />
+    <task id="LOCAL-00036" summary="Changed textures to 32x32. Looks a lot better?">
+      <created>1498620650133</created>
+      <option name="number" value="00036" />
+      <option name="presentableId" value="LOCAL-00036" />
+      <option name="project" value="LOCAL" />
+      <updated>1498620650133</updated>
+    </task>
+    <option name="localTasksCounter" value="37" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="95201000" />
+    <option name="totallyTimeSpent" value="98395000" />
   </component>
   <component name="TodoView" selected-index="4">
     <todo-panel id="selected-file">
@@ -827,7 +802,6 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Still working on ladders" />
     <MESSAGE value="Added rats, fixed death screen, made sure that changing between overworld and dungeons saves player location" />
     <MESSAGE value="Working on items and changing the inheritance for actors" />
     <MESSAGE value="Added sword, weapon, item, entity classes. Made some sword objects and made every goblin drop one on death. Introduced new bug that makes invincible goblins if attacked over a sword...? Introduced unicode characters (testing)" />
@@ -852,7 +826,8 @@
     <MESSAGE value="Added sword texture to the UI for the items instead of bananas / right parens. RIP bananas" />
     <MESSAGE value="Updated screenie" />
     <MESSAGE value="Added credit for pixel artists" />
-    <option name="LAST_COMMIT_MESSAGE" value="Added credit for pixel artists" />
+    <MESSAGE value="Changed textures to 32x32. Looks a lot better?" />
+    <option name="LAST_COMMIT_MESSAGE" value="Changed textures to 32x32. Looks a lot better?" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -861,17 +836,16 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/design.md">
-      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
-        <state split_layout="SPLIT">
-          <first_editor relative-caret-position="0">
-            <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          </first_editor>
-          <second_editor />
+    <entry file="file://$PROJECT_DIR$/assets/js/game/utils.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="270">
+          <caret line="15" column="6" lean-forward="false" selection-start-line="15" selection-start-column="6" selection-end-line="15" selection-end-column="6" />
+          <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/assets/js/game/Game.js">
+    <entry file="file://$PROJECT_DIR$/assets/js/game/entities/actors.js" />
+    <entry file="file://$PROJECT_DIR$/assets/images/Game.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="180">
           <caret line="10" column="15" lean-forward="false" selection-start-line="10" selection-start-column="15" selection-end-line="10" selection-end-column="15" />
@@ -886,7 +860,7 @@
           <folding>
             <element signature="n#style#0;n#v-layout#0;n#v-flex#0;n#v-layout#4;n#v-flex#1;n#v-layout#0;n#v-container#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#img#0;n#v-layout#0;n#v-flex#0;n#v-layout#4;n#v-flex#1;n#v-layout#0;n#v-container#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <marker date="1498620214781" expanded="false" signature="3152:3170" ph="..." />
+            <marker date="1498623687965" expanded="false" signature="3151:3169" ph="..." />
           </folding>
         </state>
       </provider>
@@ -900,36 +874,7 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/assets/js/game/entities/actors.js" />
-    <entry file="file://$PROJECT_DIR$/assets/js/game/Game.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="180">
-          <caret line="10" column="15" lean-forward="false" selection-start-line="10" selection-start-column="15" selection-end-line="10" selection-end-column="15" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/index.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2880">
-          <caret line="160" column="13" lean-forward="false" selection-start-line="160" selection-start-column="13" selection-end-line="160" selection-end-column="13" />
-          <folding>
-            <element signature="n#style#0;n#v-layout#0;n#v-flex#0;n#v-layout#4;n#v-flex#1;n#v-layout#0;n#v-container#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#img#0;n#v-layout#0;n#v-flex#0;n#v-layout#4;n#v-flex#1;n#v-layout#0;n#v-container#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <marker date="1498620214781" expanded="false" signature="3152:3170" ph="..." />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/assets/js/game/utils.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="270">
-          <caret line="15" column="6" lean-forward="false" selection-start-line="15" selection-start-column="6" selection-end-line="15" selection-end-column="6" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/assets/js/game/entities/actors.js" />
-    <entry file="file://$PROJECT_DIR$/assets/js/game/Game.js">
+    <entry file="file://$PROJECT_DIR$/assets/images/Game.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="361">
           <caret line="19" column="23" lean-forward="false" selection-start-line="19" selection-start-column="23" selection-end-line="19" selection-end-column="23" />
@@ -944,14 +889,14 @@
           <folding>
             <element signature="n#style#0;n#v-layout#0;n#v-flex#0;n#v-layout#4;n#v-flex#1;n#v-layout#0;n#v-container#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#img#0;n#v-layout#0;n#v-flex#0;n#v-layout#4;n#v-flex#1;n#v-layout#0;n#v-container#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <marker date="1498620214781" expanded="false" signature="3152:3170" ph="..." />
+            <marker date="1498623687965" expanded="false" signature="3151:3169" ph="..." />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/assets/js/old/rot.js" />
     <entry file="file://$PROJECT_DIR$/assets/js/game/entities/actors.js" />
-    <entry file="file://$PROJECT_DIR$/assets/js/game/Game.js">
+    <entry file="file://$PROJECT_DIR$/assets/images/Game.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="361">
           <caret line="19" column="23" lean-forward="false" selection-start-line="19" selection-start-column="23" selection-end-line="19" selection-end-column="23" />
@@ -966,7 +911,7 @@
           <folding>
             <element signature="n#style#0;n#v-layout#0;n#v-flex#0;n#v-layout#4;n#v-flex#1;n#v-layout#0;n#v-container#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#img#0;n#v-layout#0;n#v-flex#0;n#v-layout#4;n#v-flex#1;n#v-layout#0;n#v-container#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <marker date="1498620214781" expanded="false" signature="3152:3170" ph="..." />
+            <marker date="1498623687965" expanded="false" signature="3151:3169" ph="..." />
           </folding>
         </state>
       </provider>
@@ -1121,31 +1066,94 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/assets/js/game/utils.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="643">
-          <caret line="207" column="6" lean-forward="false" selection-start-line="207" selection-start-column="6" selection-end-line="207" selection-end-column="6" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/index.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-507">
-          <caret line="46" column="44" lean-forward="false" selection-start-line="46" selection-start-column="44" selection-end-line="46" selection-end-column="44" />
+        <state relative-caret-position="249">
+          <caret line="88" column="33" lean-forward="true" selection-start-line="0" selection-start-column="0" selection-end-line="282" selection-end-column="0" />
           <folding>
             <element signature="n#style#0;n#v-layout#0;n#v-flex#0;n#v-layout#4;n#v-flex#1;n#v-layout#0;n#v-container#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#img#0;n#v-layout#0;n#v-flex#0;n#v-layout#4;n#v-flex#1;n#v-layout#0;n#v-container#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <marker date="1498620214781" expanded="false" signature="3152:3170" ph="..." />
+            <marker date="1498623687965" expanded="false" signature="3151:3169" ph="..." />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/assets/js/game/Game.js">
+    <entry file="file://$PROJECT_DIR$/dev.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="414">
-          <caret line="152" column="0" lean-forward="true" selection-start-line="152" selection-start-column="0" selection-end-line="152" selection-end-column="0" />
+        <state relative-caret-position="4392">
+          <caret line="244" column="16" lean-forward="false" selection-start-line="244" selection-start-column="16" selection-end-line="244" selection-end-column="16" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/assets/js/game/DevGame.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="216">
+          <caret line="24" column="0" lean-forward="false" selection-start-line="24" selection-start-column="0" selection-end-line="24" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/assets/images/tileset-animated.png">
+      <provider selected="true" editor-type-id="images">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/assets/js/game/utils.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="733">
+          <caret line="212" column="29" lean-forward="true" selection-start-line="212" selection-start-column="29" selection-end-line="212" selection-end-column="29" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/assets/images/Game.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="594">
+          <caret line="62" column="0" lean-forward="false" selection-start-line="62" selection-start-column="0" selection-end-line="62" selection-end-column="0" />
+          <folding>
+            <element signature="e#24#93#0" expanded="false" />
+            <element signature="e#4233#4294#0" expanded="false" />
+            <element signature="e#4332#4999#0" expanded="false" />
+            <element signature="e#4626#4885#0" expanded="false" />
+            <element signature="e#4798#4875#0" expanded="false" />
+            <element signature="e#5037#5290#0" expanded="false" />
+            <element signature="e#5047#5093#0" expanded="false" />
+            <element signature="e#5133#5254#0" expanded="false" />
+            <element signature="e#5327#5784#0" expanded="false" />
+            <element signature="e#5357#5595#0" expanded="false" />
+            <element signature="e#5704#5771#0" expanded="false" />
+            <element signature="e#5817#5905#0" expanded="false" />
+            <element signature="e#5946#6763#0" expanded="false" />
+            <element signature="e#6093#6123#0" expanded="false" />
+            <element signature="e#6796#8681#0" expanded="false" />
+            <element signature="e#8719#10605#0" expanded="false" />
+            <element signature="e#8905#8926#0" expanded="false" />
+            <element signature="e#8994#9086#0" expanded="false" />
+            <element signature="e#9175#9242#0" expanded="false" />
+            <element signature="e#9267#9519#0" expanded="false" />
+            <element signature="e#9906#10007#0" expanded="false" />
+            <element signature="e#10197#10599#0" expanded="false" />
+            <element signature="e#10263#10551#0" expanded="false" />
+            <element signature="e#10382#10458#0" expanded="false" />
+            <element signature="e#10464#10537#0" expanded="false" />
+            <element signature="e#10895#11165#0" expanded="false" />
+            <element signature="e#11204#11283#0" expanded="false" />
+            <element signature="e#11936#12287#0" expanded="false" />
+            <element signature="e#11991#12187#0" expanded="false" />
+            <element signature="e#12041#12177#0" expanded="false" />
+            <element signature="e#12328#12417#0" expanded="false" />
+            <element signature="e#12449#13710#0" expanded="false" />
+            <element signature="e#12482#12986#0" expanded="false" />
+            <element signature="e#12538#12976#0" expanded="false" />
+            <element signature="e#12597#12962#0" expanded="false" />
+            <element signature="e#12992#13574#0" expanded="false" />
+            <element signature="e#13048#13564#0" expanded="false" />
+            <element signature="e#13107#13550#0" expanded="false" />
+            <element signature="e#13234#13365#0" expanded="false" />
+            <element signature="e#13421#13532#0" expanded="false" />
+            <element signature="e#13749#13919#0" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
