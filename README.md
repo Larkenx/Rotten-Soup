@@ -1,5 +1,5 @@
 # Rotten Soup
-![screenshot](assets/images/screenshot.png)
+![screenshot](assets/images/screenie.png)
 
 Rotten Soup is roguelike written in JavaScript with [rot.js](http://ondras.github.io/rot.js/hp/). I used [Vue.js](https://vuejs.org/) and [Vuetify](https://vuetifyjs.com/) to build the UI. Throughout the summer I'll continue to release as much content as I can and see where it goes. Special thanks to DragonDePlatino and DawnBringer who created the free tileset, Dawnlike, that I use for Rotten Soup.
 

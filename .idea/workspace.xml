@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="359ee7cd-d060-4cb9-a2ed-d128b311220f" name="Default" comment="">
+    <list default="true" id="359ee7cd-d060-4cb9-a2ed-d128b311220f" name="Default" comment="Added credit for pixel artists">
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/assets/images/screenie.png" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/images/screenshot.png" afterPath="" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/README.md" afterPath="$PROJECT_DIR$/README.md" />
     </list>
@@ -39,8 +41,8 @@
         <entry file="file://$PROJECT_DIR$/README.md">
           <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
             <state split_layout="SPLIT">
-              <first_editor relative-caret-position="108">
-                <caret line="3" column="400" lean-forward="false" selection-start-line="3" selection-start-column="400" selection-end-line="3" selection-end-column="400" />
+              <first_editor relative-caret-position="468">
+                <caret line="21" column="61" lean-forward="false" selection-start-line="21" selection-start-column="61" selection-end-line="21" selection-end-column="61" />
                 <folding />
               </first_editor>
               <second_editor />
@@ -512,7 +514,7 @@
       <workItem from="1498511747610" duration="3726000" />
       <workItem from="1498531454923" duration="5100000" />
       <workItem from="1498539353861" duration="2397000" />
-      <workItem from="1498611935336" duration="3267000" />
+      <workItem from="1498611935336" duration="3381000" />
     </task>
     <task id="LOCAL-00001" summary="Added the visible FOV to the minimap. Made some really nice changes to the overworld and cleaned up minimap colors.">
       <created>1497205810247</created>
@@ -745,11 +747,18 @@
       <option name="project" value="LOCAL" />
       <updated>1498614361698</updated>
     </task>
-    <option name="localTasksCounter" value="34" />
+    <task id="LOCAL-00034" summary="Added credit for pixel artists">
+      <created>1498615220708</created>
+      <option name="number" value="00034" />
+      <option name="presentableId" value="LOCAL-00034" />
+      <option name="project" value="LOCAL" />
+      <updated>1498615220708</updated>
+    </task>
+    <option name="localTasksCounter" value="35" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="93465000" />
+    <option name="totallyTimeSpent" value="93579000" />
   </component>
   <component name="TodoView" selected-index="4">
     <todo-panel id="selected-file">
@@ -764,7 +773,7 @@
     <frame x="-8" y="-8" width="1936" height="1066" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.17604166" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.17604166" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3294979" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3294979" sideWeight="0.50208336" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.26987448" sideWeight="0.49791667" order="7" side_tool="false" content_ui="tabs" />
@@ -809,7 +818,6 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Fixed death screen modal and added a 'play again' button. Added cute tombstone ascii art for death" />
     <MESSAGE value="Still working on ladders" />
     <MESSAGE value="Added rats, fixed death screen, made sure that changing between overworld and dungeons saves player location" />
     <MESSAGE value="Working on items and changing the inheritance for actors" />
@@ -834,7 +842,8 @@
     <MESSAGE value="Goblins have a chance to drop swords. Fixed it so they properly drop items on death" />
     <MESSAGE value="Added sword texture to the UI for the items instead of bananas / right parens. RIP bananas" />
     <MESSAGE value="Updated screenie" />
-    <option name="LAST_COMMIT_MESSAGE" value="Updated screenie" />
+    <MESSAGE value="Added credit for pixel artists" />
+    <option name="LAST_COMMIT_MESSAGE" value="Added credit for pixel artists" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1103,7 +1112,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/assets/images/screenshot.png">
+    <entry file="file://$PROJECT_DIR$/assets/images/screenie.png">
       <provider selected="true" editor-type-id="images">
         <state />
       </provider>
@@ -1123,8 +1132,8 @@
     <entry file="file://$PROJECT_DIR$/README.md">
       <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
         <state split_layout="SPLIT">
-          <first_editor relative-caret-position="108">
-            <caret line="3" column="400" lean-forward="false" selection-start-line="3" selection-start-column="400" selection-end-line="3" selection-end-column="400" />
+          <first_editor relative-caret-position="468">
+            <caret line="21" column="61" lean-forward="false" selection-start-line="21" selection-start-column="61" selection-end-line="21" selection-end-column="61" />
             <folding />
           </first_editor>
           <second_editor />
