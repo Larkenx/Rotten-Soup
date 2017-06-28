@@ -80,7 +80,7 @@ class Actor extends Entity {
         };
         this.inventory = [];
         this.inventory_idx = 0;
-        for (let i = 0; i < 36; i++) {
+        for (let i = 0; i < 32; i++) {
             this.inventory.push({
                 // id: i,
                 item: null,

@@ -2,11 +2,11 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="359ee7cd-d060-4cb9-a2ed-d128b311220f" name="Default" comment="">
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/assets/images/item-textures/sword.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/assets/images/item-textures/sword2.png" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/js/game/Game.js" afterPath="$PROJECT_DIR$/assets/js/game/Game.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/js/game/entities/Entity.js" afterPath="$PROJECT_DIR$/assets/js/game/entities/Entity.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/js/game/entities/actors/Goblin.js" afterPath="$PROJECT_DIR$/assets/js/game/entities/actors/Goblin.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/js/game/entities/actors/Player.js" afterPath="$PROJECT_DIR$/assets/js/game/entities/actors/Player.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/index.html" afterPath="$PROJECT_DIR$/index.html" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -24,19 +24,21 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="index.html" pinned="false" current-in-tab="false">
+      <file leaf-file-name="index.html" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/index.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-738">
-              <caret line="61" column="33" lean-forward="true" selection-start-line="61" selection-start-column="33" selection-end-line="61" selection-end-column="33" />
+            <state relative-caret-position="152">
+              <caret line="240" column="30" lean-forward="true" selection-start-line="240" selection-start-column="30" selection-end-line="240" selection-end-column="30" />
               <folding>
-                <marker date="1498539884796" expanded="false" signature="3170:3188" ph="..." />
+                <element signature="n#style#0;n#v-layout#0;n#v-flex#0;n#v-layout#4;n#v-flex#1;n#v-layout#0;n#v-container#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#img#0;n#v-layout#0;n#v-flex#0;n#v-layout#4;n#v-flex#1;n#v-layout#0;n#v-container#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+                <marker date="1498613416180" expanded="false" signature="3170:3188" ph="..." />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Goblin.js" pinned="false" current-in-tab="true">
+      <file leaf-file-name="Goblin.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/assets/js/game/entities/actors/Goblin.js">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="558">
@@ -52,7 +54,7 @@
         <entry file="file://$PROJECT_DIR$/assets/js/game/entities/items/weapons/Weapon.js">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="486">
-              <caret line="27" column="0" lean-forward="true" selection-start-line="27" selection-start-column="0" selection-end-line="27" selection-end-column="0" />
+              <caret line="27" column="0" lean-forward="false" selection-start-line="27" selection-start-column="0" selection-end-line="27" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -71,8 +73,8 @@
       <file leaf-file-name="utils.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/assets/js/game/utils.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="517">
-              <caret line="127" column="86" lean-forward="true" selection-start-line="127" selection-start-column="86" selection-end-line="127" selection-end-column="86" />
+            <state relative-caret-position="2286">
+              <caret line="127" column="86" lean-forward="false" selection-start-line="127" selection-start-column="86" selection-end-line="127" selection-end-column="86" />
               <folding />
             </state>
           </provider>
@@ -91,8 +93,8 @@
       <file leaf-file-name="Player.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/assets/js/game/entities/actors/Player.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="720">
-              <caret line="45" column="0" lean-forward="true" selection-start-line="45" selection-start-column="0" selection-end-line="45" selection-end-column="0" />
+            <state relative-caret-position="774">
+              <caret line="45" column="0" lean-forward="false" selection-start-line="45" selection-start-column="0" selection-end-line="45" selection-end-column="0" />
               <folding>
                 <element signature="e#0#42#0" expanded="false" />
               </folding>
@@ -103,8 +105,8 @@
       <file leaf-file-name="Entity.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/assets/js/game/entities/Entity.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="442">
-              <caret line="224" column="40" lean-forward="false" selection-start-line="224" selection-start-column="40" selection-end-line="224" selection-end-column="40" />
+            <state relative-caret-position="-1386">
+              <caret line="82" column="30" lean-forward="false" selection-start-line="82" selection-start-column="30" selection-end-line="82" selection-end-column="30" />
               <folding>
                 <element signature="n#!!doc" expanded="true" />
                 <element signature="e#62#224#0" expanded="false" />
@@ -182,12 +184,12 @@
         <option value="$PROJECT_DIR$/README.md" />
         <option value="$PROJECT_DIR$/assets/js/game/entities/items/weapons/Weapon.js" />
         <option value="$PROJECT_DIR$/assets/js/game/entities/items/weapons/Sword.js" />
-        <option value="$PROJECT_DIR$/index.html" />
         <option value="$PROJECT_DIR$/assets/js/game/utils.js" />
         <option value="$PROJECT_DIR$/assets/js/game/Game.js" />
         <option value="$PROJECT_DIR$/assets/js/game/entities/actors/Player.js" />
-        <option value="$PROJECT_DIR$/assets/js/game/entities/Entity.js" />
         <option value="$PROJECT_DIR$/assets/js/game/entities/actors/Goblin.js" />
+        <option value="$PROJECT_DIR$/assets/js/game/entities/Entity.js" />
+        <option value="$PROJECT_DIR$/index.html" />
       </list>
     </option>
   </component>
@@ -243,7 +245,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scratches" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -418,9 +419,32 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Rotten-Soup" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Rotten-Soup" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="assets" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="images" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="item-textures" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
         </subPane>
       </pane>
       <pane id="Scope" />
+      <pane id="Scratches" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -433,131 +457,18 @@
     <property name="run.code.analysis.last.selected.profile" value="pProject Default" />
   </component>
   <component name="RecentsManager">
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="C:\Users\Larken\Documents\Github\Rotten-Soup\assets\images" />
-      <recent name="C:\Users\Larken\Documents\Github\Rotten-Soup\assets\js" />
-    </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\Larken\Documents\Github\Rotten-Soup\assets\images\item-textures" />
+      <recent name="C:\Users\Larken\Documents\Github\Rotten-Soup\assets\images\sword" />
       <recent name="C:\Users\Larken\Documents\Github\Rotten-Soup\assets\js\game\entities\items\weapons" />
       <recent name="C:\Users\Larken\Documents\Github\Rotten-Soup\assets\js\game\entities\items" />
       <recent name="C:\Users\Larken\Documents\Github\Rotten-Soup\assets\js\game\entities" />
-      <recent name="C:\Users\Larken\Documents\Github\Rotten-Soup\assets\js\game\entities\actors" />
-      <recent name="C:\Users\Larken\Documents\Github\Rotten-Soup\assets\js\old" />
     </key>
-  </component>
-  <component name="RestoreUpdateTree" date="Moments ago" ActionInfo="_Update">
-    <UpdatedFiles>
-      <FILE-GROUP>
-        <option name="myUpdateName" value="Updated from server" />
-        <option name="myStatusName" value="Changed on server" />
-        <option name="mySupportsDeletion" value="false" />
-        <option name="myCanBeAbsent" value="false" />
-        <option name="myId" value="CHANGED_ON_SERVER" />
-        <FILE-GROUP>
-          <option name="myUpdateName" value="Updated" />
-          <option name="myStatusName" value="Changed" />
-          <option name="mySupportsDeletion" value="false" />
-          <option name="myCanBeAbsent" value="false" />
-          <option name="myId" value="UPDATED" />
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/assets/js/game/Game.js</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/assets/js/game/entities/Entity.js</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/assets/js/game/entities/actors/Player.js</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/assets/js/game/entities/items/weapons/Sword.js</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/index.html</PATH>
-        </FILE-GROUP>
-        <FILE-GROUP>
-          <option name="myUpdateName" value="Created" />
-          <option name="myStatusName" value="Created" />
-          <option name="mySupportsDeletion" value="false" />
-          <option name="myCanBeAbsent" value="false" />
-          <option name="myId" value="CREATED" />
-        </FILE-GROUP>
-        <FILE-GROUP>
-          <option name="myUpdateName" value="Deleted" />
-          <option name="myStatusName" value="Deleted" />
-          <option name="mySupportsDeletion" value="false" />
-          <option name="myCanBeAbsent" value="true" />
-          <option name="myId" value="REMOVED_FROM_REPOSITORY" />
-        </FILE-GROUP>
-        <FILE-GROUP>
-          <option name="myUpdateName" value="Restored" />
-          <option name="myStatusName" value="Will be restored" />
-          <option name="mySupportsDeletion" value="false" />
-          <option name="myCanBeAbsent" value="false" />
-          <option name="myId" value="RESTORED" />
-        </FILE-GROUP>
-      </FILE-GROUP>
-      <FILE-GROUP>
-        <option name="myUpdateName" value="Modified" />
-        <option name="myStatusName" value="Modified" />
-        <option name="mySupportsDeletion" value="false" />
-        <option name="myCanBeAbsent" value="false" />
-        <option name="myId" value="MODIFIED" />
-      </FILE-GROUP>
-      <FILE-GROUP>
-        <option name="myUpdateName" value="Skipped" />
-        <option name="myStatusName" value="Skipped" />
-        <option name="mySupportsDeletion" value="false" />
-        <option name="myCanBeAbsent" value="false" />
-        <option name="myId" value="SKIPPED" />
-      </FILE-GROUP>
-      <FILE-GROUP>
-        <option name="myUpdateName" value="Merged with conflicts" />
-        <option name="myStatusName" value="Will be merged with conflicts" />
-        <option name="mySupportsDeletion" value="false" />
-        <option name="myCanBeAbsent" value="false" />
-        <option name="myId" value="MERGED_WITH_CONFLICTS" />
-      </FILE-GROUP>
-      <FILE-GROUP>
-        <option name="myUpdateName" value="Merged with tree conflicts" />
-        <option name="myStatusName" value="Merged with tree conflicts" />
-        <option name="mySupportsDeletion" value="false" />
-        <option name="myCanBeAbsent" value="false" />
-        <option name="myId" value="MERGED_WITH_TREE_CONFLICT" />
-      </FILE-GROUP>
-      <FILE-GROUP>
-        <option name="myUpdateName" value="Merged with property conflicts" />
-        <option name="myStatusName" value="Will be merged with property conflicts" />
-        <option name="mySupportsDeletion" value="false" />
-        <option name="myCanBeAbsent" value="false" />
-        <option name="myId" value="MERGED_WITH_PROPERTY_CONFLICT" />
-      </FILE-GROUP>
-      <FILE-GROUP>
-        <option name="myUpdateName" value="Merged" />
-        <option name="myStatusName" value="Will be merged" />
-        <option name="mySupportsDeletion" value="false" />
-        <option name="myCanBeAbsent" value="false" />
-        <option name="myId" value="MERGED" />
-      </FILE-GROUP>
-      <FILE-GROUP>
-        <option name="myUpdateName" value="Not in repository" />
-        <option name="myStatusName" value="Not in repository" />
-        <option name="mySupportsDeletion" value="true" />
-        <option name="myCanBeAbsent" value="false" />
-        <option name="myId" value="UNKNOWN" />
-      </FILE-GROUP>
-      <FILE-GROUP>
-        <option name="myUpdateName" value="Locally added" />
-        <option name="myStatusName" value="Locally added" />
-        <option name="mySupportsDeletion" value="false" />
-        <option name="myCanBeAbsent" value="false" />
-        <option name="myId" value="LOCALLY_ADDED" />
-      </FILE-GROUP>
-      <FILE-GROUP>
-        <option name="myUpdateName" value="Locally removed" />
-        <option name="myStatusName" value="Locally removed" />
-        <option name="mySupportsDeletion" value="false" />
-        <option name="myCanBeAbsent" value="false" />
-        <option name="myId" value="LOCALLY_REMOVED" />
-      </FILE-GROUP>
-      <FILE-GROUP>
-        <option name="myUpdateName" value="Switched" />
-        <option name="myStatusName" value="Switched" />
-        <option name="mySupportsDeletion" value="false" />
-        <option name="myCanBeAbsent" value="false" />
-        <option name="myId" value="SWITCHED" />
-      </FILE-GROUP>
-    </UpdatedFiles>
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\Larken\Documents\Github\Rotten-Soup\assets\images\item-textures" />
+      <recent name="C:\Users\Larken\Documents\Github\Rotten-Soup\assets\images" />
+      <recent name="C:\Users\Larken\Documents\Github\Rotten-Soup\assets\js" />
+    </key>
   </component>
   <component name="RunDashboard">
     <option name="ruleStates">
@@ -690,7 +601,8 @@
       <workItem from="1498365006654" duration="6652000" />
       <workItem from="1498511747610" duration="3726000" />
       <workItem from="1498531454923" duration="5100000" />
-      <workItem from="1498539353861" duration="1775000" />
+      <workItem from="1498539353861" duration="2397000" />
+      <workItem from="1498611935336" duration="1488000" />
     </task>
     <task id="LOCAL-00001" summary="Added the visible FOV to the minimap. Made some really nice changes to the overworld and cleaned up minimap colors.">
       <created>1497205810247</created>
@@ -895,11 +807,18 @@
       <option name="project" value="LOCAL" />
       <updated>1498539982692</updated>
     </task>
-    <option name="localTasksCounter" value="30" />
+    <task id="LOCAL-00030" summary="Goblins have a chance to drop swords. Fixed it so they properly drop items on death">
+      <created>1498541151026</created>
+      <option name="number" value="00030" />
+      <option name="presentableId" value="LOCAL-00030" />
+      <option name="project" value="LOCAL" />
+      <updated>1498541151026</updated>
+    </task>
+    <option name="localTasksCounter" value="31" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="89576000" />
+    <option name="totallyTimeSpent" value="91686000" />
   </component>
   <component name="TodoView" selected-index="4">
     <todo-panel id="selected-file">
@@ -914,7 +833,7 @@
     <frame x="-8" y="-8" width="1936" height="1066" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.17604166" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.17604166" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3294979" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3294979" sideWeight="0.50208336" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.26987448" sideWeight="0.49791667" order="7" side_tool="false" content_ui="tabs" />
@@ -983,7 +902,8 @@
     <MESSAGE value="Fixed FOV with textures (sort of?)" />
     <MESSAGE value="Small update to map" />
     <MESSAGE value="Merged changes. Starter sword is now equipped on spawn, player is properly above entities like ladders and swords. Player levels up after kills and increases in HP and STR." />
-    <option name="LAST_COMMIT_MESSAGE" value="Merged changes. Starter sword is now equipped on spawn, player is properly above entities like ladders and swords. Player levels up after kills and increases in HP and STR." />
+    <MESSAGE value="Goblins have a chance to drop swords. Fixed it so they properly drop items on death" />
+    <option name="LAST_COMMIT_MESSAGE" value="Goblins have a chance to drop swords. Fixed it so they properly drop items on death" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -992,17 +912,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/index.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2880">
-          <caret line="160" column="13" lean-forward="false" selection-start-line="160" selection-start-column="13" selection-end-line="160" selection-end-column="13" />
-          <folding>
-            <marker date="1498539884796" expanded="false" signature="3170:3188" ph="..." />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/assets/js/game/entities/actors.js" />
     <entry file="file://$PROJECT_DIR$/assets/js/game/utils.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="270">
@@ -1034,7 +943,9 @@
         <state relative-caret-position="2880">
           <caret line="160" column="13" lean-forward="false" selection-start-line="160" selection-start-column="13" selection-end-line="160" selection-end-column="13" />
           <folding>
-            <marker date="1498539884796" expanded="false" signature="3170:3188" ph="..." />
+            <element signature="n#style#0;n#v-layout#0;n#v-flex#0;n#v-layout#4;n#v-flex#1;n#v-layout#0;n#v-container#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#img#0;n#v-layout#0;n#v-flex#0;n#v-layout#4;n#v-flex#1;n#v-layout#0;n#v-container#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <marker date="1498613416180" expanded="false" signature="3170:3188" ph="..." />
           </folding>
         </state>
       </provider>
@@ -1061,7 +972,9 @@
         <state relative-caret-position="2880">
           <caret line="160" column="13" lean-forward="false" selection-start-line="160" selection-start-column="13" selection-end-line="160" selection-end-column="13" />
           <folding>
-            <marker date="1498539884796" expanded="false" signature="3170:3188" ph="..." />
+            <element signature="n#style#0;n#v-layout#0;n#v-flex#0;n#v-layout#4;n#v-flex#1;n#v-layout#0;n#v-container#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#img#0;n#v-layout#0;n#v-flex#0;n#v-layout#4;n#v-flex#1;n#v-layout#0;n#v-container#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <marker date="1498613416180" expanded="false" signature="3170:3188" ph="..." />
           </folding>
         </state>
       </provider>
@@ -1088,7 +1001,9 @@
         <state relative-caret-position="2945">
           <caret line="155" column="41" lean-forward="false" selection-start-line="155" selection-start-column="41" selection-end-line="155" selection-end-column="41" />
           <folding>
-            <marker date="1498539884796" expanded="false" signature="3170:3188" ph="..." />
+            <element signature="n#style#0;n#v-layout#0;n#v-flex#0;n#v-layout#4;n#v-flex#1;n#v-layout#0;n#v-container#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#img#0;n#v-layout#0;n#v-flex#0;n#v-layout#4;n#v-flex#1;n#v-layout#0;n#v-container#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <marker date="1498613416180" expanded="false" signature="3170:3188" ph="..." />
           </folding>
         </state>
       </provider>
@@ -1108,7 +1023,9 @@
         <state relative-caret-position="2945">
           <caret line="155" column="41" lean-forward="true" selection-start-line="155" selection-start-column="41" selection-end-line="155" selection-end-column="41" />
           <folding>
-            <marker date="1498539884796" expanded="false" signature="3170:3188" ph="..." />
+            <element signature="n#style#0;n#v-layout#0;n#v-flex#0;n#v-layout#4;n#v-flex#1;n#v-layout#0;n#v-container#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#img#0;n#v-layout#0;n#v-flex#0;n#v-layout#4;n#v-flex#1;n#v-layout#0;n#v-container#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <marker date="1498613416180" expanded="false" signature="3170:3188" ph="..." />
           </folding>
         </state>
       </provider>
@@ -1207,29 +1124,11 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/assets/js/game/entities/items/weapons/Weapon.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="486">
-          <caret line="27" column="0" lean-forward="true" selection-start-line="27" selection-start-column="0" selection-end-line="27" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/assets/js/game/utils.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="517">
-          <caret line="127" column="86" lean-forward="true" selection-start-line="127" selection-start-column="86" selection-end-line="127" selection-end-column="86" />
+        <state relative-caret-position="2286">
+          <caret line="127" column="86" lean-forward="false" selection-start-line="127" selection-start-column="86" selection-end-line="127" selection-end-column="86" />
           <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/index.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-738">
-          <caret line="61" column="33" lean-forward="true" selection-start-line="61" selection-start-column="33" selection-end-line="61" selection-end-column="33" />
-          <folding>
-            <marker date="1498539884796" expanded="false" signature="3170:3188" ph="..." />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1243,22 +1142,10 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/assets/js/game/entities/actors/Player.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="720">
-          <caret line="45" column="0" lean-forward="true" selection-start-line="45" selection-start-column="0" selection-end-line="45" selection-end-column="0" />
+        <state relative-caret-position="774">
+          <caret line="45" column="0" lean-forward="false" selection-start-line="45" selection-start-column="0" selection-end-line="45" selection-end-column="0" />
           <folding>
             <element signature="e#0#42#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/assets/js/game/entities/Entity.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="442">
-          <caret line="224" column="40" lean-forward="false" selection-start-line="224" selection-start-column="40" selection-end-line="224" selection-end-column="40" />
-          <folding>
-            <element signature="n#!!doc" expanded="true" />
-            <element signature="e#62#224#0" expanded="false" />
-            <element signature="n#Entity#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -1269,6 +1156,48 @@
           <caret line="33" column="12" lean-forward="false" selection-start-line="33" selection-start-column="12" selection-end-line="33" selection-end-column="12" />
           <folding>
             <element signature="n#!!doc;n#Goblin#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/assets/images/item-textures/sword2.png">
+      <provider selected="true" editor-type-id="images">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/assets/images/item-textures/sword.png">
+      <provider selected="true" editor-type-id="images">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/assets/js/game/entities/items/weapons/Weapon.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="486">
+          <caret line="27" column="0" lean-forward="false" selection-start-line="27" selection-start-column="0" selection-end-line="27" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/assets/js/game/entities/Entity.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-1386">
+          <caret line="82" column="30" lean-forward="false" selection-start-line="82" selection-start-column="30" selection-end-line="82" selection-end-column="30" />
+          <folding>
+            <element signature="n#!!doc" expanded="true" />
+            <element signature="e#62#224#0" expanded="false" />
+            <element signature="n#Entity#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/index.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="152">
+          <caret line="240" column="30" lean-forward="true" selection-start-line="240" selection-start-column="30" selection-end-line="240" selection-end-column="30" />
+          <folding>
+            <element signature="n#style#0;n#v-layout#0;n#v-flex#0;n#v-layout#4;n#v-flex#1;n#v-layout#0;n#v-container#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#img#0;n#v-layout#0;n#v-flex#0;n#v-layout#4;n#v-flex#1;n#v-layout#0;n#v-container#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <marker date="1498613416180" expanded="false" signature="3170:3188" ph="..." />
           </folding>
         </state>
       </provider>

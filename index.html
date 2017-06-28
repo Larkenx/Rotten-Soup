@@ -68,12 +68,14 @@
                 <v-layout v-for="(row, index) in rows" class="inventory_row" row v-bind:key="index">
                     <v-flex class="" xs1 col v-for="(slot, i) in getInventoryRow(index)" v-bind:key="i"  v-bind:class="{selectedItem : colorSlot(slot), inventory_slot : ! colorSlot(slot)}">
                         <v-layout ripple
+                                  style="min-width: 32px; min-height: 32px;"
                                   v-on:click="slot.item.use()"
                                   v-tooltip:bottom="{html : slot.item.hoverInfo() }"
                                   v-if="slot.item !== null">
-                            <span style="margin: auto; font-size: 20px;}" v-bind:style="{color: slot.item.options.fg}" >
-                                {{slot.item.options.symbol}}
-                            </span>
+                            <!--<span style="margin: auto; font-size: 20px;}" v-bind:style="{color: slot.item.options.fg}" >-->
+                                <!--{{slot.item.options.symbol}}-->
+                                <img style="padding: 2px;" src="assets/images/item-textures/sword2.png" alt="Sword" />
+                            <!--</span>-->
                         </v-layout>
                     </v-flex>
                 </v-layout>
@@ -236,11 +238,12 @@
 
     .inventory_slot {
         margin: 2px;
-        border: 2px solid #3d3d3d;
+        border: 2px solid #4f4f4f;
+        background-color: #294646;
         border-radius: 4px;
         /*margin: 2px;*/
-        min-width: 30px;
-        min-height: 30px;
+        min-width: 40px;
+        min-height: 40px;
     }
 
     .inventory_slot:hover {
@@ -253,8 +256,8 @@
         margin: 2px;
         border: 2px solid #3d3d3d;
         border-radius: 4px;
-        min-width: 30px;
-        min-height: 30px;
+        min-width: 40px;
+        min-height: 40px;
     }
 
     .selectedItem:hover {
