@@ -28,6 +28,7 @@ data representation for all game entities using ES6 classes. I used [Vue.js](htt
 - Transitions between overworld and dungeons with persistent maps
 - Inventory system and items
 - Simple AI for Goblins and Rats
+- Graphical tiles
 
 # Future Goals
 - Distinct Regions of Overworld map
@@ -35,9 +36,9 @@ data representation for all game entities using ES6 classes. I used [Vue.js](htt
 - Abilites, ranged combat, and magic combat
 - Noise for dungeon generation
 - Unique random generation for different sections
-- Graphical tiles vs ASCII
 - Shop with items
 - Friendly NPC's
+- Ability to swap between ASCII and Graphical tiles
 - More enemy types with stronger AI and unique abilities
 
 # Contact / Feedback
