@@ -51,7 +51,7 @@
         {
          "columns":16,
          "firstgid":1,
-         "image":"tileset.png",
+         "image":"tileset-16x16.png",
          "imageheight":240,
          "imagewidth":240,
          "margin":0,

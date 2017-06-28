@@ -30,10 +30,11 @@ let Game = {
         this.playerLocation = this.map.playerLocation;
         // Set up the ROT.JS game display
         let tileSet = document.createElement("img");
-        tileSet.src = "assets/images/tileset.png";
+        tileSet.src = "assets/images/tileset-32x32.png";
+        let tileSize = 32;
         this.displayOptions = {
-            width: 38.75,
-            height: 30,
+            width: 35,
+            height: 20,
             // fontSize: 25,
             // fontFamily: '"Inconsolata", monospace',
             // fontStyle: "bold",
@@ -42,24 +43,24 @@ let Game = {
             /* Graphical Tile Options */
             layout: "tile",
             // bg: "transparent",
-            tileWidth: 16,
-            tileHeight: 16,
+            tileWidth: tileSize,
+            tileHeight: tileSize,
             tileSet: tileSet,
             tileMap: {
                 // Entities
                 "@" : [0,0],
-                "g" : [16,0],
-                "r" : [0,16*1],
-                ">" : [0,16*2], "<": [16*1, 16*2],
+                "g" : [tileSize,0],
+                "r" : [0,tileSize*1],
+                ">" : [0,tileSize*2], "<": [tileSize*1, tileSize*2],
                 // Environment
-                "~" : [16*1,16*3], "~~" : [0,16*3],
-                "=" : [16*1,16*3], "==" : [0,16*3],
-                "." : [0,16*4], ".." : [16*1,16*4],
-                "#" : [0,16*5], "##" : [16*1,16*5],
-                "T" : [0,16*6], "TT" : [16*1,16*6],
-                "," : [0,16*7], ",," : [16*1,16*7],
+                "~" : [tileSize*1,tileSize*3], "~~" : [0,tileSize*3],
+                "=" : [tileSize*1,tileSize*3], "==" : [0,tileSize*3],
+                "." : [0,tileSize*4], ".." : [tileSize*1,tileSize*4],
+                "#" : [0,tileSize*5], "##" : [tileSize*1,tileSize*5],
+                "T" : [0,tileSize*6], "TT" : [tileSize*1,tileSize*6],
+                "," : [0,tileSize*7], ",," : [tileSize*1,tileSize*7],
                 // Items
-                ")" : [0,16*8], " " : [16*1, 16*9], "  " : [16*1, 16*9]
+                ")" : [0,tileSize*8], " " : [tileSize*1, tileSize*9], "  " : [tileSize*1, tileSize*9]
              }
         };
         this.width = this.displayOptions.width;
@@ -150,7 +151,7 @@ let Game = {
             return (Game.inbounds(x, y) && Game.map.data[y][x].options.visible);
         });
 
-        fov.compute(this.player.x, this.player.y, 10, function (x, y, r, visibility) {
+        fov.compute(this.player.x, this.player.y, 7, function (x, y, r, visibility) {
             Game.map.visible_tiles[x + ',' + y] = true;
         });
 
