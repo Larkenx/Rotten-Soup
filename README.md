@@ -1,8 +1,7 @@
 # Rotten Soup
 ![screenshot](assets/images/screenshot.png)
 
-Rotten Soup is roguelike written in JavaScript with [rot.js](http://ondras.github.io/rot.js/hp/). My goal was to create a really robust
-data representation for all game entities using ES6 classes. I used [Vue.js](https://vuejs.org/) and [Vuetify](https://vuetifyjs.com/) to build a reactive UI, which made displaying game information very easy. In the [v.0.1-alpha release](https://github.com/Larkenx/Rotten-Soup/releases/tag/v.0.1-alpha) of Rotten Soup, I used bare-bones JQuery and W3CSS to update game information to the UI, but it was clunky and in desperate need of something more robust.
+Rotten Soup is roguelike written in JavaScript with [rot.js](http://ondras.github.io/rot.js/hp/). I used [Vue.js](https://vuejs.org/) and [Vuetify](https://vuetifyjs.com/) to build the UI. Throughout the summer I'll continue to release as much content as I can and see where it goes. Special thanks to DragonDePlatino and DawnBringer who created the free tileset, Dawnlike, that I use for Rotten Soup.
 
 # Controls
 - Movement is 8-directional using either the numpad or vim keys. You may also use the arrow-keys for 4-directional movement.
@@ -31,6 +30,7 @@ data representation for all game entities using ES6 classes. I used [Vue.js](htt
 - Graphical tiles
 
 # Future Goals
+- Skills 
 - Distinct Regions of Overworld map
 - Over-arching simple quest (e.g collect the 4 diamonds from the 4 regions)
 - Abilites, ranged combat, and magic combat
