@@ -2,18 +2,127 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="359ee7cd-d060-4cb9-a2ed-d128b311220f" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/assets/js/game/GameDisplay.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/assets/js/game/map/Tile.js" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/assets/images/Game.js" afterPath="$PROJECT_DIR$/assets/js/game/Game.js" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/assets/js/game/utils.js" afterPath="$PROJECT_DIR$/assets/js/game/map/Map.js" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/assets/js/jquery.min.js" afterPath="$PROJECT_DIR$/assets/js/lib/jquery.min.js" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/assets/js/rot.js" afterPath="$PROJECT_DIR$/assets/js/lib/rot.js" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/assets/js/vue.js" afterPath="$PROJECT_DIR$/assets/js/lib/vue.js" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/assets/js/vuetify.min.js" afterPath="$PROJECT_DIR$/assets/js/lib/vuetify.min.js" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/assets/sword_names.txt" afterPath="$PROJECT_DIR$/assets/js/game/entities/items/weapons/sword_names.txt" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/assets/images/DawnLike/Characters/Aquatic0.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/assets/images/DawnLike/Characters/Aquatic1.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/assets/images/DawnLike/Characters/Avian0.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/assets/images/DawnLike/Characters/Avian1.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/assets/images/DawnLike/Characters/Cat0.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/assets/images/DawnLike/Characters/Cat1.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/assets/images/DawnLike/Characters/Demon0.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/assets/images/DawnLike/Characters/Demon1.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/assets/images/DawnLike/Characters/Dog0.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/assets/images/DawnLike/Characters/Dog1.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/assets/images/DawnLike/Characters/Elemental0.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/assets/images/DawnLike/Characters/Elemental1.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/assets/images/DawnLike/Characters/Humanoid0.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/assets/images/DawnLike/Characters/Humanoid1.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/assets/images/DawnLike/Characters/Misc0.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/assets/images/DawnLike/Characters/Misc1.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/assets/images/DawnLike/Characters/Pest0.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/assets/images/DawnLike/Characters/Pest1.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/assets/images/DawnLike/Characters/Plant0.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/assets/images/DawnLike/Characters/Plant1.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/assets/images/DawnLike/Characters/Player0.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/assets/images/DawnLike/Characters/Player1.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/assets/images/DawnLike/Characters/Quadraped0.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/assets/images/DawnLike/Characters/Quadraped1.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/assets/images/DawnLike/Characters/Reptile0.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/assets/images/DawnLike/Characters/Reptile1.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/assets/images/DawnLike/Characters/Rodent0.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/assets/images/DawnLike/Characters/Rodent1.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/assets/images/DawnLike/Characters/Slime0.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/assets/images/DawnLike/Characters/Slime1.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/assets/images/DawnLike/Characters/Undead0.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/assets/images/DawnLike/Characters/Undead1.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/assets/images/DawnLike/Commissions/Engineer Clothes.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/assets/images/DawnLike/Commissions/Engineer.ase" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/assets/images/DawnLike/Commissions/Engineer.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/assets/images/DawnLike/Commissions/Icons.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/assets/images/DawnLike/Commissions/Mage Clothes.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/assets/images/DawnLike/Commissions/Mage.ase" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/assets/images/DawnLike/Commissions/Mage.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/assets/images/DawnLike/Commissions/Paladin Clothes.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/assets/images/DawnLike/Commissions/Paladin.ase" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/assets/images/DawnLike/Commissions/Paladin.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/assets/images/DawnLike/Commissions/Rogue Clothes.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/assets/images/DawnLike/Commissions/Rogue.ase" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/assets/images/DawnLike/Commissions/Rogue.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/assets/images/DawnLike/Commissions/Template.ase" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/assets/images/DawnLike/Commissions/Template.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/assets/images/DawnLike/Commissions/Warrior Clothes Back.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/assets/images/DawnLike/Commissions/Warrior Clothes.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/assets/images/DawnLike/Commissions/Warrior.ase" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/assets/images/DawnLike/Commissions/Warrior.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/assets/images/DawnLike/Examples/Dungeon.gif" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/assets/images/DawnLike/Examples/Ideas.gif" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/assets/images/DawnLike/Examples/Logo.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/assets/images/DawnLike/Examples/Mine.gif" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/assets/images/DawnLike/Examples/Town.gif" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/assets/images/DawnLike/Examples/Underworld.gif" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/assets/images/DawnLike/GUI/GUI0.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/assets/images/DawnLike/GUI/GUI1.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/assets/images/DawnLike/GUI/SDS_6x6.ttf" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/assets/images/DawnLike/GUI/SDS_8x8.ttf" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/assets/images/DawnLike/Items/Ammo.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/assets/images/DawnLike/Items/Amulet.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/assets/images/DawnLike/Items/Armor.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/assets/images/DawnLike/Items/Book.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/assets/images/DawnLike/Items/Boot.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/assets/images/DawnLike/Items/Chest0.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/assets/images/DawnLike/Items/Chest1.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/assets/images/DawnLike/Items/Flesh.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/assets/images/DawnLike/Items/Food.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/assets/images/DawnLike/Items/Glove.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/assets/images/DawnLike/Items/Hat.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/assets/images/DawnLike/Items/Key.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/assets/images/DawnLike/Items/Light.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/assets/images/DawnLike/Items/LongWep.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/assets/images/DawnLike/Items/MedWep.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/assets/images/DawnLike/Items/Money.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/assets/images/DawnLike/Items/Music.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/assets/images/DawnLike/Items/Potion.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/assets/images/DawnLike/Items/Ring.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/assets/images/DawnLike/Items/Rock.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/assets/images/DawnLike/Items/Scroll.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/assets/images/DawnLike/Items/Shield.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/assets/images/DawnLike/Items/ShortWep.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/assets/images/DawnLike/Items/Tool.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/assets/images/DawnLike/Items/Wand.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/assets/images/DawnLike/Objects/Decor0.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/assets/images/DawnLike/Objects/Decor1.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/assets/images/DawnLike/Objects/Door0.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/assets/images/DawnLike/Objects/Door1.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/assets/images/DawnLike/Objects/Effect0.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/assets/images/DawnLike/Objects/Effect1.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/assets/images/DawnLike/Objects/Fence.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/assets/images/DawnLike/Objects/Floor.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/assets/images/DawnLike/Objects/Ground0.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/assets/images/DawnLike/Objects/Ground1.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/assets/images/DawnLike/Objects/Hill0.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/assets/images/DawnLike/Objects/Hill1.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/assets/images/DawnLike/Objects/Map0.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/assets/images/DawnLike/Objects/Map1.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/assets/images/DawnLike/Objects/Ore0.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/assets/images/DawnLike/Objects/Ore1.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/assets/images/DawnLike/Objects/Pit0.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/assets/images/DawnLike/Objects/Pit1.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/assets/images/DawnLike/Objects/Tile.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/assets/images/DawnLike/Objects/Trap0.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/assets/images/DawnLike/Objects/Trap1.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/assets/images/DawnLike/Objects/Tree0.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/assets/images/DawnLike/Objects/Tree1.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/assets/images/DawnLike/Objects/Wall.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/assets/images/DawnLike/Examples/Blank.tmx" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/assets/images/DawnLike/Examples/Decor0.json" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/assets/images/DawnLike/Examples/Dungeon.tmx" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/assets/images/DawnLike/Examples/Logo.tmx" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/assets/images/DawnLike/Examples/Mine.tmx" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/assets/images/DawnLike/Examples/Town.tmx" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/assets/images/DawnLike/Examples/Underworld.tmx" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/assets/images/DawnLike/README.txt" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/assets/maps/expanded_start_graphical.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/maps/expanded_start.js" afterPath="$PROJECT_DIR$/assets/maps/expanded_start.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/index.html" afterPath="$PROJECT_DIR$/index.html" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -34,7 +143,7 @@
       <file leaf-file-name="Game.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/assets/js/game/Game.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-144">
+            <state relative-caret-position="72">
               <caret line="6" column="4" lean-forward="false" selection-start-line="6" selection-start-column="4" selection-end-line="6" selection-end-column="4" />
               <folding>
                 <element signature="e#24#93#0" expanded="false" />
@@ -83,24 +192,26 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Decor0.json" pinned="false" current-in-tab="true">
-        <entry file="file://$USER_HOME$/Desktop/DawnLike/Examples/Decor0.json">
+      <file leaf-file-name="index.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/index.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="0">
-              <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-              <folding />
+            <state relative-caret-position="378">
+              <caret line="21" column="34" lean-forward="false" selection-start-line="21" selection-start-column="34" selection-end-line="21" selection-end-column="34" />
+              <folding>
+                <element signature="n#style#0;n#v-layout#0;n#v-flex#0;n#v-layout#4;n#v-flex#1;n#v-layout#0;n#v-container#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#img#0;n#v-layout#0;n#v-flex#0;n#v-layout#4;n#v-flex#1;n#v-layout#0;n#v-container#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+                <marker date="1498770714240" expanded="false" signature="3213:3231" ph="..." />
+              </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Tile.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/assets/js/game/map/Tile.js">
+      <file leaf-file-name="Dungeon.js" pinned="false" current-in-tab="true">
+        <entry file="file://$USER_HOME$/Desktop/DawnLike/Examples/Dungeon.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="504">
-              <caret line="30" column="5" lean-forward="true" selection-start-line="30" selection-start-column="5" selection-end-line="30" selection-end-column="5" />
-              <folding>
-                <element signature="n#!!doc;n#Tile#0" expanded="false" />
-              </folding>
+            <state relative-caret-position="0">
+              <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -147,6 +258,7 @@
     </replaceStrings>
   </component>
   <component name="Git.Settings">
+    <option name="UPDATE_TYPE" value="REBASE" />
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="IdeDocumentHistory">
@@ -186,8 +298,8 @@
         <option value="$PROJECT_DIR$/assets/js/game/Tile.js" />
         <option value="$PROJECT_DIR$/assets/js/game/Map.js" />
         <option value="$PROJECT_DIR$/assets/js/game/utils.js" />
-        <option value="$PROJECT_DIR$/index.html" />
         <option value="$PROJECT_DIR$/assets/maps/expanded_start.js" />
+        <option value="$PROJECT_DIR$/index.html" />
       </list>
     </option>
   </component>
@@ -375,6 +487,54 @@
               <option name="myItemId" value="assets" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="images" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="DawnLike" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Rotten-Soup" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Rotten-Soup" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="assets" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="images" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="DawnLike" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Examples" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Rotten-Soup" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Rotten-Soup" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="assets" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
           </PATH>
         </subPane>
       </pane>
@@ -383,7 +543,7 @@
   </component>
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$USER_HOME$/Desktop/DawnLike/Examples/Decor0.json" />
+    <property name="last_opened_file_path" value="$USER_HOME$/Desktop/DawnLike/Examples/Dungeon.js" />
     <property name="HbShouldOpenHtmlAsHb" value="" />
     <property name="settings.editor.selected.configurable" value="preferences.keymap" />
     <property name="JavaScriptPreferStrict" value="false" />
@@ -541,7 +701,7 @@
       <workItem from="1498531454923" duration="5100000" />
       <workItem from="1498539353861" duration="2397000" />
       <workItem from="1498611935336" duration="8633000" />
-      <workItem from="1498696343976" duration="3007000" />
+      <workItem from="1498696343976" duration="4169000" />
     </task>
     <task id="LOCAL-00001" summary="Added the visible FOV to the minimap. Made some really nice changes to the overworld and cleaned up minimap colors.">
       <created>1497205810247</created>
@@ -802,11 +962,18 @@
       <option name="project" value="LOCAL" />
       <updated>1498625196914</updated>
     </task>
-    <option name="localTasksCounter" value="38" />
+    <task id="LOCAL-00038" summary="Restructured classes into separate files">
+      <created>1498770582733</created>
+      <option name="number" value="00038" />
+      <option name="presentableId" value="LOCAL-00038" />
+      <option name="project" value="LOCAL" />
+      <updated>1498770582733</updated>
+    </task>
+    <option name="localTasksCounter" value="39" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="101838000" />
+    <option name="totallyTimeSpent" value="103000000" />
   </component>
   <component name="TodoView" selected-index="4">
     <todo-panel id="selected-file">
@@ -867,7 +1034,6 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Working on items and changing the inheritance for actors" />
     <MESSAGE value="Added sword, weapon, item, entity classes. Made some sword objects and made every goblin drop one on death. Introduced new bug that makes invincible goblins if attacked over a sword...? Introduced unicode characters (testing)" />
     <MESSAGE value="Squashed the bug with undying/undamaging goblins. Weird problem with JS array pop method vs shift" />
     <MESSAGE value="Quick fix to the map" />
@@ -892,7 +1058,8 @@
     <MESSAGE value="Added credit for pixel artists" />
     <MESSAGE value="Changed textures to 32x32. Looks a lot better?" />
     <MESSAGE value="Added animation!!" />
-    <option name="LAST_COMMIT_MESSAGE" value="Added animation!!" />
+    <MESSAGE value="Restructured classes into separate files" />
+    <option name="LAST_COMMIT_MESSAGE" value="Restructured classes into separate files" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -901,121 +1068,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/assets/js/game/entities/actors.js" />
-    <entry file="file://$PROJECT_DIR$/assets/js/game/Game.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="361">
-          <caret line="19" column="23" lean-forward="false" selection-start-line="19" selection-start-column="23" selection-end-line="19" selection-end-column="23" />
-          <folding>
-            <element signature="e#24#93#0" expanded="false" />
-            <element signature="e#4233#4294#0" expanded="false" />
-            <element signature="e#4332#4999#0" expanded="false" />
-            <element signature="e#4626#4885#0" expanded="false" />
-            <element signature="e#4798#4875#0" expanded="false" />
-            <element signature="e#5037#5290#0" expanded="false" />
-            <element signature="e#5047#5093#0" expanded="false" />
-            <element signature="e#5133#5254#0" expanded="false" />
-            <element signature="e#5327#5784#0" expanded="false" />
-            <element signature="e#5357#5595#0" expanded="false" />
-            <element signature="e#5704#5771#0" expanded="false" />
-            <element signature="e#5817#5905#0" expanded="false" />
-            <element signature="e#5946#6763#0" expanded="false" />
-            <element signature="e#6093#6123#0" expanded="false" />
-            <element signature="e#6796#8681#0" expanded="false" />
-            <element signature="e#8719#10605#0" expanded="false" />
-            <element signature="e#8905#8926#0" expanded="false" />
-            <element signature="e#8994#9086#0" expanded="false" />
-            <element signature="e#9175#9242#0" expanded="false" />
-            <element signature="e#9267#9519#0" expanded="false" />
-            <element signature="e#9906#10007#0" expanded="false" />
-            <element signature="e#10197#10599#0" expanded="false" />
-            <element signature="e#10263#10551#0" expanded="false" />
-            <element signature="e#10382#10458#0" expanded="false" />
-            <element signature="e#10464#10537#0" expanded="false" />
-            <element signature="e#10896#11166#0" expanded="false" />
-            <element signature="e#11205#11284#0" expanded="false" />
-            <element signature="e#11938#12289#0" expanded="false" />
-            <element signature="e#11993#12189#0" expanded="false" />
-            <element signature="e#12043#12179#0" expanded="false" />
-            <element signature="e#12330#12419#0" expanded="false" />
-            <element signature="e#12451#13712#0" expanded="false" />
-            <element signature="e#12484#12988#0" expanded="false" />
-            <element signature="e#12540#12978#0" expanded="false" />
-            <element signature="e#12599#12964#0" expanded="false" />
-            <element signature="e#12994#13576#0" expanded="false" />
-            <element signature="e#13050#13566#0" expanded="false" />
-            <element signature="e#13109#13552#0" expanded="false" />
-            <element signature="e#13236#13367#0" expanded="false" />
-            <element signature="e#13423#13534#0" expanded="false" />
-            <element signature="e#13751#13921#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/index.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2945">
-          <caret line="155" column="41" lean-forward="false" selection-start-line="155" selection-start-column="41" selection-end-line="155" selection-end-column="41" />
-          <folding>
-            <element signature="n#style#0;n#v-layout#0;n#v-flex#0;n#v-layout#4;n#v-flex#1;n#v-layout#0;n#v-container#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#img#0;n#v-layout#0;n#v-flex#0;n#v-layout#4;n#v-flex#1;n#v-layout#0;n#v-container#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <marker date="1498696716438" expanded="false" signature="3213:3231" ph="..." />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/assets/js/old/rot.js" />
-    <entry file="file://$PROJECT_DIR$/assets/js/game/entities/actors.js" />
-    <entry file="file://$PROJECT_DIR$/assets/js/game/Game.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="361">
-          <caret line="19" column="23" lean-forward="false" selection-start-line="19" selection-start-column="23" selection-end-line="19" selection-end-column="23" />
-          <folding>
-            <element signature="e#24#93#0" expanded="false" />
-            <element signature="e#4233#4294#0" expanded="false" />
-            <element signature="e#4332#4999#0" expanded="false" />
-            <element signature="e#4626#4885#0" expanded="false" />
-            <element signature="e#4798#4875#0" expanded="false" />
-            <element signature="e#5037#5290#0" expanded="false" />
-            <element signature="e#5047#5093#0" expanded="false" />
-            <element signature="e#5133#5254#0" expanded="false" />
-            <element signature="e#5327#5784#0" expanded="false" />
-            <element signature="e#5357#5595#0" expanded="false" />
-            <element signature="e#5704#5771#0" expanded="false" />
-            <element signature="e#5817#5905#0" expanded="false" />
-            <element signature="e#5946#6763#0" expanded="false" />
-            <element signature="e#6093#6123#0" expanded="false" />
-            <element signature="e#6796#8681#0" expanded="false" />
-            <element signature="e#8719#10605#0" expanded="false" />
-            <element signature="e#8905#8926#0" expanded="false" />
-            <element signature="e#8994#9086#0" expanded="false" />
-            <element signature="e#9175#9242#0" expanded="false" />
-            <element signature="e#9267#9519#0" expanded="false" />
-            <element signature="e#9906#10007#0" expanded="false" />
-            <element signature="e#10197#10599#0" expanded="false" />
-            <element signature="e#10263#10551#0" expanded="false" />
-            <element signature="e#10382#10458#0" expanded="false" />
-            <element signature="e#10464#10537#0" expanded="false" />
-            <element signature="e#10896#11166#0" expanded="false" />
-            <element signature="e#11205#11284#0" expanded="false" />
-            <element signature="e#11938#12289#0" expanded="false" />
-            <element signature="e#11993#12189#0" expanded="false" />
-            <element signature="e#12043#12179#0" expanded="false" />
-            <element signature="e#12330#12419#0" expanded="false" />
-            <element signature="e#12451#13712#0" expanded="false" />
-            <element signature="e#12484#12988#0" expanded="false" />
-            <element signature="e#12540#12978#0" expanded="false" />
-            <element signature="e#12599#12964#0" expanded="false" />
-            <element signature="e#12994#13576#0" expanded="false" />
-            <element signature="e#13050#13566#0" expanded="false" />
-            <element signature="e#13109#13552#0" expanded="false" />
-            <element signature="e#13236#13367#0" expanded="false" />
-            <element signature="e#13423#13534#0" expanded="false" />
-            <element signature="e#13751#13921#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/index.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="2945">
@@ -1023,7 +1075,7 @@
           <folding>
             <element signature="n#style#0;n#v-layout#0;n#v-flex#0;n#v-layout#4;n#v-flex#1;n#v-layout#0;n#v-container#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#img#0;n#v-layout#0;n#v-flex#0;n#v-layout#4;n#v-flex#1;n#v-layout#0;n#v-container#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <marker date="1498696716438" expanded="false" signature="3213:3231" ph="..." />
+            <marker date="1498770714240" expanded="false" signature="3213:3231" ph="..." />
           </folding>
         </state>
       </provider>
@@ -1147,7 +1199,7 @@
         <state relative-caret-position="-1386">
           <caret line="82" column="30" lean-forward="false" selection-start-line="82" selection-start-column="30" selection-end-line="82" selection-end-column="30" />
           <folding>
-            <element signature="n#!!doc" expanded="true" />
+            <element signature="n#!!doc" expanded="false" />
             <element signature="e#62#224#0" expanded="false" />
             <element signature="n#Entity#0" expanded="false" />
           </folding>
@@ -1172,11 +1224,6 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/dev.html" />
     <entry file="file://$PROJECT_DIR$/assets/js/game/DevGame.js" />
-    <entry file="file://$PROJECT_DIR$/assets/images/tileset-animated.png">
-      <provider selected="true" editor-type-id="images">
-        <state />
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/assets/js/game/map/Map.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="432">
@@ -1201,7 +1248,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/assets/maps/expanded_start.js">
+    <entry file="file://$PROJECT_DIR$/assets/maps/expanded_start_graphical.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="288">
           <caret line="49" column="13" lean-forward="true" selection-start-line="49" selection-start-column="13" selection-end-line="49" selection-end-column="13" />
@@ -1219,18 +1266,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/index.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="108">
-          <caret line="6" column="19" lean-forward="false" selection-start-line="6" selection-start-column="19" selection-end-line="6" selection-end-column="19" />
-          <folding>
-            <element signature="n#style#0;n#v-layout#0;n#v-flex#0;n#v-layout#4;n#v-flex#1;n#v-layout#0;n#v-container#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#img#0;n#v-layout#0;n#v-flex#0;n#v-layout#4;n#v-flex#1;n#v-layout#0;n#v-container#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <marker date="1498696716438" expanded="false" signature="3213:3231" ph="..." />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/assets/js/game/map/Tile.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="504">
@@ -1241,9 +1276,32 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$USER_HOME$/Desktop/DawnLike/Examples/Decor0.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="198">
+          <caret line="11" column="1" lean-forward="true" selection-start-line="11" selection-start-column="1" selection-end-line="11" selection-end-column="1" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/assets/maps/expanded_start.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="575">
+          <caret line="57" column="16" lean-forward="false" selection-start-line="57" selection-start-column="16" selection-end-line="57" selection-end-column="16" />
+          <folding>
+            <element signature="e#0#42#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/assets/images/tileset-animated.png">
+      <provider selected="true" editor-type-id="images">
+        <state />
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/assets/js/game/Game.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-144">
+        <state relative-caret-position="72">
           <caret line="6" column="4" lean-forward="false" selection-start-line="6" selection-start-column="4" selection-end-line="6" selection-end-column="4" />
           <folding>
             <element signature="e#24#93#0" expanded="false" />
@@ -1291,7 +1349,42 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$USER_HOME$/Desktop/DawnLike/Examples/Decor0.json">
+    <entry file="file://$PROJECT_DIR$/assets/images/DawnLike/GUI/GUI1.png">
+      <provider selected="true" editor-type-id="images">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/assets/images/DawnLike/GUI/GUI0.png">
+      <provider selected="true" editor-type-id="images">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/assets/images/DawnLike/Examples/Decor0.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/assets/images/DawnLike/Examples/Dungeon.gif">
+      <provider selected="true" editor-type-id="images">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/index.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="378">
+          <caret line="21" column="34" lean-forward="false" selection-start-line="21" selection-start-column="34" selection-end-line="21" selection-end-column="34" />
+          <folding>
+            <element signature="n#style#0;n#v-layout#0;n#v-flex#0;n#v-layout#4;n#v-flex#1;n#v-layout#0;n#v-container#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#img#0;n#v-layout#0;n#v-flex#0;n#v-layout#4;n#v-flex#1;n#v-layout#0;n#v-container#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <marker date="1498770714240" expanded="false" signature="3213:3231" ph="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/Desktop/DawnLike/Examples/Dungeon.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
