@@ -257,7 +257,7 @@ let Game = {
 
     drawDimTile: function (x, y, tile) {
         let todraw = tile.symbol + tile.symbol;
-        if (animated.includes(tile.symbol) && this.turn % 2 == 0) {
+        if (animated.includes(tile.symbol) && this.turn % 2 === 0) {
             todraw += "a";
         }
         Game.display.draw(x, y, todraw);
@@ -285,7 +285,7 @@ let Game = {
         }
         for (let i = 0; i < symbols.length; i++) {
             let symbol = symbols[i];
-            if (animated.includes(symbol) && this.turn % 2 == 0) {
+            if (animated.includes(symbol) && this.turn % 2 === 0) {
                 symbols[i] += "a";
             }
         }

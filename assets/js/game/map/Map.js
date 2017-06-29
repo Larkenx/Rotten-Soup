@@ -44,46 +44,9 @@ function actorCreator(symbol, x, y) {
     }
 }
 
-/* This is a random dungeon map generator. It essentially generates identical
- * JSON data to that of a TILED map, with the unnecessary properties left out */
-function randomMap(width, height) {
-    // Generate a width by height sized generated map
-    let rogueMap = new ROT.Map.Rogue(width, height).create();
-    let map = {};
-    map.width = width;
-    map.height = height;
-    map.layers = [{"data": []}, {"data": []}, {"data": []}];
-    map.revealed = false;
-    let freeCells = [];
-    // Initialize obstacles and actors
-    for (let j = 0; j < height; j++) {
-        map.layers[0].data.push([]);
-        map.layers[1].data.push([]);
-        map.layers[2].data.push([]);
-        for (let i = 0; i < width; i++) {
-            if (rogueMap.map[j][i]) {
-                map.layers[0].data[j].push(36);
-            } else {
-                map.layers[0].data[j].push(47);
-                freeCells.push({x: i, y: j});
-            }
-            map.layers[1].data[j].push(0);
-            map.layers[2].data[j].push(0);
-        }
-    }
-
-    // Randomly select starting position for player
-    let start = freeCells[Math.floor(Math.random() * freeCells.length)];
-    map.layers[1].data[start.y][start.x] = 65; // set random spot to be the player
-    map.layers[2].data[start.y][start.x] = 61; // place a ladder going back up a level underneath the player.
-
-    // Flatten the layers to mimic Tiled map data
-    map.layers[0].data = flatten(map.layers[0].data);
-    map.layers[1].data = flatten(map.layers[1].data);
-    map.layers[2].data = flatten(map.layers[2].data);
-    return map;
-}
-
+/**
+ * Created by Larken on 6/28/2017.
+ */
 class Map {
     constructor(json) {
         if (!json) throw "Bad map creation";
@@ -175,43 +138,42 @@ class Map {
 
 }
 
-class Tile {
-    constructor(x, y, id) {
-        let symbol = id === 0 ? String.fromCharCode(32) : String.fromCharCode(id - 1);
-        this.options = environment[symbol];
-        this.symbol = this.options.symbol;
-        this.actors = [];
-        this.x = x;
-        this.y = y;
-    }
-
-    /* Indicates whether or not a tile is blocked; however, this excludes the player
-     * for AI purposes. */
-    blocked() {
-        if (this.options.blocked) return true;
-        for (let actor of this.actors) {
-            if (actor.options.blocked && actor !== Game.player)
-                return true;
-        }
-        return false;
-    }
-
-    removeActor(a) {
-        for (let i = 0; i < this.actors.length; i++) {
-            if (this.actors[i] === a) {
-                this.actors.splice(i, 1);
+/* This is a random dungeon map generator. It essentially generates identical
+ * JSON data to that of a TILED map, with the unnecessary properties left out */
+function randomMap(width, height) {
+    // Generate a width by height sized generated map
+    let rogueMap = new ROT.Map.Rogue(width, height).create();
+    let map = {};
+    map.width = width;
+    map.height = height;
+    map.layers = [{"data": []}, {"data": []}, {"data": []}];
+    map.revealed = false;
+    let freeCells = [];
+    // Initialize obstacles and actors
+    for (let j = 0; j < height; j++) {
+        map.layers[0].data.push([]);
+        map.layers[1].data.push([]);
+        map.layers[2].data.push([]);
+        for (let i = 0; i < width; i++) {
+            if (rogueMap.map[j][i]) {
+                map.layers[0].data[j].push(36);
+            } else {
+                map.layers[0].data[j].push(47);
+                freeCells.push({x: i, y: j});
             }
+            map.layers[1].data[j].push(0);
+            map.layers[2].data[j].push(0);
         }
     }
+
+    // Randomly select starting position for player
+    let start = freeCells[Math.floor(Math.random() * freeCells.length)];
+    map.layers[1].data[start.y][start.x] = 65; // set random spot to be the player
+    map.layers[2].data[start.y][start.x] = 61; // place a ladder going back up a level underneath the player.
+
+    // Flatten the layers to mimic Tiled map data
+    map.layers[0].data = flatten(map.layers[0].data);
+    map.layers[1].data = flatten(map.layers[1].data);
+    map.layers[2].data = flatten(map.layers[2].data);
+    return map;
 }
-
-class GameDisplay {
-    constructor() {}
-
-    act() {
-        Game.engine.lock();
-        Game.updateDisplay();
-        Game.engine.unlock();
-    }
-}
-
