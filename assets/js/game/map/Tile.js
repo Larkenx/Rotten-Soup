@@ -1,14 +1,43 @@
 /**
  * Created by Larken on 6/28/2017.
  */
+
+function getTileInfo(id) {
+    /*
+    "FOV": boolean,
+    "FOV_id": int,
+    "animated": boolean,
+    "animated_id": int,
+    "bg": color,
+    "blocked":boolean,
+    "blocks_vision": boolean,
+    "entity": boolean,
+    */
+    return tileset.tileproperties[id];
+}
+
+function getTilesetCoords(id) {
+    let tileWidth = tileset.tilewidth;
+    let tileHeight = tileset.tileheight;
+
+    let cols = tileset.columns;
+    let x = (id % cols) * tileHeight;
+    let y = (id % cols) * tileWidth;
+    return [y,x];
+}
+
 class Tile {
     constructor(x, y, id) {
-        let symbol = id === 0 ? String.fromCharCode(32) : String.fromCharCode(id - 1);
-        this.options = environment[symbol];
-        this.symbol = this.options.symbol;
-        this.actors = [];
         this.x = x;
         this.y = y;
+        this.options = getTileInfo(id);
+        this.obstacles = [id];
+        this.actors = [];
+    }
+
+    updateTileInfo(id) {
+        this.options = getTileInfo(id);
+        this.obstacles.push(id); // add to the end of the obstacles to be drawn on top
     }
 
     /* Indicates whether or not a tile is blocked; however, this excludes the player

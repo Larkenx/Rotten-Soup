@@ -19,7 +19,12 @@
     <!-- Game, Utilities, and Map -->
     <script src="assets/js/game/map/Map.js"></script>
     <script src="assets/js/game/map/Tile.js"></script>
+    <!--  Tileset -->
+    <!-- <script src="assets/maps/tileset/compiled_dawnlike.js"></script> -->
+    <!--  New Map -->
+    <!-- <script src="assets/maps/map_file/overworld.js"></script> -->
     <script src="assets/maps/expanded_start.js"></script>
+    <!-- Load the game and its class to display to screen -->
     <script src="assets/js/game/GameDisplay.js"></script>
     <script src="assets/js/game/Game.js"></script>
     <!-- Vue -->
@@ -185,6 +190,8 @@
         created () {
             Game.init();
             this.player = Game.player;
+            // var ctx = $("canvas")[0].getContext("2d")
+            // ctx.scale(.5,.5)
         },
         mounted () {
             $('#game_container').html(Game.display.getContainer());
