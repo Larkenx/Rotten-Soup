@@ -1,6 +1,3 @@
-/**
- * Created by Larken on 6/29/2017.
- */
 (function(name,data){
     if(typeof onTileMapLoaded === 'undefined') {
         if(typeof TileMaps === 'undefined') TileMaps = {};
