@@ -2,7 +2,18 @@ if (!ROT.isSupported()) {
     alert("The rot.js library isn't supported by your browser.");
 }
 
-let animated = ["g", "r", "@", "~", "=", "~~", "=="];
+function getTilesetCoords(id) {
+    let tileWidth = tileset.tilewidth;
+    let tileHeight = tileset.tileheight;
+    let cols = tileset.columns;
+    let rowNumber = Math.floor(id / cols) * tileHeight;
+    let colNumber = (id % cols) * tileHeight;
+    return [colNumber, rowNumber];
+}
+
+$.getJSON("assets/maps/tileset/compiled_dawnlike.json", function(data) {
+   const tileset = data;
+});
 
 let Game = {
     overview: null,
@@ -12,11 +23,12 @@ let Game = {
     console: null,
     player: null,
     playerLocation: null,
+    playerID : null,
     scheduler: null,
     turn : 0,
     engine: null,
     levels: {},
-    currentLevel: "expanded_start",
+    currentLevel: "overworld",
     map: null,
     message_history: [],
     minimap: null,
@@ -27,27 +39,38 @@ let Game = {
         this.map.revealed = true;
         this.levels["overworld"] = new Map(TileMaps["overworld"]);
         this.playerLocation = this.map.playerLocation;
+        this.playerID = this.map.playerID;
 
         // Set up the ROT.JS game display
         let tileSet = document.createElement("img");
-        tileSet.src = "assets/images/compiled_tileset.png";
+        tileSet.src = "assets/images/DawnLike/Compiled/compiled_tileset.png";
         let tileSize = 16;
+        let tileMap = {};
+        for (let id of this.map.loadedIDS) {
+            let properties = tileset.tileproperties[id];
+            tileMap[id.toString()] = getTilesetCoords(id);
+            if (properties.FOV)
+                tileMap[properties.FOV_id] = getTilesetCoords(properties.FOV_id);
+            if (properties.animated)
+                tileMap[properties.animated_id] = getTilesetCoords(properties.animated_id);
+            if (properties.animated && properties.FOV)
+                tileMap[properties.animated_fov_id] = getTilesetCoords(properties.animated_fov_id);
+        }
         this.displayOptions = {
             width: 35,
             height: 20,
             forceSquareRatio: true,
             layout: "tile",
+            // bg: "transparent",
             tileWidth: tileSize,
             tileHeight: tileSize,
             tileSet: tileSet,
-            tileMap: {
-                // assign tile ID's to tile locations
-             }
+            tileMap: tileMap,
         };
         this.width = this.displayOptions.width;
         this.height = this.displayOptions.height;
         this.display = new ROT.Display(this.displayOptions);
-        this.player = new Player(this.playerLocation[0], this.playerLocation[1]);
+        this.player = new Player(this.playerLocation[0], this.playerLocation[1], this.playerID);
         this.map.actors.push(this.player); // add to the list of all actors
         this.map.data[this.playerLocation[1]][this.playerLocation[0]].actors.push(this.player); // also push to the tiles' actors
         this.scheduleAllActors();
@@ -56,8 +79,9 @@ let Game = {
         this.engine.start(); // Start the engine
         tileSet.onload = function() {
             Game.drawViewPort();
-            this.log("Welcome to Rotten Soup", "information");
-        }
+            Game.drawMiniMap();
+        };
+        this.log("Welcome to Rotten Soup", "information");
     },
 
     refreshDisplay() {
@@ -127,82 +151,61 @@ let Game = {
     },
 
     drawViewPort: function () {
-        // Clear the last visible tiles that were available to be seen
-        Object.assign(this.map.seen_tiles, this.map.visible_tiles);
-        this.map.visible_tiles = {};
-        /* FOV Computation */
-        let fov = new ROT.FOV.PreciseShadowcasting(function (x, y) {
-            return (Game.inbounds(x, y) && Game.map.data[y][x].options.visible);
-        });
+        try {
+            // Clear the last visible tiles that were available to be seen
+            Object.assign(this.map.seen_tiles, this.map.visible_tiles);
+            this.map.visible_tiles = {};
+            /* FOV Computation */
+            let fov = new ROT.FOV.PreciseShadowcasting(function (x, y) {
+                return (Game.inbounds(x, y) && Game.map.data[y][x].visible());
+            });
 
-        fov.compute(this.player.x, this.player.y, 7, function (x, y, r, visibility) {
-            Game.map.visible_tiles[x + ',' + y] = true;
-        });
+            fov.compute(this.player.x, this.player.y, 7, function (x, y, r, visibility) {
+                Game.map.visible_tiles[x + ',' + y] = true;
+            });
 
-        let camera = { // camera x,y resides in the upper left corner
-            x: this.player.x - Math.floor(Game.width / 2),
-            y: this.player.y - Math.floor(Game.height / 2),
-            width: Math.ceil(Game.width),
-            height: Game.height,
-        };
-        let startingPos = [camera.x, camera.y];
-        if (camera.x < 0) // far left
-            startingPos[0] = 0;
-        if (camera.x + camera.width > Game.map.width) // far right
-            startingPos[0] = Game.map.width - camera.width;
-        if (camera.y <= 0) // at the top of the map
-            startingPos[1] = 0;
-        if (camera.y + camera.height > Game.map.height) { // at the bottom of the map
-            startingPos[1] = Game.map.height - camera.height;
-        }
-        let endingPos = [startingPos[0] + camera.width, startingPos[1] + camera.height];
-        let dx = 0;
-        let dy = 0;
-        for (let x = startingPos[0]; x < endingPos[0]; x++) {
-            for (let y = startingPos[1]; y < endingPos[1]; y++) {
-                let tile = this.map.data[y][x];
-                if (tile.x + "," + tile.y in this.map.visible_tiles) {
-                    this.drawFirstActor(dx, dy++, tile);
-                } else {
-                    this.drawDimTile(dx, dy++, tile);
+            let camera = { // camera x,y resides in the upper left corner
+                x: this.player.x - Math.floor(Game.width / 2),
+                y: this.player.y - Math.floor(Game.height / 2),
+                width: Math.ceil(Game.width),
+                height: Game.height,
+            };
+            let startingPos = [camera.x, camera.y];
+            if (camera.x < 0) // far left
+                startingPos[0] = 0;
+            if (camera.x + camera.width > Game.map.width) // far right
+                startingPos[0] = Game.map.width - camera.width;
+            if (camera.y <= 0) // at the top of the map
+                startingPos[1] = 0;
+            if (camera.y + camera.height > Game.map.height) { // at the bottom of the map
+                startingPos[1] = Game.map.height - camera.height;
+            }
+            let endingPos = [startingPos[0] + camera.width, startingPos[1] + camera.height];
+            let dx = 0;
+            let dy = 0;
+            for (let x = startingPos[0]; x < endingPos[0]; x++) {
+                for (let y = startingPos[1]; y < endingPos[1]; y++) {
+                    let tile = this.map.data[y][x];
+                    if (tile.x + "," + tile.y in this.map.visible_tiles) {
+                        this.drawTile(dx, dy++, tile, false);
+                    } else {
+                        this.drawTile(dx, dy++, tile, true);
+                    }
                 }
+                dx++;
+                dy = 0;
             }
-            dx++;
-            dy = 0;
+        } catch (err) {
+            console.log(err);
+            // setTimeOut(() => {}, 10000);
         }
+
     },
 
-    drawDimTile: function (x, y, tile) {
-        let todraw = tile.symbol + tile.symbol;
-        if (animated.includes(tile.symbol) && this.turn % 2 === 0) {
-            todraw += "a";
-        }
-        Game.display.draw(x, y, todraw);
-    },
-
-    drawTile: function (x, y, tile) {
-        Game.display.draw(x, y, tile.symbol, tile.options.fg, "black");
-    },
-
-    // Graphical Tile version
-    drawFirstActor: function (x, y, tile) {
-        let symbols = tile.actors.map((e) => e.options.symbol);
-        symbols.unshift(tile.symbol);
-        if (symbols.includes("@")) {
-            symbols.slice(symbols.indexOf("@"), 1);
-            symbols.push("@")
-        }
-        for (let i = 0; i < symbols.length; i++) {
-            let symbol = symbols[i];
-            if (animated.includes(symbol) && this.turn % 2 === 0) {
-                symbols[i] += "a";
-            }
-        }
+    drawTile: function(x, y, tile, fov) {
+        let symbols = tile.getSpriteIDS(this.turn % 2 === 0, fov);
+        // if (symbols.some((e) => {return e === "0"})) throw "A tile is empty!"
         Game.display.draw(x, y, symbols);
-    },
-
-    drawActor: function (x, y, actor) {
-        Game.display.draw(x, y, actor.options.symbol, actor.options.fg, "black");
     },
 
     drawMiniMap: function () {
@@ -211,9 +214,9 @@ let Game = {
                 for (let x = 0; x < this.map.width; x++) {
                     let tile = this.map.data[y][x];
                     if (tile.x + ',' + tile.y in this.map.visible_tiles)
-                        this.minimap.draw(x, y, " ", tile.options.fg, this.brightenColor(tile.options.bg));
+                        this.minimap.draw(x, y, " ", tile.bg(), this.brightenColor(tile.bg()));
                     else
-                        this.minimap.draw(x, y, " ", tile.options.fg, tile.options.bg);
+                        this.minimap.draw(x, y, " ", tile.bg(), tile.bg());
                 }
             }
         } else {
@@ -221,15 +224,15 @@ let Game = {
                 for (let x = 0; x < this.map.width; x++) {
                     let tile = this.map.data[y][x];
                     if (tile.x + ',' + tile.y in this.map.visible_tiles) {
-                        this.minimap.draw(x, y, " ", tile.options.fg, this.brightenColor(tile.options.bg));
+                        this.minimap.draw(x, y, " ", tile.bg(), this.brightenColor(tile.bg()));
                     } else if (tile.x + ',' + tile.y in this.map.seen_tiles) {
-                        this.minimap.draw(x, y, " ", tile.options.fg, tile.options.bg);
+                        this.minimap.draw(x, y, " ", tile.bg(), tile.bg());
                     }
                 }
             }
         }
         // Draw the actor in the mini-map
-        this.minimap.draw(this.player.x, this.player.y, "@", this.player.fg, "yellow");
+        this.minimap.draw(this.player.x, this.player.y, " ", "yellow", "yellow");
     },
 
     brightenColor: function (color) {

@@ -1,4 +1,4 @@
-valid_players = [4693];
+valid_players = [5173];
 function validPlayer(id) {
     console.log(id);
     return valid_players.includes(id);
@@ -43,7 +43,7 @@ class Map {
             this.data[i] = new Array(this.width);
             for (let j = 0; j < this.width; j++) {
                 // Grabs the symbol from the layer
-                let id = tileLayer.data[i * this.width + j];
+                let id = tileLayer.data[i * this.width + j] - 1;
                 if (id === 0) throw "Tiled Map contains a null tile, check [" + j + "," + i + "]";
                 if (! this.loadedIDS.includes(id)) this.loadedIDS.push(id);
                 this.data[i][j] = new Tile(j, i, id);
@@ -53,8 +53,9 @@ class Map {
         for (let i = 0; i < this.height; i++) {
             for (let j = 0; j < this.width; j++) {
                 // Grabs the symbol from the layer
-                let id = obstacleLayer.data[i * this.width + j];
-                if (id !== 0) {
+                let id = obstacleLayer.data[i * this.width + j] - 1;
+                if (id === null) console.log("Found null tile at " + j + ", " + i);
+                if (id > 1) {
                     if (!this.loadedIDS.includes(id)) this.loadedIDS.push(id);
                     this.data[i][j].updateTileInfo(id)
                 }
@@ -72,8 +73,8 @@ class Map {
         // console.log("Loading actors...");
         for (let i = 0; i < this.height; i++) {
             for (let j = 0; j < this.width; j++) {
-                let id = layer.data[i * this.width + j]; // grab the id in the json data
-                if (id !== 0) { // id of zero indicates no actor in this spot
+                let id = layer.data[i * this.width + j] - 1; // grab the id in the json data
+                if (id > 1) { // id of zero indicates no actor in this spot
                     let newActor = createEntity(id, j, i); // create the new actor
                     if (!this.loadedIDS.includes(id)) this.loadedIDS.push(id);
                     if (validPlayer(id)) {

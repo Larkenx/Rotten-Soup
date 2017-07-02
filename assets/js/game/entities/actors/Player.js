@@ -11,7 +11,7 @@ function dijkstra_callback(x, y) {
 }
 
 class Player extends Actor {
-    constructor(x, y) {
+    constructor(x, y, id) {
         super(x, y, {
             name: "you",
             description: "It's you!",
@@ -40,6 +40,7 @@ class Player extends Actor {
                 invulnerable: false
             }
         });
+        this.id = id;
         this.path = new ROT.Path.Dijkstra(this.x, this.y, dijkstra_callback);
         // Inventory is an array of objects that contain items and an action that can be done with that item.
         // You can think of the objects as individual 'slots' to store the item with actions like 'use' or 'equip'.
@@ -262,7 +263,7 @@ class Player extends Actor {
     tryMove(nx, ny) { // returns true if the turn should end here
         if (nx < 0 || nx === Game.map.width || ny < 0 || ny === Game.map.height) return;
         let ntile = Game.map.data[ny][nx]; // new tile to move to
-        if (ntile.actors.length === 0 && !ntile.options.blocked) {
+        if (ntile.actors.length === 0 && !ntile.blocked()) {
             this.move(nx, ny);
             return true;
         } else if (ntile.actors.length > 0) {
@@ -277,7 +278,7 @@ class Player extends Actor {
             }
         }
 
-        if (!ntile.options.blocked) {
+        if (!ntile.blocked()) {
             this.move(nx, ny)
             return true;
         }
