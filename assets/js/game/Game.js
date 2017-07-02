@@ -47,14 +47,16 @@ let Game = {
         let tileSize = 32;
         let tileMap = {};
         for (let id of this.map.loadedIDS) {
-            let properties = tileset.tileproperties[id];
             tileMap[id.toString()] = getTilesetCoords(id);
-            if (properties.FOV)
-                tileMap[properties.FOV_id] = getTilesetCoords(properties.FOV_id);
-            if (properties.animated)
-                tileMap[properties.animated_id] = getTilesetCoords(properties.animated_id);
-            if (properties.animated && properties.FOV)
-                tileMap[properties.animated_fov_id] = getTilesetCoords(properties.animated_fov_id);
+            if (id in tileset.tileproperties) {
+                let properties = tileset.tileproperties[id];
+                if (properties.FOV)
+                    tileMap[properties.FOV_id] = getTilesetCoords(properties.FOV_id);
+                if (properties.animated)
+                    tileMap[properties.animated_id] = getTilesetCoords(properties.animated_id);
+                if (properties.animated && properties.FOV)
+                    tileMap[properties.animated_fov_id] = getTilesetCoords(properties.animated_fov_id);
+            }
         }
         this.displayOptions = {
             width: 30,
@@ -189,7 +191,7 @@ let Game = {
                     if (tile.x + "," + tile.y in this.map.visible_tiles) {
                         this.drawTile(dx, dy++, tile, false);
                     } else {
-                        this.drawTile(dx, dy++, tile, true);
+                        this.drawTile(dx, dy++, tile, false);
                     }
                 }
                 dx++;
@@ -236,13 +238,14 @@ let Game = {
     },
 
     brightenColor: function (color) {
+        // console.log(color);
         let hsl_color = ROT.Color.rgb2hsl(ROT.Color.fromString(color));
         hsl_color[2] *= 1.5;
         return ROT.Color.toRGB(ROT.Color.hsl2rgb(hsl_color));
     },
 
     updateDisplay: function () {
-        this.turn++;
+        // this.turn++;
         this.drawViewPort();
         this.drawMiniMap();
     }

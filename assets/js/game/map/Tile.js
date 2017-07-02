@@ -28,8 +28,10 @@ class Tile {
     }
 
     updateTileInfo(id) {
-        let obst = getTileInfo(id);
-        // console.log(obst);
+        let obst = {};
+        if (id in tileset.tileproperties) { // just means there are no tile properties for this guy
+            obst = getTileInfo(id);
+        }
         obst.id = id;
         this.obstacles.push(obst); // add to the end of the obstacles to be drawn on top
     }
@@ -60,7 +62,14 @@ class Tile {
     }
 
     bg() {
-        return this.obstacles[this.obstacles.length - 1].bg;
+        if (! this.obstacles.some((e) => {return "bg" in e})) {
+            return "black";
+        } else {
+            for (let i = this.obstacles.length - 1; i >= 0; i--) {
+                let obs = this.obstacles[i];
+                if ("bg" in obs) return obs.bg;
+            }
+        }
     }
 
     getSpriteIDS(animate, fov) {
@@ -80,7 +89,7 @@ class Tile {
                 }
             } else {
                 if (animate && obs.animated) {
-                    if (obs.animated_fov_id === undefined) throw `Error - invalid animated tile specified for tileset ID : ${obs.id} `;
+                    if (obs.animated_id === undefined) throw `Error - invalid animated and darkened tile specified for tileset ID : ${obs.id} `;
                     symbols.push(obs.animated_id);
                 } else {
                     symbols.push(obs.id)
@@ -93,7 +102,7 @@ class Tile {
             symbols.push(obs.animated_id);
             if (animate && obs.animated === true) {
                 if (obs.animated_id === null)
-                    throw `Error - invalid animate tile specified for tileset ID : ${obs.id} `;
+                    throw `Error - invalid animate tile specified for tileset ID : ${obs.id} with animated tile id ${obs.animated_id} `;
                 symbols.push(obs.animated_id);
             } else {
                 symbols.push(actor.id);

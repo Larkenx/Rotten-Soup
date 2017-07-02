@@ -1,4 +1,4 @@
-valid_players = [5173];
+valid_players = [5173, 4695];
 function validPlayer(id) {
     console.log(id);
     return valid_players.includes(id);
@@ -28,7 +28,6 @@ class Map {
         this.data = new Array(this.height); // stores all tiles in the game
         this.visible_tiles = {};
         this.seen_tiles = {};
-
         console.log("Loading game map and actors...");
         for (let i = 0; i < this.height; i++) {
             this.data[i] = new Array(this.width);
