@@ -2,13 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="359ee7cd-d060-4cb9-a2ed-d128b311220f" name="Default" comment="">
-      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/maps/tileset/compiled_dawnlike.js" afterPath="" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/js/game/Game.js" afterPath="$PROJECT_DIR$/assets/js/game/Game.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/js/game/map/Map.js" afterPath="$PROJECT_DIR$/assets/js/game/map/Map.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/js/game/map/Tile.js" afterPath="$PROJECT_DIR$/assets/js/game/map/Tile.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/maps/map_file/overworld.js" afterPath="$PROJECT_DIR$/assets/maps/map_file/overworld.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/maps/tileset/compiled_dawnlike.json" afterPath="$PROJECT_DIR$/assets/maps/tileset/compiled_dawnlike.json" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -39,8 +33,8 @@
       <file leaf-file-name="Map.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/assets/js/game/map/Map.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="408">
-              <caret line="53" column="9" lean-forward="true" selection-start-line="53" selection-start-column="9" selection-end-line="53" selection-end-column="9" />
+            <state relative-caret-position="114">
+              <caret line="17" column="44" lean-forward="true" selection-start-line="17" selection-start-column="44" selection-end-line="17" selection-end-column="44" />
               <folding />
             </state>
           </provider>
@@ -510,7 +504,7 @@
       <workItem from="1498611935336" duration="8633000" />
       <workItem from="1498696343976" duration="4169000" />
       <workItem from="1498972801502" duration="2375000" />
-      <workItem from="1499011710043" duration="2252000" />
+      <workItem from="1499011710043" duration="2325000" />
     </task>
     <task id="LOCAL-00001" summary="Added the visible FOV to the minimap. Made some really nice changes to the overworld and cleaned up minimap colors.">
       <created>1497205810247</created>
@@ -785,11 +779,18 @@
       <option name="project" value="LOCAL" />
       <updated>1498975429639</updated>
     </task>
-    <option name="localTasksCounter" value="40" />
+    <task id="LOCAL-00040" summary="Working on overworld map - making it pretty! Soon going to add functionality back for graphical goblins (with more than one sprite sheet variation)">
+      <created>1499032856391</created>
+      <option name="number" value="00040" />
+      <option name="presentableId" value="LOCAL-00040" />
+      <option name="project" value="LOCAL" />
+      <updated>1499032856391</updated>
+    </task>
+    <option name="localTasksCounter" value="41" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="107627000" />
+    <option name="totallyTimeSpent" value="107700000" />
   </component>
   <component name="TodoView" selected-index="4">
     <todo-panel id="selected-file">
@@ -851,7 +852,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="false" />
-    <MESSAGE value="Squashed the bug with undying/undamaging goblins. Weird problem with JS array pop method vs shift" />
     <MESSAGE value="Quick fix to the map" />
     <MESSAGE value="Fixed minimap exploration for dungeons. Overworld is always revealed and dungeons are always hidden until explored." />
     <MESSAGE value="Separated all of the entities into separate files and directories. Starting to look more like a Java project than a JavaScript one." />
@@ -876,7 +876,8 @@
     <MESSAGE value="Added animation!!" />
     <MESSAGE value="Restructured classes into separate files" />
     <MESSAGE value="Re-created map and tile classes completely. Changed how the game tiles are drawn and their internal structure. Game is fully graphical now with full power of tilesheets" />
-    <option name="LAST_COMMIT_MESSAGE" value="Re-created map and tile classes completely. Changed how the game tiles are drawn and their internal structure. Game is fully graphical now with full power of tilesheets" />
+    <MESSAGE value="Working on overworld map - making it pretty! Soon going to add functionality back for graphical goblins (with more than one sprite sheet variation)" />
+    <option name="LAST_COMMIT_MESSAGE" value="Working on overworld map - making it pretty! Soon going to add functionality back for graphical goblins (with more than one sprite sheet variation)" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1165,8 +1166,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/assets/js/game/map/Map.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="408">
-          <caret line="53" column="9" lean-forward="true" selection-start-line="53" selection-start-column="9" selection-end-line="53" selection-end-column="9" />
+        <state relative-caret-position="114">
+          <caret line="17" column="44" lean-forward="true" selection-start-line="17" selection-start-column="44" selection-end-line="17" selection-end-column="44" />
           <folding />
         </state>
       </provider>
