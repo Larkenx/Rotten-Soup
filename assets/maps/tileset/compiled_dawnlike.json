@@ -1,7 +1,7 @@
 { "columns":120,
- "image":"..\/..\/images\/DawnLike\/Compiled\/compiled_tileset.png",
- "imageheight":1744,
- "imagewidth":1920,
+ "image":"..\/..\/images\/DawnLike\/Compiled\/compiled_tileset_32x32.png",
+ "imageheight":3488,
+ "imagewidth":3840,
  "margin":0,
  "name":"Dawnlike_Compiled",
  "spacing":0,
@@ -19,7 +19,7 @@
          "tile":7864
         }],
  "tilecount":13080,
- "tileheight":16,
+ "tileheight":32,
  "tileproperties":
     {
      "10000":
@@ -1016,9 +1016,89 @@
         {
          "bg":"#00cc33"
         },
+     "1242":
+        {
+         "FOV":false,
+         "bg":"darkgreen"
+        },
+     "1243":
+        {
+         "FOV":false,
+         "bg":"darkgreen"
+        },
+     "1244":
+        {
+         "FOV":false,
+         "bg":"darkgreen"
+        },
+     "1245":
+        {
+         "FOV":false,
+         "bg":"darkgreen"
+        },
+     "1246":
+        {
+         "FOV":false,
+         "bg":"darkgreen"
+        },
+     "1247":
+        {
+         "FOV":false,
+         "bg":"darkgreen"
+        },
+     "1248":
+        {
+         "FOV":false,
+         "bg":"darkgreen"
+        },
      "12480":
         {
          "bg":"#00cc33"
+        },
+     "1249":
+        {
+         "FOV":false,
+         "bg":"darkgreen"
+        },
+     "1250":
+        {
+         "FOV":false,
+         "bg":"darkgreen"
+        },
+     "1251":
+        {
+         "FOV":false,
+         "bg":"darkgreen"
+        },
+     "1252":
+        {
+         "FOV":false,
+         "bg":"darkgreen"
+        },
+     "1253":
+        {
+         "FOV":false,
+         "bg":"darkgreen"
+        },
+     "1254":
+        {
+         "FOV":false,
+         "bg":"darkgreen"
+        },
+     "1255":
+        {
+         "FOV":false,
+         "bg":"darkgreen"
+        },
+     "1256":
+        {
+         "FOV":false,
+         "bg":"darkgreen"
+        },
+     "1257":
+        {
+         "FOV":false,
+         "bg":"darkgreen"
         },
      "12600":
         {
@@ -1035,6 +1115,486 @@
      "12960":
         {
          "bg":"#00cc33"
+        },
+     "1362":
+        {
+         "FOV":false,
+         "bg":"darkgreen"
+        },
+     "1363":
+        {
+         "FOV":false,
+         "bg":"darkgreen"
+        },
+     "1364":
+        {
+         "FOV":false,
+         "bg":"darkgreen"
+        },
+     "1365":
+        {
+         "FOV":false,
+         "bg":"darkgreen"
+        },
+     "1366":
+        {
+         "FOV":false,
+         "bg":"darkgreen"
+        },
+     "1367":
+        {
+         "FOV":false,
+         "bg":"darkgreen"
+        },
+     "1368":
+        {
+         "FOV":false,
+         "bg":"darkgreen"
+        },
+     "1369":
+        {
+         "FOV":false,
+         "bg":"darkgreen"
+        },
+     "1370":
+        {
+         "FOV":false,
+         "bg":"darkgreen"
+        },
+     "1371":
+        {
+         "FOV":false,
+         "bg":"darkgreen"
+        },
+     "1372":
+        {
+         "FOV":false,
+         "bg":"darkgreen"
+        },
+     "1373":
+        {
+         "FOV":false,
+         "bg":"darkgreen"
+        },
+     "1374":
+        {
+         "FOV":false,
+         "bg":"darkgreen"
+        },
+     "1375":
+        {
+         "FOV":false,
+         "bg":"darkgreen"
+        },
+     "1376":
+        {
+         "FOV":false,
+         "bg":"darkgreen"
+        },
+     "1377":
+        {
+         "FOV":false,
+         "bg":"darkgreen"
+        },
+     "1482":
+        {
+         "FOV":false,
+         "bg":"darkgreen"
+        },
+     "1483":
+        {
+         "FOV":false,
+         "bg":"darkgreen"
+        },
+     "1484":
+        {
+         "FOV":false,
+         "bg":"darkgreen"
+        },
+     "1485":
+        {
+         "FOV":false,
+         "bg":"darkgreen"
+        },
+     "1486":
+        {
+         "FOV":false,
+         "bg":"darkgreen"
+        },
+     "1487":
+        {
+         "FOV":false,
+         "bg":"darkgreen"
+        },
+     "1488":
+        {
+         "FOV":false,
+         "bg":"darkgreen"
+        },
+     "1489":
+        {
+         "FOV":false,
+         "bg":"darkgreen"
+        },
+     "1490":
+        {
+         "FOV":false,
+         "bg":"darkgreen"
+        },
+     "1491":
+        {
+         "FOV":false,
+         "bg":"darkgreen"
+        },
+     "1492":
+        {
+         "FOV":false,
+         "bg":"darkgreen"
+        },
+     "1493":
+        {
+         "FOV":false,
+         "bg":"darkgreen"
+        },
+     "1494":
+        {
+         "FOV":false,
+         "bg":"darkgreen"
+        },
+     "1495":
+        {
+         "FOV":false,
+         "bg":"darkgreen"
+        },
+     "1496":
+        {
+         "FOV":false,
+         "bg":"darkgreen"
+        },
+     "1497":
+        {
+         "FOV":false,
+         "bg":"darkgreen"
+        },
+     "1602":
+        {
+         "FOV":false,
+         "bg":"darkgreen"
+        },
+     "1603":
+        {
+         "FOV":false,
+         "bg":"darkgreen"
+        },
+     "1604":
+        {
+         "FOV":false,
+         "bg":"darkgreen"
+        },
+     "1605":
+        {
+         "FOV":false,
+         "bg":"darkgreen"
+        },
+     "1606":
+        {
+         "FOV":false,
+         "bg":"darkgreen"
+        },
+     "1607":
+        {
+         "FOV":false,
+         "bg":"darkgreen"
+        },
+     "1608":
+        {
+         "FOV":false,
+         "bg":"darkgreen"
+        },
+     "1609":
+        {
+         "FOV":false,
+         "bg":"darkgreen"
+        },
+     "1610":
+        {
+         "FOV":false,
+         "bg":"darkgreen"
+        },
+     "1611":
+        {
+         "FOV":false,
+         "bg":"darkgreen"
+        },
+     "1612":
+        {
+         "FOV":false,
+         "bg":"darkgreen"
+        },
+     "1613":
+        {
+         "FOV":false,
+         "bg":"darkgreen"
+        },
+     "1614":
+        {
+         "FOV":false,
+         "bg":"darkgreen"
+        },
+     "1615":
+        {
+         "FOV":false,
+         "bg":"darkgreen"
+        },
+     "1616":
+        {
+         "FOV":false,
+         "bg":"darkgreen"
+        },
+     "1617":
+        {
+         "FOV":false,
+         "bg":"darkgreen"
+        },
+     "1722":
+        {
+         "FOV":false,
+         "bg":"darkgreen"
+        },
+     "1723":
+        {
+         "FOV":false,
+         "bg":"darkgreen"
+        },
+     "1724":
+        {
+         "FOV":false,
+         "bg":"darkgreen"
+        },
+     "1725":
+        {
+         "FOV":false,
+         "bg":"darkgreen"
+        },
+     "1726":
+        {
+         "FOV":false,
+         "bg":"darkgreen"
+        },
+     "1727":
+        {
+         "FOV":false,
+         "bg":"darkgreen"
+        },
+     "1728":
+        {
+         "FOV":false,
+         "bg":"darkgreen"
+        },
+     "1729":
+        {
+         "FOV":false,
+         "bg":"darkgreen"
+        },
+     "1730":
+        {
+         "FOV":false,
+         "bg":"darkgreen"
+        },
+     "1731":
+        {
+         "FOV":false,
+         "bg":"darkgreen"
+        },
+     "1732":
+        {
+         "FOV":false,
+         "bg":"darkgreen"
+        },
+     "1733":
+        {
+         "FOV":false,
+         "bg":"darkgreen"
+        },
+     "1734":
+        {
+         "FOV":false,
+         "bg":"darkgreen"
+        },
+     "1735":
+        {
+         "FOV":false,
+         "bg":"darkgreen"
+        },
+     "1736":
+        {
+         "FOV":false,
+         "bg":"darkgreen"
+        },
+     "1737":
+        {
+         "FOV":false,
+         "bg":"darkgreen"
+        },
+     "1842":
+        {
+         "FOV":false,
+         "bg":"darkgreen"
+        },
+     "1843":
+        {
+         "FOV":false,
+         "bg":"darkgreen"
+        },
+     "1844":
+        {
+         "FOV":false,
+         "bg":"darkgreen"
+        },
+     "1845":
+        {
+         "FOV":false,
+         "bg":"darkgreen"
+        },
+     "1846":
+        {
+         "FOV":false,
+         "bg":"darkgreen"
+        },
+     "1847":
+        {
+         "FOV":false,
+         "bg":"darkgreen"
+        },
+     "1848":
+        {
+         "FOV":false,
+         "bg":"darkgreen"
+        },
+     "1849":
+        {
+         "FOV":false,
+         "bg":"darkgreen"
+        },
+     "1850":
+        {
+         "FOV":false,
+         "bg":"darkgreen"
+        },
+     "1851":
+        {
+         "FOV":false,
+         "bg":"darkgreen"
+        },
+     "1852":
+        {
+         "FOV":false,
+         "bg":"darkgreen"
+        },
+     "1853":
+        {
+         "FOV":false,
+         "bg":"darkgreen"
+        },
+     "1854":
+        {
+         "FOV":false,
+         "bg":"darkgreen"
+        },
+     "1855":
+        {
+         "FOV":false,
+         "bg":"darkgreen"
+        },
+     "1856":
+        {
+         "FOV":false,
+         "bg":"darkgreen"
+        },
+     "1857":
+        {
+         "FOV":false,
+         "bg":"darkgreen"
+        },
+     "1962":
+        {
+         "FOV":false,
+         "bg":"darkgreen"
+        },
+     "1963":
+        {
+         "FOV":false,
+         "bg":"darkgreen"
+        },
+     "1964":
+        {
+         "FOV":false,
+         "bg":"darkgreen"
+        },
+     "1965":
+        {
+         "FOV":false,
+         "bg":"darkgreen"
+        },
+     "1966":
+        {
+         "FOV":false,
+         "bg":"darkgreen"
+        },
+     "1967":
+        {
+         "FOV":false,
+         "bg":"darkgreen"
+        },
+     "1968":
+        {
+         "FOV":false,
+         "bg":"darkgreen"
+        },
+     "1969":
+        {
+         "FOV":false,
+         "bg":"darkgreen"
+        },
+     "1970":
+        {
+         "FOV":false,
+         "bg":"darkgreen"
+        },
+     "1971":
+        {
+         "FOV":false,
+         "bg":"darkgreen"
+        },
+     "1972":
+        {
+         "FOV":false,
+         "bg":"darkgreen"
+        },
+     "1973":
+        {
+         "FOV":false,
+         "bg":"darkgreen"
+        },
+     "1974":
+        {
+         "FOV":false,
+         "bg":"darkgreen"
+        },
+     "1975":
+        {
+         "FOV":false,
+         "bg":"darkgreen"
+        },
+     "1976":
+        {
+         "FOV":false,
+         "bg":"darkgreen"
+        },
+     "1977":
+        {
+         "FOV":false,
+         "bg":"darkgreen"
         },
      "3840":
         {
@@ -1074,38 +1634,53 @@
         },
      "3846":
         {
-         "animated":false,
-         "animated_id":0,
+         "FOV":true,
+         "FOV_id":4206,
+         "animated":true,
+         "animated_fov_id":4234,
+         "animated_id":3874,
+         "bg":"skyblue",
+         "blocked":false,
          "entity":false
         },
      "3847":
         {
-         "animated":false,
-         "animated_id":0,
+         "FOV":true,
+         "FOV_id":4207,
+         "animated":true,
+         "animated_fov_id":4235,
+         "animated_id":3875,
+         "bg":"skyblue",
+         "blocked":false,
          "entity":false
         },
      "3848":
         {
-         "animated":false,
-         "animated_id":0,
+         "FOV":true,
+         "FOV_id":4208,
+         "animated":true,
+         "animated_fov_id":4236,
+         "animated_id":3876,
+         "bg":"skyblue",
+         "blocked":false,
          "entity":false
         },
      "3849":
         {
-         "animated":false,
-         "animated_id":0,
-         "entity":false
+         "animated":true,
+         "animated_fov_id":8785,
+         "bg":"skyblue",
+         "blocked":false
         },
      "3850":
         {
-         "animated":false,
-         "animated_id":0,
-         "entity":false
-        },
-     "3851":
-        {
-         "animated":false,
-         "animated_id":0,
+         "FOV":true,
+         "FOV_id":4210,
+         "animated":true,
+         "animated_fov_id":4238,
+         "animated_id":3878,
+         "bg":"skyblue",
+         "blocked":false,
          "entity":false
         },
      "3852":
@@ -1536,38 +2111,46 @@
         },
      "3966":
         {
-         "animated":false,
-         "animated_id":0,
-         "entity":false
-        },
-     "3967":
-        {
-         "animated":false,
-         "animated_id":0,
-         "entity":false
-        },
-     "3968":
-        {
-         "animated":false,
-         "animated_id":0,
+         "FOV":true,
+         "FOV_id":4326,
+         "animated":true,
+         "animated_fov_id":4354,
+         "animated_id":3994,
+         "bg":"skyblue",
+         "blocked":false,
          "entity":false
         },
      "3969":
         {
-         "animated":false,
-         "animated_id":0,
+         "FOV":true,
+         "FOV_id":4329,
+         "animated":true,
+         "animated_fov_id":4357,
+         "animated_id":3997,
+         "bg":"skyblue",
+         "blocked":false,
          "entity":false
         },
      "3970":
         {
-         "animated":false,
-         "animated_id":0,
+         "FOV":true,
+         "FOV_id":4330,
+         "animated":true,
+         "animated_fov_id":8785,
+         "animated_id":3998,
+         "bg":"skyblue",
+         "blocked":false,
          "entity":false
         },
      "3971":
         {
-         "animated":false,
-         "animated_id":0,
+         "FOV":true,
+         "FOV_id":4331,
+         "animated":true,
+         "animated_fov_id":8785,
+         "animated_id":3999,
+         "bg":"skyblue",
+         "blocked":false,
          "entity":false
         },
      "3972":
@@ -1998,38 +2581,35 @@
         },
      "4086":
         {
-         "animated":false,
-         "animated_id":0,
-         "entity":false
-        },
-     "4087":
-        {
-         "animated":false,
-         "animated_id":0,
+         "FOV":true,
+         "FOV_id":4446,
+         "animated":true,
+         "animated_fov_id":4474,
+         "animated_id":4114,
+         "bg":"skyblue",
+         "blocked":false,
          "entity":false
         },
      "4088":
         {
-         "animated":false,
-         "animated_id":0,
-         "entity":false
-        },
-     "4089":
-        {
-         "animated":false,
-         "animated_id":0,
+         "FOV":true,
+         "FOV_id":4448,
+         "animated":true,
+         "animated_fov_id":4476,
+         "animated_id":4116,
+         "bg":"skyblue",
+         "blocked":false,
          "entity":false
         },
      "4090":
         {
-         "animated":false,
-         "animated_id":0,
-         "entity":false
-        },
-     "4091":
-        {
-         "animated":false,
-         "animated_id":0,
+         "FOV":true,
+         "FOV_id":4450,
+         "animated":true,
+         "animated_fov_id":4478,
+         "animated_id":4118,
+         "bg":"skyblue",
+         "blocked":false,
          "entity":false
         },
      "4092":
@@ -2460,38 +3040,62 @@
         },
      "4206":
         {
-         "animated":false,
+         "FOV":true,
+         "FOV_id":9017,
+         "animated":true,
          "animated_id":0,
+         "bg":"skyblue",
+         "blocked":false,
          "entity":false
         },
      "4207":
         {
-         "animated":false,
+         "FOV":true,
+         "FOV_id":9017,
+         "animated":true,
          "animated_id":0,
+         "bg":"skyblue",
+         "blocked":false,
          "entity":false
         },
      "4208":
         {
-         "animated":false,
+         "FOV":true,
+         "FOV_id":9017,
+         "animated":true,
          "animated_id":0,
+         "bg":"skyblue",
+         "blocked":false,
          "entity":false
         },
      "4209":
         {
-         "animated":false,
+         "FOV":true,
+         "FOV_id":9017,
+         "animated":true,
          "animated_id":0,
+         "bg":"skyblue",
+         "blocked":false,
          "entity":false
         },
      "4210":
         {
-         "animated":false,
+         "FOV":true,
+         "FOV_id":9017,
+         "animated":true,
          "animated_id":0,
+         "bg":"skyblue",
+         "blocked":false,
          "entity":false
         },
      "4211":
         {
-         "animated":false,
+         "FOV":true,
+         "FOV_id":9017,
+         "animated":true,
          "animated_id":0,
+         "bg":"skyblue",
+         "blocked":false,
          "entity":false
         },
      "4212":
@@ -2922,38 +3526,62 @@
         },
      "4326":
         {
-         "animated":false,
+         "FOV":true,
+         "FOV_id":9017,
+         "animated":true,
          "animated_id":0,
+         "bg":"skyblue",
+         "blocked":false,
          "entity":false
         },
      "4327":
         {
-         "animated":false,
+         "FOV":true,
+         "FOV_id":9017,
+         "animated":true,
          "animated_id":0,
+         "bg":"skyblue",
+         "blocked":false,
          "entity":false
         },
      "4328":
         {
-         "animated":false,
+         "FOV":true,
+         "FOV_id":9017,
+         "animated":true,
          "animated_id":0,
+         "bg":"skyblue",
+         "blocked":false,
          "entity":false
         },
      "4329":
         {
-         "animated":false,
+         "FOV":true,
+         "FOV_id":9017,
+         "animated":true,
          "animated_id":0,
+         "bg":"skyblue",
+         "blocked":false,
          "entity":false
         },
      "4330":
         {
-         "animated":false,
+         "FOV":true,
+         "FOV_id":9017,
+         "animated":true,
          "animated_id":0,
+         "bg":"skyblue",
+         "blocked":false,
          "entity":false
         },
      "4331":
         {
-         "animated":false,
+         "FOV":true,
+         "FOV_id":9017,
+         "animated":true,
          "animated_id":0,
+         "bg":"skyblue",
+         "blocked":false,
          "entity":false
         },
      "4332":
@@ -3384,38 +4012,62 @@
         },
      "4446":
         {
-         "animated":false,
+         "FOV":true,
+         "FOV_id":9017,
+         "animated":true,
          "animated_id":0,
+         "bg":"skyblue",
+         "blocked":false,
          "entity":false
         },
      "4447":
         {
-         "animated":false,
+         "FOV":true,
+         "FOV_id":9017,
+         "animated":true,
          "animated_id":0,
+         "bg":"skyblue",
+         "blocked":false,
          "entity":false
         },
      "4448":
         {
-         "animated":false,
+         "FOV":true,
+         "FOV_id":9017,
+         "animated":true,
          "animated_id":0,
+         "bg":"skyblue",
+         "blocked":false,
          "entity":false
         },
      "4449":
         {
-         "animated":false,
+         "FOV":true,
+         "FOV_id":9017,
+         "animated":true,
          "animated_id":0,
+         "bg":"skyblue",
+         "blocked":false,
          "entity":false
         },
      "4450":
         {
-         "animated":false,
+         "FOV":true,
+         "FOV_id":9017,
+         "animated":true,
          "animated_id":0,
+         "bg":"skyblue",
+         "blocked":false,
          "entity":false
         },
      "4451":
         {
-         "animated":false,
+         "FOV":true,
+         "FOV_id":9017,
+         "animated":true,
          "animated_id":0,
+         "bg":"skyblue",
+         "blocked":false,
          "entity":false
         },
      "4452":
@@ -11550,7 +12202,7 @@
      "7356":
         {
          "FOV":true,
-         "FOV_id":0,
+         "FOV_id":7716,
          "animated":false,
          "animated_id":0,
          "bg":"darkgreen",
@@ -11561,7 +12213,7 @@
      "7357":
         {
          "FOV":true,
-         "FOV_id":0,
+         "FOV_id":7717,
          "animated":false,
          "animated_id":0,
          "bg":"darkgreen",
@@ -12301,7 +12953,7 @@
      "7476":
         {
          "FOV":true,
-         "FOV_id":0,
+         "FOV_id":7836,
          "animated":false,
          "animated_id":0,
          "bg":"darkgreen",
@@ -12312,7 +12964,7 @@
      "7477":
         {
          "FOV":true,
-         "FOV_id":0,
+         "FOV_id":7837,
          "animated":false,
          "animated_id":0,
          "bg":"darkgreen",
@@ -13052,7 +13704,7 @@
      "7596":
         {
          "FOV":true,
-         "FOV_id":0,
+         "FOV_id":7956,
          "animated":false,
          "animated_id":0,
          "bg":"darkgreen",
@@ -13063,7 +13715,7 @@
      "7597":
         {
          "FOV":true,
-         "FOV_id":0,
+         "FOV_id":7957,
          "animated":false,
          "animated_id":0,
          "bg":"darkgreen",
@@ -26654,8 +27306,88 @@
         {
          "bg":"string"
         },
+     "1242":
+        {
+         "FOV":"bool",
+         "bg":"string"
+        },
+     "1243":
+        {
+         "FOV":"bool",
+         "bg":"string"
+        },
+     "1244":
+        {
+         "FOV":"bool",
+         "bg":"string"
+        },
+     "1245":
+        {
+         "FOV":"bool",
+         "bg":"string"
+        },
+     "1246":
+        {
+         "FOV":"bool",
+         "bg":"string"
+        },
+     "1247":
+        {
+         "FOV":"bool",
+         "bg":"string"
+        },
+     "1248":
+        {
+         "FOV":"bool",
+         "bg":"string"
+        },
      "12480":
         {
+         "bg":"string"
+        },
+     "1249":
+        {
+         "FOV":"bool",
+         "bg":"string"
+        },
+     "1250":
+        {
+         "FOV":"bool",
+         "bg":"string"
+        },
+     "1251":
+        {
+         "FOV":"bool",
+         "bg":"string"
+        },
+     "1252":
+        {
+         "FOV":"bool",
+         "bg":"string"
+        },
+     "1253":
+        {
+         "FOV":"bool",
+         "bg":"string"
+        },
+     "1254":
+        {
+         "FOV":"bool",
+         "bg":"string"
+        },
+     "1255":
+        {
+         "FOV":"bool",
+         "bg":"string"
+        },
+     "1256":
+        {
+         "FOV":"bool",
+         "bg":"string"
+        },
+     "1257":
+        {
+         "FOV":"bool",
          "bg":"string"
         },
      "12600":
@@ -26672,6 +27404,486 @@
         },
      "12960":
         {
+         "bg":"string"
+        },
+     "1362":
+        {
+         "FOV":"bool",
+         "bg":"string"
+        },
+     "1363":
+        {
+         "FOV":"bool",
+         "bg":"string"
+        },
+     "1364":
+        {
+         "FOV":"bool",
+         "bg":"string"
+        },
+     "1365":
+        {
+         "FOV":"bool",
+         "bg":"string"
+        },
+     "1366":
+        {
+         "FOV":"bool",
+         "bg":"string"
+        },
+     "1367":
+        {
+         "FOV":"bool",
+         "bg":"string"
+        },
+     "1368":
+        {
+         "FOV":"bool",
+         "bg":"string"
+        },
+     "1369":
+        {
+         "FOV":"bool",
+         "bg":"string"
+        },
+     "1370":
+        {
+         "FOV":"bool",
+         "bg":"string"
+        },
+     "1371":
+        {
+         "FOV":"bool",
+         "bg":"string"
+        },
+     "1372":
+        {
+         "FOV":"bool",
+         "bg":"string"
+        },
+     "1373":
+        {
+         "FOV":"bool",
+         "bg":"string"
+        },
+     "1374":
+        {
+         "FOV":"bool",
+         "bg":"string"
+        },
+     "1375":
+        {
+         "FOV":"bool",
+         "bg":"string"
+        },
+     "1376":
+        {
+         "FOV":"bool",
+         "bg":"string"
+        },
+     "1377":
+        {
+         "FOV":"bool",
+         "bg":"string"
+        },
+     "1482":
+        {
+         "FOV":"bool",
+         "bg":"string"
+        },
+     "1483":
+        {
+         "FOV":"bool",
+         "bg":"string"
+        },
+     "1484":
+        {
+         "FOV":"bool",
+         "bg":"string"
+        },
+     "1485":
+        {
+         "FOV":"bool",
+         "bg":"string"
+        },
+     "1486":
+        {
+         "FOV":"bool",
+         "bg":"string"
+        },
+     "1487":
+        {
+         "FOV":"bool",
+         "bg":"string"
+        },
+     "1488":
+        {
+         "FOV":"bool",
+         "bg":"string"
+        },
+     "1489":
+        {
+         "FOV":"bool",
+         "bg":"string"
+        },
+     "1490":
+        {
+         "FOV":"bool",
+         "bg":"string"
+        },
+     "1491":
+        {
+         "FOV":"bool",
+         "bg":"string"
+        },
+     "1492":
+        {
+         "FOV":"bool",
+         "bg":"string"
+        },
+     "1493":
+        {
+         "FOV":"bool",
+         "bg":"string"
+        },
+     "1494":
+        {
+         "FOV":"bool",
+         "bg":"string"
+        },
+     "1495":
+        {
+         "FOV":"bool",
+         "bg":"string"
+        },
+     "1496":
+        {
+         "FOV":"bool",
+         "bg":"string"
+        },
+     "1497":
+        {
+         "FOV":"bool",
+         "bg":"string"
+        },
+     "1602":
+        {
+         "FOV":"bool",
+         "bg":"string"
+        },
+     "1603":
+        {
+         "FOV":"bool",
+         "bg":"string"
+        },
+     "1604":
+        {
+         "FOV":"bool",
+         "bg":"string"
+        },
+     "1605":
+        {
+         "FOV":"bool",
+         "bg":"string"
+        },
+     "1606":
+        {
+         "FOV":"bool",
+         "bg":"string"
+        },
+     "1607":
+        {
+         "FOV":"bool",
+         "bg":"string"
+        },
+     "1608":
+        {
+         "FOV":"bool",
+         "bg":"string"
+        },
+     "1609":
+        {
+         "FOV":"bool",
+         "bg":"string"
+        },
+     "1610":
+        {
+         "FOV":"bool",
+         "bg":"string"
+        },
+     "1611":
+        {
+         "FOV":"bool",
+         "bg":"string"
+        },
+     "1612":
+        {
+         "FOV":"bool",
+         "bg":"string"
+        },
+     "1613":
+        {
+         "FOV":"bool",
+         "bg":"string"
+        },
+     "1614":
+        {
+         "FOV":"bool",
+         "bg":"string"
+        },
+     "1615":
+        {
+         "FOV":"bool",
+         "bg":"string"
+        },
+     "1616":
+        {
+         "FOV":"bool",
+         "bg":"string"
+        },
+     "1617":
+        {
+         "FOV":"bool",
+         "bg":"string"
+        },
+     "1722":
+        {
+         "FOV":"bool",
+         "bg":"string"
+        },
+     "1723":
+        {
+         "FOV":"bool",
+         "bg":"string"
+        },
+     "1724":
+        {
+         "FOV":"bool",
+         "bg":"string"
+        },
+     "1725":
+        {
+         "FOV":"bool",
+         "bg":"string"
+        },
+     "1726":
+        {
+         "FOV":"bool",
+         "bg":"string"
+        },
+     "1727":
+        {
+         "FOV":"bool",
+         "bg":"string"
+        },
+     "1728":
+        {
+         "FOV":"bool",
+         "bg":"string"
+        },
+     "1729":
+        {
+         "FOV":"bool",
+         "bg":"string"
+        },
+     "1730":
+        {
+         "FOV":"bool",
+         "bg":"string"
+        },
+     "1731":
+        {
+         "FOV":"bool",
+         "bg":"string"
+        },
+     "1732":
+        {
+         "FOV":"bool",
+         "bg":"string"
+        },
+     "1733":
+        {
+         "FOV":"bool",
+         "bg":"string"
+        },
+     "1734":
+        {
+         "FOV":"bool",
+         "bg":"string"
+        },
+     "1735":
+        {
+         "FOV":"bool",
+         "bg":"string"
+        },
+     "1736":
+        {
+         "FOV":"bool",
+         "bg":"string"
+        },
+     "1737":
+        {
+         "FOV":"bool",
+         "bg":"string"
+        },
+     "1842":
+        {
+         "FOV":"bool",
+         "bg":"string"
+        },
+     "1843":
+        {
+         "FOV":"bool",
+         "bg":"string"
+        },
+     "1844":
+        {
+         "FOV":"bool",
+         "bg":"string"
+        },
+     "1845":
+        {
+         "FOV":"bool",
+         "bg":"string"
+        },
+     "1846":
+        {
+         "FOV":"bool",
+         "bg":"string"
+        },
+     "1847":
+        {
+         "FOV":"bool",
+         "bg":"string"
+        },
+     "1848":
+        {
+         "FOV":"bool",
+         "bg":"string"
+        },
+     "1849":
+        {
+         "FOV":"bool",
+         "bg":"string"
+        },
+     "1850":
+        {
+         "FOV":"bool",
+         "bg":"string"
+        },
+     "1851":
+        {
+         "FOV":"bool",
+         "bg":"string"
+        },
+     "1852":
+        {
+         "FOV":"bool",
+         "bg":"string"
+        },
+     "1853":
+        {
+         "FOV":"bool",
+         "bg":"string"
+        },
+     "1854":
+        {
+         "FOV":"bool",
+         "bg":"string"
+        },
+     "1855":
+        {
+         "FOV":"bool",
+         "bg":"string"
+        },
+     "1856":
+        {
+         "FOV":"bool",
+         "bg":"string"
+        },
+     "1857":
+        {
+         "FOV":"bool",
+         "bg":"string"
+        },
+     "1962":
+        {
+         "FOV":"bool",
+         "bg":"string"
+        },
+     "1963":
+        {
+         "FOV":"bool",
+         "bg":"string"
+        },
+     "1964":
+        {
+         "FOV":"bool",
+         "bg":"string"
+        },
+     "1965":
+        {
+         "FOV":"bool",
+         "bg":"string"
+        },
+     "1966":
+        {
+         "FOV":"bool",
+         "bg":"string"
+        },
+     "1967":
+        {
+         "FOV":"bool",
+         "bg":"string"
+        },
+     "1968":
+        {
+         "FOV":"bool",
+         "bg":"string"
+        },
+     "1969":
+        {
+         "FOV":"bool",
+         "bg":"string"
+        },
+     "1970":
+        {
+         "FOV":"bool",
+         "bg":"string"
+        },
+     "1971":
+        {
+         "FOV":"bool",
+         "bg":"string"
+        },
+     "1972":
+        {
+         "FOV":"bool",
+         "bg":"string"
+        },
+     "1973":
+        {
+         "FOV":"bool",
+         "bg":"string"
+        },
+     "1974":
+        {
+         "FOV":"bool",
+         "bg":"string"
+        },
+     "1975":
+        {
+         "FOV":"bool",
+         "bg":"string"
+        },
+     "1976":
+        {
+         "FOV":"bool",
+         "bg":"string"
+        },
+     "1977":
+        {
+         "FOV":"bool",
          "bg":"string"
         },
      "3840":
@@ -26712,38 +27924,53 @@
         },
      "3846":
         {
+         "FOV":"bool",
+         "FOV_id":"int",
          "animated":"bool",
+         "animated_fov_id":"int",
          "animated_id":"int",
+         "bg":"string",
+         "blocked":"bool",
          "entity":"bool"
         },
      "3847":
         {
+         "FOV":"bool",
+         "FOV_id":"int",
          "animated":"bool",
+         "animated_fov_id":"int",
          "animated_id":"int",
+         "bg":"string",
+         "blocked":"bool",
          "entity":"bool"
         },
      "3848":
         {
+         "FOV":"bool",
+         "FOV_id":"int",
          "animated":"bool",
+         "animated_fov_id":"int",
          "animated_id":"int",
+         "bg":"string",
+         "blocked":"bool",
          "entity":"bool"
         },
      "3849":
         {
          "animated":"bool",
-         "animated_id":"int",
-         "entity":"bool"
+         "animated_fov_id":"int",
+         "bg":"string",
+         "blocked":"bool"
         },
      "3850":
         {
+         "FOV":"bool",
+         "FOV_id":"int",
          "animated":"bool",
+         "animated_fov_id":"int",
          "animated_id":"int",
-         "entity":"bool"
-        },
-     "3851":
-        {
-         "animated":"bool",
-         "animated_id":"int",
+         "bg":"string",
+         "blocked":"bool",
          "entity":"bool"
         },
      "3852":
@@ -27174,38 +28401,46 @@
         },
      "3966":
         {
+         "FOV":"bool",
+         "FOV_id":"int",
          "animated":"bool",
+         "animated_fov_id":"int",
          "animated_id":"int",
-         "entity":"bool"
-        },
-     "3967":
-        {
-         "animated":"bool",
-         "animated_id":"int",
-         "entity":"bool"
-        },
-     "3968":
-        {
-         "animated":"bool",
-         "animated_id":"int",
+         "bg":"string",
+         "blocked":"bool",
          "entity":"bool"
         },
      "3969":
         {
+         "FOV":"bool",
+         "FOV_id":"int",
          "animated":"bool",
+         "animated_fov_id":"int",
          "animated_id":"int",
+         "bg":"string",
+         "blocked":"bool",
          "entity":"bool"
         },
      "3970":
         {
+         "FOV":"bool",
+         "FOV_id":"int",
          "animated":"bool",
+         "animated_fov_id":"int",
          "animated_id":"int",
+         "bg":"string",
+         "blocked":"bool",
          "entity":"bool"
         },
      "3971":
         {
+         "FOV":"bool",
+         "FOV_id":"int",
          "animated":"bool",
+         "animated_fov_id":"int",
          "animated_id":"int",
+         "bg":"string",
+         "blocked":"bool",
          "entity":"bool"
         },
      "3972":
@@ -27636,38 +28871,35 @@
         },
      "4086":
         {
+         "FOV":"bool",
+         "FOV_id":"int",
          "animated":"bool",
+         "animated_fov_id":"int",
          "animated_id":"int",
-         "entity":"bool"
-        },
-     "4087":
-        {
-         "animated":"bool",
-         "animated_id":"int",
+         "bg":"string",
+         "blocked":"bool",
          "entity":"bool"
         },
      "4088":
         {
+         "FOV":"bool",
+         "FOV_id":"int",
          "animated":"bool",
+         "animated_fov_id":"int",
          "animated_id":"int",
-         "entity":"bool"
-        },
-     "4089":
-        {
-         "animated":"bool",
-         "animated_id":"int",
+         "bg":"string",
+         "blocked":"bool",
          "entity":"bool"
         },
      "4090":
         {
+         "FOV":"bool",
+         "FOV_id":"int",
          "animated":"bool",
+         "animated_fov_id":"int",
          "animated_id":"int",
-         "entity":"bool"
-        },
-     "4091":
-        {
-         "animated":"bool",
-         "animated_id":"int",
+         "bg":"string",
+         "blocked":"bool",
          "entity":"bool"
         },
      "4092":
@@ -28098,38 +29330,62 @@
         },
      "4206":
         {
+         "FOV":"bool",
+         "FOV_id":"int",
          "animated":"bool",
          "animated_id":"int",
+         "bg":"string",
+         "blocked":"bool",
          "entity":"bool"
         },
      "4207":
         {
+         "FOV":"bool",
+         "FOV_id":"int",
          "animated":"bool",
          "animated_id":"int",
+         "bg":"string",
+         "blocked":"bool",
          "entity":"bool"
         },
      "4208":
         {
+         "FOV":"bool",
+         "FOV_id":"int",
          "animated":"bool",
          "animated_id":"int",
+         "bg":"string",
+         "blocked":"bool",
          "entity":"bool"
         },
      "4209":
         {
+         "FOV":"bool",
+         "FOV_id":"int",
          "animated":"bool",
          "animated_id":"int",
+         "bg":"string",
+         "blocked":"bool",
          "entity":"bool"
         },
      "4210":
         {
+         "FOV":"bool",
+         "FOV_id":"int",
          "animated":"bool",
          "animated_id":"int",
+         "bg":"string",
+         "blocked":"bool",
          "entity":"bool"
         },
      "4211":
         {
+         "FOV":"bool",
+         "FOV_id":"int",
          "animated":"bool",
          "animated_id":"int",
+         "bg":"string",
+         "blocked":"bool",
          "entity":"bool"
         },
      "4212":
@@ -28560,38 +29816,62 @@
         },
      "4326":
         {
+         "FOV":"bool",
+         "FOV_id":"int",
          "animated":"bool",
          "animated_id":"int",
+         "bg":"string",
+         "blocked":"bool",
          "entity":"bool"
         },
      "4327":
         {
+         "FOV":"bool",
+         "FOV_id":"int",
          "animated":"bool",
          "animated_id":"int",
+         "bg":"string",
+         "blocked":"bool",
          "entity":"bool"
         },
      "4328":
         {
+         "FOV":"bool",
+         "FOV_id":"int",
          "animated":"bool",
          "animated_id":"int",
+         "bg":"string",
+         "blocked":"bool",
          "entity":"bool"
         },
      "4329":
         {
+         "FOV":"bool",
+         "FOV_id":"int",
          "animated":"bool",
          "animated_id":"int",
+         "bg":"string",
+         "blocked":"bool",
          "entity":"bool"
         },
      "4330":
         {
+         "FOV":"bool",
+         "FOV_id":"int",
          "animated":"bool",
          "animated_id":"int",
+         "bg":"string",
+         "blocked":"bool",
          "entity":"bool"
         },
      "4331":
         {
+         "FOV":"bool",
+         "FOV_id":"int",
          "animated":"bool",
          "animated_id":"int",
+         "bg":"string",
+         "blocked":"bool",
          "entity":"bool"
         },
      "4332":
@@ -29022,38 +30302,62 @@
         },
      "4446":
         {
+         "FOV":"bool",
+         "FOV_id":"int",
          "animated":"bool",
          "animated_id":"int",
+         "bg":"string",
+         "blocked":"bool",
          "entity":"bool"
         },
      "4447":
         {
+         "FOV":"bool",
+         "FOV_id":"int",
          "animated":"bool",
          "animated_id":"int",
+         "bg":"string",
+         "blocked":"bool",
          "entity":"bool"
         },
      "4448":
         {
+         "FOV":"bool",
+         "FOV_id":"int",
          "animated":"bool",
          "animated_id":"int",
+         "bg":"string",
+         "blocked":"bool",
          "entity":"bool"
         },
      "4449":
         {
+         "FOV":"bool",
+         "FOV_id":"int",
          "animated":"bool",
          "animated_id":"int",
+         "bg":"string",
+         "blocked":"bool",
          "entity":"bool"
         },
      "4450":
         {
+         "FOV":"bool",
+         "FOV_id":"int",
          "animated":"bool",
          "animated_id":"int",
+         "bg":"string",
+         "blocked":"bool",
          "entity":"bool"
         },
      "4451":
         {
+         "FOV":"bool",
+         "FOV_id":"int",
          "animated":"bool",
          "animated_id":"int",
+         "bg":"string",
+         "blocked":"bool",
          "entity":"bool"
         },
      "4452":
@@ -51420,6 +52724,6 @@
          "terrain":[0, -1, -1, -1]
         }
     },
- "tilewidth":16,
+ "tilewidth":32,
  "type":"tileset"
 }

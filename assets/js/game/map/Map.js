@@ -10,15 +10,6 @@ function createEntity(id) {
 
 const flatten = arr => arr.reduce((acc, val) => acc.concat(Array.isArray(val) ? flatten(val) : val), []);
 
-function actorCreator(symbol, x, y) {
-    if (entityShop[symbol]) {
-        return entityShop[symbol](x, y);
-    } else {
-        // is a null symbol?
-        throw "Unknown symbol: " + symbol;
-    }
-}
-
 /**
  * Created by Larken on 6/28/2017.
  */

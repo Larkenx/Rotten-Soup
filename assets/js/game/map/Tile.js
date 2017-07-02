@@ -29,6 +29,7 @@ class Tile {
 
     updateTileInfo(id) {
         let obst = getTileInfo(id);
+        // console.log(obst);
         obst.id = id;
         this.obstacles.push(obst); // add to the end of the obstacles to be drawn on top
     }

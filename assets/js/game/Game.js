@@ -43,8 +43,8 @@ let Game = {
 
         // Set up the ROT.JS game display
         let tileSet = document.createElement("img");
-        tileSet.src = "assets/images/DawnLike/Compiled/compiled_tileset.png";
-        let tileSize = 16;
+        tileSet.src = "assets/images/DawnLike/Compiled/compiled_tileset_32x32.png";
+        let tileSize = 32;
         let tileMap = {};
         for (let id of this.map.loadedIDS) {
             let properties = tileset.tileproperties[id];
@@ -57,8 +57,8 @@ let Game = {
                 tileMap[properties.animated_fov_id] = getTilesetCoords(properties.animated_fov_id);
         }
         this.displayOptions = {
-            width: 35,
-            height: 20,
+            width: 30,
+            height: 18,
             forceSquareRatio: true,
             layout: "tile",
             // bg: "transparent",
