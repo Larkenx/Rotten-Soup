@@ -43,7 +43,7 @@ class Tile {
             return true;
 
         for (let actor of this.actors) {
-            if (actor.options.blocked && actor !== Game.player)
+            if (actor.options.blocked && ! actor instanceof Player)
                 return true;
         }
         return false;
@@ -99,7 +99,6 @@ class Tile {
         /* Actors / Entities */
         for (let actor of this.actors) {
             let obs = getTileInfo(actor.id);
-            symbols.push(obs.animated_id);
             if (animate && obs.animated === true) {
                 if (obs.animated_id === null)
                     throw `Error - invalid animate tile specified for tileset ID : ${obs.id} with animated tile id ${obs.animated_id} `;

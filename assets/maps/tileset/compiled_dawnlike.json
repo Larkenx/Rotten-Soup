@@ -1100,9 +1100,44 @@
         {
          "bg":"#00cc33"
         },
+     "1209":
+        {
+         "entity":true,
+         "entity_id":5
+        },
+     "1210":
+        {
+         "entity":true,
+         "entity_id":5
+        },
+     "1211":
+        {
+         "entity":true,
+         "entity_id":5
+        },
+     "1212":
+        {
+         "entity":true,
+         "entity_id":5
+        },
      "12120":
         {
          "bg":"#00cc33"
+        },
+     "1213":
+        {
+         "entity":true,
+         "entity_id":5
+        },
+     "1214":
+        {
+         "entity":true,
+         "entity_id":5
+        },
+     "1215":
+        {
+         "entity":true,
+         "entity_id":5
         },
      "12240":
         {
@@ -1208,9 +1243,68 @@
         {
          "bg":"#00cc33"
         },
+     "1287":
+        {
+         "animated":true,
+         "animated_id":1295,
+         "entity":true,
+         "entity_id":2
+        },
+     "1288":
+        {
+         "animated":true,
+         "animated_id":1296,
+         "entity":true,
+         "entity_id":2
+        },
+     "1295":
+        {
+         "entity":true,
+         "entity_id":2
+        },
+     "1296":
+        {
+         "entity":true,
+         "entity_id":2
+        },
      "12960":
         {
          "bg":"#00cc33"
+        },
+     "1329":
+        {
+         "entity":true,
+         "entity_id":5
+        },
+     "1330":
+        {
+         "entity":true,
+         "entity_id":5
+        },
+     "1331":
+        {
+         "entity":true,
+         "entity_id":5
+        },
+     "1332":
+        {
+         "entity":true,
+         "entity_id":5
+        },
+     "1333":
+        {
+         "entity":true,
+         "entity_id":5
+        },
+     "1334":
+        {
+         "entity":true,
+         "entity_id":5
+        },
+     "1335":
+        {
+         "entity":true,
+         "entity_id":5
         },
      "1362":
         {
@@ -1292,6 +1386,41 @@
          "FOV":false,
          "bg":"darkgreen"
         },
+     "1449":
+        {
+         "entity":true,
+         "entity_id":5
+        },
+     "1450":
+        {
+         "entity":true,
+         "entity_id":5
+        },
+     "1451":
+        {
+         "entity":true,
+         "entity_id":5
+        },
+     "1452":
+        {
+         "entity":true,
+         "entity_id":5
+        },
+     "1453":
+        {
+         "entity":true,
+         "entity_id":5
+        },
+     "1454":
+        {
+         "entity":true,
+         "entity_id":5
+        },
+     "1455":
+        {
+         "entity":true,
+         "entity_id":5
+        },
      "1482":
         {
          "FOV":false,
@@ -1371,6 +1500,71 @@
         {
          "FOV":false,
          "bg":"darkgreen"
+        },
+     "152":
+        {
+         "entity":true,
+         "entity_id":5
+        },
+     "153":
+        {
+         "entity":true,
+         "entity_id":5
+        },
+     "154":
+        {
+         "entity":true,
+         "entity_id":5
+        },
+     "155":
+        {
+         "entity":true,
+         "entity_id":5
+        },
+     "156":
+        {
+         "entity":true,
+         "entity_id":5
+        },
+     "1569":
+        {
+         "entity":true,
+         "entity_id":5
+        },
+     "157":
+        {
+         "entity":true,
+         "entity_id":5
+        },
+     "1570":
+        {
+         "entity":true,
+         "entity_id":5
+        },
+     "1571":
+        {
+         "entity":true,
+         "entity_id":5
+        },
+     "1572":
+        {
+         "entity":true,
+         "entity_id":5
+        },
+     "1573":
+        {
+         "entity":true,
+         "entity_id":5
+        },
+     "1574":
+        {
+         "entity":true,
+         "entity_id":5
+        },
+     "1575":
+        {
+         "entity":true,
+         "entity_id":5
         },
      "1602":
         {
@@ -1452,6 +1646,41 @@
          "FOV":false,
          "bg":"darkgreen"
         },
+     "1689":
+        {
+         "entity":true,
+         "entity_id":5
+        },
+     "1690":
+        {
+         "entity":true,
+         "entity_id":5
+        },
+     "1691":
+        {
+         "entity":true,
+         "entity_id":5
+        },
+     "1692":
+        {
+         "entity":true,
+         "entity_id":5
+        },
+     "1693":
+        {
+         "entity":true,
+         "entity_id":5
+        },
+     "1694":
+        {
+         "entity":true,
+         "entity_id":5
+        },
+     "1695":
+        {
+         "entity":true,
+         "entity_id":5
+        },
      "1722":
         {
          "FOV":false,
@@ -1531,6 +1760,41 @@
         {
          "FOV":false,
          "bg":"darkgreen"
+        },
+     "1809":
+        {
+         "entity":true,
+         "entity_id":5
+        },
+     "1810":
+        {
+         "entity":true,
+         "entity_id":5
+        },
+     "1811":
+        {
+         "entity":true,
+         "entity_id":5
+        },
+     "1812":
+        {
+         "entity":true,
+         "entity_id":5
+        },
+     "1813":
+        {
+         "entity":true,
+         "entity_id":5
+        },
+     "1814":
+        {
+         "entity":true,
+         "entity_id":5
+        },
+     "1815":
+        {
+         "entity":true,
+         "entity_id":5
         },
      "1842":
         {
@@ -1612,6 +1876,41 @@
          "FOV":false,
          "bg":"darkgreen"
         },
+     "1929":
+        {
+         "entity":true,
+         "entity_id":5
+        },
+     "1930":
+        {
+         "entity":true,
+         "entity_id":5
+        },
+     "1931":
+        {
+         "entity":true,
+         "entity_id":5
+        },
+     "1932":
+        {
+         "entity":true,
+         "entity_id":5
+        },
+     "1933":
+        {
+         "entity":true,
+         "entity_id":5
+        },
+     "1934":
+        {
+         "entity":true,
+         "entity_id":5
+        },
+     "1935":
+        {
+         "entity":true,
+         "entity_id":5
+        },
      "1962":
         {
          "FOV":false,
@@ -1691,6 +1990,36 @@
         {
          "FOV":false,
          "bg":"darkgreen"
+        },
+     "32":
+        {
+         "entity":true,
+         "entity_id":5
+        },
+     "33":
+        {
+         "entity":true,
+         "entity_id":5
+        },
+     "34":
+        {
+         "entity":true,
+         "entity_id":5
+        },
+     "35":
+        {
+         "entity":true,
+         "entity_id":5
+        },
+     "36":
+        {
+         "entity":true,
+         "entity_id":5
+        },
+     "37":
+        {
+         "entity":true,
+         "entity_id":5
         },
      "3840":
         {
@@ -1783,97 +2112,113 @@
         {
          "animated":true,
          "animated_id":0,
-         "entity":true
+         "entity":true,
+         "entity_id":0
         },
      "3853":
         {
          "animated":true,
          "animated_id":0,
-         "entity":true
+         "entity":true,
+         "entity_id":0
         },
      "3854":
         {
          "animated":true,
          "animated_id":0,
-         "entity":true
+         "entity":true,
+         "entity_id":0
         },
      "3855":
         {
          "animated":true,
          "animated_id":0,
-         "entity":true
+         "entity":true,
+         "entity_id":0
         },
      "3856":
         {
          "animated":true,
          "animated_id":0,
-         "entity":true
+         "entity":true,
+         "entity_id":0
         },
      "3857":
         {
          "animated":true,
          "animated_id":0,
-         "entity":true
+         "entity":true,
+         "entity_id":0
         },
      "3858":
         {
          "animated":true,
          "animated_id":0,
-         "entity":true
+         "entity":true,
+         "entity_id":0
         },
      "3859":
         {
          "animated":true,
          "animated_id":0,
-         "entity":true
+         "entity":true,
+         "entity_id":0
         },
      "3860":
         {
          "animated":true,
          "animated_id":0,
-         "entity":true
+         "entity":true,
+         "entity_id":0
         },
      "3861":
         {
          "animated":true,
          "animated_id":0,
-         "entity":true
+         "entity":true,
+         "entity_id":0
         },
      "3862":
         {
          "animated":true,
          "animated_id":0,
-         "entity":true
+         "entity":true,
+         "entity_id":0
         },
      "3863":
         {
          "animated":true,
          "animated_id":0,
-         "entity":true
+         "entity":true,
+         "entity_id":0
         },
      "3864":
         {
          "animated":true,
          "animated_id":0,
-         "entity":true
+         "entity":true,
+         "entity_id":0
         },
      "3865":
         {
          "animated":true,
          "animated_id":0,
-         "entity":true
+         "entity":true,
+         "entity_id":0
         },
      "3866":
         {
          "animated":true,
          "animated_id":0,
-         "entity":true
+         "entity":true,
+         "entity_id":0
         },
      "3867":
         {
          "animated":true,
          "animated_id":0,
-         "entity":true
+         "entity":true,
+         "entity_id":0
         },
      "3868":
         {
@@ -2253,97 +2598,113 @@
         {
          "animated":true,
          "animated_id":0,
-         "entity":true
+         "entity":true,
+         "entity_id":0
         },
      "3973":
         {
          "animated":true,
          "animated_id":0,
-         "entity":true
+         "entity":true,
+         "entity_id":0
         },
      "3974":
         {
          "animated":true,
          "animated_id":0,
-         "entity":true
+         "entity":true,
+         "entity_id":0
         },
      "3975":
         {
          "animated":true,
          "animated_id":0,
-         "entity":true
+         "entity":true,
+         "entity_id":0
         },
      "3976":
         {
          "animated":true,
          "animated_id":0,
-         "entity":true
+         "entity":true,
+         "entity_id":0
         },
      "3977":
         {
          "animated":true,
          "animated_id":0,
-         "entity":true
+         "entity":true,
+         "entity_id":0
         },
      "3978":
         {
          "animated":true,
          "animated_id":0,
-         "entity":true
+         "entity":true,
+         "entity_id":0
         },
      "3979":
         {
          "animated":true,
          "animated_id":0,
-         "entity":true
+         "entity":true,
+         "entity_id":0
         },
      "3980":
         {
          "animated":true,
          "animated_id":0,
-         "entity":true
+         "entity":true,
+         "entity_id":0
         },
      "3981":
         {
          "animated":true,
          "animated_id":0,
-         "entity":true
+         "entity":true,
+         "entity_id":0
         },
      "3982":
         {
          "animated":true,
          "animated_id":0,
-         "entity":true
+         "entity":true,
+         "entity_id":0
         },
      "3983":
         {
          "animated":true,
          "animated_id":0,
-         "entity":true
+         "entity":true,
+         "entity_id":0
         },
      "3984":
         {
          "animated":true,
          "animated_id":0,
-         "entity":true
+         "entity":true,
+         "entity_id":0
         },
      "3985":
         {
          "animated":true,
          "animated_id":0,
-         "entity":true
+         "entity":true,
+         "entity_id":0
         },
      "3986":
         {
          "animated":true,
          "animated_id":0,
-         "entity":true
+         "entity":true,
+         "entity_id":0
         },
      "3987":
         {
          "animated":true,
          "animated_id":0,
-         "entity":true
+         "entity":true,
+         "entity_id":0
         },
      "3988":
         {
@@ -2712,97 +3073,113 @@
         {
          "animated":true,
          "animated_id":0,
-         "entity":true
+         "entity":true,
+         "entity_id":0
         },
      "4093":
         {
          "animated":true,
          "animated_id":0,
-         "entity":true
+         "entity":true,
+         "entity_id":0
         },
      "4094":
         {
          "animated":true,
          "animated_id":0,
-         "entity":true
+         "entity":true,
+         "entity_id":0
         },
      "4095":
         {
          "animated":true,
          "animated_id":0,
-         "entity":true
+         "entity":true,
+         "entity_id":0
         },
      "4096":
         {
          "animated":true,
          "animated_id":0,
-         "entity":true
+         "entity":true,
+         "entity_id":0
         },
      "4097":
         {
          "animated":true,
          "animated_id":0,
-         "entity":true
+         "entity":true,
+         "entity_id":0
         },
      "4098":
         {
          "animated":true,
          "animated_id":0,
-         "entity":true
+         "entity":true,
+         "entity_id":0
         },
      "4099":
         {
          "animated":true,
          "animated_id":0,
-         "entity":true
+         "entity":true,
+         "entity_id":0
         },
      "4100":
         {
          "animated":true,
          "animated_id":0,
-         "entity":true
+         "entity":true,
+         "entity_id":0
         },
      "4101":
         {
          "animated":true,
          "animated_id":0,
-         "entity":true
+         "entity":true,
+         "entity_id":0
         },
      "4102":
         {
          "animated":true,
          "animated_id":0,
-         "entity":true
+         "entity":true,
+         "entity_id":0
         },
      "4103":
         {
          "animated":true,
          "animated_id":0,
-         "entity":true
+         "entity":true,
+         "entity_id":0
         },
      "4104":
         {
          "animated":true,
          "animated_id":0,
-         "entity":true
+         "entity":true,
+         "entity_id":0
         },
      "4105":
         {
          "animated":true,
          "animated_id":0,
-         "entity":true
+         "entity":true,
+         "entity_id":0
         },
      "4106":
         {
          "animated":true,
          "animated_id":0,
-         "entity":true
+         "entity":true,
+         "entity_id":0
         },
      "4107":
         {
          "animated":true,
          "animated_id":0,
-         "entity":true
+         "entity":true,
+         "entity_id":0
         },
      "4108":
         {
@@ -3198,97 +3575,113 @@
         {
          "animated":true,
          "animated_id":0,
-         "entity":true
+         "entity":true,
+         "entity_id":0
         },
      "4213":
         {
          "animated":true,
          "animated_id":0,
-         "entity":true
+         "entity":true,
+         "entity_id":0
         },
      "4214":
         {
          "animated":true,
          "animated_id":0,
-         "entity":true
+         "entity":true,
+         "entity_id":0
         },
      "4215":
         {
          "animated":true,
          "animated_id":0,
-         "entity":true
+         "entity":true,
+         "entity_id":0
         },
      "4216":
         {
          "animated":true,
          "animated_id":0,
-         "entity":true
+         "entity":true,
+         "entity_id":0
         },
      "4217":
         {
          "animated":true,
          "animated_id":0,
-         "entity":true
+         "entity":true,
+         "entity_id":0
         },
      "4218":
         {
          "animated":true,
          "animated_id":0,
-         "entity":true
+         "entity":true,
+         "entity_id":0
         },
      "4219":
         {
          "animated":true,
          "animated_id":0,
-         "entity":true
+         "entity":true,
+         "entity_id":0
         },
      "4220":
         {
          "animated":true,
          "animated_id":0,
-         "entity":true
+         "entity":true,
+         "entity_id":0
         },
      "4221":
         {
          "animated":true,
          "animated_id":0,
-         "entity":true
+         "entity":true,
+         "entity_id":0
         },
      "4222":
         {
          "animated":true,
          "animated_id":0,
-         "entity":true
+         "entity":true,
+         "entity_id":0
         },
      "4223":
         {
          "animated":true,
          "animated_id":0,
-         "entity":true
+         "entity":true,
+         "entity_id":0
         },
      "4224":
         {
          "animated":true,
          "animated_id":0,
-         "entity":true
+         "entity":true,
+         "entity_id":0
         },
      "4225":
         {
          "animated":true,
          "animated_id":0,
-         "entity":true
+         "entity":true,
+         "entity_id":0
         },
      "4226":
         {
          "animated":true,
          "animated_id":0,
-         "entity":true
+         "entity":true,
+         "entity_id":0
         },
      "4227":
         {
          "animated":true,
          "animated_id":0,
-         "entity":true
+         "entity":true,
+         "entity_id":0
         },
      "4228":
         {
@@ -3584,6 +3977,70 @@
          "animated_id":0,
          "entity":false
         },
+     "4288":
+        {
+         "blocked":true
+        },
+     "4289":
+        {
+         "blocked":true
+        },
+     "4290":
+        {
+         "blocked":true
+        },
+     "4291":
+        {
+         "blocked":true
+        },
+     "4292":
+        {
+         "blocked":true
+        },
+     "4293":
+        {
+         "blocked":true
+        },
+     "4294":
+        {
+         "blocked":true
+        },
+     "4295":
+        {
+         "blocked":true
+        },
+     "4296":
+        {
+         "blocked":true
+        },
+     "4297":
+        {
+         "blocked":true
+        },
+     "4298":
+        {
+         "blocked":true
+        },
+     "4299":
+        {
+         "blocked":true
+        },
+     "4300":
+        {
+         "blocked":true
+        },
+     "4301":
+        {
+         "blocked":true
+        },
+     "4302":
+        {
+         "blocked":true
+        },
+     "4303":
+        {
+         "blocked":true
+        },
      "4320":
         {
          "animated":false,
@@ -3684,97 +4141,113 @@
         {
          "animated":true,
          "animated_id":0,
-         "entity":true
+         "entity":true,
+         "entity_id":0
         },
      "4333":
         {
          "animated":true,
          "animated_id":0,
-         "entity":true
+         "entity":true,
+         "entity_id":0
         },
      "4334":
         {
          "animated":true,
          "animated_id":0,
-         "entity":true
+         "entity":true,
+         "entity_id":0
         },
      "4335":
         {
          "animated":true,
          "animated_id":0,
-         "entity":true
+         "entity":true,
+         "entity_id":0
         },
      "4336":
         {
          "animated":true,
          "animated_id":0,
-         "entity":true
+         "entity":true,
+         "entity_id":0
         },
      "4337":
         {
          "animated":true,
          "animated_id":0,
-         "entity":true
+         "entity":true,
+         "entity_id":0
         },
      "4338":
         {
          "animated":true,
          "animated_id":0,
-         "entity":true
+         "entity":true,
+         "entity_id":0
         },
      "4339":
         {
          "animated":true,
          "animated_id":0,
-         "entity":true
+         "entity":true,
+         "entity_id":0
         },
      "4340":
         {
          "animated":true,
          "animated_id":0,
-         "entity":true
+         "entity":true,
+         "entity_id":0
         },
      "4341":
         {
          "animated":true,
          "animated_id":0,
-         "entity":true
+         "entity":true,
+         "entity_id":0
         },
      "4342":
         {
          "animated":true,
          "animated_id":0,
-         "entity":true
+         "entity":true,
+         "entity_id":0
         },
      "4343":
         {
          "animated":true,
          "animated_id":0,
-         "entity":true
+         "entity":true,
+         "entity_id":0
         },
      "4344":
         {
          "animated":true,
          "animated_id":0,
-         "entity":true
+         "entity":true,
+         "entity_id":0
         },
      "4345":
         {
          "animated":true,
          "animated_id":0,
-         "entity":true
+         "entity":true,
+         "entity_id":0
         },
      "4346":
         {
          "animated":true,
          "animated_id":0,
-         "entity":true
+         "entity":true,
+         "entity_id":0
         },
      "4347":
         {
          "animated":true,
          "animated_id":0,
-         "entity":true
+         "entity":true,
+         "entity_id":0
         },
      "4348":
         {
@@ -4070,6 +4543,70 @@
          "animated_id":0,
          "entity":false
         },
+     "4408":
+        {
+         "blocked":true
+        },
+     "4409":
+        {
+         "blocked":true
+        },
+     "4410":
+        {
+         "blocked":true
+        },
+     "4411":
+        {
+         "blocked":true
+        },
+     "4412":
+        {
+         "blocked":true
+        },
+     "4413":
+        {
+         "blocked":true
+        },
+     "4414":
+        {
+         "blocked":true
+        },
+     "4415":
+        {
+         "blocked":true
+        },
+     "4416":
+        {
+         "blocked":true
+        },
+     "4417":
+        {
+         "blocked":true
+        },
+     "4418":
+        {
+         "blocked":true
+        },
+     "4419":
+        {
+         "blocked":true
+        },
+     "4420":
+        {
+         "blocked":true
+        },
+     "4421":
+        {
+         "blocked":true
+        },
+     "4422":
+        {
+         "blocked":true
+        },
+     "4423":
+        {
+         "blocked":true
+        },
      "4440":
         {
          "animated":false,
@@ -4170,97 +4707,113 @@
         {
          "animated":true,
          "animated_id":0,
-         "entity":true
+         "entity":true,
+         "entity_id":0
         },
      "4453":
         {
          "animated":true,
          "animated_id":0,
-         "entity":true
+         "entity":true,
+         "entity_id":0
         },
      "4454":
         {
          "animated":true,
          "animated_id":0,
-         "entity":true
+         "entity":true,
+         "entity_id":0
         },
      "4455":
         {
          "animated":true,
          "animated_id":0,
-         "entity":true
+         "entity":true,
+         "entity_id":0
         },
      "4456":
         {
          "animated":true,
          "animated_id":0,
-         "entity":true
+         "entity":true,
+         "entity_id":0
         },
      "4457":
         {
          "animated":true,
          "animated_id":0,
-         "entity":true
+         "entity":true,
+         "entity_id":0
         },
      "4458":
         {
          "animated":true,
          "animated_id":0,
-         "entity":true
+         "entity":true,
+         "entity_id":0
         },
      "4459":
         {
          "animated":true,
          "animated_id":0,
-         "entity":true
+         "entity":true,
+         "entity_id":0
         },
      "4460":
         {
          "animated":true,
          "animated_id":0,
-         "entity":true
+         "entity":true,
+         "entity_id":0
         },
      "4461":
         {
          "animated":true,
          "animated_id":0,
-         "entity":true
+         "entity":true,
+         "entity_id":0
         },
      "4462":
         {
          "animated":true,
          "animated_id":0,
-         "entity":true
+         "entity":true,
+         "entity_id":0
         },
      "4463":
         {
          "animated":true,
          "animated_id":0,
-         "entity":true
+         "entity":true,
+         "entity_id":0
         },
      "4464":
         {
          "animated":true,
          "animated_id":0,
-         "entity":true
+         "entity":true,
+         "entity_id":0
         },
      "4465":
         {
          "animated":true,
          "animated_id":0,
-         "entity":true
+         "entity":true,
+         "entity_id":0
         },
      "4466":
         {
          "animated":true,
          "animated_id":0,
-         "entity":true
+         "entity":true,
+         "entity_id":0
         },
      "4467":
         {
          "animated":true,
          "animated_id":0,
-         "entity":true
+         "entity":true,
+         "entity_id":0
         },
      "4468":
         {
@@ -4556,6 +5109,70 @@
          "animated_id":0,
          "entity":false
         },
+     "4528":
+        {
+         "blocked":true
+        },
+     "4529":
+        {
+         "blocked":true
+        },
+     "4530":
+        {
+         "blocked":true
+        },
+     "4531":
+        {
+         "blocked":true
+        },
+     "4532":
+        {
+         "blocked":true
+        },
+     "4533":
+        {
+         "blocked":true
+        },
+     "4534":
+        {
+         "blocked":true
+        },
+     "4535":
+        {
+         "blocked":true
+        },
+     "4536":
+        {
+         "blocked":true
+        },
+     "4537":
+        {
+         "blocked":true
+        },
+     "4538":
+        {
+         "blocked":true
+        },
+     "4539":
+        {
+         "blocked":true
+        },
+     "4540":
+        {
+         "blocked":true
+        },
+     "4541":
+        {
+         "blocked":true
+        },
+     "4542":
+        {
+         "blocked":true
+        },
+     "4543":
+        {
+         "blocked":true
+        },
      "4560":
         {
          "animated":false,
@@ -4632,97 +5249,113 @@
         {
          "animated":true,
          "animated_id":0,
-         "entity":true
+         "entity":true,
+         "entity_id":0
         },
      "4573":
         {
          "animated":true,
          "animated_id":0,
-         "entity":true
+         "entity":true,
+         "entity_id":0
         },
      "4574":
         {
          "animated":true,
          "animated_id":0,
-         "entity":true
+         "entity":true,
+         "entity_id":0
         },
      "4575":
         {
          "animated":true,
          "animated_id":0,
-         "entity":true
+         "entity":true,
+         "entity_id":0
         },
      "4576":
         {
          "animated":true,
          "animated_id":0,
-         "entity":true
+         "entity":true,
+         "entity_id":0
         },
      "4577":
         {
          "animated":true,
          "animated_id":0,
-         "entity":true
+         "entity":true,
+         "entity_id":0
         },
      "4578":
         {
          "animated":true,
          "animated_id":0,
-         "entity":true
+         "entity":true,
+         "entity_id":0
         },
      "4579":
         {
          "animated":true,
          "animated_id":0,
-         "entity":true
+         "entity":true,
+         "entity_id":0
         },
      "4580":
         {
          "animated":true,
          "animated_id":0,
-         "entity":true
+         "entity":true,
+         "entity_id":0
         },
      "4581":
         {
          "animated":true,
          "animated_id":0,
-         "entity":true
+         "entity":true,
+         "entity_id":0
         },
      "4582":
         {
          "animated":true,
          "animated_id":0,
-         "entity":true
+         "entity":true,
+         "entity_id":0
         },
      "4583":
         {
          "animated":true,
          "animated_id":0,
-         "entity":true
+         "entity":true,
+         "entity_id":0
         },
      "4584":
         {
          "animated":true,
          "animated_id":0,
-         "entity":true
+         "entity":true,
+         "entity_id":0
         },
      "4585":
         {
          "animated":true,
          "animated_id":0,
-         "entity":true
+         "entity":true,
+         "entity_id":0
         },
      "4586":
         {
          "animated":true,
          "animated_id":0,
-         "entity":true
+         "entity":true,
+         "entity_id":0
         },
      "4587":
         {
          "animated":true,
          "animated_id":0,
-         "entity":true
+         "entity":true,
+         "entity_id":0
         },
      "4588":
         {
@@ -5018,6 +5651,70 @@
          "animated_id":0,
          "entity":false
         },
+     "4648":
+        {
+         "blocked":true
+        },
+     "4649":
+        {
+         "blocked":true
+        },
+     "4650":
+        {
+         "blocked":true
+        },
+     "4651":
+        {
+         "blocked":true
+        },
+     "4652":
+        {
+         "blocked":true
+        },
+     "4653":
+        {
+         "blocked":true
+        },
+     "4654":
+        {
+         "blocked":true
+        },
+     "4655":
+        {
+         "blocked":true
+        },
+     "4656":
+        {
+         "blocked":true
+        },
+     "4657":
+        {
+         "blocked":true
+        },
+     "4658":
+        {
+         "blocked":true
+        },
+     "4659":
+        {
+         "blocked":true
+        },
+     "4660":
+        {
+         "blocked":true
+        },
+     "4661":
+        {
+         "blocked":true
+        },
+     "4662":
+        {
+         "blocked":true
+        },
+     "4663":
+        {
+         "blocked":true
+        },
      "4680":
         {
          "animated":false,
@@ -5094,97 +5791,113 @@
         {
          "animated":true,
          "animated_id":0,
-         "entity":true
+         "entity":true,
+         "entity_id":0
         },
      "4693":
         {
          "animated":true,
          "animated_id":4701,
-         "entity":true
+         "entity":true,
+         "entity_id":0
         },
      "4694":
         {
          "animated":true,
          "animated_id":0,
-         "entity":true
+         "entity":true,
+         "entity_id":0
         },
      "4695":
         {
          "animated":true,
          "animated_id":4703,
-         "entity":true
+         "entity":true,
+         "entity_id":0
         },
      "4696":
         {
          "animated":true,
          "animated_id":0,
-         "entity":true
+         "entity":true,
+         "entity_id":0
         },
      "4697":
         {
          "animated":true,
          "animated_id":0,
-         "entity":true
+         "entity":true,
+         "entity_id":0
         },
      "4698":
         {
          "animated":true,
          "animated_id":0,
-         "entity":true
+         "entity":true,
+         "entity_id":0
         },
      "4699":
         {
          "animated":true,
          "animated_id":0,
-         "entity":true
+         "entity":true,
+         "entity_id":0
         },
      "4700":
         {
          "animated":true,
          "animated_id":0,
-         "entity":true
+         "entity":true,
+         "entity_id":0
         },
      "4701":
         {
          "animated":true,
          "animated_id":0,
-         "entity":true
+         "entity":true,
+         "entity_id":0
         },
      "4702":
         {
          "animated":true,
          "animated_id":0,
-         "entity":true
+         "entity":true,
+         "entity_id":0
         },
      "4703":
         {
          "animated":true,
          "animated_id":0,
-         "entity":true
+         "entity":true,
+         "entity_id":0
         },
      "4704":
         {
          "animated":true,
          "animated_id":0,
-         "entity":true
+         "entity":true,
+         "entity_id":0
         },
      "4705":
         {
          "animated":true,
          "animated_id":0,
-         "entity":true
+         "entity":true,
+         "entity_id":0
         },
      "4706":
         {
          "animated":true,
          "animated_id":0,
-         "entity":true
+         "entity":true,
+         "entity_id":0
         },
      "4707":
         {
          "animated":true,
          "animated_id":0,
-         "entity":true
+         "entity":true,
+         "entity_id":0
         },
      "4708":
         {
@@ -5480,13 +6193,89 @@
          "animated_id":0,
          "entity":false
         },
+     "476":
+        {
+         "entity":true,
+         "entity_id":4
+        },
+     "4768":
+        {
+         "blocked":true
+        },
+     "4769":
+        {
+         "blocked":true
+        },
+     "477":
+        {
+         "entity":true,
+         "entity_id":4
+        },
+     "4770":
+        {
+         "blocked":true
+        },
+     "4771":
+        {
+         "blocked":true
+        },
+     "4772":
+        {
+         "blocked":true
+        },
+     "4773":
+        {
+         "blocked":true
+        },
+     "4774":
+        {
+         "blocked":true
+        },
+     "4775":
+        {
+         "blocked":true
+        },
+     "4776":
+        {
+         "blocked":true
+        },
+     "4777":
+        {
+         "blocked":true
+        },
+     "4778":
+        {
+         "blocked":true
+        },
+     "4779":
+        {
+         "blocked":true
+        },
      "478":
         {
-         "entity":true
+         "entity":true,
+         "entity_id":3
+        },
+     "4780":
+        {
+         "blocked":true
+        },
+     "4781":
+        {
+         "blocked":true
+        },
+     "4782":
+        {
+         "blocked":true
+        },
+     "4783":
+        {
+         "blocked":true
         },
      "479":
         {
-         "entity":true
+         "entity":true,
+         "entity_id":3
         },
      "4800":
         {
@@ -5564,97 +6353,113 @@
         {
          "animated":true,
          "animated_id":0,
-         "entity":true
+         "entity":true,
+         "entity_id":0
         },
      "4813":
         {
          "animated":true,
          "animated_id":0,
-         "entity":true
+         "entity":true,
+         "entity_id":0
         },
      "4814":
         {
          "animated":true,
          "animated_id":0,
-         "entity":true
+         "entity":true,
+         "entity_id":0
         },
      "4815":
         {
          "animated":true,
          "animated_id":0,
-         "entity":true
+         "entity":true,
+         "entity_id":0
         },
      "4816":
         {
          "animated":true,
          "animated_id":0,
-         "entity":true
+         "entity":true,
+         "entity_id":0
         },
      "4817":
         {
          "animated":true,
          "animated_id":0,
-         "entity":true
+         "entity":true,
+         "entity_id":0
         },
      "4818":
         {
          "animated":true,
          "animated_id":0,
-         "entity":true
+         "entity":true,
+         "entity_id":0
         },
      "4819":
         {
          "animated":true,
          "animated_id":0,
-         "entity":true
+         "entity":true,
+         "entity_id":0
         },
      "4820":
         {
          "animated":true,
          "animated_id":0,
-         "entity":true
+         "entity":true,
+         "entity_id":0
         },
      "4821":
         {
          "animated":true,
          "animated_id":0,
-         "entity":true
+         "entity":true,
+         "entity_id":0
         },
      "4822":
         {
          "animated":true,
          "animated_id":0,
-         "entity":true
+         "entity":true,
+         "entity_id":0
         },
      "4823":
         {
          "animated":true,
          "animated_id":0,
-         "entity":true
+         "entity":true,
+         "entity_id":0
         },
      "4824":
         {
          "animated":true,
          "animated_id":0,
-         "entity":true
+         "entity":true,
+         "entity_id":0
         },
      "4825":
         {
          "animated":true,
          "animated_id":0,
-         "entity":true
+         "entity":true,
+         "entity_id":0
         },
      "4826":
         {
          "animated":true,
          "animated_id":0,
-         "entity":true
+         "entity":true,
+         "entity_id":0
         },
      "4827":
         {
          "animated":true,
          "animated_id":0,
-         "entity":true
+         "entity":true,
+         "entity_id":0
         },
      "4828":
         {
@@ -5953,7 +6758,8 @@
      "4888":
         {
          "animated":true,
-         "animated_id":4896
+         "animated_id":4896,
+         "blocked":true
         },
      "4920":
         {
@@ -6031,97 +6837,113 @@
         {
          "animated":true,
          "animated_id":0,
-         "entity":true
+         "entity":true,
+         "entity_id":0
         },
      "4933":
         {
          "animated":true,
          "animated_id":0,
-         "entity":true
+         "entity":true,
+         "entity_id":0
         },
      "4934":
         {
          "animated":true,
          "animated_id":0,
-         "entity":true
+         "entity":true,
+         "entity_id":0
         },
      "4935":
         {
          "animated":true,
          "animated_id":0,
-         "entity":true
+         "entity":true,
+         "entity_id":0
         },
      "4936":
         {
          "animated":true,
          "animated_id":0,
-         "entity":true
+         "entity":true,
+         "entity_id":0
         },
      "4937":
         {
          "animated":true,
          "animated_id":0,
-         "entity":true
+         "entity":true,
+         "entity_id":0
         },
      "4938":
         {
          "animated":true,
          "animated_id":0,
-         "entity":true
+         "entity":true,
+         "entity_id":0
         },
      "4939":
         {
          "animated":true,
          "animated_id":0,
-         "entity":true
+         "entity":true,
+         "entity_id":0
         },
      "4940":
         {
          "animated":true,
          "animated_id":0,
-         "entity":true
+         "entity":true,
+         "entity_id":0
         },
      "4941":
         {
          "animated":true,
          "animated_id":0,
-         "entity":true
+         "entity":true,
+         "entity_id":0
         },
      "4942":
         {
          "animated":true,
          "animated_id":0,
-         "entity":true
+         "entity":true,
+         "entity_id":0
         },
      "4943":
         {
          "animated":true,
          "animated_id":0,
-         "entity":true
+         "entity":true,
+         "entity_id":0
         },
      "4944":
         {
          "animated":true,
          "animated_id":0,
-         "entity":true
+         "entity":true,
+         "entity_id":0
         },
      "4945":
         {
          "animated":true,
          "animated_id":0,
-         "entity":true
+         "entity":true,
+         "entity_id":0
         },
      "4946":
         {
          "animated":true,
          "animated_id":0,
-         "entity":true
+         "entity":true,
+         "entity_id":0
         },
      "4947":
         {
          "animated":true,
          "animated_id":0,
-         "entity":true
+         "entity":true,
+         "entity_id":0
         },
      "4948":
         {
@@ -6493,97 +7315,113 @@
         {
          "animated":true,
          "animated_id":0,
-         "entity":true
+         "entity":true,
+         "entity_id":0
         },
      "5053":
         {
          "animated":true,
          "animated_id":0,
-         "entity":true
+         "entity":true,
+         "entity_id":0
         },
      "5054":
         {
          "animated":true,
          "animated_id":0,
-         "entity":true
+         "entity":true,
+         "entity_id":0
         },
      "5055":
         {
          "animated":true,
          "animated_id":0,
-         "entity":true
+         "entity":true,
+         "entity_id":0
         },
      "5056":
         {
          "animated":true,
          "animated_id":0,
-         "entity":true
+         "entity":true,
+         "entity_id":0
         },
      "5057":
         {
          "animated":true,
          "animated_id":0,
-         "entity":true
+         "entity":true,
+         "entity_id":0
         },
      "5058":
         {
          "animated":true,
          "animated_id":0,
-         "entity":true
+         "entity":true,
+         "entity_id":0
         },
      "5059":
         {
          "animated":true,
          "animated_id":0,
-         "entity":true
+         "entity":true,
+         "entity_id":0
         },
      "5060":
         {
          "animated":true,
          "animated_id":0,
-         "entity":true
+         "entity":true,
+         "entity_id":0
         },
      "5061":
         {
          "animated":true,
          "animated_id":0,
-         "entity":true
+         "entity":true,
+         "entity_id":0
         },
      "5062":
         {
          "animated":true,
          "animated_id":0,
-         "entity":true
+         "entity":true,
+         "entity_id":0
         },
      "5063":
         {
          "animated":true,
          "animated_id":0,
-         "entity":true
+         "entity":true,
+         "entity_id":0
         },
      "5064":
         {
          "animated":true,
          "animated_id":0,
-         "entity":true
+         "entity":true,
+         "entity_id":0
         },
      "5065":
         {
          "animated":true,
          "animated_id":0,
-         "entity":true
+         "entity":true,
+         "entity_id":0
         },
      "5066":
         {
          "animated":true,
          "animated_id":0,
-         "entity":true
+         "entity":true,
+         "entity_id":0
         },
      "5067":
         {
          "animated":true,
          "animated_id":0,
-         "entity":true
+         "entity":true,
+         "entity_id":0
         },
      "5068":
         {
@@ -6879,6 +7717,18 @@
          "animated_id":0,
          "entity":false
         },
+     "5128":
+        {
+         "blocked":true
+        },
+     "5129":
+        {
+         "blocked":true
+        },
+     "5130":
+        {
+         "blocked":true
+        },
      "5160":
         {
          "animated":false,
@@ -6955,7 +7805,8 @@
         {
          "animated":true,
          "animated_id":0,
-         "entity":true
+         "entity":true,
+         "entity_id":0
         },
      "5173":
         {
@@ -6963,49 +7814,57 @@
          "animated_id":5181,
          "blocked":true,
          "blocks_vision":false,
-         "entity":true
+         "entity":true,
+         "entity_id":0
         },
      "5174":
         {
          "animated":true,
          "animated_id":0,
-         "entity":true
+         "entity":true,
+         "entity_id":0
         },
      "5175":
         {
          "animated":true,
          "animated_id":0,
-         "entity":true
+         "entity":true,
+         "entity_id":0
         },
      "5176":
         {
          "animated":true,
          "animated_id":0,
-         "entity":true
+         "entity":true,
+         "entity_id":0
         },
      "5177":
         {
          "animated":true,
          "animated_id":0,
-         "entity":true
+         "entity":true,
+         "entity_id":0
         },
      "5178":
         {
          "animated":true,
          "animated_id":0,
-         "entity":true
+         "entity":true,
+         "entity_id":0
         },
      "5179":
         {
          "animated":true,
          "animated_id":0,
-         "entity":true
+         "entity":true,
+         "entity_id":0
         },
      "5180":
         {
          "animated":true,
          "animated_id":0,
-         "entity":true
+         "entity":true,
+         "entity_id":0
         },
      "5181":
         {
@@ -7013,43 +7872,50 @@
          "animated_id":5181,
          "blocked":true,
          "blocks_vision":false,
-         "entity":true
+         "entity":true,
+         "entity_id":0
         },
      "5182":
         {
          "animated":true,
          "animated_id":0,
-         "entity":true
+         "entity":true,
+         "entity_id":0
         },
      "5183":
         {
          "animated":true,
          "animated_id":0,
-         "entity":true
+         "entity":true,
+         "entity_id":0
         },
      "5184":
         {
          "animated":true,
          "animated_id":0,
-         "entity":true
+         "entity":true,
+         "entity_id":0
         },
      "5185":
         {
          "animated":true,
          "animated_id":0,
-         "entity":true
+         "entity":true,
+         "entity_id":0
         },
      "5186":
         {
          "animated":true,
          "animated_id":0,
-         "entity":true
+         "entity":true,
+         "entity_id":0
         },
      "5187":
         {
          "animated":true,
          "animated_id":0,
-         "entity":true
+         "entity":true,
+         "entity_id":0
         },
      "5188":
         {
@@ -7344,6 +8210,10 @@
          "animated":false,
          "animated_id":0,
          "entity":false
+        },
+     "5254":
+        {
+         "blocked":true
         },
      "5280":
         {
@@ -13177,37 +14047,37 @@
         },
      "7404":
         {
-         "bg":"brown",
+         "bg":"#824d03",
          "blocked":true,
          "blocks_vision":true
         },
      "7405":
         {
-         "bg":"brown",
+         "bg":"#824d03",
          "blocked":true,
          "blocks_vision":true
         },
      "7406":
         {
-         "bg":"brown",
+         "bg":"#824d03",
          "blocked":true,
          "blocks_vision":true
         },
      "7407":
         {
-         "bg":"brown",
+         "bg":"#824d03",
          "blocked":true,
          "blocks_vision":true
         },
      "7408":
         {
-         "bg":"brown",
+         "bg":"#824d03",
          "blocked":true,
          "blocks_vision":true
         },
      "7409":
         {
-         "bg":"brown",
+         "bg":"#824d03",
          "blocked":true,
          "blocks_vision":true
         },
@@ -13243,43 +14113,50 @@
         {
          "animated":true,
          "animated_id":7448,
-         "entity":true
+         "entity":true,
+         "entity_id":1
         },
      "7441":
         {
          "animated":true,
          "animated_id":7449,
-         "entity":true
+         "entity":true,
+         "entity_id":1
         },
      "7442":
         {
          "animated":true,
          "animated_id":7450,
-         "entity":true
+         "entity":true,
+         "entity_id":1
         },
      "7443":
         {
          "animated":true,
          "animated_id":7451,
-         "entity":true
+         "entity":true,
+         "entity_id":1
         },
      "7444":
         {
          "animated":true,
          "animated_id":7452,
-         "entity":true
+         "entity":true,
+         "entity_id":1
         },
      "7445":
         {
          "animated":true,
          "animated_id":7453,
-         "entity":true
+         "entity":true,
+         "entity_id":1
         },
      "7446":
         {
          "animated":true,
          "animated_id":7454,
-         "entity":true
+         "entity":true,
+         "entity_id":1
         },
      "7447":
         {
@@ -14036,37 +14913,37 @@
         },
      "7524":
         {
-         "bg":"brown",
+         "bg":"#824d03",
          "blocked":true,
          "blocks_vision":true
         },
      "7525":
         {
-         "bg":"brown",
+         "bg":"#824d03",
          "blocked":true,
          "blocks_vision":true
         },
      "7526":
         {
-         "bg":"brown",
+         "bg":"#824d03",
          "blocked":true,
          "blocks_vision":true
         },
      "7527":
         {
-         "bg":"brown",
+         "bg":"#824d03",
          "blocked":true,
          "blocks_vision":true
         },
      "7528":
         {
-         "bg":"brown",
+         "bg":"#824d03",
          "blocked":true,
          "blocks_vision":true
         },
      "7529":
         {
-         "bg":"brown",
+         "bg":"#824d03",
          "blocked":true,
          "blocks_vision":true
         },
@@ -14895,37 +15772,37 @@
         },
      "7644":
         {
-         "bg":"brown",
+         "bg":"#824d03",
          "blocked":true,
          "blocks_vision":true
         },
      "7645":
         {
-         "bg":"brown",
+         "bg":"#824d03",
          "blocked":true,
          "blocks_vision":true
         },
      "7646":
         {
-         "bg":"brown",
+         "bg":"#824d03",
          "blocked":true,
          "blocks_vision":true
         },
      "7647":
         {
-         "bg":"brown",
+         "bg":"#824d03",
          "blocked":true,
          "blocks_vision":true
         },
      "7648":
         {
-         "bg":"brown",
+         "bg":"#824d03",
          "blocked":true,
          "blocks_vision":true
         },
      "7649":
         {
-         "bg":"brown",
+         "bg":"#824d03",
          "blocked":true,
          "blocks_vision":true
         },
@@ -15555,7 +16432,7 @@
          "animated":false,
          "animated_id":0,
          "bg":"gray",
-         "blocked":false,
+         "blocked":true,
          "blocks_vision":false,
          "entity":false
         },
@@ -15754,37 +16631,37 @@
         },
      "7764":
         {
-         "bg":"brown",
+         "bg":"#824d03",
          "blocked":true,
          "blocks_vision":true
         },
      "7765":
         {
-         "bg":"brown",
+         "bg":"#824d03",
          "blocked":true,
          "blocks_vision":true
         },
      "7766":
         {
-         "bg":"brown",
+         "bg":"#824d03",
          "blocked":true,
          "blocks_vision":true
         },
      "7767":
         {
-         "bg":"brown",
+         "bg":"#824d03",
          "blocked":true,
          "blocks_vision":true
         },
      "7768":
         {
-         "bg":"brown",
+         "bg":"#824d03",
          "blocked":true,
          "blocks_vision":true
         },
      "7769":
         {
-         "bg":"brown",
+         "bg":"#824d03",
          "blocked":true,
          "blocks_vision":true
         },
@@ -16613,37 +17490,37 @@
         },
      "7884":
         {
-         "bg":"brown",
+         "bg":"#824d03",
          "blocked":true,
          "blocks_vision":true
         },
      "7885":
         {
-         "bg":"brown",
+         "bg":"#824d03",
          "blocked":true,
          "blocks_vision":true
         },
      "7886":
         {
-         "bg":"brown",
+         "bg":"#824d03",
          "blocked":true,
          "blocks_vision":true
         },
      "7887":
         {
-         "bg":"brown",
+         "bg":"#824d03",
          "blocked":true,
          "blocks_vision":true
         },
      "7888":
         {
-         "bg":"brown",
+         "bg":"#824d03",
          "blocked":true,
          "blocks_vision":true
         },
      "7889":
         {
-         "bg":"brown",
+         "bg":"#824d03",
          "blocked":true,
          "blocks_vision":true
         },
@@ -16778,7 +17655,7 @@
          "animated":true,
          "animated_fov_id":8664,
          "animated_id":7944,
-         "bg":"blue",
+         "bg":"#66d9ef",
          "blocked":true,
          "blocks_vision":false,
          "entity":false
@@ -16790,7 +17667,7 @@
          "animated":true,
          "animated_fov_id":8665,
          "animated_id":7945,
-         "bg":"blue",
+         "bg":"#66d9ef",
          "blocked":true,
          "blocks_vision":false,
          "entity":false
@@ -16802,7 +17679,7 @@
          "animated":true,
          "animated_fov_id":8666,
          "animated_id":7946,
-         "bg":"blue",
+         "bg":"#66d9ef",
          "blocked":true,
          "blocks_vision":false,
          "entity":false
@@ -16814,7 +17691,7 @@
          "animated":true,
          "animated_fov_id":0,
          "animated_id":0,
-         "bg":"blue",
+         "bg":"#66d9ef",
          "blocked":true,
          "blocks_vision":false,
          "entity":false
@@ -16826,7 +17703,7 @@
          "animated":true,
          "animated_fov_id":0,
          "animated_id":0,
-         "bg":"blue",
+         "bg":"#66d9ef",
          "blocked":true,
          "blocks_vision":false,
          "entity":false
@@ -16838,7 +17715,7 @@
          "animated":true,
          "animated_fov_id":0,
          "animated_id":0,
-         "bg":"blue",
+         "bg":"#66d9ef",
          "blocked":true,
          "blocks_vision":false,
          "entity":false
@@ -16850,7 +17727,7 @@
          "animated":true,
          "animated_fov_id":0,
          "animated_id":0,
-         "bg":"blue",
+         "bg":"#66d9ef",
          "blocked":true,
          "blocks_vision":false,
          "entity":false
@@ -16862,7 +17739,7 @@
          "animated":true,
          "animated_fov_id":0,
          "animated_id":0,
-         "bg":"blue",
+         "bg":"#66d9ef",
          "blocked":true,
          "blocks_vision":false,
          "entity":false
@@ -16874,7 +17751,7 @@
          "animated":true,
          "animated_fov_id":0,
          "animated_id":0,
-         "bg":"blue",
+         "bg":"#66d9ef",
          "blocked":true,
          "blocks_vision":false,
          "entity":false
@@ -16886,7 +17763,7 @@
          "animated":true,
          "animated_fov_id":0,
          "animated_id":0,
-         "bg":"blue",
+         "bg":"#66d9ef",
          "blocked":true,
          "blocks_vision":false,
          "entity":false
@@ -16898,7 +17775,7 @@
          "animated":true,
          "animated_fov_id":0,
          "animated_id":0,
-         "bg":"blue",
+         "bg":"#66d9ef",
          "blocked":true,
          "blocks_vision":false,
          "entity":false
@@ -16910,7 +17787,7 @@
          "animated":true,
          "animated_fov_id":0,
          "animated_id":0,
-         "bg":"blue",
+         "bg":"#66d9ef",
          "blocked":true,
          "blocks_vision":false,
          "entity":false
@@ -16922,7 +17799,7 @@
          "animated":true,
          "animated_fov_id":0,
          "animated_id":0,
-         "bg":"blue",
+         "bg":"#66d9ef",
          "blocked":true,
          "blocks_vision":false,
          "entity":false
@@ -16934,7 +17811,7 @@
          "animated":true,
          "animated_fov_id":0,
          "animated_id":0,
-         "bg":"blue",
+         "bg":"#66d9ef",
          "blocked":true,
          "blocks_vision":false,
          "entity":false
@@ -16946,7 +17823,7 @@
          "animated":true,
          "animated_fov_id":0,
          "animated_id":0,
-         "bg":"blue",
+         "bg":"#66d9ef",
          "blocked":true,
          "blocks_vision":false,
          "entity":false
@@ -16958,7 +17835,7 @@
          "animated":true,
          "animated_fov_id":0,
          "animated_id":0,
-         "bg":"blue",
+         "bg":"#66d9ef",
          "blocked":true,
          "blocks_vision":false,
          "entity":false
@@ -17488,37 +18365,37 @@
         },
      "8004":
         {
-         "bg":"brown",
+         "bg":"#824d03",
          "blocked":true,
          "blocks_vision":true
         },
      "8005":
         {
-         "bg":"brown",
+         "bg":"#824d03",
          "blocked":true,
          "blocks_vision":true
         },
      "8006":
         {
-         "bg":"brown",
+         "bg":"#824d03",
          "blocked":true,
          "blocks_vision":true
         },
      "8007":
         {
-         "bg":"brown",
+         "bg":"#824d03",
          "blocked":true,
          "blocks_vision":true
         },
      "8008":
         {
-         "bg":"brown",
+         "bg":"#824d03",
          "blocked":true,
          "blocks_vision":true
         },
      "8009":
         {
-         "bg":"brown",
+         "bg":"#824d03",
          "blocked":true,
          "blocks_vision":true
         },
@@ -17653,7 +18530,7 @@
          "animated":true,
          "animated_fov_id":8784,
          "animated_id":8064,
-         "bg":"blue",
+         "bg":"#66d9ef",
          "blocked":true,
          "blocks_vision":false,
          "entity":false
@@ -17665,7 +18542,7 @@
          "animated":true,
          "animated_fov_id":8785,
          "animated_id":8065,
-         "bg":"blue",
+         "bg":"#66d9ef",
          "blocked":true,
          "blocks_vision":false,
          "entity":false
@@ -17677,7 +18554,7 @@
          "animated":true,
          "animated_fov_id":8786,
          "animated_id":8066,
-         "bg":"blue",
+         "bg":"#66d9ef",
          "blocked":true,
          "blocks_vision":false,
          "entity":false
@@ -17689,7 +18566,7 @@
          "animated":true,
          "animated_fov_id":0,
          "animated_id":0,
-         "bg":"blue",
+         "bg":"#66d9ef",
          "blocked":true,
          "blocks_vision":false,
          "entity":false
@@ -17701,7 +18578,7 @@
          "animated":true,
          "animated_fov_id":0,
          "animated_id":0,
-         "bg":"blue",
+         "bg":"#66d9ef",
          "blocked":true,
          "blocks_vision":false,
          "entity":false
@@ -17713,7 +18590,7 @@
          "animated":true,
          "animated_fov_id":0,
          "animated_id":0,
-         "bg":"blue",
+         "bg":"#66d9ef",
          "blocked":true,
          "blocks_vision":false,
          "entity":false
@@ -17725,7 +18602,7 @@
          "animated":true,
          "animated_fov_id":0,
          "animated_id":0,
-         "bg":"blue",
+         "bg":"#66d9ef",
          "blocked":true,
          "blocks_vision":false,
          "entity":false
@@ -17737,7 +18614,7 @@
          "animated":true,
          "animated_fov_id":0,
          "animated_id":0,
-         "bg":"blue",
+         "bg":"#66d9ef",
          "blocked":true,
          "blocks_vision":false,
          "entity":false
@@ -17749,7 +18626,7 @@
          "animated":true,
          "animated_fov_id":0,
          "animated_id":0,
-         "bg":"blue",
+         "bg":"#66d9ef",
          "blocked":true,
          "blocks_vision":false,
          "entity":false
@@ -17761,7 +18638,7 @@
          "animated":true,
          "animated_fov_id":0,
          "animated_id":0,
-         "bg":"blue",
+         "bg":"#66d9ef",
          "blocked":true,
          "blocks_vision":false,
          "entity":false
@@ -17773,7 +18650,7 @@
          "animated":true,
          "animated_fov_id":0,
          "animated_id":0,
-         "bg":"blue",
+         "bg":"#66d9ef",
          "blocked":true,
          "blocks_vision":false,
          "entity":false
@@ -17785,7 +18662,7 @@
          "animated":true,
          "animated_fov_id":0,
          "animated_id":0,
-         "bg":"blue",
+         "bg":"#66d9ef",
          "blocked":true,
          "blocks_vision":false,
          "entity":false
@@ -17797,7 +18674,7 @@
          "animated":true,
          "animated_fov_id":0,
          "animated_id":0,
-         "bg":"blue",
+         "bg":"#66d9ef",
          "blocked":true,
          "blocks_vision":false,
          "entity":false
@@ -17809,7 +18686,7 @@
          "animated":true,
          "animated_fov_id":0,
          "animated_id":0,
-         "bg":"blue",
+         "bg":"#66d9ef",
          "blocked":true,
          "blocks_vision":false,
          "entity":false
@@ -17821,7 +18698,7 @@
          "animated":true,
          "animated_fov_id":0,
          "animated_id":0,
-         "bg":"blue",
+         "bg":"#66d9ef",
          "blocked":true,
          "blocks_vision":false,
          "entity":false
@@ -17833,7 +18710,7 @@
          "animated":true,
          "animated_fov_id":0,
          "animated_id":0,
-         "bg":"blue",
+         "bg":"#66d9ef",
          "blocked":true,
          "blocks_vision":false,
          "entity":false
@@ -18195,37 +19072,37 @@
         },
      "8124":
         {
-         "bg":"brown",
+         "bg":"#824d03",
          "blocked":true,
          "blocks_vision":true
         },
      "8125":
         {
-         "bg":"brown",
+         "bg":"#824d03",
          "blocked":true,
          "blocks_vision":true
         },
      "8126":
         {
-         "bg":"brown",
+         "bg":"#824d03",
          "blocked":true,
          "blocks_vision":true
         },
      "8127":
         {
-         "bg":"brown",
+         "bg":"#824d03",
          "blocked":true,
          "blocks_vision":true
         },
      "8128":
         {
-         "bg":"brown",
+         "bg":"#824d03",
          "blocked":true,
          "blocks_vision":true
         },
      "8129":
         {
-         "bg":"brown",
+         "bg":"#824d03",
          "blocked":true,
          "blocks_vision":true
         },
@@ -18360,7 +19237,7 @@
          "animated":true,
          "animated_fov_id":8904,
          "animated_id":8184,
-         "bg":"blue",
+         "bg":"#66d9ef",
          "blocked":true,
          "blocks_vision":false,
          "entity":false
@@ -18372,7 +19249,7 @@
          "animated":true,
          "animated_fov_id":8905,
          "animated_id":8185,
-         "bg":"blue",
+         "bg":"#66d9ef",
          "blocked":true,
          "blocks_vision":false,
          "entity":false
@@ -18384,7 +19261,7 @@
          "animated":true,
          "animated_fov_id":8906,
          "animated_id":8186,
-         "bg":"blue",
+         "bg":"#66d9ef",
          "blocked":true,
          "blocks_vision":false,
          "entity":false
@@ -18396,7 +19273,7 @@
          "animated":true,
          "animated_fov_id":0,
          "animated_id":0,
-         "bg":"blue",
+         "bg":"#66d9ef",
          "blocked":true,
          "blocks_vision":false,
          "entity":false
@@ -18408,7 +19285,7 @@
          "animated":true,
          "animated_fov_id":0,
          "animated_id":0,
-         "bg":"blue",
+         "bg":"#66d9ef",
          "blocked":true,
          "blocks_vision":false,
          "entity":false
@@ -18420,7 +19297,7 @@
          "animated":true,
          "animated_fov_id":0,
          "animated_id":0,
-         "bg":"blue",
+         "bg":"#66d9ef",
          "blocked":true,
          "blocks_vision":false,
          "entity":false
@@ -18432,7 +19309,7 @@
          "animated":true,
          "animated_fov_id":0,
          "animated_id":0,
-         "bg":"blue",
+         "bg":"#66d9ef",
          "blocked":true,
          "blocks_vision":false,
          "entity":false
@@ -18444,7 +19321,7 @@
          "animated":true,
          "animated_fov_id":0,
          "animated_id":0,
-         "bg":"blue",
+         "bg":"#66d9ef",
          "blocked":true,
          "blocks_vision":false,
          "entity":false
@@ -18456,7 +19333,7 @@
          "animated":true,
          "animated_fov_id":0,
          "animated_id":0,
-         "bg":"blue",
+         "bg":"#66d9ef",
          "blocked":true,
          "blocks_vision":false,
          "entity":false
@@ -18468,7 +19345,7 @@
          "animated":true,
          "animated_fov_id":0,
          "animated_id":0,
-         "bg":"blue",
+         "bg":"#66d9ef",
          "blocked":true,
          "blocks_vision":false,
          "entity":false
@@ -18480,7 +19357,7 @@
          "animated":true,
          "animated_fov_id":0,
          "animated_id":0,
-         "bg":"blue",
+         "bg":"#66d9ef",
          "blocked":true,
          "blocks_vision":false,
          "entity":false
@@ -18492,7 +19369,7 @@
          "animated":true,
          "animated_fov_id":0,
          "animated_id":0,
-         "bg":"blue",
+         "bg":"#66d9ef",
          "blocked":true,
          "blocks_vision":false,
          "entity":false
@@ -18504,7 +19381,7 @@
          "animated":true,
          "animated_fov_id":0,
          "animated_id":0,
-         "bg":"blue",
+         "bg":"#66d9ef",
          "blocked":true,
          "blocks_vision":false,
          "entity":false
@@ -18516,7 +19393,7 @@
          "animated":true,
          "animated_fov_id":0,
          "animated_id":0,
-         "bg":"blue",
+         "bg":"#66d9ef",
          "blocked":true,
          "blocks_vision":false,
          "entity":false
@@ -18528,7 +19405,7 @@
          "animated":true,
          "animated_fov_id":0,
          "animated_id":0,
-         "bg":"blue",
+         "bg":"#66d9ef",
          "blocked":true,
          "blocks_vision":false,
          "entity":false
@@ -18540,7 +19417,7 @@
          "animated":true,
          "animated_fov_id":0,
          "animated_id":0,
-         "bg":"blue",
+         "bg":"#66d9ef",
          "blocked":true,
          "blocks_vision":false,
          "entity":false
@@ -18902,37 +19779,37 @@
         },
      "8244":
         {
-         "bg":"brown",
+         "bg":"#824d03",
          "blocked":true,
          "blocks_vision":true
         },
      "8245":
         {
-         "bg":"brown",
+         "bg":"#824d03",
          "blocked":true,
          "blocks_vision":true
         },
      "8246":
         {
-         "bg":"brown",
+         "bg":"#824d03",
          "blocked":true,
          "blocks_vision":true
         },
      "8247":
         {
-         "bg":"brown",
+         "bg":"#824d03",
          "blocked":true,
          "blocks_vision":true
         },
      "8248":
         {
-         "bg":"brown",
+         "bg":"#824d03",
          "blocked":true,
          "blocks_vision":true
         },
      "8249":
         {
-         "bg":"brown",
+         "bg":"#824d03",
          "blocked":true,
          "blocks_vision":true
         },
@@ -19067,7 +19944,7 @@
          "animated":true,
          "animated_fov_id":9024,
          "animated_id":8304,
-         "bg":"blue",
+         "bg":"#66d9ef",
          "blocked":true,
          "blocks_vision":false,
          "entity":false
@@ -19079,7 +19956,7 @@
          "animated":true,
          "animated_fov_id":9025,
          "animated_id":8305,
-         "bg":"blue",
+         "bg":"#66d9ef",
          "blocked":true,
          "blocks_vision":false,
          "entity":false
@@ -19091,7 +19968,7 @@
          "animated":true,
          "animated_fov_id":9026,
          "animated_id":8306,
-         "bg":"blue",
+         "bg":"#66d9ef",
          "blocked":true,
          "blocks_vision":false,
          "entity":false
@@ -19103,7 +19980,7 @@
          "animated":true,
          "animated_fov_id":0,
          "animated_id":0,
-         "bg":"blue",
+         "bg":"#66d9ef",
          "blocked":true,
          "blocks_vision":false,
          "entity":false
@@ -19114,8 +19991,8 @@
          "FOV_id":0,
          "animated":true,
          "animated_fov_id":0,
-         "animated_id":0,
-         "bg":"blue",
+         "animated_id":8308,
+         "bg":"#66d9ef",
          "blocked":true,
          "blocks_vision":false,
          "entity":false
@@ -19127,7 +20004,7 @@
          "animated":true,
          "animated_fov_id":0,
          "animated_id":0,
-         "bg":"blue",
+         "bg":"#66d9ef",
          "blocked":true,
          "blocks_vision":false,
          "entity":false
@@ -19139,7 +20016,7 @@
          "animated":true,
          "animated_fov_id":0,
          "animated_id":0,
-         "bg":"blue",
+         "bg":"#66d9ef",
          "blocked":true,
          "blocks_vision":false,
          "entity":false
@@ -19151,7 +20028,7 @@
          "animated":true,
          "animated_fov_id":0,
          "animated_id":0,
-         "bg":"blue",
+         "bg":"#66d9ef",
          "blocked":true,
          "blocks_vision":false,
          "entity":false
@@ -19163,7 +20040,7 @@
          "animated":true,
          "animated_fov_id":0,
          "animated_id":0,
-         "bg":"blue",
+         "bg":"#66d9ef",
          "blocked":true,
          "blocks_vision":false,
          "entity":false
@@ -19175,7 +20052,7 @@
          "animated":true,
          "animated_fov_id":0,
          "animated_id":0,
-         "bg":"blue",
+         "bg":"#66d9ef",
          "blocked":true,
          "blocks_vision":false,
          "entity":false
@@ -19187,7 +20064,7 @@
          "animated":true,
          "animated_fov_id":0,
          "animated_id":0,
-         "bg":"blue",
+         "bg":"#66d9ef",
          "blocked":true,
          "blocks_vision":false,
          "entity":false
@@ -19199,7 +20076,7 @@
          "animated":true,
          "animated_fov_id":0,
          "animated_id":0,
-         "bg":"blue",
+         "bg":"#66d9ef",
          "blocked":true,
          "blocks_vision":false,
          "entity":false
@@ -19211,7 +20088,7 @@
          "animated":true,
          "animated_fov_id":0,
          "animated_id":0,
-         "bg":"blue",
+         "bg":"#66d9ef",
          "blocked":true,
          "blocks_vision":false,
          "entity":false
@@ -19223,7 +20100,7 @@
          "animated":true,
          "animated_fov_id":0,
          "animated_id":0,
-         "bg":"blue",
+         "bg":"#66d9ef",
          "blocked":true,
          "blocks_vision":false,
          "entity":false
@@ -19235,7 +20112,7 @@
          "animated":true,
          "animated_fov_id":0,
          "animated_id":0,
-         "bg":"blue",
+         "bg":"#66d9ef",
          "blocked":true,
          "blocks_vision":false,
          "entity":false
@@ -19247,7 +20124,7 @@
          "animated":true,
          "animated_fov_id":0,
          "animated_id":0,
-         "bg":"blue",
+         "bg":"#66d9ef",
          "blocked":true,
          "blocks_vision":false,
          "entity":false
@@ -19609,37 +20486,37 @@
         },
      "8364":
         {
-         "bg":"brown",
+         "bg":"#824d03",
          "blocked":true,
          "blocks_vision":true
         },
      "8365":
         {
-         "bg":"brown",
+         "bg":"#824d03",
          "blocked":true,
          "blocks_vision":true
         },
      "8366":
         {
-         "bg":"brown",
+         "bg":"#824d03",
          "blocked":true,
          "blocks_vision":true
         },
      "8367":
         {
-         "bg":"brown",
+         "bg":"#824d03",
          "blocked":true,
          "blocks_vision":true
         },
      "8368":
         {
-         "bg":"brown",
+         "bg":"#824d03",
          "blocked":true,
          "blocks_vision":true
         },
      "8369":
         {
-         "bg":"brown",
+         "bg":"#824d03",
          "blocked":true,
          "blocks_vision":true
         },
@@ -19774,7 +20651,7 @@
          "animated":true,
          "animated_fov_id":0,
          "animated_id":0,
-         "bg":"blue",
+         "bg":"#66d9ef",
          "blocked":true,
          "blocks_vision":false,
          "entity":false
@@ -19786,7 +20663,7 @@
          "animated":true,
          "animated_fov_id":0,
          "animated_id":0,
-         "bg":"blue",
+         "bg":"#66d9ef",
          "blocked":true,
          "blocks_vision":false,
          "entity":false
@@ -19798,7 +20675,7 @@
          "animated":true,
          "animated_fov_id":0,
          "animated_id":0,
-         "bg":"blue",
+         "bg":"#66d9ef",
          "blocked":true,
          "blocks_vision":false,
          "entity":false
@@ -19810,7 +20687,7 @@
          "animated":true,
          "animated_fov_id":0,
          "animated_id":0,
-         "bg":"blue",
+         "bg":"#66d9ef",
          "blocked":true,
          "blocks_vision":false,
          "entity":false
@@ -19822,7 +20699,7 @@
          "animated":true,
          "animated_fov_id":0,
          "animated_id":0,
-         "bg":"blue",
+         "bg":"#66d9ef",
          "blocked":true,
          "blocks_vision":false,
          "entity":false
@@ -19834,7 +20711,7 @@
          "animated":true,
          "animated_fov_id":0,
          "animated_id":0,
-         "bg":"blue",
+         "bg":"#66d9ef",
          "blocked":true,
          "blocks_vision":false,
          "entity":false
@@ -19846,7 +20723,7 @@
          "animated":true,
          "animated_fov_id":0,
          "animated_id":0,
-         "bg":"blue",
+         "bg":"#66d9ef",
          "blocked":true,
          "blocks_vision":false,
          "entity":false
@@ -19858,7 +20735,7 @@
          "animated":true,
          "animated_fov_id":0,
          "animated_id":0,
-         "bg":"blue",
+         "bg":"#66d9ef",
          "blocked":true,
          "blocks_vision":false,
          "entity":false
@@ -19870,7 +20747,7 @@
          "animated":true,
          "animated_fov_id":0,
          "animated_id":0,
-         "bg":"blue",
+         "bg":"#66d9ef",
          "blocked":true,
          "blocks_vision":false,
          "entity":false
@@ -19882,7 +20759,7 @@
          "animated":true,
          "animated_fov_id":0,
          "animated_id":0,
-         "bg":"blue",
+         "bg":"#66d9ef",
          "blocked":true,
          "blocks_vision":false,
          "entity":false
@@ -19894,7 +20771,7 @@
          "animated":true,
          "animated_fov_id":0,
          "animated_id":0,
-         "bg":"blue",
+         "bg":"#66d9ef",
          "blocked":true,
          "blocks_vision":false,
          "entity":false
@@ -19906,7 +20783,7 @@
          "animated":true,
          "animated_fov_id":0,
          "animated_id":0,
-         "bg":"blue",
+         "bg":"#66d9ef",
          "blocked":true,
          "blocks_vision":false,
          "entity":false
@@ -19918,7 +20795,7 @@
          "animated":true,
          "animated_fov_id":0,
          "animated_id":0,
-         "bg":"blue",
+         "bg":"#66d9ef",
          "blocked":true,
          "blocks_vision":false,
          "entity":false
@@ -19930,7 +20807,7 @@
          "animated":true,
          "animated_fov_id":0,
          "animated_id":0,
-         "bg":"blue",
+         "bg":"#66d9ef",
          "blocked":true,
          "blocks_vision":false,
          "entity":false
@@ -19942,7 +20819,7 @@
          "animated":true,
          "animated_fov_id":0,
          "animated_id":0,
-         "bg":"blue",
+         "bg":"#66d9ef",
          "blocked":true,
          "blocks_vision":false,
          "entity":false
@@ -19954,7 +20831,7 @@
          "animated":true,
          "animated_fov_id":0,
          "animated_id":0,
-         "bg":"blue",
+         "bg":"#66d9ef",
          "blocked":true,
          "blocks_vision":false,
          "entity":false
@@ -20316,37 +21193,37 @@
         },
      "8484":
         {
-         "bg":"brown",
+         "bg":"#824d03",
          "blocked":true,
          "blocks_vision":true
         },
      "8485":
         {
-         "bg":"brown",
+         "bg":"#824d03",
          "blocked":true,
          "blocks_vision":true
         },
      "8486":
         {
-         "bg":"brown",
+         "bg":"#824d03",
          "blocked":true,
          "blocks_vision":true
         },
      "8487":
         {
-         "bg":"brown",
+         "bg":"#824d03",
          "blocked":true,
          "blocks_vision":true
         },
      "8488":
         {
-         "bg":"brown",
+         "bg":"#824d03",
          "blocked":true,
          "blocks_vision":true
         },
      "8489":
         {
-         "bg":"brown",
+         "bg":"#824d03",
          "blocked":true,
          "blocks_vision":true
         },
@@ -20481,7 +21358,7 @@
          "animated":true,
          "animated_fov_id":0,
          "animated_id":0,
-         "bg":"blue",
+         "bg":"#66d9ef",
          "blocked":true,
          "blocks_vision":false,
          "entity":false
@@ -20493,7 +21370,7 @@
          "animated":true,
          "animated_fov_id":0,
          "animated_id":0,
-         "bg":"blue",
+         "bg":"#66d9ef",
          "blocked":true,
          "blocks_vision":false,
          "entity":false
@@ -20505,7 +21382,7 @@
          "animated":true,
          "animated_fov_id":0,
          "animated_id":0,
-         "bg":"blue",
+         "bg":"#66d9ef",
          "blocked":true,
          "blocks_vision":false,
          "entity":false
@@ -20517,7 +21394,7 @@
          "animated":true,
          "animated_fov_id":0,
          "animated_id":0,
-         "bg":"blue",
+         "bg":"#66d9ef",
          "blocked":true,
          "blocks_vision":false,
          "entity":false
@@ -20529,7 +21406,7 @@
          "animated":true,
          "animated_fov_id":0,
          "animated_id":0,
-         "bg":"blue",
+         "bg":"#66d9ef",
          "blocked":true,
          "blocks_vision":false,
          "entity":false
@@ -20541,7 +21418,7 @@
          "animated":true,
          "animated_fov_id":0,
          "animated_id":0,
-         "bg":"blue",
+         "bg":"#66d9ef",
          "blocked":true,
          "blocks_vision":false,
          "entity":false
@@ -20553,7 +21430,7 @@
          "animated":true,
          "animated_fov_id":0,
          "animated_id":0,
-         "bg":"blue",
+         "bg":"#66d9ef",
          "blocked":true,
          "blocks_vision":false,
          "entity":false
@@ -20565,7 +21442,7 @@
          "animated":true,
          "animated_fov_id":0,
          "animated_id":0,
-         "bg":"blue",
+         "bg":"#66d9ef",
          "blocked":true,
          "blocks_vision":false,
          "entity":false
@@ -20577,7 +21454,7 @@
          "animated":true,
          "animated_fov_id":0,
          "animated_id":0,
-         "bg":"blue",
+         "bg":"#66d9ef",
          "blocked":true,
          "blocks_vision":false,
          "entity":false
@@ -20589,7 +21466,7 @@
          "animated":true,
          "animated_fov_id":0,
          "animated_id":0,
-         "bg":"blue",
+         "bg":"#66d9ef",
          "blocked":true,
          "blocks_vision":false,
          "entity":false
@@ -20601,7 +21478,7 @@
          "animated":true,
          "animated_fov_id":0,
          "animated_id":0,
-         "bg":"blue",
+         "bg":"#66d9ef",
          "blocked":true,
          "blocks_vision":false,
          "entity":false
@@ -20613,7 +21490,7 @@
          "animated":true,
          "animated_fov_id":0,
          "animated_id":0,
-         "bg":"blue",
+         "bg":"#66d9ef",
          "blocked":true,
          "blocks_vision":false,
          "entity":false
@@ -20625,7 +21502,7 @@
          "animated":true,
          "animated_fov_id":0,
          "animated_id":0,
-         "bg":"blue",
+         "bg":"#66d9ef",
          "blocked":true,
          "blocks_vision":false,
          "entity":false
@@ -20637,7 +21514,7 @@
          "animated":true,
          "animated_fov_id":0,
          "animated_id":0,
-         "bg":"blue",
+         "bg":"#66d9ef",
          "blocked":true,
          "blocks_vision":false,
          "entity":false
@@ -20649,7 +21526,7 @@
          "animated":true,
          "animated_fov_id":0,
          "animated_id":0,
-         "bg":"blue",
+         "bg":"#66d9ef",
          "blocked":true,
          "blocks_vision":false,
          "entity":false
@@ -20661,7 +21538,7 @@
          "animated":true,
          "animated_fov_id":0,
          "animated_id":0,
-         "bg":"blue",
+         "bg":"#66d9ef",
          "blocked":true,
          "blocks_vision":false,
          "entity":false
@@ -21023,37 +21900,37 @@
         },
      "8604":
         {
-         "bg":"brown",
+         "bg":"#824d03",
          "blocked":true,
          "blocks_vision":true
         },
      "8605":
         {
-         "bg":"brown",
+         "bg":"#824d03",
          "blocked":true,
          "blocks_vision":true
         },
      "8606":
         {
-         "bg":"brown",
+         "bg":"#824d03",
          "blocked":true,
          "blocks_vision":true
         },
      "8607":
         {
-         "bg":"brown",
+         "bg":"#824d03",
          "blocked":true,
          "blocks_vision":true
         },
      "8608":
         {
-         "bg":"brown",
+         "bg":"#824d03",
          "blocked":true,
          "blocks_vision":true
         },
      "8609":
         {
-         "bg":"brown",
+         "bg":"#824d03",
          "blocked":true,
          "blocks_vision":true
         },
@@ -21188,7 +22065,7 @@
          "animated":true,
          "animated_fov_id":0,
          "animated_id":0,
-         "bg":"blue",
+         "bg":"#66d9ef",
          "blocked":true,
          "blocks_vision":false,
          "entity":false
@@ -21200,7 +22077,7 @@
          "animated":true,
          "animated_fov_id":0,
          "animated_id":0,
-         "bg":"blue",
+         "bg":"#66d9ef",
          "blocked":true,
          "blocks_vision":false,
          "entity":false
@@ -21212,7 +22089,7 @@
          "animated":true,
          "animated_fov_id":0,
          "animated_id":0,
-         "bg":"blue",
+         "bg":"#66d9ef",
          "blocked":true,
          "blocks_vision":false,
          "entity":false
@@ -21224,7 +22101,7 @@
          "animated":true,
          "animated_fov_id":0,
          "animated_id":0,
-         "bg":"blue",
+         "bg":"#66d9ef",
          "blocked":true,
          "blocks_vision":false,
          "entity":false
@@ -21236,7 +22113,7 @@
          "animated":true,
          "animated_fov_id":0,
          "animated_id":0,
-         "bg":"blue",
+         "bg":"#66d9ef",
          "blocked":true,
          "blocks_vision":false,
          "entity":false
@@ -21248,7 +22125,7 @@
          "animated":true,
          "animated_fov_id":0,
          "animated_id":0,
-         "bg":"blue",
+         "bg":"#66d9ef",
          "blocked":true,
          "blocks_vision":false,
          "entity":false
@@ -21260,7 +22137,7 @@
          "animated":true,
          "animated_fov_id":0,
          "animated_id":0,
-         "bg":"blue",
+         "bg":"#66d9ef",
          "blocked":true,
          "blocks_vision":false,
          "entity":false
@@ -21272,7 +22149,7 @@
          "animated":true,
          "animated_fov_id":0,
          "animated_id":0,
-         "bg":"blue",
+         "bg":"#66d9ef",
          "blocked":true,
          "blocks_vision":false,
          "entity":false
@@ -21284,7 +22161,7 @@
          "animated":true,
          "animated_fov_id":0,
          "animated_id":0,
-         "bg":"blue",
+         "bg":"#66d9ef",
          "blocked":true,
          "blocks_vision":false,
          "entity":false
@@ -21296,7 +22173,7 @@
          "animated":true,
          "animated_fov_id":0,
          "animated_id":0,
-         "bg":"blue",
+         "bg":"#66d9ef",
          "blocked":true,
          "blocks_vision":false,
          "entity":false
@@ -21308,7 +22185,7 @@
          "animated":true,
          "animated_fov_id":0,
          "animated_id":0,
-         "bg":"blue",
+         "bg":"#66d9ef",
          "blocked":true,
          "blocks_vision":false,
          "entity":false
@@ -21320,7 +22197,7 @@
          "animated":true,
          "animated_fov_id":0,
          "animated_id":0,
-         "bg":"blue",
+         "bg":"#66d9ef",
          "blocked":true,
          "blocks_vision":false,
          "entity":false
@@ -21332,7 +22209,7 @@
          "animated":true,
          "animated_fov_id":0,
          "animated_id":0,
-         "bg":"blue",
+         "bg":"#66d9ef",
          "blocked":true,
          "blocks_vision":false,
          "entity":false
@@ -21344,7 +22221,7 @@
          "animated":true,
          "animated_fov_id":0,
          "animated_id":0,
-         "bg":"blue",
+         "bg":"#66d9ef",
          "blocked":true,
          "blocks_vision":false,
          "entity":false
@@ -21356,7 +22233,7 @@
          "animated":true,
          "animated_fov_id":0,
          "animated_id":0,
-         "bg":"blue",
+         "bg":"#66d9ef",
          "blocked":true,
          "blocks_vision":false,
          "entity":false
@@ -21368,7 +22245,7 @@
          "animated":true,
          "animated_fov_id":0,
          "animated_id":0,
-         "bg":"blue",
+         "bg":"#66d9ef",
          "blocked":true,
          "blocks_vision":false,
          "entity":false
@@ -21730,37 +22607,37 @@
         },
      "8724":
         {
-         "bg":"brown",
+         "bg":"#824d03",
          "blocked":true,
          "blocks_vision":true
         },
      "8725":
         {
-         "bg":"brown",
+         "bg":"#824d03",
          "blocked":true,
          "blocks_vision":true
         },
      "8726":
         {
-         "bg":"brown",
+         "bg":"#824d03",
          "blocked":true,
          "blocks_vision":true
         },
      "8727":
         {
-         "bg":"brown",
+         "bg":"#824d03",
          "blocked":true,
          "blocks_vision":true
         },
      "8728":
         {
-         "bg":"brown",
+         "bg":"#824d03",
          "blocked":true,
          "blocks_vision":true
         },
      "8729":
         {
-         "bg":"brown",
+         "bg":"#824d03",
          "blocked":true,
          "blocks_vision":true
         },
@@ -21895,7 +22772,7 @@
          "animated":true,
          "animated_fov_id":0,
          "animated_id":0,
-         "bg":"blue",
+         "bg":"#66d9ef",
          "blocked":true,
          "blocks_vision":false,
          "entity":false
@@ -21907,7 +22784,7 @@
          "animated":true,
          "animated_fov_id":0,
          "animated_id":0,
-         "bg":"blue",
+         "bg":"#66d9ef",
          "blocked":true,
          "blocks_vision":false,
          "entity":false
@@ -21919,7 +22796,7 @@
          "animated":true,
          "animated_fov_id":0,
          "animated_id":0,
-         "bg":"blue",
+         "bg":"#66d9ef",
          "blocked":true,
          "blocks_vision":false,
          "entity":false
@@ -21931,7 +22808,7 @@
          "animated":true,
          "animated_fov_id":0,
          "animated_id":0,
-         "bg":"blue",
+         "bg":"#66d9ef",
          "blocked":true,
          "blocks_vision":false,
          "entity":false
@@ -21943,7 +22820,7 @@
          "animated":true,
          "animated_fov_id":0,
          "animated_id":0,
-         "bg":"blue",
+         "bg":"#66d9ef",
          "blocked":true,
          "blocks_vision":false,
          "entity":false
@@ -21955,7 +22832,7 @@
          "animated":true,
          "animated_fov_id":0,
          "animated_id":0,
-         "bg":"blue",
+         "bg":"#66d9ef",
          "blocked":true,
          "blocks_vision":false,
          "entity":false
@@ -21967,7 +22844,7 @@
          "animated":true,
          "animated_fov_id":0,
          "animated_id":0,
-         "bg":"blue",
+         "bg":"#66d9ef",
          "blocked":true,
          "blocks_vision":false,
          "entity":false
@@ -21979,7 +22856,7 @@
          "animated":true,
          "animated_fov_id":0,
          "animated_id":0,
-         "bg":"blue",
+         "bg":"#66d9ef",
          "blocked":true,
          "blocks_vision":false,
          "entity":false
@@ -21991,7 +22868,7 @@
          "animated":true,
          "animated_fov_id":0,
          "animated_id":0,
-         "bg":"blue",
+         "bg":"#66d9ef",
          "blocked":true,
          "blocks_vision":false,
          "entity":false
@@ -22003,7 +22880,7 @@
          "animated":true,
          "animated_fov_id":0,
          "animated_id":0,
-         "bg":"blue",
+         "bg":"#66d9ef",
          "blocked":true,
          "blocks_vision":false,
          "entity":false
@@ -22015,7 +22892,7 @@
          "animated":true,
          "animated_fov_id":0,
          "animated_id":0,
-         "bg":"blue",
+         "bg":"#66d9ef",
          "blocked":true,
          "blocks_vision":false,
          "entity":false
@@ -22027,7 +22904,7 @@
          "animated":true,
          "animated_fov_id":0,
          "animated_id":0,
-         "bg":"blue",
+         "bg":"#66d9ef",
          "blocked":true,
          "blocks_vision":false,
          "entity":false
@@ -22039,7 +22916,7 @@
          "animated":true,
          "animated_fov_id":0,
          "animated_id":0,
-         "bg":"blue",
+         "bg":"#66d9ef",
          "blocked":true,
          "blocks_vision":false,
          "entity":false
@@ -22051,7 +22928,7 @@
          "animated":true,
          "animated_fov_id":0,
          "animated_id":0,
-         "bg":"blue",
+         "bg":"#66d9ef",
          "blocked":true,
          "blocks_vision":false,
          "entity":false
@@ -22063,7 +22940,7 @@
          "animated":true,
          "animated_fov_id":0,
          "animated_id":0,
-         "bg":"blue",
+         "bg":"#66d9ef",
          "blocked":true,
          "blocks_vision":false,
          "entity":false
@@ -22075,7 +22952,7 @@
          "animated":true,
          "animated_fov_id":0,
          "animated_id":0,
-         "bg":"blue",
+         "bg":"#66d9ef",
          "blocked":true,
          "blocks_vision":false,
          "entity":false
@@ -22590,7 +23467,7 @@
          "animated":true,
          "animated_fov_id":0,
          "animated_id":0,
-         "bg":"blue",
+         "bg":"#66d9ef",
          "blocked":true,
          "blocks_vision":false,
          "entity":false
@@ -22602,7 +23479,7 @@
          "animated":true,
          "animated_fov_id":0,
          "animated_id":0,
-         "bg":"blue",
+         "bg":"#66d9ef",
          "blocked":true,
          "blocks_vision":false,
          "entity":false
@@ -22614,7 +23491,7 @@
          "animated":true,
          "animated_fov_id":0,
          "animated_id":0,
-         "bg":"blue",
+         "bg":"#66d9ef",
          "blocked":true,
          "blocks_vision":false,
          "entity":false
@@ -22626,7 +23503,7 @@
          "animated":true,
          "animated_fov_id":0,
          "animated_id":0,
-         "bg":"blue",
+         "bg":"#66d9ef",
          "blocked":true,
          "blocks_vision":false,
          "entity":false
@@ -22638,7 +23515,7 @@
          "animated":true,
          "animated_fov_id":0,
          "animated_id":0,
-         "bg":"blue",
+         "bg":"#66d9ef",
          "blocked":true,
          "blocks_vision":false,
          "entity":false
@@ -22650,7 +23527,7 @@
          "animated":true,
          "animated_fov_id":0,
          "animated_id":0,
-         "bg":"blue",
+         "bg":"#66d9ef",
          "blocked":true,
          "blocks_vision":false,
          "entity":false
@@ -22662,7 +23539,7 @@
          "animated":true,
          "animated_fov_id":0,
          "animated_id":0,
-         "bg":"blue",
+         "bg":"#66d9ef",
          "blocked":true,
          "blocks_vision":false,
          "entity":false
@@ -22674,7 +23551,7 @@
          "animated":true,
          "animated_fov_id":0,
          "animated_id":0,
-         "bg":"blue",
+         "bg":"#66d9ef",
          "blocked":true,
          "blocks_vision":false,
          "entity":false
@@ -22686,7 +23563,7 @@
          "animated":true,
          "animated_fov_id":0,
          "animated_id":0,
-         "bg":"blue",
+         "bg":"#66d9ef",
          "blocked":true,
          "blocks_vision":false,
          "entity":false
@@ -22698,7 +23575,7 @@
          "animated":true,
          "animated_fov_id":0,
          "animated_id":0,
-         "bg":"blue",
+         "bg":"#66d9ef",
          "blocked":true,
          "blocks_vision":false,
          "entity":false
@@ -22710,7 +23587,7 @@
          "animated":true,
          "animated_fov_id":0,
          "animated_id":0,
-         "bg":"blue",
+         "bg":"#66d9ef",
          "blocked":true,
          "blocks_vision":false,
          "entity":false
@@ -22722,7 +23599,7 @@
          "animated":true,
          "animated_fov_id":0,
          "animated_id":0,
-         "bg":"blue",
+         "bg":"#66d9ef",
          "blocked":true,
          "blocks_vision":false,
          "entity":false
@@ -22734,7 +23611,7 @@
          "animated":true,
          "animated_fov_id":0,
          "animated_id":0,
-         "bg":"blue",
+         "bg":"#66d9ef",
          "blocked":true,
          "blocks_vision":false,
          "entity":false
@@ -22746,7 +23623,7 @@
          "animated":true,
          "animated_fov_id":0,
          "animated_id":0,
-         "bg":"blue",
+         "bg":"#66d9ef",
          "blocked":true,
          "blocks_vision":false,
          "entity":false
@@ -22758,7 +23635,7 @@
          "animated":true,
          "animated_fov_id":0,
          "animated_id":0,
-         "bg":"blue",
+         "bg":"#66d9ef",
          "blocked":true,
          "blocks_vision":false,
          "entity":false
@@ -22770,7 +23647,7 @@
          "animated":true,
          "animated_fov_id":0,
          "animated_id":0,
-         "bg":"blue",
+         "bg":"#66d9ef",
          "blocked":true,
          "blocks_vision":false,
          "entity":false
@@ -23285,7 +24162,7 @@
          "animated":true,
          "animated_fov_id":0,
          "animated_id":0,
-         "bg":"blue",
+         "bg":"#66d9ef",
          "blocked":true,
          "blocks_vision":false,
          "entity":false
@@ -23297,7 +24174,7 @@
          "animated":true,
          "animated_fov_id":0,
          "animated_id":0,
-         "bg":"blue",
+         "bg":"#66d9ef",
          "blocked":true,
          "blocks_vision":false,
          "entity":false
@@ -23309,7 +24186,7 @@
          "animated":true,
          "animated_fov_id":0,
          "animated_id":0,
-         "bg":"blue",
+         "bg":"#66d9ef",
          "blocked":true,
          "blocks_vision":false,
          "entity":false
@@ -23321,7 +24198,7 @@
          "animated":true,
          "animated_fov_id":0,
          "animated_id":0,
-         "bg":"blue",
+         "bg":"#66d9ef",
          "blocked":true,
          "blocks_vision":false,
          "entity":false
@@ -23333,7 +24210,7 @@
          "animated":true,
          "animated_fov_id":0,
          "animated_id":0,
-         "bg":"blue",
+         "bg":"#66d9ef",
          "blocked":true,
          "blocks_vision":false,
          "entity":false
@@ -23345,7 +24222,7 @@
          "animated":true,
          "animated_fov_id":0,
          "animated_id":0,
-         "bg":"blue",
+         "bg":"#66d9ef",
          "blocked":true,
          "blocks_vision":false,
          "entity":false
@@ -23357,7 +24234,7 @@
          "animated":true,
          "animated_fov_id":0,
          "animated_id":0,
-         "bg":"blue",
+         "bg":"#66d9ef",
          "blocked":true,
          "blocks_vision":false,
          "entity":false
@@ -23369,7 +24246,7 @@
          "animated":true,
          "animated_fov_id":0,
          "animated_id":0,
-         "bg":"blue",
+         "bg":"#66d9ef",
          "blocked":true,
          "blocks_vision":false,
          "entity":false
@@ -23381,7 +24258,7 @@
          "animated":true,
          "animated_fov_id":0,
          "animated_id":0,
-         "bg":"blue",
+         "bg":"#66d9ef",
          "blocked":true,
          "blocks_vision":false,
          "entity":false
@@ -23393,7 +24270,7 @@
          "animated":true,
          "animated_fov_id":0,
          "animated_id":0,
-         "bg":"blue",
+         "bg":"#66d9ef",
          "blocked":true,
          "blocks_vision":false,
          "entity":false
@@ -23405,7 +24282,7 @@
          "animated":true,
          "animated_fov_id":0,
          "animated_id":0,
-         "bg":"blue",
+         "bg":"#66d9ef",
          "blocked":true,
          "blocks_vision":false,
          "entity":false
@@ -23417,7 +24294,7 @@
          "animated":true,
          "animated_fov_id":0,
          "animated_id":0,
-         "bg":"blue",
+         "bg":"#66d9ef",
          "blocked":true,
          "blocks_vision":false,
          "entity":false
@@ -23429,7 +24306,7 @@
          "animated":true,
          "animated_fov_id":0,
          "animated_id":0,
-         "bg":"blue",
+         "bg":"#66d9ef",
          "blocked":true,
          "blocks_vision":false,
          "entity":false
@@ -23441,7 +24318,7 @@
          "animated":true,
          "animated_fov_id":0,
          "animated_id":0,
-         "bg":"blue",
+         "bg":"#66d9ef",
          "blocked":true,
          "blocks_vision":false,
          "entity":false
@@ -23453,7 +24330,7 @@
          "animated":true,
          "animated_fov_id":0,
          "animated_id":0,
-         "bg":"blue",
+         "bg":"#66d9ef",
          "blocked":true,
          "blocks_vision":false,
          "entity":false
@@ -23465,7 +24342,7 @@
          "animated":true,
          "animated_fov_id":0,
          "animated_id":0,
-         "bg":"blue",
+         "bg":"#66d9ef",
          "blocked":true,
          "blocks_vision":false,
          "entity":false
@@ -23980,7 +24857,7 @@
          "animated":true,
          "animated_fov_id":0,
          "animated_id":0,
-         "bg":"blue",
+         "bg":"#66d9ef",
          "blocked":true,
          "blocks_vision":false,
          "entity":false
@@ -23992,7 +24869,7 @@
          "animated":true,
          "animated_fov_id":0,
          "animated_id":0,
-         "bg":"blue",
+         "bg":"#66d9ef",
          "blocked":true,
          "blocks_vision":false,
          "entity":false
@@ -24004,7 +24881,7 @@
          "animated":true,
          "animated_fov_id":0,
          "animated_id":0,
-         "bg":"blue",
+         "bg":"#66d9ef",
          "blocked":true,
          "blocks_vision":false,
          "entity":false
@@ -24016,7 +24893,7 @@
          "animated":true,
          "animated_fov_id":0,
          "animated_id":0,
-         "bg":"blue",
+         "bg":"#66d9ef",
          "blocked":true,
          "blocks_vision":false,
          "entity":false
@@ -24028,7 +24905,7 @@
          "animated":true,
          "animated_fov_id":0,
          "animated_id":0,
-         "bg":"blue",
+         "bg":"#66d9ef",
          "blocked":true,
          "blocks_vision":false,
          "entity":false
@@ -24040,7 +24917,7 @@
          "animated":true,
          "animated_fov_id":0,
          "animated_id":0,
-         "bg":"blue",
+         "bg":"#66d9ef",
          "blocked":true,
          "blocks_vision":false,
          "entity":false
@@ -24052,7 +24929,7 @@
          "animated":true,
          "animated_fov_id":0,
          "animated_id":0,
-         "bg":"blue",
+         "bg":"#66d9ef",
          "blocked":true,
          "blocks_vision":false,
          "entity":false
@@ -24064,7 +24941,7 @@
          "animated":true,
          "animated_fov_id":0,
          "animated_id":0,
-         "bg":"blue",
+         "bg":"#66d9ef",
          "blocked":true,
          "blocks_vision":false,
          "entity":false
@@ -24076,7 +24953,7 @@
          "animated":true,
          "animated_fov_id":0,
          "animated_id":0,
-         "bg":"blue",
+         "bg":"#66d9ef",
          "blocked":true,
          "blocks_vision":false,
          "entity":false
@@ -24088,7 +24965,7 @@
          "animated":true,
          "animated_fov_id":0,
          "animated_id":0,
-         "bg":"blue",
+         "bg":"#66d9ef",
          "blocked":true,
          "blocks_vision":false,
          "entity":false
@@ -24100,7 +24977,7 @@
          "animated":true,
          "animated_fov_id":0,
          "animated_id":0,
-         "bg":"blue",
+         "bg":"#66d9ef",
          "blocked":true,
          "blocks_vision":false,
          "entity":false
@@ -24112,7 +24989,7 @@
          "animated":true,
          "animated_fov_id":0,
          "animated_id":0,
-         "bg":"blue",
+         "bg":"#66d9ef",
          "blocked":true,
          "blocks_vision":false,
          "entity":false
@@ -24124,7 +25001,7 @@
          "animated":true,
          "animated_fov_id":0,
          "animated_id":0,
-         "bg":"blue",
+         "bg":"#66d9ef",
          "blocked":true,
          "blocks_vision":false,
          "entity":false
@@ -24136,7 +25013,7 @@
          "animated":true,
          "animated_fov_id":0,
          "animated_id":0,
-         "bg":"blue",
+         "bg":"#66d9ef",
          "blocked":true,
          "blocks_vision":false,
          "entity":false
@@ -24148,7 +25025,7 @@
          "animated":true,
          "animated_fov_id":0,
          "animated_id":0,
-         "bg":"blue",
+         "bg":"#66d9ef",
          "blocked":true,
          "blocks_vision":false,
          "entity":false
@@ -24160,7 +25037,7 @@
          "animated":true,
          "animated_fov_id":0,
          "animated_id":0,
-         "bg":"blue",
+         "bg":"#66d9ef",
          "blocked":true,
          "blocks_vision":false,
          "entity":false
@@ -24675,7 +25552,7 @@
          "animated":true,
          "animated_fov_id":0,
          "animated_id":0,
-         "bg":"blue",
+         "bg":"#66d9ef",
          "blocked":true,
          "blocks_vision":false,
          "entity":false
@@ -24687,7 +25564,7 @@
          "animated":true,
          "animated_fov_id":0,
          "animated_id":0,
-         "bg":"blue",
+         "bg":"#66d9ef",
          "blocked":true,
          "blocks_vision":false,
          "entity":false
@@ -24699,7 +25576,7 @@
          "animated":true,
          "animated_fov_id":0,
          "animated_id":0,
-         "bg":"blue",
+         "bg":"#66d9ef",
          "blocked":true,
          "blocks_vision":false,
          "entity":false
@@ -24711,7 +25588,7 @@
          "animated":true,
          "animated_fov_id":0,
          "animated_id":0,
-         "bg":"blue",
+         "bg":"#66d9ef",
          "blocked":true,
          "blocks_vision":false,
          "entity":false
@@ -24723,7 +25600,7 @@
          "animated":true,
          "animated_fov_id":0,
          "animated_id":0,
-         "bg":"blue",
+         "bg":"#66d9ef",
          "blocked":true,
          "blocks_vision":false,
          "entity":false
@@ -24735,7 +25612,7 @@
          "animated":true,
          "animated_fov_id":0,
          "animated_id":0,
-         "bg":"blue",
+         "bg":"#66d9ef",
          "blocked":true,
          "blocks_vision":false,
          "entity":false
@@ -24747,7 +25624,7 @@
          "animated":true,
          "animated_fov_id":0,
          "animated_id":0,
-         "bg":"blue",
+         "bg":"#66d9ef",
          "blocked":true,
          "blocks_vision":false,
          "entity":false
@@ -24759,7 +25636,7 @@
          "animated":true,
          "animated_fov_id":0,
          "animated_id":0,
-         "bg":"blue",
+         "bg":"#66d9ef",
          "blocked":true,
          "blocks_vision":false,
          "entity":false
@@ -24771,7 +25648,7 @@
          "animated":true,
          "animated_fov_id":0,
          "animated_id":0,
-         "bg":"blue",
+         "bg":"#66d9ef",
          "blocked":true,
          "blocks_vision":false,
          "entity":false
@@ -24783,7 +25660,7 @@
          "animated":true,
          "animated_fov_id":0,
          "animated_id":0,
-         "bg":"blue",
+         "bg":"#66d9ef",
          "blocked":true,
          "blocks_vision":false,
          "entity":false
@@ -24795,7 +25672,7 @@
          "animated":true,
          "animated_fov_id":0,
          "animated_id":0,
-         "bg":"blue",
+         "bg":"#66d9ef",
          "blocked":true,
          "blocks_vision":false,
          "entity":false
@@ -24807,7 +25684,7 @@
          "animated":true,
          "animated_fov_id":0,
          "animated_id":0,
-         "bg":"blue",
+         "bg":"#66d9ef",
          "blocked":true,
          "blocks_vision":false,
          "entity":false
@@ -24819,7 +25696,7 @@
          "animated":true,
          "animated_fov_id":0,
          "animated_id":0,
-         "bg":"blue",
+         "bg":"#66d9ef",
          "blocked":true,
          "blocks_vision":false,
          "entity":false
@@ -24831,7 +25708,7 @@
          "animated":true,
          "animated_fov_id":0,
          "animated_id":0,
-         "bg":"blue",
+         "bg":"#66d9ef",
          "blocked":true,
          "blocks_vision":false,
          "entity":false
@@ -24843,7 +25720,7 @@
          "animated":true,
          "animated_fov_id":0,
          "animated_id":0,
-         "bg":"blue",
+         "bg":"#66d9ef",
          "blocked":true,
          "blocks_vision":false,
          "entity":false
@@ -24855,7 +25732,7 @@
          "animated":true,
          "animated_fov_id":0,
          "animated_id":0,
-         "bg":"blue",
+         "bg":"#66d9ef",
          "blocked":true,
          "blocks_vision":false,
          "entity":false
@@ -30143,9 +31020,44 @@
         {
          "bg":"string"
         },
+     "1209":
+        {
+         "entity":"bool",
+         "entity_id":"int"
+        },
+     "1210":
+        {
+         "entity":"bool",
+         "entity_id":"int"
+        },
+     "1211":
+        {
+         "entity":"bool",
+         "entity_id":"int"
+        },
+     "1212":
+        {
+         "entity":"bool",
+         "entity_id":"int"
+        },
      "12120":
         {
          "bg":"string"
+        },
+     "1213":
+        {
+         "entity":"bool",
+         "entity_id":"int"
+        },
+     "1214":
+        {
+         "entity":"bool",
+         "entity_id":"int"
+        },
+     "1215":
+        {
+         "entity":"bool",
+         "entity_id":"int"
         },
      "12240":
         {
@@ -30251,9 +31163,68 @@
         {
          "bg":"string"
         },
+     "1287":
+        {
+         "animated":"bool",
+         "animated_id":"int",
+         "entity":"bool",
+         "entity_id":"int"
+        },
+     "1288":
+        {
+         "animated":"bool",
+         "animated_id":"int",
+         "entity":"bool",
+         "entity_id":"int"
+        },
+     "1295":
+        {
+         "entity":"bool",
+         "entity_id":"int"
+        },
+     "1296":
+        {
+         "entity":"bool",
+         "entity_id":"int"
+        },
      "12960":
         {
          "bg":"string"
+        },
+     "1329":
+        {
+         "entity":"bool",
+         "entity_id":"int"
+        },
+     "1330":
+        {
+         "entity":"bool",
+         "entity_id":"int"
+        },
+     "1331":
+        {
+         "entity":"bool",
+         "entity_id":"int"
+        },
+     "1332":
+        {
+         "entity":"bool",
+         "entity_id":"int"
+        },
+     "1333":
+        {
+         "entity":"bool",
+         "entity_id":"int"
+        },
+     "1334":
+        {
+         "entity":"bool",
+         "entity_id":"int"
+        },
+     "1335":
+        {
+         "entity":"bool",
+         "entity_id":"int"
         },
      "1362":
         {
@@ -30335,6 +31306,41 @@
          "FOV":"bool",
          "bg":"string"
         },
+     "1449":
+        {
+         "entity":"bool",
+         "entity_id":"int"
+        },
+     "1450":
+        {
+         "entity":"bool",
+         "entity_id":"int"
+        },
+     "1451":
+        {
+         "entity":"bool",
+         "entity_id":"int"
+        },
+     "1452":
+        {
+         "entity":"bool",
+         "entity_id":"int"
+        },
+     "1453":
+        {
+         "entity":"bool",
+         "entity_id":"int"
+        },
+     "1454":
+        {
+         "entity":"bool",
+         "entity_id":"int"
+        },
+     "1455":
+        {
+         "entity":"bool",
+         "entity_id":"int"
+        },
      "1482":
         {
          "FOV":"bool",
@@ -30414,6 +31420,71 @@
         {
          "FOV":"bool",
          "bg":"string"
+        },
+     "152":
+        {
+         "entity":"bool",
+         "entity_id":"int"
+        },
+     "153":
+        {
+         "entity":"bool",
+         "entity_id":"int"
+        },
+     "154":
+        {
+         "entity":"bool",
+         "entity_id":"int"
+        },
+     "155":
+        {
+         "entity":"bool",
+         "entity_id":"int"
+        },
+     "156":
+        {
+         "entity":"bool",
+         "entity_id":"int"
+        },
+     "1569":
+        {
+         "entity":"bool",
+         "entity_id":"int"
+        },
+     "157":
+        {
+         "entity":"bool",
+         "entity_id":"int"
+        },
+     "1570":
+        {
+         "entity":"bool",
+         "entity_id":"int"
+        },
+     "1571":
+        {
+         "entity":"bool",
+         "entity_id":"int"
+        },
+     "1572":
+        {
+         "entity":"bool",
+         "entity_id":"int"
+        },
+     "1573":
+        {
+         "entity":"bool",
+         "entity_id":"int"
+        },
+     "1574":
+        {
+         "entity":"bool",
+         "entity_id":"int"
+        },
+     "1575":
+        {
+         "entity":"bool",
+         "entity_id":"int"
         },
      "1602":
         {
@@ -30495,6 +31566,41 @@
          "FOV":"bool",
          "bg":"string"
         },
+     "1689":
+        {
+         "entity":"bool",
+         "entity_id":"int"
+        },
+     "1690":
+        {
+         "entity":"bool",
+         "entity_id":"int"
+        },
+     "1691":
+        {
+         "entity":"bool",
+         "entity_id":"int"
+        },
+     "1692":
+        {
+         "entity":"bool",
+         "entity_id":"int"
+        },
+     "1693":
+        {
+         "entity":"bool",
+         "entity_id":"int"
+        },
+     "1694":
+        {
+         "entity":"bool",
+         "entity_id":"int"
+        },
+     "1695":
+        {
+         "entity":"bool",
+         "entity_id":"int"
+        },
      "1722":
         {
          "FOV":"bool",
@@ -30574,6 +31680,41 @@
         {
          "FOV":"bool",
          "bg":"string"
+        },
+     "1809":
+        {
+         "entity":"bool",
+         "entity_id":"int"
+        },
+     "1810":
+        {
+         "entity":"bool",
+         "entity_id":"int"
+        },
+     "1811":
+        {
+         "entity":"bool",
+         "entity_id":"int"
+        },
+     "1812":
+        {
+         "entity":"bool",
+         "entity_id":"int"
+        },
+     "1813":
+        {
+         "entity":"bool",
+         "entity_id":"int"
+        },
+     "1814":
+        {
+         "entity":"bool",
+         "entity_id":"int"
+        },
+     "1815":
+        {
+         "entity":"bool",
+         "entity_id":"int"
         },
      "1842":
         {
@@ -30655,6 +31796,41 @@
          "FOV":"bool",
          "bg":"string"
         },
+     "1929":
+        {
+         "entity":"bool",
+         "entity_id":"int"
+        },
+     "1930":
+        {
+         "entity":"bool",
+         "entity_id":"int"
+        },
+     "1931":
+        {
+         "entity":"bool",
+         "entity_id":"int"
+        },
+     "1932":
+        {
+         "entity":"bool",
+         "entity_id":"int"
+        },
+     "1933":
+        {
+         "entity":"bool",
+         "entity_id":"int"
+        },
+     "1934":
+        {
+         "entity":"bool",
+         "entity_id":"int"
+        },
+     "1935":
+        {
+         "entity":"bool",
+         "entity_id":"int"
+        },
      "1962":
         {
          "FOV":"bool",
@@ -30734,6 +31910,36 @@
         {
          "FOV":"bool",
          "bg":"string"
+        },
+     "32":
+        {
+         "entity":"bool",
+         "entity_id":"int"
+        },
+     "33":
+        {
+         "entity":"bool",
+         "entity_id":"int"
+        },
+     "34":
+        {
+         "entity":"bool",
+         "entity_id":"int"
+        },
+     "35":
+        {
+         "entity":"bool",
+         "entity_id":"int"
+        },
+     "36":
+        {
+         "entity":"bool",
+         "entity_id":"int"
+        },
+     "37":
+        {
+         "entity":"bool",
+         "entity_id":"int"
         },
      "3840":
         {
@@ -30826,97 +32032,113 @@
         {
          "animated":"bool",
          "animated_id":"int",
-         "entity":"bool"
+         "entity":"bool",
+         "entity_id":"int"
         },
      "3853":
         {
          "animated":"bool",
          "animated_id":"int",
-         "entity":"bool"
+         "entity":"bool",
+         "entity_id":"int"
         },
      "3854":
         {
          "animated":"bool",
          "animated_id":"int",
-         "entity":"bool"
+         "entity":"bool",
+         "entity_id":"int"
         },
      "3855":
         {
          "animated":"bool",
          "animated_id":"int",
-         "entity":"bool"
+         "entity":"bool",
+         "entity_id":"int"
         },
      "3856":
         {
          "animated":"bool",
          "animated_id":"int",
-         "entity":"bool"
+         "entity":"bool",
+         "entity_id":"int"
         },
      "3857":
         {
          "animated":"bool",
          "animated_id":"int",
-         "entity":"bool"
+         "entity":"bool",
+         "entity_id":"int"
         },
      "3858":
         {
          "animated":"bool",
          "animated_id":"int",
-         "entity":"bool"
+         "entity":"bool",
+         "entity_id":"int"
         },
      "3859":
         {
          "animated":"bool",
          "animated_id":"int",
-         "entity":"bool"
+         "entity":"bool",
+         "entity_id":"int"
         },
      "3860":
         {
          "animated":"bool",
          "animated_id":"int",
-         "entity":"bool"
+         "entity":"bool",
+         "entity_id":"int"
         },
      "3861":
         {
          "animated":"bool",
          "animated_id":"int",
-         "entity":"bool"
+         "entity":"bool",
+         "entity_id":"int"
         },
      "3862":
         {
          "animated":"bool",
          "animated_id":"int",
-         "entity":"bool"
+         "entity":"bool",
+         "entity_id":"int"
         },
      "3863":
         {
          "animated":"bool",
          "animated_id":"int",
-         "entity":"bool"
+         "entity":"bool",
+         "entity_id":"int"
         },
      "3864":
         {
          "animated":"bool",
          "animated_id":"int",
-         "entity":"bool"
+         "entity":"bool",
+         "entity_id":"int"
         },
      "3865":
         {
          "animated":"bool",
          "animated_id":"int",
-         "entity":"bool"
+         "entity":"bool",
+         "entity_id":"int"
         },
      "3866":
         {
          "animated":"bool",
          "animated_id":"int",
-         "entity":"bool"
+         "entity":"bool",
+         "entity_id":"int"
         },
      "3867":
         {
          "animated":"bool",
          "animated_id":"int",
-         "entity":"bool"
+         "entity":"bool",
+         "entity_id":"int"
         },
      "3868":
         {
@@ -31296,97 +32518,113 @@
         {
          "animated":"bool",
          "animated_id":"int",
-         "entity":"bool"
+         "entity":"bool",
+         "entity_id":"int"
         },
      "3973":
         {
          "animated":"bool",
          "animated_id":"int",
-         "entity":"bool"
+         "entity":"bool",
+         "entity_id":"int"
         },
      "3974":
         {
          "animated":"bool",
          "animated_id":"int",
-         "entity":"bool"
+         "entity":"bool",
+         "entity_id":"int"
         },
      "3975":
         {
          "animated":"bool",
          "animated_id":"int",
-         "entity":"bool"
+         "entity":"bool",
+         "entity_id":"int"
         },
      "3976":
         {
          "animated":"bool",
          "animated_id":"int",
-         "entity":"bool"
+         "entity":"bool",
+         "entity_id":"int"
         },
      "3977":
         {
          "animated":"bool",
          "animated_id":"int",
-         "entity":"bool"
+         "entity":"bool",
+         "entity_id":"int"
         },
      "3978":
         {
          "animated":"bool",
          "animated_id":"int",
-         "entity":"bool"
+         "entity":"bool",
+         "entity_id":"int"
         },
      "3979":
         {
          "animated":"bool",
          "animated_id":"int",
-         "entity":"bool"
+         "entity":"bool",
+         "entity_id":"int"
         },
      "3980":
         {
          "animated":"bool",
          "animated_id":"int",
-         "entity":"bool"
+         "entity":"bool",
+         "entity_id":"int"
         },
      "3981":
         {
          "animated":"bool",
          "animated_id":"int",
-         "entity":"bool"
+         "entity":"bool",
+         "entity_id":"int"
         },
      "3982":
         {
          "animated":"bool",
          "animated_id":"int",
-         "entity":"bool"
+         "entity":"bool",
+         "entity_id":"int"
         },
      "3983":
         {
          "animated":"bool",
          "animated_id":"int",
-         "entity":"bool"
+         "entity":"bool",
+         "entity_id":"int"
         },
      "3984":
         {
          "animated":"bool",
          "animated_id":"int",
-         "entity":"bool"
+         "entity":"bool",
+         "entity_id":"int"
         },
      "3985":
         {
          "animated":"bool",
          "animated_id":"int",
-         "entity":"bool"
+         "entity":"bool",
+         "entity_id":"int"
         },
      "3986":
         {
          "animated":"bool",
          "animated_id":"int",
-         "entity":"bool"
+         "entity":"bool",
+         "entity_id":"int"
         },
      "3987":
         {
          "animated":"bool",
          "animated_id":"int",
-         "entity":"bool"
+         "entity":"bool",
+         "entity_id":"int"
         },
      "3988":
         {
@@ -31755,97 +32993,113 @@
         {
          "animated":"bool",
          "animated_id":"int",
-         "entity":"bool"
+         "entity":"bool",
+         "entity_id":"int"
         },
      "4093":
         {
          "animated":"bool",
          "animated_id":"int",
-         "entity":"bool"
+         "entity":"bool",
+         "entity_id":"int"
         },
      "4094":
         {
          "animated":"bool",
          "animated_id":"int",
-         "entity":"bool"
+         "entity":"bool",
+         "entity_id":"int"
         },
      "4095":
         {
          "animated":"bool",
          "animated_id":"int",
-         "entity":"bool"
+         "entity":"bool",
+         "entity_id":"int"
         },
      "4096":
         {
          "animated":"bool",
          "animated_id":"int",
-         "entity":"bool"
+         "entity":"bool",
+         "entity_id":"int"
         },
      "4097":
         {
          "animated":"bool",
          "animated_id":"int",
-         "entity":"bool"
+         "entity":"bool",
+         "entity_id":"int"
         },
      "4098":
         {
          "animated":"bool",
          "animated_id":"int",
-         "entity":"bool"
+         "entity":"bool",
+         "entity_id":"int"
         },
      "4099":
         {
          "animated":"bool",
          "animated_id":"int",
-         "entity":"bool"
+         "entity":"bool",
+         "entity_id":"int"
         },
      "4100":
         {
          "animated":"bool",
          "animated_id":"int",
-         "entity":"bool"
+         "entity":"bool",
+         "entity_id":"int"
         },
      "4101":
         {
          "animated":"bool",
          "animated_id":"int",
-         "entity":"bool"
+         "entity":"bool",
+         "entity_id":"int"
         },
      "4102":
         {
          "animated":"bool",
          "animated_id":"int",
-         "entity":"bool"
+         "entity":"bool",
+         "entity_id":"int"
         },
      "4103":
         {
          "animated":"bool",
          "animated_id":"int",
-         "entity":"bool"
+         "entity":"bool",
+         "entity_id":"int"
         },
      "4104":
         {
          "animated":"bool",
          "animated_id":"int",
-         "entity":"bool"
+         "entity":"bool",
+         "entity_id":"int"
         },
      "4105":
         {
          "animated":"bool",
          "animated_id":"int",
-         "entity":"bool"
+         "entity":"bool",
+         "entity_id":"int"
         },
      "4106":
         {
          "animated":"bool",
          "animated_id":"int",
-         "entity":"bool"
+         "entity":"bool",
+         "entity_id":"int"
         },
      "4107":
         {
          "animated":"bool",
          "animated_id":"int",
-         "entity":"bool"
+         "entity":"bool",
+         "entity_id":"int"
         },
      "4108":
         {
@@ -32241,97 +33495,113 @@
         {
          "animated":"bool",
          "animated_id":"int",
-         "entity":"bool"
+         "entity":"bool",
+         "entity_id":"int"
         },
      "4213":
         {
          "animated":"bool",
          "animated_id":"int",
-         "entity":"bool"
+         "entity":"bool",
+         "entity_id":"int"
         },
      "4214":
         {
          "animated":"bool",
          "animated_id":"int",
-         "entity":"bool"
+         "entity":"bool",
+         "entity_id":"int"
         },
      "4215":
         {
          "animated":"bool",
          "animated_id":"int",
-         "entity":"bool"
+         "entity":"bool",
+         "entity_id":"int"
         },
      "4216":
         {
          "animated":"bool",
          "animated_id":"int",
-         "entity":"bool"
+         "entity":"bool",
+         "entity_id":"int"
         },
      "4217":
         {
          "animated":"bool",
          "animated_id":"int",
-         "entity":"bool"
+         "entity":"bool",
+         "entity_id":"int"
         },
      "4218":
         {
          "animated":"bool",
          "animated_id":"int",
-         "entity":"bool"
+         "entity":"bool",
+         "entity_id":"int"
         },
      "4219":
         {
          "animated":"bool",
          "animated_id":"int",
-         "entity":"bool"
+         "entity":"bool",
+         "entity_id":"int"
         },
      "4220":
         {
          "animated":"bool",
          "animated_id":"int",
-         "entity":"bool"
+         "entity":"bool",
+         "entity_id":"int"
         },
      "4221":
         {
          "animated":"bool",
          "animated_id":"int",
-         "entity":"bool"
+         "entity":"bool",
+         "entity_id":"int"
         },
      "4222":
         {
          "animated":"bool",
          "animated_id":"int",
-         "entity":"bool"
+         "entity":"bool",
+         "entity_id":"int"
         },
      "4223":
         {
          "animated":"bool",
          "animated_id":"int",
-         "entity":"bool"
+         "entity":"bool",
+         "entity_id":"int"
         },
      "4224":
         {
          "animated":"bool",
          "animated_id":"int",
-         "entity":"bool"
+         "entity":"bool",
+         "entity_id":"int"
         },
      "4225":
         {
          "animated":"bool",
          "animated_id":"int",
-         "entity":"bool"
+         "entity":"bool",
+         "entity_id":"int"
         },
      "4226":
         {
          "animated":"bool",
          "animated_id":"int",
-         "entity":"bool"
+         "entity":"bool",
+         "entity_id":"int"
         },
      "4227":
         {
          "animated":"bool",
          "animated_id":"int",
-         "entity":"bool"
+         "entity":"bool",
+         "entity_id":"int"
         },
      "4228":
         {
@@ -32627,6 +33897,70 @@
          "animated_id":"int",
          "entity":"bool"
         },
+     "4288":
+        {
+         "blocked":"bool"
+        },
+     "4289":
+        {
+         "blocked":"bool"
+        },
+     "4290":
+        {
+         "blocked":"bool"
+        },
+     "4291":
+        {
+         "blocked":"bool"
+        },
+     "4292":
+        {
+         "blocked":"bool"
+        },
+     "4293":
+        {
+         "blocked":"bool"
+        },
+     "4294":
+        {
+         "blocked":"bool"
+        },
+     "4295":
+        {
+         "blocked":"bool"
+        },
+     "4296":
+        {
+         "blocked":"bool"
+        },
+     "4297":
+        {
+         "blocked":"bool"
+        },
+     "4298":
+        {
+         "blocked":"bool"
+        },
+     "4299":
+        {
+         "blocked":"bool"
+        },
+     "4300":
+        {
+         "blocked":"bool"
+        },
+     "4301":
+        {
+         "blocked":"bool"
+        },
+     "4302":
+        {
+         "blocked":"bool"
+        },
+     "4303":
+        {
+         "blocked":"bool"
+        },
      "4320":
         {
          "animated":"bool",
@@ -32727,97 +34061,113 @@
         {
          "animated":"bool",
          "animated_id":"int",
-         "entity":"bool"
+         "entity":"bool",
+         "entity_id":"int"
         },
      "4333":
         {
          "animated":"bool",
          "animated_id":"int",
-         "entity":"bool"
+         "entity":"bool",
+         "entity_id":"int"
         },
      "4334":
         {
          "animated":"bool",
          "animated_id":"int",
-         "entity":"bool"
+         "entity":"bool",
+         "entity_id":"int"
         },
      "4335":
         {
          "animated":"bool",
          "animated_id":"int",
-         "entity":"bool"
+         "entity":"bool",
+         "entity_id":"int"
         },
      "4336":
         {
          "animated":"bool",
          "animated_id":"int",
-         "entity":"bool"
+         "entity":"bool",
+         "entity_id":"int"
         },
      "4337":
         {
          "animated":"bool",
          "animated_id":"int",
-         "entity":"bool"
+         "entity":"bool",
+         "entity_id":"int"
         },
      "4338":
         {
          "animated":"bool",
          "animated_id":"int",
-         "entity":"bool"
+         "entity":"bool",
+         "entity_id":"int"
         },
      "4339":
         {
          "animated":"bool",
          "animated_id":"int",
-         "entity":"bool"
+         "entity":"bool",
+         "entity_id":"int"
         },
      "4340":
         {
          "animated":"bool",
          "animated_id":"int",
-         "entity":"bool"
+         "entity":"bool",
+         "entity_id":"int"
         },
      "4341":
         {
          "animated":"bool",
          "animated_id":"int",
-         "entity":"bool"
+         "entity":"bool",
+         "entity_id":"int"
         },
      "4342":
         {
          "animated":"bool",
          "animated_id":"int",
-         "entity":"bool"
+         "entity":"bool",
+         "entity_id":"int"
         },
      "4343":
         {
          "animated":"bool",
          "animated_id":"int",
-         "entity":"bool"
+         "entity":"bool",
+         "entity_id":"int"
         },
      "4344":
         {
          "animated":"bool",
          "animated_id":"int",
-         "entity":"bool"
+         "entity":"bool",
+         "entity_id":"int"
         },
      "4345":
         {
          "animated":"bool",
          "animated_id":"int",
-         "entity":"bool"
+         "entity":"bool",
+         "entity_id":"int"
         },
      "4346":
         {
          "animated":"bool",
          "animated_id":"int",
-         "entity":"bool"
+         "entity":"bool",
+         "entity_id":"int"
         },
      "4347":
         {
          "animated":"bool",
          "animated_id":"int",
-         "entity":"bool"
+         "entity":"bool",
+         "entity_id":"int"
         },
      "4348":
         {
@@ -33113,6 +34463,70 @@
          "animated_id":"int",
          "entity":"bool"
         },
+     "4408":
+        {
+         "blocked":"bool"
+        },
+     "4409":
+        {
+         "blocked":"bool"
+        },
+     "4410":
+        {
+         "blocked":"bool"
+        },
+     "4411":
+        {
+         "blocked":"bool"
+        },
+     "4412":
+        {
+         "blocked":"bool"
+        },
+     "4413":
+        {
+         "blocked":"bool"
+        },
+     "4414":
+        {
+         "blocked":"bool"
+        },
+     "4415":
+        {
+         "blocked":"bool"
+        },
+     "4416":
+        {
+         "blocked":"bool"
+        },
+     "4417":
+        {
+         "blocked":"bool"
+        },
+     "4418":
+        {
+         "blocked":"bool"
+        },
+     "4419":
+        {
+         "blocked":"bool"
+        },
+     "4420":
+        {
+         "blocked":"bool"
+        },
+     "4421":
+        {
+         "blocked":"bool"
+        },
+     "4422":
+        {
+         "blocked":"bool"
+        },
+     "4423":
+        {
+         "blocked":"bool"
+        },
      "4440":
         {
          "animated":"bool",
@@ -33213,97 +34627,113 @@
         {
          "animated":"bool",
          "animated_id":"int",
-         "entity":"bool"
+         "entity":"bool",
+         "entity_id":"int"
         },
      "4453":
         {
          "animated":"bool",
          "animated_id":"int",
-         "entity":"bool"
+         "entity":"bool",
+         "entity_id":"int"
         },
      "4454":
         {
          "animated":"bool",
          "animated_id":"int",
-         "entity":"bool"
+         "entity":"bool",
+         "entity_id":"int"
         },
      "4455":
         {
          "animated":"bool",
          "animated_id":"int",
-         "entity":"bool"
+         "entity":"bool",
+         "entity_id":"int"
         },
      "4456":
         {
          "animated":"bool",
          "animated_id":"int",
-         "entity":"bool"
+         "entity":"bool",
+         "entity_id":"int"
         },
      "4457":
         {
          "animated":"bool",
          "animated_id":"int",
-         "entity":"bool"
+         "entity":"bool",
+         "entity_id":"int"
         },
      "4458":
         {
          "animated":"bool",
          "animated_id":"int",
-         "entity":"bool"
+         "entity":"bool",
+         "entity_id":"int"
         },
      "4459":
         {
          "animated":"bool",
          "animated_id":"int",
-         "entity":"bool"
+         "entity":"bool",
+         "entity_id":"int"
         },
      "4460":
         {
          "animated":"bool",
          "animated_id":"int",
-         "entity":"bool"
+         "entity":"bool",
+         "entity_id":"int"
         },
      "4461":
         {
          "animated":"bool",
          "animated_id":"int",
-         "entity":"bool"
+         "entity":"bool",
+         "entity_id":"int"
         },
      "4462":
         {
          "animated":"bool",
          "animated_id":"int",
-         "entity":"bool"
+         "entity":"bool",
+         "entity_id":"int"
         },
      "4463":
         {
          "animated":"bool",
          "animated_id":"int",
-         "entity":"bool"
+         "entity":"bool",
+         "entity_id":"int"
         },
      "4464":
         {
          "animated":"bool",
          "animated_id":"int",
-         "entity":"bool"
+         "entity":"bool",
+         "entity_id":"int"
         },
      "4465":
         {
          "animated":"bool",
          "animated_id":"int",
-         "entity":"bool"
+         "entity":"bool",
+         "entity_id":"int"
         },
      "4466":
         {
          "animated":"bool",
          "animated_id":"int",
-         "entity":"bool"
+         "entity":"bool",
+         "entity_id":"int"
         },
      "4467":
         {
          "animated":"bool",
          "animated_id":"int",
-         "entity":"bool"
+         "entity":"bool",
+         "entity_id":"int"
         },
      "4468":
         {
@@ -33599,6 +35029,70 @@
          "animated_id":"int",
          "entity":"bool"
         },
+     "4528":
+        {
+         "blocked":"bool"
+        },
+     "4529":
+        {
+         "blocked":"bool"
+        },
+     "4530":
+        {
+         "blocked":"bool"
+        },
+     "4531":
+        {
+         "blocked":"bool"
+        },
+     "4532":
+        {
+         "blocked":"bool"
+        },
+     "4533":
+        {
+         "blocked":"bool"
+        },
+     "4534":
+        {
+         "blocked":"bool"
+        },
+     "4535":
+        {
+         "blocked":"bool"
+        },
+     "4536":
+        {
+         "blocked":"bool"
+        },
+     "4537":
+        {
+         "blocked":"bool"
+        },
+     "4538":
+        {
+         "blocked":"bool"
+        },
+     "4539":
+        {
+         "blocked":"bool"
+        },
+     "4540":
+        {
+         "blocked":"bool"
+        },
+     "4541":
+        {
+         "blocked":"bool"
+        },
+     "4542":
+        {
+         "blocked":"bool"
+        },
+     "4543":
+        {
+         "blocked":"bool"
+        },
      "4560":
         {
          "animated":"bool",
@@ -33675,97 +35169,113 @@
         {
          "animated":"bool",
          "animated_id":"int",
-         "entity":"bool"
+         "entity":"bool",
+         "entity_id":"int"
         },
      "4573":
         {
          "animated":"bool",
          "animated_id":"int",
-         "entity":"bool"
+         "entity":"bool",
+         "entity_id":"int"
         },
      "4574":
         {
          "animated":"bool",
          "animated_id":"int",
-         "entity":"bool"
+         "entity":"bool",
+         "entity_id":"int"
         },
      "4575":
         {
          "animated":"bool",
          "animated_id":"int",
-         "entity":"bool"
+         "entity":"bool",
+         "entity_id":"int"
         },
      "4576":
         {
          "animated":"bool",
          "animated_id":"int",
-         "entity":"bool"
+         "entity":"bool",
+         "entity_id":"int"
         },
      "4577":
         {
          "animated":"bool",
          "animated_id":"int",
-         "entity":"bool"
+         "entity":"bool",
+         "entity_id":"int"
         },
      "4578":
         {
          "animated":"bool",
          "animated_id":"int",
-         "entity":"bool"
+         "entity":"bool",
+         "entity_id":"int"
         },
      "4579":
         {
          "animated":"bool",
          "animated_id":"int",
-         "entity":"bool"
+         "entity":"bool",
+         "entity_id":"int"
         },
      "4580":
         {
          "animated":"bool",
          "animated_id":"int",
-         "entity":"bool"
+         "entity":"bool",
+         "entity_id":"int"
         },
      "4581":
         {
          "animated":"bool",
          "animated_id":"int",
-         "entity":"bool"
+         "entity":"bool",
+         "entity_id":"int"
         },
      "4582":
         {
          "animated":"bool",
          "animated_id":"int",
-         "entity":"bool"
+         "entity":"bool",
+         "entity_id":"int"
         },
      "4583":
         {
          "animated":"bool",
          "animated_id":"int",
-         "entity":"bool"
+         "entity":"bool",
+         "entity_id":"int"
         },
      "4584":
         {
          "animated":"bool",
          "animated_id":"int",
-         "entity":"bool"
+         "entity":"bool",
+         "entity_id":"int"
         },
      "4585":
         {
          "animated":"bool",
          "animated_id":"int",
-         "entity":"bool"
+         "entity":"bool",
+         "entity_id":"int"
         },
      "4586":
         {
          "animated":"bool",
          "animated_id":"int",
-         "entity":"bool"
+         "entity":"bool",
+         "entity_id":"int"
         },
      "4587":
         {
          "animated":"bool",
          "animated_id":"int",
-         "entity":"bool"
+         "entity":"bool",
+         "entity_id":"int"
         },
      "4588":
         {
@@ -34061,6 +35571,70 @@
          "animated_id":"int",
          "entity":"bool"
         },
+     "4648":
+        {
+         "blocked":"bool"
+        },
+     "4649":
+        {
+         "blocked":"bool"
+        },
+     "4650":
+        {
+         "blocked":"bool"
+        },
+     "4651":
+        {
+         "blocked":"bool"
+        },
+     "4652":
+        {
+         "blocked":"bool"
+        },
+     "4653":
+        {
+         "blocked":"bool"
+        },
+     "4654":
+        {
+         "blocked":"bool"
+        },
+     "4655":
+        {
+         "blocked":"bool"
+        },
+     "4656":
+        {
+         "blocked":"bool"
+        },
+     "4657":
+        {
+         "blocked":"bool"
+        },
+     "4658":
+        {
+         "blocked":"bool"
+        },
+     "4659":
+        {
+         "blocked":"bool"
+        },
+     "4660":
+        {
+         "blocked":"bool"
+        },
+     "4661":
+        {
+         "blocked":"bool"
+        },
+     "4662":
+        {
+         "blocked":"bool"
+        },
+     "4663":
+        {
+         "blocked":"bool"
+        },
      "4680":
         {
          "animated":"bool",
@@ -34137,97 +35711,113 @@
         {
          "animated":"bool",
          "animated_id":"int",
-         "entity":"bool"
+         "entity":"bool",
+         "entity_id":"int"
         },
      "4693":
         {
          "animated":"bool",
          "animated_id":"int",
-         "entity":"bool"
+         "entity":"bool",
+         "entity_id":"int"
         },
      "4694":
         {
          "animated":"bool",
          "animated_id":"int",
-         "entity":"bool"
+         "entity":"bool",
+         "entity_id":"int"
         },
      "4695":
         {
          "animated":"bool",
          "animated_id":"int",
-         "entity":"bool"
+         "entity":"bool",
+         "entity_id":"int"
         },
      "4696":
         {
          "animated":"bool",
          "animated_id":"int",
-         "entity":"bool"
+         "entity":"bool",
+         "entity_id":"int"
         },
      "4697":
         {
          "animated":"bool",
          "animated_id":"int",
-         "entity":"bool"
+         "entity":"bool",
+         "entity_id":"int"
         },
      "4698":
         {
          "animated":"bool",
          "animated_id":"int",
-         "entity":"bool"
+         "entity":"bool",
+         "entity_id":"int"
         },
      "4699":
         {
          "animated":"bool",
          "animated_id":"int",
-         "entity":"bool"
+         "entity":"bool",
+         "entity_id":"int"
         },
      "4700":
         {
          "animated":"bool",
          "animated_id":"int",
-         "entity":"bool"
+         "entity":"bool",
+         "entity_id":"int"
         },
      "4701":
         {
          "animated":"bool",
          "animated_id":"int",
-         "entity":"bool"
+         "entity":"bool",
+         "entity_id":"int"
         },
      "4702":
         {
          "animated":"bool",
          "animated_id":"int",
-         "entity":"bool"
+         "entity":"bool",
+         "entity_id":"int"
         },
      "4703":
         {
          "animated":"bool",
          "animated_id":"int",
-         "entity":"bool"
+         "entity":"bool",
+         "entity_id":"int"
         },
      "4704":
         {
          "animated":"bool",
          "animated_id":"int",
-         "entity":"bool"
+         "entity":"bool",
+         "entity_id":"int"
         },
      "4705":
         {
          "animated":"bool",
          "animated_id":"int",
-         "entity":"bool"
+         "entity":"bool",
+         "entity_id":"int"
         },
      "4706":
         {
          "animated":"bool",
          "animated_id":"int",
-         "entity":"bool"
+         "entity":"bool",
+         "entity_id":"int"
         },
      "4707":
         {
          "animated":"bool",
          "animated_id":"int",
-         "entity":"bool"
+         "entity":"bool",
+         "entity_id":"int"
         },
      "4708":
         {
@@ -34523,13 +36113,89 @@
          "animated_id":"int",
          "entity":"bool"
         },
+     "476":
+        {
+         "entity":"bool",
+         "entity_id":"int"
+        },
+     "4768":
+        {
+         "blocked":"bool"
+        },
+     "4769":
+        {
+         "blocked":"bool"
+        },
+     "477":
+        {
+         "entity":"bool",
+         "entity_id":"int"
+        },
+     "4770":
+        {
+         "blocked":"bool"
+        },
+     "4771":
+        {
+         "blocked":"bool"
+        },
+     "4772":
+        {
+         "blocked":"bool"
+        },
+     "4773":
+        {
+         "blocked":"bool"
+        },
+     "4774":
+        {
+         "blocked":"bool"
+        },
+     "4775":
+        {
+         "blocked":"bool"
+        },
+     "4776":
+        {
+         "blocked":"bool"
+        },
+     "4777":
+        {
+         "blocked":"bool"
+        },
+     "4778":
+        {
+         "blocked":"bool"
+        },
+     "4779":
+        {
+         "blocked":"bool"
+        },
      "478":
         {
-         "entity":"bool"
+         "entity":"bool",
+         "entity_id":"int"
+        },
+     "4780":
+        {
+         "blocked":"bool"
+        },
+     "4781":
+        {
+         "blocked":"bool"
+        },
+     "4782":
+        {
+         "blocked":"bool"
+        },
+     "4783":
+        {
+         "blocked":"bool"
         },
      "479":
         {
-         "entity":"bool"
+         "entity":"bool",
+         "entity_id":"int"
         },
      "4800":
         {
@@ -34607,97 +36273,113 @@
         {
          "animated":"bool",
          "animated_id":"int",
-         "entity":"bool"
+         "entity":"bool",
+         "entity_id":"int"
         },
      "4813":
         {
          "animated":"bool",
          "animated_id":"int",
-         "entity":"bool"
+         "entity":"bool",
+         "entity_id":"int"
         },
      "4814":
         {
          "animated":"bool",
          "animated_id":"int",
-         "entity":"bool"
+         "entity":"bool",
+         "entity_id":"int"
         },
      "4815":
         {
          "animated":"bool",
          "animated_id":"int",
-         "entity":"bool"
+         "entity":"bool",
+         "entity_id":"int"
         },
      "4816":
         {
          "animated":"bool",
          "animated_id":"int",
-         "entity":"bool"
+         "entity":"bool",
+         "entity_id":"int"
         },
      "4817":
         {
          "animated":"bool",
          "animated_id":"int",
-         "entity":"bool"
+         "entity":"bool",
+         "entity_id":"int"
         },
      "4818":
         {
          "animated":"bool",
          "animated_id":"int",
-         "entity":"bool"
+         "entity":"bool",
+         "entity_id":"int"
         },
      "4819":
         {
          "animated":"bool",
          "animated_id":"int",
-         "entity":"bool"
+         "entity":"bool",
+         "entity_id":"int"
         },
      "4820":
         {
          "animated":"bool",
          "animated_id":"int",
-         "entity":"bool"
+         "entity":"bool",
+         "entity_id":"int"
         },
      "4821":
         {
          "animated":"bool",
          "animated_id":"int",
-         "entity":"bool"
+         "entity":"bool",
+         "entity_id":"int"
         },
      "4822":
         {
          "animated":"bool",
          "animated_id":"int",
-         "entity":"bool"
+         "entity":"bool",
+         "entity_id":"int"
         },
      "4823":
         {
          "animated":"bool",
          "animated_id":"int",
-         "entity":"bool"
+         "entity":"bool",
+         "entity_id":"int"
         },
      "4824":
         {
          "animated":"bool",
          "animated_id":"int",
-         "entity":"bool"
+         "entity":"bool",
+         "entity_id":"int"
         },
      "4825":
         {
          "animated":"bool",
          "animated_id":"int",
-         "entity":"bool"
+         "entity":"bool",
+         "entity_id":"int"
         },
      "4826":
         {
          "animated":"bool",
          "animated_id":"int",
-         "entity":"bool"
+         "entity":"bool",
+         "entity_id":"int"
         },
      "4827":
         {
          "animated":"bool",
          "animated_id":"int",
-         "entity":"bool"
+         "entity":"bool",
+         "entity_id":"int"
         },
      "4828":
         {
@@ -34996,7 +36678,8 @@
      "4888":
         {
          "animated":"bool",
-         "animated_id":"int"
+         "animated_id":"int",
+         "blocked":"bool"
         },
      "4920":
         {
@@ -35074,97 +36757,113 @@
         {
          "animated":"bool",
          "animated_id":"int",
-         "entity":"bool"
+         "entity":"bool",
+         "entity_id":"int"
         },
      "4933":
         {
          "animated":"bool",
          "animated_id":"int",
-         "entity":"bool"
+         "entity":"bool",
+         "entity_id":"int"
         },
      "4934":
         {
          "animated":"bool",
          "animated_id":"int",
-         "entity":"bool"
+         "entity":"bool",
+         "entity_id":"int"
         },
      "4935":
         {
          "animated":"bool",
          "animated_id":"int",
-         "entity":"bool"
+         "entity":"bool",
+         "entity_id":"int"
         },
      "4936":
         {
          "animated":"bool",
          "animated_id":"int",
-         "entity":"bool"
+         "entity":"bool",
+         "entity_id":"int"
         },
      "4937":
         {
          "animated":"bool",
          "animated_id":"int",
-         "entity":"bool"
+         "entity":"bool",
+         "entity_id":"int"
         },
      "4938":
         {
          "animated":"bool",
          "animated_id":"int",
-         "entity":"bool"
+         "entity":"bool",
+         "entity_id":"int"
         },
      "4939":
         {
          "animated":"bool",
          "animated_id":"int",
-         "entity":"bool"
+         "entity":"bool",
+         "entity_id":"int"
         },
      "4940":
         {
          "animated":"bool",
          "animated_id":"int",
-         "entity":"bool"
+         "entity":"bool",
+         "entity_id":"int"
         },
      "4941":
         {
          "animated":"bool",
          "animated_id":"int",
-         "entity":"bool"
+         "entity":"bool",
+         "entity_id":"int"
         },
      "4942":
         {
          "animated":"bool",
          "animated_id":"int",
-         "entity":"bool"
+         "entity":"bool",
+         "entity_id":"int"
         },
      "4943":
         {
          "animated":"bool",
          "animated_id":"int",
-         "entity":"bool"
+         "entity":"bool",
+         "entity_id":"int"
         },
      "4944":
         {
          "animated":"bool",
          "animated_id":"int",
-         "entity":"bool"
+         "entity":"bool",
+         "entity_id":"int"
         },
      "4945":
         {
          "animated":"bool",
          "animated_id":"int",
-         "entity":"bool"
+         "entity":"bool",
+         "entity_id":"int"
         },
      "4946":
         {
          "animated":"bool",
          "animated_id":"int",
-         "entity":"bool"
+         "entity":"bool",
+         "entity_id":"int"
         },
      "4947":
         {
          "animated":"bool",
          "animated_id":"int",
-         "entity":"bool"
+         "entity":"bool",
+         "entity_id":"int"
         },
      "4948":
         {
@@ -35536,97 +37235,113 @@
         {
          "animated":"bool",
          "animated_id":"int",
-         "entity":"bool"
+         "entity":"bool",
+         "entity_id":"int"
         },
      "5053":
         {
          "animated":"bool",
          "animated_id":"int",
-         "entity":"bool"
+         "entity":"bool",
+         "entity_id":"int"
         },
      "5054":
         {
          "animated":"bool",
          "animated_id":"int",
-         "entity":"bool"
+         "entity":"bool",
+         "entity_id":"int"
         },
      "5055":
         {
          "animated":"bool",
          "animated_id":"int",
-         "entity":"bool"
+         "entity":"bool",
+         "entity_id":"int"
         },
      "5056":
         {
          "animated":"bool",
          "animated_id":"int",
-         "entity":"bool"
+         "entity":"bool",
+         "entity_id":"int"
         },
      "5057":
         {
          "animated":"bool",
          "animated_id":"int",
-         "entity":"bool"
+         "entity":"bool",
+         "entity_id":"int"
         },
      "5058":
         {
          "animated":"bool",
          "animated_id":"int",
-         "entity":"bool"
+         "entity":"bool",
+         "entity_id":"int"
         },
      "5059":
         {
          "animated":"bool",
          "animated_id":"int",
-         "entity":"bool"
+         "entity":"bool",
+         "entity_id":"int"
         },
      "5060":
         {
          "animated":"bool",
          "animated_id":"int",
-         "entity":"bool"
+         "entity":"bool",
+         "entity_id":"int"
         },
      "5061":
         {
          "animated":"bool",
          "animated_id":"int",
-         "entity":"bool"
+         "entity":"bool",
+         "entity_id":"int"
         },
      "5062":
         {
          "animated":"bool",
          "animated_id":"int",
-         "entity":"bool"
+         "entity":"bool",
+         "entity_id":"int"
         },
      "5063":
         {
          "animated":"bool",
          "animated_id":"int",
-         "entity":"bool"
+         "entity":"bool",
+         "entity_id":"int"
         },
      "5064":
         {
          "animated":"bool",
          "animated_id":"int",
-         "entity":"bool"
+         "entity":"bool",
+         "entity_id":"int"
         },
      "5065":
         {
          "animated":"bool",
          "animated_id":"int",
-         "entity":"bool"
+         "entity":"bool",
+         "entity_id":"int"
         },
      "5066":
         {
          "animated":"bool",
          "animated_id":"int",
-         "entity":"bool"
+         "entity":"bool",
+         "entity_id":"int"
         },
      "5067":
         {
          "animated":"bool",
          "animated_id":"int",
-         "entity":"bool"
+         "entity":"bool",
+         "entity_id":"int"
         },
      "5068":
         {
@@ -35922,6 +37637,18 @@
          "animated_id":"int",
          "entity":"bool"
         },
+     "5128":
+        {
+         "blocked":"bool"
+        },
+     "5129":
+        {
+         "blocked":"bool"
+        },
+     "5130":
+        {
+         "blocked":"bool"
+        },
      "5160":
         {
          "animated":"bool",
@@ -35998,7 +37725,8 @@
         {
          "animated":"bool",
          "animated_id":"int",
-         "entity":"bool"
+         "entity":"bool",
+         "entity_id":"int"
         },
      "5173":
         {
@@ -36006,49 +37734,57 @@
          "animated_id":"int",
          "blocked":"bool",
          "blocks_vision":"bool",
-         "entity":"bool"
+         "entity":"bool",
+         "entity_id":"int"
         },
      "5174":
         {
          "animated":"bool",
          "animated_id":"int",
-         "entity":"bool"
+         "entity":"bool",
+         "entity_id":"int"
         },
      "5175":
         {
          "animated":"bool",
          "animated_id":"int",
-         "entity":"bool"
+         "entity":"bool",
+         "entity_id":"int"
         },
      "5176":
         {
          "animated":"bool",
          "animated_id":"int",
-         "entity":"bool"
+         "entity":"bool",
+         "entity_id":"int"
         },
      "5177":
         {
          "animated":"bool",
          "animated_id":"int",
-         "entity":"bool"
+         "entity":"bool",
+         "entity_id":"int"
         },
      "5178":
         {
          "animated":"bool",
          "animated_id":"int",
-         "entity":"bool"
+         "entity":"bool",
+         "entity_id":"int"
         },
      "5179":
         {
          "animated":"bool",
          "animated_id":"int",
-         "entity":"bool"
+         "entity":"bool",
+         "entity_id":"int"
         },
      "5180":
         {
          "animated":"bool",
          "animated_id":"int",
-         "entity":"bool"
+         "entity":"bool",
+         "entity_id":"int"
         },
      "5181":
         {
@@ -36056,43 +37792,50 @@
          "animated_id":"int",
          "blocked":"bool",
          "blocks_vision":"bool",
-         "entity":"bool"
+         "entity":"bool",
+         "entity_id":"int"
         },
      "5182":
         {
          "animated":"bool",
          "animated_id":"int",
-         "entity":"bool"
+         "entity":"bool",
+         "entity_id":"int"
         },
      "5183":
         {
          "animated":"bool",
          "animated_id":"int",
-         "entity":"bool"
+         "entity":"bool",
+         "entity_id":"int"
         },
      "5184":
         {
          "animated":"bool",
          "animated_id":"int",
-         "entity":"bool"
+         "entity":"bool",
+         "entity_id":"int"
         },
      "5185":
         {
          "animated":"bool",
          "animated_id":"int",
-         "entity":"bool"
+         "entity":"bool",
+         "entity_id":"int"
         },
      "5186":
         {
          "animated":"bool",
          "animated_id":"int",
-         "entity":"bool"
+         "entity":"bool",
+         "entity_id":"int"
         },
      "5187":
         {
          "animated":"bool",
          "animated_id":"int",
-         "entity":"bool"
+         "entity":"bool",
+         "entity_id":"int"
         },
      "5188":
         {
@@ -36387,6 +38130,10 @@
          "animated":"bool",
          "animated_id":"int",
          "entity":"bool"
+        },
+     "5254":
+        {
+         "blocked":"bool"
         },
      "5280":
         {
@@ -42286,43 +44033,50 @@
         {
          "animated":"bool",
          "animated_id":"int",
-         "entity":"bool"
+         "entity":"bool",
+         "entity_id":"int"
         },
      "7441":
         {
          "animated":"bool",
          "animated_id":"int",
-         "entity":"bool"
+         "entity":"bool",
+         "entity_id":"int"
         },
      "7442":
         {
          "animated":"bool",
          "animated_id":"int",
-         "entity":"bool"
+         "entity":"bool",
+         "entity_id":"int"
         },
      "7443":
         {
          "animated":"bool",
          "animated_id":"int",
-         "entity":"bool"
+         "entity":"bool",
+         "entity_id":"int"
         },
      "7444":
         {
          "animated":"bool",
          "animated_id":"int",
-         "entity":"bool"
+         "entity":"bool",
+         "entity_id":"int"
         },
      "7445":
         {
          "animated":"bool",
          "animated_id":"int",
-         "entity":"bool"
+         "entity":"bool",
+         "entity_id":"int"
         },
      "7446":
         {
          "animated":"bool",
          "animated_id":"int",
-         "entity":"bool"
+         "entity":"bool",
+         "entity_id":"int"
         },
      "7447":
         {

@@ -199,7 +199,6 @@ let Game = {
             }
         } catch (err) {
             console.log(err);
-            // setTimeOut(() => {}, 10000);
         }
 
     },
@@ -240,13 +239,16 @@ let Game = {
     brightenColor: function (color) {
         // console.log(color);
         let hsl_color = ROT.Color.rgb2hsl(ROT.Color.fromString(color));
-        hsl_color[2] *= 1.5;
+        hsl_color[2] *= 1.25;
         return ROT.Color.toRGB(ROT.Color.hsl2rgb(hsl_color));
     },
 
     updateDisplay: function () {
-        // this.turn++;
         this.drawViewPort();
         this.drawMiniMap();
+    },
+
+    printPlayerTile: function() {
+        console.log(Game.map.data[this.player.y][this.player.x]);
     }
 };

@@ -1,11 +1,30 @@
-valid_players = [5173, 4695];
-function validPlayer(id) {
-    console.log(id);
-    return valid_players.includes(id);
-}
+const entityShop = {
+    0 : (x,y,id) => {
+        return new Player(x,y,id);
+    },
+    1 : (x,y,id) => {
+        return new Goblin(x,y,id);
+    },
+    2 : (x,y,id) => {
+        return new Rat(x,y,id);
+    },
+    3 : (x,y,id) => {
+        return new Ladder(x,y,id, "down");
+    },
+    4 : (x,y,id) => {
+        return new Ladder(x,y,id, "up");
+    },
+    5 : (x,y,id) => {
+        return createSword(x,y,id);
+    },
+};
 
-function createEntity(id) {
-    // ...
+function createEntity(x,y,entity_id, frame_id) {
+    if (entity_id in entityShop) {
+        return entityShop[entity_id](x,y,frame_id);
+    } else {
+        throw `No entity assigned to ID ${entity_id} for frame ${frame_id} at ${x + "," + y}`;
+    }
 }
 
 const flatten = arr => arr.reduce((acc, val) => acc.concat(Array.isArray(val) ? flatten(val) : val), []);
@@ -65,12 +84,14 @@ class Map {
             for (let j = 0; j < this.width; j++) {
                 let id = layer.data[i * this.width + j] - 1; // grab the id in the json data
                 if (id > 1) { // id of zero indicates no actor in this spot
-                    let newActor = createEntity(id, j, i); // create the new actor
                     if (!this.loadedIDS.includes(id)) this.loadedIDS.push(id);
-                    if (validPlayer(id)) {
+                    let properties = getTileInfo(id);
+                    if (properties.entity !== true) throw "Bad entity creation for tile " + id;
+                    if (properties.entity_id === 0) {
                         this.playerLocation = [j, i];
                         this.playerID = id;
                     } else {
+                        let newActor = createEntity(j,i,properties.entity_id,id);
                         this.actors.push(newActor); // add to the list of all actors
                         this.data[i][j].actors.push(newActor); // also push to the tiles' actors
                     }

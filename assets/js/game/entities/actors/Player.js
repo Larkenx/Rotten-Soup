@@ -7,15 +7,15 @@ for (let i = 1; i < 100; i++) xp_levels.push(1.5 * xp_levels[i - 1]);
 
 function dijkstra_callback(x, y) {
     if (x <= 0 || x === Game.map.width || y <= 0 || y === Game.map.height) return false;
-    return !Game.map.data[y][x].options.blocked;
+    return !Game.map.data[y][x].blocked();
 }
 
 class Player extends Actor {
     constructor(x, y, id) {
         super(x, y, {
+            id: id,
             name: "you",
             description: "It's you!",
-            symbol: "@",
             fg: "yellow",
             bg: "black",
             visible: true,
@@ -40,7 +40,6 @@ class Player extends Actor {
                 invulnerable: false
             }
         });
-        this.id = id;
         this.path = new ROT.Path.Dijkstra(this.x, this.y, dijkstra_callback);
         // Inventory is an array of objects that contain items and an action that can be done with that item.
         // You can think of the objects as individual 'slots' to store the item with actions like 'use' or 'equip'.
@@ -90,30 +89,6 @@ class Player extends Actor {
         this.cb.mana = this.cb.maxmana;
         Game.log(`You leveled up! You are now Level ${this.cb.level}.`, 'level_up');
         Game.log(`Your strength and health have improved.`, 'level_up');
-        // Game.log(`1) Strength 2) Defence 3) Hitpoints 4) Mana`, 'level_up');
-        // let prompt = function (evt) {
-        //     let cb = Game.player.cb;
-        //     let code = evt.keyCode;
-        //     if (code === ROT.VK_1) {
-        //         cb.str++;
-        //         Game.log("You increased a strength level!", 'level_up');
-        //     } else if (code === ROT.VK_2) {
-        //         cb.def++;
-        //         Game.log("You increased a defence level!", 'level_up');
-        //     } else if (code === ROT.VK_3) {
-        //         cb.maxhp += 5;
-        //         Game.log("You increased your number of hitpoints!", 'level_up');
-        //     } else if (code === ROT.VK_4) {
-        //         cb.maxmana += 5;
-        //         Game.log("You increased your amount of mana!", 'level_up');
-        //     } else {
-        //         return;
-        //     }
-        //
-        //     window.removeEventListener("keydown", prompt);
-        // };
-        //
-        // window.addEventListener("keydown", prompt);
     }
 
     handleEvent(evt) {
@@ -204,7 +179,7 @@ class Player extends Actor {
             ctile.removeActor(tileItems[0]);
         } else if (tileItems.length > 1) {
             // open up an inventory modal of things they can pick up?
-            console.log("too many items here!");
+            Game.log("Too many items here! Feature not implemented yet :)", "information");
         } else {
             Game.log("There's nothing on the ground here.", "information");
         }
