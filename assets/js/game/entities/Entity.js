@@ -8,6 +8,8 @@ class Entity {
         this.x = x;
         this.y = y;
         this.options = options;
+        if (! "id" in options) throw "Error - entity created without valid id";
+        this.id = this.options.id;
     }
 
     examine() {
@@ -82,7 +84,6 @@ class Actor extends Entity {
         this.inventory_idx = 0;
         for (let i = 0; i < 32; i++) {
             this.inventory.push({
-                // id: i,
                 item: null,
             });
         }
@@ -132,7 +133,7 @@ class Actor extends Entity {
     tryMove(nx, ny) { // returns true if the turn should end here
         if (nx < 0 || nx === Game.map.width || ny < 0 || ny === Game.map.height) return false;
         let ntile = Game.map.data[ny][nx]; // new tile to move to
-        if (ntile.actors.length === 0 && !ntile.options.blocked) {
+        if (ntile.actors.length === 0 && !ntile.blocked()) {
             this.move(nx, ny);
             return true;
         } else if (ntile.actors.length > 0) {
@@ -146,7 +147,7 @@ class Actor extends Entity {
             }
         }
 
-        if (!ntile.options.blocked) {
+        if (!ntile.blocked()) {
             this.move(nx, ny);
             return true;
         }
@@ -246,8 +247,6 @@ class Item extends Entity {
         super(x, y, options);
     }
     /* UI / Front End functions */
-
-
     hoverInfo() {
         if (this instanceof Weapon) {
             return `${this.options.type}\n${this.options.name}\n${this.damageInfo()}`;

@@ -2,11 +2,11 @@
  * Created by Larken on 6/22/2017.
  */
 class Goblin extends Actor {
-    constructor(x, y) {
+    constructor(x, y, id) {
         super(x, y, {
+            id: id,
             name: "goblin",
             description: "A mean, green goblin!",
-            symbol: "g",
             fg: "darkgreen",
             bg: "seagreen",
             visible: true,
@@ -31,7 +31,7 @@ class Goblin extends Actor {
         });
         let roll = getRandomInt(1,10);
         if (roll <= 2)
-            this.addToInventory(createSword(this.x, this.y));
+            this.addToInventory(createSword(this.x, this.y, 35));
     }
 
     act() {

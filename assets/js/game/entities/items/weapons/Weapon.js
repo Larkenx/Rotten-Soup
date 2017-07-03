@@ -9,7 +9,6 @@ class Weapon extends Item {
         options.blocked = false;
         options.combat.equippable = true;
         options.combat.equipped = false;
-        options.originalfg = options.fg;
         super(x, y, options);
         this.cb = this.options.combat;
     }

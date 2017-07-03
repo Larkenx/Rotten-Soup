@@ -19,7 +19,11 @@
     <!-- Game, Utilities, and Map -->
     <script src="assets/js/game/map/Map.js"></script>
     <script src="assets/js/game/map/Tile.js"></script>
-    <script src="assets/maps/expanded_start.js"></script>
+    <!--  Tileset -->
+    <!--<script src="assets/maps/tileset/compiled_dawnlike.js"></script>-->
+    <!--  New Map -->
+    <script src="assets/maps/map_file/overworld.js"></script>
+    <!-- Load the game and its class to display to screen -->
     <script src="assets/js/game/GameDisplay.js"></script>
     <script src="assets/js/game/Game.js"></script>
     <!-- Vue -->
@@ -125,6 +129,12 @@
     </v-container>
 </div>
 <script>
+    let tileset = null;
+    $.ajax({
+        async: false,
+        url: "assets/maps/tileset/compiled_dawnlike.json",
+        datatype:"json",
+    }).done((data) => {tileset = data;});
     let vm = new Vue({
         el: '#app',
         data () {
@@ -190,7 +200,12 @@
             $('#game_container').html(Game.display.getContainer());
             $('#minimap_container').html(Game.minimap.getContainer());
             Game.drawViewPort();
+            Game.drawMiniMap();
             Game.refreshDisplay();
+            setInterval(function() {
+                Game.turn++;
+                Game.updateDisplay();
+            }, 500)
         },
     })
 </script>
@@ -265,6 +280,11 @@
         background-color: #009e00;
         cursor: pointer;
     }
+
+    .test {
+        background-color: #824d03;
+    }
+
 
     ul {
         padding: 0;

@@ -1,48 +1,33 @@
-let entityShop = {
-    '$': (x, y) => {
-        return new Store(x, y);
+const entityShop = {
+    0 : (x,y,id) => {
+        return new Player(x,y,id);
     },
-    '@': (x, y) => {
-        return new Player(x, y);
+    1 : (x,y,id) => {
+        return new Goblin(x,y,id);
     },
-    'g': (x, y) => {
-        return new Goblin(x, y);
+    2 : (x,y,id) => {
+        return new Rat(x,y,id);
     },
-    '<': (x, y) => {
-        return new Ladder(x, y, '<', "up");
+    3 : (x,y,id) => {
+        return new Ladder(x,y,id, "down");
     },
-    '>': (x, y) => {
-        return new Ladder(x, y, '>', "down");
+    4 : (x,y,id) => {
+        return new Ladder(x,y,id, "up");
     },
-    'r': (x, y) => {
-        return new Rat(x, y);
+    5 : (x,y,id) => {
+        return createSword(x,y,id);
     },
-
-    ')': (x, y) => {
-        return createSword(x, y);
-    }
 };
 
-let environment = {
-    " ": { symbol: " ", fg: "black", bg: "black", name: "grass", description: "An empty piece of terrain.", visible: true},
-    '#': { symbol: "#", fg: "slategray", bg: "slategray", name: "wall", description: "An impassable wall.", blocked: true, visible: false},
-    '~': { symbol: '~', fg: "dodgerblue", bg: "dodgerblue", name: "shallow water", description: "Some shallow water.", blocked: true, visible: true},
-    '=': { symbol: "=", fg: "blue", bg: "blue", name: "deep water", description: "Some deep water.", blocked: true, visible: true},
-    '.': {symbol: ".", fg: "brown", bg: "darkslategray", name: "path", description: "A pathway!", visible: true},
-    'T': { symbol: "T", fg: "lightgreen", bg: "darkgreen", name: "tree", descritpion: "A tree!", blocked: true, visible: false},
-    ',': { symbol: ",", fg: "lightgreen", bg: "green", name: "grass", descritpion: "A patch of grass!", blocked: false, visible: true}
-};
-
-const flatten = arr => arr.reduce((acc, val) => acc.concat(Array.isArray(val) ? flatten(val) : val), []);
-
-function actorCreator(symbol, x, y) {
-    if (entityShop[symbol]) {
-        return entityShop[symbol](x, y);
+function createEntity(x,y,entity_id, frame_id) {
+    if (entity_id in entityShop) {
+        return entityShop[entity_id](x,y,frame_id);
     } else {
-        // is a null symbol?
-        throw "Unknown symbol: " + symbol;
+        throw `No entity assigned to ID ${entity_id} for frame ${frame_id} at ${x + "," + y}`;
     }
 }
+
+const flatten = arr => arr.reduce((acc, val) => acc.concat(Array.isArray(val) ? flatten(val) : val), []);
 
 /**
  * Created by Larken on 6/28/2017.
@@ -50,11 +35,11 @@ function actorCreator(symbol, x, y) {
 class Map {
     constructor(json) {
         if (!json) throw "Bad map creation";
-        let obstacles = json.layers[0];
-        let firstActorLayer = json.layers[1];
-        let secondActorLayer = null;
-        if (json.layers[2] !== null)
-            secondActorLayer = json.layers[2];
+        this.loadedIDS = [];
+        let tileLayer = json.layers[0];
+        let obstacleLayer = json.layers[1];
+        let firstActorLayer = json.layers[2];
+        // let secondActorLayer = null;
         this.playerLocation = null; // this field is used exclusively for saving the player's last location before they change levels
         this.width = json.width;
         this.height = json.height;
@@ -62,21 +47,33 @@ class Map {
         this.data = new Array(this.height); // stores all tiles in the game
         this.visible_tiles = {};
         this.seen_tiles = {};
-
         console.log("Loading game map and actors...");
         for (let i = 0; i < this.height; i++) {
             this.data[i] = new Array(this.width);
             for (let j = 0; j < this.width; j++) {
                 // Grabs the symbol from the layer
-                let id = obstacles.data[i * this.width + j];
+                let id = tileLayer.data[i * this.width + j] - 1;
+                if (id === 0) throw "Tiled Map contains a null tile, check [" + j + "," + i + "]";
+                if (! this.loadedIDS.includes(id)) this.loadedIDS.push(id);
                 this.data[i][j] = new Tile(j, i, id);
             }
         }
 
-        this.processActorLayer(firstActorLayer);
-        if (secondActorLayer !== null)
-            this.processActorLayer(secondActorLayer);
+        for (let i = 0; i < this.height; i++) {
+            for (let j = 0; j < this.width; j++) {
+                // Grabs the symbol from the layer
+                let id = obstacleLayer.data[i * this.width + j] - 1;
+                if (id === null) console.log("Found null tile at " + j + ", " + i);
+                if (id > 1) {
+                    if (!this.loadedIDS.includes(id)) this.loadedIDS.push(id);
+                    this.data[i][j].updateTileInfo(id)
+                }
+            }
+        }
 
+        this.processActorLayer(firstActorLayer);
+        // if (secondActorLayer !== null)
+        //     this.processActorLayer(secondActorLayer);
 
         if (this.playerLocation === null) throw "Error - no player starting position!";
     }
@@ -85,13 +82,16 @@ class Map {
         // console.log("Loading actors...");
         for (let i = 0; i < this.height; i++) {
             for (let j = 0; j < this.width; j++) {
-                let id = layer.data[i * this.width + j]; // grab the id in the json data
-                if (id !== 0) { // id of zero indicates no actor in this spot
-                    let symbol = String.fromCharCode(id - 1);
-                    let newActor = actorCreator(symbol, j, i); // create the new actor
-                    if (symbol === "@") {
+                let id = layer.data[i * this.width + j] - 1; // grab the id in the json data
+                if (id > 1) { // id of zero indicates no actor in this spot
+                    if (!this.loadedIDS.includes(id)) this.loadedIDS.push(id);
+                    let properties = getTileInfo(id);
+                    if (properties.entity !== true) throw "Bad entity creation for tile " + id;
+                    if (properties.entity_id === 0) {
                         this.playerLocation = [j, i];
+                        this.playerID = id;
                     } else {
+                        let newActor = createEntity(j,i,properties.entity_id,id);
                         this.actors.push(newActor); // add to the list of all actors
                         this.data[i][j].actors.push(newActor); // also push to the tiles' actors
                     }
@@ -135,7 +135,6 @@ class Map {
         }
         return adjacentTiles;
     }
-
 }
 
 /* This is a random dungeon map generator. It essentially generates identical

@@ -2,92 +2,77 @@ if (!ROT.isSupported()) {
     alert("The rot.js library isn't supported by your browser.");
 }
 
-let animated = ["g", "r", "@", "~", "=", "~~", "=="];
+function getTilesetCoords(id) {
+    let tileWidth = tileset.tilewidth;
+    let tileHeight = tileset.tileheight;
+    let cols = tileset.columns;
+    let rowNumber = Math.floor(id / cols) * tileHeight;
+    let colNumber = (id % cols) * tileHeight;
+    return [colNumber, rowNumber];
+}
+
+$.getJSON("assets/maps/tileset/compiled_dawnlike.json", function(data) {
+   const tileset = data;
+});
 
 let Game = {
     overview: null,
+    dev: false,
     display: null,
     HUD: null,
     console: null,
     player: null,
     playerLocation: null,
+    playerID : null,
     scheduler: null,
     turn : 0,
     engine: null,
     levels: {},
-    currentLevel: "expanded_start",
+    currentLevel: "overworld",
     map: null,
     message_history: [],
     minimap: null,
 
-    init: function () {
-        this.log("Welcome to Rotten Soup", "information");
-        this.map = new Map(TileMaps["expanded_start"]);
+    init: function (dev=false) {
+        this.dev = dev;
+        this.map = new Map(TileMaps["overworld"]);
         this.map.revealed = true;
-        this.levels["expanded_start"] = new Map(TileMaps["expanded_start"]);
-        this.levels["dungeon1"] = new Map(randomMap(50, 50));
-        // this.levels["dungeon2"] = new Map(randomMap(50, 50));
-        // this.levels["dungeon3"] = new Map(randomMap(50, 50));
-
-        // this.map = this.levels["dungeon1"];
+        this.levels["overworld"] = new Map(TileMaps["overworld"]);
         this.playerLocation = this.map.playerLocation;
+        this.playerID = this.map.playerID;
+
         // Set up the ROT.JS game display
         let tileSet = document.createElement("img");
-        tileSet.src = "assets/images/tileset-animated.png";
+        tileSet.src = "assets/images/DawnLike/Compiled/compiled_tileset_32x32.png";
         let tileSize = 32;
+        let tileMap = {};
+        for (let id of this.map.loadedIDS) {
+            tileMap[id.toString()] = getTilesetCoords(id);
+            if (id in tileset.tileproperties) {
+                let properties = tileset.tileproperties[id];
+                if (properties.FOV)
+                    tileMap[properties.FOV_id] = getTilesetCoords(properties.FOV_id);
+                if (properties.animated)
+                    tileMap[properties.animated_id] = getTilesetCoords(properties.animated_id);
+                if (properties.animated && properties.FOV)
+                    tileMap[properties.animated_fov_id] = getTilesetCoords(properties.animated_fov_id);
+            }
+        }
         this.displayOptions = {
-            width: 35,
-            height: 20,
-            // fontSize: 25,
-            // fontFamily: '"Inconsolata", monospace',
-            // fontStyle: "bold",
-            // spacing: ,
+            width: 30,
+            height: 18,
             forceSquareRatio: true,
-            /* Graphical Tile Options */
             layout: "tile",
             // bg: "transparent",
             tileWidth: tileSize,
             tileHeight: tileSize,
             tileSet: tileSet,
-            tileMap: {
-                // Entities
-                "@" : [0,0], "@a" : [tileSize, 0],
-                "g" : [0,tileSize], "ga" : [tileSize, tileSize],
-                "r" : [0,tileSize*2], "ra" : [tileSize,tileSize*2],
-                ">" : [0,tileSize*3], "<": [tileSize, tileSize*3],
-                // Environment
-                "~" : [0,tileSize*4], "~~" : [0,tileSize*5],
-                "=" : [0,tileSize*4], "==" : [0,tileSize*5],
-                "~a" : [tileSize,tileSize*4], "~~a" : [tileSize,tileSize*5],
-                "=a" : [tileSize,tileSize*4], "==a" : [tileSize,tileSize*5],
-                "." : [0,tileSize*6], ".." : [tileSize,tileSize*6],
-                "#" : [0,tileSize*7], "##" : [tileSize,tileSize*7],
-                "T" : [0,tileSize*12], "TT" : [tileSize,tileSize*12],
-                "," : [0,tileSize*9], ",," : [tileSize,tileSize*9],
-                ")" : [0,tileSize*10], " " : [tileSize, tileSize*10], "  " : [tileSize, tileSize*10],
-                // Items
-             }
-            // tileMap: {
-            //     // Entities
-            //     "@" : [0,0],
-            //     "g" : [tileSize,0],
-            //     "r" : [0,tileSize*1],
-            //     ">" : [0,tileSize*2], "<": [tileSize*1, tileSize*2],
-            //     // Environment
-            //     "~" : [tileSize*1,tileSize*3], "~~" : [0,tileSize*3],
-            //     "=" : [tileSize*1,tileSize*3], "==" : [0,tileSize*3],
-            //     "." : [0,tileSize*4], ".." : [tileSize*1,tileSize*4],
-            //     "#" : [0,tileSize*5], "##" : [tileSize*1,tileSize*5],
-            //     "T" : [0,tileSize*6], "TT" : [tileSize*1,tileSize*6],
-            //     "," : [0,tileSize*7], ",," : [tileSize*1,tileSize*7],
-            //     // Items
-            //     ")" : [0,tileSize*8], " " : [tileSize*1, tileSize*9], "  " : [tileSize*1, tileSize*9]
-            // }
+            tileMap: tileMap,
         };
         this.width = this.displayOptions.width;
         this.height = this.displayOptions.height;
         this.display = new ROT.Display(this.displayOptions);
-        this.player = new Player(this.playerLocation[0], this.playerLocation[1]);
+        this.player = new Player(this.playerLocation[0], this.playerLocation[1], this.playerID);
         this.map.actors.push(this.player); // add to the list of all actors
         this.map.data[this.playerLocation[1]][this.playerLocation[0]].actors.push(this.player); // also push to the tiles' actors
         this.scheduleAllActors();
@@ -96,7 +81,9 @@ let Game = {
         this.engine.start(); // Start the engine
         tileSet.onload = function() {
             Game.drawViewPort();
-        }
+            Game.drawMiniMap();
+        };
+        this.log("Welcome to Rotten Soup", "information");
     },
 
     refreshDisplay() {
@@ -136,9 +123,11 @@ let Game = {
             'alert': 'orange',
         };
         this.message_history.push([message, message_color[type]]);
-        $('#fix_scroll').stop().animate({
-            scrollTop: $('#fix_scroll')[0].scrollHeight
-        }, 800);
+        if (! this.dev) {
+            $('#fix_scroll').stop().animate({
+                scrollTop: $('#fix_scroll')[0].scrollHeight
+            }, 800);
+        }
     },
 
     inbounds: function (x, y) {
@@ -164,149 +153,60 @@ let Game = {
     },
 
     drawViewPort: function () {
-        // Clear the last visible tiles that were available to be seen
-        Object.assign(this.map.seen_tiles, this.map.visible_tiles);
-        this.map.visible_tiles = {};
-        /* FOV Computation */
-        let fov = new ROT.FOV.PreciseShadowcasting(function (x, y) {
-            return (Game.inbounds(x, y) && Game.map.data[y][x].options.visible);
-        });
+        try {
+            // Clear the last visible tiles that were available to be seen
+            Object.assign(this.map.seen_tiles, this.map.visible_tiles);
+            this.map.visible_tiles = {};
+            /* FOV Computation */
+            let fov = new ROT.FOV.PreciseShadowcasting(function (x, y) {
+                return (Game.inbounds(x, y) && Game.map.data[y][x].visible());
+            });
 
-        fov.compute(this.player.x, this.player.y, 7, function (x, y, r, visibility) {
-            Game.map.visible_tiles[x + ',' + y] = true;
-        });
+            fov.compute(this.player.x, this.player.y, 7, function (x, y, r, visibility) {
+                Game.map.visible_tiles[x + ',' + y] = true;
+            });
 
-        let camera = { // camera x,y resides in the upper left corner
-            x: this.player.x - Math.floor(Game.width / 2),
-            y: this.player.y - Math.floor(Game.height / 2),
-            width: Math.ceil(Game.width),
-            height: Game.height,
-        };
-        let startingPos = [camera.x, camera.y];
-        if (camera.x < 0) // far left
-            startingPos[0] = 0;
-        if (camera.x + camera.width > Game.map.width) // far right
-            startingPos[0] = Game.map.width - camera.width;
-        if (camera.y <= 0) // at the top of the map
-            startingPos[1] = 0;
-        if (camera.y + camera.height > Game.map.height) { // at the bottom of the map
-            startingPos[1] = Game.map.height - camera.height;
-        }
-        let endingPos = [startingPos[0] + camera.width, startingPos[1] + camera.height];
-        let dx = 0;
-        let dy = 0;
-        for (let x = startingPos[0]; x < endingPos[0]; x++) {
-            for (let y = startingPos[1]; y < endingPos[1]; y++) {
-                let tile = this.map.data[y][x];
-                if (tile.x + "," + tile.y in this.map.visible_tiles) {
-                    this.drawFirstActor(dx, dy++, tile);
-                } else {
-                    this.drawDimTile(dx, dy++, tile);
+            let camera = { // camera x,y resides in the upper left corner
+                x: this.player.x - Math.floor(Game.width / 2),
+                y: this.player.y - Math.floor(Game.height / 2),
+                width: Math.ceil(Game.width),
+                height: Game.height,
+            };
+            let startingPos = [camera.x, camera.y];
+            if (camera.x < 0) // far left
+                startingPos[0] = 0;
+            if (camera.x + camera.width > Game.map.width) // far right
+                startingPos[0] = Game.map.width - camera.width;
+            if (camera.y <= 0) // at the top of the map
+                startingPos[1] = 0;
+            if (camera.y + camera.height > Game.map.height) { // at the bottom of the map
+                startingPos[1] = Game.map.height - camera.height;
+            }
+            let endingPos = [startingPos[0] + camera.width, startingPos[1] + camera.height];
+            let dx = 0;
+            let dy = 0;
+            for (let x = startingPos[0]; x < endingPos[0]; x++) {
+                for (let y = startingPos[1]; y < endingPos[1]; y++) {
+                    let tile = this.map.data[y][x];
+                    if (tile.x + "," + tile.y in this.map.visible_tiles) {
+                        this.drawTile(dx, dy++, tile, false);
+                    } else {
+                        this.drawTile(dx, dy++, tile, false);
+                    }
                 }
+                dx++;
+                dy = 0;
             }
-            dx++;
-            dy = 0;
+        } catch (err) {
+            console.log(err);
         }
+
     },
 
-    drawViewPortASCII: function () {
-        // Clear the last visible tiles that were available to be seen
-        Object.assign(this.map.seen_tiles, this.map.visible_tiles);
-        this.map.visible_tiles = {};
-        /* FOV Computation */
-        let fov = new ROT.FOV.PreciseShadowcasting(function (x, y) {
-            return (Game.inbounds(x, y) && Game.map.data[y][x].options.visible);
-        });
-
-        fov.compute(this.player.x, this.player.y, 10, function (x, y, r, visibility) {
-            Game.map.visible_tiles[x + ',' + y] = true;
-        });
-
-        let camera = { // camera x,y resides in the upper left corner
-            x: this.player.x - Math.floor(Game.width / 2),
-            y: this.player.y - Math.floor(Game.height / 2),
-            width: Math.ceil(Game.width),
-            height: Game.height,
-        };
-        let startingPos = [camera.x, camera.y];
-        if (camera.x < 0) // far left
-            startingPos[0] = 0;
-        if (camera.x + camera.width > Game.map.width) // far right
-            startingPos[0] = Game.map.width - camera.width;
-        if (camera.y <= 0) // at the top of the map
-            startingPos[1] = 0;
-        if (camera.y + camera.height > Game.map.height) { // at the bottom of the map
-            startingPos[1] = Game.map.height - camera.height;
-        }
-        let endingPos = [startingPos[0] + camera.width, startingPos[1] + camera.height];
-        let dx = 0;
-        let dy = 0;
-        for (let x = startingPos[0]; x < endingPos[0]; x++) {
-            for (let y = startingPos[1]; y < endingPos[1]; y++) {
-                let tile = this.map.data[y][x];
-                if (tile.x + "," + tile.y in this.map.visible_tiles) {
-                    this.drawFirstActor(dx, dy++, tile);
-                } else {
-                    this.drawDimTile(dx, dy++, tile);
-                }
-            }
-            dx++;
-            dy = 0;
-        }
-    },
-
-    drawDimTile: function (x, y, tile) {
-        let todraw = tile.symbol + tile.symbol;
-        if (animated.includes(tile.symbol) && this.turn % 2 === 0) {
-            todraw += "a";
-        }
-        Game.display.draw(x, y, todraw);
-    },
-
-    drawDimTileASCII: function (x, y, tile) {
-        let color = tile.options.fg;
-        let hsl_color = ROT.Color.rgb2hsl(ROT.Color.fromString(color));
-        hsl_color[2] *= .25;
-        color = ROT.Color.hsl2rgb(hsl_color);
-        Game.display.draw(x, y, tile.symbol, ROT.Color.toRGB(color), "black");
-    },
-
-    drawTile: function (x, y, tile) {
-        Game.display.draw(x, y, tile.symbol, tile.options.fg, "black");
-    },
-
-    // Graphical Tile version
-    drawFirstActor: function (x, y, tile) {
-        let symbols = tile.actors.map((e) => e.options.symbol);
-        symbols.unshift(tile.symbol);
-        if (symbols.includes("@")) {
-            symbols.slice(symbols.indexOf("@"), 1);
-            symbols.push("@")
-        }
-        for (let i = 0; i < symbols.length; i++) {
-            let symbol = symbols[i];
-            if (animated.includes(symbol) && this.turn % 2 === 0) {
-                symbols[i] += "a";
-            }
-        }
+    drawTile: function(x, y, tile, fov) {
+        let symbols = tile.getSpriteIDS(this.turn % 2 === 0, fov);
+        // if (symbols.some((e) => {return e === "0"})) throw "A tile is empty!"
         Game.display.draw(x, y, symbols);
-    },
-
-    // Original Version for ASCII
-    drawFirstActorASCII: function (x, y, tile) {
-        for (let i = 0; i < tile.actors.length; i++) {
-            if (tile.actors[i].options.visible) {
-                Game.drawTile(x, y, tile);
-                Game.drawActor(x, y, tile.actors[i]);
-                return;
-            }
-        }
-        // if we reach this point, no actors were drawable
-        Game.drawTile(x, y, tile);
-    },
-
-    drawActor: function (x, y, actor) {
-        Game.display.draw(x, y, actor.options.symbol, actor.options.fg, "black");
     },
 
     drawMiniMap: function () {
@@ -315,9 +215,9 @@ let Game = {
                 for (let x = 0; x < this.map.width; x++) {
                     let tile = this.map.data[y][x];
                     if (tile.x + ',' + tile.y in this.map.visible_tiles)
-                        this.minimap.draw(x, y, " ", tile.options.fg, this.brightenColor(tile.options.bg));
+                        this.minimap.draw(x, y, " ", tile.bg(), this.brightenColor(tile.bg()));
                     else
-                        this.minimap.draw(x, y, " ", tile.options.fg, tile.options.bg);
+                        this.minimap.draw(x, y, " ", tile.bg(), tile.bg());
                 }
             }
         } else {
@@ -325,26 +225,30 @@ let Game = {
                 for (let x = 0; x < this.map.width; x++) {
                     let tile = this.map.data[y][x];
                     if (tile.x + ',' + tile.y in this.map.visible_tiles) {
-                        this.minimap.draw(x, y, " ", tile.options.fg, this.brightenColor(tile.options.bg));
+                        this.minimap.draw(x, y, " ", tile.bg(), this.brightenColor(tile.bg()));
                     } else if (tile.x + ',' + tile.y in this.map.seen_tiles) {
-                        this.minimap.draw(x, y, " ", tile.options.fg, tile.options.bg);
+                        this.minimap.draw(x, y, " ", tile.bg(), tile.bg());
                     }
                 }
             }
         }
         // Draw the actor in the mini-map
-        this.minimap.draw(this.player.x, this.player.y, "@", this.player.fg, "yellow");
+        this.minimap.draw(this.player.x, this.player.y, " ", "yellow", "yellow");
     },
 
     brightenColor: function (color) {
+        // console.log(color);
         let hsl_color = ROT.Color.rgb2hsl(ROT.Color.fromString(color));
-        hsl_color[2] *= 1.5;
+        hsl_color[2] *= 1.25;
         return ROT.Color.toRGB(ROT.Color.hsl2rgb(hsl_color));
     },
 
     updateDisplay: function () {
-        this.turn++;
         this.drawViewPort();
         this.drawMiniMap();
+    },
+
+    printPlayerTile: function() {
+        console.log(Game.map.data[this.player.y][this.player.x]);
     }
 };

@@ -3,8 +3,9 @@
  */
 class Rat extends Actor {
 
-    constructor(x, y) {
+    constructor(x, y, id) {
         super(x, y, {
+            id: id,
             name: "rat",
             description: "A fat rat!",
             symbol: "r",
