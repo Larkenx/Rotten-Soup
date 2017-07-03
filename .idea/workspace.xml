@@ -3,19 +3,8 @@
   <component name="ChangeListManager">
     <list default="true" id="359ee7cd-d060-4cb9-a2ed-d128b311220f" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/js/game/Game.js" afterPath="$PROJECT_DIR$/assets/js/game/Game.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/js/game/entities/Entity.js" afterPath="$PROJECT_DIR$/assets/js/game/entities/Entity.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/js/game/entities/Ladder.js" afterPath="$PROJECT_DIR$/assets/js/game/entities/Ladder.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/js/game/entities/actors/Goblin.js" afterPath="$PROJECT_DIR$/assets/js/game/entities/actors/Goblin.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/js/game/entities/actors/Player.js" afterPath="$PROJECT_DIR$/assets/js/game/entities/actors/Player.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/js/game/entities/actors/Rat.js" afterPath="$PROJECT_DIR$/assets/js/game/entities/actors/Rat.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/js/game/entities/items/weapons/Sword.js" afterPath="$PROJECT_DIR$/assets/js/game/entities/items/weapons/Sword.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/js/game/entities/items/weapons/Weapon.js" afterPath="$PROJECT_DIR$/assets/js/game/entities/items/weapons/Weapon.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/js/game/map/Map.js" afterPath="$PROJECT_DIR$/assets/js/game/map/Map.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/js/game/map/Tile.js" afterPath="$PROJECT_DIR$/assets/js/game/map/Tile.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/maps/map_file/overworld.js" afterPath="$PROJECT_DIR$/assets/maps/map_file/overworld.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/maps/tileset/compiled_dawnlike.json" afterPath="$PROJECT_DIR$/assets/maps/tileset/compiled_dawnlike.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/index.html" afterPath="$PROJECT_DIR$/index.html" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -36,8 +25,8 @@
       <file leaf-file-name="Game.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/assets/js/game/Game.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="627">
-              <caret line="241" column="28" lean-forward="false" selection-start-line="241" selection-start-column="28" selection-end-line="241" selection-end-column="28" />
+            <state relative-caret-position="327">
+              <caret line="221" column="13" lean-forward="true" selection-start-line="221" selection-start-column="13" selection-end-line="221" selection-end-column="13" />
               <folding />
             </state>
           </provider>
@@ -705,7 +694,7 @@
       <workItem from="1498611935336" duration="8633000" />
       <workItem from="1498696343976" duration="4169000" />
       <workItem from="1498972801502" duration="2375000" />
-      <workItem from="1499011710043" duration="10028000" />
+      <workItem from="1499011710043" duration="10626000" />
     </task>
     <task id="LOCAL-00001" summary="Added the visible FOV to the minimap. Made some really nice changes to the overworld and cleaned up minimap colors.">
       <created>1497205810247</created>
@@ -1001,11 +990,18 @@
       <option name="project" value="LOCAL" />
       <updated>1499039296421</updated>
     </task>
-    <option name="localTasksCounter" value="43" />
+    <task id="LOCAL-00043" summary="Goblins, rats, swords back in the game. Made the river more natural and added a little house with various objects">
+      <created>1499053034005</created>
+      <option name="number" value="00043" />
+      <option name="presentableId" value="LOCAL-00043" />
+      <option name="project" value="LOCAL" />
+      <updated>1499053034006</updated>
+    </task>
+    <option name="localTasksCounter" value="44" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="115403000" />
+    <option name="totallyTimeSpent" value="116001000" />
   </component>
   <component name="TodoView" selected-index="4">
     <todo-panel id="selected-file">
@@ -1067,7 +1063,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="false" />
-    <MESSAGE value="Fixed minimap exploration for dungeons. Overworld is always revealed and dungeons are always hidden until explored." />
     <MESSAGE value="Separated all of the entities into separate files and directories. Starting to look more like a Java project than a JavaScript one." />
     <MESSAGE value="Cleaned up file hierarchy again. Combined actor, entity, and item" />
     <MESSAGE value="Added a little bit of a user guide in the README.md. Playing with some new fonts and cleaning up inventory system UI. Squashing bugs!" />
@@ -1092,7 +1087,8 @@
     <MESSAGE value="Re-created map and tile classes completely. Changed how the game tiles are drawn and their internal structure. Game is fully graphical now with full power of tilesheets" />
     <MESSAGE value="Working on overworld map - making it pretty! Soon going to add functionality back for graphical goblins (with more than one sprite sheet variation)" />
     <MESSAGE value="Animation is now constant (every half a second)! map is starting to come together. Other actors haven't been added yet" />
-    <option name="LAST_COMMIT_MESSAGE" value="Animation is now constant (every half a second)! map is starting to come together. Other actors haven't been added yet" />
+    <MESSAGE value="Goblins, rats, swords back in the game. Made the river more natural and added a little house with various objects" />
+    <option name="LAST_COMMIT_MESSAGE" value="Goblins, rats, swords back in the game. Made the river more natural and added a little house with various objects" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1352,8 +1348,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/assets/js/game/Game.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="627">
-          <caret line="241" column="28" lean-forward="false" selection-start-line="241" selection-start-column="28" selection-end-line="241" selection-end-column="28" />
+        <state relative-caret-position="327">
+          <caret line="221" column="13" lean-forward="true" selection-start-line="221" selection-start-column="13" selection-end-line="221" selection-end-column="13" />
           <folding />
         </state>
       </provider>
