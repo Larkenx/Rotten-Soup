@@ -169,7 +169,7 @@
          "FOV_id":0,
          "animated":false,
          "animated_id":0,
-         "bg":"brown",
+         "bg":"#824d03",
          "blocked":false,
          "blocks_vision":false,
          "entity":false
@@ -180,7 +180,7 @@
          "FOV_id":0,
          "animated":false,
          "animated_id":0,
-         "bg":"brown",
+         "bg":"#824d03",
          "blocked":false,
          "blocks_vision":false,
          "entity":false
@@ -191,7 +191,7 @@
          "FOV_id":0,
          "animated":false,
          "animated_id":0,
-         "bg":"brown",
+         "bg":"#824d03",
          "blocked":false,
          "blocks_vision":false,
          "entity":false
@@ -202,7 +202,7 @@
          "FOV_id":0,
          "animated":false,
          "animated_id":0,
-         "bg":"brown",
+         "bg":"#824d03",
          "blocked":false,
          "blocks_vision":false,
          "entity":false
@@ -213,7 +213,7 @@
          "FOV_id":0,
          "animated":false,
          "animated_id":0,
-         "bg":"brown",
+         "bg":"#824d03",
          "blocked":false,
          "blocks_vision":false,
          "entity":false
@@ -224,7 +224,7 @@
          "FOV_id":0,
          "animated":false,
          "animated_id":0,
-         "bg":"brown",
+         "bg":"#824d03",
          "blocked":false,
          "blocks_vision":false,
          "entity":false
@@ -235,7 +235,7 @@
          "FOV_id":0,
          "animated":false,
          "animated_id":0,
-         "bg":"brown",
+         "bg":"#824d03",
          "blocked":false,
          "blocks_vision":false,
          "entity":false
@@ -864,7 +864,7 @@
          "FOV_id":0,
          "animated":false,
          "animated_id":0,
-         "bg":"brown",
+         "bg":"#824d03",
          "blocked":false,
          "blocks_vision":false,
          "entity":false
@@ -875,7 +875,7 @@
          "FOV_id":0,
          "animated":false,
          "animated_id":0,
-         "bg":"brown",
+         "bg":"#824d03",
          "blocked":false,
          "blocks_vision":false,
          "entity":false
@@ -886,7 +886,7 @@
          "FOV_id":0,
          "animated":false,
          "animated_id":0,
-         "bg":"brown",
+         "bg":"#824d03",
          "blocked":false,
          "blocks_vision":false,
          "entity":false
@@ -897,7 +897,7 @@
          "FOV_id":0,
          "animated":false,
          "animated_id":0,
-         "bg":"brown",
+         "bg":"#824d03",
          "blocked":false,
          "blocks_vision":false,
          "entity":false
@@ -908,7 +908,7 @@
          "FOV_id":0,
          "animated":false,
          "animated_id":0,
-         "bg":"brown",
+         "bg":"#824d03",
          "blocked":false,
          "blocks_vision":false,
          "entity":false
@@ -919,7 +919,7 @@
          "FOV_id":0,
          "animated":false,
          "animated_id":0,
-         "bg":"brown",
+         "bg":"#824d03",
          "blocked":false,
          "blocks_vision":false,
          "entity":false
@@ -930,7 +930,7 @@
          "FOV_id":0,
          "animated":false,
          "animated_id":0,
-         "bg":"brown",
+         "bg":"#824d03",
          "blocked":false,
          "blocks_vision":false,
          "entity":false
@@ -25225,7 +25225,7 @@
          "FOV_id":9543,
          "animated":false,
          "animated_id":0,
-         "bg":"brown",
+         "bg":"#824d03",
          "blocked":false,
          "blocks_vision":false,
          "entity":false
@@ -25236,7 +25236,7 @@
          "FOV_id":9544,
          "animated":false,
          "animated_id":0,
-         "bg":"brown",
+         "bg":"#824d03",
          "blocked":false,
          "blocks_vision":false,
          "entity":false
@@ -25247,7 +25247,7 @@
          "FOV_id":9545,
          "animated":false,
          "animated_id":0,
-         "bg":"brown",
+         "bg":"#824d03",
          "blocked":false,
          "blocks_vision":false,
          "entity":false
@@ -25258,7 +25258,7 @@
          "FOV_id":0,
          "animated":false,
          "animated_id":0,
-         "bg":"brown",
+         "bg":"#824d03",
          "blocked":false,
          "blocks_vision":false,
          "entity":false
@@ -25269,7 +25269,7 @@
          "FOV_id":0,
          "animated":false,
          "animated_id":0,
-         "bg":"brown",
+         "bg":"#824d03",
          "blocked":false,
          "blocks_vision":false,
          "entity":false
@@ -25280,7 +25280,7 @@
          "FOV_id":0,
          "animated":false,
          "animated_id":0,
-         "bg":"brown",
+         "bg":"#824d03",
          "blocked":false,
          "blocks_vision":false,
          "entity":false
@@ -25291,7 +25291,7 @@
          "FOV_id":0,
          "animated":false,
          "animated_id":0,
-         "bg":"brown",
+         "bg":"#824d03",
          "blocked":false,
          "blocks_vision":false,
          "entity":false
@@ -25920,7 +25920,7 @@
          "FOV_id":9663,
          "animated":false,
          "animated_id":0,
-         "bg":"brown",
+         "bg":"#824d03",
          "blocked":false,
          "blocks_vision":false,
          "entity":false
@@ -25931,7 +25931,7 @@
          "FOV_id":9664,
          "animated":false,
          "animated_id":0,
-         "bg":"brown",
+         "bg":"#824d03",
          "blocked":false,
          "blocks_vision":false,
          "entity":false
@@ -25942,7 +25942,7 @@
          "FOV_id":9665,
          "animated":false,
          "animated_id":0,
-         "bg":"brown",
+         "bg":"#824d03",
          "blocked":false,
          "blocks_vision":false,
          "entity":false
@@ -25953,7 +25953,7 @@
          "FOV_id":0,
          "animated":false,
          "animated_id":0,
-         "bg":"brown",
+         "bg":"#824d03",
          "blocked":false,
          "blocks_vision":false,
          "entity":false
@@ -25964,7 +25964,7 @@
          "FOV_id":0,
          "animated":false,
          "animated_id":0,
-         "bg":"brown",
+         "bg":"#824d03",
          "blocked":false,
          "blocks_vision":false,
          "entity":false
@@ -25975,7 +25975,7 @@
          "FOV_id":0,
          "animated":false,
          "animated_id":0,
-         "bg":"brown",
+         "bg":"#824d03",
          "blocked":false,
          "blocks_vision":false,
          "entity":false
@@ -25986,7 +25986,7 @@
          "FOV_id":0,
          "animated":false,
          "animated_id":0,
-         "bg":"brown",
+         "bg":"#824d03",
          "blocked":false,
          "blocks_vision":false,
          "entity":false
@@ -26615,7 +26615,7 @@
          "FOV_id":9783,
          "animated":false,
          "animated_id":0,
-         "bg":"brown",
+         "bg":"#824d03",
          "blocked":false,
          "blocks_vision":false,
          "entity":false
@@ -26626,7 +26626,7 @@
          "FOV_id":9784,
          "animated":false,
          "animated_id":0,
-         "bg":"brown",
+         "bg":"#824d03",
          "blocked":false,
          "blocks_vision":false,
          "entity":false
@@ -26637,7 +26637,7 @@
          "FOV_id":9785,
          "animated":false,
          "animated_id":0,
-         "bg":"brown",
+         "bg":"#824d03",
          "blocked":false,
          "blocks_vision":false,
          "entity":false
@@ -26648,7 +26648,7 @@
          "FOV_id":0,
          "animated":false,
          "animated_id":0,
-         "bg":"brown",
+         "bg":"#824d03",
          "blocked":false,
          "blocks_vision":false,
          "entity":false
@@ -26659,7 +26659,7 @@
          "FOV_id":0,
          "animated":false,
          "animated_id":0,
-         "bg":"brown",
+         "bg":"#824d03",
          "blocked":false,
          "blocks_vision":false,
          "entity":false
@@ -26670,7 +26670,7 @@
          "FOV_id":0,
          "animated":false,
          "animated_id":0,
-         "bg":"brown",
+         "bg":"#824d03",
          "blocked":false,
          "blocks_vision":false,
          "entity":false
@@ -26681,7 +26681,7 @@
          "FOV_id":0,
          "animated":false,
          "animated_id":0,
-         "bg":"brown",
+         "bg":"#824d03",
          "blocked":false,
          "blocks_vision":false,
          "entity":false
@@ -27310,7 +27310,7 @@
          "FOV_id":0,
          "animated":false,
          "animated_id":0,
-         "bg":"brown",
+         "bg":"#824d03",
          "blocked":false,
          "blocks_vision":false,
          "entity":false
@@ -27321,7 +27321,7 @@
          "FOV_id":0,
          "animated":false,
          "animated_id":0,
-         "bg":"brown",
+         "bg":"#824d03",
          "blocked":false,
          "blocks_vision":false,
          "entity":false
@@ -27332,7 +27332,7 @@
          "FOV_id":0,
          "animated":false,
          "animated_id":0,
-         "bg":"brown",
+         "bg":"#824d03",
          "blocked":false,
          "blocks_vision":false,
          "entity":false
@@ -27343,7 +27343,7 @@
          "FOV_id":0,
          "animated":false,
          "animated_id":0,
-         "bg":"brown",
+         "bg":"#824d03",
          "blocked":false,
          "blocks_vision":false,
          "entity":false
@@ -27354,7 +27354,7 @@
          "FOV_id":0,
          "animated":false,
          "animated_id":0,
-         "bg":"brown",
+         "bg":"#824d03",
          "blocked":false,
          "blocks_vision":false,
          "entity":false
@@ -27365,7 +27365,7 @@
          "FOV_id":0,
          "animated":false,
          "animated_id":0,
-         "bg":"brown",
+         "bg":"#824d03",
          "blocked":false,
          "blocks_vision":false,
          "entity":false
@@ -27376,7 +27376,7 @@
          "FOV_id":0,
          "animated":false,
          "animated_id":0,
-         "bg":"brown",
+         "bg":"#824d03",
          "blocked":false,
          "blocks_vision":false,
          "entity":false
@@ -28005,7 +28005,7 @@
          "FOV_id":0,
          "animated":false,
          "animated_id":0,
-         "bg":"brown",
+         "bg":"#824d03",
          "blocked":false,
          "blocks_vision":false,
          "entity":false
@@ -28016,7 +28016,7 @@
          "FOV_id":0,
          "animated":false,
          "animated_id":0,
-         "bg":"brown",
+         "bg":"#824d03",
          "blocked":false,
          "blocks_vision":false,
          "entity":false
@@ -28027,7 +28027,7 @@
          "FOV_id":0,
          "animated":false,
          "animated_id":0,
-         "bg":"brown",
+         "bg":"#824d03",
          "blocked":false,
          "blocks_vision":false,
          "entity":false
@@ -28038,7 +28038,7 @@
          "FOV_id":0,
          "animated":false,
          "animated_id":0,
-         "bg":"brown",
+         "bg":"#824d03",
          "blocked":false,
          "blocks_vision":false,
          "entity":false
@@ -28049,7 +28049,7 @@
          "FOV_id":0,
          "animated":false,
          "animated_id":0,
-         "bg":"brown",
+         "bg":"#824d03",
          "blocked":false,
          "blocks_vision":false,
          "entity":false
@@ -28060,7 +28060,7 @@
          "FOV_id":0,
          "animated":false,
          "animated_id":0,
-         "bg":"brown",
+         "bg":"#824d03",
          "blocked":false,
          "blocks_vision":false,
          "entity":false
@@ -28071,7 +28071,7 @@
          "FOV_id":0,
          "animated":false,
          "animated_id":0,
-         "bg":"brown",
+         "bg":"#824d03",
          "blocked":false,
          "blocks_vision":false,
          "entity":false
@@ -28700,7 +28700,7 @@
          "FOV_id":0,
          "animated":false,
          "animated_id":0,
-         "bg":"brown",
+         "bg":"#824d03",
          "blocked":false,
          "blocks_vision":false,
          "entity":false
@@ -28711,7 +28711,7 @@
          "FOV_id":0,
          "animated":false,
          "animated_id":0,
-         "bg":"brown",
+         "bg":"#824d03",
          "blocked":false,
          "blocks_vision":false,
          "entity":false
@@ -28722,7 +28722,7 @@
          "FOV_id":0,
          "animated":false,
          "animated_id":0,
-         "bg":"brown",
+         "bg":"#824d03",
          "blocked":false,
          "blocks_vision":false,
          "entity":false
@@ -28733,7 +28733,7 @@
          "FOV_id":0,
          "animated":false,
          "animated_id":0,
-         "bg":"brown",
+         "bg":"#824d03",
          "blocked":false,
          "blocks_vision":false,
          "entity":false
@@ -28744,7 +28744,7 @@
          "FOV_id":0,
          "animated":false,
          "animated_id":0,
-         "bg":"brown",
+         "bg":"#824d03",
          "blocked":false,
          "blocks_vision":false,
          "entity":false
@@ -28755,7 +28755,7 @@
          "FOV_id":0,
          "animated":false,
          "animated_id":0,
-         "bg":"brown",
+         "bg":"#824d03",
          "blocked":false,
          "blocks_vision":false,
          "entity":false
@@ -28766,7 +28766,7 @@
          "FOV_id":0,
          "animated":false,
          "animated_id":0,
-         "bg":"brown",
+         "bg":"#824d03",
          "blocked":false,
          "blocks_vision":false,
          "entity":false
@@ -29395,7 +29395,7 @@
          "FOV_id":0,
          "animated":false,
          "animated_id":0,
-         "bg":"brown",
+         "bg":"#824d03",
          "blocked":false,
          "blocks_vision":false,
          "entity":false
@@ -29406,7 +29406,7 @@
          "FOV_id":0,
          "animated":false,
          "animated_id":0,
-         "bg":"brown",
+         "bg":"#824d03",
          "blocked":false,
          "blocks_vision":false,
          "entity":false
@@ -29417,7 +29417,7 @@
          "FOV_id":0,
          "animated":false,
          "animated_id":0,
-         "bg":"brown",
+         "bg":"#824d03",
          "blocked":false,
          "blocks_vision":false,
          "entity":false
@@ -29428,7 +29428,7 @@
          "FOV_id":0,
          "animated":false,
          "animated_id":0,
-         "bg":"brown",
+         "bg":"#824d03",
          "blocked":false,
          "blocks_vision":false,
          "entity":false
@@ -29439,7 +29439,7 @@
          "FOV_id":0,
          "animated":false,
          "animated_id":0,
-         "bg":"brown",
+         "bg":"#824d03",
          "blocked":false,
          "blocks_vision":false,
          "entity":false
@@ -29450,7 +29450,7 @@
          "FOV_id":0,
          "animated":false,
          "animated_id":0,
-         "bg":"brown",
+         "bg":"#824d03",
          "blocked":false,
          "blocks_vision":false,
          "entity":false
@@ -29461,7 +29461,7 @@
          "FOV_id":0,
          "animated":false,
          "animated_id":0,
-         "bg":"brown",
+         "bg":"#824d03",
          "blocked":false,
          "blocks_vision":false,
          "entity":false
