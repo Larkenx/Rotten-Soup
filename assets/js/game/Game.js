@@ -38,8 +38,8 @@ let Game = {
         this.dev = dev;
         // this.map = new Map(TileMaps["overworld"]);
         this.levels["overworld"] = new Map(TileMaps["overworld"]);
-        this.map = new Map(randomMap(50, 50));
-        this.map.revealed = true;
+        this.map = new Map(randomMap(70, 50));
+        // this.map.revealed = true;
         this.playerLocation = this.map.playerLocation;
         /* !Important! - PlayerID must be allocated before other maps are drawn... */
         this.playerID = this.map.playerID;

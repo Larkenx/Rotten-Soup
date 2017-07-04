@@ -16417,7 +16417,7 @@
      "7736":
         {
          "FOV":true,
-         "FOV_id":8096,
+         "FOV_id":8456,
          "animated":false,
          "animated_id":0,
          "bg":"gray",
@@ -16428,7 +16428,7 @@
      "7737":
         {
          "FOV":true,
-         "FOV_id":8097,
+         "FOV_id":8457,
          "animated":false,
          "animated_id":0,
          "bg":"gray",
@@ -16439,7 +16439,7 @@
      "7738":
         {
          "FOV":true,
-         "FOV_id":8098,
+         "FOV_id":8458,
          "animated":false,
          "animated_id":0,
          "bg":"gray",
@@ -16472,11 +16472,11 @@
      "7741":
         {
          "FOV":true,
-         "FOV_id":8101,
+         "FOV_id":8461,
          "animated":false,
          "animated_id":0,
          "bg":"gray",
-         "blocked":true,
+         "blocked":false,
          "blocks_vision":false,
          "entity":false
         },
@@ -17288,7 +17288,7 @@
      "7856":
         {
          "FOV":true,
-         "FOV_id":8216,
+         "FOV_id":8576,
          "animated":false,
          "animated_id":0,
          "bg":"gray",
@@ -17310,7 +17310,7 @@
      "7858":
         {
          "FOV":true,
-         "FOV_id":8218,
+         "FOV_id":8578,
          "animated":false,
          "animated_id":0,
          "bg":"gray",
@@ -17332,7 +17332,7 @@
      "7860":
         {
          "FOV":true,
-         "FOV_id":8220,
+         "FOV_id":8580,
          "animated":false,
          "animated_id":0,
          "bg":"gray",
@@ -17343,7 +17343,7 @@
      "7861":
         {
          "FOV":true,
-         "FOV_id":8221,
+         "FOV_id":8581,
          "animated":false,
          "animated_id":0,
          "bg":"gray",
@@ -17354,7 +17354,7 @@
      "7862":
         {
          "FOV":true,
-         "FOV_id":8222,
+         "FOV_id":8582,
          "animated":false,
          "animated_id":0,
          "bg":"gray",
@@ -18175,7 +18175,7 @@
      "7976":
         {
          "FOV":true,
-         "FOV_id":8336,
+         "FOV_id":8696,
          "animated":false,
          "animated_id":0,
          "bg":"gray",
@@ -18186,7 +18186,7 @@
      "7977":
         {
          "FOV":true,
-         "FOV_id":8337,
+         "FOV_id":8697,
          "animated":false,
          "animated_id":0,
          "bg":"gray",
@@ -18197,7 +18197,7 @@
      "7978":
         {
          "FOV":true,
-         "FOV_id":8338,
+         "FOV_id":8698,
          "animated":false,
          "animated_id":0,
          "bg":"gray",
