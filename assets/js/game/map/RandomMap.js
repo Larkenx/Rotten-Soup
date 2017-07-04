@@ -19,7 +19,7 @@ function randomMap(width, height) {
         {"data": [], "properties": {"obstacles": false}},
         {"data": [], "properties": {"obstacles": false}}];
     let freeCells = {};
-    ROT.RNG.setSeed(1499200778495);
+    // ROT.RNG.setSeed(1499200778495);
     diggerCallback = function (x, y, blocked) {
         if (!blocked) freeCells[x + "," + y] = true;
     };
@@ -56,6 +56,19 @@ function randomMap(width, height) {
         lowerLeft: 7976,
         bottom: 7977,
         lowerRight: 7978,
+    };
+
+    let corridorFloor = {
+        horizontal: {
+            left: 7860,
+            middle: 7861,
+            right: 7862,
+        },
+        vertical: {
+            top: 7739,
+            middle: 7859,
+            bottom: 7979,
+        },
     };
 
     let walls = {
@@ -133,107 +146,100 @@ function randomMap(width, height) {
         });
     }
 
-    let buildsCorrWalls = function (x, y, horizontal, end=false) {
+    let buildsCorrWalls = function (x, y, horizontal, end = false) {
+        let floor_ids = Object.values(corridorFloor.vertical) + Object.values(floor) + Object.values(corridorFloor.horizontal) + [7741,569+1,568+1];
         if (horizontal) {
             let above = map.layers[0].data[y - 1][x];
             let below = map.layers[0].data[y + 1][x];
-            map.layers[0].data[y - 1][x] = above === 7046 ? walls.top+1 : above;
-            map.layers[0].data[y + 1][x] = below === 7046 ? walls.bottom+1 : below;
+            map.layers[0].data[y - 1][x] = !floor_ids.includes(above-1) ? walls.top + 1 : above;
+            map.layers[0].data[y + 1][x] = !floor_ids.includes(below-1) ? walls.bottom + 1 : below;
         } else {
             let left = map.layers[0].data[y][x - 1];
             let right = map.layers[0].data[y][x + 1];
-            map.layers[0].data[y][x - 1] = left === 7046 ? walls.left+1 : left;
-            map.layers[0].data[y][x + 1] = right === 7046 ? walls.right+1 : right;
+            map.layers[0].data[y][x - 1] = !floor_ids.includes(left-1) ? walls.left + 1 : left;
+            map.layers[0].data[y][x + 1] = !floor_ids.includes(right-1) ? walls.right + 1 : right;
         }
 
         if (end) {
-            let ul = map.layers[0].data[y-1][x-1];
-            let ur = map.layers[0].data[y-1][x+1];
-            let ll = map.layers[0].data[y+1][x-1];
-            let lr = map.layers[0].data[y+1][x+1];
+            let ul = map.layers[0].data[y - 1][x - 1];
+            let ur = map.layers[0].data[y - 1][x + 1];
+            let ll = map.layers[0].data[y + 1][x - 1];
+            let lr = map.layers[0].data[y + 1][x + 1];
             let above = map.layers[0].data[y - 1][x];
             let below = map.layers[0].data[y + 1][x];
             let left = map.layers[0].data[y][x - 1];
             let right = map.layers[0].data[y][x + 1];
-
+            map.layers[0].data[y - 1][x - 1] = ul === 7046 ? walls.upperLeft + 1 : ul;
+            map.layers[0].data[y - 1][x + 1] = ur === 7046 ? walls.upperRight + 1 : ur;
+            map.layers[0].data[y + 1][x - 1] = ll === 7046 ? walls.lowerLeft + 1 : ll;
+            map.layers[0].data[y + 1][x + 1] = lr === 7046 ? walls.lowerRight + 1 : lr;
+            map.layers[0].data[y - 1][x] = !floor_ids.includes(above-1) ? walls.top + 1 : above;
+            map.layers[0].data[y + 1][x] = !floor_ids.includes(below-1) ? walls.bottom + 1 : below;
+            map.layers[0].data[y][x - 1] = !floor_ids.includes(left-1) ? walls.left + 1 : left;
+            map.layers[0].data[y][x + 1] = !floor_ids.includes(right-1) ? walls.right + 1 : right;
         }
 
     };
 
+    let sortCorridors = function (a, b,) {
+        if (a._startX === a._endX && b._startX !== b._endX) {
+            return -1;
+        } else if (b._startX === b._endX && a._startX !== a._endX) {
+            return 1;
+        } else {
+            return 0;
+        }
+    };
+
     /* After rooms, we need to clean up textures for corridors, which
      * are stretches of rows or columns */
-    for (let corridor of rogueMap.getCorridors()) {
+    for (let corridor of rogueMap.getCorridors().sort(sortCorridors)) {
         let sx = corridor._startX;
         let sy = corridor._startY;
         let ex = corridor._endX;
         let ey = corridor._endY;
-        if (sx === ex) { // vertical corridor
-            // moving down
-            if (sy < ey) {
-                y = sy;
-                buildsCorrWalls(sx, y, false, true);
-                map.layers[0].data[y][sx] = 7739 + 1;
+        if (sx === ex) { // vertical corridor |
+            if (sy > ey) {
+                let temp = sy;
+                sy = ey;
+                ey = temp;
+            }
+            y = sy;
+            buildsCorrWalls(sx, y, false, true);
+            map.layers[0].data[y][sx] = corridorFloor.vertical.top + 1;
+            y++;
+            while (y < ey) {
+                buildsCorrWalls(sx, y, false);
+                map.layers[0].data[y][sx] = corridorFloor.vertical.middle + 1;
                 y++;
-                while (y < ey) {
-                    buildsCorrWalls(sx, y, false);
-                    map.layers[0].data[y][sx] = 7859 + 1;
-                    y++;
-                }
-                map.layers[0].data[ey][sx] = 7979 + 1;
-                buildsCorrWalls(sx, y, false, true);
-
-            } else {
-                // moving up
-                y = sy;
-                buildsCorrWalls(sx, y, false, true);
-                map.layers[0].data[y][sx] = 7979 + 1;
-                y--;
-                while (y > ey) {
-                    buildsCorrWalls(sx, y, false);
-                    map.layers[0].data[y][sx] = 7859 + 1;
-                    y--;
-                }
-                map.layers[0].data[ey][sx] = 7739 + 1;
-                buildsCorrWalls(sx, y, false, true);
             }
-        } else if (sy === ey) { // horizontal corridor
-            // moving right
-            if (sx < ex) {
-                x = sx;
-                buildsCorrWalls(x, sy, true, true);
-                map.layers[0].data[sy][x] = 7860 + 1;
+            map.layers[0].data[ey][sx] = corridorFloor.vertical.bottom + 1;
+            buildsCorrWalls(sx, y, false, true);
+        } else if (sy === ey) { // horizontal corridor ------
+            if (sx > ex) {
+                let temp = sx;
+                sx = ex;
+                ex = temp;
+            }
+            x = sx;
+            buildsCorrWalls(x, sy, true, true);
+            map.layers[0].data[sy][x] = corridorFloor.horizontal.left + 1;
+            x++;
+            while (x < ex) {
+                buildsCorrWalls(x, sy, true);
+                map.layers[0].data[sy][x] = corridorFloor.horizontal.middle + 1;
                 x++;
-                while (x < ex) {
-                    buildsCorrWalls(x, sy, true);
-                    map.layers[0].data[sy][x] = 7861 + 1;
-                    x++;
-                }
-                buildsCorrWalls(x, sy, true, true);
-
-                map.layers[0].data[ey][x] = 7862 + 1;
-            } else {
-                // moving left
-                x = sx;
-                buildsCorrWalls(x, sy, true, true);
-
-                map.layers[0].data[sy][x] = 7862 + 1;
-                x--;
-                while (x > ex) {
-                    buildsCorrWalls(x, sy, true);
-                    map.layers[0].data[sy][x] = 7861 + 1;
-                    x--;
-                }
-                buildsCorrWalls(x, sy, true, true);
-                map.layers[0].data[ey][ex] = 7860 + 1;
             }
+            buildsCorrWalls(x, sy, true, true);
+            map.layers[0].data[ey][x] = corridorFloor.horizontal.right + 1;
         } else {
             console.log(`[${sx}, ${sy}] => [${ex},${ey}]`);
         }
     }
 
     // Randomly select starting position for player
-    // let start = randomProperty(freeCells).split(',');
-    let start = [1, 44];
+    let start = randomProperty(freeCells).split(',');
+    // let start = [1, 44];
     map.layers[2].data[start[1]][start[0]] = Game.playerID; // set random spot to be the player
     map.layers[3].data[start[1]][start[0]] = 477; // place a ladder going back up a level underneath the player.
 

@@ -229,7 +229,7 @@ class Player extends Actor {
                 return e instanceof Ladder && e.options.direction === "up";
             })) {
             Game.log("You climb up the ladder...", "player_move");
-            Game.changeLevels('expanded_start');
+            Game.changeLevels('overworld');
         } else {
             Game.log("You cannot climb up here.", "information");
         }
