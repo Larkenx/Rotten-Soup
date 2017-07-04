@@ -15,6 +15,14 @@
          "height":60,
          "name":"Tile Layer 1",
          "opacity":1,
+         "properties":
+            {
+             "obstacles":true
+            },
+         "propertytypes":
+            {
+             "obstacles":"bool"
+            },
          "type":"tilelayer",
          "visible":true,
          "width":60,
@@ -26,6 +34,14 @@
          "height":60,
          "name":"Tile Layer 2",
          "opacity":1,
+         "properties":
+            {
+             "obstacles":true
+            },
+         "propertytypes":
+            {
+             "obstacles":"bool"
+            },
          "type":"tilelayer",
          "visible":true,
          "width":60,
@@ -37,6 +53,14 @@
          "height":60,
          "name":"Actors",
          "opacity":1,
+         "properties":
+            {
+             "obstacles":false
+            },
+         "propertytypes":
+            {
+             "obstacles":"bool"
+            },
          "type":"tilelayer",
          "visible":true,
          "width":60,
@@ -46,7 +70,6 @@
  "nextobjectid":1,
  "orientation":"orthogonal",
  "renderorder":"right-down",
- "tiledversion":"1.0.1",
  "tileheight":32,
  "tilesets":[
         {
@@ -55,6 +78,6 @@
         }],
  "tilewidth":32,
  "type":"map",
- "version":1,
+ "version":"2017.05.26",
  "width":60
 });

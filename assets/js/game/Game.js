@@ -11,8 +11,8 @@ function getTilesetCoords(id) {
     return [colNumber, rowNumber];
 }
 
-$.getJSON("assets/maps/tileset/compiled_dawnlike.json", function(data) {
-   const tileset = data;
+$.getJSON("assets/maps/tileset/compiled_dawnlike.json", function (data) {
+    const tileset = data;
 });
 
 let Game = {
@@ -23,9 +23,10 @@ let Game = {
     console: null,
     player: null,
     playerLocation: null,
-    playerID : null,
+    playerID: 4696,
+    loadedIDS: [],
     scheduler: null,
-    turn : 0,
+    turn: 0,
     engine: null,
     levels: {},
     currentLevel: "overworld",
@@ -33,20 +34,22 @@ let Game = {
     message_history: [],
     minimap: null,
 
-    init: function (dev=false) {
+    init: function (dev = false) {
         this.dev = dev;
-        this.map = new Map(TileMaps["overworld"]);
-        this.map.revealed = true;
+        // this.map = new Map(TileMaps["overworld"]);
         this.levels["overworld"] = new Map(TileMaps["overworld"]);
+        this.map = new Map(randomMap(50, 50));
+        this.map.revealed = true;
         this.playerLocation = this.map.playerLocation;
+        /* !Important! - PlayerID must be allocated before other maps are drawn... */
         this.playerID = this.map.playerID;
-
+        this.levels["dungeon1"] = new Map(randomMap(50, 50));
         // Set up the ROT.JS game display
         let tileSet = document.createElement("img");
         tileSet.src = "assets/images/DawnLike/Compiled/compiled_tileset_32x32.png";
         let tileSize = 32;
         let tileMap = {};
-        for (let id of this.map.loadedIDS) {
+        for (let id of this.loadedIDS) {
             tileMap[id.toString()] = getTilesetCoords(id);
             if (id in tileset.tileproperties) {
                 let properties = tileset.tileproperties[id];
@@ -79,7 +82,7 @@ let Game = {
         this.drawViewPort();
         this.initializeMinimap();
         this.engine.start(); // Start the engine
-        tileSet.onload = function() {
+        tileSet.onload = function () {
             Game.drawViewPort();
             Game.drawMiniMap();
         };
@@ -123,7 +126,7 @@ let Game = {
             'alert': 'orange',
         };
         this.message_history.push([message, message_color[type]]);
-        if (! this.dev) {
+        if (!this.dev) {
             $('#fix_scroll').stop().animate({
                 scrollTop: $('#fix_scroll')[0].scrollHeight
             }, 800);
@@ -153,57 +156,55 @@ let Game = {
     },
 
     drawViewPort: function () {
-        try {
-            // Clear the last visible tiles that were available to be seen
-            Object.assign(this.map.seen_tiles, this.map.visible_tiles);
-            this.map.visible_tiles = {};
-            /* FOV Computation */
-            let fov = new ROT.FOV.PreciseShadowcasting(function (x, y) {
-                return (Game.inbounds(x, y) && Game.map.data[y][x].visible());
-            });
-
-            fov.compute(this.player.x, this.player.y, 7, function (x, y, r, visibility) {
-                Game.map.visible_tiles[x + ',' + y] = true;
-            });
-
-            let camera = { // camera x,y resides in the upper left corner
-                x: this.player.x - Math.floor(Game.width / 2),
-                y: this.player.y - Math.floor(Game.height / 2),
-                width: Math.ceil(Game.width),
-                height: Game.height,
-            };
-            let startingPos = [camera.x, camera.y];
-            if (camera.x < 0) // far left
-                startingPos[0] = 0;
-            if (camera.x + camera.width > Game.map.width) // far right
-                startingPos[0] = Game.map.width - camera.width;
-            if (camera.y <= 0) // at the top of the map
-                startingPos[1] = 0;
-            if (camera.y + camera.height > Game.map.height) { // at the bottom of the map
-                startingPos[1] = Game.map.height - camera.height;
-            }
-            let endingPos = [startingPos[0] + camera.width, startingPos[1] + camera.height];
-            let dx = 0;
-            let dy = 0;
-            for (let x = startingPos[0]; x < endingPos[0]; x++) {
-                for (let y = startingPos[1]; y < endingPos[1]; y++) {
-                    let tile = this.map.data[y][x];
-                    if (tile.x + "," + tile.y in this.map.visible_tiles) {
-                        this.drawTile(dx, dy++, tile, false);
-                    } else {
-                        this.drawTile(dx, dy++, tile, false);
-                    }
-                }
-                dx++;
-                dy = 0;
-            }
-        } catch (err) {
-            console.log(err);
+        // Camera positions
+        let camera = { // camera x,y resides in the upper left corner
+            x: this.player.x - Math.floor(Game.width / 2),
+            y: this.player.y - Math.floor(Game.height / 2),
+            width: Math.ceil(Game.width),
+            height: Game.height,
+        };
+        let startingPos = [camera.x, camera.y];
+        if (camera.x < 0) // far left
+            startingPos[0] = 0;
+        if (camera.x + camera.width > Game.map.width) // far right
+            startingPos[0] = Game.map.width - camera.width;
+        if (camera.y <= 0) // at the top of the map
+            startingPos[1] = 0;
+        if (camera.y + camera.height > Game.map.height) { // at the bottom of the map
+            startingPos[1] = Game.map.height - camera.height;
         }
+        let endingPos = [startingPos[0] + camera.width, startingPos[1] + camera.height];
+        let dx = 0;
+        let dy = 0;
+        // Clear the last visible tiles that were available to be seen
+        Object.assign(this.map.seen_tiles, this.map.visible_tiles);
+        this.map.visible_tiles = {};
 
+        // FOV calculations
+        let fov = new ROT.FOV.PreciseShadowcasting(function (x, y) {
+            return (Game.inbounds(x, y) && Game.map.data[y][x].visible());
+        });
+
+        fov.compute(this.player.x, this.player.y, 7, function (x, y, r, visibility) {
+            Game.map.visible_tiles[x + ',' + y] = true;
+        });
+
+        // Draw the viewport
+        for (let x = startingPos[0]; x < endingPos[0]; x++) {
+            for (let y = startingPos[1]; y < endingPos[1]; y++) {
+                let tile = this.map.data[y][x];
+                if (tile.x + "," + tile.y in this.map.visible_tiles) {
+                    this.drawTile(dx, dy++, tile, false);
+                } else {
+                    this.drawTile(dx, dy++, tile, ! this.map.revealed);
+                }
+            }
+            dx++;
+            dy = 0;
+        }
     },
 
-    drawTile: function(x, y, tile, fov) {
+    drawTile: function (x, y, tile, fov) {
         let symbols = tile.getSpriteIDS(this.turn % 2 === 0, fov);
         // if (symbols.some((e) => {return e === "0"})) throw "A tile is empty!"
         Game.display.draw(x, y, symbols);
@@ -248,7 +249,7 @@ let Game = {
         this.drawMiniMap();
     },
 
-    printPlayerTile: function() {
+    printPlayerTile: function () {
         console.log(Game.map.data[this.player.y][this.player.x]);
     }
 };

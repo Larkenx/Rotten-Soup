@@ -18,13 +18,11 @@ function getTileInfo(id) {
 }
 
 class Tile {
-    constructor(x, y, id) {
+    constructor(x, y) {
         this.x = x;
         this.y = y;
-        let obstacle = getTileInfo(id);
-        obstacle.id = id;
-        this.obstacles = [obstacle];
         this.actors = [];
+        this.obstacles = [];
     }
 
     updateTileInfo(id) {

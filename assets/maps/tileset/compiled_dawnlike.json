@@ -9909,6 +9909,10 @@
          "animated_id":0,
          "entity":false
         },
+     "569":
+        {
+         "entity":true
+        },
      "5690":
         {
          "animated":false,
@@ -14016,34 +14020,46 @@
          "FOV_id":0,
          "animated":false,
          "animated_id":0,
-         "bg":"#00cc33",
+         "bg":"gray",
          "blocked":false,
          "blocks_vision":false,
          "entity":false
         },
      "7397":
         {
-         "bg":"#00cc33"
+         "bg":"black",
+         "blocked":"true",
+         "blocks_vision":"true"
         },
      "7398":
         {
-         "bg":"#00cc33"
+         "bg":"black",
+         "blocked":"true",
+         "blocks_vision":"true"
         },
      "7399":
         {
-         "bg":"#00cc33"
+         "bg":"black",
+         "blocked":"true",
+         "blocks_vision":"true"
         },
      "7400":
         {
-         "bg":"#00cc33"
+         "bg":"black",
+         "blocked":"true",
+         "blocks_vision":"true"
         },
      "7401":
         {
-         "bg":"#00cc33"
+         "bg":"black",
+         "blocked":"true",
+         "blocks_vision":"true"
         },
      "7402":
         {
-         "bg":"#00cc33"
+         "bg":"black",
+         "blocked":"true",
+         "blocks_vision":"true"
         },
      "7403":
         {
@@ -14882,34 +14898,46 @@
          "FOV_id":0,
          "animated":false,
          "animated_id":0,
-         "bg":"#00cc33",
+         "bg":"gray",
          "blocked":false,
          "blocks_vision":false,
          "entity":false
         },
      "7517":
         {
-         "bg":"#00cc33"
+         "bg":"black",
+         "blocked":"true",
+         "blocks_vision":"true"
         },
      "7518":
         {
-         "bg":"#00cc33"
+         "bg":"black",
+         "blocked":"true",
+         "blocks_vision":"true"
         },
      "7519":
         {
-         "bg":"#00cc33"
+         "bg":"black",
+         "blocked":"true",
+         "blocks_vision":"true"
         },
      "7520":
         {
-         "bg":"#00cc33"
+         "bg":"black",
+         "blocked":"true",
+         "blocks_vision":"true"
         },
      "7521":
         {
-         "bg":"#00cc33"
+         "bg":"black",
+         "blocked":"true",
+         "blocks_vision":"true"
         },
      "7522":
         {
-         "bg":"#00cc33"
+         "bg":"black",
+         "blocked":"true",
+         "blocks_vision":"true"
         },
      "7523":
         {
@@ -15741,34 +15769,46 @@
          "FOV_id":0,
          "animated":false,
          "animated_id":0,
-         "bg":"#00cc33",
+         "bg":"gray",
          "blocked":false,
          "blocks_vision":false,
          "entity":false
         },
      "7637":
         {
-         "bg":"#00cc33"
+         "bg":"black",
+         "blocked":"true",
+         "blocks_vision":"true"
         },
      "7638":
         {
-         "bg":"#00cc33"
+         "bg":"black",
+         "blocked":"true",
+         "blocks_vision":"true"
         },
      "7639":
         {
-         "bg":"#00cc33"
+         "bg":"black",
+         "blocked":"true",
+         "blocks_vision":"true"
         },
      "7640":
         {
-         "bg":"#00cc33"
+         "bg":"black",
+         "blocked":"true",
+         "blocks_vision":"true"
         },
      "7641":
         {
-         "bg":"#00cc33"
+         "bg":"black",
+         "blocked":"true",
+         "blocks_vision":"true"
         },
      "7642":
         {
-         "bg":"#00cc33"
+         "bg":"black",
+         "blocked":"true",
+         "blocks_vision":"true"
         },
      "7643":
         {
@@ -16600,34 +16640,46 @@
          "FOV_id":0,
          "animated":false,
          "animated_id":0,
-         "bg":"#00cc33",
+         "bg":"gray",
          "blocked":false,
          "blocks_vision":false,
          "entity":false
         },
      "7757":
         {
-         "bg":"#00cc33"
+         "bg":"black",
+         "blocked":"true",
+         "blocks_vision":"true"
         },
      "7758":
         {
-         "bg":"#00cc33"
+         "bg":"black",
+         "blocked":"true",
+         "blocks_vision":"true"
         },
      "7759":
         {
-         "bg":"#00cc33"
+         "bg":"black",
+         "blocked":"true",
+         "blocks_vision":"true"
         },
      "7760":
         {
-         "bg":"#00cc33"
+         "bg":"black",
+         "blocked":"true",
+         "blocks_vision":"true"
         },
      "7761":
         {
-         "bg":"#00cc33"
+         "bg":"black",
+         "blocked":"true",
+         "blocks_vision":"true"
         },
      "7762":
         {
-         "bg":"#00cc33"
+         "bg":"black",
+         "blocked":"true",
+         "blocks_vision":"true"
         },
      "7763":
         {
@@ -17247,7 +17299,7 @@
      "7857":
         {
          "FOV":true,
-         "FOV_id":8217,
+         "FOV_id":8577,
          "animated":false,
          "animated_id":0,
          "bg":"gray",
@@ -17459,34 +17511,46 @@
          "FOV_id":0,
          "animated":false,
          "animated_id":0,
-         "bg":"#00cc33",
+         "bg":"gray",
          "blocked":false,
          "blocks_vision":false,
          "entity":false
         },
      "7877":
         {
-         "bg":"#00cc33"
+         "bg":"black",
+         "blocked":"true",
+         "blocks_vision":"true"
         },
      "7878":
         {
-         "bg":"#00cc33"
+         "bg":"black",
+         "blocked":"true",
+         "blocks_vision":"true"
         },
      "7879":
         {
-         "bg":"#00cc33"
+         "bg":"black",
+         "blocked":"true",
+         "blocks_vision":"true"
         },
      "7880":
         {
-         "bg":"#00cc33"
+         "bg":"black",
+         "blocked":"true",
+         "blocks_vision":"true"
         },
      "7881":
         {
-         "bg":"#00cc33"
+         "bg":"black",
+         "blocked":"true",
+         "blocks_vision":"true"
         },
      "7882":
         {
-         "bg":"#00cc33"
+         "bg":"black",
+         "blocked":"true",
+         "blocks_vision":"true"
         },
      "7883":
         {
@@ -18334,34 +18398,46 @@
          "FOV_id":0,
          "animated":false,
          "animated_id":0,
-         "bg":"#00cc33",
+         "bg":"gray",
          "blocked":false,
          "blocks_vision":false,
          "entity":false
         },
      "7997":
         {
-         "bg":"#00cc33"
+         "bg":"black",
+         "blocked":"true",
+         "blocks_vision":"true"
         },
      "7998":
         {
-         "bg":"#00cc33"
+         "bg":"black",
+         "blocked":"true",
+         "blocks_vision":"true"
         },
      "7999":
         {
-         "bg":"#00cc33"
+         "bg":"black",
+         "blocked":"true",
+         "blocks_vision":"true"
         },
      "8000":
         {
-         "bg":"#00cc33"
+         "bg":"black",
+         "blocked":"true",
+         "blocks_vision":"true"
         },
      "8001":
         {
-         "bg":"#00cc33"
+         "bg":"black",
+         "blocked":"true",
+         "blocks_vision":"true"
         },
      "8002":
         {
-         "bg":"#00cc33"
+         "bg":"black",
+         "blocked":"true",
+         "blocks_vision":"true"
         },
      "8003":
         {
@@ -18828,7 +18904,7 @@
         },
      "8097":
         {
-         "FOV":true,
+         "FOV":false,
          "FOV_id":0,
          "animated":false,
          "animated_id":0,
@@ -19041,34 +19117,58 @@
          "FOV_id":0,
          "animated":false,
          "animated_id":0,
-         "bg":"#00cc33",
+         "bg":"gray",
          "blocked":false,
          "blocks_vision":false,
          "entity":false
         },
      "8117":
         {
-         "bg":"#00cc33"
+         "FOV":true,
+         "FOV_id":8477,
+         "bg":"black",
+         "blocked":"true",
+         "blocks_vision":"true"
         },
      "8118":
         {
-         "bg":"#00cc33"
+         "FOV":true,
+         "FOV_id":8478,
+         "bg":"black",
+         "blocked":"true",
+         "blocks_vision":"true"
         },
      "8119":
         {
-         "bg":"#00cc33"
+         "FOV":true,
+         "FOV_id":8479,
+         "bg":"black",
+         "blocked":"true",
+         "blocks_vision":"true"
         },
      "8120":
         {
-         "bg":"#00cc33"
+         "FOV":true,
+         "FOV_id":8219,
+         "bg":"black",
+         "blocked":"true",
+         "blocks_vision":"true"
         },
      "8121":
         {
-         "bg":"#00cc33"
+         "FOV":true,
+         "FOV_id":8219,
+         "bg":"black",
+         "blocked":"true",
+         "blocks_vision":"true"
         },
      "8122":
         {
-         "bg":"#00cc33"
+         "FOV":true,
+         "FOV_id":8219,
+         "bg":"black",
+         "blocked":"true",
+         "blocks_vision":"true"
         },
      "8123":
         {
@@ -19748,34 +19848,58 @@
          "FOV_id":0,
          "animated":false,
          "animated_id":0,
-         "bg":"#00cc33",
+         "bg":"gray",
          "blocked":false,
          "blocks_vision":false,
          "entity":false
         },
      "8237":
         {
-         "bg":"#00cc33"
+         "FOV":true,
+         "FOV_id":8597,
+         "bg":"black",
+         "blocked":"true",
+         "blocks_vision":"true"
         },
      "8238":
         {
-         "bg":"#00cc33"
+         "FOV":true,
+         "FOV_id":8598,
+         "bg":"black",
+         "blocked":"true",
+         "blocks_vision":"true"
         },
      "8239":
         {
-         "bg":"#00cc33"
+         "FOV":true,
+         "FOV_id":8219,
+         "bg":"black",
+         "blocked":"true",
+         "blocks_vision":"true"
         },
      "8240":
         {
-         "bg":"#00cc33"
+         "FOV":true,
+         "FOV_id":8219,
+         "bg":"black",
+         "blocked":"true",
+         "blocks_vision":"true"
         },
      "8241":
         {
-         "bg":"#00cc33"
+         "FOV":true,
+         "FOV_id":8219,
+         "bg":"black",
+         "blocked":"true",
+         "blocks_vision":"true"
         },
      "8242":
         {
-         "bg":"#00cc33"
+         "FOV":true,
+         "FOV_id":8219,
+         "bg":"black",
+         "blocked":"true",
+         "blocks_vision":"true"
         },
      "8243":
         {
@@ -20455,34 +20579,58 @@
          "FOV_id":0,
          "animated":false,
          "animated_id":0,
-         "bg":"#00cc33",
+         "bg":"gray",
          "blocked":false,
          "blocks_vision":false,
          "entity":false
         },
      "8357":
         {
-         "bg":"#00cc33"
+         "FOV":true,
+         "FOV_id":8717,
+         "bg":"black",
+         "blocked":"true",
+         "blocks_vision":"true"
         },
      "8358":
         {
-         "bg":"#00cc33"
+         "FOV":true,
+         "FOV_id":8219,
+         "bg":"black",
+         "blocked":"true",
+         "blocks_vision":"true"
         },
      "8359":
         {
-         "bg":"#00cc33"
+         "FOV":true,
+         "FOV_id":8719,
+         "bg":"black",
+         "blocked":"true",
+         "blocks_vision":"true"
         },
      "8360":
         {
-         "bg":"#00cc33"
+         "FOV":true,
+         "FOV_id":8219,
+         "bg":"black",
+         "blocked":"true",
+         "blocks_vision":"true"
         },
      "8361":
         {
-         "bg":"#00cc33"
+         "FOV":true,
+         "FOV_id":8721,
+         "bg":"black",
+         "blocked":"true",
+         "blocks_vision":"true"
         },
      "8362":
         {
-         "bg":"#00cc33"
+         "FOV":true,
+         "FOV_id":8219,
+         "bg":"black",
+         "blocked":"true",
+         "blocks_vision":"true"
         },
      "8363":
         {
@@ -21162,34 +21310,46 @@
          "FOV_id":0,
          "animated":false,
          "animated_id":0,
-         "bg":"#00cc33",
+         "bg":"gray",
          "blocked":false,
          "blocks_vision":false,
          "entity":false
         },
      "8477":
         {
-         "bg":"#00cc33"
+         "bg":"black",
+         "blocked":"true",
+         "blocks_vision":"true"
         },
      "8478":
         {
-         "bg":"#00cc33"
+         "bg":"black",
+         "blocked":"true",
+         "blocks_vision":"true"
         },
      "8479":
         {
-         "bg":"#00cc33"
+         "bg":"black",
+         "blocked":"true",
+         "blocks_vision":"true"
         },
      "8480":
         {
-         "bg":"#00cc33"
+         "bg":"black",
+         "blocked":"true",
+         "blocks_vision":"true"
         },
      "8481":
         {
-         "bg":"#00cc33"
+         "bg":"black",
+         "blocked":"true",
+         "blocks_vision":"true"
         },
      "8482":
         {
-         "bg":"#00cc33"
+         "bg":"black",
+         "blocked":"true",
+         "blocks_vision":"true"
         },
      "8483":
         {
@@ -21869,34 +22029,46 @@
          "FOV_id":0,
          "animated":false,
          "animated_id":0,
-         "bg":"#00cc33",
+         "bg":"gray",
          "blocked":false,
          "blocks_vision":false,
          "entity":false
         },
      "8597":
         {
-         "bg":"#00cc33"
+         "bg":"black",
+         "blocked":"true",
+         "blocks_vision":"true"
         },
      "8598":
         {
-         "bg":"#00cc33"
+         "bg":"black",
+         "blocked":"true",
+         "blocks_vision":"true"
         },
      "8599":
         {
-         "bg":"#00cc33"
+         "bg":"black",
+         "blocked":"true",
+         "blocks_vision":"true"
         },
      "8600":
         {
-         "bg":"#00cc33"
+         "bg":"black",
+         "blocked":"true",
+         "blocks_vision":"true"
         },
      "8601":
         {
-         "bg":"#00cc33"
+         "bg":"black",
+         "blocked":"true",
+         "blocks_vision":"true"
         },
      "8602":
         {
-         "bg":"#00cc33"
+         "bg":"black",
+         "blocked":"true",
+         "blocks_vision":"true"
         },
      "8603":
         {
@@ -22576,34 +22748,46 @@
          "FOV_id":0,
          "animated":false,
          "animated_id":0,
-         "bg":"#00cc33",
+         "bg":"gray",
          "blocked":false,
          "blocks_vision":false,
          "entity":false
         },
      "8717":
         {
-         "bg":"#00cc33"
+         "bg":"black",
+         "blocked":"true",
+         "blocks_vision":"true"
         },
      "8718":
         {
-         "bg":"#00cc33"
+         "bg":"black",
+         "blocked":"true",
+         "blocks_vision":"true"
         },
      "8719":
         {
-         "bg":"#00cc33"
+         "bg":"black",
+         "blocked":"true",
+         "blocks_vision":"true"
         },
      "8720":
         {
-         "bg":"#00cc33"
+         "bg":"black",
+         "blocked":"true",
+         "blocks_vision":"true"
         },
      "8721":
         {
-         "bg":"#00cc33"
+         "bg":"black",
+         "blocked":"true",
+         "blocks_vision":"true"
         },
      "8722":
         {
-         "bg":"#00cc33"
+         "bg":"black",
+         "blocked":"true",
+         "blocks_vision":"true"
         },
      "8723":
         {
@@ -39833,6 +40017,10 @@
          "animated_id":"int",
          "entity":"bool"
         },
+     "569":
+        {
+         "entity":"bool"
+        },
      "5690":
         {
          "animated":"bool",
@@ -43947,27 +44135,39 @@
         },
      "7397":
         {
-         "bg":"string"
+         "bg":"string",
+         "blocked":"string",
+         "blocks_vision":"string"
         },
      "7398":
         {
-         "bg":"string"
+         "bg":"string",
+         "blocked":"string",
+         "blocks_vision":"string"
         },
      "7399":
         {
-         "bg":"string"
+         "bg":"string",
+         "blocked":"string",
+         "blocks_vision":"string"
         },
      "7400":
         {
-         "bg":"string"
+         "bg":"string",
+         "blocked":"string",
+         "blocks_vision":"string"
         },
      "7401":
         {
-         "bg":"string"
+         "bg":"string",
+         "blocked":"string",
+         "blocks_vision":"string"
         },
      "7402":
         {
-         "bg":"string"
+         "bg":"string",
+         "blocked":"string",
+         "blocks_vision":"string"
         },
      "7403":
         {
@@ -44813,27 +45013,39 @@
         },
      "7517":
         {
-         "bg":"string"
+         "bg":"string",
+         "blocked":"string",
+         "blocks_vision":"string"
         },
      "7518":
         {
-         "bg":"string"
+         "bg":"string",
+         "blocked":"string",
+         "blocks_vision":"string"
         },
      "7519":
         {
-         "bg":"string"
+         "bg":"string",
+         "blocked":"string",
+         "blocks_vision":"string"
         },
      "7520":
         {
-         "bg":"string"
+         "bg":"string",
+         "blocked":"string",
+         "blocks_vision":"string"
         },
      "7521":
         {
-         "bg":"string"
+         "bg":"string",
+         "blocked":"string",
+         "blocks_vision":"string"
         },
      "7522":
         {
-         "bg":"string"
+         "bg":"string",
+         "blocked":"string",
+         "blocks_vision":"string"
         },
      "7523":
         {
@@ -45672,27 +45884,39 @@
         },
      "7637":
         {
-         "bg":"string"
+         "bg":"string",
+         "blocked":"string",
+         "blocks_vision":"string"
         },
      "7638":
         {
-         "bg":"string"
+         "bg":"string",
+         "blocked":"string",
+         "blocks_vision":"string"
         },
      "7639":
         {
-         "bg":"string"
+         "bg":"string",
+         "blocked":"string",
+         "blocks_vision":"string"
         },
      "7640":
         {
-         "bg":"string"
+         "bg":"string",
+         "blocked":"string",
+         "blocks_vision":"string"
         },
      "7641":
         {
-         "bg":"string"
+         "bg":"string",
+         "blocked":"string",
+         "blocks_vision":"string"
         },
      "7642":
         {
-         "bg":"string"
+         "bg":"string",
+         "blocked":"string",
+         "blocks_vision":"string"
         },
      "7643":
         {
@@ -46531,27 +46755,39 @@
         },
      "7757":
         {
-         "bg":"string"
+         "bg":"string",
+         "blocked":"string",
+         "blocks_vision":"string"
         },
      "7758":
         {
-         "bg":"string"
+         "bg":"string",
+         "blocked":"string",
+         "blocks_vision":"string"
         },
      "7759":
         {
-         "bg":"string"
+         "bg":"string",
+         "blocked":"string",
+         "blocks_vision":"string"
         },
      "7760":
         {
-         "bg":"string"
+         "bg":"string",
+         "blocked":"string",
+         "blocks_vision":"string"
         },
      "7761":
         {
-         "bg":"string"
+         "bg":"string",
+         "blocked":"string",
+         "blocks_vision":"string"
         },
      "7762":
         {
-         "bg":"string"
+         "bg":"string",
+         "blocked":"string",
+         "blocks_vision":"string"
         },
      "7763":
         {
@@ -47390,27 +47626,39 @@
         },
      "7877":
         {
-         "bg":"string"
+         "bg":"string",
+         "blocked":"string",
+         "blocks_vision":"string"
         },
      "7878":
         {
-         "bg":"string"
+         "bg":"string",
+         "blocked":"string",
+         "blocks_vision":"string"
         },
      "7879":
         {
-         "bg":"string"
+         "bg":"string",
+         "blocked":"string",
+         "blocks_vision":"string"
         },
      "7880":
         {
-         "bg":"string"
+         "bg":"string",
+         "blocked":"string",
+         "blocks_vision":"string"
         },
      "7881":
         {
-         "bg":"string"
+         "bg":"string",
+         "blocked":"string",
+         "blocks_vision":"string"
         },
      "7882":
         {
-         "bg":"string"
+         "bg":"string",
+         "blocked":"string",
+         "blocks_vision":"string"
         },
      "7883":
         {
@@ -48265,27 +48513,39 @@
         },
      "7997":
         {
-         "bg":"string"
+         "bg":"string",
+         "blocked":"string",
+         "blocks_vision":"string"
         },
      "7998":
         {
-         "bg":"string"
+         "bg":"string",
+         "blocked":"string",
+         "blocks_vision":"string"
         },
      "7999":
         {
-         "bg":"string"
+         "bg":"string",
+         "blocked":"string",
+         "blocks_vision":"string"
         },
      "8000":
         {
-         "bg":"string"
+         "bg":"string",
+         "blocked":"string",
+         "blocks_vision":"string"
         },
      "8001":
         {
-         "bg":"string"
+         "bg":"string",
+         "blocked":"string",
+         "blocks_vision":"string"
         },
      "8002":
         {
-         "bg":"string"
+         "bg":"string",
+         "blocked":"string",
+         "blocks_vision":"string"
         },
      "8003":
         {
@@ -48972,27 +49232,51 @@
         },
      "8117":
         {
-         "bg":"string"
+         "FOV":"bool",
+         "FOV_id":"int",
+         "bg":"string",
+         "blocked":"string",
+         "blocks_vision":"string"
         },
      "8118":
         {
-         "bg":"string"
+         "FOV":"bool",
+         "FOV_id":"int",
+         "bg":"string",
+         "blocked":"string",
+         "blocks_vision":"string"
         },
      "8119":
         {
-         "bg":"string"
+         "FOV":"bool",
+         "FOV_id":"int",
+         "bg":"string",
+         "blocked":"string",
+         "blocks_vision":"string"
         },
      "8120":
         {
-         "bg":"string"
+         "FOV":"bool",
+         "FOV_id":"int",
+         "bg":"string",
+         "blocked":"string",
+         "blocks_vision":"string"
         },
      "8121":
         {
-         "bg":"string"
+         "FOV":"bool",
+         "FOV_id":"int",
+         "bg":"string",
+         "blocked":"string",
+         "blocks_vision":"string"
         },
      "8122":
         {
-         "bg":"string"
+         "FOV":"bool",
+         "FOV_id":"int",
+         "bg":"string",
+         "blocked":"string",
+         "blocks_vision":"string"
         },
      "8123":
         {
@@ -49679,27 +49963,51 @@
         },
      "8237":
         {
-         "bg":"string"
+         "FOV":"bool",
+         "FOV_id":"int",
+         "bg":"string",
+         "blocked":"string",
+         "blocks_vision":"string"
         },
      "8238":
         {
-         "bg":"string"
+         "FOV":"bool",
+         "FOV_id":"int",
+         "bg":"string",
+         "blocked":"string",
+         "blocks_vision":"string"
         },
      "8239":
         {
-         "bg":"string"
+         "FOV":"bool",
+         "FOV_id":"int",
+         "bg":"string",
+         "blocked":"string",
+         "blocks_vision":"string"
         },
      "8240":
         {
-         "bg":"string"
+         "FOV":"bool",
+         "FOV_id":"int",
+         "bg":"string",
+         "blocked":"string",
+         "blocks_vision":"string"
         },
      "8241":
         {
-         "bg":"string"
+         "FOV":"bool",
+         "FOV_id":"int",
+         "bg":"string",
+         "blocked":"string",
+         "blocks_vision":"string"
         },
      "8242":
         {
-         "bg":"string"
+         "FOV":"bool",
+         "FOV_id":"int",
+         "bg":"string",
+         "blocked":"string",
+         "blocks_vision":"string"
         },
      "8243":
         {
@@ -50386,27 +50694,51 @@
         },
      "8357":
         {
-         "bg":"string"
+         "FOV":"bool",
+         "FOV_id":"int",
+         "bg":"string",
+         "blocked":"string",
+         "blocks_vision":"string"
         },
      "8358":
         {
-         "bg":"string"
+         "FOV":"bool",
+         "FOV_id":"int",
+         "bg":"string",
+         "blocked":"string",
+         "blocks_vision":"string"
         },
      "8359":
         {
-         "bg":"string"
+         "FOV":"bool",
+         "FOV_id":"int",
+         "bg":"string",
+         "blocked":"string",
+         "blocks_vision":"string"
         },
      "8360":
         {
-         "bg":"string"
+         "FOV":"bool",
+         "FOV_id":"int",
+         "bg":"string",
+         "blocked":"string",
+         "blocks_vision":"string"
         },
      "8361":
         {
-         "bg":"string"
+         "FOV":"bool",
+         "FOV_id":"int",
+         "bg":"string",
+         "blocked":"string",
+         "blocks_vision":"string"
         },
      "8362":
         {
-         "bg":"string"
+         "FOV":"bool",
+         "FOV_id":"int",
+         "bg":"string",
+         "blocked":"string",
+         "blocks_vision":"string"
         },
      "8363":
         {
@@ -51093,27 +51425,39 @@
         },
      "8477":
         {
-         "bg":"string"
+         "bg":"string",
+         "blocked":"string",
+         "blocks_vision":"string"
         },
      "8478":
         {
-         "bg":"string"
+         "bg":"string",
+         "blocked":"string",
+         "blocks_vision":"string"
         },
      "8479":
         {
-         "bg":"string"
+         "bg":"string",
+         "blocked":"string",
+         "blocks_vision":"string"
         },
      "8480":
         {
-         "bg":"string"
+         "bg":"string",
+         "blocked":"string",
+         "blocks_vision":"string"
         },
      "8481":
         {
-         "bg":"string"
+         "bg":"string",
+         "blocked":"string",
+         "blocks_vision":"string"
         },
      "8482":
         {
-         "bg":"string"
+         "bg":"string",
+         "blocked":"string",
+         "blocks_vision":"string"
         },
      "8483":
         {
@@ -51800,27 +52144,39 @@
         },
      "8597":
         {
-         "bg":"string"
+         "bg":"string",
+         "blocked":"string",
+         "blocks_vision":"string"
         },
      "8598":
         {
-         "bg":"string"
+         "bg":"string",
+         "blocked":"string",
+         "blocks_vision":"string"
         },
      "8599":
         {
-         "bg":"string"
+         "bg":"string",
+         "blocked":"string",
+         "blocks_vision":"string"
         },
      "8600":
         {
-         "bg":"string"
+         "bg":"string",
+         "blocked":"string",
+         "blocks_vision":"string"
         },
      "8601":
         {
-         "bg":"string"
+         "bg":"string",
+         "blocked":"string",
+         "blocks_vision":"string"
         },
      "8602":
         {
-         "bg":"string"
+         "bg":"string",
+         "blocked":"string",
+         "blocks_vision":"string"
         },
      "8603":
         {
@@ -52507,27 +52863,39 @@
         },
      "8717":
         {
-         "bg":"string"
+         "bg":"string",
+         "blocked":"string",
+         "blocks_vision":"string"
         },
      "8718":
         {
-         "bg":"string"
+         "bg":"string",
+         "blocked":"string",
+         "blocks_vision":"string"
         },
      "8719":
         {
-         "bg":"string"
+         "bg":"string",
+         "blocked":"string",
+         "blocks_vision":"string"
         },
      "8720":
         {
-         "bg":"string"
+         "bg":"string",
+         "blocked":"string",
+         "blocks_vision":"string"
         },
      "8721":
         {
-         "bg":"string"
+         "bg":"string",
+         "blocked":"string",
+         "blocks_vision":"string"
         },
      "8722":
         {
-         "bg":"string"
+         "bg":"string",
+         "blocked":"string",
+         "blocks_vision":"string"
         },
      "8723":
         {
