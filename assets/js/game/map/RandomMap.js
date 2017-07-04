@@ -19,7 +19,7 @@ function randomMap(width, height) {
         {"data": [], "properties": {"obstacles": false}},
         {"data": [], "properties": {"obstacles": false}}];
     let freeCells = {};
-    // ROT.RNG.setSeed(1234);
+    ROT.RNG.setSeed(1499200778495);
     diggerCallback = function (x, y, blocked) {
         if (!blocked) freeCells[x + "," + y] = true;
     };
@@ -133,7 +133,7 @@ function randomMap(width, height) {
         });
     }
 
-    let buildsCorrWalls = function (x, y, horizontal) {
+    let buildsCorrWalls = function (x, y, horizontal, end=false) {
         if (horizontal) {
             let above = map.layers[0].data[y - 1][x];
             let below = map.layers[0].data[y + 1][x];
@@ -145,6 +145,19 @@ function randomMap(width, height) {
             map.layers[0].data[y][x - 1] = left === 7046 ? walls.left+1 : left;
             map.layers[0].data[y][x + 1] = right === 7046 ? walls.right+1 : right;
         }
+
+        if (end) {
+            let ul = map.layers[0].data[y-1][x-1];
+            let ur = map.layers[0].data[y-1][x+1];
+            let ll = map.layers[0].data[y+1][x-1];
+            let lr = map.layers[0].data[y+1][x+1];
+            let above = map.layers[0].data[y - 1][x];
+            let below = map.layers[0].data[y + 1][x];
+            let left = map.layers[0].data[y][x - 1];
+            let right = map.layers[0].data[y][x + 1];
+
+        }
+
     };
 
     /* After rooms, we need to clean up textures for corridors, which
@@ -158,7 +171,7 @@ function randomMap(width, height) {
             // moving down
             if (sy < ey) {
                 y = sy;
-                buildsCorrWalls(sx, y, false);
+                buildsCorrWalls(sx, y, false, true);
                 map.layers[0].data[y][sx] = 7739 + 1;
                 y++;
                 while (y < ey) {
@@ -167,12 +180,12 @@ function randomMap(width, height) {
                     y++;
                 }
                 map.layers[0].data[ey][sx] = 7979 + 1;
-                buildsCorrWalls(sx, y, false);
+                buildsCorrWalls(sx, y, false, true);
 
             } else {
                 // moving up
                 y = sy;
-                buildsCorrWalls(sx, y, false);
+                buildsCorrWalls(sx, y, false, true);
                 map.layers[0].data[y][sx] = 7979 + 1;
                 y--;
                 while (y > ey) {
@@ -181,13 +194,13 @@ function randomMap(width, height) {
                     y--;
                 }
                 map.layers[0].data[ey][sx] = 7739 + 1;
-                buildsCorrWalls(sx, y, false);
+                buildsCorrWalls(sx, y, false, true);
             }
         } else if (sy === ey) { // horizontal corridor
             // moving right
             if (sx < ex) {
                 x = sx;
-                buildsCorrWalls(x, sy, true);
+                buildsCorrWalls(x, sy, true, true);
                 map.layers[0].data[sy][x] = 7860 + 1;
                 x++;
                 while (x < ex) {
@@ -195,13 +208,13 @@ function randomMap(width, height) {
                     map.layers[0].data[sy][x] = 7861 + 1;
                     x++;
                 }
-                buildsCorrWalls(x, sy, true);
+                buildsCorrWalls(x, sy, true, true);
 
                 map.layers[0].data[ey][x] = 7862 + 1;
             } else {
                 // moving left
                 x = sx;
-                buildsCorrWalls(x, sy, true);
+                buildsCorrWalls(x, sy, true, true);
 
                 map.layers[0].data[sy][x] = 7862 + 1;
                 x--;
@@ -210,7 +223,7 @@ function randomMap(width, height) {
                     map.layers[0].data[sy][x] = 7861 + 1;
                     x--;
                 }
-                buildsCorrWalls(x, sy, true);
+                buildsCorrWalls(x, sy, true, true);
                 map.layers[0].data[ey][ex] = 7860 + 1;
             }
         } else {
@@ -220,7 +233,7 @@ function randomMap(width, height) {
 
     // Randomly select starting position for player
     // let start = randomProperty(freeCells).split(',');
-    let start = [34, 37];
+    let start = [1, 44];
     map.layers[2].data[start[1]][start[0]] = Game.playerID; // set random spot to be the player
     map.layers[3].data[start[1]][start[0]] = 477; // place a ladder going back up a level underneath the player.
 

@@ -1,13 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="359ee7cd-d060-4cb9-a2ed-d128b311220f" name="Default" comment="A little map work - just making roads look nice and stretching the river out">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/assets/js/game/map/RandomMap.js" />
+    <list default="true" id="359ee7cd-d060-4cb9-a2ed-d128b311220f" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/js/game/Game.js" afterPath="$PROJECT_DIR$/assets/js/game/Game.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/js/game/map/Map.js" afterPath="$PROJECT_DIR$/assets/js/game/map/Map.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/maps/tileset/compiled_dawnlike.json" afterPath="$PROJECT_DIR$/assets/maps/tileset/compiled_dawnlike.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/index.html" afterPath="$PROJECT_DIR$/index.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/js/game/map/RandomMap.js" afterPath="$PROJECT_DIR$/assets/js/game/map/RandomMap.js" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -80,8 +76,8 @@
       <file leaf-file-name="RandomMap.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/assets/js/game/map/RandomMap.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="351">
-              <caret line="147" column="6" lean-forward="true" selection-start-line="147" selection-start-column="6" selection-end-line="147" selection-end-column="6" />
+            <state relative-caret-position="640">
+              <caret line="157" column="12" lean-forward="false" selection-start-line="157" selection-start-column="12" selection-end-line="157" selection-end-column="12" />
               <folding>
                 <element signature="n#!!doc;n#randomProperty#0" expanded="false" />
               </folding>
@@ -2491,11 +2487,18 @@
       <option name="project" value="LOCAL" />
       <updated>1499189054966</updated>
     </task>
-    <option name="localTasksCounter" value="45" />
+    <task id="LOCAL-00045" summary="Working on getting corridors textures looking nice. Split random map into its own file">
+      <created>1499200733963</created>
+      <option name="number" value="00045" />
+      <option name="presentableId" value="LOCAL-00045" />
+      <option name="project" value="LOCAL" />
+      <updated>1499200733963</updated>
+    </task>
+    <option name="localTasksCounter" value="46" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="135904000" />
+    <option name="totallyTimeSpent" value="136595000" />
   </component>
   <component name="TodoView" selected-index="4">
     <todo-panel id="selected-file">
@@ -2567,7 +2570,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="false" />
-    <MESSAGE value="Cleaned up file hierarchy again. Combined actor, entity, and item" />
     <MESSAGE value="Added a little bit of a user guide in the README.md. Playing with some new fonts and cleaning up inventory system UI. Squashing bugs!" />
     <MESSAGE value="Added screenshot" />
     <MESSAGE value="More markdown editing" />
@@ -2592,11 +2594,12 @@
     <MESSAGE value="Animation is now constant (every half a second)! map is starting to come together. Other actors haven't been added yet" />
     <MESSAGE value="Goblins, rats, swords back in the game. Made the river more natural and added a little house with various objects" />
     <MESSAGE value="Added random dungeon generation with textures from Dawnlike!" />
-    <option name="LAST_COMMIT_MESSAGE" value="Added random dungeon generation with textures from Dawnlike!" />
+    <MESSAGE value="Working on getting corridors textures looking nice. Split random map into its own file" />
+    <option name="LAST_COMMIT_MESSAGE" value="Working on getting corridors textures looking nice. Split random map into its own file" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
-      <option name="time" value="4" />
+      <option name="time" value="5" />
     </breakpoint-manager>
     <watches-manager />
   </component>
@@ -2684,6 +2687,28 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="135">
           <caret line="21" column="17" lean-forward="true" selection-start-line="21" selection-start-column="17" selection-end-line="21" selection-end-column="17" />
+          <folding>
+            <element signature="e#201#405#0" expanded="false" />
+            <element signature="e#211#268#0" expanded="false" />
+            <element signature="e#279#336#0" expanded="false" />
+            <element signature="e#347#404#0" expanded="false" />
+            <element signature="n#!!block;n#10000#0;n#!!block;n#tileproperties#0;n#!!top" expanded="false" />
+            <element signature="n#!!block;n#10001#0;n#!!block;n#tileproperties#0;n#!!top" expanded="false" />
+            <element signature="n#!!block;n#10002#0;n#!!block;n#tileproperties#0;n#!!top" expanded="false" />
+            <element signature="n#!!block;n#10003#0;n#!!block;n#tileproperties#0;n#!!top" expanded="false" />
+            <element signature="n#!!block;n#10004#0;n#!!block;n#tileproperties#0;n#!!top" expanded="false" />
+            <element signature="n#!!block;n#10005#0;n#!!block;n#tileproperties#0;n#!!top" expanded="false" />
+            <element signature="n#!!block;n#10006#0;n#!!block;n#tileproperties#0;n#!!top" expanded="false" />
+            <element signature="n#!!block;n#10007#0;n#!!block;n#tileproperties#0;n#!!top" expanded="false" />
+            <element signature="n#!!block;n#10008#0;n#!!block;n#tileproperties#0;n#!!top" expanded="false" />
+            <element signature="n#!!block;n#10009#0;n#!!block;n#tileproperties#0;n#!!top" expanded="false" />
+            <element signature="n#!!block;n#10010#0;n#!!block;n#tileproperties#0;n#!!top" expanded="false" />
+            <element signature="n#!!block;n#10011#0;n#!!block;n#tileproperties#0;n#!!top" expanded="false" />
+            <element signature="n#!!block;n#10012#0;n#!!block;n#tileproperties#0;n#!!top" expanded="false" />
+            <element signature="n#!!block;n#10013#0;n#!!block;n#tileproperties#0;n#!!top" expanded="false" />
+            <element signature="n#!!block;n#10014#0;n#!!block;n#tileproperties#0;n#!!top" expanded="false" />
+            <element signature="n#!!block;n#10015#0;n#!!block;n#tileproperties#0;n#!!top" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -2845,8 +2870,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/assets/js/game/map/RandomMap.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="351">
-          <caret line="147" column="6" lean-forward="true" selection-start-line="147" selection-start-column="6" selection-end-line="147" selection-end-column="6" />
+        <state relative-caret-position="640">
+          <caret line="157" column="12" lean-forward="false" selection-start-line="157" selection-start-column="12" selection-end-line="157" selection-end-column="12" />
           <folding>
             <element signature="n#!!doc;n#randomProperty#0" expanded="false" />
           </folding>
