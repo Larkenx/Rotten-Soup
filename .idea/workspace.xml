@@ -1,15 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="359ee7cd-d060-4cb9-a2ed-d128b311220f" name="Default" comment="">
-      <change type="DELETED" beforePath="$PROJECT_DIR$/dev.html" afterPath="" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/design.md" afterPath="$PROJECT_DIR$/id_notes.md" />
+    <list default="true" id="359ee7cd-d060-4cb9-a2ed-d128b311220f" name="Default" comment="Added random dungeon generation with textures from Dawnlike!">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/js/game/Game.js" afterPath="$PROJECT_DIR$/assets/js/game/Game.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/js/game/map/Map.js" afterPath="$PROJECT_DIR$/assets/js/game/map/Map.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/js/game/map/Tile.js" afterPath="$PROJECT_DIR$/assets/js/game/map/Tile.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/maps/map_file/overworld.js" afterPath="$PROJECT_DIR$/assets/maps/map_file/overworld.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/maps/tileset/compiled_dawnlike.json" afterPath="$PROJECT_DIR$/assets/maps/tileset/compiled_dawnlike.json" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -30,7 +23,7 @@
       <file leaf-file-name="Game.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/assets/js/game/Game.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="454">
+            <state relative-caret-position="670">
               <caret line="42" column="0" lean-forward="false" selection-start-line="42" selection-start-column="0" selection-end-line="42" selection-end-column="0" />
               <folding />
             </state>
@@ -40,8 +33,8 @@
       <file leaf-file-name="Map.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/assets/js/game/map/Map.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="481">
-              <caret line="232" column="16" lean-forward="true" selection-start-line="232" selection-start-column="16" selection-end-line="232" selection-end-column="16" />
+            <state relative-caret-position="337">
+              <caret line="224" column="65" lean-forward="true" selection-start-line="224" selection-start-column="65" selection-end-line="224" selection-end-column="65" />
               <folding>
                 <element signature="e#6533#6745#0" expanded="false" />
               </folding>
@@ -975,11 +968,18 @@
       <option name="project" value="LOCAL" />
       <updated>1499053034006</updated>
     </task>
-    <option name="localTasksCounter" value="44" />
+    <task id="LOCAL-00044" summary="Added random dungeon generation with textures from Dawnlike!">
+      <created>1499189054966</created>
+      <option name="number" value="00044" />
+      <option name="presentableId" value="LOCAL-00044" />
+      <option name="project" value="LOCAL" />
+      <updated>1499189054966</updated>
+    </task>
+    <option name="localTasksCounter" value="45" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="128374000" />
+    <option name="totallyTimeSpent" value="128544000" />
   </component>
   <component name="TodoView" selected-index="4">
     <todo-panel id="selected-file">
@@ -1050,7 +1050,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="false" />
-    <MESSAGE value="Separated all of the entities into separate files and directories. Starting to look more like a Java project than a JavaScript one." />
     <MESSAGE value="Cleaned up file hierarchy again. Combined actor, entity, and item" />
     <MESSAGE value="Added a little bit of a user guide in the README.md. Playing with some new fonts and cleaning up inventory system UI. Squashing bugs!" />
     <MESSAGE value="Added screenshot" />
@@ -1075,7 +1074,8 @@
     <MESSAGE value="Working on overworld map - making it pretty! Soon going to add functionality back for graphical goblins (with more than one sprite sheet variation)" />
     <MESSAGE value="Animation is now constant (every half a second)! map is starting to come together. Other actors haven't been added yet" />
     <MESSAGE value="Goblins, rats, swords back in the game. Made the river more natural and added a little house with various objects" />
-    <option name="LAST_COMMIT_MESSAGE" value="Goblins, rats, swords back in the game. Made the river more natural and added a little house with various objects" />
+    <MESSAGE value="Added random dungeon generation with textures from Dawnlike!" />
+    <option name="LAST_COMMIT_MESSAGE" value="Added random dungeon generation with textures from Dawnlike!" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1325,6 +1325,14 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/assets/js/game/Game.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="670">
+          <caret line="42" column="0" lean-forward="false" selection-start-line="42" selection-start-column="0" selection-end-line="42" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/assets/js/game/map/Tile.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
@@ -1333,18 +1341,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/assets/js/game/Game.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="454">
-          <caret line="42" column="0" lean-forward="false" selection-start-line="42" selection-start-column="0" selection-end-line="42" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/assets/js/game/map/Map.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="481">
-          <caret line="232" column="16" lean-forward="true" selection-start-line="232" selection-start-column="16" selection-end-line="232" selection-end-column="16" />
+        <state relative-caret-position="337">
+          <caret line="224" column="65" lean-forward="true" selection-start-line="224" selection-start-column="65" selection-end-line="224" selection-end-column="65" />
           <folding>
             <element signature="e#6533#6745#0" expanded="false" />
           </folding>
