@@ -3,8 +3,6 @@
   <component name="ChangeListManager">
     <list default="true" id="359ee7cd-d060-4cb9-a2ed-d128b311220f" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/js/game/entities/Entity.js" afterPath="$PROJECT_DIR$/assets/js/game/entities/Entity.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/js/game/map/Map.js" afterPath="$PROJECT_DIR$/assets/js/game/map/Map.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/maps/map_file/overworld.js" afterPath="$PROJECT_DIR$/assets/maps/map_file/overworld.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/maps/tileset/compiled_dawnlike.json" afterPath="$PROJECT_DIR$/assets/maps/tileset/compiled_dawnlike.json" />
     </list>
@@ -10590,11 +10588,18 @@
       <option name="project" value="LOCAL" />
       <updated>1499211936798</updated>
     </task>
-    <option name="localTasksCounter" value="47" />
+    <task id="LOCAL-00047" summary="Added a town with details and some NPC's that don't do anything but bounce up and down">
+      <created>1499232243924</created>
+      <option name="number" value="00047" />
+      <option name="presentableId" value="LOCAL-00047" />
+      <option name="project" value="LOCAL" />
+      <updated>1499232243924</updated>
+    </task>
+    <option name="localTasksCounter" value="48" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="144517000" />
+    <option name="totallyTimeSpent" value="145137000" />
   </component>
   <component name="TodoView" selected-index="4">
     <todo-panel id="selected-file">
@@ -10665,7 +10670,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="false" />
-    <MESSAGE value="Added screenshot" />
     <MESSAGE value="More markdown editing" />
     <MESSAGE value="Changed fonts to Press Start 2P" />
     <MESSAGE value="Changed fonts to general monospace. Working through ROT.js issues (?) to fix loading fonts. Re-worked formatting of the game map and HUD to be nicer and changed up some of the font sizes too" />
@@ -10690,7 +10694,8 @@
     <MESSAGE value="Added random dungeon generation with textures from Dawnlike!" />
     <MESSAGE value="Working on getting corridors textures looking nice. Split random map into its own file" />
     <MESSAGE value="Corridors in dungeons are looking pretty good for what it's worth! Pushed live" />
-    <option name="LAST_COMMIT_MESSAGE" value="Corridors in dungeons are looking pretty good for what it's worth! Pushed live" />
+    <MESSAGE value="Added a town with details and some NPC's that don't do anything but bounce up and down" />
+    <option name="LAST_COMMIT_MESSAGE" value="Added a town with details and some NPC's that don't do anything but bounce up and down" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

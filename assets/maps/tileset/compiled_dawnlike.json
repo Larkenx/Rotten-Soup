@@ -1785,10 +1785,26 @@
         {
          "blocked":"true"
         },
+     "178":
+        {
+         "blocked":"true"
+        },
+     "179":
+        {
+         "blocked":"true"
+        },
+     "180":
+        {
+         "blocked":"true"
+        },
      "1809":
         {
          "entity":true,
          "entity_id":5
+        },
+     "181":
+        {
+         "blocked":"true"
         },
      "1810":
         {
@@ -1819,6 +1835,14 @@
         {
          "entity":true,
          "entity_id":5
+        },
+     "182":
+        {
+         "blocked":"true"
+        },
+     "183":
+        {
+         "blocked":"true"
         },
      "184":
         {
@@ -1907,6 +1931,30 @@
         {
          "FOV":false,
          "bg":"darkgreen"
+        },
+     "186":
+        {
+         "blocked":"true"
+        },
+     "187":
+        {
+         "blocked":"true"
+        },
+     "188":
+        {
+         "blocked":"true"
+        },
+     "189":
+        {
+         "blocked":"true"
+        },
+     "190":
+        {
+         "blocked":"true"
+        },
+     "191":
+        {
+         "blocked":"true"
         },
      "1929":
         {
@@ -2022,6 +2070,70 @@
         {
          "FOV":false,
          "bg":"darkgreen"
+        },
+     "296":
+        {
+         "blocked":"true"
+        },
+     "297":
+        {
+         "blocked":"true"
+        },
+     "298":
+        {
+         "blocked":"true"
+        },
+     "299":
+        {
+         "blocked":"true"
+        },
+     "300":
+        {
+         "blocked":"true"
+        },
+     "301":
+        {
+         "blocked":"true"
+        },
+     "302":
+        {
+         "blocked":"true"
+        },
+     "303":
+        {
+         "blocked":"true"
+        },
+     "304":
+        {
+         "blocked":"true"
+        },
+     "305":
+        {
+         "blocked":"true"
+        },
+     "306":
+        {
+         "blocked":"true"
+        },
+     "307":
+        {
+         "blocked":"true"
+        },
+     "308":
+        {
+         "blocked":"true"
+        },
+     "309":
+        {
+         "blocked":"true"
+        },
+     "310":
+        {
+         "blocked":"true"
+        },
+     "311":
+        {
+         "blocked":"true"
         },
      "32":
         {
@@ -8788,14 +8900,16 @@
      "5298":
         {
          "animated":true,
-         "animated_id":0,
-         "entity":true
+         "animated_id":5306,
+         "entity":true,
+         "entity_id":1
         },
      "5299":
         {
          "animated":true,
-         "animated_id":0,
-         "entity":true
+         "animated_id":5307,
+         "entity":true,
+         "entity_id":1
         },
      "5300":
         {
@@ -9157,6 +9271,8 @@
         },
      "5372":
         {
+         "animated":true,
+         "animated_id":5380,
          "blocked":"true"
         },
      "5373":
@@ -9683,6 +9799,8 @@
         },
      "5492":
         {
+         "animated":true,
+         "animated_id":5500,
          "blocked":"true"
         },
      "5493":
@@ -10191,6 +10309,10 @@
          "animated_id":0,
          "entity":false
         },
+     "56":
+        {
+         "blocked":"true"
+        },
      "5640":
         {
          "animated":false,
@@ -10559,6 +10681,10 @@
          "animated_id":0,
          "entity":false
         },
+     "57":
+        {
+         "blocked":"true"
+        },
      "5700":
         {
          "animated":false,
@@ -10900,6 +11026,10 @@
          "animated":false,
          "animated_id":0,
          "entity":false
+        },
+     "58":
+        {
+         "blocked":"true"
         },
      "5800":
         {
@@ -11243,6 +11373,10 @@
          "animated_id":0,
          "entity":false
         },
+     "59":
+        {
+         "blocked":"true"
+        },
      "5900":
         {
          "animated":false,
@@ -11585,10 +11719,51 @@
          "animated_id":0,
          "entity":false
         },
+     "60":
+        {
+         "blocked":"true"
+        },
+     "61":
+        {
+         "blocked":"true"
+        },
+     "62":
+        {
+         "blocked":"true"
+        },
+     "63":
+        {
+         "blocked":"true"
+        },
+     "64":
+        {
+         "blocked":"true"
+        },
      "6449":
         {
          "animated":true,
-         "animated_id":6457
+         "animated_id":6457,
+         "blocked":true
+        },
+     "65":
+        {
+         "blocked":"true"
+        },
+     "66":
+        {
+         "blocked":"true"
+        },
+     "67":
+        {
+         "blocked":"true"
+        },
+     "68":
+        {
+         "blocked":"true"
+        },
+     "69":
+        {
+         "blocked":"true"
         },
      "6960":
         {
@@ -11941,6 +12116,10 @@
          "blocked":false,
          "blocks_vision":false,
          "entity":false
+        },
+     "70":
+        {
+         "blocked":"true"
         },
      "7000":
         {
@@ -12463,6 +12642,10 @@
          "blocked":false,
          "blocks_vision":false,
          "entity":false
+        },
+     "71":
+        {
+         "blocked":"true"
         },
      "7100":
         {
@@ -32893,10 +33076,26 @@
         {
          "blocked":"string"
         },
+     "178":
+        {
+         "blocked":"string"
+        },
+     "179":
+        {
+         "blocked":"string"
+        },
+     "180":
+        {
+         "blocked":"string"
+        },
      "1809":
         {
          "entity":"bool",
          "entity_id":"int"
+        },
+     "181":
+        {
+         "blocked":"string"
         },
      "1810":
         {
@@ -32927,6 +33126,14 @@
         {
          "entity":"bool",
          "entity_id":"int"
+        },
+     "182":
+        {
+         "blocked":"string"
+        },
+     "183":
+        {
+         "blocked":"string"
         },
      "184":
         {
@@ -33015,6 +33222,30 @@
         {
          "FOV":"bool",
          "bg":"string"
+        },
+     "186":
+        {
+         "blocked":"string"
+        },
+     "187":
+        {
+         "blocked":"string"
+        },
+     "188":
+        {
+         "blocked":"string"
+        },
+     "189":
+        {
+         "blocked":"string"
+        },
+     "190":
+        {
+         "blocked":"string"
+        },
+     "191":
+        {
+         "blocked":"string"
         },
      "1929":
         {
@@ -33130,6 +33361,70 @@
         {
          "FOV":"bool",
          "bg":"string"
+        },
+     "296":
+        {
+         "blocked":"string"
+        },
+     "297":
+        {
+         "blocked":"string"
+        },
+     "298":
+        {
+         "blocked":"string"
+        },
+     "299":
+        {
+         "blocked":"string"
+        },
+     "300":
+        {
+         "blocked":"string"
+        },
+     "301":
+        {
+         "blocked":"string"
+        },
+     "302":
+        {
+         "blocked":"string"
+        },
+     "303":
+        {
+         "blocked":"string"
+        },
+     "304":
+        {
+         "blocked":"string"
+        },
+     "305":
+        {
+         "blocked":"string"
+        },
+     "306":
+        {
+         "blocked":"string"
+        },
+     "307":
+        {
+         "blocked":"string"
+        },
+     "308":
+        {
+         "blocked":"string"
+        },
+     "309":
+        {
+         "blocked":"string"
+        },
+     "310":
+        {
+         "blocked":"string"
+        },
+     "311":
+        {
+         "blocked":"string"
         },
      "32":
         {
@@ -39897,13 +40192,15 @@
         {
          "animated":"bool",
          "animated_id":"int",
-         "entity":"bool"
+         "entity":"bool",
+         "entity_id":"int"
         },
      "5299":
         {
          "animated":"bool",
          "animated_id":"int",
-         "entity":"bool"
+         "entity":"bool",
+         "entity_id":"int"
         },
      "5300":
         {
@@ -40265,6 +40562,8 @@
         },
      "5372":
         {
+         "animated":"bool",
+         "animated_id":"int",
          "blocked":"string"
         },
      "5373":
@@ -40791,6 +41090,8 @@
         },
      "5492":
         {
+         "animated":"bool",
+         "animated_id":"int",
          "blocked":"string"
         },
      "5493":
@@ -41299,6 +41600,10 @@
          "animated_id":"int",
          "entity":"bool"
         },
+     "56":
+        {
+         "blocked":"string"
+        },
      "5640":
         {
          "animated":"bool",
@@ -41667,6 +41972,10 @@
          "animated_id":"int",
          "entity":"bool"
         },
+     "57":
+        {
+         "blocked":"string"
+        },
      "5700":
         {
          "animated":"bool",
@@ -42008,6 +42317,10 @@
          "animated":"bool",
          "animated_id":"int",
          "entity":"bool"
+        },
+     "58":
+        {
+         "blocked":"string"
         },
      "5800":
         {
@@ -42351,6 +42664,10 @@
          "animated_id":"int",
          "entity":"bool"
         },
+     "59":
+        {
+         "blocked":"string"
+        },
      "5900":
         {
          "animated":"bool",
@@ -42693,10 +43010,51 @@
          "animated_id":"int",
          "entity":"bool"
         },
+     "60":
+        {
+         "blocked":"string"
+        },
+     "61":
+        {
+         "blocked":"string"
+        },
+     "62":
+        {
+         "blocked":"string"
+        },
+     "63":
+        {
+         "blocked":"string"
+        },
+     "64":
+        {
+         "blocked":"string"
+        },
      "6449":
         {
          "animated":"bool",
-         "animated_id":"int"
+         "animated_id":"int",
+         "blocked":"bool"
+        },
+     "65":
+        {
+         "blocked":"string"
+        },
+     "66":
+        {
+         "blocked":"string"
+        },
+     "67":
+        {
+         "blocked":"string"
+        },
+     "68":
+        {
+         "blocked":"string"
+        },
+     "69":
+        {
+         "blocked":"string"
         },
      "6960":
         {
@@ -43049,6 +43407,10 @@
          "blocked":"bool",
          "blocks_vision":"bool",
          "entity":"bool"
+        },
+     "70":
+        {
+         "blocked":"string"
         },
      "7000":
         {
@@ -43571,6 +43933,10 @@
          "blocked":"bool",
          "blocks_vision":"bool",
          "entity":"bool"
+        },
+     "71":
+        {
+         "blocked":"string"
         },
      "7100":
         {
