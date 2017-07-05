@@ -11,9 +11,9 @@ function getTilesetCoords(id) {
     return [colNumber, rowNumber];
 }
 
-$.getJSON("assets/maps/tileset/compiled_dawnlike.json", function (data) {
-    const tileset = data;
-});
+// $.getJSON("assets/maps/tileset/compiled_dawnlike.json", function (data) {
+//     const tileset = data;
+// });
 
 let Game = {
     overview: null,

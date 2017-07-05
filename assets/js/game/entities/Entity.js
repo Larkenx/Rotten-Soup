@@ -212,23 +212,21 @@ class Actor extends Entity {
     }
 
     death() {
-        Game.engine._scheduler.remove(this);
+        let idx = Game.engine._scheduler.remove(this);
         let ctile = Game.map.data[this.y][this.x];
         // remove this actor from the global actors list and the occupied tile
         ctile.removeActor(this);
-        let idx = Game.map.actors.indexOf(this);
+        idx = Game.map.actors.indexOf(this);
         // dump the contents of the actor's inventory (items) onto the ground.
         if (this.inventory.length > 0) {
-
             let items = this.items();
             for (let item of items) {
-                console.log(item);
                 ctile.actors.push(item);
             }
         }
         // redraw the tile, either with an appropriate actor or the tile symbol
-        Game.drawViewPort();
         Game.map.actors.splice(idx, 1);
+        // Game.drawViewPort();
 
         if (this === Game.player) {
             Game.log(`You died!`, "death");

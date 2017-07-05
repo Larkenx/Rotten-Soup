@@ -270,7 +270,7 @@ class Player extends Actor {
         super.death();
         window.removeEventListener("keydown", this);
         this.cb.hp = 0;
-        Game.scheduler.remove(Game.player);
+        // Game.scheduler.remove(Game.player);
         Game.scheduler.clear();
 
     }

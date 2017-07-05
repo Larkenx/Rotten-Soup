@@ -7,8 +7,6 @@ class Goblin extends Actor {
             id: id,
             name: "goblin",
             description: "A mean, green goblin!",
-            fg: "darkgreen",
-            bg: "seagreen",
             visible: true,
             blocked: true,
             chasing: false,

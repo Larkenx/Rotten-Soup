@@ -19,6 +19,12 @@ const entityShop = {
     },
     6 : (x,y,id) => {
         return new NPC(x,y,id);
+    },
+    7: (x,y,id) => { // normal Orc
+        return new Orc(x,y,id);
+    },
+    8: (x,y,id) => { // empowered Orc
+        return new Orc(x,y,id,true);
     }
 };
 

@@ -52,11 +52,8 @@ class Tile {
     }
 
     removeActor(a) {
-        for (let i = 0; i < this.actors.length; i++) {
-            if (this.actors[i] === a) {
-                this.actors.splice(i, 1);
-            }
-        }
+        let idx = this.actors.indexOf(a);
+        this.actors.splice(idx, 1);
     }
 
     bg() {
