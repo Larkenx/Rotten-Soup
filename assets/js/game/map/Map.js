@@ -17,6 +17,9 @@ const entityShop = {
     5: (x, y, id) => {
         return createSword(x, y, id);
     },
+    6 : (x,y,id) => {
+        return new NPC(x,y,id);
+    }
 };
 
 function createEntity(x, y, entity_id, frame_id) {

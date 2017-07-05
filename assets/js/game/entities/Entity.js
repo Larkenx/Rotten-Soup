@@ -259,3 +259,14 @@ class Item extends Entity {
         //
     }
 }
+
+
+class NPC extends Entity {
+    constructor(x,y,id) {
+        super(x,y,{
+            id: id,
+            visible: true,
+            blocked: true,
+        });
+    }
+}
