@@ -2,21 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="359ee7cd-d060-4cb9-a2ed-d128b311220f" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/assets/js/game/entities/actors/enemies/Orc.js" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/assets/js/game/entities/Ladder.js" afterPath="$PROJECT_DIR$/assets/js/game/entities/misc/Ladder.js" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/assets/js/game/entities/Store.js" afterPath="$PROJECT_DIR$/assets/js/game/entities/misc/Store.js" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/assets/js/game/entities/actors/Goblin.js" afterPath="$PROJECT_DIR$/assets/js/game/entities/actors/enemies/Goblin.js" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/assets/js/game/entities/actors/Rat.js" afterPath="$PROJECT_DIR$/assets/js/game/entities/actors/enemies/Rat.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/js/game/Game.js" afterPath="$PROJECT_DIR$/assets/js/game/Game.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/js/game/entities/Entity.js" afterPath="$PROJECT_DIR$/assets/js/game/entities/Entity.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/js/game/entities/actors/Player.js" afterPath="$PROJECT_DIR$/assets/js/game/entities/actors/Player.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/js/game/entities/items/weapons/Sword.js" afterPath="$PROJECT_DIR$/assets/js/game/entities/items/weapons/Sword.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/js/game/map/Map.js" afterPath="$PROJECT_DIR$/assets/js/game/map/Map.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/js/game/map/Tile.js" afterPath="$PROJECT_DIR$/assets/js/game/map/Tile.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/maps/map_file/overworld.js" afterPath="$PROJECT_DIR$/assets/maps/map_file/overworld.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/maps/tileset/compiled_dawnlike.json" afterPath="$PROJECT_DIR$/assets/maps/tileset/compiled_dawnlike.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/index.html" afterPath="$PROJECT_DIR$/index.html" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -44,7 +31,7 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="index.html" pinned="false" current-in-tab="true">
+      <file leaf-file-name="index.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/index.html">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="650">
@@ -146,11 +133,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Orc.js" pinned="false" current-in-tab="false">
+      <file leaf-file-name="Orc.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/assets/js/game/entities/actors/enemies/Orc.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="756">
-              <caret line="62" column="99" lean-forward="false" selection-start-line="62" selection-start-column="99" selection-end-line="62" selection-end-column="99" />
+            <state relative-caret-position="715">
+              <caret line="63" column="37" lean-forward="true" selection-start-line="63" selection-start-column="37" selection-end-line="63" selection-end-column="37" />
               <folding>
                 <element signature="n#!!doc;n#Orc#0" expanded="false" />
               </folding>
@@ -620,7 +607,7 @@
       <workItem from="1498696343976" duration="4169000" />
       <workItem from="1498972801502" duration="2375000" />
       <workItem from="1499011710043" duration="10626000" />
-      <workItem from="1499287713821" duration="3287000" />
+      <workItem from="1499287713821" duration="4488000" />
     </task>
     <task id="LOCAL-00001" summary="Added the visible FOV to the minimap. Made some really nice changes to the overworld and cleaned up minimap colors.">
       <created>1497205810247</created>
@@ -958,11 +945,18 @@
       <option name="project" value="LOCAL" />
       <updated>1499233997581</updated>
     </task>
-    <option name="localTasksCounter" value="49" />
+    <task id="LOCAL-00049" summary="Added orc enemy type (very challenging) and empowered orcs that will lifesteal off of the player!">
+      <created>1499293918035</created>
+      <option name="number" value="00049" />
+      <option name="presentableId" value="LOCAL-00049" />
+      <option name="project" value="LOCAL" />
+      <updated>1499293918035</updated>
+    </task>
+    <option name="localTasksCounter" value="50" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="148503000" />
+    <option name="totallyTimeSpent" value="149704000" />
   </component>
   <component name="TodoView" selected-index="4">
     <todo-panel id="selected-file">
@@ -1024,7 +1018,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="false" />
-    <MESSAGE value="Changed fonts to Press Start 2P" />
     <MESSAGE value="Changed fonts to general monospace. Working through ROT.js issues (?) to fix loading fonts. Re-worked formatting of the game map and HUD to be nicer and changed up some of the font sizes too" />
     <MESSAGE value="Removed labels for UI items - found that they are sort of unnecessary" />
     <MESSAGE value="Inventory system is working and looking nice. Tool tips for items show item type, name, and damage if it's a weapon. Clicking on the item will equip the weapon for the player. DnD-like combat system is now implemented." />
@@ -1049,7 +1042,8 @@
     <MESSAGE value="Corridors in dungeons are looking pretty good for what it's worth! Pushed live" />
     <MESSAGE value="Added a town with details and some NPC's that don't do anything but bounce up and down" />
     <MESSAGE value="Added little castle with shaman and orc lords...?" />
-    <option name="LAST_COMMIT_MESSAGE" value="Added little castle with shaman and orc lords...?" />
+    <MESSAGE value="Added orc enemy type (very challenging) and empowered orcs that will lifesteal off of the player!" />
+    <option name="LAST_COMMIT_MESSAGE" value="Added orc enemy type (very challenging) and empowered orcs that will lifesteal off of the player!" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1140,6 +1134,28 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="135">
           <caret line="21" column="17" lean-forward="true" selection-start-line="21" selection-start-column="17" selection-end-line="21" selection-end-column="17" />
+          <folding>
+            <element signature="e#201#405#0" expanded="false" />
+            <element signature="e#211#268#0" expanded="false" />
+            <element signature="e#279#336#0" expanded="false" />
+            <element signature="e#347#404#0" expanded="false" />
+            <element signature="n#!!block;n#10000#0;n#!!block;n#tileproperties#0;n#!!top" expanded="false" />
+            <element signature="n#!!block;n#10001#0;n#!!block;n#tileproperties#0;n#!!top" expanded="false" />
+            <element signature="n#!!block;n#10002#0;n#!!block;n#tileproperties#0;n#!!top" expanded="false" />
+            <element signature="n#!!block;n#10003#0;n#!!block;n#tileproperties#0;n#!!top" expanded="false" />
+            <element signature="n#!!block;n#10004#0;n#!!block;n#tileproperties#0;n#!!top" expanded="false" />
+            <element signature="n#!!block;n#10005#0;n#!!block;n#tileproperties#0;n#!!top" expanded="false" />
+            <element signature="n#!!block;n#10006#0;n#!!block;n#tileproperties#0;n#!!top" expanded="false" />
+            <element signature="n#!!block;n#10007#0;n#!!block;n#tileproperties#0;n#!!top" expanded="false" />
+            <element signature="n#!!block;n#10008#0;n#!!block;n#tileproperties#0;n#!!top" expanded="false" />
+            <element signature="n#!!block;n#10009#0;n#!!block;n#tileproperties#0;n#!!top" expanded="false" />
+            <element signature="n#!!block;n#10010#0;n#!!block;n#tileproperties#0;n#!!top" expanded="false" />
+            <element signature="n#!!block;n#10011#0;n#!!block;n#tileproperties#0;n#!!top" expanded="false" />
+            <element signature="n#!!block;n#10012#0;n#!!block;n#tileproperties#0;n#!!top" expanded="false" />
+            <element signature="n#!!block;n#10013#0;n#!!block;n#tileproperties#0;n#!!top" expanded="false" />
+            <element signature="n#!!block;n#10014#0;n#!!block;n#tileproperties#0;n#!!top" expanded="false" />
+            <element signature="n#!!block;n#10015#0;n#!!block;n#tileproperties#0;n#!!top" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -1229,16 +1245,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/assets/js/game/entities/actors/enemies/Orc.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="756">
-          <caret line="62" column="99" lean-forward="false" selection-start-line="62" selection-start-column="99" selection-end-line="62" selection-end-column="99" />
-          <folding>
-            <element signature="n#!!doc;n#Orc#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/assets/js/game/entities/actors/enemies/Goblin.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="126">
@@ -1323,6 +1329,16 @@
             <element signature="n#style#0;n#v-layout#0;n#v-flex#0;n#v-layout#4;n#v-flex#1;n#v-layout#0;n#v-container#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#img#0;n#v-layout#0;n#v-flex#0;n#v-layout#4;n#v-flex#1;n#v-layout#0;n#v-container#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#v-btn#0;n#v-layout#0;n#v-container#0;n#v-container#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/assets/js/game/entities/actors/enemies/Orc.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="715">
+          <caret line="63" column="37" lean-forward="true" selection-start-line="63" selection-start-column="37" selection-end-line="63" selection-end-column="37" />
+          <folding>
+            <element signature="n#!!doc;n#Orc#0" expanded="false" />
           </folding>
         </state>
       </provider>
