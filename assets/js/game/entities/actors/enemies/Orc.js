@@ -64,7 +64,6 @@ class Orc extends Actor {
                 this.heal(amtHealed);
             }
         }
-
     }
 
 }

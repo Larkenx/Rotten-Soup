@@ -3,6 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="359ee7cd-d060-4cb9-a2ed-d128b311220f" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/js/game/entities/actors/enemies/Orc.js" afterPath="$PROJECT_DIR$/assets/js/game/entities/actors/enemies/Orc.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/maps/map_file/overworld.js" afterPath="$PROJECT_DIR$/assets/maps/map_file/overworld.js" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
@@ -136,8 +137,8 @@
       <file leaf-file-name="Orc.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/assets/js/game/entities/actors/enemies/Orc.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="715">
-              <caret line="63" column="37" lean-forward="true" selection-start-line="63" selection-start-column="37" selection-end-line="63" selection-end-column="37" />
+            <state relative-caret-position="787">
+              <caret line="66" column="0" lean-forward="false" selection-start-line="66" selection-start-column="0" selection-end-line="66" selection-end-column="0" />
               <folding>
                 <element signature="n#!!doc;n#Orc#0" expanded="false" />
               </folding>
@@ -256,10 +257,10 @@
         <option value="$PROJECT_DIR$/index.html" />
         <option value="$PROJECT_DIR$/assets/js/game/entities/items/weapons/Sword.js" />
         <option value="$PROJECT_DIR$/assets/js/game/Game.js" />
-        <option value="$PROJECT_DIR$/assets/js/game/entities/actors/enemies/Orc.js" />
         <option value="$PROJECT_DIR$/assets/js/game/map/Tile.js" />
         <option value="$PROJECT_DIR$/assets/js/game/entities/Entity.js" />
         <option value="$PROJECT_DIR$/assets/js/game/entities/actors/Player.js" />
+        <option value="$PROJECT_DIR$/assets/js/game/entities/actors/enemies/Orc.js" />
       </list>
     </option>
   </component>
@@ -607,14 +608,7 @@
       <workItem from="1498696343976" duration="4169000" />
       <workItem from="1498972801502" duration="2375000" />
       <workItem from="1499011710043" duration="10626000" />
-      <workItem from="1499287713821" duration="4488000" />
-    </task>
-    <task id="LOCAL-00001" summary="Added the visible FOV to the minimap. Made some really nice changes to the overworld and cleaned up minimap colors.">
-      <created>1497205810247</created>
-      <option name="number" value="00001" />
-      <option name="presentableId" value="LOCAL-00001" />
-      <option name="project" value="LOCAL" />
-      <updated>1497205810247</updated>
+      <workItem from="1499287713821" duration="4855000" />
     </task>
     <task id="LOCAL-00002" summary="Fixing the death screen modal...">
       <created>1497207027333</created>
@@ -952,11 +946,18 @@
       <option name="project" value="LOCAL" />
       <updated>1499293918035</updated>
     </task>
-    <option name="localTasksCounter" value="50" />
+    <task id="LOCAL-00050" summary="Added orc enemy type (very challenging) and empowered orcs that will lifesteal off of the player!">
+      <created>1499307996997</created>
+      <option name="number" value="00050" />
+      <option name="presentableId" value="LOCAL-00050" />
+      <option name="project" value="LOCAL" />
+      <updated>1499307996999</updated>
+    </task>
+    <option name="localTasksCounter" value="51" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="149704000" />
+    <option name="totallyTimeSpent" value="150071000" />
   </component>
   <component name="TodoView" selected-index="4">
     <todo-panel id="selected-file">
@@ -1335,8 +1336,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/assets/js/game/entities/actors/enemies/Orc.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="715">
-          <caret line="63" column="37" lean-forward="true" selection-start-line="63" selection-start-column="37" selection-end-line="63" selection-end-column="37" />
+        <state relative-caret-position="787">
+          <caret line="66" column="0" lean-forward="false" selection-start-line="66" selection-start-column="0" selection-end-line="66" selection-end-column="0" />
           <folding>
             <element signature="n#!!doc;n#Orc#0" expanded="false" />
           </folding>
