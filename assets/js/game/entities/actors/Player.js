@@ -57,9 +57,11 @@ class Player extends Actor {
          * to the event listener. This anticipates the player object
          * to have a handleEvent method! */
         window.addEventListener("keydown", this);
+        window.addEventListener("click", this);
     }
 
     interact(actor) { // returns true if we can continue to move to the tile
+        console.log(actor);
         if (actor.cb.hostile) {
             this.attack(actor);
             if (!actor.isDead()) actor.react(this);
@@ -69,7 +71,7 @@ class Player extends Actor {
             // so we will design non-combat based actors to simply perform actions
             // in a reactionary manner so that it offloads player code blocks.
             actor.react(this);
-            return actor.options.blocked;
+            return false;
         }
     }
 
@@ -92,6 +94,11 @@ class Player extends Actor {
     }
 
     handleEvent(evt) {
+        /* Mouse controls to hover over tiles for info (describe) */
+        if (evt.type === "click") {
+            Game.selectedTile = Game.display.eventToPosition(evt);
+            return;
+        }
         let code = evt.keyCode;
         let shift_pressed = evt.getModifierState("Shift");
         let endturn = function () {
@@ -244,10 +251,9 @@ class Player extends Actor {
         } else if (ntile.actors.length > 0) {
             for (let i = 0; i < ntile.actors.length; i++) {
                 let actor = ntile.actors[i];
-                if (actor instanceof Actor && actor.options.blocked && actor.options.visible) {
+                if (actor.options.blocked && actor.options.visible) {
                     if (!actor.isDead()) {
-                        this.interact(actor);
-                        return true;
+                        return this.interact(actor);
                     }
                 }
             }

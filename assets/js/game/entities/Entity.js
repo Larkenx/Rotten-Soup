@@ -91,7 +91,6 @@ class Actor extends Entity {
 
     /* Called by the ROT.js game scheduler to indicate a turn */
     act() {
-        // pass
     }
 
     addToInventory(newItem) {
@@ -259,12 +258,15 @@ class Item extends Entity {
 }
 
 
-class NPC extends Entity {
+class NPC extends Actor {
     constructor(x,y,id) {
         super(x,y,{
             id: id,
             visible: true,
             blocked: true,
+            combat : {
+              hostile: false
+            }
         });
     }
 }

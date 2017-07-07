@@ -33,6 +33,7 @@ let Game = {
     map: null,
     message_history: [],
     minimap: null,
+    selectedTile: null,
 
     init: function (dev = false) {
         this.dev = dev;
@@ -209,6 +210,13 @@ let Game = {
         Game.display.draw(x, y, symbols);
     },
 
+    drawSelectedTile: function () {
+        let coords = this.selectedTile;
+        if (coords !== null && coords[0] !== -1 && coords[1] !== -1) {
+            Game.display.draw(coords[0],coords[1],"", "transparent", "rgba(250,250,250,0.5)");
+        }
+    },
+
     drawMiniMap: function () {
         if (this.map.revealed) {
             for (let y = 0; y < this.map.height; y++) {
@@ -245,6 +253,7 @@ let Game = {
 
     updateDisplay: function () {
         this.drawViewPort();
+        this.drawSelectedTile();
         this.drawMiniMap();
     },
 
