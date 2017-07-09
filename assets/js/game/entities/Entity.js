@@ -72,7 +72,7 @@ function addPrefix(name) {
 }
 
 class Actor extends Entity {
-    constructor(x, y, options) {
+    constructor(x, y, options, routine=null) {
         super(x, y, options);
         this.cb = this.options.combat;
         this.cb.equipment = {

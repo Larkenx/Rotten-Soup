@@ -3,13 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="359ee7cd-d060-4cb9-a2ed-d128b311220f" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/js/game/Game.js" afterPath="$PROJECT_DIR$/assets/js/game/Game.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/js/game/entities/Entity.js" afterPath="$PROJECT_DIR$/assets/js/game/entities/Entity.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/js/game/entities/actors/Player.js" afterPath="$PROJECT_DIR$/assets/js/game/entities/actors/Player.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/js/game/entities/actors/enemies/Goblin.js" afterPath="$PROJECT_DIR$/assets/js/game/entities/actors/enemies/Goblin.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/js/game/entities/actors/enemies/Orc.js" afterPath="$PROJECT_DIR$/assets/js/game/entities/actors/enemies/Orc.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/js/game/entities/actors/enemies/Rat.js" afterPath="$PROJECT_DIR$/assets/js/game/entities/actors/enemies/Rat.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/maps/map_file/overworld.js" afterPath="$PROJECT_DIR$/assets/maps/map_file/overworld.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/index.html" afterPath="$PROJECT_DIR$/index.html" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
@@ -38,11 +32,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="index.html" pinned="false" current-in-tab="true">
+      <file leaf-file-name="index.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/index.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="450">
-              <caret line="84" column="33" lean-forward="true" selection-start-line="84" selection-start-column="33" selection-end-line="84" selection-end-column="33" />
+            <state relative-caret-position="3636">
+              <caret line="202" column="0" lean-forward="true" selection-start-line="202" selection-start-column="0" selection-end-line="202" selection-end-column="0" />
               <folding>
                 <element signature="n#style#0;n#v-list#0;n#v-layout#1;n#v-flex#0;n#v-layout#1;n#v-container#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
                 <element signature="n#style#0;n#v-layout#0;n#v-flex#1;n#v-layout#1;n#v-container#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
@@ -52,7 +46,7 @@
                 <element signature="n#style#0;n#v-btn#0;n#v-layout#0;n#v-container#0;n#v-container#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
                 <element signature="n#style#0;n#a#0;n#v-container#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
                 <element signature="n#style#0;n#i#0;n#v-btn#0;n#a#0;n#v-container#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-                <marker date="1499581892695" expanded="true" signature="7902:7905" ph="//..." />
+                <marker date="1499609094736" expanded="true" signature="7902:7905" ph="//..." />
               </folding>
             </state>
           </provider>
@@ -70,11 +64,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Entity.js" pinned="false" current-in-tab="false">
+      <file leaf-file-name="Entity.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/assets/js/game/entities/Entity.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="337">
-              <caret line="249" column="60" lean-forward="false" selection-start-line="249" selection-start-column="60" selection-end-line="249" selection-end-column="60" />
+            <state relative-caret-position="3852">
+              <caret line="256" column="5" lean-forward="true" selection-start-line="256" selection-start-column="5" selection-end-line="256" selection-end-column="5" />
               <folding>
                 <element signature="e#62#224#0" expanded="false" />
                 <element signature="n#!!block;n#getRandomInt#0" expanded="false" />
@@ -154,7 +148,7 @@
     </replaceStrings>
   </component>
   <component name="Git.Settings">
-    <option name="UPDATE_TYPE" value="REBASE" />
+    <option name="UPDATE_TYPE" value="MERGE" />
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
@@ -210,8 +204,8 @@
         <option value="$PROJECT_DIR$/assets/js/game/entities/actors/enemies/Rat.js" />
         <option value="$PROJECT_DIR$/assets/js/game/Game.js" />
         <option value="$PROJECT_DIR$/assets/js/game/entities/actors/Player.js" />
-        <option value="$PROJECT_DIR$/assets/js/game/entities/Entity.js" />
         <option value="$PROJECT_DIR$/index.html" />
+        <option value="$PROJECT_DIR$/assets/js/game/entities/Entity.js" />
       </list>
     </option>
   </component>
@@ -308,6 +302,114 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="js" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Rotten-Soup" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Rotten-Soup" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="assets" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="js" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="game" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Rotten-Soup" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Rotten-Soup" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="assets" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="js" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="game" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="map" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Rotten-Soup" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Rotten-Soup" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="assets" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="js" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="game" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="entities" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Rotten-Soup" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Rotten-Soup" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="assets" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="js" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="game" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="entities" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="items" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="weapons" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -637,13 +739,6 @@
       <workItem from="1499287713821" duration="5041000" />
       <workItem from="1499397336416" duration="133000" />
       <workItem from="1499571798590" duration="789000" />
-    </task>
-    <task id="LOCAL-00008" summary="Squashed the bug with undying/undamaging goblins. Weird problem with JS array pop method vs shift">
-      <created>1498108951299</created>
-      <option name="number" value="00008" />
-      <option name="presentableId" value="LOCAL-00008" />
-      <option name="project" value="LOCAL" />
-      <updated>1498108951299</updated>
     </task>
     <task id="LOCAL-00009" summary="Quick fix to the map">
       <created>1498109009003</created>
@@ -981,11 +1076,18 @@
       <option name="project" value="LOCAL" />
       <updated>1499575465560</updated>
     </task>
-    <option name="localTasksCounter" value="57" />
+    <task id="LOCAL-00057" summary="Set player position back to where he should be">
+      <created>1499582603551</created>
+      <option name="number" value="00057" />
+      <option name="presentableId" value="LOCAL-00057" />
+      <option name="project" value="LOCAL" />
+      <updated>1499582603551</updated>
+    </task>
+    <option name="localTasksCounter" value="58" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="160342000" />
+    <option name="totallyTimeSpent" value="163147000" />
   </component>
   <component name="TodoView" selected-index="4">
     <todo-panel id="selected-file">
@@ -1082,7 +1184,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="false" />
-    <MESSAGE value="Pushing graphical tiles implementation" />
     <MESSAGE value="Fixed FOV with textures (sort of?)" />
     <MESSAGE value="Small update to map" />
     <MESSAGE value="Merged changes. Starter sword is now equipped on spawn, player is properly above entities like ladders and swords. Player levels up after kills and increases in HP and STR." />
@@ -1107,7 +1208,8 @@
     <MESSAGE value="Added GIF for github" />
     <MESSAGE value="Added 'g' for pickup action" />
     <MESSAGE value="Removed some old files and starting work on an overview of surrounding enemies. Added github icon link in upper-right hand corner and title of game" />
-    <option name="LAST_COMMIT_MESSAGE" value="Removed some old files and starting work on an overview of surrounding enemies. Added github icon link in upper-right hand corner and title of game" />
+    <MESSAGE value="Set player position back to where he should be" />
+    <option name="LAST_COMMIT_MESSAGE" value="Set player position back to where he should be" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1328,23 +1430,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/assets/js/game/entities/Entity.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="337">
-          <caret line="249" column="60" lean-forward="false" selection-start-line="249" selection-start-column="60" selection-end-line="249" selection-end-column="60" />
-          <folding>
-            <element signature="e#62#224#0" expanded="false" />
-            <element signature="n#!!block;n#getRandomInt#0" expanded="false" />
-            <element signature="e#800#820#0" expanded="false" />
-            <element signature="e#821#851#0" expanded="false" />
-            <element signature="n#!!block;n#capitalize#0" expanded="false" />
-            <element signature="n#!!block;n#addPrefix#0" expanded="false" />
-            <element signature="e#1819#1935#0" expanded="false" />
-            <element signature="e#1941#1969#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/assets/js/lib/rot.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="756">
@@ -1365,8 +1450,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/index.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="450">
-          <caret line="84" column="33" lean-forward="true" selection-start-line="84" selection-start-column="33" selection-end-line="84" selection-end-column="33" />
+        <state relative-caret-position="3636">
+          <caret line="202" column="0" lean-forward="true" selection-start-line="202" selection-start-column="0" selection-end-line="202" selection-end-column="0" />
           <folding>
             <element signature="n#style#0;n#v-list#0;n#v-layout#1;n#v-flex#0;n#v-layout#1;n#v-container#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#v-layout#0;n#v-flex#1;n#v-layout#1;n#v-container#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
@@ -1376,7 +1461,24 @@
             <element signature="n#style#0;n#v-btn#0;n#v-layout#0;n#v-container#0;n#v-container#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#a#0;n#v-container#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#i#0;n#v-btn#0;n#a#0;n#v-container#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <marker date="1499581892695" expanded="true" signature="7902:7905" ph="//..." />
+            <marker date="1499609094736" expanded="true" signature="7902:7905" ph="//..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/assets/js/game/entities/Entity.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="3852">
+          <caret line="256" column="5" lean-forward="true" selection-start-line="256" selection-start-column="5" selection-end-line="256" selection-end-column="5" />
+          <folding>
+            <element signature="e#62#224#0" expanded="false" />
+            <element signature="n#!!block;n#getRandomInt#0" expanded="false" />
+            <element signature="e#800#820#0" expanded="false" />
+            <element signature="e#821#851#0" expanded="false" />
+            <element signature="n#!!block;n#capitalize#0" expanded="false" />
+            <element signature="n#!!block;n#addPrefix#0" expanded="false" />
+            <element signature="e#1819#1935#0" expanded="false" />
+            <element signature="e#1941#1969#0" expanded="false" />
           </folding>
         </state>
       </provider>

@@ -157,6 +157,7 @@
                 messages: Game.message_history,
                 player: null,
                 actors: null,
+                inventory: null,
                 rows: [1, 2, 3, 4],
             };
         },
@@ -219,6 +220,7 @@
         created () {
             Game.init();
             this.player = Game.player;
+            this.inventory = Game.player.inventory;
         },
         mounted () {
             $('#game_container').html(Game.display.getContainer());
