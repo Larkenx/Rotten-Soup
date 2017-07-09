@@ -50,19 +50,13 @@ class Player extends Actor {
 
     act() {
         super.act();
-        /* For our player's action, we lock the engine (turn based) */
         Game.engine.lock();
-        /* We are creating an event handler here, but we are doing this
-         * with a unique parameter by passing the player struct directly
-         * to the event listener. This anticipates the player object
-         * to have a handleEvent method! */
         window.addEventListener("keydown", this);
-        window.addEventListener("click", this);
+        // window.addEventListener("click", this);
     }
 
     interact(actor) { // returns true if we can continue to move to the tile
-        console.log(actor);
-        if (actor.cb.hostile) {
+        if ("cb" in actor && actor.cb.hostile) {
             this.attack(actor);
             if (!actor.isDead()) actor.react(this);
             else return true; // we can move
@@ -82,8 +76,6 @@ class Player extends Actor {
     }
 
     level_up() {
-        /* This function will prompt the player to select what skills they want
-         to level up after reaching a new level */
         this.cb.level += 1;
         this.cb.maxhp += 5;
         this.cb.str += 1;
@@ -95,25 +87,16 @@ class Player extends Actor {
 
     handleEvent(evt) {
         /* Mouse controls to hover over tiles for info (describe) */
-        if (evt.type === "click") {
-            Game.selectedTile = Game.display.eventToPosition(evt);
-            return;
-        }
+        // if (evt.type === "click") {
+        //     Game.selectedTile = Game.display.eventToPosition(evt);
+        //     return;
+        // }
         let code = evt.keyCode;
         let shift_pressed = evt.getModifierState("Shift");
         let endturn = function () {
             window.removeEventListener("keydown", this);
             Game.engine.unlock();
         };
-
-        /*
-         y k u    7 8 9
-         \|/      \|/
-         h-+-l    4-5-6
-         /|\      /|\
-         b j n    1 2 3
-         vi-keys   numpad
-         */
         let keyMap = {
             /* Arrow Key movement */
             39: 2,
@@ -251,16 +234,15 @@ class Player extends Actor {
         } else if (ntile.actors.length > 0) {
             for (let i = 0; i < ntile.actors.length; i++) {
                 let actor = ntile.actors[i];
-                if (actor.options.blocked && actor.options.visible) {
-                    if (!actor.isDead()) {
-                        return this.interact(actor);
-                    }
+                if (actor.options.blocked) {
+                    this.interact(actor);
+                    return true;
                 }
             }
         }
 
         if (!ntile.blocked()) {
-            this.move(nx, ny)
+            this.move(nx, ny);
             return true;
         }
 

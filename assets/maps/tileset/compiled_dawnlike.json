@@ -10569,7 +10569,9 @@
         },
      "568":
         {
-         "entity":true
+         "activated_id":576,
+         "entity":true,
+         "entity_id":9
         },
      "5680":
         {
@@ -10633,7 +10635,9 @@
         },
      "569":
         {
-         "entity":true
+         "activated_id":577,
+         "entity":true,
+         "entity_id":9
         },
      "5690":
         {
@@ -10801,6 +10805,12 @@
          "animated_id":0,
          "entity":false
         },
+     "576":
+        {
+         "activated_id":697,
+         "entity":true,
+         "entity_id":9
+        },
      "5760":
         {
          "animated":false,
@@ -10860,6 +10870,12 @@
          "animated":false,
          "animated_id":0,
          "entity":false
+        },
+     "577":
+        {
+         "activated_id":697,
+         "entity":true,
+         "entity_id":9
         },
      "5770":
         {
@@ -11775,9 +11791,27 @@
         {
          "blocked":"true"
         },
+     "688":
+        {
+         "activated_id":696,
+         "entity":true,
+         "entity_id":9
+        },
+     "689":
+        {
+         "activated_id":697,
+         "entity":true,
+         "entity_id":9
+        },
      "69":
         {
          "blocked":"true"
+        },
+     "696":
+        {
+         "activated_id":697,
+         "entity":true,
+         "entity_id":9
         },
      "6960":
         {
@@ -11848,6 +11882,12 @@
          "animated_id":0,
          "entity":true,
          "entity_id":"6"
+        },
+     "697":
+        {
+         "activated_id":697,
+         "entity":true,
+         "entity_id":9
         },
      "6970":
         {
@@ -17343,7 +17383,7 @@
      "7739":
         {
          "FOV":true,
-         "FOV_id":8099,
+         "FOV_id":8459,
          "animated":false,
          "animated_id":0,
          "bg":"gray",
@@ -18230,7 +18270,7 @@
      "7859":
         {
          "FOV":true,
-         "FOV_id":8219,
+         "FOV_id":8579,
          "animated":false,
          "animated_id":0,
          "bg":"gray",
@@ -19133,7 +19173,7 @@
      "7979":
         {
          "FOV":true,
-         "FOV_id":8339,
+         "FOV_id":8699,
          "animated":false,
          "animated_id":0,
          "bg":"gray",
@@ -41874,7 +41914,9 @@
         },
      "568":
         {
-         "entity":"bool"
+         "activated_id":"int",
+         "entity":"bool",
+         "entity_id":"int"
         },
      "5680":
         {
@@ -41938,7 +41980,9 @@
         },
      "569":
         {
-         "entity":"bool"
+         "activated_id":"int",
+         "entity":"bool",
+         "entity_id":"int"
         },
      "5690":
         {
@@ -42106,6 +42150,12 @@
          "animated_id":"int",
          "entity":"bool"
         },
+     "576":
+        {
+         "activated_id":"int",
+         "entity":"bool",
+         "entity_id":"int"
+        },
      "5760":
         {
          "animated":"bool",
@@ -42165,6 +42215,12 @@
          "animated":"bool",
          "animated_id":"int",
          "entity":"bool"
+        },
+     "577":
+        {
+         "activated_id":"int",
+         "entity":"bool",
+         "entity_id":"int"
         },
      "5770":
         {
@@ -43080,9 +43136,27 @@
         {
          "blocked":"string"
         },
+     "688":
+        {
+         "activated_id":"int",
+         "entity":"bool",
+         "entity_id":"int"
+        },
+     "689":
+        {
+         "activated_id":"int",
+         "entity":"bool",
+         "entity_id":"int"
+        },
      "69":
         {
          "blocked":"string"
+        },
+     "696":
+        {
+         "activated_id":"int",
+         "entity":"bool",
+         "entity_id":"int"
         },
      "6960":
         {
@@ -43153,6 +43227,12 @@
          "animated_id":"int",
          "entity":"bool",
          "entity_id":"string"
+        },
+     "697":
+        {
+         "activated_id":"int",
+         "entity":"bool",
+         "entity_id":"int"
         },
      "6970":
         {

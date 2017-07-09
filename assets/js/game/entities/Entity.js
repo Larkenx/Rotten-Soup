@@ -157,9 +157,8 @@ class Actor extends Entity {
     move(nx, ny) {
         let ntile = Game.map.data[ny][nx]; // new tile to move to
         let ctile = Game.map.data[this.y][this.x]; // current tile
-        ctile.actors.shift(this); // remove this actor from this tile
-        // Game.drawTile(ctile); // redraw the tile, with this actor removed
-        ntile.actors.unshift(this); // add this actor to the new tile
+        ctile.removeActor(this); // remove this actor from this tile
+        ntile.actors.push(this); // add this actor to the new tile
 
         this.x = nx; // update x,y coords to new coords
         this.y = ny;

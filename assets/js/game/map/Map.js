@@ -25,7 +25,10 @@ const entityShop = {
     },
     8: (x,y,id) => { // empowered Orc
         return new Orc(x,y,id,true);
-    }
+    },
+    9: (x,y,id) => {
+        return new Door(x,y,id);
+    },
 };
 
 function createEntity(x, y, entity_id, frame_id) {
@@ -36,7 +39,6 @@ function createEntity(x, y, entity_id, frame_id) {
     }
 }
 
-const flatten = arr => arr.reduce((acc, val) => acc.concat(Array.isArray(val) ? flatten(val) : val), []);
 
 /**
  * Created by Larken on 6/28/2017.

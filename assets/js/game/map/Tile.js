@@ -48,7 +48,7 @@ class Tile {
     }
 
     visible() {
-        return ! this.obstacles.some( (el) => { return el.blocks_vision });
+        return ! (this.obstacles.some( (el) => { return el.blocks_vision }) || this.actors.some( (el) => { return !el.options.visible}));
     }
 
     removeActor(a) {

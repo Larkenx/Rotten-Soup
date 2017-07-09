@@ -1,6 +1,9 @@
 /**
  * Created by larken on 7/4/17.
  */
+
+const flatten = arr => arr.reduce((acc, val) => acc.concat(Array.isArray(val) ? flatten(val) : val), []);
+
 function randomProperty(object) {
     let keys = Object.keys(object);
     return keys[Math.floor(keys.length * Math.random())];
@@ -138,10 +141,10 @@ function randomMap(width, height) {
             let below = map.layers[0].data[dy + 1][dx];
             if (above === walls.right + 1 || above === walls.left + 1 || below === walls.left + 1 || below === walls.right + 1) {
                 map.layers[0].data[dy][dx] = 7741 + 1;
-                map.layers[1].data[dy][dx] = 569 + 1;
+                map.layers[3].data[dy][dx] = 569 + 1;
             } else {
                 map.layers[0].data[dy][dx] = 7741 + 1;
-                map.layers[1].data[dy][dx] = 568 + 1;
+                map.layers[3].data[dy][dx] = 568 + 1;
             }
         });
     }

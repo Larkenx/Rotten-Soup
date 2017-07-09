@@ -59,6 +59,8 @@ let Game = {
                     tileMap[properties.animated_id] = getTilesetCoords(properties.animated_id);
                 if (properties.animated && properties.FOV)
                     tileMap[properties.animated_fov_id] = getTilesetCoords(properties.animated_fov_id);
+                if (properties.activated_id)
+                    tileMap[properties.activated_id] = getTilesetCoords(properties.activated_id);
             }
         }
         this.displayOptions = {
@@ -142,7 +144,7 @@ let Game = {
         // Save the old map
         this.levels[this.currentLevel] = this.map; // add the old map to 'levels'
         // Unshift player from ladder position (so that when resurfacing, no player is present)
-        this.map.data[this.player.y][this.player.x].actors.shift();
+        this.map.data[this.player.y][this.player.x].removeActor(this.player);
         // Add the new map to the game
         this.map = this.levels[newLevel];
         this.currentLevel = newLevel;
@@ -190,6 +192,7 @@ let Game = {
         });
 
         // Draw the viewport
+        /*
         for (let x = startingPos[0]; x < endingPos[0]; x++) {
             for (let y = startingPos[1]; y < endingPos[1]; y++) {
                 let tile = this.map.data[y][x];
@@ -197,6 +200,25 @@ let Game = {
                     this.drawTile(dx, dy++, tile, false);
                 } else {
                     this.drawTile(dx, dy++, tile, ! this.map.revealed);
+                }
+            }
+            dx++;
+            dy = 0;
+        }
+        */
+        for (let x = startingPos[0]; x < endingPos[0]; x++) {
+            for (let y = startingPos[1]; y < endingPos[1]; y++) {
+                let tile = this.map.data[y][x];
+                if (this.map.revealed) {
+                    this.drawTile(dx, dy++, tile, false);
+                } else {
+                    if (tile.x + "," + tile.y in this.map.visible_tiles) {
+                        this.drawTile(dx, dy++, tile, false);
+                    } else if (tile.x + "," + tile.y in this.map.seen_tiles) {
+                        this.drawTile(dx, dy++, tile, true);
+                    } else {
+                        Game.display.draw(dx,dy++, "", "black", "black");
+                    }
                 }
             }
             dx++;
