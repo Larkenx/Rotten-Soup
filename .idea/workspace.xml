@@ -2,17 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="359ee7cd-d060-4cb9-a2ed-d128b311220f" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/assets/js/game/entities/misc/Door.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/js/game/Game.js" afterPath="$PROJECT_DIR$/assets/js/game/Game.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/js/game/entities/Entity.js" afterPath="$PROJECT_DIR$/assets/js/game/entities/Entity.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/js/game/entities/actors/Player.js" afterPath="$PROJECT_DIR$/assets/js/game/entities/actors/Player.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/js/game/map/Map.js" afterPath="$PROJECT_DIR$/assets/js/game/map/Map.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/js/game/map/RandomMap.js" afterPath="$PROJECT_DIR$/assets/js/game/map/RandomMap.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/js/game/map/Tile.js" afterPath="$PROJECT_DIR$/assets/js/game/map/Tile.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/maps/map_file/overworld.js" afterPath="$PROJECT_DIR$/assets/maps/map_file/overworld.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/maps/tileset/compiled_dawnlike.json" afterPath="$PROJECT_DIR$/assets/maps/tileset/compiled_dawnlike.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/index.html" afterPath="$PROJECT_DIR$/index.html" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -801,14 +791,7 @@
       <workItem from="1499011710043" duration="10626000" />
       <workItem from="1499287713821" duration="5041000" />
       <workItem from="1499397336416" duration="133000" />
-      <workItem from="1499571798590" duration="641000" />
-    </task>
-    <task id="LOCAL-00003" summary="Fixed death screen modal and added a 'play again' button. Added cute tombstone ascii art for death">
-      <created>1497243276847</created>
-      <option name="number" value="00003" />
-      <option name="presentableId" value="LOCAL-00003" />
-      <option name="project" value="LOCAL" />
-      <updated>1497243276847</updated>
+      <workItem from="1499571798590" duration="687000" />
     </task>
     <task id="LOCAL-00004" summary="Still working on ladders">
       <created>1497320185651</created>
@@ -1146,11 +1129,18 @@
       <option name="project" value="LOCAL" />
       <updated>1499308364265</updated>
     </task>
-    <option name="localTasksCounter" value="52" />
+    <task id="LOCAL-00052" summary="Added working doors, fixed issue with player exiting/entering dungeons from ladder, and cleaned up a nasty bug that made it so monsters wouldn't attack you when you attacked them.">
+      <created>1499572483689</created>
+      <option name="number" value="00052" />
+      <option name="presentableId" value="LOCAL-00052" />
+      <option name="project" value="LOCAL" />
+      <updated>1499572483689</updated>
+    </task>
+    <option name="localTasksCounter" value="53" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="151031000" />
+    <option name="totallyTimeSpent" value="151077000" />
   </component>
   <component name="TodoView" selected-index="4">
     <todo-panel id="selected-file">
@@ -1163,12 +1153,11 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1066" extended-state="6" />
-    <editor active="true" />
     <layout>
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.20052083" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3294979" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3294979" sideWeight="0.50208336" order="7" side_tool="true" content_ui="tabs" />
-      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.26987448" sideWeight="0.49791667" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.26987448" sideWeight="0.49791667" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
@@ -1238,7 +1227,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="false" />
-    <MESSAGE value="Changed fonts to general monospace. Working through ROT.js issues (?) to fix loading fonts. Re-worked formatting of the game map and HUD to be nicer and changed up some of the font sizes too" />
     <MESSAGE value="Removed labels for UI items - found that they are sort of unnecessary" />
     <MESSAGE value="Inventory system is working and looking nice. Tool tips for items show item type, name, and damage if it's a weapon. Clicking on the item will equip the weapon for the player. DnD-like combat system is now implemented." />
     <MESSAGE value="Inventory system is working and looking nice. Tool tips for items show item type, name, and damage if it's a weapon. Clicking on the item will equip the weapon for the player. DnD-like combat system is now implemented. Next up is a stats rework" />
@@ -1263,7 +1251,8 @@
     <MESSAGE value="Added a town with details and some NPC's that don't do anything but bounce up and down" />
     <MESSAGE value="Added little castle with shaman and orc lords...?" />
     <MESSAGE value="Added orc enemy type (very challenging) and empowered orcs that will lifesteal off of the player!" />
-    <option name="LAST_COMMIT_MESSAGE" value="Added orc enemy type (very challenging) and empowered orcs that will lifesteal off of the player!" />
+    <MESSAGE value="Added working doors, fixed issue with player exiting/entering dungeons from ladder, and cleaned up a nasty bug that made it so monsters wouldn't attack you when you attacked them." />
+    <option name="LAST_COMMIT_MESSAGE" value="Added working doors, fixed issue with player exiting/entering dungeons from ladder, and cleaned up a nasty bug that made it so monsters wouldn't attack you when you attacked them." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
