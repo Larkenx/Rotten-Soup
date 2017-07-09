@@ -2,10 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="359ee7cd-d060-4cb9-a2ed-d128b311220f" name="Default" comment="">
-      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/images/screenie.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/images/screenie2.png" afterPath="" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/README.md" afterPath="$PROJECT_DIR$/README.md" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/js/game/entities/actors/Player.js" afterPath="$PROJECT_DIR$/assets/js/game/entities/actors/Player.js" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -23,15 +21,26 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="README.md" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/README.md">
-          <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
-            <state split_layout="SPLIT">
-              <first_editor relative-caret-position="162">
-                <caret line="9" column="23" lean-forward="true" selection-start-line="9" selection-start-column="23" selection-end-line="9" selection-end-column="23" />
-                <folding />
-              </first_editor>
-              <second_editor />
+      <file leaf-file-name="rot.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/assets/js/lib/rot.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="756">
+              <caret line="159" column="16" lean-forward="false" selection-start-line="159" selection-start-column="14" selection-end-line="159" selection-end-column="16" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Player.js" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/assets/js/game/entities/actors/Player.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="490">
+              <caret line="116" column="29" lean-forward="true" selection-start-line="116" selection-start-column="29" selection-end-line="116" selection-end-column="29" />
+              <folding>
+                <element signature="e#0#42#0" expanded="false" />
+                <marker date="1499573755713" expanded="true" signature="1658:1689" ph="{...}" />
+                <marker date="1499573755713" expanded="true" signature="8711:8786" ph="{...}" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -72,6 +81,7 @@
       <find>options.blocked</find>
       <find>var</find>
       <find>walls</find>
+      <find>g</find>
     </findStrings>
     <replaceStrings>
       <replace>keypress</replace>
@@ -138,9 +148,9 @@
         <option value="$PROJECT_DIR$/assets/js/game/Game.js" />
         <option value="$PROJECT_DIR$/assets/js/game/map/Tile.js" />
         <option value="$PROJECT_DIR$/assets/js/game/entities/Entity.js" />
-        <option value="$PROJECT_DIR$/assets/js/game/entities/actors/Player.js" />
         <option value="$PROJECT_DIR$/assets/js/game/entities/actors/enemies/Orc.js" />
         <option value="$PROJECT_DIR$/README.md" />
+        <option value="$PROJECT_DIR$/assets/js/game/entities/actors/Player.js" />
       </list>
     </option>
   </component>
@@ -237,6 +247,10 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="js" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="lib" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -627,13 +641,6 @@
       <workItem from="1499397336416" duration="133000" />
       <workItem from="1499571798590" duration="789000" />
     </task>
-    <task id="LOCAL-00005" summary="Added rats, fixed death screen, made sure that changing between overworld and dungeons saves player location">
-      <created>1497659376328</created>
-      <option name="number" value="00005" />
-      <option name="presentableId" value="LOCAL-00005" />
-      <option name="project" value="LOCAL" />
-      <updated>1497659376328</updated>
-    </task>
     <task id="LOCAL-00006" summary="Working on items and changing the inheritance for actors">
       <created>1498003937800</created>
       <option name="number" value="00006" />
@@ -970,11 +977,18 @@
       <option name="project" value="LOCAL" />
       <updated>1499572492477</updated>
     </task>
-    <option name="localTasksCounter" value="54" />
+    <task id="LOCAL-00054" summary="Added GIF for github">
+      <created>1499573264487</created>
+      <option name="number" value="00054" />
+      <option name="presentableId" value="LOCAL-00054" />
+      <option name="project" value="LOCAL" />
+      <updated>1499573264487</updated>
+    </task>
+    <option name="localTasksCounter" value="55" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="151604000" />
+    <option name="totallyTimeSpent" value="152118000" />
   </component>
   <component name="TodoView" selected-index="4">
     <todo-panel id="selected-file">
@@ -1071,7 +1085,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="false" />
-    <MESSAGE value="Removed labels for UI items - found that they are sort of unnecessary" />
     <MESSAGE value="Inventory system is working and looking nice. Tool tips for items show item type, name, and damage if it's a weapon. Clicking on the item will equip the weapon for the player. DnD-like combat system is now implemented." />
     <MESSAGE value="Inventory system is working and looking nice. Tool tips for items show item type, name, and damage if it's a weapon. Clicking on the item will equip the weapon for the player. DnD-like combat system is now implemented. Next up is a stats rework" />
     <MESSAGE value="Pushing graphical tiles implementation" />
@@ -1096,7 +1109,8 @@
     <MESSAGE value="Added little castle with shaman and orc lords...?" />
     <MESSAGE value="Added orc enemy type (very challenging) and empowered orcs that will lifesteal off of the player!" />
     <MESSAGE value="Added working doors, fixed issue with player exiting/entering dungeons from ladder, and cleaned up a nasty bug that made it so monsters wouldn't attack you when you attacked them." />
-    <option name="LAST_COMMIT_MESSAGE" value="Added working doors, fixed issue with player exiting/entering dungeons from ladder, and cleaned up a nasty bug that made it so monsters wouldn't attack you when you attacked them." />
+    <MESSAGE value="Added GIF for github" />
+    <option name="LAST_COMMIT_MESSAGE" value="Added GIF for github" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1260,14 +1274,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/assets/js/lib/rot.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="24354">
-          <caret line="1356" column="4" lean-forward="false" selection-start-line="1356" selection-start-column="4" selection-end-line="1356" selection-end-column="4" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/assets/js/game/map/Tile.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1710">
@@ -1305,19 +1311,6 @@
             <marker date="1499572796455" expanded="true" signature="2509:2515" ph="{...}" />
             <marker date="1499572796455" expanded="true" signature="7740:7746" ph="{...}" />
             <marker date="1499572796455" expanded="true" signature="7740:7748" ph="{...}" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/assets/js/game/entities/actors/Player.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="4752">
-          <caret line="266" column="0" lean-forward="false" selection-start-line="266" selection-start-column="0" selection-end-line="266" selection-end-column="0" />
-          <folding>
-            <element signature="e#0#42#0" expanded="false" />
-            <marker date="1499572796455" expanded="true" signature="334:8750" ph="{...}" />
-            <marker date="1499572796455" expanded="true" signature="1658:1689" ph="{...}" />
-            <marker date="1499572796455" expanded="true" signature="8672:8747" ph="{...}" />
           </folding>
         </state>
       </provider>
@@ -1395,6 +1388,26 @@
             <folding />
           </first_editor>
           <second_editor />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/assets/js/lib/rot.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="756">
+          <caret line="159" column="16" lean-forward="false" selection-start-line="159" selection-start-column="14" selection-end-line="159" selection-end-column="16" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/assets/js/game/entities/actors/Player.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="490">
+          <caret line="116" column="29" lean-forward="true" selection-start-line="116" selection-start-column="29" selection-end-line="116" selection-end-column="29" />
+          <folding>
+            <element signature="e#0#42#0" expanded="false" />
+            <marker date="1499573755713" expanded="true" signature="1658:1689" ph="{...}" />
+            <marker date="1499573755713" expanded="true" signature="8711:8786" ph="{...}" />
+          </folding>
         </state>
       </provider>
     </entry>

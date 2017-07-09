@@ -124,7 +124,9 @@ class Player extends Actor {
             72: 6,
             89: 7,
             /* Rest, Pick Up Items, Climb Ladders */
-            188: "pickup", 190: "rest",
+            188: "pickup",
+            71 : "pickup",
+            190: "rest",
         };
 
         if (!(code in keyMap)) { // invalid key press, retry turn
