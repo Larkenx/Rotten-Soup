@@ -2,7 +2,6 @@
 <html>
 <head>
     <title>Rotten Soup</title>
-    <!--<link href="https://fonts.googleapis.com/css?family=Droid+Sans+Mono|Press+Start+2P" rel="stylesheet">-->
     <!-- Local app files -->
     <script src="assets/js/lib/rot.js"></script>
     <script src="assets/js/lib/jquery.min.js"></script>
@@ -31,6 +30,7 @@
     <script src="assets/js/game/GameDisplay.js"></script>
     <script src="assets/js/game/Game.js"></script>
     <!-- Vue -->
+    <script src="https://use.fontawesome.com/d7889c2247.js"></script>
     <script src="assets/js/lib/vue.js"></script>
     <!-- Vuetify -->
     <link href="assets/css/vuetify.min.css" rel="stylesheet" type="text/css">
@@ -39,6 +39,9 @@
 <body>
 <div id="app">
     <v-container style="padding: 10px; height: 100%;">
+        <v-layout row>
+            <h1>RottenSoup</h1>
+        </v-layout>
         <v-layout row>
             <v-flex column>
                 <!-- Game Display-->
@@ -62,7 +65,7 @@
                 </v-layout>
                 <!-- Magic Bar -->
                 <v-layout row align-center>
-                    <v-flex xs2 col><b>Mana</b></v-flex>
+                    <v-flex xs2 col><b>Magic</b></v-flex>
                     <v-flex xs7 col> <v-progress-linear :value="(getMana() / getMaxMana()) * 100" height="10" info></v-progress-linear> </v-flex>
                     <v-flex xs3 col> {{getMana()}} / {{getMaxMana()}}</v-flex>
                 </v-layout>
@@ -72,6 +75,14 @@
                 <!-- Mini-map -->
                 <v-layout row align-center>
                     <div id="minimap_container" class="flex" style="margin: 10px auto 10px auto;"></div>
+                </v-layout>
+                <!-- Enemies Description -->
+                <v-layout row align-center>
+                    <div id="enemies_in_sight" class="flex" style="margin: 10px auto 10px auto;">
+                        <v-layout v-for="(enemy, index) in getSurroundingEnemies()" class="inventory_row" row v-bind:key="index">
+
+                        </v-layout>
+                    </div>
                 </v-layout>
                 <!-- Inventory -->
                 <v-layout v-for="(row, index) in rows" class="inventory_row" row v-bind:key="index">
@@ -122,14 +133,11 @@
                        style="margin: 0 auto;"><b>Play Again?</b></v-btn>
             </v-layout>
         </v-container>
-        <!--<v-container class="" style="position: fixed; bottom: 0; margin: 0 auto">-->
-        <!--<span style="color: white; text-align: center">Created by Steven Myers</span>-->
-        <!--<a style="text-decoration: none;" href="https://github.com/Larkenx/Rotten-Soup">-->
-        <!--<v-btn icon ripple>-->
-        <!--<i style="color: lightgray; margin: auto;" class="fa fa-3x fa-github" aria-hidden="true"></i>-->
-        <!--</v-btn>-->
-        <!--</a>-->
-        <!--</v-container>-->
+        <a id="git_logo" style="text-decoration: none;" href="https://github.com/Larkenx/Rotten-Soup">
+            <v-btn icon ripple>
+                <i i style="color: white; margin: auto;" class="fa fa-3x fa-github" aria-hidden="true"></i>
+            </v-btn>
+        </a>
     </v-container>
 </div>
 <script>
@@ -188,6 +196,9 @@
                 return inventory.slice(offset, offset + (inventory.length / this.rows.length));
 
             },
+            getSurroundingEnemies() {
+                return [];
+            },
             startNewGame() {
                 console.log("Starting new game...");
                 $('#fix_scroll').empty();
@@ -223,6 +234,13 @@
     body {
         background-color: black;
         font-family: 'inconsolata';
+    }
+
+    #git_logo {
+        position: absolute;
+        padding: 10px;
+        top: 0;
+        right:0;
     }
 
     .console {

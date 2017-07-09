@@ -15,7 +15,7 @@ Rotten Soup is roguelike written in JavaScript with [rot.js](http://ondras.githu
 ```
 
 - You can move up and down ladders using `>` (down) and `<` (up).
-- You can rest for a turn with `.`
+- You can rest for a turn with `.` or `5` on the numpad.
 - You can pick up items with `,` or `g`.
 
 # Current Features
