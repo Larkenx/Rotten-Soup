@@ -40,7 +40,7 @@
 <div id="app">
     <v-container style="padding: 10px; height: 100%;">
         <v-layout row>
-            <h1>RottenSoup</h1>
+            <h2>RottenSoup</h2>
         </v-layout>
         <v-layout row>
             <v-flex column>
@@ -56,7 +56,7 @@
                 </v-layout>
             </v-flex>
             <!-- HUD-->
-            <v-flex class="hud elevation-0"  column>
+            <v-flex class="hud elevation-0" column>
                 <!-- Health Bar -->
                 <v-layout row align-center style=" margin-bottom: -10px;">
                     <v-flex xs2 col><b>Health </b></v-flex>
@@ -71,19 +71,19 @@
                 </v-layout>
                 <!-- Skills -->
                 <!--<v-layout row style="margin-left: 10px;"> <v-flex xs12 col><b>DEF {{getCB().def}}</b></v-flex> </v-layout>-->
-                <v-layout row style="margin-left: 10px;"> <v-flex col><b>STR {{getCB().str}}</b></v-flex> </v-layout>
+                <!--<v-layout row style="margin-left: 10px;"> <v-flex col><b>STR {{getCB().str}}</b></v-flex> </v-layout>-->
                 <!-- Mini-map -->
                 <v-layout row align-center>
                     <div id="minimap_container" class="flex" style="margin: 10px auto 10px auto;"></div>
                 </v-layout>
                 <!-- Enemies Description -->
-                <v-layout row align-center>
-                    <div id="enemies_in_sight" class="flex" style="margin: 10px auto 10px auto;">
-                        <v-layout v-for="(enemy, index) in getSurroundingEnemies()" class="inventory_row" row v-bind:key="index">
-
-                        </v-layout>
-                    </div>
-                </v-layout>
+                <!--<b>Enemies</b>-->
+                <v-layout row wrap style="margin-left:10px;height: 100px;">
+                        <v-flex class="enemy_col" xs2 col align-center v-for="(enemy, index) in getSurroundingEnemies()" align-center row v-bind:key="index" v-tooltip:bottom="{html : enemy.getHoverInfo() }">
+                            <v-layout row  style="font-size: 11px; margin: 0px auto -10px 0px">{{enemy.name().capitalize()}}</v-layout>
+                            <v-layout row  style="width: 100%; margin: 0 auto;"><v-progress-linear :value="(enemy.getHP() / enemy.getMaxHP()) * 100" height="4" error></v-progress-linear></v-layout>
+                        </v-flex>
+                    </v-layout>
                 <!-- Inventory -->
                 <v-layout v-for="(row, index) in rows" class="inventory_row" row v-bind:key="index">
                     <v-flex class="" xs1 col v-for="(slot, i) in getInventoryRow(index)" v-bind:key="i"  v-bind:class="{selectedItem : colorSlot(slot), inventory_slot : ! colorSlot(slot)}">
@@ -156,13 +156,15 @@
             return {
                 messages: Game.message_history,
                 player: null,
+                actors: null,
                 rows: [1, 2, 3, 4],
             };
         },
         computed () {
             return {
                 inventory: Game.player.inventory,
-                player: Game.player
+                player: Game.player,
+                actors: Game.map.actors
             }
         },
         methods: {
@@ -184,6 +186,9 @@
             getCB() {
                 return Game.player.cb;
             },
+            getPlayerCoords() {
+                return [Game.player.x, Game.player.y];
+            },
             playerIsDead() {
                 if (Game.player === null)
                     return false;
@@ -197,7 +202,8 @@
 
             },
             getSurroundingEnemies() {
-                return [];
+                console.log("called get surrounding");
+                return Game.getNearbyEnemies();
             },
             startNewGame() {
                 console.log("Starting new game...");
@@ -253,7 +259,7 @@
         background-color: black;
         color: white;
         font-size: 13px;
-        margin-left: 50px;
+        margin-left: 20px;
         width: 30em;
     }
 
@@ -304,6 +310,23 @@
     .selectedItem:hover {
         background-color: #009e00;
         cursor: pointer;
+    }
+
+    .enemy_col {
+        cursor: pointer;
+        border: 2px solid #4f4f4f;
+        background-color: #142929;
+        border-radius: 4px;
+        margin: 2px;
+        max-height: 30px;
+    }
+    .enemy_col:hover {
+        cursor: pointer;
+        border: 2px solid #4f4f4f;
+        background-color: #557081;
+        border-radius: 4px;
+        margin: 2px;
+        max-height: 30px;
     }
 
     .test {

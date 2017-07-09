@@ -37,12 +37,13 @@ class Orc extends Actor {
         super.act();
         Game.engine.lock();
         if (this.distanceTo(Game.player) < 9) {
-            if (!this.chasing) {
+            if (!this.options.chasing) {
                 let msg = this.cb.empowered ? 'An empowered orc sees you.' : 'An orc sees you.';
                 Game.log(msg, 'alert');
             }
 
-            this.chasing = true;
+            this.options.chasing = true;
+            this.options.inView = true;
             let pathToPlayer = [];
             Game.player.path.compute(this.x, this.y, function (x, y) {
                 pathToPlayer.push([x, y]);
@@ -51,6 +52,8 @@ class Orc extends Actor {
                 let newPos = pathToPlayer[1]; // 1 past the current position
                 this.tryMove(newPos[0], newPos[1]);
             }
+        } else {
+            this.options.inView = false;
         }
         Game.engine.unlock();
     }

@@ -21,6 +21,7 @@ class Player extends Actor {
             visible: true,
             blocked: true,
             leveled_up: true,
+            enemiesInView: [],
             combat: {
                 /* options.combat, dedicated to all things related to combat */
                 description: [" attacked ", " stabbed ", " jabbed ", " smashed "],
@@ -49,10 +50,10 @@ class Player extends Actor {
     }
 
     act() {
-        super.act();
+        // super.act();
         Game.engine.lock();
         window.addEventListener("keydown", this);
-        // window.addEventListener("click", this);
+        window.addEventListener("click", this);
     }
 
     interact(actor) { // returns true if we can continue to move to the tile
@@ -87,10 +88,11 @@ class Player extends Actor {
 
     handleEvent(evt) {
         /* Mouse controls to hover over tiles for info (describe) */
-        // if (evt.type === "click") {
-        //     Game.selectedTile = Game.display.eventToPosition(evt);
-        //     return;
-        // }
+        if (evt.type === "click") {
+            let t = Game.eventToTile(evt);
+            console.log(t);
+            return;
+        }
         let code = evt.keyCode;
         let shift_pressed = evt.getModifierState("Shift");
         let endturn = function () {

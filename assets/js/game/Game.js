@@ -175,6 +175,7 @@ let Game = {
         if (camera.y + camera.height > Game.map.height) { // at the bottom of the map
             startingPos[1] = Game.map.height - camera.height;
         }
+        this.camera = {x: startingPos[0], y: startingPos[1]};
         let endingPos = [startingPos[0] + camera.width, startingPos[1] + camera.height];
         let dx = 0;
         let dy = 0;
@@ -279,7 +280,19 @@ let Game = {
         this.drawMiniMap();
     },
 
+    getNearbyEnemies: function () {
+        // operates on the 'chasing' boolean flag on actors :)
+        return this.map.actors.filter((el) => {return el.options.inView === true });
+    },
+
     printPlayerTile: function () {
         console.log(Game.map.data[this.player.y][this.player.x]);
+    },
+
+    eventToTile(evt) {
+        let t = Game.display.eventToPosition(evt);
+        let x = t[0] + this.camera.x;
+        let y = t[1] + this.camera.y;
+        return this.map.data[y][x];
     }
 };

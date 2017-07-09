@@ -36,8 +36,9 @@ class Goblin extends Actor {
         super.act();
         Game.engine.lock();
         if (this.distanceTo(Game.player) < 9) {
-            if (!this.chasing) Game.log('A goblin sees you.', 'alert');
-            this.chasing = true;
+            if (!this.options.chasing) Game.log('A goblin sees you.', 'alert');
+            this.options.chasing = true;
+            this.options.inView = true;
             let pathToPlayer = [];
             Game.player.path.compute(this.x, this.y, function (x, y) {
                 pathToPlayer.push([x, y]);
@@ -46,6 +47,8 @@ class Goblin extends Actor {
                 let newPos = pathToPlayer[1]; // 1 past the current position
                 this.tryMove(newPos[0], newPos[1]);
             }
+        } else {
+            this.options.inView = false;
         }
         Game.engine.unlock();
     }
