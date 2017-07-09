@@ -91,7 +91,6 @@ class Actor extends Entity {
 
     /* Called by the ROT.js game scheduler to indicate a turn */
     act() {
-        // pass
     }
 
     addToInventory(newItem) {
@@ -158,9 +157,8 @@ class Actor extends Entity {
     move(nx, ny) {
         let ntile = Game.map.data[ny][nx]; // new tile to move to
         let ctile = Game.map.data[this.y][this.x]; // current tile
-        ctile.actors.shift(this); // remove this actor from this tile
-        // Game.drawTile(ctile); // redraw the tile, with this actor removed
-        ntile.actors.unshift(this); // add this actor to the new tile
+        ctile.removeActor(this); // remove this actor from this tile
+        ntile.actors.push(this); // add this actor to the new tile
 
         this.x = nx; // update x,y coords to new coords
         this.y = ny;
@@ -212,23 +210,21 @@ class Actor extends Entity {
     }
 
     death() {
-        Game.engine._scheduler.remove(this);
+        let idx = Game.engine._scheduler.remove(this);
         let ctile = Game.map.data[this.y][this.x];
         // remove this actor from the global actors list and the occupied tile
         ctile.removeActor(this);
-        let idx = Game.map.actors.indexOf(this);
+        idx = Game.map.actors.indexOf(this);
         // dump the contents of the actor's inventory (items) onto the ground.
         if (this.inventory.length > 0) {
-
             let items = this.items();
             for (let item of items) {
-                console.log(item);
                 ctile.actors.push(item);
             }
         }
         // redraw the tile, either with an appropriate actor or the tile symbol
-        Game.drawViewPort();
         Game.map.actors.splice(idx, 1);
+        // Game.drawViewPort();
 
         if (this === Game.player) {
             Game.log(`You died!`, "death");
@@ -257,5 +253,19 @@ class Item extends Entity {
 
     use () {
         //
+    }
+}
+
+
+class NPC extends Actor {
+    constructor(x,y,id) {
+        super(x,y,{
+            id: id,
+            visible: true,
+            blocked: true,
+            combat : {
+              hostile: false
+            }
+        });
     }
 }

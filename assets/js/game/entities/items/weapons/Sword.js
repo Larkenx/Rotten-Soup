@@ -2,14 +2,14 @@
  * Created by Larken on 6/22/2017.
  */
 class Sword extends Weapon {
-    constructor(x, y, sides, name, id) {
+    constructor(x, y, sides, rolls, name, id) {
         super(x, y, {
             id: id,
             name: name,
             type: "Sword",
             fg: 'orange',
             combat: {
-                rolls: getRandomInt(1,3),
+                rolls: rolls,
                 sides: sides,
             }
         });
@@ -21,5 +21,5 @@ let swordNames = [
 ];
 
 function createSword(x, y, id) {
-    return new Sword(x, y, getRandomInt(2, 5), swordNames[getRandomInt(0, swordNames.length - 1)], id);
+    return new Sword(x, y, getRandomInt(2, 5), getRandomInt(1,3), swordNames[getRandomInt(0, swordNames.length - 1)], id);
 }

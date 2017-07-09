@@ -48,15 +48,12 @@ class Tile {
     }
 
     visible() {
-        return ! this.obstacles.some( (el) => { return el.blocks_vision });
+        return ! (this.obstacles.some( (el) => { return el.blocks_vision }) || this.actors.some( (el) => { return !el.options.visible}));
     }
 
     removeActor(a) {
-        for (let i = 0; i < this.actors.length; i++) {
-            if (this.actors[i] === a) {
-                this.actors.splice(i, 1);
-            }
-        }
+        let idx = this.actors.indexOf(a);
+        this.actors.splice(idx, 1);
     }
 
     bg() {

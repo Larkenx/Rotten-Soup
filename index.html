@@ -8,16 +8,20 @@
     <script src="assets/js/lib/jquery.min.js"></script>
     <!-- Entities -->
     <script src="assets/js/game/entities/Entity.js"></script>
-    <script src="assets/js/game/entities/Ladder.js"></script>
+    <script src="assets/js/game/entities/misc/Ladder.js"></script>
+    <script src="assets/js/game/entities/misc/Door.js"></script>
     <!-- Actors -->
-    <script src="assets/js/game/entities/actors/Goblin.js"></script>
     <script src="assets/js/game/entities/actors/Player.js"></script>
-    <script src="assets/js/game/entities/actors/Rat.js"></script>
+    <!-- Enemies -->
+    <script src="assets/js/game/entities/actors/enemies/Goblin.js"></script>
+    <script src="assets/js/game/entities/actors/enemies/Orc.js"></script>
+    <script src="assets/js/game/entities/actors/enemies/Rat.js"></script>
     <!-- Weapons-->
     <script src="assets/js/game/entities/items/weapons/Weapon.js"></script>
     <script src="assets/js/game/entities/items/weapons/Sword.js"></script>
     <!-- Game, Utilities, and Map -->
     <script src="assets/js/game/map/Map.js"></script>
+    <script src="assets/js/game/map/RandomMap.js"></script>
     <script src="assets/js/game/map/Tile.js"></script>
     <!--  Tileset -->
     <!--<script src="assets/maps/tileset/compiled_dawnlike.js"></script>-->
@@ -135,6 +139,9 @@
         url: "assets/maps/tileset/compiled_dawnlike.json",
         datatype:"json",
     }).done((data) => {tileset = data;});
+//    $.getJSON("assets/maps/tileset/compiled_dawnlike.json", function (data) {
+//        const tileset = data;
+//    });
     let vm = new Vue({
         el: '#app',
         data () {

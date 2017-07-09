@@ -11,9 +11,9 @@ function getTilesetCoords(id) {
     return [colNumber, rowNumber];
 }
 
-$.getJSON("assets/maps/tileset/compiled_dawnlike.json", function (data) {
-    const tileset = data;
-});
+// $.getJSON("assets/maps/tileset/compiled_dawnlike.json", function (data) {
+//     const tileset = data;
+// });
 
 let Game = {
     overview: null,
@@ -33,12 +33,12 @@ let Game = {
     map: null,
     message_history: [],
     minimap: null,
+    selectedTile: null,
 
     init: function (dev = false) {
         this.dev = dev;
-        // this.map = new Map(TileMaps["overworld"]);
+        this.map = new Map(TileMaps["overworld"]);
         this.levels["overworld"] = new Map(TileMaps["overworld"]);
-        this.map = new Map(randomMap(50, 50));
         this.map.revealed = true;
         this.playerLocation = this.map.playerLocation;
         /* !Important! - PlayerID must be allocated before other maps are drawn... */
@@ -59,6 +59,8 @@ let Game = {
                     tileMap[properties.animated_id] = getTilesetCoords(properties.animated_id);
                 if (properties.animated && properties.FOV)
                     tileMap[properties.animated_fov_id] = getTilesetCoords(properties.animated_fov_id);
+                if (properties.activated_id)
+                    tileMap[properties.activated_id] = getTilesetCoords(properties.activated_id);
             }
         }
         this.displayOptions = {
@@ -142,7 +144,7 @@ let Game = {
         // Save the old map
         this.levels[this.currentLevel] = this.map; // add the old map to 'levels'
         // Unshift player from ladder position (so that when resurfacing, no player is present)
-        this.map.data[this.player.y][this.player.x].actors.shift();
+        this.map.data[this.player.y][this.player.x].removeActor(this.player);
         // Add the new map to the game
         this.map = this.levels[newLevel];
         this.currentLevel = newLevel;
@@ -190,6 +192,7 @@ let Game = {
         });
 
         // Draw the viewport
+        /*
         for (let x = startingPos[0]; x < endingPos[0]; x++) {
             for (let y = startingPos[1]; y < endingPos[1]; y++) {
                 let tile = this.map.data[y][x];
@@ -202,12 +205,38 @@ let Game = {
             dx++;
             dy = 0;
         }
+        */
+        for (let x = startingPos[0]; x < endingPos[0]; x++) {
+            for (let y = startingPos[1]; y < endingPos[1]; y++) {
+                let tile = this.map.data[y][x];
+                if (this.map.revealed) {
+                    this.drawTile(dx, dy++, tile, false);
+                } else {
+                    if (tile.x + "," + tile.y in this.map.visible_tiles) {
+                        this.drawTile(dx, dy++, tile, false);
+                    } else if (tile.x + "," + tile.y in this.map.seen_tiles) {
+                        this.drawTile(dx, dy++, tile, true);
+                    } else {
+                        Game.display.draw(dx,dy++, "", "black", "black");
+                    }
+                }
+            }
+            dx++;
+            dy = 0;
+        }
     },
 
     drawTile: function (x, y, tile, fov) {
         let symbols = tile.getSpriteIDS(this.turn % 2 === 0, fov);
         // if (symbols.some((e) => {return e === "0"})) throw "A tile is empty!"
         Game.display.draw(x, y, symbols);
+    },
+
+    drawSelectedTile: function () {
+        let coords = this.selectedTile;
+        if (coords !== null && coords[0] !== -1 && coords[1] !== -1) {
+            Game.display.draw(coords[0],coords[1],"", "transparent", "rgba(250,250,250,0.5)");
+        }
     },
 
     drawMiniMap: function () {
@@ -246,6 +275,7 @@ let Game = {
 
     updateDisplay: function () {
         this.drawViewPort();
+        this.drawSelectedTile();
         this.drawMiniMap();
     },
 
