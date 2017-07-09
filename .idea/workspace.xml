@@ -2,20 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="359ee7cd-d060-4cb9-a2ed-d128b311220f" name="Default" comment="">
-      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/css/app.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/css/w3.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/fonts/Metrickal.otf" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/fonts/VT323.ttf" afterPath="" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/assets/maps/cropped_tileset.png" afterPath="$PROJECT_DIR$/assets/maps/old/cropped_tileset.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/assets/maps/expanded_start.js" afterPath="$PROJECT_DIR$/assets/maps/old/expanded_start.js" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/assets/maps/expanded_start.json" afterPath="$PROJECT_DIR$/assets/maps/old/expanded_start.json" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/assets/maps/original_expanded_start.js" afterPath="$PROJECT_DIR$/assets/maps/old/original_expanded_start.js" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/assets/maps/tileset copy.png" afterPath="$PROJECT_DIR$/assets/maps/old/tileset copy.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/assets/maps/tileset-animated.tsx" afterPath="$PROJECT_DIR$/assets/maps/old/tileset-animated.tsx" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/assets/maps/tileset.png" afterPath="$PROJECT_DIR$/assets/maps/old/tileset.png" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/README.md" afterPath="$PROJECT_DIR$/README.md" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/index.html" afterPath="$PROJECT_DIR$/index.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/maps/map_file/overworld.js" afterPath="$PROJECT_DIR$/assets/maps/map_file/overworld.js" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -46,15 +34,49 @@
       <file leaf-file-name="index.html" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/index.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="584">
-              <caret line="134" column="22" lean-forward="false" selection-start-line="134" selection-start-column="22" selection-end-line="134" selection-end-column="22" />
+            <state relative-caret-position="450">
+              <caret line="84" column="33" lean-forward="true" selection-start-line="84" selection-start-column="33" selection-end-line="84" selection-end-column="33" />
               <folding>
-                <element signature="n#v-flex#0;n#v-layout#1;n#v-container#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="false" />
-                <element signature="n#style#0;n#div#0;n#v-layout#4;n#v-flex#1;n#v-layout#1;n#v-container#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-                <element signature="n#v-container#0;n#v-container#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="false" />
+                <element signature="n#style#0;n#v-list#0;n#v-layout#1;n#v-flex#0;n#v-layout#1;n#v-container#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#v-layout#0;n#v-flex#1;n#v-layout#1;n#v-container#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#v-layout#3;n#v-flex#1;n#v-layout#1;n#v-container#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#v-layout#0;n#v-flex#0;n#v-layout#3;n#v-flex#1;n#v-layout#1;n#v-container#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#v-layout#1;n#v-flex#0;n#v-layout#3;n#v-flex#1;n#v-layout#1;n#v-container#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#v-btn#0;n#v-layout#0;n#v-container#0;n#v-container#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
                 <element signature="n#style#0;n#a#0;n#v-container#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
                 <element signature="n#style#0;n#i#0;n#v-btn#0;n#a#0;n#v-container#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-                <marker date="1499575397857" expanded="true" signature="7538:7541" ph="//..." />
+                <marker date="1499581892695" expanded="true" signature="7902:7905" ph="//..." />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Game.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/assets/js/game/Game.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="1987">
+              <caret line="120" column="0" lean-forward="false" selection-start-line="120" selection-start-column="0" selection-end-line="134" selection-end-column="9" />
+              <folding>
+                <marker date="1499579125433" expanded="true" signature="10989:11026" ph="{...}" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Entity.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/assets/js/game/entities/Entity.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="337">
+              <caret line="249" column="60" lean-forward="false" selection-start-line="249" selection-start-column="60" selection-end-line="249" selection-end-column="60" />
+              <folding>
+                <element signature="e#62#224#0" expanded="false" />
+                <element signature="n#!!block;n#getRandomInt#0" expanded="false" />
+                <element signature="e#800#820#0" expanded="false" />
+                <element signature="e#821#851#0" expanded="false" />
+                <element signature="n#!!block;n#capitalize#0" expanded="false" />
+                <element signature="n#!!block;n#addPrefix#0" expanded="false" />
+                <element signature="e#1819#1935#0" expanded="false" />
+                <element signature="e#1941#1969#0" expanded="false" />
               </folding>
             </state>
           </provider>
@@ -63,13 +85,13 @@
       <file leaf-file-name="Player.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/assets/js/game/entities/actors/Player.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="508">
-              <caret line="99" column="21" lean-forward="false" selection-start-line="99" selection-start-column="21" selection-end-line="99" selection-end-column="21" />
+            <state relative-caret-position="-767">
+              <caret line="23" column="30" lean-forward="false" selection-start-line="23" selection-start-column="30" selection-end-line="23" selection-end-column="30" />
               <folding>
                 <element signature="e#0#42#0" expanded="false" />
-                <element signature="e#3367#4065#0" expanded="false" />
-                <marker date="1499573755713" expanded="true" signature="1658:1689" ph="{...}" />
-                <marker date="1499573755713" expanded="true" signature="8711:8786" ph="{...}" />
+                <element signature="e#3390#4088#0" expanded="false" />
+                <marker date="1499579219672" expanded="true" signature="1689:1723" ph="{...}" />
+                <marker date="1499579219672" expanded="true" signature="8734:8809" ph="{...}" />
               </folding>
             </state>
           </provider>
@@ -174,12 +196,14 @@
         <option value="$PROJECT_DIR$/assets/js/game/entities/actors/Orc.js" />
         <option value="$PROJECT_DIR$/assets/js/game/map/Map.js" />
         <option value="$PROJECT_DIR$/assets/js/game/entities/items/weapons/Sword.js" />
-        <option value="$PROJECT_DIR$/assets/js/game/Game.js" />
         <option value="$PROJECT_DIR$/assets/js/game/map/Tile.js" />
-        <option value="$PROJECT_DIR$/assets/js/game/entities/Entity.js" />
-        <option value="$PROJECT_DIR$/assets/js/game/entities/actors/enemies/Orc.js" />
-        <option value="$PROJECT_DIR$/assets/js/game/entities/actors/Player.js" />
         <option value="$PROJECT_DIR$/README.md" />
+        <option value="$PROJECT_DIR$/assets/js/game/entities/actors/enemies/Goblin.js" />
+        <option value="$PROJECT_DIR$/assets/js/game/entities/actors/enemies/Orc.js" />
+        <option value="$PROJECT_DIR$/assets/js/game/entities/actors/enemies/Rat.js" />
+        <option value="$PROJECT_DIR$/assets/js/game/Game.js" />
+        <option value="$PROJECT_DIR$/assets/js/game/entities/actors/Player.js" />
+        <option value="$PROJECT_DIR$/assets/js/game/entities/Entity.js" />
         <option value="$PROJECT_DIR$/index.html" />
       </list>
     </option>
@@ -259,28 +283,6 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="assets" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Rotten-Soup" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Rotten-Soup" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="assets" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="js" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="lib" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -629,20 +631,6 @@
       <workItem from="1499397336416" duration="133000" />
       <workItem from="1499571798590" duration="789000" />
     </task>
-    <task id="LOCAL-00007" summary="Added sword, weapon, item, entity classes. Made some sword objects and made every goblin drop one on death. Introduced new bug that makes invincible goblins if attacked over a sword...? Introduced unicode characters (testing)">
-      <created>1498107118529</created>
-      <option name="number" value="00007" />
-      <option name="presentableId" value="LOCAL-00007" />
-      <option name="project" value="LOCAL" />
-      <updated>1498107118529</updated>
-    </task>
-    <task id="LOCAL-00008" summary="Squashed the bug with undying/undamaging goblins. Weird problem with JS array pop method vs shift">
-      <created>1498108951299</created>
-      <option name="number" value="00008" />
-      <option name="presentableId" value="LOCAL-00008" />
-      <option name="project" value="LOCAL" />
-      <updated>1498108951299</updated>
-    </task>
     <task id="LOCAL-00009" summary="Quick fix to the map">
       <created>1498109009003</created>
       <option name="number" value="00009" />
@@ -972,11 +960,25 @@
       <option name="project" value="LOCAL" />
       <updated>1499573770457</updated>
     </task>
-    <option name="localTasksCounter" value="56" />
+    <task id="LOCAL-00056" summary="Removed some old files and starting work on an overview of surrounding enemies. Added github icon link in upper-right hand corner and title of game">
+      <created>1499575465560</created>
+      <option name="number" value="00056" />
+      <option name="presentableId" value="LOCAL-00056" />
+      <option name="project" value="LOCAL" />
+      <updated>1499575465560</updated>
+    </task>
+    <task id="LOCAL-00057" summary="Added UI component to show nearby enemies and their HP progress bars. On-hover over these elements will show HP numerically and the npc's  description">
+      <created>1499582038644</created>
+      <option name="number" value="00057" />
+      <option name="presentableId" value="LOCAL-00057" />
+      <option name="project" value="LOCAL" />
+      <updated>1499582038644</updated>
+    </task>
+    <option name="localTasksCounter" value="58" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="153782000" />
+    <option name="totallyTimeSpent" value="160690000" />
   </component>
   <component name="TodoView" selected-index="4">
     <todo-panel id="selected-file">
@@ -991,7 +993,7 @@
     <frame x="-8" y="-8" width="1936" height="1066" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.20052083" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.111979164" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3294979" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3294979" sideWeight="0.50208336" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.26987448" sideWeight="0.49791667" order="7" side_tool="false" content_ui="tabs" />
@@ -1073,8 +1075,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="false" />
-    <MESSAGE value="Inventory system is working and looking nice. Tool tips for items show item type, name, and damage if it's a weapon. Clicking on the item will equip the weapon for the player. DnD-like combat system is now implemented. Next up is a stats rework" />
-    <MESSAGE value="Pushing graphical tiles implementation" />
     <MESSAGE value="Fixed FOV with textures (sort of?)" />
     <MESSAGE value="Small update to map" />
     <MESSAGE value="Merged changes. Starter sword is now equipped on spawn, player is properly above entities like ladders and swords. Player levels up after kills and increases in HP and STR." />
@@ -1098,7 +1098,9 @@
     <MESSAGE value="Added working doors, fixed issue with player exiting/entering dungeons from ladder, and cleaned up a nasty bug that made it so monsters wouldn't attack you when you attacked them." />
     <MESSAGE value="Added GIF for github" />
     <MESSAGE value="Added 'g' for pickup action" />
-    <option name="LAST_COMMIT_MESSAGE" value="Added 'g' for pickup action" />
+    <MESSAGE value="Removed some old files and starting work on an overview of surrounding enemies. Added github icon link in upper-right hand corner and title of game" />
+    <MESSAGE value="Added UI component to show nearby enemies and their HP progress bars. On-hover over these elements will show HP numerically and the npc's  description" />
+    <option name="LAST_COMMIT_MESSAGE" value="Added UI component to show nearby enemies and their HP progress bars. On-hover over these elements will show HP numerically and the npc's  description" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1184,14 +1186,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/assets/js/game/entities/actors/enemies/Rat.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="105">
-          <caret line="7" column="19" lean-forward="false" selection-start-line="7" selection-start-column="19" selection-end-line="7" selection-end-column="19" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/assets/js/game/GameDisplay.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="90">
@@ -1246,54 +1240,11 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/assets/js/game/entities/actors/enemies/Goblin.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="126">
-          <caret line="9" column="26" lean-forward="false" selection-start-line="9" selection-start-column="26" selection-end-line="9" selection-end-column="26" />
-          <folding>
-            <element signature="n#!!doc;n#Goblin#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/assets/js/game/map/Tile.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1710">
           <caret line="95" column="44" lean-forward="false" selection-start-line="95" selection-start-column="44" selection-end-line="95" selection-end-column="44" />
           <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/assets/js/game/Game.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="900">
-          <caret line="50" column="25" lean-forward="false" selection-start-line="50" selection-start-column="25" selection-end-line="50" selection-end-column="25" />
-          <folding>
-            <marker date="1499572804653" expanded="true" signature="10927:10964" ph="{...}" />
-            <marker date="1499572804653" expanded="true" signature="10927:11075" ph="{&quot;currentLevel&quot;: &quot;overworld&quot;...}" />
-            <marker date="1499572804653" expanded="true" signature="11000:11073" ph="{...}" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/assets/js/game/entities/Entity.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="3258">
-          <caret line="223" column="0" lean-forward="false" selection-start-line="223" selection-start-column="0" selection-end-line="223" selection-end-column="0" />
-          <folding>
-            <element signature="e#62#224#0" expanded="false" />
-            <element signature="n#!!block;n#getRandomInt#0" expanded="false" />
-            <element signature="e#795#815#0" expanded="false" />
-            <element signature="e#816#846#0" expanded="false" />
-            <element signature="n#!!block;n#capitalize#0" expanded="false" />
-            <element signature="n#!!block;n#addPrefix#0" expanded="false" />
-            <element signature="e#1814#1930#0" expanded="false" />
-            <element signature="e#1936#1964#0" expanded="false" />
-            <marker date="1499572796455" expanded="true" signature="1995:2515" ph="{...}" />
-            <marker date="1499572796455" expanded="true" signature="2509:2515" ph="{...}" />
-            <marker date="1499572796455" expanded="true" signature="7740:7746" ph="{...}" />
-            <marker date="1499572796455" expanded="true" signature="7740:7748" ph="{...}" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1305,24 +1256,6 @@
     <entry file="file://$PROJECT_DIR$/assets/images/DawnLike/Compiled/compiled_tileset_32x32.psd">
       <provider selected="true" editor-type-id="images">
         <state />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/assets/js/game/entities/actors/enemies/Orc.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="216">
-          <caret line="14" column="44" lean-forward="true" selection-start-line="14" selection-start-column="44" selection-end-line="14" selection-end-column="44" />
-          <folding>
-            <element signature="n#!!doc;n#Orc#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/assets/js/lib/rot.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="756">
-          <caret line="159" column="16" lean-forward="false" selection-start-line="159" selection-start-column="14" selection-end-line="159" selection-end-column="16" />
-          <folding />
-        </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/id_notes.md">
@@ -1347,30 +1280,96 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/assets/js/game/entities/actors/enemies/Orc.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="756">
+          <caret line="56" column="0" lean-forward="false" selection-start-line="56" selection-start-column="0" selection-end-line="56" selection-end-column="0" />
+          <folding>
+            <element signature="n#!!doc;n#Orc#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/assets/js/game/entities/actors/enemies/Rat.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="789">
+          <caret line="51" column="39" lean-forward="false" selection-start-line="51" selection-start-column="39" selection-end-line="51" selection-end-column="39" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/assets/js/game/entities/actors/enemies/Goblin.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="576">
+          <caret line="40" column="0" lean-forward="false" selection-start-line="40" selection-start-column="0" selection-end-line="41" selection-end-column="0" />
+          <folding>
+            <element signature="n#!!doc;n#Goblin#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/assets/js/game/entities/actors/Player.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="508">
-          <caret line="99" column="21" lean-forward="false" selection-start-line="99" selection-start-column="21" selection-end-line="99" selection-end-column="21" />
+        <state relative-caret-position="-767">
+          <caret line="23" column="30" lean-forward="false" selection-start-line="23" selection-start-column="30" selection-end-line="23" selection-end-column="30" />
           <folding>
             <element signature="e#0#42#0" expanded="false" />
-            <element signature="e#3367#4065#0" expanded="false" />
-            <marker date="1499573755713" expanded="true" signature="1658:1689" ph="{...}" />
-            <marker date="1499573755713" expanded="true" signature="8711:8786" ph="{...}" />
+            <element signature="e#3390#4088#0" expanded="false" />
+            <marker date="1499579219672" expanded="true" signature="1689:1723" ph="{...}" />
+            <marker date="1499579219672" expanded="true" signature="8734:8809" ph="{...}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/assets/js/game/entities/Entity.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="337">
+          <caret line="249" column="60" lean-forward="false" selection-start-line="249" selection-start-column="60" selection-end-line="249" selection-end-column="60" />
+          <folding>
+            <element signature="e#62#224#0" expanded="false" />
+            <element signature="n#!!block;n#getRandomInt#0" expanded="false" />
+            <element signature="e#800#820#0" expanded="false" />
+            <element signature="e#821#851#0" expanded="false" />
+            <element signature="n#!!block;n#capitalize#0" expanded="false" />
+            <element signature="n#!!block;n#addPrefix#0" expanded="false" />
+            <element signature="e#1819#1935#0" expanded="false" />
+            <element signature="e#1941#1969#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/assets/js/lib/rot.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="756">
+          <caret line="159" column="16" lean-forward="false" selection-start-line="159" selection-start-column="14" selection-end-line="159" selection-end-column="16" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/assets/js/game/Game.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1987">
+          <caret line="120" column="0" lean-forward="false" selection-start-line="120" selection-start-column="0" selection-end-line="134" selection-end-column="9" />
+          <folding>
+            <marker date="1499579125433" expanded="true" signature="10989:11026" ph="{...}" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/index.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="584">
-          <caret line="134" column="22" lean-forward="false" selection-start-line="134" selection-start-column="22" selection-end-line="134" selection-end-column="22" />
+        <state relative-caret-position="450">
+          <caret line="84" column="33" lean-forward="true" selection-start-line="84" selection-start-column="33" selection-end-line="84" selection-end-column="33" />
           <folding>
-            <element signature="n#v-flex#0;n#v-layout#1;n#v-container#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="false" />
-            <element signature="n#style#0;n#div#0;n#v-layout#4;n#v-flex#1;n#v-layout#1;n#v-container#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#v-container#0;n#v-container#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="false" />
+            <element signature="n#style#0;n#v-list#0;n#v-layout#1;n#v-flex#0;n#v-layout#1;n#v-container#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#v-layout#0;n#v-flex#1;n#v-layout#1;n#v-container#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#v-layout#3;n#v-flex#1;n#v-layout#1;n#v-container#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#v-layout#0;n#v-flex#0;n#v-layout#3;n#v-flex#1;n#v-layout#1;n#v-container#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#v-layout#1;n#v-flex#0;n#v-layout#3;n#v-flex#1;n#v-layout#1;n#v-container#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#v-btn#0;n#v-layout#0;n#v-container#0;n#v-container#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#a#0;n#v-container#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#i#0;n#v-btn#0;n#a#0;n#v-container#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <marker date="1499575397857" expanded="true" signature="7538:7541" ph="//..." />
+            <marker date="1499581892695" expanded="true" signature="7902:7905" ph="//..." />
           </folding>
         </state>
       </provider>

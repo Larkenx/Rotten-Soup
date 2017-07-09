@@ -12,13 +12,14 @@ class Entity {
         this.id = this.options.id;
     }
 
-    examine() {
+    description() {
         return this.options.description;
     }
 
     name() {
         return this.options.name;
     }
+
 }
 
 function getRandomInt(min, max) {
@@ -235,6 +236,18 @@ class Actor extends Entity {
 
     isDead() {
         return this.cb.hp <= 0;
+    }
+
+    getHP() {
+        return this.cb.hp;
+    }
+
+    getMaxHP() {
+        return this.cb.maxhp;
+    }
+
+    getHoverInfo() {
+        return `HP: ${this.getHP()} / ${this.getMaxHP()}\n\"${this.description()}\"`;
     }
 }
 
