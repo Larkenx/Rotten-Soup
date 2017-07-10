@@ -2,14 +2,7 @@ if (!ROT.isSupported()) {
     alert("The rot.js library isn't supported by your browser.");
 }
 
-function getTilesetCoords(id) {
-    let tileWidth = tileset.tilewidth;
-    let tileHeight = tileset.tileheight;
-    let cols = tileset.columns;
-    let rowNumber = Math.floor(id / cols) * tileHeight;
-    let colNumber = (id % cols) * tileHeight;
-    return [colNumber, rowNumber];
-}
+
 
 // $.getJSON("assets/maps/tileset/compiled_dawnlike.json", function (data) {
 //     const tileset = data;
@@ -38,7 +31,7 @@ let Game = {
     init: function (dev = false) {
         this.dev = dev;
         this.map = new Map(TileMaps["overworld"]);
-        this.levels["overworld"] = new Map(TileMaps["overworld"]);
+        this.levels["overworld"] = this.map;
         this.map.revealed = true;
         this.playerLocation = this.map.playerLocation;
         /* !Important! - PlayerID must be allocated before other maps are drawn... */

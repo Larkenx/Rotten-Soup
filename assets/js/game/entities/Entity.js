@@ -8,7 +8,7 @@ class Entity {
         this.x = x;
         this.y = y;
         this.options = options;
-        if (! "id" in options) throw "Error - entity created without valid id";
+        if (options.id === undefined) throw "Error - entity created without valid id";
         this.id = this.options.id;
     }
 
@@ -18,6 +18,14 @@ class Entity {
 
     name() {
         return this.options.name;
+    }
+
+    clipLocation() {
+        let c = getTilesetCoords(this.options.id);
+        let css = `${c[1]} ${c[0]+ 32} ${c[1] + 32} ${c[0]+ 32} ${c[0]}`;
+        console.log(c);
+        console.log(css);
+        return css;
     }
 
 }
@@ -264,11 +272,18 @@ class Item extends Entity {
         }
     }
 
+    clipLocation() {
+        let c = getTilesetCoords(this.options.id);
+        let css = `rect(${c[1]}px ${c[0]+ 32}px ${(c[1] + 32)}px ${c[0]}px)`;
+        console.log(c);
+        console.log(css);
+        return css;
+    }
+
     use () {
         //
     }
 }
-
 
 class NPC extends Actor {
     constructor(x,y,id) {

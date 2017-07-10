@@ -92,10 +92,8 @@
                                   v-on:click="slot.item.use()"
                                   v-tooltip:bottom="{html : slot.item.hoverInfo() }"
                                   v-if="slot.item !== null">
-                            <!--<span style="margin: auto; font-size: 20px;}" v-bind:style="{color: slot.item.options.fg}" >-->
-                                <!--{{slot.item.options.symbol}}-->
-                                <img style="padding: 2px;" src="assets/images/item-textures/sword2.png" alt="Sword" />
-                            <!--</span>-->
+                                <img class="inventory_image"
+                                    v-bind:style="{clip: slot.item.clipLocation()}" src="assets/images/DawnLike/Compiled/compiled_tileset_32x32.png" alt="Sword" />
                         </v-layout>
                     </v-flex>
                 </v-layout>
@@ -298,6 +296,10 @@
     .inventory_slot:hover {
         background-color: #698394;
         cursor: pointer;
+    }
+
+    .inventory_image {
+        position: absolute;
     }
 
     .selectedItem {

@@ -15,6 +15,7 @@ const entityShop = {
         return new Ladder(x, y, id, "up");
     },
     5: (x, y, id) => {
+        console.log(`Creating a sword at ${x},${y}`);
         return createSword(x, y, id);
     },
     6 : (x,y,id) => {
@@ -30,6 +31,15 @@ const entityShop = {
         return new Door(x,y,id);
     },
 };
+
+function getTilesetCoords(id) {
+    let tileWidth = tileset.tilewidth;
+    let tileHeight = tileset.tileheight;
+    let cols = tileset.columns;
+    let rowNumber = Math.floor(id / cols) * tileHeight;
+    let colNumber = (id % cols) * tileHeight;
+    return [colNumber, rowNumber];
+}
 
 function createEntity(x, y, entity_id, frame_id) {
     if (entity_id in entityShop) {
