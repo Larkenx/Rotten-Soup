@@ -7,8 +7,10 @@ let tileset = null;
 $.ajax({
     async: false,
     url: "src/assets/maps/tileset/compiled_dawnlike.json",
-    datatype:"json",
-}).done((data) => {tileset = data;});
+    datatype: "json",
+}).done((data) => {
+    tileset = data;
+});
 
 let Game = {
     overview: null,
@@ -187,19 +189,19 @@ let Game = {
 
         // Draw the viewport
         /*
-        for (let x = startingPos[0]; x < endingPos[0]; x++) {
-            for (let y = startingPos[1]; y < endingPos[1]; y++) {
-                let tile = this.map.data[y][x];
-                if (tile.x + "," + tile.y in this.map.visible_tiles) {
-                    this.drawTile(dx, dy++, tile, false);
-                } else {
-                    this.drawTile(dx, dy++, tile, ! this.map.revealed);
-                }
-            }
-            dx++;
-            dy = 0;
-        }
-        */
+         for (let x = startingPos[0]; x < endingPos[0]; x++) {
+         for (let y = startingPos[1]; y < endingPos[1]; y++) {
+         let tile = this.map.data[y][x];
+         if (tile.x + "," + tile.y in this.map.visible_tiles) {
+         this.drawTile(dx, dy++, tile, false);
+         } else {
+         this.drawTile(dx, dy++, tile, ! this.map.revealed);
+         }
+         }
+         dx++;
+         dy = 0;
+         }
+         */
         for (let x = startingPos[0]; x < endingPos[0]; x++) {
             for (let y = startingPos[1]; y < endingPos[1]; y++) {
                 let tile = this.map.data[y][x];
@@ -211,7 +213,7 @@ let Game = {
                     } else if (tile.x + "," + tile.y in this.map.seen_tiles) {
                         this.drawTile(dx, dy++, tile, true);
                     } else {
-                        Game.display.draw(dx,dy++, "", "black", "black");
+                        Game.display.draw(dx, dy++, "", "black", "black");
                     }
                 }
             }
@@ -229,7 +231,7 @@ let Game = {
     drawSelectedTile: function () {
         let coords = this.selectedTile;
         if (coords !== null && coords[0] !== -1 && coords[1] !== -1) {
-            Game.display.draw(coords[0],coords[1],"", "transparent", "rgba(250,250,250,0.5)");
+            Game.display.draw(coords[0], coords[1], "", "transparent", "rgba(250,250,250,0.5)");
         }
     },
 
@@ -275,7 +277,9 @@ let Game = {
 
     getNearbyEnemies: function () {
         // operates on the 'chasing' boolean flag on actors :)
-        return this.map.actors.filter((el) => {return el.options.inView === true });
+        return this.map.actors.filter((el) => {
+            return el.options.inView === true
+        });
     },
 
     printPlayerTile: function () {

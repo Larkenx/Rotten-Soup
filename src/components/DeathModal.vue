@@ -36,9 +36,18 @@ _/                                       \|     |
     /* import other components here */
     export default {
         data() {
-            return {};
+            return {
+                player : Game.player,
+            };
         },
-        methods: {},
+        methods: {
+            startNewGame() {
+                location.reload();
+            },
+            playerIsDead() {
+                return this.player.isDead();
+            }
+        },
     }
 
 </script>
