@@ -7,11 +7,11 @@
             <hud></hud>
         </v-layout>
         <!-- Inventory / Shop Modal -->
-        <item-transfer-modal></item-transfer-modal>
+        <!-- <item-transfer-modal></item-transfer-modal> -->
         <!-- Death Modal-->
         <death-modal></death-modal>
         <!-- Github Logo -->
-        <a id="git_logo" style="text-decoration: none;" href="https://github.com/Larkenx/Rotten-Soup">
+        <a id="git_logo" style="text-decoration: none;" target="_blank" href="https://github.com/Larkenx/Rotten-Soup">
             <v-btn icon ripple>
                 <i i style="color: white; margin: auto;" class="fa fa-3x fa-github" aria-hidden="true"></i>
             </v-btn>
@@ -76,27 +76,10 @@
         right: 0;
     }
 
-    .modal {
-        border: 2px solid #3d3d3d;
-        border-radius: 4px;
-        background-color: black;
-        color: white;
-        /*width: 500px;*/
-        padding: 10px;
-        height: 600px;
-        position: absolute;
-        left: 40%;
-        top: 5%;
-        margin-left: -150px;
-        z-index: 2;
-        /*margin-top: -150px;*/
-    }
 
     .test {
         background-color: #824d03;
     }
-
-
 
     canvas {
         padding: 0;

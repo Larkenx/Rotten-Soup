@@ -4,7 +4,8 @@
         <v-layout row align-center style=" margin-bottom: -10px;">
             <v-flex xs3 col><b>Health </b></v-flex>
             <v-flex xs6 col>
-                <v-progress-linear :value="(getHP() / getMaxHP()) * 100" height="10" error></v-progress-linear>
+                <v-progress-linear :value="(getHP() / getMaxHP()) * 100" height="10"
+                                   error></v-progress-linear>
             </v-flex>
             <v-flex xs4 col>{{getHP()}} / {{getMaxHP()}}</v-flex>
         </v-layout>
@@ -12,7 +13,8 @@
         <v-layout row align-center>
             <v-flex xs3 col><b>Magic</b></v-flex>
             <v-flex xs6 col>
-                <v-progress-linear :value="(getMana() / getMaxMana()) * 100" height="10" info></v-progress-linear>
+                <v-progress-linear :value="(getMana() / getMaxMana()) * 100" height="10"
+                                   info></v-progress-linear>
             </v-flex>
             <v-flex xs4 col>{{getMana()}} / {{getMaxMana()}}</v-flex>
         </v-layout>
@@ -21,7 +23,7 @@
         <!-- Enemies Description -->
         <enemy-overview></enemy-overview>
         <!-- Inventory -->
-       <inventory></inventory>
+        <inventory></inventory>
     </v-flex>
 </template>
 
@@ -32,9 +34,9 @@
     export default {
         data() {
             return {
-                player : Game.player,
-                actors : Game.actors,
-                rows : [1,2,3,4],
+                player: Game.player,
+                actors: Game.actors,
+                rows: [1, 2, 3, 4],
             };
         },
         methods: {

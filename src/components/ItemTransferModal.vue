@@ -1,22 +1,30 @@
 <template>
-    <v-container class="modal elevation-24" v-if="inventoryModalOpened" align-center>
+    <v-container class="modal elevation-24" v-if="inventoryModalOpened">
         <v-layout row>
             <!-- Non-player inventory items -->
-            <v-flex xs5 col> </v-flex>
+            <v-flex xs5 col>
+                <inventory></inventory>
+            </v-flex>
             <!-- Middle functionality (?) -->
             <v-flex xs2 col></v-flex>
             <!-- Player Inventory -->
-            <inventory></inventory>
+            <v-flex xs5 col>
+                <inventory></inventory>
+            </v-flex>
         </v-layout>
     </v-container>
 </template>
 
 <script>
     /* import other components here */
+    import inventory from './Inventory.vue'
     export default {
+        components : {
+            'inventory' : inventory
+        },
         data() {
             return {
-                inventoryModalOpened: false,
+                inventoryModalOpened: true,
             };
         },
         methods: {},
@@ -24,4 +32,19 @@
 
 </script>
 <style>
+.modal {
+    border: 2px solid #3d3d3d;
+    border-radius: 4px;
+    background-color: black;
+    color: white;
+    width: 800px;
+    padding: 10px;
+    /*height: 600px;*/
+    position: absolute;
+    left: 30%;
+    top: 50%;
+    /*margin-left: -150px;*/
+    z-index: 2;
+    /*margin-top: -150px;*/
+}
 </style>
