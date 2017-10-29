@@ -158,6 +158,7 @@ class Player extends Actor {
                 return;
             }
             this.path = new ROT.Path.Dijkstra(this.x, this.y, dijkstra_callback);
+            this.nearbyEnemies = Game.getNearbyEnemies();
         }
         endturn();
     }

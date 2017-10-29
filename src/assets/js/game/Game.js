@@ -277,9 +277,10 @@ let Game = {
 
     getNearbyEnemies: function () {
         // operates on the 'chasing' boolean flag on actors :)
-        return this.map.actors.filter((el) => {
+        res = this.map.actors.filter((el) => {
             return el.options.inView === true
         });
+        return res;
     },
 
     printPlayerTile: function () {

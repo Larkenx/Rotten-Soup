@@ -1,10 +1,10 @@
 <template>
     <v-layout row wrap style="margin-left:10px;height: 100px;">
         <v-flex class="enemy_col"
-                xs2
+                xs3
                 col
                 align-center
-                v-for="(enemy, index) in enemies"
+                v-for="(enemy, index) in getNearbyEnemies()"
                 align-center
                 row
                 v-bind:key="index"
@@ -28,14 +28,16 @@
     export default {
         data ()  {
             return {
-                enemies : []
+                player: Game.player,
+                actors: Game.actors,
+                enemies: Game.player.nearbyEnemies,
             }
         },
-        methods: {
-            surroundingEnemies: function () {
-                this.enemies = Game.getNearbyEnemies();
-            }
-        },
+        methods : {
+            getNearbyEnemies() {
+                return Game.getNearbyEnemies();
+            },
+        }
     }
 </script>
 <style>

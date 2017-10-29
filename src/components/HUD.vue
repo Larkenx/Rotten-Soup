@@ -52,6 +52,7 @@
             getMaxMana() {
                 return Game.player.cb.maxmana;
             },
+
         },
         components: {
             'inventory': inventory,
