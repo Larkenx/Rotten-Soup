@@ -52,7 +52,6 @@
             getMaxMana() {
                 return Game.player.cb.maxmana;
             },
-
         },
         components: {
             'inventory': inventory,
@@ -70,5 +69,21 @@
         font-size: 13px;
         margin-left: 20px;
         width: 32em;
+    }
+    .enemy_col {
+        cursor: pointer;
+        border: 2px solid #4f4f4f;
+        background-color: #142929;
+        border-radius: 4px;
+        margin: 2px;
+        max-height: 30px;
+    }
+    .enemy_col:hover {
+        cursor: pointer;
+        border: 2px solid #4f4f4f;
+        background-color: #557081;
+        border-radius: 4px;
+        margin: 2px;
+        max-height: 30px;
     }
 </style>

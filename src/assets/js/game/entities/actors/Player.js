@@ -42,6 +42,7 @@ class Player extends Actor {
             }
         });
         this.path = new ROT.Path.Dijkstra(this.x, this.y, dijkstra_callback);
+        this.nearbyEnemies = [];
         // Inventory is an array of objects that contain items and an action that can be done with that item.
         // You can think of the objects as individual 'slots' to store the item with actions like 'use' or 'equip'.
 

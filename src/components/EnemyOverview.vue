@@ -35,8 +35,11 @@
         },
         methods : {
             getNearbyEnemies() {
-                return Game.getNearbyEnemies();
+                return Game.player.nearbyEnemies;33
             },
+        },
+        created () {
+            this.actors = Game.actors
         }
     }
 </script>
