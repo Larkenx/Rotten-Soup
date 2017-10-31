@@ -35,19 +35,5 @@
 
 </script>
 <style>
-.modal {
-    border: 2px solid #3d3d3d;
-    border-radius: 4px;
-    background-color: black;
-    color: white;
-    width: 800px;
-    padding: 10px;
-    /*height: 600px;*/
-    position: absolute;
-    left: 10%;
-    top: 30%;
-    /*margin-left: -150px;*/
-    z-index: 2;
-    /*margin-top: -150px;*/
-}
+
 </style>

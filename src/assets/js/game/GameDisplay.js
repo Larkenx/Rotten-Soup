@@ -7,4 +7,3 @@ class GameDisplay {
         Game.engine.unlock();
     }
 }
-

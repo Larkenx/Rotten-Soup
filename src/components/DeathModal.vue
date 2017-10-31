@@ -1,34 +1,11 @@
 <template>
     <!-- Death Modal -->
-    <v-container class="modal elevation-24" v-if="playerIsDead()" align-center>
-           <pre>
-                 _____  _____
-                <     `/     |
-                 >          (
-                |   _     _  |
-                |  |_) | |_) |
-                |  | \ | |   |
-                |            |
- ______.______%_|            |__________  _____
-_/                                       \|     |
-|                    Here lies
-|_____.-._________      '@'   ____/|___________|
-                |            |
-                |            |
-                |            |
-                |            |
-                |   _        <
-                |__/         |
-                 / `--.      |
-               %|            |%
-           |/.%%|          -< @%%%
-           `\%`@|     v      |@@%@%%
-         .%%%@@@|%    |    % @@@%%@%%%%
-    _.%%%%%%@@@@@@%%_/%\_%@@%%@@@@@@@%%%%%%
-    </pre>
+    <v-container class="modal elevation-24" v-if="playerIsDead()">
+        <v-layout class="text-xs-center" row>
+            <v-flex xs12><h2 class="red--text">You died</h2></v-flex>
+        </v-layout>
         <v-layout>
-            <v-btn success class="btn--light-flat-pressed" v-on:click.native="startNewGame()"
-                   style="margin: 0 auto;"><b>Play Again?</b></v-btn>
+            <v-flex class="text-xs-center" xs12><v-btn block success dark class="flat" v-on:click.native="startNewGame()" style="margin: 0 auto;"><b>Play Again?</b></v-btn></v-flex>
         </v-layout>
     </v-container>
 </template>
@@ -49,7 +26,6 @@ _/                                       \|     |
             }
         },
     }
-
 </script>
 <style>
 </style>

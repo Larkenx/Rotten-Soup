@@ -1,7 +1,7 @@
 <template>
     <v-layout row wrap style="margin-left:10px;height: 100px;">
         <v-flex class="enemy_col"
-                xs3
+                xs2
                 col
                 align-center
                 v-for="(enemy, index) in getNearbyEnemies()"
