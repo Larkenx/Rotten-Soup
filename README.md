@@ -45,7 +45,7 @@ Rotten Soup is roguelike written in JavaScript with [rot.js](http://ondras.githu
 - Graphical tiles
 
 # Future Goals
-- Skills 
+- Skills
 - Distinct Regions of Overworld map
 - Over-arching simple quest (e.g collect the 4 diamonds from the 4 regions)
 - Abilites, ranged combat, and magic combat
@@ -53,7 +53,6 @@ Rotten Soup is roguelike written in JavaScript with [rot.js](http://ondras.githu
 - Unique random generation for different sections
 - Shop with items
 - Friendly NPC's
-- Ability to swap between ASCII and Graphical tiles
 - More enemy types with stronger AI and unique abilities
 
 # Contact / Feedback
