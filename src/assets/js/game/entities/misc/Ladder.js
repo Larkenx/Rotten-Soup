@@ -1,7 +1,10 @@
 /**
  * Created by Larken on 6/22/2017.
  */
-class Ladder extends Entity {
+import Entity from '@/assets/js/game/entities/Entity.js'
+
+
+export default class Ladder extends Entity {
     constructor(x, y, id, dir) {
         super(x, y, {
             id: id,

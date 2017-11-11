@@ -1,3 +1,19 @@
+import Tile from '@/assets/js/game/map/Map.js'
+// Entities
+import Actor from '@/assets/js/game/entities/actors/Actor.js'
+import Player from '@/assets/js/game/entities/actors/Player.js'
+import NPC from '@/assets/js/game/entities/actors/NPC.js'
+import Goblin from '@/assets/js/game/entities/actors/enemies/Goblin.js'
+import Orc from '@/assets/js/game/entities/actors/enemies/Orc.js'
+import Rat from '@/assets/js/game/entities/actors/enemies/Rat.js'
+
+import createSword from '@/assets/js/game/entities/items/weapons/Sword.js'
+import Chest from '@/assets/js/game/entities/misc/Chest.js'
+import Door from '@/assets/js/game/entities/misc/Door.js'
+import Ladder from '@/assets/js/game/entities/misc/Ladder.js'
+import Store from '@/assets/js/game/entities/misc/Store.js'
+
+
 const entityShop = {
     0: (x, y, id) => {
         return new Player(x, y, id);
@@ -55,7 +71,7 @@ function createEntity(x, y, entity_id, frame_id) {
 /**
  * Created by Larken on 6/28/2017.
  */
-class Map {
+export default class Map {
     constructor(json) {
         if (!json) throw "Bad map creation";
         this.loadedIDS = [];

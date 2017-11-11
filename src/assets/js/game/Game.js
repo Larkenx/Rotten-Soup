@@ -1,18 +1,18 @@
+import ROT from 'rot-js'
+import Map from '@/assets/js/game/map/Map.js'
+import Player from '@/assets/js/game/entities/actors/Player.js'
+import {$, jQuery} from 'jquery'
+window.$ = $;
+window.jQuery = jQuery;
+
+const tileset = require('@/assets/maps/tileset/compiled_dawnlike.json')
+const overworldMap = require('@/assets/maps/map_file/overworld.json')
+
 if (!ROT.isSupported()) {
     alert("The rot.js library isn't supported by your browser.");
 }
 
-let tileset = null;
-
-$.ajax({
-    async: false,
-    url: "src/assets/maps/tileset/compiled_dawnlike.json",
-    datatype: "json",
-}).done((data) => {
-    tileset = data;
-});
-
-let Game = {
+export let Game = {
     overview: null,
     dev: false,
     display: null,
@@ -34,7 +34,7 @@ let Game = {
 
     init: function (dev = false) {
         this.dev = dev;
-        this.map = new Map(TileMaps["overworld"]);
+        this.map = new Map(overworldMap);
         this.levels["overworld"] = this.map;
         this.map.revealed = true;
         this.playerLocation = this.map.playerLocation;

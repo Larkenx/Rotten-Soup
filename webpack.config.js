@@ -8,6 +8,13 @@ module.exports = {
     publicPath: '/dist/',
     filename: 'build.js'
   },
+  resolve: {
+    extensions: ['.js', '.vue'],
+    alias: {
+      'vue$': 'vue/dist/vue.esm.js',
+      'public': path.resolve(__dirname, './public')
+    }
+  },
   module: {
     rules: [
       {
@@ -28,15 +35,14 @@ module.exports = {
         test: /\.(png|jpg|gif|svg)$/,
         loader: 'file-loader',
         options: {
-          name: '[name].[ext]?[hash]'
+          objectAssign: 'Object.assign'
         }
+      },
+      {
+        test: /\.(css|styl)$/,
+        loader: ['style-loader', 'css-loader', 'stylus-loader']
       }
     ]
-  },
-  resolve: {
-    alias: {
-      'vue$': 'vue/dist/vue.esm.js'
-    }
   },
   devServer: {
     historyApiFallback: true,

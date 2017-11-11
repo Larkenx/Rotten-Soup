@@ -1,7 +1,10 @@
 /**
  * Created by Larken on 6/22/2017.
  */
-class Store extends Entity {
+ import Entity from '@/assets/js/game/entities/Entity.js'
+
+
+export default class Store extends Entity {
 
     constructor(x, y) {
         super(x, y, {

@@ -17,7 +17,7 @@ function getTileInfo(id) {
     return tileset.tileproperties[id];
 }
 
-class Tile {
+export default class Tile {
     constructor(x, y) {
         this.x = x;
         this.y = y;

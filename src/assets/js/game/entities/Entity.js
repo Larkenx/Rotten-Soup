@@ -1,5 +1,3 @@
-// handy unicode characters..?
-// ⚷	9911	⚷	26B7 CHIRON (key)
 function getRandomInt(min, max) {
     min = Math.ceil(min);
     max = Math.floor(max);
@@ -8,7 +6,7 @@ function getRandomInt(min, max) {
 
 /* Entities are in-game objects that exist in the map. They have symbols,
  * foregrounds, backgrounds, descriptions, names, visibility, and blocked properties. */
-class Entity {
+export default class Entity {
     constructor(x, y, options) {
         this.x = x;
         this.y = y;
@@ -61,5 +59,3 @@ class Entity {
 //       }
 //     }
 // },
-
-
