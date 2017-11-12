@@ -1,6 +1,9 @@
 /**
  * Created by larken on 7/12/17.
  */
+
+import Entity from '@/assets/js/game/entities/Entity.js'
+
 function capitalize(s) {
     return s.charAt(0).toUpperCase() + s.slice(1);
 }
@@ -17,7 +20,7 @@ function addPrefix(name) {
     }
 }
 
-class Actor extends Entity {
+export default class Actor extends Entity {
     constructor(x, y, options, routine=null) {
         super(x, y, options);
         this.cb = this.options.combat;

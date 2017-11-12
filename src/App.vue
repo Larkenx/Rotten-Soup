@@ -1,25 +1,32 @@
 <template>
-    <v-container id="main_container">
-        <v-layout row><h2>RottenSoup</h2></v-layout>
-        <!-- Game Display and HUD-->
-        <v-layout row>
-            <game-display></game-display>
-            <hud></hud>
-        </v-layout>
-        <!-- Inventory / Shop Modal -->
-        <!-- <item-transfer-modal></item-transfer-modal> -->
-        <!-- Death Modal-->
-        <death-modal></death-modal>
-        <!-- Github Logo -->
-        <a id="git_logo" style="text-decoration: none;" target="_blank" href="https://github.com/Larkenx/Rotten-Soup">
-            <v-btn icon ripple>
-                <i i style="color: white; margin: auto;" class="fa fa-3x fa-github" aria-hidden="true"></i>
-            </v-btn>
-        </a>
-    </v-container>
+    <v-app>
+        <v-container id="main_container">
+            <v-layout row><h2>RottenSoup</h2></v-layout>
+            <!-- Game Display and HUD-->
+            <v-layout row>
+                <game-display></game-display>
+                <hud></hud>
+            </v-layout>
+            <!-- Inventory / Shop Modal -->
+            <!-- <item-transfer-modal></item-transfer-modal> -->
+            <!-- Death Modal-->
+            <death-modal></death-modal>
+            <!-- Github Logo -->
+            <a id="git_logo" style="text-decoration: none;" target="_blank" href="https://github.com/Larkenx/Rotten-Soup">
+                <v-btn icon ripple>
+                    <i i style="color: white; margin: auto;" class="fa fa-3x fa-github" aria-hidden="true"></i>
+                </v-btn>
+            </a>
+        </v-container>
+    </v-app>
 </template>
 
 <script>
+    import {$, jQuery} from 'jquery'
+    window.$ = $;
+    window.jQuery = jQuery;
+    import {Game} from '@/assets/js/game/Game.js'
+// components
     import gameDisplay from './components/GameDisplay.vue';
     import itemTransferModal from './components/itemTransferModal.vue';
     import hud from './components/HUD.vue';

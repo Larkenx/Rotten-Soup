@@ -1,7 +1,10 @@
 /**
  * Created by Larken on 6/22/2017.
  */
-class Rat extends Actor {
+
+ import Actor from '@/assets/js/game/entities/actors/Actor.js'
+ 
+export default class Rat extends Actor {
 
     constructor(x, y, id) {
         super(x, y, {

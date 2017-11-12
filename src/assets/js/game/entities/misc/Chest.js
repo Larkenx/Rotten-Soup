@@ -1,7 +1,10 @@
 /**
  * Created by Larken on 7/8/2017.
  */
-class Chest extends Entity {
+
+import Entity from '@/assets/js/game/entities/Entity.js'
+
+export default class Chest extends Entity {
     constructor(x, y, id) {
         super(x, y, {
             id : id,

@@ -1,7 +1,9 @@
 /**
  * Created by Larken on 6/22/2017.
  */
-class Weapon extends Item {
+
+import Item from '@/assets/js/game/entities/items/Item.js'
+export default class Weapon extends Item {
 
     constructor(x, y, options) {
         if (options.combat === null) throw `Error - no options.combat property defined. Bad weapon creation for ${options.name}`;

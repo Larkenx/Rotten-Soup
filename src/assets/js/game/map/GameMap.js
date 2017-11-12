@@ -1,3 +1,21 @@
+import Game from '@/assets/js/game/Game.js'
+import {getTileInfo} from '@/assets/js/game/map/Tile.js'
+import Tile from '@/assets/js/game/map/Tile.js'
+// Entities
+import Actor from '@/assets/js/game/entities/actors/Actor.js'
+import Player from '@/assets/js/game/entities/actors/Player.js'
+import NPC from '@/assets/js/game/entities/actors/NPC.js'
+import Goblin from '@/assets/js/game/entities/actors/enemies/Goblin.js'
+import Orc from '@/assets/js/game/entities/actors/enemies/Orc.js'
+import Rat from '@/assets/js/game/entities/actors/enemies/Rat.js'
+
+import {createSword} from '@/assets/js/game/entities/items/weapons/Sword.js'
+import Chest from '@/assets/js/game/entities/misc/Chest.js'
+import Door from '@/assets/js/game/entities/misc/Door.js'
+import Ladder from '@/assets/js/game/entities/misc/Ladder.js'
+import Store from '@/assets/js/game/entities/misc/Store.js'
+
+
 const entityShop = {
     0: (x, y, id) => {
         return new Player(x, y, id);
@@ -34,7 +52,7 @@ const entityShop = {
     }
 };
 
-function getTilesetCoords(id) {
+export function getTilesetCoords(id) {
     let tileWidth = tileset.tilewidth;
     let tileHeight = tileset.tileheight;
     let cols = tileset.columns;
@@ -43,7 +61,7 @@ function getTilesetCoords(id) {
     return [colNumber, rowNumber];
 }
 
-function createEntity(x, y, entity_id, frame_id) {
+export function createEntity(x, y, entity_id, frame_id) {
     if (entity_id in entityShop) {
         return entityShop[entity_id](x, y, frame_id);
     } else {
@@ -55,8 +73,9 @@ function createEntity(x, y, entity_id, frame_id) {
 /**
  * Created by Larken on 6/28/2017.
  */
-class Map {
+export default class GameMap {
     constructor(json) {
+        console.log("Generating new map...");
         if (!json) throw "Bad map creation";
         this.loadedIDS = [];
         let tileLayer = json.layers[0];
@@ -86,7 +105,6 @@ class Map {
             else
                 this.processActorLayer(layer);
         }
-
         if (this.playerLocation === null) throw "Error - no player starting position!";
     }
 

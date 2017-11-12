@@ -1,18 +1,19 @@
+import ROT from 'rot-js'
+import GameMap from '@/assets/js/game/map/GameMap.js'
+import Player from '@/assets/js/game/entities/actors/Player.js'
+import {randomMap} from '@/assets/js/game/map/RandomMap.js'
+import {$, jQuery} from 'jquery'
+window.$ = $;
+window.jQuery = jQuery;
+
+export const tileset = require('@/assets/maps/tileset/compiled_dawnlike.json')
+export const overworldMap = require('@/assets/maps/map_file/overworld.json')
+
 if (!ROT.isSupported()) {
     alert("The rot.js library isn't supported by your browser.");
 }
 
-let tileset = null;
-
-$.ajax({
-    async: false,
-    url: "src/assets/maps/tileset/compiled_dawnlike.json",
-    datatype: "json",
-}).done((data) => {
-    tileset = data;
-});
-
-let Game = {
+export let Game = {
     overview: null,
     dev: false,
     display: null,
@@ -34,13 +35,15 @@ let Game = {
 
     init: function (dev = false) {
         this.dev = dev;
-        this.map = new Map(TileMaps["overworld"]);
+        console.log("1/2");
+        this.map = new GameMap(overworldMap);
+        console.log("2/2");
         this.levels["overworld"] = this.map;
         this.map.revealed = true;
         this.playerLocation = this.map.playerLocation;
         /* !Important! - PlayerID must be allocated before other maps are drawn... */
         this.playerID = this.map.playerID;
-        this.levels["dungeon1"] = new Map(randomMap(50, 50));
+        // this.levels["dungeon1"] = new GameMap(randomMap(50, 50));
         // Set up the ROT.JS game display
         let tileSet = document.createElement("img");
         tileSet.src = "src/assets/images/DawnLike/Compiled/compiled_tileset_32x32.png";
@@ -140,7 +143,7 @@ let Game = {
         this.levels[this.currentLevel] = this.map; // add the old map to 'levels'
         // Unshift player from ladder position (so that when resurfacing, no player is present)
         this.map.data[this.player.y][this.player.x].removeActor(this.player);
-        // Add the new map to the game
+        // Add the new GameMap to the game
         this.map = this.levels[newLevel];
         this.currentLevel = newLevel;
         this.playerLocation = this.map.playerLocation;

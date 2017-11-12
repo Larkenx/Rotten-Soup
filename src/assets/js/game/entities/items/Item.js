@@ -1,7 +1,10 @@
 /**
  * Created by larken on 7/12/17.
  */
-class Item extends Entity {
+
+import Entity from '@/assets/js/game/entities/Entity.js'
+
+export default class Item extends Entity {
     constructor(x, y, options) {
         super(x, y, options);
     }

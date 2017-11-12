@@ -1,7 +1,10 @@
 /**
  * Created by Larken on 7/5/2017.
  */
-class Orc extends Actor {
+
+ import Actor from '@/assets/js/game/entities/actors/Actor.js'
+ 
+export default class Orc extends Actor {
     constructor(x, y, id, empowered=false) {
         super(x, y, {
             id: id,

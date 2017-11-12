@@ -2,6 +2,8 @@
  * Created by Larken on 6/22/2017.
  */
 
+ import Actor from '@/assets/js/game/entities/actors/Actor.js'
+
 let xp_levels = [50];
 for (let i = 1; i < 100; i++) xp_levels.push(1.5 * xp_levels[i - 1]);
 
@@ -10,7 +12,7 @@ function dijkstra_callback(x, y) {
     return !Game.map.data[y][x].blocked();
 }
 
-class Player extends Actor {
+export default class Player extends Actor {
     constructor(x, y, id) {
         super(x, y, {
             id: id,

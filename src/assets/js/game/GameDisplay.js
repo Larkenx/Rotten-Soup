@@ -1,4 +1,4 @@
-class GameDisplay {
+export default class GameDisplay {
     constructor() {}
 
     act() {
