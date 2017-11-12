@@ -2,7 +2,9 @@
  * Created by Larken on 6/28/2017.
  */
 
-function getTileInfo(id) {
+import {tileset} from '@/assets/js/game/Game.js'
+
+export function getTileInfo(id) {
     /*
     "FOV": boolean,
     "FOV_id": int,

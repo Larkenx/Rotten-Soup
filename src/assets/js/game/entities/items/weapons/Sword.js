@@ -4,7 +4,7 @@
 
 import Weapon from '@/assets/js/game/entities/items/weapons/Weapon.js'
 
-export default class Sword extends Weapon {
+export class Sword extends Weapon {
     constructor(x, y, sides, rolls, name, id) {
         super(x, y, {
             id: id,

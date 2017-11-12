@@ -11,7 +11,7 @@ function randomProperty(object) {
 
 /* This is a random dungeon map generator. It essentially generates identical
  * JSON data to that of a TILED map, with the unnecessary properties left out */
-function randomMap(width, height) {
+export function randomMap(width, height) {
     let map = {};
     map.revealed = true;
     map.width = width;
