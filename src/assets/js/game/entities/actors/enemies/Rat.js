@@ -34,12 +34,4 @@ export default class Rat extends SimpleEnemy {
             }
         });
     }
-
-    interact(actor) {
-        if (actor === Game.player)
-            this.attack(actor);
-        // else
-        //     actor.react();
-        // actors can
-    }
 }
