@@ -1,5 +1,3 @@
-
-
 # Rotten Soup
 ![screenshot](src/assets/images/screen.gif)
 
