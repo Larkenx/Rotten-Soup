@@ -962,7 +962,8 @@
             var token = tokens.shift();
             switch (token.type) {
                 case ROT.Text.TYPE_TEXT:
-                    var isSpace = false, isPrevSpace = false, isFullWidth = false, isPrevFullWidth = false;
+                    var isSpace = false, isPrevSpace = false, isFullWidth = false,
+                        isPrevFullWidth = false;
                     for (var i = 0; i < token.value.length; i++) {
                         var cc = token.value.charCodeAt(i);
                         var c = token.value.charAt(i);

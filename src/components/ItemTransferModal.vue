@@ -22,12 +22,12 @@
     /* import other components here */
     import inventory from './Inventory.vue'
     export default {
-        components : {
-            'inventory' : inventory
+        components: {
+            'inventory': inventory
         },
         data() {
             return {
-                inventoryModalOpened: true,
+                inventoryModalOpened: false,
             };
         },
         methods: {},

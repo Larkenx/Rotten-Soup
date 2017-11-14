@@ -2,7 +2,7 @@
     <v-flex column>
         <v-layout row style="padding: 0px;">
             <!--<item-transfer-modal></item-transfer-modal>-->
-            <div style="margin:0; padding:0;"  id="game_container">
+            <div style="margin:0; padding:0;" id="game_container">
             </div>
         </v-layout>
         <message-log></message-log>
@@ -14,9 +14,9 @@
     import messageLog from './MessageLog.vue';
     /* import other components here */
     export default {
-        components : {
-            'message-log' : messageLog,
-            'item-transfer-modal' : itemTransferModal
+        components: {
+            'message-log': messageLog,
+            'item-transfer-modal': itemTransferModal
         },
     }
 </script>

@@ -1,20 +1,22 @@
-```<template>
+<template>
     <v-app dark>
-        <v-container id="main_container" dark>
-            <v-layout row><h2>RottenSoup</h2></v-layout>
+        <v-container id="main_container">
+            <v-layout row><h2 class="white--text">RottenSoup</h2></v-layout>
             <!-- Game Display and HUD-->
             <v-layout row>
                 <game-display></game-display>
                 <hud></hud>
             </v-layout>
             <!-- Inventory / Shop Modal -->
-            <!-- <item-transfer-modal></item-transfer-modal> -->
+            <item-transfer-modal></item-transfer-modal>
             <!-- Death Modal-->
             <death-modal></death-modal>
             <!-- Github Logo -->
-            <a id="git_logo" style="text-decoration: none;" target="_blank" href="https://github.com/Larkenx/Rotten-Soup">
+            <a id="git_logo" style="text-decoration: none;" target="_blank"
+               href="https://github.com/Larkenx/Rotten-Soup">
                 <v-btn icon ripple>
-                    <i i style="color: white; margin: auto;" class="fa fa-3x fa-github" aria-hidden="true"></i>
+                    <i i style="color: white; margin: auto;" class="fa fa-3x fa-github"
+                       aria-hidden="true"></i>
                 </v-btn>
             </a>
         </v-container>
@@ -23,7 +25,7 @@
 
 <script>
     import {Game} from '@/assets/js/game/Game.js'
-// components
+    // components
     import gameDisplay from './components/GameDisplay.vue';
     import itemTransferModal from './components/itemTransferModal.vue';
     import hud from './components/HUD.vue';
@@ -40,7 +42,7 @@
             'game-display': gameDisplay,
             'hud': hud,
             'item-transfer-modal': itemTransferModal,
-            'death-modal' : deathModal,
+            'death-modal': deathModal,
         },
         created () {
             Game.init();
@@ -63,6 +65,7 @@
 </script>
 <style>
     @import url('https://fonts.googleapis.com/css?family=Droid+Sans+Mono|PT+Mono');
+
     * {
         font-family: "Droid Sans Mono";
     }
@@ -78,7 +81,6 @@
         top: 0;
         right: 0;
     }
-
 
     .test {
         background-color: #824d03;

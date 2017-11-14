@@ -25,7 +25,7 @@ export class Entity {
 
     clipLocation() {
         let c = getTilesetCoords(this.options.id);
-        let css = `${c[1]} ${c[0]+ 32} ${c[1] + 32} ${c[0]+ 32} ${c[0]}`;
+        let css = `${c[1]} ${c[0] + 32} ${c[1] + 32} ${c[0] + 32} ${c[0]}`;
         console.log(c);
         console.log(css);
         return css;

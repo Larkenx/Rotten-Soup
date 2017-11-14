@@ -53,7 +53,7 @@ export default class Player extends Actor {
         // Inventory is an array of objects that contain items and an action that can be done with that item.
         // You can think of the objects as individual 'slots' to store the item with actions like 'use' or 'equip'.
 
-        this.addToInventory(createSword(this.x,this.y, 35));
+        this.addToInventory(createSword(this.x, this.y, 35));
         this.equipWeapon(this.inventory[0].item);
     }
 
@@ -135,7 +135,7 @@ export default class Player extends Actor {
             89: 7,
             /* Rest, Pick Up Items, Climb Ladders */
             188: "pickup",
-            71 : "pickup",
+            71: "pickup",
             190: "rest",
         };
 

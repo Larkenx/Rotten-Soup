@@ -4,10 +4,9 @@
         <v-layout row align-center style=" margin-bottom: -10px;">
             <v-flex xs3 col><b>Health </b></v-flex>
             <v-flex xs6 col>
-                <v-progress-linear :value="(getHP() / getMaxHP()) * 100" height="10"
-                                   error></v-progress-linear>
+                <v-progress-linear color="error" :value="(getHP() / getMaxHP()) * 100" height="10"></v-progress-linear>
             </v-flex>
-            <v-flex xs4 col>{{getHP()}} / {{getMaxHP()}}</v-flex>
+            <v-flex xs3 offset-xs1 col>{{getHP()}} / {{getMaxHP()}}</v-flex>
         </v-layout>
         <!-- Magic Bar -->
         <v-layout row align-center>
@@ -16,7 +15,7 @@
                 <v-progress-linear :value="(getMana() / getMaxMana()) * 100" height="10"
                                    info></v-progress-linear>
             </v-flex>
-            <v-flex xs4 col>{{getMana()}} / {{getMaxMana()}}</v-flex>
+            <v-flex xs3 offset-xs1 col>{{getMana()}} / {{getMaxMana()}}</v-flex>
         </v-layout>
         <!-- Mini-map -->
         <mini-map></mini-map>
@@ -28,7 +27,7 @@
 </template>
 
 <script>
-import {Game} from '@/assets/js/game/Game.js'
+    import {Game} from '@/assets/js/game/Game.js'
 
     import inventory from './Inventory.vue';
     import enemyOverview from './EnemyOverview.vue';
@@ -72,6 +71,7 @@ import {Game} from '@/assets/js/game/Game.js'
         margin-left: 20px;
         width: 32em;
     }
+
     .enemy_col {
         cursor: pointer;
         border: 2px solid #4f4f4f;
@@ -80,6 +80,7 @@ import {Game} from '@/assets/js/game/Game.js'
         margin: 2px;
         max-height: 30px;
     }
+
     .enemy_col:hover {
         cursor: pointer;
         border: 2px solid #4f4f4f;

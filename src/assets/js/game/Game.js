@@ -110,7 +110,11 @@ export let Game = {
     initializeMinimap: function () {
         /* Create a ROT.JS display for the minimap! */
         this.minimap = new ROT.Display({
-            width: this.map.width, height: this.map.height, fontSize: 3, spacing: 1.0, forceSquareRatio: true
+            width: this.map.width,
+            height: this.map.height,
+            fontSize: 3,
+            spacing: 1.0,
+            forceSquareRatio: true
         });
         this.drawMiniMap();
     },

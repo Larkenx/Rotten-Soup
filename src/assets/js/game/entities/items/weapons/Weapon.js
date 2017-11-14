@@ -31,6 +31,6 @@ export default class Weapon extends Item {
 
     /* Returns this weapon's damage stats */
     damageInfo() {
-        return `Damage ${this.cb.rolls}-${this.cb.sides*this.cb.rolls}`
+        return `${this.cb.rolls}-${this.cb.sides * this.cb.rolls}`
     }
 }

@@ -34,7 +34,7 @@ export default class Goblin extends Actor {
                 invulnerable: false,
             }
         });
-        let roll = getRandomInt(1,10);
+        let roll = getRandomInt(1, 10);
         if (roll <= 2)
             this.addToInventory(createSword(this.x, this.y, 35));
     }

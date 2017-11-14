@@ -1,20 +1,24 @@
 <template>
     <span>
         <v-layout v-for="(row, index) in 4" class="inventory_row" row v-bind:key="index">
-                 <v-flex xs1
-                         col
-                         v-for="(slot, i) in getInventoryRow(index)"
-                         v-bind:key="i"
-                         v-bind:class="{selectedItem : colorSlot(slot), inventory_slot : ! colorSlot(slot)}">
-            <!-- <v-tooltip top> -->
-                <!-- <span>{{slot.item.hoverInfo()}}</span> -->
-                <v-layout ripple
-                          style="min-width: 32px; min-height: 32px;"
-                          v-if="slot.item !== null">
-                    <img v-bind:src="getInventorySprite(slot.item.id)" alt="Sword"/>
-                </v-layout>
-            <!-- </v-tooltip> -->
-            </v-flex>
+             <v-flex xs1
+                     col
+                     v-for="(cell, i) in getInventoryRow(index)"
+                     v-bind:key="i"
+                     v-bind:class="{selectedItem : colorSlot(cell), inventory_cell : ! colorSlot(cell)}"
+             >
+             <v-tooltip top v-if="cell.item !== null">
+                 <span>{{cell.item.hoverInfo()}}</span>
+                    <v-layout ripple
+                              style="min-width: 32px; min-height: 32px;"
+                              v-if="cell.item !== null"
+                              slot="activator"
+                              >
+                        <img v-bind:src="getInventorySprite(cell.item.id)" alt="Sword"/>
+                    </v-layout>
+                </v-tooltip>
+
+             </v-flex>
         </v-layout>
     </span>
 </template>
@@ -51,7 +55,7 @@
         margin-left: 10px;
     }
 
-    .inventory_slot {
+    .inventory_cell {
         margin: 2px;
         border: 2px solid #4f4f4f;
         background-color: #294646;
@@ -61,7 +65,7 @@
         min-height: 40px;
     }
 
-    .inventory_slot:hover {
+    .inventory_cell:hover {
         background-color: #698394;
         cursor: pointer;
     }

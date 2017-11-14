@@ -7,15 +7,15 @@ import Player from '@/assets/js/game/entities/actors/Player.js'
 
 export function getTileInfo(id) {
     /*
-    "FOV": boolean,
-    "FOV_id": int,
-    "animated": boolean,
-    "animated_id": int,
-    "bg": color,
-    "blocked":boolean,
-    "blocks_vision": boolean,
-    "entity": boolean,
-    */
+     "FOV": boolean,
+     "FOV_id": int,
+     "animated": boolean,
+     "animated_id": int,
+     "bg": color,
+     "blocked":boolean,
+     "blocks_vision": boolean,
+     "entity": boolean,
+     */
     // console.log(tileset.tileproperties[id]);
     return tileset.tileproperties[id];
 }
@@ -44,14 +44,18 @@ export default class Tile {
             return true;
 
         for (let actor of this.actors) {
-            if (actor.options.blocked && ! actor instanceof Player)
+            if (actor.options.blocked && !actor instanceof Player)
                 return true;
         }
         return false;
     }
 
     visible() {
-        return ! (this.obstacles.some( (el) => { return el.blocks_vision }) || this.actors.some( (el) => { return !el.options.visible}));
+        return !(this.obstacles.some((el) => {
+            return el.blocks_vision
+        }) || this.actors.some((el) => {
+            return !el.options.visible
+        }));
     }
 
     removeActor(a) {
@@ -60,7 +64,9 @@ export default class Tile {
     }
 
     bg() {
-        if (! this.obstacles.some((e) => {return "bg" in e})) {
+        if (!this.obstacles.some((e) => {
+                return "bg" in e
+            })) {
             return "black";
         } else {
             for (let i = this.obstacles.length - 1; i >= 0; i--) {
@@ -105,6 +111,8 @@ export default class Tile {
                 symbols.push(actor.id);
             }
         }
-        return symbols.map((e) => {return e.toString()});
+        return symbols.map((e) => {
+            return e.toString()
+        });
     }
 }

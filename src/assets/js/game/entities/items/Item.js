@@ -11,6 +11,7 @@ export default class Item extends Entity {
     constructor(x, y, options) {
         super(x, y, options);
     }
+
     /* UI / Front End functions */
     hoverInfo() {
         if (this instanceof Weapon) {
@@ -27,7 +28,7 @@ export default class Item extends Entity {
         return css;
     }
 
-    use () {
+    use() {
         //
     }
 }

@@ -1,7 +1,8 @@
 <template>
     <div>
         <v-layout row style="padding: 5px 0 0 0; margin: 0px">
-            <v-list id="fix_scroll" class="console" style="overflow:hidden; padding-top: 8px; position: relative;">
+            <v-list id="fix_scroll" class="console"
+                    style="overflow:hidden; padding-top: 8px; position: relative;">
                 <li v-for="(message, index) in getMessages()" v-bind:key="index">
                     <p><b v-bind:style="{color : message[1]}">{{message[0]}}</b></p>
                 </li>
@@ -11,7 +12,7 @@
 </template>
 
 <script>
-import {Game} from '@/assets/js/game/Game.js'
+    import {Game} from '@/assets/js/game/Game.js'
 
     /* import your actions here */
     export default {
@@ -28,9 +29,15 @@ import {Game} from '@/assets/js/game/Game.js'
     }
 </script>
 
-<style>
+<style scoped>
+
+    .list {
+        background-color: black;
+    }
+    
     .console {
         font-size: 13px;
+        background-color: black;
         height: 175px;
         line-height: 0;
     }

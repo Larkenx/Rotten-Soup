@@ -1,6 +1,9 @@
 /**
  * Created by larken on 7/4/17.
  */
+import ROT from 'rot-js'
+import {Game} from '@/assets/js/game/Game.js'
+
 
 const flatten = arr => arr.reduce((acc, val) => acc.concat(Array.isArray(val) ? flatten(val) : val), []);
 
@@ -150,17 +153,17 @@ export function randomMap(width, height) {
     }
 
     let buildsCorrWalls = function (x, y, horizontal, end = false) {
-        let floor_ids = Object.values(corridorFloor.vertical) + Object.values(floor) + Object.values(corridorFloor.horizontal) + [7741,569+1,568+1];
+        let floor_ids = Object.values(corridorFloor.vertical) + Object.values(floor) + Object.values(corridorFloor.horizontal) + [7741, 569 + 1, 568 + 1];
         if (horizontal) {
             let above = map.layers[0].data[y - 1][x];
             let below = map.layers[0].data[y + 1][x];
-            map.layers[0].data[y - 1][x] = !floor_ids.includes(above-1) ? walls.top + 1 : above;
-            map.layers[0].data[y + 1][x] = !floor_ids.includes(below-1) ? walls.bottom + 1 : below;
+            map.layers[0].data[y - 1][x] = !floor_ids.includes(above - 1) ? walls.top + 1 : above;
+            map.layers[0].data[y + 1][x] = !floor_ids.includes(below - 1) ? walls.bottom + 1 : below;
         } else {
             let left = map.layers[0].data[y][x - 1];
             let right = map.layers[0].data[y][x + 1];
-            map.layers[0].data[y][x - 1] = !floor_ids.includes(left-1) ? walls.left + 1 : left;
-            map.layers[0].data[y][x + 1] = !floor_ids.includes(right-1) ? walls.right + 1 : right;
+            map.layers[0].data[y][x - 1] = !floor_ids.includes(left - 1) ? walls.left + 1 : left;
+            map.layers[0].data[y][x + 1] = !floor_ids.includes(right - 1) ? walls.right + 1 : right;
         }
 
         if (end) {
@@ -176,10 +179,10 @@ export function randomMap(width, height) {
             map.layers[0].data[y - 1][x + 1] = ur === 7046 ? walls.upperRight + 1 : ur;
             map.layers[0].data[y + 1][x - 1] = ll === 7046 ? walls.lowerLeft + 1 : ll;
             map.layers[0].data[y + 1][x + 1] = lr === 7046 ? walls.lowerRight + 1 : lr;
-            map.layers[0].data[y - 1][x] = !floor_ids.includes(above-1) ? walls.top + 1 : above;
-            map.layers[0].data[y + 1][x] = !floor_ids.includes(below-1) ? walls.bottom + 1 : below;
-            map.layers[0].data[y][x - 1] = !floor_ids.includes(left-1) ? walls.left + 1 : left;
-            map.layers[0].data[y][x + 1] = !floor_ids.includes(right-1) ? walls.right + 1 : right;
+            map.layers[0].data[y - 1][x] = !floor_ids.includes(above - 1) ? walls.top + 1 : above;
+            map.layers[0].data[y + 1][x] = !floor_ids.includes(below - 1) ? walls.bottom + 1 : below;
+            map.layers[0].data[y][x - 1] = !floor_ids.includes(left - 1) ? walls.left + 1 : left;
+            map.layers[0].data[y][x + 1] = !floor_ids.includes(right - 1) ? walls.right + 1 : right;
         }
 
     };
@@ -207,7 +210,7 @@ export function randomMap(width, height) {
                 sy = ey;
                 ey = temp;
             }
-            y = sy;
+            let y = sy;
             buildsCorrWalls(sx, y, false, true);
             map.layers[0].data[y][sx] = corridorFloor.vertical.top + 1;
             y++;
@@ -224,7 +227,7 @@ export function randomMap(width, height) {
                 sx = ex;
                 ex = temp;
             }
-            x = sx;
+            let x = sx;
             buildsCorrWalls(x, sy, true, true);
             map.layers[0].data[sy][x] = corridorFloor.horizontal.left + 1;
             x++;

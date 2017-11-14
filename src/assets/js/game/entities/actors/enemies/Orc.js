@@ -8,7 +8,7 @@ import {Sword} from '@/assets/js/game/entities/items/weapons/Sword.js'
 import {Game} from '@/assets/js/game/Game.js'
 
 export default class Orc extends Actor {
-    constructor(x, y, id, empowered=false) {
+    constructor(x, y, id, empowered = false) {
         super(x, y, {
             id: id,
             name: "orc",
@@ -34,7 +34,7 @@ export default class Orc extends Actor {
                 empowered: empowered,
             }
         });
-        let roll = getRandomInt(1,10);
+        let roll = getRandomInt(1, 10);
         if (roll <= 2)
             this.addToInventory(new Sword(this.x, this.y, 3, 7, "Thrasher", 33));
     }

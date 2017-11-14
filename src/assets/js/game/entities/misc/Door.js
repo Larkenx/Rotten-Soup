@@ -9,7 +9,7 @@ import {Entity} from '@/assets/js/game/entities/Entity.js'
 export default class Door extends Entity {
     constructor(x, y, id) {
         super(x, y, {
-            id : id,
+            id: id,
             visible: false,
             blocked: true,
         });

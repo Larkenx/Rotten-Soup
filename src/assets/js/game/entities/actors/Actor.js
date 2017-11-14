@@ -22,7 +22,7 @@ function addPrefix(name) {
 }
 
 export default class Actor extends Entity {
-    constructor(x, y, options, routine=null) {
+    constructor(x, y, options, routine = null) {
         super(x, y, options);
         this.cb = this.options.combat;
         this.cb.equipment = {
@@ -197,6 +197,6 @@ export default class Actor extends Entity {
     }
 
     getHoverInfo() {
-        return `HP: ${this.getHP()} / ${this.getMaxHP()}\n\"${this.description()}\"`;
+        return `HP: ${this.getHP()} / ${this.getMaxHP()}<br />\"${this.description()}\"`;
     }
 }
