@@ -77,7 +77,6 @@
         color: white;
         font-size: 13px;
         margin-left: 20px;
-        width: 40em;
     }
 
     .enemy_col {

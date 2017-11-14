@@ -3,6 +3,7 @@
  */
 
 import {Game} from '@/assets/js/game/Game.js'
+import {tileset} from '@/assets/js/game/Game.js'
 import {Entity} from '@/assets/js/game/entities/Entity.js'
 
 export default class Chest extends Entity {

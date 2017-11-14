@@ -6,7 +6,7 @@
 	"scripts": {
 		"dev": "node build/dev-server.js",
 		"start": "node server.js",
-		"deploy": "git subtree push —-prefix dist heroku master",
+		"deploy": "git push heroku master",
 		"build": "node build/build.js",
 		"unit": "cross-env BABEL_ENV=test karma start test/unit/karma.conf.js --single-run",
 		"test": "npm run unit"
