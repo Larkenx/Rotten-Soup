@@ -3,6 +3,8 @@
  */
 
 import Item from '@/assets/js/game/entities/items/Item.js'
+import {getRandomInt} from '@/assets/js/game/entities/Entity.js'
+
 export default class Weapon extends Item {
 
     constructor(x, y, options) {

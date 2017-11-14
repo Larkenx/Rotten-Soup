@@ -28,6 +28,8 @@
 </template>
 
 <script>
+import {Game} from '@/assets/js/game/Game.js'
+
     import inventory from './Inventory.vue';
     import enemyOverview from './EnemyOverview.vue';
     import minimap from './Minimap.vue';

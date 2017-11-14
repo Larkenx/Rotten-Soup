@@ -1,21 +1,27 @@
 <template>
     <span>
         <v-layout v-for="(row, index) in 4" class="inventory_row" row v-bind:key="index">
-                 <v-flex xs1 col v-for="(slot, i) in getInventoryRow(index)" v-bind:key="i"
+                 <v-flex xs1
+                         col
+                         v-for="(slot, i) in getInventoryRow(index)"
+                         v-bind:key="i"
                          v-bind:class="{selectedItem : colorSlot(slot), inventory_slot : ! colorSlot(slot)}">
-            <v-layout ripple
-                      style="min-width: 32px; min-height: 32px;"
-                      v-on:click="slot.item.use()"
-                      v-tooltip:bottom="{html : slot.item.hoverInfo() }"
-                      v-if="slot.item !== null">
-                <img v-bind:src="getInventorySprite(slot.item.id)" alt="Sword"/>
-            </v-layout>
-                </v-flex>
+            <!-- <v-tooltip top> -->
+                <!-- <span>{{slot.item.hoverInfo()}}</span> -->
+                <v-layout ripple
+                          style="min-width: 32px; min-height: 32px;"
+                          v-if="slot.item !== null">
+                    <img v-bind:src="getInventorySprite(slot.item.id)" alt="Sword"/>
+                </v-layout>
+            <!-- </v-tooltip> -->
+            </v-flex>
         </v-layout>
     </span>
 </template>
 
 <script>
+    import {Game} from '@/assets/js/game/Game.js'
+
     /* import other components here */
     export default {
         data() {
@@ -26,7 +32,7 @@
         },
         methods: {
             getInventorySprite(id) {
-                return `../src/assets/images/inventory_sprites/${id}.png`;
+                return `../static/images/inventory_sprites/${id}.png`;
             },
             colorSlot(slot) {
                 return slot.item !== null && slot.item.cb.equipped;

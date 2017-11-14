@@ -1,10 +1,10 @@
 import ROT from 'rot-js'
-import GameMap from '@/assets/js/game/map/GameMap.js'
+import {GameMap} from '@/assets/js/game/map/GameMap.js'
+import {getTilesetCoords} from '@/assets/js/game/map/GameMap.js'
+import GameDisplay from '@/assets/js/game/GameDisplay.js'
+import Actor from '@/assets/js/game/entities/actors/Actor.js'
 import Player from '@/assets/js/game/entities/actors/Player.js'
 import {randomMap} from '@/assets/js/game/map/RandomMap.js'
-import {$, jQuery} from 'jquery'
-window.$ = $;
-window.jQuery = jQuery;
 
 export const tileset = require('@/assets/maps/tileset/compiled_dawnlike.json')
 export const overworldMap = require('@/assets/maps/map_file/overworld.json')
@@ -35,18 +35,16 @@ export let Game = {
 
     init: function (dev = false) {
         this.dev = dev;
-        console.log("1/2");
         this.map = new GameMap(overworldMap);
-        console.log("2/2");
         this.levels["overworld"] = this.map;
         this.map.revealed = true;
         this.playerLocation = this.map.playerLocation;
         /* !Important! - PlayerID must be allocated before other maps are drawn... */
         this.playerID = this.map.playerID;
-        // this.levels["dungeon1"] = new GameMap(randomMap(50, 50));
+        this.levels["dungeon1"] = new GameMap(randomMap(50, 50));
         // Set up the ROT.JS game display
         let tileSet = document.createElement("img");
-        tileSet.src = "src/assets/images/DawnLike/Compiled/compiled_tileset_32x32.png";
+        tileSet.src = "static/images/DawnLike/Compiled/compiled_tileset_32x32.png";
         let tileSize = 32;
         let tileMap = {};
         /*for (let id of this.loadedIDS) {*/
@@ -280,7 +278,7 @@ export let Game = {
 
     getNearbyEnemies: function () {
         // operates on the 'chasing' boolean flag on actors :)
-        res = this.map.actors.filter((el) => {
+        let res = this.map.actors.filter((el) => {
             return el.options.inView === true
         });
         return res;

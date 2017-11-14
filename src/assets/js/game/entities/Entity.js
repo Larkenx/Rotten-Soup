@@ -1,4 +1,4 @@
-function getRandomInt(min, max) {
+export function getRandomInt(min, max) {
     min = Math.ceil(min);
     max = Math.floor(max);
     return Math.floor(Math.random() * (max - min + 1)) + min; //The maximum is exclusive and the minimum is inclusive
@@ -6,7 +6,7 @@ function getRandomInt(min, max) {
 
 /* Entities are in-game objects that exist in the map. They have symbols,
  * foregrounds, backgrounds, descriptions, names, visibility, and blocked properties. */
-export default class Entity {
+export class Entity {
     constructor(x, y, options) {
         this.x = x;
         this.y = y;

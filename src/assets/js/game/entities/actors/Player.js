@@ -1,8 +1,13 @@
 /**
  * Created by Larken on 6/22/2017.
  */
-
- import Actor from '@/assets/js/game/entities/actors/Actor.js'
+import ROT from 'rot-js'
+import {Game} from '@/assets/js/game/Game.js'
+import Actor from '@/assets/js/game/entities/actors/Actor.js'
+import {createSword} from '@/assets/js/game/entities/items/weapons/Sword.js'
+import Item from '@/assets/js/game/entities/items/Item.js'
+import Weapon from '@/assets/js/game/entities/items/weapons/Weapon.js'
+import Ladder from '@/assets/js/game/entities/misc/Ladder.js'
 
 let xp_levels = [50];
 for (let i = 1; i < 100; i++) xp_levels.push(1.5 * xp_levels[i - 1]);

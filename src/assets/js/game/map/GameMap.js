@@ -1,4 +1,5 @@
-import Game from '@/assets/js/game/Game.js'
+import {Game} from '@/assets/js/game/Game.js'
+import {tileset} from '@/assets/js/game/Game.js'
 import {getTileInfo} from '@/assets/js/game/map/Tile.js'
 import Tile from '@/assets/js/game/map/Tile.js'
 // Entities
@@ -73,7 +74,7 @@ export function createEntity(x, y, entity_id, frame_id) {
 /**
  * Created by Larken on 6/28/2017.
  */
-export default class GameMap {
+export class GameMap {
     constructor(json) {
         console.log("Generating new map...");
         if (!json) throw "Bad map creation";

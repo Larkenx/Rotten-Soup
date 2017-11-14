@@ -3,6 +3,7 @@
  */
 
 import {tileset} from '@/assets/js/game/Game.js'
+import Player from '@/assets/js/game/entities/actors/Player.js'
 
 export function getTileInfo(id) {
     /*

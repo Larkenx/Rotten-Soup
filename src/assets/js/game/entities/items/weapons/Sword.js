@@ -3,7 +3,7 @@
  */
 
 import Weapon from '@/assets/js/game/entities/items/weapons/Weapon.js'
-
+import {getRandomInt} from '@/assets/js/game/entities/Entity.js'
 export class Sword extends Weapon {
     constructor(x, y, sides, rolls, name, id) {
         super(x, y, {

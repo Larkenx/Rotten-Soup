@@ -1,3 +1,4 @@
+import {Game} from '@/assets/js/game/Game.js'
 export default class GameDisplay {
     constructor() {}
 

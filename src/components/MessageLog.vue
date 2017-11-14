@@ -11,6 +11,8 @@
 </template>
 
 <script>
+import {Game} from '@/assets/js/game/Game.js'
+
     /* import your actions here */
     export default {
         data() {

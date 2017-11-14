@@ -3,6 +3,10 @@
  */
 
 import Actor from '@/assets/js/game/entities/actors/Actor.js'
+import {getRandomInt} from '@/assets/js/game/entities/Entity.js'
+import {createSword} from '@/assets/js/game/entities/items/weapons/Sword.js'
+import {Game} from '@/assets/js/game/Game.js'
+
 
 export default class Goblin extends Actor {
     constructor(x, y, id) {

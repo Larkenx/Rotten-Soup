@@ -2,7 +2,10 @@
  * Created by larken on 7/12/17.
  */
 
-import Entity from '@/assets/js/game/entities/Entity.js'
+import {Game} from '@/assets/js/game/Game.js'
+import {Entity} from '@/assets/js/game/entities/Entity.js'
+import Weapon from '@/assets/js/game/entities/items/weapons/Weapon.js'
+
 
 export default class Item extends Entity {
     constructor(x, y, options) {

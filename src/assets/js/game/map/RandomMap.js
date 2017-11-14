@@ -23,7 +23,7 @@ export function randomMap(width, height) {
         {"data": [], "properties": {"obstacles": false}}];
     let freeCells = {};
     // ROT.RNG.setSeed(1499200778495);
-    diggerCallback = function (x, y, blocked) {
+    let diggerCallback = function (x, y, blocked) {
         if (!blocked) freeCells[x + "," + y] = true;
     };
     let rogueMap = new ROT.Map.Digger(width, height, {

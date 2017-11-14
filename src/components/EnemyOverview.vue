@@ -24,6 +24,8 @@
 </template>
 
 <script>
+import {Game} from '@/assets/js/game/Game.js'
+
     /* import other components here */
     export default {
         data ()  {

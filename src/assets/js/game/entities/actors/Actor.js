@@ -2,7 +2,8 @@
  * Created by larken on 7/12/17.
  */
 
-import Entity from '@/assets/js/game/entities/Entity.js'
+import {Game} from '@/assets/js/game/Game.js'
+import {Entity} from '@/assets/js/game/entities/Entity.js'
 
 function capitalize(s) {
     return s.charAt(0).toUpperCase() + s.slice(1);

@@ -1,6 +1,6 @@
-<template>
-    <v-app>
-        <v-container id="main_container">
+```<template>
+    <v-app dark>
+        <v-container id="main_container" dark>
             <v-layout row><h2>RottenSoup</h2></v-layout>
             <!-- Game Display and HUD-->
             <v-layout row>
@@ -22,16 +22,12 @@
 </template>
 
 <script>
-    import {$, jQuery} from 'jquery'
-    window.$ = $;
-    window.jQuery = jQuery;
     import {Game} from '@/assets/js/game/Game.js'
 // components
     import gameDisplay from './components/GameDisplay.vue';
     import itemTransferModal from './components/itemTransferModal.vue';
     import hud from './components/HUD.vue';
     import deathModal from './components/DeathModal.vue';
-
     export default {
         name: 'app',
         data () {

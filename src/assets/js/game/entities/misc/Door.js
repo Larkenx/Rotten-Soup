@@ -1,7 +1,9 @@
 /**
  * Created by Larken on 7/8/2017.
  */
-import Entity from '@/assets/js/game/entities/Entity.js'
+import {Game} from '@/assets/js/game/Game.js'
+import {tileset} from '@/assets/js/game/Game.js'
+import {Entity} from '@/assets/js/game/entities/Entity.js'
 
 
 export default class Door extends Entity {

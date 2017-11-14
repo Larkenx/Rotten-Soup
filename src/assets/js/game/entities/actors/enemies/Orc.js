@@ -2,8 +2,11 @@
  * Created by Larken on 7/5/2017.
  */
 
- import Actor from '@/assets/js/game/entities/actors/Actor.js'
- 
+import Actor from '@/assets/js/game/entities/actors/Actor.js'
+import {getRandomInt} from '@/assets/js/game/entities/Entity.js'
+import {Sword} from '@/assets/js/game/entities/items/weapons/Sword.js'
+import {Game} from '@/assets/js/game/Game.js'
+
 export default class Orc extends Actor {
     constructor(x, y, id, empowered=false) {
         super(x, y, {
