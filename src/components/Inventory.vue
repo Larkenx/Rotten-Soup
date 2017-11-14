@@ -11,6 +11,7 @@
                  <span>{{cell.item.hoverInfo()}}</span>
                     <v-layout ripple
                               style="min-width: 32px; min-height: 32px;"
+                              v-on:click="cell.item.use()"
                               v-if="cell.item !== null"
                               slot="activator"
                               >

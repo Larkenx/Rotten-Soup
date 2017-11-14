@@ -1,7 +1,7 @@
 /**
  * Created by Larken on 6/22/2017.
  */
-
+import {Game} from '@/assets/js/game/Game.js'
 import Item from '@/assets/js/game/entities/items/Item.js'
 import {getRandomInt} from '@/assets/js/game/entities/Entity.js'
 
