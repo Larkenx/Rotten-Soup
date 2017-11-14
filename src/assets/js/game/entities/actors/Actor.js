@@ -123,7 +123,7 @@ export default class Actor extends Entity {
         let weapon = this.cb.equipment.weapon;
         let dmg = weapon !== null ? this.cb.str + weapon.roll() : this.cb.str;
         let len = this.cb.description.length;
-        let evtdamage = `${capitalize(addPrefix(this.name()))}${this.cb.description[Math.floor(Math.random() * len)]}${addPrefix(actor.name())} and dealt ${dmg} damage.`;
+        let evtdamage = `${addPrefix(this.name()).capitalize()}${this.cb.description[Math.floor(Math.random() * len)]}${addPrefix(actor.name())} and dealt ${dmg} damage.`;
         if (Game.player === this)
             Game.log(evtdamage, 'player_move');
         else

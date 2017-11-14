@@ -112,7 +112,7 @@ export let Game = {
         this.minimap = new ROT.Display({
             width: this.map.width,
             height: this.map.height,
-            fontSize: 3,
+            fontSize: 4,
             spacing: 1.0,
             forceSquareRatio: true
         });

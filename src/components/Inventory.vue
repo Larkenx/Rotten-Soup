@@ -10,10 +10,10 @@
              <v-tooltip top v-if="cell.item !== null">
                  <span>{{cell.item.hoverInfo()}}</span>
                     <v-layout ripple
-                              style="min-width: 32px; min-height: 32px;"
                               v-on:click="cell.item.use()"
                               v-if="cell.item !== null"
                               slot="activator"
+                              class="text-xs-center"
                               >
                         <img v-bind:src="getInventorySprite(cell.item.id)" alt="Sword"/>
                     </v-layout>
@@ -61,7 +61,6 @@
         border: 2px solid #4f4f4f;
         background-color: #294646;
         border-radius: 4px;
-        /*margin: 2px;*/
         min-width: 40px;
         min-height: 40px;
     }

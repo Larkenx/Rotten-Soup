@@ -2,7 +2,7 @@
     <v-container grid-list-xs fluid>
         <v-layout row wrap style="margin-left:10px; height: 100px;">
             <v-flex class="enemy_col"
-                    xs133
+                    xs1
                     col
                     justfy-center
                     v-for="(enemy, index) in getNearbyEnemies()"

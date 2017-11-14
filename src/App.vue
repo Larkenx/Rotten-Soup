@@ -1,7 +1,7 @@
 <template>
     <v-app dark>
         <v-container fluid id="main_container">
-            <v-layout row><h2 class="white--text">RottenSoup</h2></v-layout>
+            <!-- <v-layout row><h2 class="white--text">RottenSoup</h2></v-layout> -->
             <!-- Game Display and HUD-->
             <v-layout row>
                 <game-display></game-display>
@@ -67,12 +67,12 @@
     @import url('https://fonts.googleapis.com/css?family=Droid+Sans+Mono|PT+Mono');
 
     * {
-        font-family: "Droid Sans Mono";
+        font-family: "Droid Sans Mono", monospace;
     }
 
     #main_container {
-        padding: 10px;
-        height: 100%;
+        /*padding: 10px;*/
+        /*height: 100%;*/
     }
 
     #git_logo {
