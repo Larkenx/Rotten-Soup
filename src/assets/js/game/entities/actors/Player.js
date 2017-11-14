@@ -45,7 +45,7 @@ export default class Player extends Actor {
                 /* Per-turn effects */
                 hpRecovery: 5,
                 manaRecovery: 2.5,
-                invulnerable: false
+                invulnerable: true
             }
         });
         this.path = new ROT.Path.Dijkstra(this.x, this.y, dijkstra_callback);

@@ -4,6 +4,7 @@
 
 import {Game} from '#/Game.js'
 import {Entity} from '#/entities/Entity.js'
+import Door from '#/entities/misc/Door.js'
 import Weapon from '#/entities/items/weapons/Weapon.js'
 
 function capitalize(s) {
@@ -91,10 +92,17 @@ export default class Actor extends Entity {
         } else if (ntile.actors.length > 0) {
             for (let i = 0; i < ntile.actors.length; i++) {
                 let actor = ntile.actors[i];
+                // this actor has stumbled upon another actor
                 if (actor instanceof Actor && actor.options.blocked && actor.options.visible) {
                     if (!actor.isDead())
                         this.interact(actor);
                     return true;
+                }
+                // actor has stumbled upon a non-Actor entity (an item or miscellaneous entity like a door)
+                if (actor instanceof Door) {
+                    console.log("Found a door!");
+                    this.interact(actor);
+                    // return true;
                 }
             }
         }
@@ -112,7 +120,6 @@ export default class Actor extends Entity {
         let ctile = Game.map.data[this.y][this.x]; // current tile
         ctile.removeActor(this); // remove this actor from this tile
         ntile.actors.push(this); // add this actor to the new tile
-
         this.x = nx; // update x,y coords to new coords
         this.y = ny;
         // Game.drawActor(this); // draw the actor at the new spot
@@ -153,6 +160,8 @@ export default class Actor extends Entity {
 
     /* Reduce hp. If less than 0, causes death */
     damage(hp) {
+        if (this.cb.invulnerable) return;
+
         this.cb.hp -= hp;
         if (this.isDead()) {
             this.death();

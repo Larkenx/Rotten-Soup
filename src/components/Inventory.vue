@@ -7,6 +7,7 @@
                      v-bind:key="i"
                      v-bind:class="{selectedItem : colorSlot(cell), inventory_cell : ! colorSlot(cell)}"
                      align-center
+                     style="max-width: 32px"
              >
              <v-tooltip top v-if="cell.item !== null">
                  <span>{{cell.item.hoverInfo()}}</span>

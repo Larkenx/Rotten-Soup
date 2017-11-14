@@ -33,7 +33,11 @@ export default class SimpleEnemy extends Actor {
     }
 
     interact(actor) {
-        if (actor === Game.player) this.attack(actor);
+        if (actor === Game.player)
+            this.attack(actor);
+        else
+            actor.react();
+        // actors can
     }
 
 }

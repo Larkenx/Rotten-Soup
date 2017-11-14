@@ -2,10 +2,9 @@
  * Created by Larken on 6/22/2017.
  */
 import {Game} from '#/Game.js'
-import Actor from '#/entities/actors/Actor.js'
+import SimpleEnemy from '#/entities/actors/enemies/SimpleEnemy.js'
 
-export default class Rat extends Actor {
-
+export default class Rat extends SimpleEnemy {
     constructor(x, y, id) {
         super(x, y, {
             id: id,
@@ -30,37 +29,17 @@ export default class Rat extends Actor {
                 def: 0,
                 /* misc */
                 hostile: true,
-                range: 6,
+                range: 5,
                 invulnerable: false,
             }
         });
     }
 
-    act() {
-        super.act();
-        Game.engine.lock();
-        if (this.distanceTo(Game.player) < 4) {
-            if (!this.options.chasing) Game.log('A rat sees you.', 'alert');
-            this.options.chasing = true;
-            this.options.inView = true;
-            let pathToPlayer = [];
-            Game.player.path.compute(this.x, this.y, function (x, y) {
-                pathToPlayer.push([x, y]);
-            });
-            if (pathToPlayer.length >= 2) {
-                let newPos = pathToPlayer[1]; // 1 past the current position
-                this.tryMove(newPos[0], newPos[1]);
-            }
-        } else {
-            this.options.inView = false;
-        }
-        Game.engine.unlock();
-    }
-
     interact(actor) {
-        if (actor === Game.player) {
+        if (actor === Game.player)
             this.attack(actor);
-        }
+        // else
+        //     actor.react();
+        // actors can
     }
-
 }
