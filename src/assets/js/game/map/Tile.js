@@ -2,8 +2,8 @@
  * Created by Larken on 6/28/2017.
  */
 
-import {tileset} from '@/assets/js/game/Game.js'
-import Player from '@/assets/js/game/entities/actors/Player.js'
+import {tileset} from '#/Game.js'
+import Player from '#/entities/actors/Player.js'
 
 export function getTileInfo(id) {
     /*

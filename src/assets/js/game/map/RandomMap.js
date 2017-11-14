@@ -2,7 +2,7 @@
  * Created by larken on 7/4/17.
  */
 import ROT from 'rot-js'
-import {Game} from '@/assets/js/game/Game.js'
+import {Game} from '#/Game.js'
 
 
 const flatten = arr => arr.reduce((acc, val) => acc.concat(Array.isArray(val) ? flatten(val) : val), []);

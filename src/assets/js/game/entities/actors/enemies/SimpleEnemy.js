@@ -1,5 +1,5 @@
-import Actor from '@/assets/js/game/entities/actors/Actor.js'
-import {Game} from '@/assets/js/game/Game.js'
+import Actor from '#/entities/actors/Actor.js'
+import {Game} from '#/Game.js'
 
 /* Simple enemy class to encapsulate all enemies with very simple AI.
 Essentially, these enemies have a range that they can see the player from, and if the player

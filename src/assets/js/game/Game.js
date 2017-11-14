@@ -1,10 +1,10 @@
 import ROT from 'rot-js'
-import {GameMap} from '@/assets/js/game/map/GameMap.js'
-import {getTilesetCoords} from '@/assets/js/game/map/GameMap.js'
-import GameDisplay from '@/assets/js/game/GameDisplay.js'
-import Actor from '@/assets/js/game/entities/actors/Actor.js'
-import Player from '@/assets/js/game/entities/actors/Player.js'
-import {randomMap} from '@/assets/js/game/map/RandomMap.js'
+import {GameMap} from '#/map/GameMap.js'
+import {getTilesetCoords} from '#/map/GameMap.js'
+import GameDisplay from '#/GameDisplay.js'
+import Actor from '#/entities/actors/Actor.js'
+import Player from '#/entities/actors/Player.js'
+import {randomMap} from '#/map/RandomMap.js'
 
 export const tileset = require('@/assets/maps/tileset/compiled_dawnlike.json')
 export const overworldMap = require('@/assets/maps/map_file/overworld.json')

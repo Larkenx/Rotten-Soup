@@ -2,11 +2,11 @@
  * Created by Larken on 6/22/2017.
  */
 
-import SimpleEnemy from '@/assets/js/game/entities/actors/enemies/SimpleEnemy.js'
-import {getRandomInt} from '@/assets/js/game/entities/Entity.js'
-import {Sword} from '@/assets/js/game/entities/items/weapons/Sword.js'
-import {createSword} from '@/assets/js/game/entities/items/weapons/Sword.js'
-import {Game} from '@/assets/js/game/Game.js'
+import SimpleEnemy from '#/entities/actors/enemies/SimpleEnemy.js'
+import {getRandomInt} from '#/entities/Entity.js'
+import {Sword} from '#/entities/items/weapons/Sword.js'
+import {createSword} from '#/entities/items/weapons/Sword.js'
+import {Game} from '#/Game.js'
 
 export default class Goblin extends SimpleEnemy {
     constructor(x, y, id) {

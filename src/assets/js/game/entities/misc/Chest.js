@@ -2,9 +2,9 @@
  * Created by Larken on 7/8/2017.
  */
 
-import {Game} from '@/assets/js/game/Game.js'
-import {tileset} from '@/assets/js/game/Game.js'
-import {Entity} from '@/assets/js/game/entities/Entity.js'
+import {Game} from '#/Game.js'
+import {tileset} from '#/Game.js'
+import {Entity} from '#/entities/Entity.js'
 
 export default class Chest extends Entity {
     constructor(x, y, id) {

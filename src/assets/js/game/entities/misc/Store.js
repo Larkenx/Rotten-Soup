@@ -1,8 +1,8 @@
 /**
  * Created by Larken on 6/22/2017.
  */
-import {Game} from '@/assets/js/game/Game.js'
-import {Entity} from '@/assets/js/game/entities/Entity.js'
+import {Game} from '#/Game.js'
+import {Entity} from '#/entities/Entity.js'
 
 
 export default class Store extends Entity {

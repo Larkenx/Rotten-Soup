@@ -1,8 +1,8 @@
 /**
  * Created by Larken on 6/22/2017.
  */
-import {Game} from '@/assets/js/game/Game.js'
-import Actor from '@/assets/js/game/entities/actors/Actor.js'
+import {Game} from '#/Game.js'
+import Actor from '#/entities/actors/Actor.js'
 
 export default class Rat extends Actor {
 
