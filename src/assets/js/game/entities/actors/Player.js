@@ -188,6 +188,7 @@ export default class Player extends Actor {
         }
     }
 
+    // Overriding the actor
     equipWeapon(item) {
         if (!item.cb.equippable || !item instanceof Weapon)
             throw "Error - equipped invalid item - " + this.item.options.type;

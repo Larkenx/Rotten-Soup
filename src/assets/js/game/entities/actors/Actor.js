@@ -4,6 +4,7 @@
 
 import {Game} from '@/assets/js/game/Game.js'
 import {Entity} from '@/assets/js/game/entities/Entity.js'
+import Weapon from '@/assets/js/game/entities/items/weapons/Weapon.js'
 
 function capitalize(s) {
     return s.charAt(0).toUpperCase() + s.slice(1);
@@ -48,6 +49,7 @@ export default class Actor extends Entity {
         this.inventory[this.inventory_idx].item = newItem;
         this.inventory[this.inventory_idx].action = newItem.use;
         this.inventory_idx++;
+        return this.inventory[this.inventory_idx - 1].item;
     }
 
     removeFromInventory(removeItem) {
@@ -134,6 +136,20 @@ export default class Actor extends Entity {
 
         return dmg;
     }
+
+    equipWeapon(item) {
+        if (!item.cb.equippable || !item instanceof Weapon)
+            throw "Error - equipped invalid item - " + this.item.options.type;
+
+        // already wielding a weapon
+        if (this.cb.equipment.weapon !== null) {
+            this.cb.equipment.weapon.cb.equipped = false;
+        }
+        this.cb.equipment.weapon = item;
+        item.cb.equipped = true;
+
+    }
+
 
     /* Reduce hp. If less than 0, causes death */
     damage(hp) {

@@ -6,17 +6,18 @@
                      v-for="(cell, i) in getInventoryRow(index)"
                      v-bind:key="i"
                      v-bind:class="{selectedItem : colorSlot(cell), inventory_cell : ! colorSlot(cell)}"
+                     align-center
              >
              <v-tooltip top v-if="cell.item !== null">
                  <span>{{cell.item.hoverInfo()}}</span>
-                    <v-layout ripple
-                              v-on:click="cell.item.use()"
-                              v-if="cell.item !== null"
-                              slot="activator"
-                              class="text-xs-center"
-                              >
-                        <img v-bind:src="getInventorySprite(cell.item.id)" alt="Sword"/>
-                    </v-layout>
+                     <v-layout ripple
+                               v-on:click="cell.item.use()"
+                               v-if="cell.item !== null"
+                               slot="activator"
+                               row
+                               >
+                         <img v-bind:src="getInventorySprite(cell.item.id)" alt="Sword"/>
+                     </v-layout>
                 </v-tooltip>
 
              </v-flex>
