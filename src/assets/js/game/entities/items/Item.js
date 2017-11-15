@@ -14,11 +14,7 @@ export default class Item extends Entity {
 
     /* UI / Front End functions */
     hoverInfo() {
-        if (this instanceof Weapon) {
-            return `${this.options.type}\n${this.options.name}\n${this.damageInfo()}`;
-        } else {
-            return `${this.options.type}${this.options.name}\n`;
-        }
+        return `${this.options.type}${this.options.name}\n`;
     }
 
     clipLocation() {
@@ -29,6 +25,6 @@ export default class Item extends Entity {
     }
 
     use() {
-        //
+        // to be overwritten
     }
 }

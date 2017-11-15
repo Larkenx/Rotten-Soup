@@ -17,7 +17,10 @@
                                slot="activator"
                                row
                                >
-                         <img v-bind:src="getInventorySprite(cell.item.id)" alt="Sword"/>
+                               <v-badge left overlap color="grey">
+                                   <span slot="badge">2</span>
+                                   <img v-bind:src="getInventorySprite(cell.item.id)" alt="Sword"/>
+                               </v-badge>
                      </v-layout>
                 </v-tooltip>
 

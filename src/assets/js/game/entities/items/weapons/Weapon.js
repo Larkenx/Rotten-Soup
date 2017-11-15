@@ -33,4 +33,8 @@ export default class Weapon extends Item {
     damageInfo() {
         return `${this.cb.rolls}-${this.cb.sides * this.cb.rolls}`
     }
+
+    hoverInfo() {
+        return `${this.options.type}\n${this.options.name}\n${this.damageInfo()}`;
+    }
 }
