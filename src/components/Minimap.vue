@@ -1,6 +1,6 @@
 <template>
     <v-layout row align-center>
-        <div id="minimap_container" class="flex" style="margin: 10px auto 10px auto;"></div>
+        <v-flex col xs12 id="minimap_container"style="text-xs-center"></v-flex>
     </v-layout>
 </template>
 

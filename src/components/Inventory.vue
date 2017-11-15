@@ -1,91 +1,91 @@
 <template>
     <span>
         <v-layout v-for="(row, index) in 4" class="inventory_row" row v-bind:key="index">
-             <v-flex xs1
-                     col
-                     v-for="(cell, i) in getInventoryRow(index)"
-                     v-bind:key="i"
-                     v-bind:class="{selectedItem : colorSlot(cell), inventory_cell : ! colorSlot(cell)}"
-                     align-center
-                     style="max-width: 32px"
-             >
-             <v-tooltip top v-if="cell.item !== null">
-                 <span>{{cell.item.hoverInfo()}}</span>
-                     <v-layout ripple
-                               v-on:click="cell.item.use()"
-                               v-if="cell.item !== null"
-                               slot="activator"
-                               row
-                               >
-                               <v-badge left overlap color="grey">
-                                   <span slot="badge">2</span>
-                                   <img v-bind:src="getInventorySprite(cell.item.id)" alt="Sword"/>
-                               </v-badge>
-                     </v-layout>
-                </v-tooltip>
+            <v-flex xs1
+                    col
+                    v-for="(cell, i) in getInventoryRow(index)"
+                    v-bind:key="i"
+                    v-bind:class="{selectedItem : colorSlot(cell), inventory_cell : ! colorSlot(cell)}"
+                    align-center
+                    style="max-width: 32px"
+            >
+            <v-tooltip bottom v-if="cell.item !== null" align-center>
+                    <p class="text-xs-center ma-0">Type: {{cell.item.options.type}}<br  />Name: {{cell.item.options.name}}<br />Damage: {{cell.item.damageInfo()}}</p>
+                <v-layout ripple
+                        v-on:click="cell.item.use()"
+                        v-if="cell.item !== null"
+                        slot="activator"
+                        row
+                >
+                <!-- <v-badge left overlap color="grey"> -->
+                <!-- <span slot="badge">2</span> -->
+                <img v-bind:src="getInventorySprite(cell.item.id)" alt="Sword"/>
+                <!-- </v-badge> -->
+            </v-layout>
+        </v-tooltip>
 
-             </v-flex>
-        </v-layout>
-    </span>
+    </v-flex>
+</v-layout>
+</span>
 </template>
 
 <script>
-    import {Game} from '@/assets/js/game/Game.js'
+import {Game} from '@/assets/js/game/Game.js'
 
-    /* import other components here */
-    export default {
-        data() {
-            return {
-                inventory: null,
-                rows: [1, 2, 3, 4],
-            };
+/* import other components here */
+export default {
+    data() {
+        return {
+            inventory: null,
+            rows: [1, 2, 3, 4],
+        };
+    },
+    methods: {
+        getInventorySprite(id) {
+            return `../static/images/inventory_sprites/${id}.png`;
         },
-        methods: {
-            getInventorySprite(id) {
-                return `../static/images/inventory_sprites/${id}.png`;
-            },
-            colorSlot(slot) {
-                return slot.item !== null && slot.item.cb.equipped;
-            },
-            getInventoryRow(n) {
-                let inventory = Game.player.inventory;
-                let offset = n * (inventory.length / this.rows.length);
-                return inventory.slice(offset, offset + (inventory.length / this.rows.length));
+        colorSlot(slot) {
+            return slot.item !== null && slot.item.cb.equipped;
+        },
+        getInventoryRow(n) {
+            let inventory = Game.player.inventory;
+            let offset = n * (inventory.length / this.rows.length);
+            return inventory.slice(offset, offset + (inventory.length / this.rows.length));
 
-            },
         },
-    }
+    },
+}
 </script>
 <style>
-    .inventory_row {
-        margin-left: 10px;
-    }
+.inventory_row {
+    /*margin-left: 10px;*/
+}
 
-    .inventory_cell {
-        margin: 2px;
-        border: 2px solid #4f4f4f;
-        background-color: #294646;
-        border-radius: 4px;
-        min-width: 40px;
-        min-height: 40px;
-    }
+.inventory_cell {
+    margin: 2px;
+    border: 2px solid #4f4f4f;
+    background-color: #294646;
+    border-radius: 4px;
+    min-width: 40px;
+    min-height: 40px;
+}
 
-    .inventory_cell:hover {
-        background-color: #698394;
-        cursor: pointer;
-    }
+.inventory_cell:hover {
+    background-color: #698394;
+    cursor: pointer;
+}
 
-    .selectedItem {
-        background-color: green;
-        margin: 2px;
-        border: 2px solid #3d3d3d;
-        border-radius: 4px;
-        min-width: 40px;
-        min-height: 40px;
-    }
+.selectedItem {
+    background-color: green;
+    margin: 2px;
+    border: 2px solid #3d3d3d;
+    border-radius: 4px;
+    min-width: 40px;
+    min-height: 40px;
+}
 
-    .selectedItem:hover {
-        background-color: #009e00;
-        cursor: pointer;
-    }
+.selectedItem:hover {
+    background-color: #009e00;
+    cursor: pointer;
+}
 </style>

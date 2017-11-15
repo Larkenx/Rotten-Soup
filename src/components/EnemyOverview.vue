@@ -1,17 +1,18 @@
 <template>
-    <v-container grid-list-xs fluid>
-        <v-layout row wrap style="margin-left:10px;">
-            <v-flex class="enemy_col"
-                    xs2
+    <v-container grid-list-xs style="min-height: 50px; margin-left: 10px;">
+        <v-layout row wrap v-if="getNearbyEnemies().length > 0">
+            <v-flex
+                    class="enemy_col"
+                    xs1
                     col
-                    justfy-center
                     v-for="(enemy, index) in getNearbyEnemies()"
                     v-bind:key="index"
+                    style="min-width: 50px;"
             >
-                <v-tooltip top>
+                <v-tooltip bottom>
                     <span align-center>
                         HP : {{enemy.getHP()}} / {{enemy.getMaxHP()}}<br />
-                        DESC: "{{enemy.description()}}"<br />
+                        "{{enemy.description()}}"<br />
                     </span>
                     <div slot="activator">
                             <v-layout align-center row style="font-size: 10px; margin: 0px auto -10px 0px;" >
@@ -26,6 +27,9 @@
                     </div>
                 </v-tooltip>
             </v-flex>
+        </v-layout>
+        <v-layout v-else row>
+            No enemies in view
         </v-layout>
     </v-container>
 
@@ -46,7 +50,6 @@
         methods: {
             getNearbyEnemies() {
                 return Game.player.nearbyEnemies;
-                33
             },
         },
         created () {

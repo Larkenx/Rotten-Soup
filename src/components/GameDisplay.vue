@@ -1,5 +1,5 @@
 <template>
-    <v-flex column>
+    <v-flex column style="max-width: 1000px; ">
         <v-layout row style="padding: 0px;">
             <!--<item-transfer-modal></item-transfer-modal>-->
             <div style="margin:0; padding:0;" id="game_container">
