@@ -1,19 +1,19 @@
 <template>
-    <v-flex class="hud elevation-0" column style="max-width: 550px;" align-center>
+    <v-layout fluid class="hud elevation-0" column>
         <!-- Health Bar -->
-        <v-container grid-list-md>
+        <v-flex>
             <v-layout row align-center style=" margin-bottom: -10px;">
                 <v-flex style="min-width: 75px;" md1 col><b>Health </b></v-flex>
                 <v-flex md4 col>
-                    <v-progress-linear color="error" :value="(getHP() / getMaxHP()) * 100" height="10"></v-progress-linear>
+                    <v-progress-linear color="error" :value="(getHP() / getMaxHP()) * 100"
+                                       height="10"></v-progress-linear>
                 </v-flex>
-                <v-flex md3 col>{{getHP()}} / {{getMaxHP()}}</v-flex>
+                <v-flex md3 col style="padding-left: 5px;">{{getHP()}} / {{getMaxHP()}}</v-flex>
             </v-layout>
-        </v-container>
-
+        </v-flex>
 
         <!-- Magic Bar -->
-        <v-container grid-list-md>
+        <v-flex>
             <v-layout row align-center>
                 <v-flex md1 style="min-width: 75px;" col><b>Magic</b></v-flex>
                 <v-flex md4 col>
@@ -22,58 +22,60 @@
                 </v-flex>
                 <v-flex md3 col>{{getMana()}} / {{getMaxMana()}}</v-flex>
             </v-layout>
-        </v-container>
+        </v-flex>
 
         <!-- Mini-map -->
         <mini-map></mini-map>
-        <v-tabs :scrollable="false" grow v-model="activeTab" style="max-width: 350px; margin-top: 10px; margin-bottom: 10px;">
-            <v-tabs-bar class="cyan darken-4" dark>
-                <v-tabs-item
-                    key="enemyOverview"
-                    href="#enemyOverview"
-                    ripple
-                    style="font-size: 11px;"
-                >
-                Enemy Overview
-                </v-tabs-item>
+        <v-flex>
+            <v-tabs :scrollable="false" grow v-model="activeTab"
+                    style="max-width: 350px; margin-top: 10px; margin-bottom: 10px;">
+                <v-tabs-bar class="cyan darken-4" dark>
+                    <v-tabs-item
+                            key="enemyOverview"
+                            href="#enemyOverview"
+                            ripple
+                            style="font-size: 11px;"
+                    >
+                        Enemy Overview
+                    </v-tabs-item>
 
-                <v-tabs-item
-                    key="spellBook"
-                    href="#spellBook"
-                    ripple
-                    style="font-size: 11px;"
-                >
-                Spellbook
-                </v-tabs-item>
-                <v-tabs-slider color="yellow"></v-tabs-slider>
-            </v-tabs-bar>
-            <v-tabs-items>
-                <v-tabs-content
-                    key="enemyOverview"
-                    id="enemyOverview"
-                >
-                <v-card flat>
-                    <enemy-overview></enemy-overview>
-                </v-card>
-                </v-tabs-content>
+                    <v-tabs-item
+                            key="spellBook"
+                            href="#spellBook"
+                            ripple
+                            style="font-size: 11px;"
+                    >
+                        Spellbook
+                    </v-tabs-item>
+                    <v-tabs-slider color="yellow"></v-tabs-slider>
+                </v-tabs-bar>
+                <v-tabs-items>
+                    <v-tabs-content
+                            key="enemyOverview"
+                            id="enemyOverview"
+                    >
+                        <v-card flat>
+                            <enemy-overview></enemy-overview>
+                        </v-card>
+                    </v-tabs-content>
 
-                <v-tabs-content
-                    key="spellBook"
-                    id="spellBook"
-                >
-                <v-card flat>
-                    <v-container>
-                        Nothing here yet :)
-                    </v-container>
-                </v-card>
-                </v-tabs-content>
-            </v-tabs-items>
-        </v-tabs>
-        <!-- Enemies Description -->
-        <!-- <enemy-overview></enemy-overview> -->
+                    <v-tabs-content
+                            key="spellBook"
+                            id="spellBook"
+                    >
+                        <v-card flat>
+                            <v-container>
+                                Nothing here yet :)
+                            </v-container>
+                        </v-card>
+                    </v-tabs-content>
+                </v-tabs-items>
+            </v-tabs>
+        </v-flex>
+
         <!-- Inventory -->
         <inventory></inventory>
-    </v-flex>
+    </v-layout>
 </template>
 
 <script>
@@ -85,7 +87,7 @@
     export default {
         data() {
             return {
-                activeTab : null,
+                activeTab: null,
                 player: Game.player,
                 actors: Game.actors,
                 rows: [1, 2, 3, 4],
@@ -120,23 +122,5 @@
         color: white;
         font-size: 13px;
         margin-left: 20px;
-    }
-
-    .enemy_col {
-        cursor: pointer;
-        border: 2px solid #4f4f4f;
-        background-color: #142929;
-        border-radius: 4px;
-        margin: 2px;
-        max-height: 30px;
-    }
-
-    .enemy_col:hover {
-        cursor: pointer;
-        border: 2px solid #4f4f4f;
-        background-color: #557081;
-        border-radius: 4px;
-        margin: 2px;
-        max-height: 30px;
     }
 </style>

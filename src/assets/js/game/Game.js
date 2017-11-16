@@ -113,7 +113,7 @@ export let Game = {
             width: this.map.width,
             height: this.map.height,
             fontSize: 2,
-            spacing: 1.5,
+            spacing: 2,
             forceSquareRatio: true
         });
         this.drawMiniMap();

@@ -1,5 +1,5 @@
 <template>
-    <span>
+    <v-flex>
         <v-layout v-for="(row, index) in 4" class="inventory_row" row v-bind:key="index">
             <v-flex xs1
                     col
@@ -7,7 +7,7 @@
                     v-bind:key="i"
                     v-bind:class="{selectedItem : colorSlot(cell), inventory_cell : ! colorSlot(cell)}"
                     align-center
-                    style="max-width: 32px"
+                    style="max-width: 32px; margin: 3px;"
             >
             <v-tooltip bottom v-if="cell.item !== null" align-center>
                     <p class="text-xs-center ma-0">Type: {{cell.item.options.type}}<br  />Name: {{cell.item.options.name}}<br />Damage: {{cell.item.damageInfo()}}</p>
@@ -26,7 +26,7 @@
 
     </v-flex>
 </v-layout>
-</span>
+</v-flex>
 </template>
 
 <script>
