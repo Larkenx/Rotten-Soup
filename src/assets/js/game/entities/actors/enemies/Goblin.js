@@ -5,6 +5,7 @@
 import SimpleEnemy from '#/entities/actors/enemies/SimpleEnemy.js'
 import {getRandomInt} from '#/entities/Entity.js'
 import {Sword} from '#/entities/items/weapons/Sword.js'
+import HealthPotion from '#/entities/items/potions/HealthPotion.js'
 import {createSword} from '#/entities/items/weapons/Sword.js'
 import {Game} from '#/Game.js'
 
@@ -37,10 +38,9 @@ export default class Goblin extends SimpleEnemy {
         let roll = getRandomInt(1, 10);
         if (roll <= 2) {
             this.addToInventory(createSword(this.x, this.y, 35));
-            // let swords = this.inventory.filter(function (el) {
-            //     return el.item instanceof Sword;
-            // });
-            // this.equipWeapon(swords[0]);
+            this.equipWeapon(this.inventory[0].item);
+        } else if (roll >= 8) {
+            this.addToInventory(new HealthPotion(this.x, this.y, 488));
         }
     }
 

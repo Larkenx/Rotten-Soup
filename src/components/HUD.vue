@@ -20,7 +20,7 @@
                     <v-progress-linear :value="(getMana() / getMaxMana()) * 100" height="10"
                                        info></v-progress-linear>
                 </v-flex>
-                <v-flex md3 col>{{getMana()}} / {{getMaxMana()}}</v-flex>
+                <v-flex md3 col style="padding-left: 5px;">{{getMana()}} / {{getMaxMana()}}</v-flex>
             </v-layout>
         </v-flex>
 

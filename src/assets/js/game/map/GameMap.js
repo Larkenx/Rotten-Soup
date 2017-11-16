@@ -10,7 +10,11 @@ import Goblin from '#/entities/actors/enemies/Goblin.js'
 import Orc from '#/entities/actors/enemies/Orc.js'
 import Rat from '#/entities/actors/enemies/Rat.js'
 
+// Items
 import {createSword} from '#/entities/items/weapons/Sword.js'
+import HealthPotion from '#/entities/items/potions/HealthPotion.js'
+
+// Misc
 import Chest from '#/entities/misc/Chest.js'
 import Door from '#/entities/misc/Door.js'
 import Ladder from '#/entities/misc/Ladder.js'
@@ -50,6 +54,9 @@ const entityShop = {
     },
     10: (x, y, id) => {
         return new Chest(x, y, id);
+    },
+    11: (x, y, id) => {
+        return new HealthPotion(x,y,id);
     }
 };
 

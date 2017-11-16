@@ -34,39 +34,72 @@ export default class Actor extends Entity {
             weapon: null,
         };
         this.inventory = [];
-        this.inventory_idx = 0;
         for (let i = 0; i < 28; i++) {
             this.inventory.push({
                 item: null,
+                // action : null
             });
         }
     }
 
     /* Called by the ROT.js game scheduler to indicate a turn */
-    act() {
+    act() {}
+
+    memberOfInventory(item) {
+        return -1 < this.inventory.findIndex((cell) => {
+            return Object.is(item, cell.item);
+        });
     }
 
     addToInventory(newItem) {
-        this.inventory[this.inventory_idx].item = newItem;
-        this.inventory[this.inventory_idx].action = newItem.use;
-        this.inventory_idx++;
-        return this.inventory[this.inventory_idx - 1].item;
+        let nextFreeIndex = null;
+        for (let i = 0; i < this.inventory.length; i++) {
+            if (this.inventory[i].item == null) {
+                nextFreeIndex = i;
+                break;
+            }
+        }
+        if (nextFreeIndex === null) {
+            Game.log("Your inventory is full! Drop something in order to pick this up.");
+            return newItem;
+        }
+
+        this.inventory[nextFreeIndex].item = newItem
+        // this.inventory[nextFreeIndex].action = newItem.use;
+        return this.inventory[nextFreeIndex].item;
     }
 
+    // expressly want to just remove the item from the inventory.
+    // no actions are taken to mutate the item (like unequipping it from the player - this is done in those classes)
     removeFromInventory(removeItem) {
-        let idx = this.inventory.indexOf(removeItem);
-        if (idx !== null) {
-            this.inventory.splice(idx, 1);
-            this.inventory_idx--;
+        let idx = this.inventory.findIndex((cell) => {
+            return Object.is(removeItem, cell.item);
+        });
+        if (idx != -1) {
+            console.log(idx);
+            console.log(this.inventory[idx]);
+            this.inventory[idx].item = null;
         } else {
-            throw "invalid item removal - check for bugs!";
+            throw "invalid item removal - trying to remove an item that cannot be found in inventory!";
         }
+    }
+
+    dropItem(item) {
+        if (!this.memberOfInventory(item))
+            throw "Error - trying to drop an item you don't have in your inventory";
+
+        this.removeFromInventory(item);
+        if (item !== null && "cb" in item) {
+            item.cb.equipped = false;
+        }
+        let ctile = Game.map.data[this.y][this.x];
+        ctile.actors.unshift(item);
     }
 
     /* The inventory property of actors is an array of object 'slots'. This function
      * returns the actual items that are held at any given time */
     items() {
-        return this.inventory.slice(0, this.inventory_idx).map((e) => e.item);
+        return this.inventory.filter((e) => e.item !== null).map((e) => e.item);
     }
 
     distanceTo(actor) { // linear distance, no obstacles factored in
@@ -145,7 +178,7 @@ export default class Actor extends Entity {
     }
 
     equipWeapon(item) {
-        if (!item.cb.equippable || !item instanceof Weapon)
+        if (!item instanceof Weapon || ! "cb" in item)
             throw "Error - equipped invalid item - " + this.item.options.type;
 
         // already wielding a weapon
@@ -195,6 +228,10 @@ export default class Actor extends Entity {
         if (this.inventory.length > 0) {
             let items = this.items();
             for (let item of items) {
+                // if the item was previously equipped, it needs to be 'unequipped'
+                if (item !== null && "cb" in item) {
+                    item.cb.equipped = false;
+                }
                 ctile.actors.push(item);
             }
         }

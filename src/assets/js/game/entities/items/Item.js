@@ -27,4 +27,11 @@ export default class Item extends Entity {
     use() {
         // to be overwritten
     }
+
+// making a major assumption that the player is the only thing that drops things.
+// might change if some enemy type needs to do so
+    drop() {
+        Game.player.dropItem(this);
+
+    }
 }

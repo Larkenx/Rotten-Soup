@@ -4,9 +4,14 @@
 import ROT from 'rot-js'
 import {Game} from '#/Game.js'
 import Actor from '#/entities/actors/Actor.js'
-import {createSword} from '#/entities/items/weapons/Sword.js'
+// Items
 import Item from '#/entities/items/Item.js'
+import HealthPotion from '#/entities/items/potions/HealthPotion.js'
 import Weapon from '#/entities/items/weapons/Weapon.js'
+import {createSword} from '#/entities/items/weapons/Sword.js'
+
+
+// Misc
 import Ladder from '#/entities/misc/Ladder.js'
 
 let xp_levels = [50];
@@ -52,9 +57,13 @@ export default class Player extends Actor {
         this.nearbyEnemies = [];
         // Inventory is an array of objects that contain items and an action that can be done with that item.
         // You can think of the objects as individual 'slots' to store the item with actions like 'use' or 'equip'.
-
+        // Give the player a few starting items:
+        // - a health potion
+        // - a random sword (equip the sword)
         this.addToInventory(createSword(this.x, this.y, 35));
         this.equipWeapon(this.inventory[0].item);
+        this.addToInventory(new HealthPotion(this.x,this.y, 488));
+
     }
 
     act() {
@@ -182,7 +191,11 @@ export default class Player extends Actor {
             ctile.removeActor(tileItems[0]);
         } else if (tileItems.length > 1) {
             // open up an inventory modal of things they can pick up?
-            Game.log("Too many items here! Feature not implemented yet :)", "information");
+            // Game.log("Too many items here! Feature not implemented yet :)", "information");
+            for (let item of tileItems) {
+                this.addToInventory(item);
+                ctile.removeActor(item);
+            }
         } else {
             Game.log("There's nothing on the ground here.", "information");
         }
@@ -190,9 +203,10 @@ export default class Player extends Actor {
 
     // Overriding the actor
     equipWeapon(item) {
-        if (!item.cb.equippable || !item instanceof Weapon)
+        if (!item instanceof Weapon) {
             throw "Error - equipped invalid item - " + this.item.options.type;
-
+            return;
+        }
         if (item.cb.equipped) {
             Game.log("You've already equipped that item!", "information");
         } else {
