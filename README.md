@@ -32,7 +32,7 @@ Rotten Soup is roguelike written in JavaScript with [rot.js](http://ondras.githu
 - You can pick up items with `,` or `g`. If there are multiple items on the ground, all of the items are picked up at once.
 - To equip or use an item, click on the item in your inventory. You can hover over it to see
 what it does or what stats are associated with it.
-- To drop an item,
+- To drop an item, hold shift and click the item you want to drop. (If you drop an item, you can still pick it up again).
 
 # Current Features
 - Field of view / Fog of war
