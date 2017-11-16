@@ -7105,6 +7105,13 @@
          "animated_id":0,
          "entity":false
         },
+     "488":
+        {
+         "animated":false,
+         "animated_id":11,
+         "entity":true,
+         "entity_id":11
+        },
      "4888":
         {
          "animated":true,
@@ -38485,6 +38492,13 @@
          "animated":"bool",
          "animated_id":"int",
          "entity":"bool"
+        },
+     "488":
+        {
+         "animated":"bool",
+         "animated_id":"int",
+         "entity":"bool",
+         "entity_id":"int"
         },
      "4888":
         {
