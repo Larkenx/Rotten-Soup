@@ -24,55 +24,58 @@
             </v-layout>
         </v-flex>
 
-        <v-flex>
-            <v-layout row align-center>
-                <v-flex md1 style="min-width: 50px;" col><b>Damage</b></v-flex>
-                <v-flex md3 col style="padding-left: 5px;">{{getDamageRange()}}</v-flex>
-            </v-layout>
-        </v-flex>
 
         <!-- Mini-map -->
         <mini-map></mini-map>
         <v-flex>
             <v-tabs :scrollable="false" grow v-model="activeTab"
-                    style="max-width: 350px; margin-top: 10px; margin-bottom: 10px;">
+                    style="max-width: 350px; margin-top: 10px; margin-bottom: 10px; font-size: 11px;">
                 <v-tabs-bar class="cyan darken-4" dark>
-                    <v-tabs-item
-                            key="enemyOverview"
-                            href="#enemyOverview"
-                            ripple
-                            style="font-size: 11px;"
-                    >
+                    <v-tabs-item key="stats" href="#stats" ripple>
+                        Stats
+                    </v-tabs-item>
+                    <v-tabs-item key="enemyOverview" href="#enemyOverview" ripple >
                         Enemy Overview
                     </v-tabs-item>
-
-                    <v-tabs-item
-                            key="spellBook"
-                            href="#spellBook"
-                            ripple
-                            style="font-size: 11px;"
-                    >
+                    <v-tabs-item key="spellBook" href="#spellBook" ripple >
                         Spellbook
                     </v-tabs-item>
                     <v-tabs-slider color="yellow"></v-tabs-slider>
                 </v-tabs-bar>
+
                 <v-tabs-items>
-                    <v-tabs-content
-                            key="enemyOverview"
-                            id="enemyOverview"
-                    >
+                    <v-tabs-content key="enemyOverview" id="enemyOverview" >
                         <v-card flat>
                             <enemy-overview></enemy-overview>
                         </v-card>
                     </v-tabs-content>
 
-                    <v-tabs-content
-                            key="spellBook"
-                            id="spellBook"
-                    >
+                    <v-tabs-content key="spellBook" id="spellBook" >
                         <v-card flat>
                             <v-container>
                                 Nothing here yet :)
+                            </v-container>
+                        </v-card>
+                    </v-tabs-content>
+
+                    <v-tabs-content key="stats" id="stats" >
+                        <v-card flat>
+                            <v-container>
+                                <!-- Level -->
+                                <v-flex>
+                                    <v-layout row align-center>
+                                        <v-flex md1 style="min-width: 50px;" col><b>Level</b></v-flex>
+                                        <v-flex md2 col style="padding-left: 5px;">{{getLevel()}}</v-flex>
+                                        <v-flex md6 col>{{getRemainingXP()}}XP until level {{getLevel()+1}}</v-flex>
+                                    </v-layout>
+                                </v-flex>
+                                <!-- Damage -->
+                                <v-flex>
+                                    <v-layout row align-center>
+                                        <v-flex md1 style="min-width: 50px;" col><b>Damage</b></v-flex>
+                                        <v-flex md3 col style="padding-left: 5px;">{{getDamageRange()}}</v-flex>
+                                    </v-layout>
+                                </v-flex>
                             </v-container>
                         </v-card>
                     </v-tabs-content>
@@ -115,7 +118,14 @@
             },
             getDamageRange() {
                 return Game.player.getMinDmg() + "-" + Game.player.getMaxDmg();
+            },
+            getLevel() {
+                return Game.player.cb.level;
+            },
+            getRemainingXP() {
+                return Game.player.remainingXP();
             }
+
 
         },
         components: {

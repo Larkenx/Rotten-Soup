@@ -15,7 +15,7 @@
                         "{{enemy.description()}}"<br />
                     </span>
                     <div slot="activator">
-                            <v-layout align-center row style="font-size: 10px; margin: 0px auto -10px 0px;" >
+                            <v-layout class="text-xs-center"align-center row style="font-size: 10px; margin: 0px auto -10px 0px;" >
                                 {{enemy.name().capitalize()}}
                             </v-layout>
                             <v-layout row style="margin: 0 auto;">
@@ -29,7 +29,9 @@
             </v-flex>
         </v-layout>
         <v-layout v-else row>
-            No enemies in view
+            <v-container>
+                No enemies in view
+            </v-container>
         </v-layout>
     </v-container>
 
