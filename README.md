@@ -29,17 +29,19 @@ Rotten Soup is roguelike written in JavaScript with [rot.js](http://ondras.githu
 
 - You can move up and down ladders using `>` (down) and `<` (up).
 - You can rest for a turn with `.` or `5` on the numpad.
-- You can pick up items with `,` or `g`.
+- You can pick up items with `,` or `g`. If there are multiple items on the ground, all of the items are picked up at once.
+- To equip or use an item, click on the item in your inventory. You can hover over it to see
+what it does or what stats are associated with it.
+- To drop an item,
 
 # Current Features
-*Note: A lot of the features below (like dungeon generation and FOV) come from built-in ROT.js methods*
 - Field of view / Fog of war
-- Minimap, revealed as you explore
+- Minimap, revealed as you explore in maps where the map is hidden (dungeons)
 - Static overworld map
 - Randomly generated dungeons
 - Transitions between overworld and dungeons with persistent maps
-- Inventory system and items
-- Simple AI for Goblins and Rats
+- Inventory system and items. Currently there are swords and health potions.
+- Simple AI for Goblins, Rats, Orcs, and Empowered Orcs
 - Graphical tiles
 
 # Future Goals

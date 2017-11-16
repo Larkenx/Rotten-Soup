@@ -91,6 +91,8 @@ export default class Actor extends Entity {
         this.removeFromInventory(item);
         if (item !== null && "cb" in item) {
             item.cb.equipped = false;
+            if (this.cb.equipment.weapon == item)
+                this.cb.equipment.weapon = null;
         }
         let ctile = Game.map.data[this.y][this.x];
         ctile.actors.unshift(item);
@@ -260,5 +262,17 @@ export default class Actor extends Entity {
 
     getHoverInfo() {
         return `HP: ${this.getHP()} / ${this.getMaxHP()}<br />\"${this.description()}\"`;
+    }
+
+    getMinDmg() {
+        let wep = this.cb.equipment.weapon
+        let minWeaponDmg = wep !== null ? wep.cb.rolls : 0
+        return this.cb.str + minWeaponDmg;
+    }
+
+    getMaxDmg() {
+        let wep = this.cb.equipment.weapon
+        let maxWeaponDmg = wep !== null ? wep.cb.rolls*wep.cb.sides : 0
+        return this.cb.str + maxWeaponDmg;
     }
 }

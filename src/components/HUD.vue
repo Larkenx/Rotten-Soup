@@ -24,6 +24,13 @@
             </v-layout>
         </v-flex>
 
+        <v-flex>
+            <v-layout row align-center>
+                <v-flex md1 style="min-width: 50px;" col><b>Damage</b></v-flex>
+                <v-flex md3 col style="padding-left: 5px;">{{getDamageRange()}}</v-flex>
+            </v-layout>
+        </v-flex>
+
         <!-- Mini-map -->
         <mini-map></mini-map>
         <v-flex>
@@ -106,6 +113,10 @@
             getMaxMana() {
                 return Game.player.cb.maxmana;
             },
+            getDamageRange() {
+                return Game.player.getMinDmg() + "-" + Game.player.getMaxDmg();
+            }
+
         },
         components: {
             'inventory': inventory,

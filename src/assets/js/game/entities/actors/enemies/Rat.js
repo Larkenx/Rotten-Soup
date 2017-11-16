@@ -23,13 +23,13 @@ export default class Rat extends SimpleEnemy {
                 maxhp: 3,
                 maxmana: 0,
                 /* current stats */
-                hp: 2,
+                hp: 3,
                 mana: 0,
                 str: 6,
                 def: 0,
                 /* misc */
                 hostile: true,
-                range: 5,
+                range: 4,
                 invulnerable: false,
             }
         });
