@@ -89,7 +89,7 @@ export default class Player extends Actor {
 
     gain_xp(xp) {
         this.cb.xp += xp;
-        if (xp_levels[this.cb.level - 1] <= this.cb.xp)
+        if (xp_levels[this.cb.level+1] <= this.cb.xp)
             this.level_up();
     }
 
@@ -283,7 +283,7 @@ export default class Player extends Actor {
 
     attack(actor) {
         let dmg = super.attack(actor);
-        this.gain_xp(dmg / 2);
+        this.gain_xp(Math.floor(dmg * .75));
     }
 
     death() {
