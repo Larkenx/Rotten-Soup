@@ -14,6 +14,8 @@ import Rat from '#/entities/actors/enemies/Rat.js'
 
 // Items
 import {createSword} from '#/entities/items/weapons/Sword.js'
+import {Sword} from '#/entities/items/weapons/Sword.js'
+
 import HealthPotion from '#/entities/items/potions/HealthPotion.js'
 import StrengthPotion from '#/entities/items/potions/StrengthPotion.js'
 import ManaPotion from '#/entities/items/potions/ManaPotion.js'
@@ -67,6 +69,9 @@ const entityShop = {
     },
     13 : (x,y,id) => {
         return new ManaPotion(x,y,id);
+    },
+    14 : (x,y,id) => {
+        return new Sword(this.x, this.y, 4, 7, "Orc Purifier", id)
     }
 };
 
@@ -96,10 +101,6 @@ export class GameMap {
         console.log("Generating new map...");
         if (!json) throw "Bad map creation";
         this.loadedIDS = [];
-        let tileLayer = json.layers[0];
-        let obstacleLayer = json.layers[1];
-        let firstActorLayer = json.layers[2];
-        // let secondActorLayer = null;
         this.playerLocation = null; // this field is used exclusively for saving the player's last location before they change levels
         this.width = json.width;
         this.height = json.height;
@@ -116,14 +117,23 @@ export class GameMap {
             }
         }
         // Process all of the json layers
+        // process the group layers last. this is specifically for placing static itemsets into treasure chests in the overworld.
+        // process it last so that all of the chest entities have been created already
+        let chestItemLayers = [];
         for (let layer of json.layers) {
             // Obstacle Layer
             if (layer.properties.obstacles === true)
                 this.processObstacleLayer(layer);
+            else if (layer.properties.chestItem === true)
+                chestItemLayers.push(layer);
             else
                 this.processActorLayer(layer);
         }
         if (this.playerLocation === null) throw "Error - no player starting position!";
+        // add chest items to chests where appropriate
+        for (let layer of chestItemLayers) {
+            this.processChestItemLayer(layer);
+        }
     }
 
     processObstacleLayer(layer) {
@@ -161,6 +171,23 @@ export class GameMap {
         }
     }
 
+    processChestItemLayer(layer) {
+        for (let i = 0; i < this.height; i++) {
+            for (let j = 0; j < this.width; j++) {
+                let id = layer.data[i * this.width + j] - 1; // grab the id in the json data
+                if (id > 1) { // id of zero indicates no actor in this spot
+                    if (!this.loadedIDS.includes(id)) Game.loadedIDS.push(id);
+                    let properties = getTileInfo(id);
+                    if (properties.entity !== true) throw "Bad entity creation for tile " + id;
+                    let newActor = createEntity(j, i, properties.entity_id, id);
+                    this.actors.push(newActor); // add to the list of all actors
+                    this.findChest(j,i).addToChest(newActor);
+                }
+            }
+        }
+    }
+
+
 
     print() {
         let buf = "";
@@ -182,6 +209,12 @@ export class GameMap {
                 + buf.substr(index + 1);
         }
         console.log(buf);
+    }
+
+    findChest(x,y) {
+        let chests = this.data[y][x].actors.filter((a) => {return a instanceof Chest});
+        if (chests.length === 0) throw `No chest created at (${x + ',' + y}) for chest items to be placed in.`;
+        return chests[0];
     }
 
     /* Returns the tiles adjacent to the given tile */

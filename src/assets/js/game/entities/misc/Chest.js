@@ -14,6 +14,7 @@ export default class Chest extends Entity {
             blocked: true,
         });
         this.closed = true;
+        this.items = [];
     }
 
     react(actor) {
@@ -21,8 +22,15 @@ export default class Chest extends Entity {
             this.open();
         } else {
             // open up an inventory screen of items in the chest?
-            Game.log("Sorry, your treasure is in another castle...", "information");
+            Game.log("You collect everything from the chest.", "information");
+            for (let item of this.items)
+                actor.addToInventory(item);
+            this.items = [];
         }
+    }
+
+    addToChest(item) {
+        this.items.push(item);
     }
 
     open() {
