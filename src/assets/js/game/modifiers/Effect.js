@@ -12,6 +12,8 @@ export class Effect {
         Object.assign(this, options);
         if (this.name === undefined || this.description === undefined || this.action === undefined)
             throw "Effect missing critical fields";
+        if (this.duration === undefined) // if we don't specify a duration, assume it only lasts a single turn
+            this.duration = 1;
     }
 
     applyEffect(entity) {
@@ -24,32 +26,13 @@ export class Effect {
     }
 }
 
-export class Bleed implements Effect {
+export class BleedEffect extends Effect {
     constructor() {
         super({
             name : "Bleed",
-            action : (entity) => {entity.damage(Math.floor(entity * .15))},
+            action : (entity) => {entity.damage(Math.floor(entity.cb.hp * .15))},
             description : (entity) => {return `${entity.name()} is taking ${bleedDmg(entity)} damage per turn`},
+            duration : 3
         });
     }
 }
-
-// approach 1
-// let bleedDmg = (entity) =>  {return Math.floor(entity.cb.maxhp * .15);}
-// let bleedEffect = (entity) => {entity.damage(this.calculateBleedDamage(entity))}
-// let description = (entity) => {return `${entity.name()} is taking ${bleedDmg(entity)} damage per turn`;}
-// export const Bleed = new Effect(bleedEffect, 3, "Bleed", description)
-
-// aproach 2
-// export class Bleed implements Effect {
-//     constructor() {
-//         let action = (entity) => {entity.damage(this.calculateBleedDamage(entity))}
-//         let description = (entity) => {return `${entity.name()} is taking ${this.calculateBleedDamage(entity)} damage per turn`;}
-//         super(action, 3, "Bleed", description); // "Bleed deals 15% of maximum hp as damage each turn"
-//     }
-//
-//     calculateBleedDamage(entity) {
-//         return Math.floor(entity.cb.maxhp * .15);
-//     }
-//
-// }

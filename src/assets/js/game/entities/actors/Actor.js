@@ -48,6 +48,8 @@ export default class Actor extends Entity {
         for (let effect of this.cb.effects) {
             effect.applyEffect(this);
         }
+        // if any effects have expired, we remove them
+        this.cb.effects = this.cb.effects.filter((e) => {return e.duration >= 1});
     }
 
     addNewEffect(effect) {

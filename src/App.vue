@@ -30,6 +30,7 @@
     import itemTransferModal from './components/itemTransferModal.vue';
     import hud from './components/HUD.vue';
     import deathModal from './components/DeathModal.vue';
+    Window.Game = Game;
     export default {
         name: 'app',
         data () {
