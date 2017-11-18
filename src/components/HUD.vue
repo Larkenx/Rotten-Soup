@@ -9,7 +9,7 @@
                         class="statsBar"
                         color="error"
                         :value="(getHP() / getMaxHP()) * 100"
-                        height="10"
+                        height="13"
                    ></v-progress-linear>
                 </v-flex>
                 <v-flex md3 col style="padding-left: 5px;">{{getHP()}} / {{getMaxHP()}}</v-flex>
@@ -24,7 +24,7 @@
                     <v-progress-linear
                         class="statsBar"
                         :value="(getMana() / getMaxMana()) * 100"
-                        height="10"
+                        height="13"
                         info
                     ></v-progress-linear>
                 </v-flex>
@@ -50,25 +50,22 @@
                     </v-tabs-item>
                     <v-tabs-slider color="yellow"></v-tabs-slider>
                 </v-tabs-bar>
-
                 <v-tabs-items>
+                    <v-tabs-content key="stats" id="stats" >
+                        <v-card flat class="v-tab-card">
+                            <stats-tab-content></stats-tab-content>
+                        </v-card>
+                    </v-tabs-content>
                     <v-tabs-content key="enemyOverview" id="enemyOverview" >
-                        <v-card flat>
+                        <v-card flat class="v-tab-card">
                             <enemy-overview></enemy-overview>
                         </v-card>
                     </v-tabs-content>
-
                     <v-tabs-content key="spellBook" id="spellBook" >
-                        <v-card flat>
+                        <v-card flat class="v-tab-card">
                             <v-container>
                                 Nothing here yet :)
                             </v-container>
-                        </v-card>
-                    </v-tabs-content>
-
-                    <v-tabs-content key="stats" id="stats" >
-                        <v-card flat>
-                            <stats-tab-content></stats-tab-content>
                         </v-card>
                     </v-tabs-content>
                 </v-tabs-items>
@@ -134,5 +131,9 @@
 
     .xpCircleFont {
         font-size: 5px;
+    }
+
+    .v-tab-card {
+        min-height: 103px;
     }
 </style>

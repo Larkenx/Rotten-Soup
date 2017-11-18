@@ -1,8 +1,8 @@
 <template>
     <v-container>
         <!-- Level -->
-        <v-flex>
-            <v-layout row align-center>
+        <v-flex class="stat-row">
+            <v-layout  row align-center>
                 <v-flex md1 style="min-width: 70px;" col><b>Level</b></v-flex>
                 <v-flex md2 col style="padding-left: 5px;">{{getLevel()}}</v-flex>
                 <v-flex md2 col style="padding-left: 5px;">
@@ -22,22 +22,22 @@
             </v-layout>
         </v-flex>
         <!-- Damage -->
-        <v-flex>
-            <v-layout row align-center>
+        <v-flex class="stat-row">
+            <v-layout  row align-center>
                 <v-flex md1 style="min-width: 70px;" col><b>Damage</b></v-flex>
                 <v-flex md3 col style="padding-left: 5px;">{{getDamageRange()}}</v-flex>
             </v-layout>
         </v-flex>
         <!-- Strength -->
-        <v-flex>
-            <v-layout row align-center>
+        <v-flex class="stat-row">
+            <v-layout  row align-center>
                 <v-flex md1 style="min-width: 70px;" col><b>Strength</b></v-flex>
                 <v-flex md3 col style="padding-left: 5px;">{{getStrength()}}</v-flex>
             </v-layout>
         </v-flex>
         <!-- Defence -->
-        <v-flex>
-            <v-layout row align-center>
+        <v-flex class="stat-row">
+            <v-layout   row align-center>
                 <v-flex md1 style="min-width: 70px;" col><b>Defence</b></v-flex>
                 <v-flex md3 col style="padding-left: 5px;">{{getDefence()}}</v-flex>
             </v-layout>
@@ -91,3 +91,12 @@ export default {
     }
 }
 </script>
+<style>
+.stat-row {
+    cursor: pointer;
+}
+
+.stat-row:hover {
+    background-color: #4e4e4e;
+}
+</style>

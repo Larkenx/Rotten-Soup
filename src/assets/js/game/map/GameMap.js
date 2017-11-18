@@ -15,7 +15,8 @@ import Rat from '#/entities/actors/enemies/Rat.js'
 // Items
 import {createSword} from '#/entities/items/weapons/Sword.js'
 import HealthPotion from '#/entities/items/potions/HealthPotion.js'
-import StrengthPotion from '#/entities/items/potions/HealthPotion.js'
+import StrengthPotion from '#/entities/items/potions/StrengthPotion.js'
+import ManaPotion from '#/entities/items/potions/ManaPotion.js'
 
 // Misc
 import Chest from '#/entities/misc/Chest.js'
@@ -63,6 +64,9 @@ const entityShop = {
     },
     12 : (x,y,id) => {
         return new StrengthPotion(x,y,id);
+    },
+    13 : (x,y,id) => {
+        return new ManaPotion(x,y,id);
     }
 };
 
