@@ -1,5 +1,5 @@
 # Rotten Soup
-![screenshot](src/assets/images/screen.gif)
+![screenshot](static/images/screen.gif)
 
 ## Build Setup
 
