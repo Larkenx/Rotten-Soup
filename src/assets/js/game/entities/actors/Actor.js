@@ -79,7 +79,7 @@ export default class Actor extends Entity {
             Game.log("Your inventory is full! Drop something in order to pick this up.");
             // if your item is in a chest and you try to pick it up, but your inventory is full,
             // it will drop the item below you.
-            newItem.move(this.x, this.y);
+            Game.map.data[this.y][this.x].actors.push(newItem);
             return newItem;
         }
 

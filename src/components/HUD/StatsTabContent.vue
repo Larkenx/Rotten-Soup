@@ -85,7 +85,6 @@ export default {
         },
         getPercentToLevel() {
             let experienceTowardsNext = xp_levels[this.getLevel()+1] - this.getRemainingXP();
-            console.log(experienceTowardsNext);
             return experienceTowardsNext / xp_levels[this.getLevel()+1];
         }
     }

@@ -103,7 +103,7 @@ export default class Tile {
         /* Actors / Entities */
         for (let actor of this.actors) {
             let obs = getTileInfo(actor.id);
-            if (animate && obs.animated === true) {
+            if (animate && "animated" in obs && obs.animated === true) {
                 if (obs.animated_id === null)
                     throw `Error - invalid animate tile specified for tileset ID : ${obs.id} with animated tile id ${obs.animated_id} `;
                 symbols.push(obs.animated_id);

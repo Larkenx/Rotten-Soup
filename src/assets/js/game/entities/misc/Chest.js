@@ -22,10 +22,16 @@ export default class Chest extends Entity {
             this.open();
         } else {
             // open up an inventory screen of items in the chest?
-            Game.log("You collect everything from the chest.", "information");
-            for (let item of this.items)
-                actor.addToInventory(item);
-            this.items = [];
+            if (this.items.length === 0) {
+                Game.log("There's nothing left in this chest!", "information");
+            } else {
+                Game.log("You collect everything from the chest.", "information");
+                for (let item of this.items)
+                    actor.addToInventory(item);
+
+                this.items = [];
+            }
+
         }
     }
 
