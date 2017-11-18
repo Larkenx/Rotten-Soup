@@ -104,12 +104,12 @@
         border-radius: 4px;
         background-color: black;
         color: white;
-        width: 800px;
+        width: 400px;
         padding: 10px;
         /*height: 600px;*/
         position: absolute;
-        left: 10%;
-        bottom: 30%;
+        left: 20%;
+        top: 25%;
         /*margin-left: -150px;*/
         z-index: 2;
         /*margin-top: -150px;*/

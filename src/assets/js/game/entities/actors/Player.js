@@ -19,9 +19,7 @@ import {BleedEffect} from '#/modifiers/Effect.js'
 
 // Misc
 import Ladder from '#/entities/misc/Ladder.js'
-
-let xp_levels = [50];
-for (let i = 1; i < 100; i++) xp_levels.push(1.5 * xp_levels[i - 1]);
+import {xp_levels} from '#/entities/Entity.js'
 
 function dijkstra_callback(x, y) {
     if (x <= 0 || x === Game.map.width || y <= 0 || y === Game.map.height) return false;

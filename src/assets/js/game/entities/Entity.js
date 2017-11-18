@@ -1,3 +1,7 @@
+export let xp_levels = [50];
+for (let i = 1; i < 100; i++)
+    xp_levels.push(1.5 * xp_levels[i - 1]);
+
 export const EntityTypes = {
     PLAYER : 0,
     GOBLIN : 1,
