@@ -1,5 +1,3 @@
-import {Game} from '#/Game.js'
-
 /*
     An effect is exclusively carried out to manipulate an Entity in some way (typically an actor, but we might carry
     it out against other entities like weapons (e.g. imbue a sword with fire damage for 5 turns)). We can divide up effects
@@ -10,15 +8,12 @@ import {Game} from '#/Game.js'
 export class Effect {
     constructor(options) {
         Object.assign(this, options);
-        if (this.name === undefined || this.description === undefined || this.action === undefined)
+        if (this.name === undefined || this.description === undefined || this.action === undefined || this.duration === undefined)
             throw "Effect missing critical fields";
-        if (this.duration === undefined) // if we don't specify a duration, assume it only lasts a single turn
-            this.duration = 1;
     }
 
     applyEffect(entity) {
         if (this.duration == 0) {
-            console.log("The effect has expired");
             return;
         }
         this.action(entity);

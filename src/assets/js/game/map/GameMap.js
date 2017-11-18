@@ -2,6 +2,7 @@ import {Game} from '#/Game.js'
 import {tileset} from '#/Game.js'
 import {getTileInfo} from '#/map/Tile.js'
 import Tile from '#/map/Tile.js'
+
 // Entities
 import Actor from '#/entities/actors/Actor.js'
 import Player from '#/entities/actors/Player.js'
@@ -9,10 +10,12 @@ import NPC from '#/entities/actors/NPC.js'
 import Goblin from '#/entities/actors/enemies/Goblin.js'
 import Orc from '#/entities/actors/enemies/Orc.js'
 import Rat from '#/entities/actors/enemies/Rat.js'
+// import {EntityTypes} from '#/entities/Entity.js'
 
 // Items
 import {createSword} from '#/entities/items/weapons/Sword.js'
 import HealthPotion from '#/entities/items/potions/HealthPotion.js'
+import StrengthPotion from '#/entities/items/potions/HealthPotion.js'
 
 // Misc
 import Chest from '#/entities/misc/Chest.js'
@@ -57,6 +60,9 @@ const entityShop = {
     },
     11: (x, y, id) => {
         return new HealthPotion(x,y,id);
+    },
+    12 : (x,y,id) => {
+        return new StrengthPotion(x,y,id);
     }
 };
 

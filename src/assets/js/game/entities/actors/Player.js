@@ -6,9 +6,13 @@ import {Game} from '#/Game.js'
 import Actor from '#/entities/actors/Actor.js'
 // Items
 import Item from '#/entities/items/Item.js'
-import HealthPotion from '#/entities/items/potions/HealthPotion.js'
+// - Weapons
 import Weapon from '#/entities/items/weapons/Weapon.js'
 import {createSword} from '#/entities/items/weapons/Sword.js'
+// - Potions
+import HealthPotion from '#/entities/items/potions/HealthPotion.js'
+import StrengthPotion from '#/entities/items/potions/StrengthPotion.js'
+
 // effects
 import {BleedEffect} from '#/modifiers/Effect.js'
 
@@ -65,7 +69,7 @@ export default class Player extends Actor {
         this.addToInventory(createSword(this.x, this.y, 35));
         this.equipWeapon(this.inventory[0].item);
         this.addToInventory(new HealthPotion(this.x,this.y, 488));
-        this.addNewEffect(new BleedEffect());
+        this.addToInventory(new StrengthPotion(this.x,this.y, 969));
 
     }
 

@@ -49,11 +49,16 @@ export default class Actor extends Entity {
             effect.applyEffect(this);
         }
         // if any effects have expired, we remove them
-        this.cb.effects = this.cb.effects.filter((e) => {return e.duration >= 1});
+        this.cb.effects = this.cb.effects.filter((e) => {return e.duration >= 0});
     }
 
     addNewEffect(effect) {
         this.cb.effects.push(effect);
+    }
+
+    addNewBuff(buff) {
+        buff.applyEffect(this);
+        this.cb.effects.push(buff);
     }
 
     memberOfInventory(item) {

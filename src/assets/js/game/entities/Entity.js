@@ -1,3 +1,19 @@
+export const EntityTypes = {
+    PLAYER : 0,
+    GOBLIN : 1,
+    RAT : 2,
+    LADDER_DOWN : 3,
+    LADDER_UP : 4,
+    SWORD : 5,
+    NPC : 6,
+    ORC : 7,
+    EMPOWERED_ORC : 8,
+    DOOR : 9,
+    CHEST : 10,
+    HEALTH_POTION : 11,
+    STRENGTH_POTION : 12
+}
+
 export function getRandomInt(min, max) {
     min = Math.ceil(min);
     max = Math.floor(max);

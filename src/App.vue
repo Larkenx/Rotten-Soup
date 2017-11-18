@@ -61,6 +61,7 @@
                 Game.turn++;
                 Game.updateDisplay();
             }, 500)
+            this.player = Game.player;
         },
     }
 </script>
@@ -79,7 +80,7 @@
     #git_logo {
         position: absolute;
         padding: 10px;
-        top: 0;
+        bottom: 0;
         right: 0;
     }
 
@@ -108,7 +109,7 @@
         /*height: 600px;*/
         position: absolute;
         left: 10%;
-        top: 30%;
+        bottom: 30%;
         /*margin-left: -150px;*/
         z-index: 2;
         /*margin-top: -150px;*/

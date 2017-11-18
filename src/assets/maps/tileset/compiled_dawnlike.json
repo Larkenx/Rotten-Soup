@@ -29621,6 +29621,13 @@
         {
          "bg":"#00cc33"
         },
+     "969":
+        {
+         "animated":false,
+         "animated_id":12,
+         "entity":true,
+         "entity_id":12
+        },
      "9690":
         {
          "bg":"#00cc33"
@@ -61008,6 +61015,13 @@
      "9689":
         {
          "bg":"string"
+        },
+     "969":
+        {
+         "animated":"bool",
+         "animated_id":"int",
+         "entity":"bool",
+         "entity_id":"int"
         },
      "9690":
         {

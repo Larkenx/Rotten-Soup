@@ -2,11 +2,15 @@
     <v-layout fluid class="hud elevation-0" column>
         <!-- Health Bar -->
         <v-flex>
-            <v-layout row align-center style=" margin-bottom: -10px;">
+            <v-layout row align-center style=" margin-bottom: -40px;">
                 <v-flex style="min-width: 75px;" md1 col><b>Health </b></v-flex>
                 <v-flex md4 col>
-                    <v-progress-linear color="error" :value="(getHP() / getMaxHP()) * 100"
-                                       height="10"></v-progress-linear>
+                    <v-progress-linear
+                        class="statsBar"
+                        color="error"
+                        :value="(getHP() / getMaxHP()) * 100"
+                        height="10"
+                   ></v-progress-linear>
                 </v-flex>
                 <v-flex md3 col style="padding-left: 5px;">{{getHP()}} / {{getMaxHP()}}</v-flex>
             </v-layout>
@@ -17,8 +21,12 @@
             <v-layout row align-center>
                 <v-flex md1 style="min-width: 75px;" col><b>Magic</b></v-flex>
                 <v-flex md4 col>
-                    <v-progress-linear :value="(getMana() / getMaxMana()) * 100" height="10"
-                                       info></v-progress-linear>
+                    <v-progress-linear
+                        class="statsBar"
+                        :value="(getMana() / getMaxMana()) * 100"
+                        height="10"
+                        info
+                    ></v-progress-linear>
                 </v-flex>
                 <v-flex md3 col style="padding-left: 5px;">{{getMana()}} / {{getMaxMana()}}</v-flex>
             </v-layout>
@@ -143,5 +151,10 @@
         color: white;
         font-size: 13px;
         margin-left: 20px;
+    }
+
+    .statsBar {
+        border : solid 2px goldenrod;
+        border-radius: 2px;
     }
 </style>
