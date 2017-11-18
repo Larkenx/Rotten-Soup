@@ -67,7 +67,7 @@ export default class Player extends Actor {
     }
 
     act() {
-        // super.act();
+        super.act();
         Game.engine.lock();
         window.addEventListener("keydown", this);
         window.addEventListener("click", this);
