@@ -30,6 +30,7 @@
     import itemTransferModal from './components/itemTransferModal.vue';
     import hud from './components/HUD.vue';
     import deathModal from './components/DeathModal.vue';
+    Window.Game = Game;
     export default {
         name: 'app',
         data () {
@@ -60,6 +61,7 @@
                 Game.turn++;
                 Game.updateDisplay();
             }, 500)
+            this.player = Game.player;
         },
     }
 </script>
@@ -78,7 +80,7 @@
     #git_logo {
         position: absolute;
         padding: 10px;
-        top: 0;
+        bottom: 0;
         right: 0;
     }
 
@@ -102,12 +104,12 @@
         border-radius: 4px;
         background-color: black;
         color: white;
-        width: 800px;
+        width: 400px;
         padding: 10px;
         /*height: 600px;*/
         position: absolute;
-        left: 10%;
-        top: 30%;
+        left: 20%;
+        top: 25%;
         /*margin-left: -150px;*/
         z-index: 2;
         /*margin-top: -150px;*/

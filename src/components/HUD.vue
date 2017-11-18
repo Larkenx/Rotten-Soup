@@ -2,11 +2,15 @@
     <v-layout fluid class="hud elevation-0" column>
         <!-- Health Bar -->
         <v-flex>
-            <v-layout row align-center style=" margin-bottom: -10px;">
+            <v-layout row align-center style=" margin-bottom: -40px;">
                 <v-flex style="min-width: 75px;" md1 col><b>Health </b></v-flex>
                 <v-flex md4 col>
-                    <v-progress-linear color="error" :value="(getHP() / getMaxHP()) * 100"
-                                       height="10"></v-progress-linear>
+                    <v-progress-linear
+                        class="statsBar"
+                        color="error"
+                        :value="(getHP() / getMaxHP()) * 100"
+                        height="13"
+                   ></v-progress-linear>
                 </v-flex>
                 <v-flex md3 col style="padding-left: 5px;">{{getHP()}} / {{getMaxHP()}}</v-flex>
             </v-layout>
@@ -17,8 +21,12 @@
             <v-layout row align-center>
                 <v-flex md1 style="min-width: 75px;" col><b>Magic</b></v-flex>
                 <v-flex md4 col>
-                    <v-progress-linear :value="(getMana() / getMaxMana()) * 100" height="10"
-                                       info></v-progress-linear>
+                    <v-progress-linear
+                        class="statsBar"
+                        :value="(getMana() / getMaxMana()) * 100"
+                        height="13"
+                        info
+                    ></v-progress-linear>
                 </v-flex>
                 <v-flex md3 col style="padding-left: 5px;">{{getMana()}} / {{getMaxMana()}}</v-flex>
             </v-layout>
@@ -42,40 +50,21 @@
                     </v-tabs-item>
                     <v-tabs-slider color="yellow"></v-tabs-slider>
                 </v-tabs-bar>
-
                 <v-tabs-items>
+                    <v-tabs-content key="stats" id="stats" >
+                        <v-card flat class="v-tab-card">
+                            <stats-tab-content></stats-tab-content>
+                        </v-card>
+                    </v-tabs-content>
                     <v-tabs-content key="enemyOverview" id="enemyOverview" >
-                        <v-card flat>
+                        <v-card flat class="v-tab-card">
                             <enemy-overview></enemy-overview>
                         </v-card>
                     </v-tabs-content>
-
                     <v-tabs-content key="spellBook" id="spellBook" >
-                        <v-card flat>
+                        <v-card flat class="v-tab-card">
                             <v-container>
                                 Nothing here yet :)
-                            </v-container>
-                        </v-card>
-                    </v-tabs-content>
-
-                    <v-tabs-content key="stats" id="stats" >
-                        <v-card flat>
-                            <v-container>
-                                <!-- Level -->
-                                <v-flex>
-                                    <v-layout row align-center>
-                                        <v-flex md1 style="min-width: 50px;" col><b>Level</b></v-flex>
-                                        <v-flex md2 col style="padding-left: 5px;">{{getLevel()}}</v-flex>
-                                        <v-flex md6 col>{{getRemainingXP()}}XP until level {{getLevel()+1}}</v-flex>
-                                    </v-layout>
-                                </v-flex>
-                                <!-- Damage -->
-                                <v-flex>
-                                    <v-layout row align-center>
-                                        <v-flex md1 style="min-width: 50px;" col><b>Damage</b></v-flex>
-                                        <v-flex md3 col style="padding-left: 5px;">{{getDamageRange()}}</v-flex>
-                                    </v-layout>
-                                </v-flex>
                             </v-container>
                         </v-card>
                     </v-tabs-content>
@@ -90,10 +79,10 @@
 
 <script>
     import {Game} from '@/assets/js/game/Game.js'
-
     import inventory from './Inventory.vue';
     import enemyOverview from './EnemyOverview.vue';
     import minimap from './Minimap.vue';
+    import statsTabContent from './HUD/StatsTabContent.vue'
     export default {
         data() {
             return {
@@ -116,22 +105,12 @@
             getMaxMana() {
                 return Game.player.cb.maxmana;
             },
-            getDamageRange() {
-                return Game.player.getMinDmg() + "-" + Game.player.getMaxDmg();
-            },
-            getLevel() {
-                return Game.player.cb.level;
-            },
-            getRemainingXP() {
-                return Game.player.remainingXP();
-            }
-
-
         },
         components: {
             'inventory': inventory,
             'enemy-overview': enemyOverview,
             'mini-map': minimap,
+            'stats-tab-content' : statsTabContent
         },
         created() {
             this.actors = Game.actors;
@@ -143,5 +122,18 @@
         color: white;
         font-size: 13px;
         margin-left: 20px;
+    }
+
+    .statsBar {
+        border : solid 2px goldenrod;
+        border-radius: 2px;
+    }
+
+    .xpCircleFont {
+        font-size: 5px;
+    }
+
+    .v-tab-card {
+        min-height: 103px;
     }
 </style>

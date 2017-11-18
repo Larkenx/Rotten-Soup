@@ -121,7 +121,7 @@ export let Game = {
 
     log: function (message, type) {
         let message_color = {
-            'defend': 'blue',
+            'defend': 'lightblue',
             'attack': 'red',
             'death': 'crimson',
             'information': 'yellow',

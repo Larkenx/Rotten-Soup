@@ -34,7 +34,9 @@
     }
 
     .console {
-        font-size: 13px;
+        font-size: 14px;
+        font-style: normal;
+        font-weight: normal;
         background-color: black;
         height: 175px;
         line-height: 0;

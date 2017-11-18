@@ -6,16 +6,22 @@ import {Game} from '#/Game.js'
 import Actor from '#/entities/actors/Actor.js'
 // Items
 import Item from '#/entities/items/Item.js'
-import HealthPotion from '#/entities/items/potions/HealthPotion.js'
+// - Weapons
 import Weapon from '#/entities/items/weapons/Weapon.js'
 import {createSword} from '#/entities/items/weapons/Sword.js'
+// - Potions
+import HealthPotion from '#/entities/items/potions/HealthPotion.js'
+import StrengthPotion from '#/entities/items/potions/StrengthPotion.js'
+import ManaPotion from '#/entities/items/potions/ManaPotion.js'
+
+
+// effects
+import {BleedEffect} from '#/modifiers/Effect.js'
 
 
 // Misc
 import Ladder from '#/entities/misc/Ladder.js'
-
-let xp_levels = [50];
-for (let i = 1; i < 100; i++) xp_levels.push(1.5 * xp_levels[i - 1]);
+import {xp_levels} from '#/entities/Entity.js'
 
 function dijkstra_callback(x, y) {
     if (x <= 0 || x === Game.map.width || y <= 0 || y === Game.map.height) return false;
@@ -63,11 +69,14 @@ export default class Player extends Actor {
         this.addToInventory(createSword(this.x, this.y, 35));
         this.equipWeapon(this.inventory[0].item);
         this.addToInventory(new HealthPotion(this.x,this.y, 488));
+        this.addToInventory(new StrengthPotion(this.x,this.y, 969));
+        this.addToInventory(new ManaPotion(this.x,this.y, 495));
+
 
     }
 
     act() {
-        // super.act();
+        super.act();
         Game.engine.lock();
         window.addEventListener("keydown", this);
         window.addEventListener("click", this);
@@ -89,7 +98,7 @@ export default class Player extends Actor {
 
     gain_xp(xp) {
         this.cb.xp += xp;
-        if (xp_levels[this.cb.level - 1] <= this.cb.xp)
+        if (xp_levels[this.cb.level+1] <= this.cb.xp)
             this.level_up();
     }
 
@@ -283,7 +292,7 @@ export default class Player extends Actor {
 
     attack(actor) {
         let dmg = super.attack(actor);
-        this.gain_xp(dmg / 2);
+        this.gain_xp(Math.floor(dmg * .75));
     }
 
     death() {

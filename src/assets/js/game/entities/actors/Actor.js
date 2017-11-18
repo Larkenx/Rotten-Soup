@@ -27,6 +27,7 @@ export default class Actor extends Entity {
     constructor(x, y, options, routine = null) {
         super(x, y, options);
         this.cb = this.options.combat;
+        this.cb.effects = [];
         this.cb.equipment = {
             head: null,
             torso: null,
@@ -37,13 +38,28 @@ export default class Actor extends Entity {
         for (let i = 0; i < 28; i++) {
             this.inventory.push({
                 item: null,
-                // action : null
             });
         }
     }
 
     /* Called by the ROT.js game scheduler to indicate a turn */
-    act() {}
+    act() {
+        // apply all of the effects on this Actor at the beginning of their turn
+        for (let effect of this.cb.effects) {
+            effect.applyEffect(this);
+        }
+        // if any effects have expired, we remove them
+        this.cb.effects = this.cb.effects.filter((e) => {return e.duration >= 0});
+    }
+
+    addNewEffect(effect) {
+        this.cb.effects.push(effect);
+    }
+
+    addNewBuff(buff) {
+        buff.applyEffect(this);
+        this.cb.effects.push(buff);
+    }
 
     memberOfInventory(item) {
         return -1 < this.inventory.findIndex((cell) => {
@@ -219,6 +235,8 @@ export default class Actor extends Entity {
         else
             this.cb.mana += mana;
     }
+
+
 
     death() {
         let idx = Game.engine._scheduler.remove(this);

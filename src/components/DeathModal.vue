@@ -6,8 +6,8 @@
         </v-layout>
         <v-layout>
             <v-flex class="text-xs-center" xs12>
-                <v-btn block success dark class="flat" v-on:click.native="startNewGame()"
-                       style="margin: 0 auto;"><b>Play Again?</b></v-btn>
+                <v-btn raised color="success" dark class="flat" v-on:click.native="startNewGame()"
+                       style="margin: 0 auto;">Play Again?</v-btn>
             </v-flex>
         </v-layout>
     </v-container>
