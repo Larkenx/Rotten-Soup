@@ -120,7 +120,8 @@ export default class Player extends Actor {
         /* Mouse controls to hover over tiles for info (describe) */
         if (evt.type === "click") {
             let t = Game.eventToTile(evt);
-            console.log(t);
+            // this.move(t.x,t.y);
+            // console.log(t);
             return;
         }
         let code = evt.keyCode;

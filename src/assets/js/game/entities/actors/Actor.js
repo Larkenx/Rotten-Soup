@@ -77,6 +77,9 @@ export default class Actor extends Entity {
         }
         if (nextFreeIndex === null) {
             Game.log("Your inventory is full! Drop something in order to pick this up.");
+            // if your item is in a chest and you try to pick it up, but your inventory is full,
+            // it will drop the item below you.
+            newItem.move(this.x, this.y);
             return newItem;
         }
 
@@ -164,18 +167,6 @@ export default class Actor extends Entity {
         }
 
         return false;
-    }
-
-    move(nx, ny) {
-        let ntile = Game.map.data[ny][nx]; // new tile to move to
-        let ctile = Game.map.data[this.y][this.x]; // current tile
-        ctile.removeActor(this); // remove this actor from this tile
-        ntile.actors.push(this); // add this actor to the new tile
-        this.x = nx; // update x,y coords to new coords
-        this.y = ny;
-        // Game.drawActor(this); // draw the actor at the new spot
-        // Game.drawViewPort();
-        // Game.drawMiniMap();
     }
 
     /* attacks another actor */
