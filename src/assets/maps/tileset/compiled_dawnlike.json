@@ -2097,6 +2097,54 @@
          "entity":true,
          "entity_id":"2"
         },
+     "2736":
+        {
+         "blocked":true
+        },
+     "2737":
+        {
+         "blocked":true
+        },
+     "2738":
+        {
+         "blocked":true
+        },
+     "2739":
+        {
+         "blocked":true
+        },
+     "2740":
+        {
+         "blocked":true
+        },
+     "2741":
+        {
+         "blocked":true
+        },
+     "2856":
+        {
+         "blocked":true
+        },
+     "2857":
+        {
+         "blocked":true
+        },
+     "2858":
+        {
+         "blocked":true
+        },
+     "2859":
+        {
+         "blocked":true
+        },
+     "2860":
+        {
+         "blocked":true
+        },
+     "2861":
+        {
+         "blocked":true
+        },
      "296":
         {
          "blocked":true
@@ -2105,7 +2153,31 @@
         {
          "blocked":true
         },
+     "2976":
+        {
+         "blocked":true
+        },
+     "2977":
+        {
+         "blocked":true
+        },
+     "2978":
+        {
+         "blocked":true
+        },
+     "2979":
+        {
+         "blocked":true
+        },
      "298":
+        {
+         "blocked":true
+        },
+     "2980":
+        {
+         "blocked":true
+        },
+     "2981":
         {
          "blocked":true
         },
@@ -2153,7 +2225,31 @@
         {
          "blocked":true
         },
+     "3096":
+        {
+         "blocked":true
+        },
+     "3097":
+        {
+         "blocked":true
+        },
+     "3098":
+        {
+         "blocked":true
+        },
+     "3099":
+        {
+         "blocked":true
+        },
      "310":
+        {
+         "blocked":true
+        },
+     "3100":
+        {
+         "blocked":true
+        },
+     "3101":
         {
          "blocked":true
         },
@@ -2168,6 +2264,30 @@
          "entity":true,
          "entity_id":"5"
         },
+     "3216":
+        {
+         "blocked":true
+        },
+     "3217":
+        {
+         "blocked":true
+        },
+     "3218":
+        {
+         "blocked":true
+        },
+     "3219":
+        {
+         "blocked":true
+        },
+     "3220":
+        {
+         "blocked":true
+        },
+     "3221":
+        {
+         "blocked":true
+        },
      "33":
         {
          "animated":false,
@@ -2175,12 +2295,60 @@
          "entity":true,
          "entity_id":"5"
         },
+     "3336":
+        {
+         "blocked":true
+        },
+     "3337":
+        {
+         "blocked":true
+        },
+     "3338":
+        {
+         "blocked":true
+        },
+     "3339":
+        {
+         "blocked":true
+        },
+     "3340":
+        {
+         "blocked":true
+        },
+     "3341":
+        {
+         "blocked":true
+        },
      "34":
         {
          "animated":false,
          "animated_id":0,
          "entity":true,
-         "entity_id":"5"
+         "entity_id":"14"
+        },
+     "3456":
+        {
+         "blocked":true
+        },
+     "3457":
+        {
+         "blocked":true
+        },
+     "3458":
+        {
+         "blocked":true
+        },
+     "3459":
+        {
+         "blocked":true
+        },
+     "3460":
+        {
+         "blocked":true
+        },
+     "3461":
+        {
+         "blocked":true
         },
      "35":
         {
@@ -2189,6 +2357,30 @@
          "entity":true,
          "entity_id":"5"
         },
+     "3576":
+        {
+         "blocked":true
+        },
+     "3577":
+        {
+         "blocked":true
+        },
+     "3578":
+        {
+         "blocked":true
+        },
+     "3579":
+        {
+         "blocked":true
+        },
+     "3580":
+        {
+         "blocked":true
+        },
+     "3581":
+        {
+         "blocked":true
+        },
      "36":
         {
          "animated":false,
@@ -2196,12 +2388,36 @@
          "entity":true,
          "entity_id":"5"
         },
+     "3696":
+        {
+         "blocked":true
+        },
+     "3697":
+        {
+         "blocked":true
+        },
+     "3698":
+        {
+         "blocked":true
+        },
+     "3699":
+        {
+         "blocked":true
+        },
      "37":
         {
          "animated":false,
          "animated_id":0,
          "entity":true,
          "entity_id":"5"
+        },
+     "3700":
+        {
+         "blocked":true
+        },
+     "3701":
+        {
+         "blocked":true
         },
      "3840":
         {
@@ -11893,6 +12109,14 @@
         {
          "blocked":true
         },
+     "690":
+        {
+         "activated_id":698,
+         "animated":false,
+         "animated_id":0,
+         "entity":true,
+         "entity_id":9
+        },
      "696":
         {
          "activated_id":697,
@@ -12056,6 +12280,12 @@
          "blocked":false,
          "blocks_vision":false,
          "entity":false
+        },
+     "698":
+        {
+         "activated_id":698,
+         "entity":true,
+         "entity_id":9
         },
      "6980":
         {
@@ -20001,6 +20231,14 @@
          "blocked":false,
          "blocks_vision":false,
          "entity":false
+        },
+     "810":
+        {
+         "activated_id":818,
+         "animated":false,
+         "animated_id":0,
+         "entity":true,
+         "entity_id":9
         },
      "8100":
         {
@@ -33535,6 +33773,54 @@
          "entity":"bool",
          "entity_id":"string"
         },
+     "2736":
+        {
+         "blocked":"bool"
+        },
+     "2737":
+        {
+         "blocked":"bool"
+        },
+     "2738":
+        {
+         "blocked":"bool"
+        },
+     "2739":
+        {
+         "blocked":"bool"
+        },
+     "2740":
+        {
+         "blocked":"bool"
+        },
+     "2741":
+        {
+         "blocked":"bool"
+        },
+     "2856":
+        {
+         "blocked":"bool"
+        },
+     "2857":
+        {
+         "blocked":"bool"
+        },
+     "2858":
+        {
+         "blocked":"bool"
+        },
+     "2859":
+        {
+         "blocked":"bool"
+        },
+     "2860":
+        {
+         "blocked":"bool"
+        },
+     "2861":
+        {
+         "blocked":"bool"
+        },
      "296":
         {
          "blocked":"bool"
@@ -33543,7 +33829,31 @@
         {
          "blocked":"bool"
         },
+     "2976":
+        {
+         "blocked":"bool"
+        },
+     "2977":
+        {
+         "blocked":"bool"
+        },
+     "2978":
+        {
+         "blocked":"bool"
+        },
+     "2979":
+        {
+         "blocked":"bool"
+        },
      "298":
+        {
+         "blocked":"bool"
+        },
+     "2980":
+        {
+         "blocked":"bool"
+        },
+     "2981":
         {
          "blocked":"bool"
         },
@@ -33591,7 +33901,31 @@
         {
          "blocked":"bool"
         },
+     "3096":
+        {
+         "blocked":"bool"
+        },
+     "3097":
+        {
+         "blocked":"bool"
+        },
+     "3098":
+        {
+         "blocked":"bool"
+        },
+     "3099":
+        {
+         "blocked":"bool"
+        },
      "310":
+        {
+         "blocked":"bool"
+        },
+     "3100":
+        {
+         "blocked":"bool"
+        },
+     "3101":
         {
          "blocked":"bool"
         },
@@ -33606,12 +33940,60 @@
          "entity":"bool",
          "entity_id":"string"
         },
+     "3216":
+        {
+         "blocked":"bool"
+        },
+     "3217":
+        {
+         "blocked":"bool"
+        },
+     "3218":
+        {
+         "blocked":"bool"
+        },
+     "3219":
+        {
+         "blocked":"bool"
+        },
+     "3220":
+        {
+         "blocked":"bool"
+        },
+     "3221":
+        {
+         "blocked":"bool"
+        },
      "33":
         {
          "animated":"bool",
          "animated_id":"int",
          "entity":"bool",
          "entity_id":"string"
+        },
+     "3336":
+        {
+         "blocked":"bool"
+        },
+     "3337":
+        {
+         "blocked":"bool"
+        },
+     "3338":
+        {
+         "blocked":"bool"
+        },
+     "3339":
+        {
+         "blocked":"bool"
+        },
+     "3340":
+        {
+         "blocked":"bool"
+        },
+     "3341":
+        {
+         "blocked":"bool"
         },
      "34":
         {
@@ -33620,12 +34002,60 @@
          "entity":"bool",
          "entity_id":"string"
         },
+     "3456":
+        {
+         "blocked":"bool"
+        },
+     "3457":
+        {
+         "blocked":"bool"
+        },
+     "3458":
+        {
+         "blocked":"bool"
+        },
+     "3459":
+        {
+         "blocked":"bool"
+        },
+     "3460":
+        {
+         "blocked":"bool"
+        },
+     "3461":
+        {
+         "blocked":"bool"
+        },
      "35":
         {
          "animated":"bool",
          "animated_id":"int",
          "entity":"bool",
          "entity_id":"string"
+        },
+     "3576":
+        {
+         "blocked":"bool"
+        },
+     "3577":
+        {
+         "blocked":"bool"
+        },
+     "3578":
+        {
+         "blocked":"bool"
+        },
+     "3579":
+        {
+         "blocked":"bool"
+        },
+     "3580":
+        {
+         "blocked":"bool"
+        },
+     "3581":
+        {
+         "blocked":"bool"
         },
      "36":
         {
@@ -33634,12 +34064,36 @@
          "entity":"bool",
          "entity_id":"string"
         },
+     "3696":
+        {
+         "blocked":"bool"
+        },
+     "3697":
+        {
+         "blocked":"bool"
+        },
+     "3698":
+        {
+         "blocked":"bool"
+        },
+     "3699":
+        {
+         "blocked":"bool"
+        },
      "37":
         {
          "animated":"bool",
          "animated_id":"int",
          "entity":"bool",
          "entity_id":"string"
+        },
+     "3700":
+        {
+         "blocked":"bool"
+        },
+     "3701":
+        {
+         "blocked":"bool"
         },
      "3840":
         {
@@ -43331,6 +43785,14 @@
         {
          "blocked":"bool"
         },
+     "690":
+        {
+         "activated_id":"int",
+         "animated":"bool",
+         "animated_id":"int",
+         "entity":"bool",
+         "entity_id":"int"
+        },
      "696":
         {
          "activated_id":"int",
@@ -43494,6 +43956,12 @@
          "blocked":"bool",
          "blocks_vision":"bool",
          "entity":"bool"
+        },
+     "698":
+        {
+         "activated_id":"int",
+         "entity":"bool",
+         "entity_id":"int"
         },
      "6980":
         {
@@ -51439,6 +51907,14 @@
          "blocked":"bool",
          "blocks_vision":"bool",
          "entity":"bool"
+        },
+     "810":
+        {
+         "activated_id":"int",
+         "animated":"bool",
+         "animated_id":"int",
+         "entity":"bool",
+         "entity_id":"int"
         },
      "8100":
         {
