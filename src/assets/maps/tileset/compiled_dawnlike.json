@@ -2097,6 +2097,13 @@
          "entity":true,
          "entity_id":"2"
         },
+     "24":
+        {
+         "animated":false,
+         "animated_id":15,
+         "entity":true,
+         "entity_id":15
+        },
      "2736":
         {
          "blocked":true
@@ -33772,6 +33779,13 @@
          "animated_id":"int",
          "entity":"bool",
          "entity_id":"string"
+        },
+     "24":
+        {
+         "animated":"bool",
+         "animated_id":"int",
+         "entity":"bool",
+         "entity_id":"int"
         },
      "2736":
         {

@@ -73,6 +73,7 @@ const entityShop = {
     14 : (x,y,id) => {
         return new Sword(this.x, this.y, 4, 7, "Orc Purifier", id)
     }
+    // 15
 };
 
 export function getTilesetCoords(id) {
@@ -119,20 +120,20 @@ export class GameMap {
         // Process all of the json layers
         // process the group layers last. this is specifically for placing static itemsets into treasure chests in the overworld.
         // process it last so that all of the chest entities have been created already
-        let chestItemLayers = [];
+        let itemLayers = [];
         for (let layer of json.layers) {
             // Obstacle Layer
             if (layer.properties.obstacles === true)
                 this.processObstacleLayer(layer);
-            else if (layer.properties.chestItem === true)
-                chestItemLayers.push(layer);
+            else if (layer.properties.items === true)
+                itemLayers.push(layer);
             else
                 this.processActorLayer(layer);
         }
         if (this.playerLocation === null) throw "Error - no player starting position!";
         // add chest items to chests where appropriate
-        for (let layer of chestItemLayers) {
-            this.processChestItemLayer(layer);
+        for (let layer of itemLayers) {
+            this.processItemLayer(layer);
         }
     }
 
@@ -171,7 +172,7 @@ export class GameMap {
         }
     }
 
-    processChestItemLayer(layer) {
+    processItemLayer(layer) {
         for (let i = 0; i < this.height; i++) {
             for (let j = 0; j < this.width; j++) {
                 let id = layer.data[i * this.width + j] - 1; // grab the id in the json data
@@ -181,7 +182,7 @@ export class GameMap {
                     if (properties.entity !== true) throw "Bad entity creation for tile " + id;
                     let newActor = createEntity(j, i, properties.entity_id, id);
                     this.actors.push(newActor); // add to the list of all actors
-                    this.findChest(j,i).addToChest(newActor);
+                    this.findActor(j,i).addToChest(newActor);
                 }
             }
         }
@@ -211,10 +212,16 @@ export class GameMap {
         console.log(buf);
     }
 
-    findChest(x,y) {
+    findActor(x,y) {
         let chests = this.data[y][x].actors.filter((a) => {return a instanceof Chest});
-        if (chests.length === 0) throw `No chest created at (${x + ',' + y}) for chest items to be placed in.`;
-        return chests[0];
+        // if there are no chests, then that means we need to find an actor who should have all of the items added to
+        if (chests.length === 0) {
+            let possibleActors = this.data[y][x].actors.filter((a) => {return ! a instanceof Chest});
+            if (possibleActors.length === 0) throw `There's no actor in which an item can be placed at (${x},${y})`
+            return possibleActors[0];
+        } else {
+            return chests[0];
+        }
     }
 
     /* Returns the tiles adjacent to the given tile */
