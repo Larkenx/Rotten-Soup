@@ -101,8 +101,6 @@ export default class Actor extends Entity {
             return Object.is(removeItem, cell.item);
         });
         if (idx != -1) {
-            console.log(idx);
-            console.log(this.inventory[idx]);
             this.inventory[idx].item = null;
         } else {
             throw "invalid item removal - trying to remove an item that cannot be found in inventory!";
@@ -161,7 +159,7 @@ export default class Actor extends Entity {
                 // actor has stumbled upon a non-Actor entity (an item or miscellaneous entity like a door)
                 if (actor instanceof Door) {
                     this.interact(actor);
-                    // return true;
+                    return false;
                 }
             }
         }

@@ -130,19 +130,28 @@ export class GameMap {
         // process the group layers last. this is specifically for placing static itemsets into treasure chests in the overworld.
         // process it last so that all of the chest entities have been created already
         let itemLayers = [];
+        let portalLayers = [];
         for (let layer of json.layers) {
             // Obstacle Layer
             if (layer.properties.obstacles === true)
                 this.processObstacleLayer(layer);
             else if (layer.properties.items === true)
                 itemLayers.push(layer);
-            else
+            else if (layer.properties.actors === true)
                 this.processActorLayer(layer);
+            else if (layer.properties.portal === true)
+                portalLayers.push(layer);
+            else
+                throw "A layer has been added to the map and is invalid";
         }
         if (this.playerLocation === null) throw "Error - no player starting position!";
         // add chest items to chests where appropriate
         for (let layer of itemLayers) {
             this.processItemLayer(layer);
+        }
+
+        for (let layer of portalLayers) {
+            this.processPortalLayer(layer);
         }
     }
 
@@ -192,6 +201,26 @@ export class GameMap {
                     let newActor = createEntity(j, i, properties.entity_id, id);
                     this.actors.push(newActor); // add to the list of all actors
                     this.findActor(j,i).addToInventory(newActor);
+                }
+            }
+        }
+    }
+
+    processPortalLayer(layer) {
+        for (let i = 0; i < this.height; i++) {
+            for (let j = 0; j < this.width; j++) {
+                let id = layer.data[i * this.width + j] - 1; // grab the id in the json data
+                if (id > 1) { // id of zero indicates no actor in this spot
+                    if (!this.loadedIDS.includes(id)) Game.loadedIDS.push(id);
+                    let properties = getTileInfo(id);
+                    // now we've got a portal cell that tells us where a ladder should lead
+                    // find the ladder at this location
+                    let ladders = this.data[i][j].actors.filter((a) => {return a instanceof Ladder});
+                    if (ladders.length === 0){
+                        throw "tried to create a portal link for a ladder but no ladder was found";
+                    } else {
+                        ladders[0].portal = properties.level;
+                    }
                 }
             }
         }

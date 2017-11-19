@@ -9,12 +9,12 @@
         <v-dialog v-model="helpDialog" max-width="525px" scrollable>
             <v-card>
               <v-card-text>
-                  <h4>Controls</h4>
+                  <h5>Controls</h5>
                   <v-card flat>
                       <v-card-text class="pb-0 pt-0">
                           <v-container>
                               <h5>Movement</h5>
-                              <p>You can move with arrow keys, the numpad, or vi keys.</p>
+                              <p>You can move with arrow keys, the numpad, or vi keys. You can move in all 8 directions.</p>
                               <v-container class="text-xs-center">
                                 <pre>y  k  u      7  8  9  </pre>
                                 <pre> \ | /        \ | /   </pre>
@@ -67,6 +67,13 @@ export default {
         return {
             helpDialog : false
         }
+    },
+    mounted () {
+        window.addEventListener("keydown", (evt) => {
+            if (evt.getModifierState("Shift") && evt.keyCode === 191) {
+                this.helpDialog = !this.helpDialog
+            }
+        });
     }
 }
 </script>

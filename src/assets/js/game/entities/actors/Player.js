@@ -176,9 +176,9 @@ export default class Player extends Actor {
         } else if ("pickup" === keyMap[code] && !shift_pressed) {
             this.pickup();
         } else if ("rest" === keyMap[code] && shift_pressed) { // climb down
-            this.climbDown();
+            this.climb("down");
         } else if ("pickup" === keyMap[code] && shift_pressed) {
-            this.climbUp();
+            this.climb("up");
         } else {
             let diff = ROT.DIRS[8][keyMap[code]];
             let nx = this.x + diff[0];
@@ -243,27 +243,13 @@ export default class Player extends Actor {
         }
     }
 
-    climbDown() {
+    climb(dir) {
         let ctile = Game.map.data[this.y][this.x];
-        if (ctile.actors.some((e) => {
-                return e instanceof Ladder && e.options.direction === "down";
-            })) {
-            Game.log("You climb down the ladder...", "player_move");
-            Game.changeLevels('dungeon1');
+        let ladder = ctile.actors.filter((a) => {return a instanceof Ladder })[0];
+        if (ladder === undefined || ladder.options.direction !== dir ) {
+            Game.log(`You cannot climb ${dir} here.`, "information");
         } else {
-            Game.log("You cannot climb down here.", "information");
-        }
-    }
-
-    climbUp() {
-        let ctile = Game.map.data[this.y][this.x];
-        if (ctile.actors.some((e) => {
-                return e instanceof Ladder && e.options.direction === "up";
-            })) {
-            Game.log("You climb up the ladder...", "player_move");
-            Game.changeLevels('overworld');
-        } else {
-            Game.log("You cannot climb up here.", "information");
+            ladder.react(this);
         }
     }
 

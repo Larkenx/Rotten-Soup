@@ -59,10 +59,11 @@
             $('#game_container').html(Game.display.getContainer());
             $('#minimap_container').html(Game.minimap.getContainer());
             Game.log("Welcome to Rotten Soup!", "information");
+            Game.log("Press ? to view the controls.", "player_move");
             Game.drawViewPort();
             Game.drawMiniMap();
             Game.refreshDisplay();
-            setInterval(function () {
+            setInterval(() => {
                 Game.turn++;
                 Game.updateDisplay();
             }, 500)

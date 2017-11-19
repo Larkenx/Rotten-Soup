@@ -59,7 +59,9 @@ export default class Tile {
     }
 
     removeActor(a) {
-        let idx = this.actors.indexOf(a);
+        let idx = this.actors.findIndex((actor) => {
+            return Object.is(a, actor);
+        });
         this.actors.splice(idx, 1);
     }
 

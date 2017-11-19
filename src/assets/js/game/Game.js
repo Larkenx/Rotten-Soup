@@ -139,7 +139,12 @@ export let Game = {
         return !(x < 0 || x >= this.map.width || y < 0 || y >= this.map.height);
     },
 
-    changeLevels: function (newLevel) {
+    changeLevels: function (newLevel, dir) {
+        if (this.levels[newLevel] === undefined) {
+            this.levels[newLevel] = new GameMap(randomMap(50, 50, dir));
+            console.log(newLevel + " does not exist, so a new random instance is being created.");
+        }
+
         this.map.playerLocation = [Game.player.x, Game.player.y];
         // Save the old map
         this.levels[this.currentLevel] = this.map; // add the old map to 'levels'
@@ -149,7 +154,7 @@ export let Game = {
         this.map = this.levels[newLevel];
         this.currentLevel = newLevel;
         this.playerLocation = this.map.playerLocation;
-        this.player.move(this.playerLocation[0], this.playerLocation[1]);
+        this.player.placeAt(this.playerLocation[0], this.playerLocation[1]);
         this.scheduleAllActors();
         this.drawViewPort();
         this.initializeMinimap();

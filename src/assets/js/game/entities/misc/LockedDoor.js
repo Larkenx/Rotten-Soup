@@ -14,11 +14,11 @@ export default class LockedDoor extends Door {
     }
 
     react(actor) {
-        if (this.closed) {
+        if (this.closed && actor === Game.player) {
             // if it's closed, then we need to make sure this
             // actor who is trying to open the door has a key
             let keys = actor.items().filter((i) => {return i instanceof Key});
-            if (keys.length === 0 && actor instanceof Player) {
+            if (keys.length === 0) {
                 Game.log("You need a key to open this door.", "information");
             } else {
                 Game.log("You use a key to unlock the door.", "information");

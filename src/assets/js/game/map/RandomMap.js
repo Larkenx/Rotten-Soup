@@ -14,7 +14,7 @@ function randomProperty(object) {
 
 /* This is a random dungeon map generator. It essentially generates identical
  * JSON data to that of a TILED map, with the unnecessary properties left out */
-export function randomMap(width, height) {
+export function randomMap(width, height, dir) {
     let map = {};
     map.revealed = true;
     map.width = width;
@@ -22,8 +22,8 @@ export function randomMap(width, height) {
     map.layers = [
         {"data": [], "properties": {"obstacles": true}},
         {"data": [], "properties": {"obstacles": true}},
-        {"data": [], "properties": {"obstacles": false}},
-        {"data": [], "properties": {"obstacles": false}}];
+        {"data": [], "properties": {"actors": true}},
+        {"data": [], "properties": {"actors": true}}];
     let freeCells = {};
     // ROT.RNG.setSeed(1499200778495);
     let diggerCallback = function (x, y, blocked) {
@@ -99,6 +99,10 @@ export function randomMap(width, height) {
         let wright = room.getRight();
         let wtop = room.getTop();
         let wbottom = room.getBottom();
+        let center = {
+            y : Math.floor((wtop + wbottom) / 2),
+            x : Math.floor((wright + wleft) / 2)
+        }
         /* Generate the corner tiles */
         // Set the walls up
         map.layers[0].data[top][left] = walls.upperLeft + 1;
@@ -150,6 +154,10 @@ export function randomMap(width, height) {
                 map.layers[3].data[dy][dx] = 568 + 1;
             }
         });
+
+        // Now, we can mess around with the centers of each room and place items in the dungeons
+        // this places a ladder going further into the dungeon (either deeper or higher)
+        map.layers[2].data[center.y][center.x] = dir === "down" ? 478 : 480;
     }
 
     let buildsCorrWalls = function (x, y, horizontal, end = false) {
@@ -247,7 +255,7 @@ export function randomMap(width, height) {
     let start = randomProperty(freeCells).split(',');
     // let start = [1, 44];
     map.layers[2].data[start[1]][start[0]] = Game.playerID; // set random spot to be the player
-    map.layers[3].data[start[1]][start[0]] = 477; // place a ladder going back up a level underneath the player.
+    map.layers[3].data[start[1]][start[0]] = dir === "down" ? 480 : 478; // place a ladder going back up a level underneath the player.
 
     // Flatten the layers to mimic Tiled map data
     for (let i = 0; i < map.layers.length; i++)

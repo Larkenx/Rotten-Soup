@@ -65,6 +65,13 @@ export class Entity {
         // Game.drawMiniMap();
     }
 
+    placeAt(nx,ny) {
+        let ntile = Game.map.data[ny][nx]; // new tile to move to
+        ntile.actors.push(this); // add this actor to the new tile
+        this.x = nx; // update x,y coords to new coords
+        this.y = ny;
+    }
+
 }
 
 /* Ranged attack? */
