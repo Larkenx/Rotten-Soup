@@ -4,6 +4,8 @@
 
 import {Game} from '#/Game.js'
 import {Entity} from '#/entities/Entity.js'
+import {getRandomInt} from '#/entities/Entity.js'
+
 import Door from '#/entities/misc/Door.js'
 import Weapon from '#/entities/items/weapons/Weapon.js'
 
@@ -79,13 +81,17 @@ export default class Actor extends Entity {
             Game.log("Your inventory is full! Drop something in order to pick this up.");
             // if your item is in a chest and you try to pick it up, but your inventory is full,
             // it will drop the item below you.
-            Game.map.data[this.y][this.x].actors.push(newItem);
+            this.placeEntityBelow(newItem);
             return newItem;
         }
 
         this.inventory[nextFreeIndex].item = newItem
         // this.inventory[nextFreeIndex].action = newItem.use;
         return this.inventory[nextFreeIndex].item;
+    }
+
+    placeEntityBelow(entity) {
+        Game.map.data[this.y][this.x].actors.push(entity);
     }
 
     // expressly want to just remove the item from the inventory.
@@ -154,7 +160,6 @@ export default class Actor extends Entity {
                 }
                 // actor has stumbled upon a non-Actor entity (an item or miscellaneous entity like a door)
                 if (actor instanceof Door) {
-                    console.log("Found a door!");
                     this.interact(actor);
                     // return true;
                 }
@@ -249,6 +254,8 @@ export default class Actor extends Entity {
         // redraw the tile, either with an appropriate actor or the tile symbol
         Game.map.actors.splice(idx, 1);
         // Game.drawViewPort();
+        let blood = 2644 - getRandomInt(0,1);
+        ctile.obstacles.push({id : blood});
 
         if (this === Game.player) {
             Game.log(`You died!`, "death");
