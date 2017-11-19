@@ -1,7 +1,6 @@
 <template>
     <v-app dark>
         <v-container fluid id="main_container">
-            <!-- <v-layout row><h2 class="white--text">RottenSoup</h2></v-layout> -->
             <!-- Game Display and HUD-->
             <v-layout row>
                 <game-display></game-display>
@@ -11,6 +10,10 @@
             <item-transfer-modal></item-transfer-modal>
             <!-- Death Modal-->
             <death-modal></death-modal>
+
+            <!-- Help Dialog -->
+            <help-dialog></help-dialog>
+
             <!-- Github Logo -->
             <a id="git_logo" style="text-decoration: none;" target="_blank"
                href="https://github.com/Larkenx/Rotten-Soup">
@@ -30,6 +33,7 @@
     import itemTransferModal from './components/itemTransferModal.vue';
     import hud from './components/HUD.vue';
     import deathModal from './components/DeathModal.vue';
+    import helpDialog from './components/HelpDialog.vue'
     Window.Game = Game;
     export default {
         name: 'app',
@@ -44,6 +48,7 @@
             'hud': hud,
             'item-transfer-modal': itemTransferModal,
             'death-modal': deathModal,
+            'help-dialog' : helpDialog
         },
         created () {
             Game.init();
@@ -75,6 +80,13 @@
     #main_container {
         /*padding: 10px;*/
         /*height: 100%;*/
+    }
+
+    #help {
+        position: absolute;
+        left : 10;
+        right: 0;
+        top : 0;
     }
 
     #git_logo {

@@ -19,7 +19,7 @@ export default class LockedDoor extends Door {
             // actor who is trying to open the door has a key
             let keys = actor.items().filter((i) => {return i instanceof Key});
             if (keys.length === 0 && actor instanceof Player) {
-                Game.log("You need a key to open this door", "information");
+                Game.log("You need a key to open this door.", "information");
             } else {
                 Game.log("You use a key to unlock the door.", "information");
                 actor.removeFromInventory(keys[0]);
