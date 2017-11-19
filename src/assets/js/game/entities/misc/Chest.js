@@ -35,7 +35,7 @@ export default class Chest extends Entity {
         }
     }
 
-    addToChest(item) {
+    addToInventory(item) {
         this.items.push(item);
     }
 

@@ -9,4 +9,8 @@ export default class Key extends Item {
             type : "Key"
         });
     }
+
+    hoverInfo() {
+        return "";
+    }
 }

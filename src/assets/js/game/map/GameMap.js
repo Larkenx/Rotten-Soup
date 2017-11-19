@@ -13,6 +13,8 @@ import Rat from '#/entities/actors/enemies/Rat.js'
 // import {EntityTypes} from '#/entities/Entity.js'
 
 // Items
+import Key from '#/entities/items/misc/Key.js'
+
 import {createSword} from '#/entities/items/weapons/Sword.js'
 import {Sword} from '#/entities/items/weapons/Sword.js'
 
@@ -23,6 +25,8 @@ import ManaPotion from '#/entities/items/potions/ManaPotion.js'
 // Misc
 import Chest from '#/entities/misc/Chest.js'
 import Door from '#/entities/misc/Door.js'
+import LockedDoor from '#/entities/misc/LockedDoor.js'
+
 import Ladder from '#/entities/misc/Ladder.js'
 import Store from '#/entities/misc/Store.js'
 
@@ -71,9 +75,14 @@ const entityShop = {
         return new ManaPotion(x,y,id);
     },
     14 : (x,y,id) => {
-        return new Sword(this.x, this.y, 4, 7, "Orc Purifier", id)
+        return new Sword(x, y, 4, 7, "Orc Purifier", id)
+    },
+    15 : (x,y,id) => {
+        return new Key(x,y,id);
+    },
+    16 : (x,y,id) => {
+        return new LockedDoor(x,y,id);
     }
-    // 15
 };
 
 export function getTilesetCoords(id) {
@@ -182,7 +191,7 @@ export class GameMap {
                     if (properties.entity !== true) throw "Bad entity creation for tile " + id;
                     let newActor = createEntity(j, i, properties.entity_id, id);
                     this.actors.push(newActor); // add to the list of all actors
-                    this.findActor(j,i).addToChest(newActor);
+                    this.findActor(j,i).addToInventory(newActor);
                 }
             }
         }
@@ -216,7 +225,7 @@ export class GameMap {
         let chests = this.data[y][x].actors.filter((a) => {return a instanceof Chest});
         // if there are no chests, then that means we need to find an actor who should have all of the items added to
         if (chests.length === 0) {
-            let possibleActors = this.data[y][x].actors.filter((a) => {return ! a instanceof Chest});
+            let possibleActors = this.data[y][x].actors;
             if (possibleActors.length === 0) throw `There's no actor in which an item can be placed at (${x},${y})`
             return possibleActors[0];
         } else {
