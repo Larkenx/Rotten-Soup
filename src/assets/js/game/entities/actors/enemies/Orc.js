@@ -1,17 +1,18 @@
 /**
  * Created by Larken on 7/5/2017.
  */
-
-import Actor from '#/entities/actors/Actor.js'
+import SimpleEnemy from '#/entities/actors/enemies/SimpleEnemy.js'
+import HealthPotion from '#/entities/items/potions/HealthPotion.js'
+import StrengthPotion from '#/entities/items/potions/StrengthPotion.js'
 import {getRandomInt} from '#/entities/Entity.js'
 import {Sword} from '#/entities/items/weapons/Sword.js'
 import {Game} from '#/Game.js'
 
-export default class Orc extends Actor {
+export default class Orc extends SimpleEnemy {
     constructor(x, y, id, empowered = false) {
         super(x, y, {
             id: id,
-            name: "orc",
+            name: empowered ? "Empowered Orc" : "orc",
             description: "All bronze and no brains!",
             visible: true,
             blocked: true,
@@ -35,33 +36,13 @@ export default class Orc extends Actor {
             }
         });
         let roll = getRandomInt(1, 10);
-        if (roll <= 2)
+        if (roll <= 2) {
             this.addToInventory(new Sword(this.x, this.y, 3, 7, "Thrasher", 33));
-    }
-
-    act() {
-        super.act();
-        Game.engine.lock();
-        if (this.distanceTo(Game.player) < 9) {
-            if (!this.options.chasing) {
-                let msg = this.cb.empowered ? 'An empowered orc sees you.' : 'An orc sees you.';
-                Game.log(msg, 'alert');
-            }
-
-            this.options.chasing = true;
-            this.options.inView = true;
-            let pathToPlayer = [];
-            Game.player.path.compute(this.x, this.y, function (x, y) {
-                pathToPlayer.push([x, y]);
-            });
-            if (pathToPlayer.length >= 2) {
-                let newPos = pathToPlayer[1]; // 1 past the current position
-                this.tryMove(newPos[0], newPos[1]);
-            }
-        } else {
-            this.options.inView = false;
+        } else if (roll >= 8) {
+            this.addToInventory(new HealthPotion(this.x, this.y, 488));
+        } else if (roll == 7) {
+            this.addToInventory(new StrengthPotion(this.x,this.y, 969))
         }
-        Game.engine.unlock();
     }
 
     interact(actor) {

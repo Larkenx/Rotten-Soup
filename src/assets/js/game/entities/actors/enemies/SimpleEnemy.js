@@ -1,5 +1,7 @@
 import Actor from '#/entities/actors/Actor.js'
+import Player from '#/entities/actors/Player.js'
 import {Game} from '#/Game.js'
+import ROT from 'rot-js'
 
 /* Simple enemy class to encapsulate all enemies with very simple AI.
 Essentially, these enemies have a range that they can see the player from, and if the player
@@ -13,7 +15,23 @@ export default class SimpleEnemy extends Actor {
     act() {
         super.act();
         Game.engine.lock();
-        if (this.distanceTo(Game.player) < this.cb.range) {
+
+        let fov = new ROT.FOV.PreciseShadowcasting(function (x, y) {
+            return (Game.inbounds(x, y) && Game.map.data[y][x].visible());
+        });
+
+        let visibleTiles = [];
+        fov.compute(this.x, this.y, this.cb.range, function (x, y, r, visibility) {
+            // console.log(x + ',' + y);
+            if (Game.inbounds(x, y))
+                visibleTiles.push(Game.map.data[y][x]);
+        });
+
+        let allVisibleActors = visibleTiles.reduce((actors, tile) => {
+            return actors.concat(tile.actors);
+        }, []);
+
+        if (allVisibleActors.some((a) => {return a === Game.player})) {
             if (!this.options.chasing) Game.log(`A ${this.name()} sees you.`, 'alert');
             this.options.chasing = true;
             this.options.inView = true;
@@ -25,7 +43,6 @@ export default class SimpleEnemy extends Actor {
                 let newPos = pathToPlayer[1]; // 1 past the current position
                 this.tryMove(newPos[0], newPos[1]);
             }
-
         } else {
             this.options.inView = false;
         }

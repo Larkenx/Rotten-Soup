@@ -9,6 +9,7 @@ import Weapon from '#/entities/items/weapons/Weapon.js'
 
 export default class Item extends Entity {
     constructor(x, y, options) {
+        options.visible = true;
         super(x, y, options);
     }
 
