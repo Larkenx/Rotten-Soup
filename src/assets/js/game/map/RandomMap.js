@@ -15,8 +15,8 @@ const symbolToEntityShop = {
 const mobDistribution = {
     "ORC" : 2,
     "EMPOWERED_ORC" : 1,
-    "GOBLIN" : 4,
-    "RAT" : 2
+    "GOBLIN" : 10,
+    "RAT" : 8
 };
 
 const flatten = arr => arr.reduce((acc, val) => acc.concat(Array.isArray(val) ? flatten(val) : val), []);
