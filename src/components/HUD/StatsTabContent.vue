@@ -5,7 +5,7 @@
             <v-layout  row align-center>
                 <v-flex md1 style="min-width: 70px;" col><b>Level</b></v-flex>
                 <v-flex md2 col style="padding-left: 5px;">{{getLevel()}}</v-flex>
-                <v-flex md6 col>{{getRemainingXP()}}XP until level {{getLevel()+1}}</v-flex>
+                <v-flex md6 col>{{Math.floor(getRemainingXP())}}XP until level {{getLevel()+1}}</v-flex>
                 <v-flex md2 col>
                     <v-progress-circular
                         :rotate="270"
