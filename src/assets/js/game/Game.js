@@ -6,6 +6,11 @@ import Actor from '#/entities/actors/Actor.js'
 import Player from '#/entities/actors/Player.js'
 import {randomMap} from '#/map/RandomMap.js'
 
+import Item from '#/entities/items/Item.js'
+import Door from '#/entities/misc/Door.js'
+import Ladder from '#/entities/misc/Ladder.js'
+
+
 export const tileset = require('@/assets/maps/tileset/compiled_dawnlike.json')
 export const overworldMap = require('@/assets/maps/map_file/overworld.json')
 
@@ -41,7 +46,7 @@ export let Game = {
         this.playerLocation = this.map.playerLocation;
         /* !Important! - PlayerID must be allocated before other maps are drawn... */
         this.playerID = this.map.playerID;
-        this.levels["dungeon1"] = new GameMap(randomMap(50, 50));
+        this.levels["dungeon1"] = new GameMap(randomMap(40, 40));
         // Set up the ROT.JS game display
         let tileSet = document.createElement("img");
         tileSet.src = "static/images/DawnLike/Compiled/compiled_tileset_32x32.png";
@@ -141,7 +146,7 @@ export let Game = {
 
     changeLevels: function (newLevel, dir) {
         if (this.levels[newLevel] === undefined) {
-            this.levels[newLevel] = new GameMap(randomMap(50, 50, dir));
+            this.levels[newLevel] = new GameMap(randomMap(40, 40, dir));
             console.log(newLevel + " does not exist, so a new random instance is being created.");
         }
 
@@ -246,6 +251,9 @@ export let Game = {
     },
 
     drawMiniMap: function () {
+        let otherActors = this.map.actors.filter( (a) => {
+            return (a instanceof Ladder || a instanceof Door);
+        });
         if (this.map.revealed) {
             for (let y = 0; y < this.map.height; y++) {
                 for (let x = 0; x < this.map.width; x++) {
@@ -256,6 +264,11 @@ export let Game = {
                         this.minimap.draw(x, y, " ", tile.bg(), tile.bg());
                 }
             }
+
+            for (let a of otherActors) {
+                    this.minimap.draw(a.x, a.y, " ", a.options.fg, a.options.bg);
+            }
+
         } else {
             for (let y = 0; y < this.map.height; y++) {
                 for (let x = 0; x < this.map.width; x++) {
@@ -266,6 +279,11 @@ export let Game = {
                         this.minimap.draw(x, y, " ", tile.bg(), tile.bg());
                     }
                 }
+
+            }
+            for (let a of otherActors) {
+                if (a.x + "," + a.y in this.map.seen_tiles)
+                    this.minimap.draw(a.x, a.y, " ", a.options.fg, a.options.bg);
             }
         }
         // Draw the actor in the mini-map

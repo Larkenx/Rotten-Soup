@@ -27,19 +27,4 @@ export default class LockedDoor extends Door {
             }
         }
     }
-
-    openDoor() {
-        this.closed = false;
-        this.options.blocked = false;
-        this.options.visible = true;
-        this.id = tileset.tileproperties[this.id].activated_id;
-    }
-
-    closeDoor() {
-        this.closed = false;
-        this.options.blocked = false;
-        this.options.visible = true;
-        this.options.id = this.id;
-    }
-
 }

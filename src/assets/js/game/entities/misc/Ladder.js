@@ -12,7 +12,7 @@ export default class Ladder extends Entity {
             direction: dir,
             description: "A ladder leading " + dir,
             fg: "brown",
-            bg: "black",
+            bg: "orange",
             blocked: false,
             visible: true
         });

@@ -72,6 +72,8 @@ export default class Orc extends Actor {
                 Game.log(`The empowered orc steals your health and regenerates ${amtHealed} health!`, "alert");
                 this.heal(amtHealed);
             }
+        } else {
+            actor.react(this);
         }
     }
 

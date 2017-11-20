@@ -159,7 +159,7 @@ export default class Actor extends Entity {
                 // actor has stumbled upon a non-Actor entity (an item or miscellaneous entity like a door)
                 if (actor instanceof Door) {
                     this.interact(actor);
-                    return false;
+                    return ! actor.options.closed;
                 }
             }
         }

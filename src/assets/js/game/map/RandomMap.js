@@ -3,7 +3,21 @@
  */
 import ROT from 'rot-js'
 import {Game} from '#/Game.js'
+import {getRandomInt} from '#/entities/Entity.js'
 
+const symbolToEntityShop = {
+    ORC : [5292,5293,5294,5295,5296,5297,5299],
+    EMPOWERED_ORC : [5298],
+    GOBLIN : [7440, 7441,7442,7443,7444,7445,7446],
+    RAT : [2365],
+};
+
+const mobDistribution = {
+    "ORC" : 2,
+    "EMPOWERED_ORC" : 1,
+    "GOBLIN" : 4,
+    "RAT" : 2
+};
 
 const flatten = arr => arr.reduce((acc, val) => acc.concat(Array.isArray(val) ? flatten(val) : val), []);
 
@@ -16,6 +30,7 @@ function randomProperty(object) {
  * JSON data to that of a TILED map, with the unnecessary properties left out */
 export function randomMap(width, height, dir) {
     let map = {};
+    let createdLadders = 0;
     map.revealed = true;
     map.width = width;
     map.height = height;
@@ -156,8 +171,42 @@ export function randomMap(width, height, dir) {
         });
 
         // Now, we can mess around with the centers of each room and place items in the dungeons
+
         // this places a ladder going further into the dungeon (either deeper or higher)
-        map.layers[2].data[center.y][center.x] = dir === "down" ? 478 : 480;
+        let roll = getRandomInt(1,rogueMap.getRooms().length);
+        if (roll == 1 || createdLadders == 0) {
+            map.layers[2].data[center.y][center.x] = dir === "down" ? 478 : 480;
+            createdLadders++;
+        }
+
+        // now I want to populate some random creatures in each room of the dungeon.
+        let validTiles = []; // all the non-wall tiles in the room that don't already a ladder
+        for (let i = left+1; i < right-1; i++) {
+            for (let j = top+1; j < bottom-1; j++) {
+                if (map.layers[2].data[j][i] === 0)
+                    validTiles.push(j+','+i);
+            }
+        }
+        // function that will yield a random free space in the room
+        let randomTile = () => {
+            let index = getRandomInt(0, validTiles.length); // index of a tile
+            let randomTile = validTiles.splice(index, 1);
+            if (randomTile.length === 1) {
+                return randomTile[0].split(',')
+            } else {
+                return null;
+            }
+        }
+        roll = getRandomInt(2,5);
+        for (let i = 0; i < roll; i++) {
+            let coords = randomTile();
+            if (coords === null) break;
+            let chosenMob = ROT.RNG.getWeightedValue(mobDistribution);
+            console.log(chosenMob);
+            let mobArray = symbolToEntityShop[chosenMob];
+            let randomMob = mobArray[getRandomInt(0,mobArray.length-1)]+1;
+            map.layers[2].data[coords[0]][coords[1]] = randomMob;
+        }
     }
 
     let buildsCorrWalls = function (x, y, horizontal, end = false) {

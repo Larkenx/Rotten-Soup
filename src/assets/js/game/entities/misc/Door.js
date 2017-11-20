@@ -10,6 +10,8 @@ export default class Door extends Entity {
     constructor(x, y, id) {
         super(x, y, {
             id: id,
+            bg : "rgb(140, 80, 0)",
+            fg : "red",
             visible: false,
             blocked: true,
         });
