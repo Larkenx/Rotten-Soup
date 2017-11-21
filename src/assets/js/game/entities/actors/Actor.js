@@ -35,6 +35,7 @@ export default class Actor extends Entity {
             torso: null,
             legs: null,
             weapon: null,
+            quiver : null
         };
         this.inventory = [];
         for (let i = 0; i < 28; i++) {
@@ -199,7 +200,6 @@ export default class Actor extends Entity {
         }
         this.cb.equipment.weapon = item;
         item.cb.equipped = true;
-
     }
 
 

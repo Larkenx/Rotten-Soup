@@ -67,7 +67,7 @@ export default class Player extends Actor {
         // - a health potion
         // - a random sword (equip the sword)
         this.addToInventory(createSword(this.x, this.y, 35));
-        this.equipWeapon(this.inventory[0].item);
+        // this.equipWeapon(this.inventory[0].item);
         this.addToInventory(new HealthPotion(this.x,this.y, 488));
         this.addToInventory(new StrengthPotion(this.x,this.y, 969));
         this.addToInventory(new ManaPotion(this.x,this.y, 495));
@@ -200,16 +200,22 @@ export default class Player extends Actor {
             return el instanceof Item;
         });
         if (tileItems.length === 1) {
-            Game.log("You picked up a " + tileItems[0].options.type, "information");
+            Game.log(`You picked up a ${tileItems[0].options.type.toLowerCase()}.`, 'information');
             this.addToInventory(tileItems[0]);
             ctile.removeActor(tileItems[0]);
         } else if (tileItems.length > 1) {
-            // open up an inventory modal of things they can pick up?
-            // Game.log("Too many items here! Feature not implemented yet :)", "information");
+            let itemTypes = [];
             for (let item of tileItems) {
+                itemTypes.push(item.options.type.toLowerCase());
                 this.addToInventory(item);
                 ctile.removeActor(item);
             }
+            let prettyItemTypes = itemTypes.slice(1, itemTypes.length-1)
+            prettyItemTypes = prettyItemTypes.reduce((buf, str) => {return buf + ", a " + str} , "a  " + itemTypes.slice(0,1));
+
+            let lastItem = ` and a ${itemTypes.slice(-1)}.`;
+            let buffer = `You picked up ${prettyItemTypes+lastItem}`;
+            Game.log(buffer, "information");
         } else {
             Game.log("There's nothing on the ground here.", "information");
         }
@@ -217,21 +223,8 @@ export default class Player extends Actor {
 
     // Overriding the actor
     equipWeapon(item) {
-        if (!item instanceof Weapon) {
-            throw "Error - equipped invalid item - " + this.item.options.type;
-            return;
-        }
-        if (item.cb.equipped) {
-            Game.log("You've already equipped that item!", "information");
-        } else {
-            // already wielding a weapon
-            if (this.cb.equipment.weapon !== null) {
-                this.cb.equipment.weapon.cb.equipped = false;
-                // no weapon equipped
-            }
-            this.cb.equipment.weapon = item;
-            item.cb.equipped = true;
-        }
+        super.equipWeapon(item);
+        Game.log(`You wield the ${item.options.type.toLowerCase()}.`, 'information');
     }
 
     unequipWeapon() {

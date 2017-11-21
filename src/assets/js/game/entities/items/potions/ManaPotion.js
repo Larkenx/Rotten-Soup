@@ -6,7 +6,7 @@ export default class ManaPotion extends Item {
     constructor(x, y, id) {
         super(x, y, {
             id : id,
-            type : "Potion"
+            type : "Mana Potion"
         });
     }
 
