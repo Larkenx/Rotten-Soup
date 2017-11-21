@@ -24,7 +24,7 @@ import Ladder from '#/entities/misc/Ladder.js'
 import {xp_levels} from '#/entities/Entity.js'
 
 function dijkstra_callback(x, y) {
-    if (x <= 0 || x === Game.map.width || y <= 0 || y === Game.map.height) return false;
+    if (x <= 0 || x >= Game.map.width || y <= 0 || y >= Game.map.height) return false;
     return !Game.map.data[y][x].blocked();
 }
 
@@ -79,7 +79,7 @@ export default class Player extends Actor {
         super.act();
         Game.engine.lock();
         window.addEventListener("keydown", this);
-        window.addEventListener("click", this);
+        // window.addEventListener("click", this);
     }
 
     interact(actor) { // returns true if we can continue to move to the tile

@@ -3,7 +3,7 @@
         <v-layout row wrap v-if="getNearbyEnemies().length > 0">
             <v-flex
                     class="enemy_col"
-                    xs1
+                    xs3
                     col
                     v-for="(enemy, index) in getNearbyEnemies()"
                     v-bind:key="index"

@@ -32,9 +32,17 @@
             </v-layout>
         </v-flex>
 
+        <!-- Current World -->
+        <v-flex>
+            <v-layout row align-center>
+                <v-flex xs4 col><b>Place: {{getCurrentLevel().capitalize()}}</b></v-flex>
+                <v-flex v-if="getCurrentLevelDepth() > 0" col><b>Level: {{getCurrentLevelDepth()}}</b></v-flex>
+            </v-layout>
+        </v-flex>
 
         <!-- Mini-map -->
         <mini-map></mini-map>
+
         <v-flex>
             <v-tabs :scrollable="false" grow v-model="activeTab"
                     style="max-width: 350px; margin-top: 10px; margin-bottom: 10px; font-size: 11px;">
@@ -71,7 +79,6 @@
                 </v-tabs-items>
             </v-tabs>
         </v-flex>
-
         <!-- Inventory -->
         <inventory></inventory>
     </v-layout>
@@ -87,8 +94,10 @@
         data() {
             return {
                 activeTab: null,
+                currentLevel : Game.currentLevel,
                 player: Game.player,
-                actors: Game.actors,
+                x : Game.player.x,
+                y : Game.player.y,
                 rows: [1, 2, 3, 4],
             };
         },
@@ -105,6 +114,13 @@
             getMaxMana() {
                 return Game.player.cb.maxmana;
             },
+            getCurrentLevel() {
+                let levelName = Game.currentLevel.replace(/[0-9]/g, "");
+                return levelName;
+            },
+            getCurrentLevelDepth() {
+                return parseInt(Game.currentLevel.replace(/[^0-9]/g, ""));
+            }
         },
         components: {
             'inventory': inventory,
@@ -113,7 +129,7 @@
             'stats-tab-content' : statsTabContent
         },
         created() {
-            this.actors = Game.actors;
+            this.player = Game.player;
         }
     }
 </script>

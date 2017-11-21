@@ -10,6 +10,8 @@ import {Game} from '#/Game.js'
 
 export default class Orc extends SimpleEnemy {
     constructor(x, y, id, empowered = false) {
+        let randomHP = getRandomInt(25,35);
+        let randomStr = getRandomInt(17,23);
         super(x, y, {
             id: id,
             name: empowered ? "Empowered Orc" : "orc",
@@ -21,12 +23,12 @@ export default class Orc extends SimpleEnemy {
                 /* options.combat, dedicated to all things related to combat */
                 description: [" attacked "],
                 /* max stats */
-                maxhp: 30,
+                maxhp: randomHP,
                 maxmana: 5,
                 /* current stats */
-                hp: 30,
+                hp: randomHP,
                 mana: 5,
-                str: 20,
+                str: randomStr,
                 def: 1,
                 /* misc */
                 hostile: true,
