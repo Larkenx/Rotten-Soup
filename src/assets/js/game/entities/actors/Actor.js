@@ -1,7 +1,7 @@
 /**
  * Created by larken on 7/12/17.
- */
-
+*/
+import ROT from 'rot-js'
 import {Game} from '#/Game.js'
 import {Entity} from '#/entities/Entity.js'
 import {getRandomInt} from '#/entities/Entity.js'
@@ -230,7 +230,36 @@ export default class Actor extends Entity {
             this.cb.mana += mana;
     }
 
-
+    /* Starting out with basic 8 dir firing */
+    fireRangedWeapon(ammo, dir) {
+        // assuming we have a ranged weapon and ammunition to fire
+        let weapon = this.cb.equipment.weapon;
+        let range = weapon.cb.range;
+        let dmg = weapon.roll() + ammo.cb.damage;
+        let diff = ROT.DIRS[8][dir];
+        // iterate from the first to last tile in the given direction
+        for (let i = 1; i < range; i++) {
+            let tx = this.x + diff[0]*i;
+            let ty = this.y + diff[1]*i;
+            let tile = Game.map.data[ty][tx];
+            // if the tile is a blocked obstacle, then we want to cancel the projectile's motion
+            // since water and some other special obstacles are "blocked", need to use the "blocks vision"
+            // attribute to determine if a projectile can pass through
+            // (e.g if light can pass through, so can an arrow or crossbow bolt)
+            if (!tile.visible()) {
+                console.log("Projectile collided with an obstacle!");
+                return;
+            }
+            // if we find an enemy on the tile, we damage it and the projectile stops moving
+            let enemies = tile.actors.filter((e) => {return e.cb.hostile});
+            if (enemies.length > 0) {
+                console.log("The project collided with an enemy");
+                let enemy = enemies[0];
+                enemy.damage(dmg);
+                return;
+            }
+        }
+    }
 
     death() {
         let idx = Game.engine._scheduler.remove(this);

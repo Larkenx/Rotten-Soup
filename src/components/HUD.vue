@@ -1,5 +1,5 @@
 <template>
-    <v-layout fluid class="hud elevation-0" column>
+    <v-layout fluid class="hud elevation-0" column style="max-width: 450px;">
         <!-- Health Bar -->
         <v-flex>
             <v-layout row align-center style=" margin-bottom: -40px;">

@@ -156,6 +156,8 @@ export default class Player extends Actor {
             66: 5,
             72: 6,
             89: 7,
+            /* Fire a weapon */
+            70 : "fire",
             /* Rest, Pick Up Items, Climb Ladders */
             188: "pickup",
             71: "pickup",
@@ -217,7 +219,7 @@ export default class Player extends Actor {
             let buffer = `You picked up ${prettyItemTypes+lastItem}`;
             Game.log(buffer, "information");
         } else {
-            Game.log("There's nothing on the ground here.", "information");
+            Game.log("There's nothing to pick up.", "information");
         }
     }
 
