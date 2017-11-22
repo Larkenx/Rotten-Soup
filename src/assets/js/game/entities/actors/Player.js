@@ -8,7 +8,8 @@ import Actor from '#/entities/actors/Actor.js'
 import Item from '#/entities/items/Item.js'
 // - Weapons
 import Weapon from '#/entities/items/weapons/Weapon.js'
-import {createSword} from '#/entities/items/weapons/Sword.js'
+import {Sword} from '#/entities/items/weapons/Sword.js'
+
 import {createBow} from '#/entities/items/weapons/ranged/Bow.js'
 import {SteelArrow} from '#/entities/items/weapons/ranged/ammo/Arrow.js'
 
@@ -70,13 +71,13 @@ export default class Player extends Actor {
         // Give the player a few starting items:
         // - a health potion
         // - a random sword (equip the sword)
-        this.addToInventory(createSword(this.x, this.y, 35));
+        this.addToInventory(new Sword(this.x, this.y, 2, 3, "Training Sword", 35));
         // this.equipWeapon(this.inventory[0].item);
         this.addToInventory(createBow(this.x,this.y, 664))
-        this.addToInventory(new SteelArrow(this.x,this.y, 784, 20));
+        this.addToInventory(new SteelArrow(this.x,this.y, 784, 5));
         this.addToInventory(new HealthPotion(this.x,this.y, 488));
         this.addToInventory(new StrengthPotion(this.x,this.y, 969));
-        this.addToInventory(new ManaPotion(this.x,this.y, 495));
+        // this.addToInventory(new ManaPotion(this.x,this.y, 495));
 
 
     }
@@ -277,7 +278,6 @@ export default class Player extends Actor {
             }
             let prettyItemTypes = itemTypes.slice(1, itemTypes.length-1)
             prettyItemTypes = prettyItemTypes.reduce((buf, str) => {return buf + ", a " + str} , "a  " + itemTypes.slice(0,1));
-
             let lastItem = ` and a ${itemTypes.slice(-1)}.`;
             let buffer = `You picked up ${prettyItemTypes+lastItem}`;
             Game.log(buffer, "information");

@@ -9,6 +9,7 @@ import HealthPotion from '#/entities/items/potions/HealthPotion.js'
 import StrengthPotion from '#/entities/items/potions/StrengthPotion.js'
 import {createSword} from '#/entities/items/weapons/Sword.js'
 import {Game} from '#/Game.js'
+import {SteelArrow} from '#/entities/items/weapons/ranged/ammo/Arrow.js'
 
 export default class Goblin extends SimpleEnemy {
     constructor(x, y, id) {
@@ -41,7 +42,8 @@ export default class Goblin extends SimpleEnemy {
         let dropTable = {
             "STRENGTH_POTION" : 2,
             "HEALTH_POTION" : 2,
-            "SWORD" :1
+            "STEEL_ARROW" : 1,
+            "SWORD" : 1
         }
         let roll = getRandomInt(0, 1);
         for (let i=0; i < roll; i++) {
@@ -56,6 +58,8 @@ export default class Goblin extends SimpleEnemy {
                 case "SWORD":
                     this.addToInventory(createSword(this.x, this.y, 35));
                     break;
+                case "STEEL_ARROW":
+                    this.addToInventory(new SteelArrow(this.x, this.y, 784, 5));
                 default:
                     console.log("tried to add some item that doesn't exist to an inventroy from drop table");
             }

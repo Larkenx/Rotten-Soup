@@ -73,6 +73,17 @@ export default class Actor extends Entity {
     }
 
     addToInventory(newItem) {
+        if ("quantity" in newItem.options) {
+            for (let i = 0; i < this.inventory.length; i++) {
+                let item = this.inventory[i].item
+                if (item !== null && item.options.type === newItem.options.type) {
+                    item.options.quantity += newItem.options.quantity;
+                    return item;
+                }
+
+            }
+        }
+
         let nextFreeIndex = null;
         for (let i = 0; i < this.inventory.length; i++) {
             if (this.inventory[i].item == null) {
@@ -91,7 +102,9 @@ export default class Actor extends Entity {
         this.inventory[nextFreeIndex].item = newItem
         // this.inventory[nextFreeIndex].action = newItem.use;
         return this.inventory[nextFreeIndex].item;
+
     }
+
 
     placeEntityBelow(entity) {
         Game.map.data[this.y][this.x].actors.push(entity);

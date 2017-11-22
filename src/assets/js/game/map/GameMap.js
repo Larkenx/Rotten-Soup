@@ -91,7 +91,7 @@ const entityShop = {
         return createBow(x,y,id);
     },
     18 : (x,y,id) => {
-        return new SteelArrow(x,y,id,20);
+        return new SteelArrow(x,y,id,5);
     }
 };
 
