@@ -31,7 +31,7 @@
                       <v-card-text class="pt-0">
                           <v-container fluid>
                               <h5>Melee and Ranged Combat</h5>
-                              <p>To fight an enemy with your fists or melee weapon, <code>move</code> into a tile where they are standing</p>
+                              <p>To fight an enemy with your fists or melee weapon, <code>move</code> into a tile where they are standing.</p>
                               <p>If you have a ranged weapon and proper ammunition equipped, press <code>f</code> to fire your ranged weapon. You will enter
                                   into a targeting mode where you may choose which direction to fire. Select the direction you want to fire in
                                   using the <code>movement</code> keys. To cancel firing your ranged weapon, press <code>escape</code> or <code>f</code> again.</p>
