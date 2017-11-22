@@ -8,7 +8,7 @@ export default class RangedWeapon extends Weapon {
 
     constructor(x, y, options) {
         super(x,y,options);
-        this.ranged = true;
+        this.cb.ranged = true;
     }
 
 }

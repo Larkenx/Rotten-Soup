@@ -259,6 +259,13 @@ export default class Actor extends Entity {
                 return;
             }
         }
+        console.log("The projectile did not hit anything");
+        // place the ammo down at
+        /*
+        let tx = this.x + diff[0]*range;
+        let ty = this.y + diff[1]*range;
+        let tile = Game.map.data[ty][tx];
+        */
     }
 
     death() {

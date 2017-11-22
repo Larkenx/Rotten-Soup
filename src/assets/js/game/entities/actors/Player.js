@@ -181,6 +181,20 @@ export default class Player extends Actor {
             this.climb("down");
         } else if ("pickup" === keyMap[code] && shift_pressed) {
             this.climb("up");
+        } else if ("fire" === keyMap[code] && !shift_pressed) {
+            if (this.cb.equipment.weapon.cb.ranged) {
+                Game.log(`You take aim with your ${this.cb.equipment.weapon.cb.type.toLowerCase()}`, 'information');
+                window.addEventListener("keydown", function(evt) {
+                    let code = evt.keyCode;
+                    let shift_pressed = evt.getModifierState("Shift");
+                    if (!(code in keyMap)) { // invalid key press, retry turn
+                        Game.log("Invalid command given.", 'information');
+                        window.removeEventListener("keydown", this);
+                        window.addEventListener("keydown", this);
+                        return;
+                    }
+                });
+            }
         } else {
             let diff = ROT.DIRS[8][keyMap[code]];
             let nx = this.x + diff[0];
