@@ -12088,6 +12088,13 @@
         {
          "blocked":true
         },
+     "664":
+        {
+         "animated":false,
+         "animated_id":0,
+         "entity":true,
+         "entity_id":"17"
+        },
      "67":
         {
          "blocked":true
@@ -18384,6 +18391,13 @@
          "blocked":true,
          "blocks_vision":true,
          "entity":false
+        },
+     "784":
+        {
+         "animated":false,
+         "animated_id":0,
+         "entity":true,
+         "entity_id":"18"
         },
      "7840":
         {
@@ -43775,6 +43789,13 @@
         {
          "blocked":"bool"
         },
+     "664":
+        {
+         "animated":"bool",
+         "animated_id":"int",
+         "entity":"bool",
+         "entity_id":"string"
+        },
      "67":
         {
          "blocked":"bool"
@@ -50071,6 +50092,13 @@
          "blocked":"bool",
          "blocks_vision":"bool",
          "entity":"bool"
+        },
+     "784":
+        {
+         "animated":"bool",
+         "animated_id":"int",
+         "entity":"bool",
+         "entity_id":"string"
         },
      "7840":
         {

@@ -9,6 +9,9 @@ import Item from '#/entities/items/Item.js'
 // - Weapons
 import Weapon from '#/entities/items/weapons/Weapon.js'
 import {createSword} from '#/entities/items/weapons/Sword.js'
+import {createBow} from '#/entities/items/weapons/ranged/Bow.js'
+import {SteelArrow} from '#/entities/items/weapons/ranged/ammo/Arrow.js'
+
 // - Potions
 import HealthPotion from '#/entities/items/potions/HealthPotion.js'
 import StrengthPotion from '#/entities/items/potions/StrengthPotion.js'
@@ -37,6 +40,7 @@ export default class Player extends Actor {
             fg: "yellow",
             bg: "black",
             visible: true,
+            targeting : false,
             blocked: true,
             leveled_up: true,
             enemiesInView: [],
@@ -68,6 +72,8 @@ export default class Player extends Actor {
         // - a random sword (equip the sword)
         this.addToInventory(createSword(this.x, this.y, 35));
         // this.equipWeapon(this.inventory[0].item);
+        this.addToInventory(createBow(this.x,this.y, 664))
+        this.addToInventory(new SteelArrow(this.x,this.y, 784, 20));
         this.addToInventory(new HealthPotion(this.x,this.y, 488));
         this.addToInventory(new StrengthPotion(this.x,this.y, 969));
         this.addToInventory(new ManaPotion(this.x,this.y, 495));
@@ -126,10 +132,17 @@ export default class Player extends Actor {
         }
         let code = evt.keyCode;
         let shift_pressed = evt.getModifierState("Shift");
-        let endturn = function () {
+
+        let endTurn = function () {
             window.removeEventListener("keydown", this);
             Game.engine.unlock();
         };
+
+        let restartTurn = function() {
+            window.removeEventListener("keydown", this);
+            window.addEventListener("keydown", this);
+        };
+
         let keyMap = {
             /* Arrow Key movement */
             39: 2,
@@ -164,16 +177,44 @@ export default class Player extends Actor {
             190: "rest",
         };
 
+        if (this.options.targeting) {
+            let validKeys = [0,1,2,3,4,5,6,7];
+            if (!(code in keyMap) || ! validKeys.includes(keyMap[code])) { // invalid key press, retry turn
+                if (code === 70 || code == 27) //escape key
+                    Game.log(`You put away your ${this.cb.equipment.weapon.options.type.toLowerCase()}.`, 'information');
+                else
+                    Game.log("Invalid command given.", 'information');
+                this.options.targeting = false;
+                restartTurn();
+                return;
+            } else {
+                // valid target direction
+                let ammo = this.cb.equipment.ammo;
+                ammo.options.quantity--;
+                if (ammo.options.quantity === 0) {
+                    Game.log(`You fire your last ${ammo.options.type.toLowerCase()}!`, "alert");
+                }
+                this.fireRangedWeapon(ammo, keyMap[code]);
+                this.options.targeting = false;
+                if (ammo.options.quantity === 0) { // used up all the ammo, need to remove it from the inventory
+                    this.unequipAmmo();
+                    this.removeFromInventory(ammo);
+                }
+                endTurn();
+                return;
+            }
+        }
+
         if (!(code in keyMap)) { // invalid key press, retry turn
             // Game.log("Unknown command", 'information');
-            window.removeEventListener("keydown", this);
-            window.addEventListener("keydown", this);
+            restartTurn();
             return;
         }
 
+
         if ("rest" === keyMap[code] && !shift_pressed) { // Rest
-            this.heal(this.cb.hpRecovery);
-            this.restore(this.cb.manaRecovery);
+            // this.heal(this.cb.hpRecovery);
+            // this.restore(this.cb.manaRecovery);
             Game.log("You rest for a turn.", 'player_move');
         } else if ("pickup" === keyMap[code] && !shift_pressed) {
             this.pickup();
@@ -182,32 +223,40 @@ export default class Player extends Actor {
         } else if ("pickup" === keyMap[code] && shift_pressed) {
             this.climb("up");
         } else if ("fire" === keyMap[code] && !shift_pressed) {
-            if (this.cb.equipment.weapon.cb.ranged) {
-                Game.log(`You take aim with your ${this.cb.equipment.weapon.cb.type.toLowerCase()}`, 'information');
-                window.addEventListener("keydown", function(evt) {
-                    let code = evt.keyCode;
-                    let shift_pressed = evt.getModifierState("Shift");
-                    if (!(code in keyMap)) { // invalid key press, retry turn
-                        Game.log("Invalid command given.", 'information');
-                        window.removeEventListener("keydown", this);
-                        window.addEventListener("keydown", this);
-                        return;
-                    }
-                });
+
+            let weapon = this.cb.equipment.weapon;
+            let ammo = this.cb.equipment.ammo;
+            if (weapon !== null && ammo !== null &&
+                weapon.cb.ranged &&
+                ammo.cb.ammoType === weapon.cb.ammoType &&
+                ammo.options.quantity > 0) {
+                Game.log(`You take aim with your ${weapon.options.type.toLowerCase()}.`, 'information');
+                this.options.targeting = true;
+                restartTurn();
+                return;
+            } else {
+                if (weapon === null || ! weapon.cb.ranged)
+                    Game.log("You don't have a ranged weapon equipped!", "information");
+                else if (ammo === null)
+                    Game.log("You don't have any ammunition equipped.", "information");
+                else if (ammo.cb.ammoType !== weapon.cb.ammoType)
+                    Game.log("You don't have the right ammunition equipped for this weapon.", "information");
+
+                restartTurn();
+                return;
             }
         } else {
             let diff = ROT.DIRS[8][keyMap[code]];
             let nx = this.x + diff[0];
             let ny = this.y + diff[1];
             if (!this.tryMove(nx, ny)) {
-                window.removeEventListener("keydown", this);
-                window.addEventListener("keydown", this);
+                restartTurn();
                 return;
             }
             this.path = new ROT.Path.Dijkstra(this.x, this.y, dijkstra_callback);
             this.nearbyEnemies = Game.getNearbyEnemies();
         }
-        endturn();
+        endTurn();
     }
 
     pickup() {
@@ -249,6 +298,15 @@ export default class Player extends Actor {
             this.cb.equipment.weapon = null;
         } else {
             throw "Tried to uneqip weapon but no item was equipped."
+        }
+    }
+
+    unequipAmmo() {
+        if (this.cb.equipment.ammo !== null) {
+            this.cb.equipment.ammo.cb.equipped = false;
+            this.cb.equipment.ammo = null;
+        } else {
+            throw "Tried to uneqip ammo but no item was equipped."
         }
     }
 

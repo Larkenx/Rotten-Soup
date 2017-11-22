@@ -1,5 +1,5 @@
-import RangedWeapon from `#/entities/items/weapons/ranged/RangedWeapon.js`
-import {AMMO_TYPES} from `#/entities/items/weapons/ranged/ammo/Arrow.js`
+import RangedWeapon from '#/entities/items/weapons/ranged/RangedWeapon.js'
+import {AMMO_TYPES} from '#/entities/items/weapons/ranged/ammo/Ammo.js'
 
 export class Bow extends RangedWeapon {
     constructor(x, y, id, name, rolls, sides, range) {
@@ -7,11 +7,11 @@ export class Bow extends RangedWeapon {
             id : id,
             name : name,
             type : "Bow",
-            ammoType : AMMO_TYPES.ARROW,
             combat: {
                 rolls: rolls,
                 sides: sides,
-                range : range
+                range : range,
+                ammoType : AMMO_TYPES.ARROW,
             }
         });
     }

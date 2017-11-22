@@ -2,23 +2,28 @@
  * Created by Larken on 6/22/2017.
  */
 import Item from '#/entities/items/Item.js'
+import {Game} from '#/Game.js'
 
 export const AMMO_TYPES = {
     ARROW : "Arrow"
 };
 
 export class Ammo extends Item {
+
     constructor(x, y, options) {
-        let {type, ammoType, quantity, damage} = options;
-        super(x,y,{
-            id: id,
-            type: type, // as in the type of item, not the ammotype
-            ammoType : ammoType
-            combat: {
-                damage : damage
-            },
-            quantity : quantity
-        });
-        this.options.combat = this.cb;
+        options.visible = true;
+        options.blocked = false;
+        options.combat.equippable = true;
+        options.combat.equipped = false;
+        super(x,y,options);
+        this.cb = this.options.combat;
+    }
+
+    use() {
+        Game.player.equipAmmo(this);
+    }
+
+    hoverInfo() {
+        return `Quantity: ${this.options.quantity}`;
     }
 }

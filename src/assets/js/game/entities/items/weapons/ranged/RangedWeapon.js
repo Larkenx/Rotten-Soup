@@ -11,4 +11,8 @@ export default class RangedWeapon extends Weapon {
         this.cb.ranged = true;
     }
 
+
+     hoverInfo() {
+         return `Damage: ${this.cb.rolls}-${this.cb.sides * this.cb.rolls} Range: ${this.cb.range}`;
+     }
 }

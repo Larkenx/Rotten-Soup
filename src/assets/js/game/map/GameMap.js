@@ -17,6 +17,10 @@ import Key from '#/entities/items/misc/Key.js'
 
 import {createSword} from '#/entities/items/weapons/Sword.js'
 import {Sword} from '#/entities/items/weapons/Sword.js'
+import {createBow} from '#/entities/items/weapons/ranged/Bow.js'
+import {Bow} from '#/entities/items/weapons/ranged/Bow.js'
+import {SteelArrow} from '#/entities/items/weapons/ranged/ammo/Arrow.js'
+
 
 import HealthPotion from '#/entities/items/potions/HealthPotion.js'
 import StrengthPotion from '#/entities/items/potions/StrengthPotion.js'
@@ -82,6 +86,12 @@ const entityShop = {
     },
     16 : (x,y,id) => {
         return new LockedDoor(x,y,id);
+    },
+    17 : (x,y,id) => {
+        return createBow(x,y,id);
+    },
+    18 : (x,y,id) => {
+        return new SteelArrow(x,y,id,20);
     }
 };
 
