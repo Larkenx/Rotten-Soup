@@ -23,7 +23,12 @@
                     slot="activator"
                     row
                 >
+                <v-badge overlay bottom color="grey" overlap>
+                    <span v-if="cell.item.options.quantity !== undefined" slot="badge" dark>
+                        <b>{{cell.item.options.quantity}}</b>
+                    </span>
                     <img v-bind:src="getInventorySprite(cell.item.id)"/>
+                </v-badge>
             </v-layout>
         </v-tooltip>
 

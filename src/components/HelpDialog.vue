@@ -30,6 +30,18 @@
                   <v-card flat>
                       <v-card-text class="pt-0">
                           <v-container fluid>
+                              <h5>Melee and Ranged Combat</h5>
+                              <p>To fight an enemy with your fists or melee weapon, <code>move</code> into a tile where they are standing.</p>
+                              <p>If you have a ranged weapon and proper ammunition equipped, press <code>f</code> to fire your ranged weapon. You will enter
+                                  into a targeting mode where you may choose which direction to fire. Select the direction you want to fire in
+                                  using the <code>movement</code> keys. To cancel firing your ranged weapon, press <code>escape</code> or <code>f</code> again.</p>
+                          </v-container>
+                      </v-card-text>
+                  </v-card>
+                  <v-divider></v-divider>
+                  <v-card flat>
+                      <v-card-text class="pt-0">
+                          <v-container fluid>
                               <h5>Ladders, Resting, and Picking up Items</h5>
                               <p>To pick up items off the ground, press <code>,</code> or <code>g</code>.</p>
                               <p>To rest for a turn and restore a little health, press <code>.</code> or <code>5</code> on the numpad.</p>

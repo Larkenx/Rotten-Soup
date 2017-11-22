@@ -1,13 +1,15 @@
 /**
  * Created by larken on 7/12/17.
- */
-
+*/
+import ROT from 'rot-js'
 import {Game} from '#/Game.js'
 import {Entity} from '#/entities/Entity.js'
 import {getRandomInt} from '#/entities/Entity.js'
 
 import Door from '#/entities/misc/Door.js'
 import Weapon from '#/entities/items/weapons/Weapon.js'
+import {Ammo} from '#/entities/items/weapons/ranged/ammo/Ammo.js'
+
 
 function capitalize(s) {
     return s.charAt(0).toUpperCase() + s.slice(1);
@@ -35,6 +37,7 @@ export default class Actor extends Entity {
             torso: null,
             legs: null,
             weapon: null,
+            ammo : null
         };
         this.inventory = [];
         for (let i = 0; i < 28; i++) {
@@ -70,6 +73,17 @@ export default class Actor extends Entity {
     }
 
     addToInventory(newItem) {
+        if ("quantity" in newItem.options) {
+            for (let i = 0; i < this.inventory.length; i++) {
+                let item = this.inventory[i].item
+                if (item !== null && item.options.type === newItem.options.type) {
+                    item.options.quantity += newItem.options.quantity;
+                    return item;
+                }
+
+            }
+        }
+
         let nextFreeIndex = null;
         for (let i = 0; i < this.inventory.length; i++) {
             if (this.inventory[i].item == null) {
@@ -88,7 +102,9 @@ export default class Actor extends Entity {
         this.inventory[nextFreeIndex].item = newItem
         // this.inventory[nextFreeIndex].action = newItem.use;
         return this.inventory[nextFreeIndex].item;
+
     }
+
 
     placeEntityBelow(entity) {
         Game.map.data[this.y][this.x].actors.push(entity);
@@ -176,6 +192,9 @@ export default class Actor extends Entity {
     attack(actor) {
         let weapon = this.cb.equipment.weapon;
         let dmg = weapon !== null ? this.cb.str + weapon.roll() : this.cb.str;
+        if (weapon && weapon.cb.ranged)
+            dmg = this.cb.str
+
         let len = this.cb.description.length;
         let evtdamage = `${addPrefix(this.name()).capitalize()}${this.cb.description[Math.floor(Math.random() * len)]}${addPrefix(actor.name())} and dealt ${dmg} damage.`;
         if (Game.player === this)
@@ -199,7 +218,18 @@ export default class Actor extends Entity {
         }
         this.cb.equipment.weapon = item;
         item.cb.equipped = true;
+    }
 
+    equipAmmo(item) {
+        if (!item instanceof Ammo || ! "cb" in item)
+            throw "Error - equipped invalid item - " + this.item.options.type;
+
+        // already wielding a weapon
+        if (this.cb.equipment.ammo !== null) {
+            this.cb.equipment.ammo.cb.equipped = false;
+        }
+        this.cb.equipment.ammo = item;
+        this.cb.equipment.ammo.cb.equipped = true;
     }
 
 
@@ -230,7 +260,54 @@ export default class Actor extends Entity {
             this.cb.mana += mana;
     }
 
+    /* Starting out with basic 8 dir firing */
+    fireRangedWeapon(ammo, dir) {
+        // assuming we have a ranged weapon and ammunition to fire
+        let weapon = this.cb.equipment.weapon;
+        let range = weapon.cb.range;
+        let dmg = weapon.roll() + ammo.cb.damage + this.cb.str;
+        let diff = ROT.DIRS[8][dir];
+        // iterate from the first to last tile in the given direction
+        for (let i = 1; i < range; i++) {
+            let tx = this.x + diff[0]*i;
+            let ty = this.y + diff[1]*i;
+            let tile = Game.map.data[ty][tx];
+            // if the tile is a blocked obstacle, then we want to cancel the projectile's motion
+            // since water and some other special obstacles are "blocked", need to use the "blocks vision"
+            // attribute to determine if a projectile can pass through
+            // (e.g if light can pass through, so can an arrow or crossbow bolt)
+            if (!tile.visible()) {
+                if (Game.player === this)
+                    Game.log(`Your ${ammo.options.type.toLowerCase()} hit an obstacle!`, "alert");
+                console.log("Projectile collided with an obstacle!");
+                return;
+            }
+            // if we find an enemy on the tile, we damage it and the projectile stops moving
+            let enemies = tile.actors.filter(function(e) {
+                return e.options.combat && e.cb.hostile
+            });
+            if (enemies.length > 0) {
 
+                console.log("The project collided with an enemy");
+                let enemy = enemies[0];
+                let evtdamage = `${addPrefix(this.name()).capitalize()} hit ${addPrefix(enemy.name())} with ${addPrefix(ammo.options.type.toLowerCase())} and dealt ${dmg} damage.`;
+                if (Game.player === this)
+                    Game.log(evtdamage, 'player_move');
+                else
+                    Game.log(evtdamage, 'attack');
+                enemy.damage(dmg);
+                return;
+            }
+        }
+        Game.log(`Your ${ammo.options.type.toLowerCase()} didn't hit anything!`, "alert");
+        console.log("The projectile did not hit anything");
+        // place the ammo down at
+        /*
+        let tx = this.x + diff[0]*range;
+        let ty = this.y + diff[1]*range;
+        let tile = Game.map.data[ty][tx];
+        */
+    }
 
     death() {
         let idx = Game.engine._scheduler.remove(this);

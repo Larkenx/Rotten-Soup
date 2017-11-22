@@ -7,6 +7,9 @@ import StrengthPotion from '#/entities/items/potions/StrengthPotion.js'
 import {getRandomInt} from '#/entities/Entity.js'
 import {Sword} from '#/entities/items/weapons/Sword.js'
 import {Game} from '#/Game.js'
+import ROT from 'rot-js'
+import {SteelArrow} from '#/entities/items/weapons/ranged/ammo/Arrow.js'
+
 
 export default class Orc extends SimpleEnemy {
     constructor(x, y, id, empowered = false) {
@@ -37,13 +40,28 @@ export default class Orc extends SimpleEnemy {
                 empowered: empowered,
             }
         });
-        let roll = getRandomInt(1, 10);
-        if (roll <= 2) {
-            this.addToInventory(new Sword(this.x, this.y, 3, 7, "Thrasher", 33));
-        } else if (roll >= 8) {
-            this.addToInventory(new HealthPotion(this.x, this.y, 488));
-        } else if (roll == 7) {
-            this.addToInventory(new StrengthPotion(this.x,this.y, 969))
+        let dropTable = {
+            "STRENGTH_POTION" : 1,
+            "HEALTH_POTION" : 1,
+            "STEEL_ARROW" : 1,
+            "SWORD" : 1,
+        }
+        let roll = getRandomInt(0, 1);
+        let chosenItem = ROT.RNG.getWeightedValue(dropTable);
+        switch(chosenItem) {
+            case "STRENGTH_POTION":
+                this.addToInventory(new StrengthPotion(this.x,this.y, 969));
+                break;
+            case "HEALTH_POTION":
+                this.addToInventory(new HealthPotion(this.x, this.y, 488));
+                break;
+            case "SWORD":
+                this.addToInventory(new Sword(this.x, this.y, 3, 7, "Thrasher", 33));
+                break;
+            case "STEEL_ARROW":
+                this.addToInventory(new SteelArrow(this.x, this.y, 784, 10));
+            default:
+                console.log("tried to add some item that doesn't exist to an inventroy from drop table");
         }
     }
 

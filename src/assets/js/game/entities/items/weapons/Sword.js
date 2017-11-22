@@ -24,5 +24,5 @@ let swordNames = [
 ];
 
 export function createSword(x, y, id) {
-    return new Sword(x, y, getRandomInt(2, 5), getRandomInt(1, 3), swordNames[getRandomInt(0, swordNames.length - 1)], id);
+    return new Sword(x, y, getRandomInt(2, 5), getRandomInt(2, 3), swordNames[getRandomInt(0, swordNames.length - 1)], id);
 }

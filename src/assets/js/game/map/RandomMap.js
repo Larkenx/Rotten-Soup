@@ -202,7 +202,7 @@ export function randomMap(width, height, dir) {
             let coords = randomTile();
             if (coords === null) break;
             let chosenMob = ROT.RNG.getWeightedValue(mobDistribution);
-            console.log(chosenMob);
+            // console.log(chosenMob);
             let mobArray = symbolToEntityShop[chosenMob];
             let randomMob = mobArray[getRandomInt(0,mobArray.length-1)]+1;
             map.layers[2].data[coords[0]][coords[1]] = randomMob;
