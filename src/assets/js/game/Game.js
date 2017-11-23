@@ -144,9 +144,9 @@ export let Game = {
         return !(x < 0 || x >= this.map.width || y < 0 || y >= this.map.height);
     },
 
-    changeLevels: function (newLevel, dir) {
+    changeLevels: function (newLevel, dir, level) {
         if (this.levels[newLevel] === undefined) {
-            this.levels[newLevel] = new GameMap(randomMap(40, 40, dir));
+            this.levels[newLevel] = new GameMap(randomMap(40, 40, dir,level));
             console.log(newLevel + " does not exist, so a new random instance is being created.");
         }
 

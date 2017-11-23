@@ -46,7 +46,7 @@ export default class Orc extends SimpleEnemy {
             "STEEL_ARROW" : 1,
             "SWORD" : 1,
         }
-        let roll = getRandomInt(0, 1);
+        let roll = getRandomInt(1, 3);
         let chosenItem = ROT.RNG.getWeightedValue(dropTable);
         switch(chosenItem) {
             case "STRENGTH_POTION":

@@ -56,7 +56,7 @@ export default class Player extends Actor {
                 level: 1,
                 hp: 100,
                 mana: 15,
-                str: 3,
+                str: 6,
                 def: 3,
                 /* Per-turn effects */
                 hpRecovery: 5,
