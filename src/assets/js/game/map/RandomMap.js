@@ -10,14 +10,9 @@ const symbolToEntityShop = {
     EMPOWERED_ORC : [5298],
     GOBLIN : [7440, 7441,7442,7443,7444,7445,7446],
     RAT : [2365],
+    KOBOLD : [5532,5533,5534,5535,5536,5537,5538,5539]
 };
 
-const mobDistribution = {
-    "ORC" : 2,
-    "EMPOWERED_ORC" : 1,
-    "GOBLIN" : 10,
-    "RAT" : 8
-};
 
 const flatten = arr => arr.reduce((acc, val) => acc.concat(Array.isArray(val) ? flatten(val) : val), []);
 
@@ -28,7 +23,17 @@ function randomProperty(object) {
 
 /* This is a random dungeon map generator. It essentially generates identical
  * JSON data to that of a TILED map, with the unnecessary properties left out */
-export function randomMap(width, height, dir) {
+export function randomMap(width, height, dir, level=1) {
+    const mobDistribution = {
+        "ORC" : 1 * (~~ (level / 4)) + 1,
+        "EMPOWERED_ORC" : 1 * (~~ (level / 6)) + 1,
+        "KOBOLD" : 1 * (~~ (level / 6)) + 1,
+        "GOBLIN" : 10 - (~~ (level / 2)),
+        "RAT" : 8 - (~~ (level / 4))
+    };
+
+    console.log(mobDistribution);
+
     let map = {};
     let createdLadders = 0;
     map.revealed = true;

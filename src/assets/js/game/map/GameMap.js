@@ -8,6 +8,8 @@ import Actor from '#/entities/actors/Actor.js'
 import Player from '#/entities/actors/Player.js'
 import NPC from '#/entities/actors/NPC.js'
 import Goblin from '#/entities/actors/enemies/Goblin.js'
+import Kobold from '#/entities/actors/enemies/Kobold.js'
+
 import Orc from '#/entities/actors/enemies/Orc.js'
 import Rat from '#/entities/actors/enemies/Rat.js'
 // import {EntityTypes} from '#/entities/Entity.js'
@@ -92,6 +94,9 @@ const entityShop = {
     },
     18 : (x,y,id) => {
         return new SteelArrow(x,y,id,5);
+    },
+    19 : (x,y,id) => {
+        return new Kobold(x,y,id);
     }
 };
 

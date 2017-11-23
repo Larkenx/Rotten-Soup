@@ -30,28 +30,28 @@ export default class Ladder extends Entity {
             Game.log("You climb down the ladder...", "player_move");
             switch(levelName) {
                 case "overworld":
-                    Game.changeLevels('dungeon1', this.direction);
+                    Game.changeLevels('dungeon1', this.direction, levelNumber);
                     break;
                 case "dungeon": // dungeon level numbers increase as you go deeper
-                    Game.changeLevels('dungeon' + (levelNumber+1), this.direction == "down" ? "up" : "down");
+                    Game.changeLevels('dungeon' + (levelNumber+1), this.direction == "down" ? "up" : "down", levelNumber);
                     break;
                 default: // default numbers decrease as you go down (think towers)
-                    if (levelNumber === 1) Game.changeLevels("overworld", this.direction);
-                    else Game.changeLevels(levelName + (levelNumber-1), this.direction);
+                    if (levelNumber === 1) Game.changeLevels("overworld", this.direction, levelNumber);
+                    else Game.changeLevels(levelName + (levelNumber-1), this.direction, levelNumber);
                     break;
             }
         } else {
             Game.log("You climb up the ladder...", "player_move");
             switch(levelName) {
                 case "overworld":
-                    Game.changeLevels(this.portal, this.direction == "down" ? "up" : "down");
+                    Game.changeLevels(this.portal, this.direction == "down" ? "up" : "down", levelNumber);
                     break;
                 case "dungeon":
-                    if (levelNumber === 1) Game.changeLevels('overworld', this.direction);
-                    else Game.changeLevels('dungeon' + (levelNumber-1), this.direction);
+                    if (levelNumber === 1) Game.changeLevels('overworld', this.direction, levelNumber);
+                    else Game.changeLevels('dungeon' + (levelNumber-1), this.direction, levelNumber);
                     break;
                 default:
-                    Game.changeLevels(levelName + (levelNumber+1), this.direction == "down" ? "up" : "down");
+                    Game.changeLevels(levelName + (levelNumber+1), this.direction == "down" ? "up" : "down", levelNumber);
                     break;
             }
         }
