@@ -12,7 +12,7 @@ import {Game} from '#/Game.js'
 import {SteelArrow} from '#/entities/items/weapons/ranged/ammo/Arrow.js'
 
 export default class Kobold extends SimpleEnemy {
-    constructor(x, y, id) {
+    constructor(x, y, id, ranged=false) {
         let randomHP = getRandomInt(40,45);
         let randomStr = getRandomInt(15,20);
         super(x, y, {
