@@ -17,6 +17,8 @@ npm run build
 Rotten Soup is roguelike written in JavaScript with [rot.js](http://ondras.github.io/rot.js/hp/). I used [Vue.js](https://vuejs.org/) and [Vuetify](https://vuetifyjs.com/) to build the UI. Throughout the summer I'll continue to release as much content as I can and see where it goes. Special thanks to DragonDePlatino and DawnBringer who created the free tileset, Dawnlike, that I use for Rotten Soup.
 
 # Controls
+*You can find all of the controls in-game by pressing `?` or clicking the help icon in the upper right*
+
 - Movement is 8-directional using either the numpad or vim keys. You may also use the arrow-keys for 4-directional movement.
 ```
          y k u   7  8  9
@@ -26,13 +28,14 @@ Rotten Soup is roguelike written in JavaScript with [rot.js](http://ondras.githu
          b j n    1 2 3
          vi-keys   numpad
 ```
-
+* To fight an enemy with your fists or melee weapon, move into a tile where they are standing.
 * You can move up and down ladders using `>` (down) and `<` (up).
 * You can rest for a turn with `.` or `5` on the numpad.
 * You can pick up items with `,` or `g`. If there are multiple items on the ground, all of the items are picked up at once.
 * To equip or use an item, `click` on the item in your inventory. You can hover over it to see
 what it does or what stats are associated with it.
 * To drop an item, hold `shift` and `click` the item you want to drop. (If you drop an item, you can still pick it up again).
+* If you have a ranged weapon and proper ammunition equipped, press `f` to fire your ranged weapon. You will enter into a targeting mode where you may choose which direction to fire. Select the direction you want to fire in using the movement keys. To cancel firing your ranged weapon, press `escape` or `f` again.
 
 # Current Features
 * Field of view / Fog of war
