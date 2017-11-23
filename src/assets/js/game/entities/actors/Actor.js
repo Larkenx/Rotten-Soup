@@ -30,7 +30,7 @@ function addPrefix(name) {
 export default class Actor extends Entity {
     constructor(x, y, options, routine = null) {
         super(x, y, options);
-        this.cb = this.options.combat;
+        this.cb = this.combat;
         this.cb.effects = [];
         this.cb.equipment = {
             head: null,
@@ -73,11 +73,11 @@ export default class Actor extends Entity {
     }
 
     addToInventory(newItem) {
-        if ("quantity" in newItem.options) {
+        if ("quantity" in newItem) {
             for (let i = 0; i < this.inventory.length; i++) {
                 let item = this.inventory[i].item
-                if (item !== null && item.options.type === newItem.options.type) {
-                    item.options.quantity += newItem.options.quantity;
+                if (item !== null && item.type === newItem.type) {
+                    item.quantity += newItem.quantity;
                     return item;
                 }
 
@@ -167,7 +167,7 @@ export default class Actor extends Entity {
             for (let i = 0; i < ntile.actors.length; i++) {
                 let actor = ntile.actors[i];
                 // this actor has stumbled upon another actor
-                if (actor instanceof Actor && actor.options.blocked && actor.options.visible) {
+                if (actor instanceof Actor && actor.blocked && actor.visible) {
                     if (!actor.isDead())
                         this.interact(actor);
                     return true;
@@ -175,7 +175,7 @@ export default class Actor extends Entity {
                 // actor has stumbled upon a non-Actor entity (an item or miscellaneous entity like a door)
                 if (actor instanceof Door) {
                     this.interact(actor);
-                    // return actor.options.blocked;
+                    // return actor.blocked;
                 }
             }
         }
@@ -196,7 +196,7 @@ export default class Actor extends Entity {
             dmg = this.cb.str
 
         let len = this.cb.description.length;
-        let evtdamage = `${addPrefix(this.name()).capitalize()}${this.cb.description[Math.floor(Math.random() * len)]}${addPrefix(actor.name())} and dealt ${dmg} damage.`;
+        let evtdamage = `${addPrefix(this.name).capitalize()}${this.cb.description[Math.floor(Math.random() * len)]}${addPrefix(actor.name)} and dealt ${dmg} damage.`;
         if (Game.player === this)
             Game.log(evtdamage, 'player_move');
         else
@@ -210,7 +210,7 @@ export default class Actor extends Entity {
 
     equipWeapon(item) {
         if (!item instanceof Weapon || ! "cb" in item)
-            throw "Error - equipped invalid item - " + this.item.options.type;
+            throw "Error - equipped invalid item - " + this.item.type;
 
         // already wielding a weapon
         if (this.cb.equipment.weapon !== null) {
@@ -222,7 +222,7 @@ export default class Actor extends Entity {
 
     equipAmmo(item) {
         if (!item instanceof Ammo || ! "cb" in item)
-            throw "Error - equipped invalid item - " + this.item.options.type;
+            throw "Error - equipped invalid item - " + this.item.type;
 
         // already wielding a weapon
         if (this.cb.equipment.ammo !== null) {
@@ -278,19 +278,19 @@ export default class Actor extends Entity {
             // (e.g if light can pass through, so can an arrow or crossbow bolt)
             if (!tile.visible()) {
                 if (Game.player === this)
-                    Game.log(`Your ${ammo.options.type.toLowerCase()} hit an obstacle!`, "alert");
+                    Game.log(`Your ${ammo.type.toLowerCase()} hit an obstacle!`, "alert");
                 console.log("Projectile collided with an obstacle!");
                 return;
             }
             // if we find an enemy on the tile, we damage it and the projectile stops moving
             let enemies = tile.actors.filter(function(e) {
-                return e.options.combat && e.cb.hostile
+                return e.combat && e.cb.hostile
             });
             if (enemies.length > 0) {
 
                 console.log("The project collided with an enemy");
                 let enemy = enemies[0];
-                let evtdamage = `${addPrefix(this.name()).capitalize()} hit ${addPrefix(enemy.name())} with ${addPrefix(ammo.options.type.toLowerCase())} and dealt ${dmg} damage.`;
+                let evtdamage = `${addPrefix(this.name).capitalize()} hit ${addPrefix(enemy.name)} with ${addPrefix(ammo.type.toLowerCase())} and dealt ${dmg} damage.`;
                 if (Game.player === this)
                     Game.log(evtdamage, 'player_move');
                 else
@@ -299,7 +299,7 @@ export default class Actor extends Entity {
                 return;
             }
         }
-        Game.log(`Your ${ammo.options.type.toLowerCase()} didn't hit anything!`, "alert");
+        Game.log(`Your ${ammo.type.toLowerCase()} didn't hit anything!`, "alert");
         console.log("The projectile did not hit anything");
         // place the ammo down at
         /*
@@ -335,7 +335,7 @@ export default class Actor extends Entity {
         if (this === Game.player) {
             Game.log(`You died!`, "death");
         } else {
-            Game.log(`You killed the ${this.name()}.`, "death");
+            Game.log(`You killed the ${this.name}.`, "death");
         }
     }
 
@@ -352,7 +352,7 @@ export default class Actor extends Entity {
     }
 
     getHoverInfo() {
-        return `HP: ${this.getHP()} / ${this.getMaxHP()}<br />\"${this.description()}\"`;
+        return `HP: ${this.getHP()} / ${this.getMaxHP()}<br />\"${this.description}\"`;
     }
 
     getMinDmg() {

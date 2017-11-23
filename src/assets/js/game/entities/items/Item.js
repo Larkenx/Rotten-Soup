@@ -15,11 +15,11 @@ export default class Item extends Entity {
 
     /* UI / Front End functions */
     hoverInfo() {
-        return `${this.options.type}${this.options.name}\n`;
+        return `${this.type}${this.name}\n`;
     }
 
     clipLocation() {
-        let c = getTilesetCoords(this.options.id);
+        let c = getTilesetCoords(this.id);
         // let css = `rect(${c[1]}px 32px 32px ${c[0]}px)`;
         let css = `rect(0,32,32,0)`;
         return css;

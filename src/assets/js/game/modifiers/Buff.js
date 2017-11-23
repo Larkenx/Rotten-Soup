@@ -35,7 +35,7 @@ export class StrengthBuff extends Buff {
             name : "Strength Buff",
             action : (entity) => {entity.cb.str += amt},
             undoAction : (entity) => {entity.cb.str -= amt},
-            description : (entity) => {return `${entity.name()} has +${amt} Strength for ${this.duration} turns`},
+            description : (entity) => {return `${entity.name} has +${amt} Strength for ${this.duration} turns`},
             duration : 5,
             amount : amt
         });

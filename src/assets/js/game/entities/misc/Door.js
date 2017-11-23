@@ -26,16 +26,16 @@ export default class Door extends Entity {
 
     openDoor() {
         this.closed = false;
-        this.options.blocked = false;
-        this.options.visible = true;
+        this.blocked = false;
+        this.visible = true;
         this.id = tileset.tileproperties[this.id].activated_id;
     }
 
     closeDoor() {
         this.closed = false;
-        this.options.blocked = false;
-        this.options.visible = true;
-        this.options.id = this.id;
+        this.blocked = false;
+        this.visible = true;
+        this.id = this.id;
     }
 
 }

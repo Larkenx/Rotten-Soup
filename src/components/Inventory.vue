@@ -12,8 +12,8 @@
             >
             <v-tooltip bottom v-if="cell.item !== null" align-center>
                 <p class="text-xs-center ma-0">
-                    Type: {{cell.item.options.type}}<br  />
-                    <span v-if="'name' in cell.item.options">{{"Name: " + cell.item.options.name}}<br /></span>
+                    Type: {{cell.item.type}}<br  />
+                    <span v-if="'name' in cell.item">{{"Name: " + cell.item.name}}<br /></span>
                     {{cell.item.hoverInfo()}}
                 </p>
                 <v-layout
@@ -24,8 +24,8 @@
                     row
                 >
                 <v-badge overlay bottom color="grey" overlap>
-                    <span v-if="cell.item.options.quantity !== undefined" slot="badge" dark>
-                        <b>{{cell.item.options.quantity}}</b>
+                    <span v-if="cell.item.quantity !== undefined" slot="badge" dark>
+                        <b>{{cell.item.quantity}}</b>
                     </span>
                     <img v-bind:src="getInventorySprite(cell.item.id)"/>
                 </v-badge>
