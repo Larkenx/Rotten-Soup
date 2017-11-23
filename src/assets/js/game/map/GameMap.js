@@ -254,7 +254,7 @@ export class GameMap {
              to the actor's y coord. */
             let index = actor.y * this.width + actor.x + actor.y;
             buf = buf.substr(0, index)
-                + actor.options.symbol
+                + actor.symbol
                 + buf.substr(index + 1);
         }
         console.log(buf);

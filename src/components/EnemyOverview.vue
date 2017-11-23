@@ -12,11 +12,11 @@
                 <v-tooltip bottom>
                     <span align-center>
                         HP : {{enemy.getHP()}} / {{enemy.getMaxHP()}}<br />
-                        "{{enemy.description()}}"<br />
+                        "{{enemy.description}}"<br />
                     </span>
                     <div slot="activator">
                             <v-layout class="text-xs-center"align-center row style="font-size: 10px; margin: 0px auto -10px 0px;" >
-                                {{enemy.name().capitalize()}}
+                                {{enemy.name.capitalize()}}
                             </v-layout>
                             <v-layout row style="margin: 0 auto;">
                                 <v-progress-linear :value="(enemy.getHP() / enemy.getMaxHP()) * 100"

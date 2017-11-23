@@ -44,7 +44,7 @@ export default class Tile {
             return true;
 
         for (let actor of this.actors) {
-            if (actor.options.blocked && !actor instanceof Player)
+            if (actor.blocked && !actor instanceof Player)
                 return true;
         }
         return false;
@@ -54,7 +54,7 @@ export default class Tile {
         return !(this.obstacles.some((el) => {
             return el.blocks_vision
         }) || this.actors.some((el) => {
-            return !el.options.visible
+            return !el.visible
         }));
     }
 

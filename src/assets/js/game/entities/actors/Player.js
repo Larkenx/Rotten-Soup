@@ -178,26 +178,26 @@ export default class Player extends Actor {
             190: "rest",
         };
 
-        if (this.options.targeting) {
+        if (this.targeting) {
             let validKeys = [0,1,2,3,4,5,6,7];
             if (!(code in keyMap) || ! validKeys.includes(keyMap[code])) { // invalid key press, retry turn
                 if (code === 70 || code == 27) //escape key
-                    Game.log(`You put away your ${this.cb.equipment.weapon.options.type.toLowerCase()}.`, 'information');
+                    Game.log(`You put away your ${this.cb.equipment.weapon.type.toLowerCase()}.`, 'information');
                 else
                     Game.log("Invalid command given.", 'information');
-                this.options.targeting = false;
+                this.targeting = false;
                 restartTurn();
                 return;
             } else {
                 // valid target direction
                 let ammo = this.cb.equipment.ammo;
-                ammo.options.quantity--;
-                if (ammo.options.quantity === 0) {
-                    Game.log(`You fire your last ${ammo.options.type.toLowerCase()}!`, "alert");
+                ammo.quantity--;
+                if (ammo.quantity === 0) {
+                    Game.log(`You fire your last ${ammo.type.toLowerCase()}!`, "alert");
                 }
                 this.fireRangedWeapon(ammo, keyMap[code]);
-                this.options.targeting = false;
-                if (ammo.options.quantity === 0) { // used up all the ammo, need to remove it from the inventory
+                this.targeting = false;
+                if (ammo.quantity === 0) { // used up all the ammo, need to remove it from the inventory
                     this.unequipAmmo();
                     this.removeFromInventory(ammo);
                 }
@@ -230,9 +230,9 @@ export default class Player extends Actor {
             if (weapon !== null && ammo !== null &&
                 weapon.cb.ranged &&
                 ammo.cb.ammoType === weapon.cb.ammoType &&
-                ammo.options.quantity > 0) {
-                Game.log(`You take aim with your ${weapon.options.type.toLowerCase()}.`, 'information');
-                this.options.targeting = true;
+                ammo.quantity > 0) {
+                Game.log(`You take aim with your ${weapon.type.toLowerCase()}.`, 'information');
+                this.targeting = true;
                 restartTurn();
                 return;
             } else {
@@ -266,13 +266,13 @@ export default class Player extends Actor {
             return el instanceof Item;
         });
         if (tileItems.length === 1) {
-            Game.log(`You picked up a ${tileItems[0].options.type.toLowerCase()}.`, 'information');
+            Game.log(`You picked up a ${tileItems[0].type.toLowerCase()}.`, 'information');
             this.addToInventory(tileItems[0]);
             ctile.removeActor(tileItems[0]);
         } else if (tileItems.length > 1) {
             let itemTypes = [];
             for (let item of tileItems) {
-                itemTypes.push(item.options.type.toLowerCase());
+                itemTypes.push(item.type.toLowerCase());
                 this.addToInventory(item);
                 ctile.removeActor(item);
             }
@@ -289,7 +289,7 @@ export default class Player extends Actor {
     // Overriding the actor
     equipWeapon(item) {
         super.equipWeapon(item);
-        Game.log(`You wield the ${item.options.type.toLowerCase()}.`, 'information');
+        Game.log(`You wield the ${item.type.toLowerCase()}.`, 'information');
     }
 
     unequipWeapon() {
@@ -313,7 +313,7 @@ export default class Player extends Actor {
     climb(dir) {
         let ctile = Game.map.data[this.y][this.x];
         let ladder = ctile.actors.filter((a) => {return a instanceof Ladder })[0];
-        if (ladder === undefined || ladder.options.direction !== dir ) {
+        if (ladder === undefined || ladder.direction !== dir ) {
             Game.log(`You cannot climb ${dir} here.`, "information");
         } else {
             ladder.react(this);
@@ -329,7 +329,7 @@ export default class Player extends Actor {
         } else if (ntile.actors.length > 0) {
             for (let i = 0; i < ntile.actors.length; i++) {
                 let actor = ntile.actors[i];
-                if (actor.options.blocked) {
+                if (actor.blocked) {
                     this.interact(actor);
                     return true;
                 }

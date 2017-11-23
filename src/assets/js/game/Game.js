@@ -266,7 +266,7 @@ export let Game = {
             }
 
             for (let a of otherActors) {
-                    this.minimap.draw(a.x, a.y, " ", a.options.fg, a.options.bg);
+                    this.minimap.draw(a.x, a.y, " ", a.fg, a.bg);
             }
 
         } else {
@@ -283,7 +283,7 @@ export let Game = {
             }
             for (let a of otherActors) {
                 if (a.x + "," + a.y in this.map.seen_tiles)
-                    this.minimap.draw(a.x, a.y, " ", a.options.fg, a.options.bg);
+                    this.minimap.draw(a.x, a.y, " ", a.fg, a.bg);
             }
         }
         // Draw the actor in the mini-map
@@ -306,7 +306,7 @@ export let Game = {
     getNearbyEnemies: function () {
         // operates on the 'chasing' boolean flag on actors :)
         let res = this.map.actors.filter((el) => {
-            return el.options.inView === true
+            return el.inView === true
         });
         return res;
     },

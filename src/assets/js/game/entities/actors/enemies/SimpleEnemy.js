@@ -31,10 +31,10 @@ export default class SimpleEnemy extends Actor {
             return actors.concat(tile.actors);
         }, []);
 
-        if (allVisibleActors.some((a) => {return a === Game.player})) {
-            if (!this.options.chasing) Game.log(`A ${this.name()} sees you.`, 'alert');
-            this.options.chasing = true;
-            this.options.inView = true;
+        if (allVisibleActors.some(function(a) {return a === Game.player})) {
+            if (!this.chasing) Game.log(`A ${this.name} sees you.`, 'alert');
+            this.chasing = true;
+            this.inView = true;
             let pathToPlayer = [];
             Game.player.path.compute(this.x, this.y, function (x, y) {
                 pathToPlayer.push([x, y]);
@@ -44,7 +44,7 @@ export default class SimpleEnemy extends Actor {
                 this.tryMove(newPos[0], newPos[1]);
             }
         } else {
-            this.options.inView = false;
+            this.inView = false;
         }
         Game.engine.unlock();
     }

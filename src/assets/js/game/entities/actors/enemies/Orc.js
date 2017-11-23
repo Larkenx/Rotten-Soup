@@ -60,8 +60,11 @@ export default class Orc extends SimpleEnemy {
                 break;
             case "STEEL_ARROW":
                 this.addToInventory(new SteelArrow(this.x, this.y, 784, 10));
+                break;
             default:
                 console.log("tried to add some item that doesn't exist to an inventroy from drop table");
+                console.log(chosenItem);
+
         }
     }
 

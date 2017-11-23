@@ -14,7 +14,7 @@ export default class Weapon extends Item {
         options.combat.equippable = true;
         options.combat.equipped = false;
         super(x, y, options);
-        this.cb = this.options.combat;
+        this.cb = this.combat;
     }
 
     use() {

@@ -16,7 +16,8 @@ export class Ammo extends Item {
         options.combat.equippable = true;
         options.combat.equipped = false;
         super(x,y,options);
-        this.cb = this.options.combat;
+        Object.assign(this, options);
+        this.cb = this.combat;
     }
 
     use() {
@@ -24,6 +25,6 @@ export class Ammo extends Item {
     }
 
     hoverInfo() {
-        return `Quantity: ${this.options.quantity}`;
+        return `Quantity: ${this.quantity}`;
     }
 }

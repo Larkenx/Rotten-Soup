@@ -26,7 +26,7 @@ export class BleedEffect extends Effect {
         super({
             name : "Bleed",
             action : (entity) => {entity.damage(Math.floor(entity.cb.hp * .15))},
-            description : (entity) => {return `${entity.name()} is taking ${bleedDmg(entity)} damage per turn`},
+            description : (entity) => {return `${entity.name} is taking ${bleedDmg(entity)} damage per turn`},
             duration : 3
         });
     }
