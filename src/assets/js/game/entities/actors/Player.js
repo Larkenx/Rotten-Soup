@@ -20,7 +20,7 @@ import ManaPotion from '#/entities/items/potions/ManaPotion.js'
 
 
 // effects
-import {BleedEffect} from '#/modifiers/Effect.js'
+import {BleedEnchantment} from '#/modifiers/Enchantment.js'
 
 
 // Misc
@@ -66,12 +66,14 @@ export default class Player extends Actor {
         });
         this.path = new ROT.Path.Dijkstra(this.x, this.y, dijkstra_callback);
         this.nearbyEnemies = [];
+        this.currentLevel = Game.currentLevel;
         // Inventory is an array of objects that contain items and an action that can be done with that item.
         // You can think of the objects as individual 'slots' to store the item with actions like 'use' or 'equip'.
         // Give the player a few starting items:
         // - a health potion
         // - a random sword (equip the sword)
-        this.addToInventory(new Sword(this.x, this.y, 2, 3, "Training Sword", 35));
+        let sword = new Sword(this.x, this.y, 2, 2, "Training Sword", 35);
+        this.addToInventory(sword);
         // this.equipWeapon(this.inventory[0].item);
         this.addToInventory(createBow(this.x,this.y, 664))
         this.addToInventory(new SteelArrow(this.x,this.y, 784, 5));
@@ -84,6 +86,9 @@ export default class Player extends Actor {
 
     act() {
         super.act();
+        this.path = new ROT.Path.Dijkstra(this.x, this.y, dijkstra_callback);
+        this.nearbyEnemies = Game.getNearbyEnemies();
+        this.currentLevel = Game.currentLevel;
         Game.engine.lock();
         window.addEventListener("keydown", this);
         // window.addEventListener("click", this);
@@ -137,6 +142,8 @@ export default class Player extends Actor {
         let endTurn = function () {
             window.removeEventListener("keydown", this);
             Game.engine.unlock();
+
+
         };
 
         let restartTurn = function() {
@@ -254,8 +261,6 @@ export default class Player extends Actor {
                 restartTurn();
                 return;
             }
-            this.path = new ROT.Path.Dijkstra(this.x, this.y, dijkstra_callback);
-            this.nearbyEnemies = Game.getNearbyEnemies();
         }
         endTurn();
     }

@@ -3,6 +3,8 @@ import {GameMap} from '#/map/GameMap.js'
 import {getTilesetCoords} from '#/map/GameMap.js'
 import GameDisplay from '#/GameDisplay.js'
 import Actor from '#/entities/actors/Actor.js'
+import SimpleEnemy from '#/entities/actors/enemies/SimpleEnemy.js'
+
 import Player from '#/entities/actors/Player.js'
 import {randomMap} from '#/map/RandomMap.js'
 
@@ -170,8 +172,8 @@ export let Game = {
     drawViewPort: function () {
         // Camera positions
         let camera = { // camera x,y resides in the upper left corner
-            x: this.player.x - Math.floor(Game.width / 2),
-            y: this.player.y - Math.floor(Game.height / 2),
+            x: this.player.x - ~~ (Game.width / 2),
+            y: this.player.y - ~~ (Game.height / 2),
             width: Math.ceil(Game.width),
             height: Game.height,
         };
@@ -304,11 +306,41 @@ export let Game = {
     },
 
     getNearbyEnemies: function () {
-        // operates on the 'chasing' boolean flag on actors :)
-        let res = this.map.actors.filter((el) => {
-            return el.inView === true
-        });
-        return res;
+        let camera = { // camera x,y resides in the upper left corner
+            x: this.player.x - ~~ (Game.width / 2),
+            y: this.player.y - ~~ (Game.height / 2),
+            width: Math.ceil(Game.width),
+            height: Game.height,
+        };
+        let startingPos = [camera.x, camera.y];
+        if (camera.x < 0) // far left
+            startingPos[0] = 0;
+        if (camera.x + camera.width > Game.map.width) // far right
+            startingPos[0] = Game.map.width - camera.width;
+        if (camera.y <= 0) // at the top of the map
+            startingPos[1] = 0;
+        if (camera.y + camera.height > Game.map.height) { // at the bottom of the map
+            startingPos[1] = Game.map.height - camera.height;
+        }
+        this.camera = {x: startingPos[0], y: startingPos[1]};
+        let endingPos = [startingPos[0] + camera.width, startingPos[1] + camera.height];
+        let dx = 0;
+        let dy = 0;
+        let actors = [];
+        for (let x = startingPos[0]; x < endingPos[0]; x++) {
+            for (let y = startingPos[1]; y < endingPos[1]; y++) {
+                let tile = this.map.data[y][x];
+                if (this.map.revealed) {
+                    actors = actors.concat(tile.actors);
+                } else {
+                    if (tile.x + "," + tile.y in this.map.visible_tiles)
+                        actors = actors.concat(tile.actors);
+                }
+            }
+            dx++;
+            dy = 0;
+        }
+        return actors.filter((actor) => {return actor.cb !== undefined && actor.cb.hostile});
     },
 
     printPlayerTile: function () {

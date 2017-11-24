@@ -32,7 +32,7 @@ export function randomMap(width, height, dir, level=1) {
         "RAT" : 8 - (~~ (level / 4))
     };
 
-    console.log(mobDistribution);
+    // console.log(mobDistribution);
 
     let map = {};
     let createdLadders = 0;
