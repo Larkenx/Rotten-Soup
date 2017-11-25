@@ -91,7 +91,7 @@ export default class Player extends Actor {
         this.currentLevel = Game.currentLevel;
         Game.engine.lock();
         window.addEventListener("keydown", this);
-        // window.addEventListener("click", this);
+        window.addEventListener("mousemove", this);
     }
 
     interact(actor) { // returns true if we can continue to move to the tile
@@ -131,11 +131,15 @@ export default class Player extends Actor {
     handleEvent(evt) {
         /* Mouse controls to hover over tiles for info (describe) */
         if (evt.type === "click") {
-            let t = Game.eventToTile(evt);
-            // this.move(t.x,t.y);
-            // console.log(t);
+            Game.eventToTile(evt);
             return;
         }
+
+        if (evt.type === "mousemove") {
+            Game.hoverTile(evt);
+            return;
+        }
+
         let code = evt.keyCode;
         let shift_pressed = evt.getModifierState("Shift");
 

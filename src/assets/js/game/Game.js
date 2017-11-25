@@ -39,6 +39,7 @@ export let Game = {
     message_history: [],
     minimap: null,
     selectedTile: null,
+    hoveredTile : null,
 
     init: function (dev = false) {
         this.dev = dev;
@@ -79,6 +80,7 @@ export let Game = {
             tileHeight: tileSize,
             tileSet: tileSet,
             tileMap: tileMap,
+            tileColorize: true
         };
         this.width = this.displayOptions.width;
         this.height = this.displayOptions.height;
@@ -242,7 +244,12 @@ export let Game = {
     drawTile: function (x, y, tile, fov) {
         let symbols = tile.getSpriteIDS(this.turn % 2 === 0, fov);
         // if (symbols.some((e) => {return e === "0"})) throw "A tile is empty!"
-        Game.display.draw(x, y, symbols);
+        if (x+','+y === this.hoveredTile) {
+            Game.display.draw(x, y, symbols, "transparent", "yellow");
+            console.log("Drawing hovered tile at ", x, y);
+        }
+        else
+            Game.display.draw(x, y, symbols, "transparent", "transparent");
     },
 
     drawSelectedTile: function () {
@@ -352,5 +359,12 @@ export let Game = {
         let x = t[0] + this.camera.x;
         let y = t[1] + this.camera.y;
         return this.map.data[y][x];
+    },
+
+    hoverTile(evt) {
+        let t = Game.display.eventToPosition(evt);
+        let x = t[0] + this.camera.x;
+        let y = t[1] + this.camera.y;
+        this.hoveredTile = t[0] + ',' + t[1];
     }
 };

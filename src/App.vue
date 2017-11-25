@@ -64,8 +64,11 @@
             Game.drawMiniMap();
             Game.refreshDisplay();
             setInterval(() => {
-                Game.turn++;
                 Game.updateDisplay();
+            }, 16)
+            setInterval(() => {
+                Game.turn++;
+
             }, 500)
             this.player = Game.player;
         },
