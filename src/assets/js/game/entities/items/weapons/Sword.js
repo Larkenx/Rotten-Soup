@@ -4,6 +4,8 @@
 
 import Weapon from '#/entities/items/weapons/Weapon.js'
 import {getRandomInt} from '#/entities/Entity.js'
+import {BleedEnchantment} from '#/modifiers/Enchantment.js'
+
 export class Sword extends Weapon {
     constructor(x, y, sides, rolls, name, id) {
         super(x, y, {
@@ -24,5 +26,7 @@ let swordNames = [
 ];
 
 export function createSword(x, y, id) {
-    return new Sword(x, y, getRandomInt(2, 5), getRandomInt(2, 3), swordNames[getRandomInt(0, swordNames.length - 1)], id);
+    let sword = new Sword(x, y, getRandomInt(2, 5), getRandomInt(2, 3), swordNames[getRandomInt(0, swordNames.length - 1)], id);
+    sword.addNewEnchantment(new BleedEnchantment());
+    return sword;
 }

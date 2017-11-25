@@ -115,11 +115,11 @@
                 return Game.player.cb.maxmana;
             },
             getCurrentLevel() {
-                let levelName = Game.currentLevel.replace(/[0-9]/g, "");
+                let levelName = Game.player.currentLevel.replace(/[0-9]/g, "");
                 return levelName;
             },
             getCurrentLevelDepth() {
-                return parseInt(Game.currentLevel.replace(/[^0-9]/g, ""));
+                return parseInt(Game.player.currentLevel.replace(/[^0-9]/g, ""));
             }
         },
         components: {

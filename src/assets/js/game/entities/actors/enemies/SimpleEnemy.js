@@ -13,7 +13,6 @@ export default class SimpleEnemy extends Actor {
     }
 
     act() {
-        super.act();
         Game.engine.lock();
 
         let fov = new ROT.FOV.PreciseShadowcasting(function (x, y) {
@@ -47,6 +46,8 @@ export default class SimpleEnemy extends Actor {
             this.inView = false;
         }
         Game.engine.unlock();
+        super.act();
+        
     }
 
     interact(actor) {

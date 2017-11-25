@@ -15,6 +15,7 @@ export default class Weapon extends Item {
         options.combat.equipped = false;
         super(x, y, options);
         this.cb = this.combat;
+        this.cb.enchantments = [];
     }
 
     use() {
@@ -27,6 +28,13 @@ export default class Weapon extends Item {
             dmg += getRandomInt(1, this.cb.sides);
         }
         return dmg;
+    }
+
+    /* Effects are equivalent to enchantments, in a way...
+     * Might need to do some work on editing how these are displayed in the UI
+     */
+    addNewEnchantment(enchantment) {
+        this.cb.enchantments.push(enchantment);
     }
 
     hoverInfo() {

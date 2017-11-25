@@ -7,23 +7,22 @@ import Tile from '#/map/Tile.js'
 import Actor from '#/entities/actors/Actor.js'
 import Player from '#/entities/actors/Player.js'
 import NPC from '#/entities/actors/NPC.js'
+
+// Enemies
 import Goblin from '#/entities/actors/enemies/Goblin.js'
 import Kobold from '#/entities/actors/enemies/Kobold.js'
-
 import Orc from '#/entities/actors/enemies/Orc.js'
 import Rat from '#/entities/actors/enemies/Rat.js'
-// import {EntityTypes} from '#/entities/Entity.js'
 
 // Items
-import Key from '#/entities/items/misc/Key.js'
-
+// Weapons
 import {createSword} from '#/entities/items/weapons/Sword.js'
 import {Sword} from '#/entities/items/weapons/Sword.js'
 import {createBow} from '#/entities/items/weapons/ranged/Bow.js'
 import {Bow} from '#/entities/items/weapons/ranged/Bow.js'
 import {SteelArrow} from '#/entities/items/weapons/ranged/ammo/Arrow.js'
 
-
+// Potions
 import HealthPotion from '#/entities/items/potions/HealthPotion.js'
 import StrengthPotion from '#/entities/items/potions/StrengthPotion.js'
 import ManaPotion from '#/entities/items/potions/ManaPotion.js'
@@ -32,7 +31,7 @@ import ManaPotion from '#/entities/items/potions/ManaPotion.js'
 import Chest from '#/entities/misc/Chest.js'
 import Door from '#/entities/misc/Door.js'
 import LockedDoor from '#/entities/misc/LockedDoor.js'
-
+import Key from '#/entities/items/misc/Key.js'
 import Ladder from '#/entities/misc/Ladder.js'
 import Store from '#/entities/misc/Store.js'
 

@@ -9,11 +9,7 @@ import {getRandomInt} from '#/entities/Entity.js'
 import Door from '#/entities/misc/Door.js'
 import Weapon from '#/entities/items/weapons/Weapon.js'
 import {Ammo} from '#/entities/items/weapons/ranged/ammo/Ammo.js'
-
-
-function capitalize(s) {
-    return s.charAt(0).toUpperCase() + s.slice(1);
-}
+import {Buff} from '#/modifiers/Buff.js'
 
 function addPrefix(name) {
     const vowels = ['a', 'e', 'i', 'o', 'u'];
@@ -49,12 +45,15 @@ export default class Actor extends Entity {
 
     /* Called by the ROT.js game scheduler to indicate a turn */
     act() {
+        this.cb.effects = this.cb.effects.filter((e) => {return e.duration > 0});
         // apply all of the effects on this Actor at the beginning of their turn
         for (let effect of this.cb.effects) {
+            if (! effect instanceof Buff)
+                Game.log(effect.description(this), "alert");
+                
             effect.applyEffect(this);
         }
         // if any effects have expired, we remove them
-        this.cb.effects = this.cb.effects.filter((e) => {return e.duration >= 0});
     }
 
     addNewEffect(effect) {
@@ -188,7 +187,7 @@ export default class Actor extends Entity {
         return false;
     }
 
-    /* attacks another actor */
+    /* attacks another actor with a melee attack */
     attack(actor) {
         let weapon = this.cb.equipment.weapon;
         let dmg = weapon !== null ? this.cb.str + weapon.roll() : this.cb.str;
@@ -204,6 +203,15 @@ export default class Actor extends Entity {
 
         if (dmg > 0)
             actor.damage(dmg);
+
+        if (weapon && weapon.cb.enchantments.length > 0) {
+             for (let enchantment of weapon.cb.enchantments) {
+                 let effect = enchantment.getEffect();
+                 if (! actor.cb.effects.some((e) => { e.name === effect.name})) {
+                     actor.addNewEffect(effect);
+                 }
+             }
+        }
 
         return dmg;
     }
