@@ -15,6 +15,8 @@ import Ladder from '#/entities/misc/Ladder.js'
 
 export const tileset = require('@/assets/maps/tileset/compiled_dawnlike.json')
 export const overworldMap = require('@/assets/maps/map_file/overworld.json')
+export const orcCastle = require('@/assets/maps/map_file/orcCastle.json')
+
 
 if (!ROT.isSupported()) {
     alert("The rot.js library isn't supported by your browser.");
@@ -45,11 +47,11 @@ export let Game = {
         this.dev = dev;
         this.map = new GameMap(overworldMap);
         this.levels["overworld"] = this.map;
+        this.levels["Orc Castle"] = new GameMap(orcCastle);
         this.map.revealed = true;
         this.playerLocation = this.map.playerLocation;
         /* !Important! - PlayerID must be allocated before other maps are drawn... */
         this.playerID = this.map.playerID;
-        this.levels["dungeon1"] = new GameMap(randomMap(40, 40));
         // Set up the ROT.JS game display
         let tileSet = document.createElement("img");
         tileSet.src = "static/images/DawnLike/Compiled/compiled_tileset_32x32.png";
@@ -245,8 +247,7 @@ export let Game = {
         let symbols = tile.getSpriteIDS(this.turn % 2 === 0, fov);
         // if (symbols.some((e) => {return e === "0"})) throw "A tile is empty!"
         if (x+','+y === this.hoveredTile) {
-            Game.display.draw(x, y, symbols, "transparent", "yellow");
-            console.log("Drawing hovered tile at ", x, y);
+            Game.display.draw(x, y, symbols, "rgba(250,250,0,0.5)", "rgba(250,250,0,0.5)");
         }
         else
             Game.display.draw(x, y, symbols, "transparent", "transparent");

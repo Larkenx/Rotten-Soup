@@ -63,12 +63,12 @@
             Game.drawViewPort();
             Game.drawMiniMap();
             Game.refreshDisplay();
-            setInterval(() => {
-                Game.updateDisplay();
-            }, 16)
+            // setInterval(() => {
+            // Game.updateDisplay();
+            // }, 100)
             setInterval(() => {
                 Game.turn++;
-
+                Game.updateDisplay();
             }, 500)
             this.player = Game.player;
         },

@@ -158,7 +158,7 @@ export class GameMap {
             else
                 throw "A layer has been added to the map and is invalid";
         }
-        if (this.playerLocation === null) throw "Error - no player starting position!";
+        // if (this.playerLocation === null) throw "Error - no player starting position!";
         // add chest items to chests where appropriate
         for (let layer of itemLayers) {
             this.processItemLayer(layer);

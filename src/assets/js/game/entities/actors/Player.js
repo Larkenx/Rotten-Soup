@@ -91,7 +91,7 @@ export default class Player extends Actor {
         this.currentLevel = Game.currentLevel;
         Game.engine.lock();
         window.addEventListener("keydown", this);
-        window.addEventListener("mousemove", this);
+        // window.addEventListener("mousemove", this);
     }
 
     interact(actor) { // returns true if we can continue to move to the tile
