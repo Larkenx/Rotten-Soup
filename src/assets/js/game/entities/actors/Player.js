@@ -42,6 +42,7 @@ export default class Player extends Actor {
             bg: "black",
             visible: true,
             targeting : false,
+            casting : false,
             blocked: true,
             leveled_up: true,
             enemiesInView: [],
