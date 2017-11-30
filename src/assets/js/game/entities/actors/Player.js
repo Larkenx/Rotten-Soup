@@ -184,12 +184,14 @@ export default class Player extends Actor {
             89: 7,
             /* Fire a weapon */
             70 : "fire",
+            /* Cast a spell */
+            90 : "cast",
             /* Rest, Pick Up Items, Climb Ladders */
             188: "pickup",
             71: "pickup",
             190: "rest",
         };
-
+        // currently selecting a ranged weapon direction
         if (this.targeting) {
             let validKeys = [0,1,2,3,4,5,6,7];
             if (!(code in keyMap) || ! validKeys.includes(keyMap[code])) { // invalid key press, retry turn
@@ -216,6 +218,10 @@ export default class Player extends Actor {
                 endTurn();
                 return;
             }
+        }
+        // currently selecting a tile to cast a spell to
+        if (this.casting) {
+
         }
 
         if (!(code in keyMap)) { // invalid key press, retry turn
@@ -258,6 +264,10 @@ export default class Player extends Actor {
                 restartTurn();
                 return;
             }
+        } else if ("cast" === keyMap[code]) {
+            this.casting = true;
+            restartTurn();
+            return;
         } else {
             let diff = ROT.DIRS[8][keyMap[code]];
             let nx = this.x + diff[0];
