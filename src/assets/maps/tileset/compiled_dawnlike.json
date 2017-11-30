@@ -15431,6 +15431,17 @@
         {
          "bg":"#00cc33"
         },
+     "7418":
+        {
+         "FOV":false,
+         "FOV_id":0,
+         "animated":false,
+         "animated_id":0,
+         "bg":"\"gray\"",
+         "blocked":false,
+         "blocks_vision":false,
+         "entity":false
+        },
      "7420":
         {
          "level":"Orc Castle"
@@ -47343,6 +47354,17 @@
      "7416":
         {
          "bg":"string"
+        },
+     "7418":
+        {
+         "FOV":"bool",
+         "FOV_id":"int",
+         "animated":"bool",
+         "animated_id":"int",
+         "bg":"string",
+         "blocked":"bool",
+         "blocks_vision":"bool",
+         "entity":"bool"
         },
      "7420":
         {

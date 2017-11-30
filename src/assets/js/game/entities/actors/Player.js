@@ -147,8 +147,6 @@ export default class Player extends Actor {
         let endTurn = function () {
             window.removeEventListener("keydown", this);
             Game.engine.unlock();
-
-
         };
 
         let restartTurn = function() {
@@ -191,10 +189,13 @@ export default class Player extends Actor {
             71: "pickup",
             190: "rest",
         };
-        // currently selecting a ranged weapon direction
+
+        let movementKeys = [0,1,2,3,4,5,6,7];
+        const targetingBorders = 7418;
+        const untargetableBorders = 7419;
+        // currently firing a ranged weapon
         if (this.targeting) {
-            let validKeys = [0,1,2,3,4,5,6,7];
-            if (!(code in keyMap) || ! validKeys.includes(keyMap[code])) { // invalid key press, retry turn
+            if (!(code in keyMap) || ! movementKeys.includes(keyMap[code])) { // invalid key press, retry turn
                 if (code === 70 || code == 27) //escape key
                     Game.log(`You put away your ${this.cb.equipment.weapon.type.toLowerCase()}.`, 'information');
                 else
@@ -219,17 +220,36 @@ export default class Player extends Actor {
                 return;
             }
         }
-        // currently selecting a tile to cast a spell to
+        // currently casting a spell
         if (this.casting) {
-
+            if (! (code in keyMap) || ! movementKeys.includes(keyMap[code])) {
+                if (code === 90 || code == 27) {
+                    Game.log("You stop casting the spell.", "information");
+                    Game.clearSelectedTile();
+                    this.casting = false;
+                } else {
+                    Game.log("Invalid command given. Try again.", "information");
+                }
+                restartTurn();
+                return;
+            } else if ((code in keyMap) && movementKeys.includes(keyMap[code])) { // invalid key press, retry turn
+                let diff = ROT.DIRS[8][keyMap[code]];
+                // here we can set default selected (or targeted) tiles based on nearby enemies, or just target ourselves
+                // by default. this can be dangerous if a player accidentally casts a spell on themself by accident
+                // changed the selected tile to the new tile position selected by movement keys
+                Game.changeSelectedTile(diff);
+                restartTurn(); // we've completed an action in the casting, but we're not done yet.
+                return;
+            } else {
+                restartTurn();
+                return;
+            }
         }
 
         if (!(code in keyMap)) { // invalid key press, retry turn
-            // Game.log("Unknown command", 'information');
             restartTurn();
             return;
         }
-
 
         if ("rest" === keyMap[code] && !shift_pressed) { // Rest
             // this.heal(this.cb.hpRecovery);
@@ -242,7 +262,6 @@ export default class Player extends Actor {
         } else if ("pickup" === keyMap[code] && shift_pressed) {
             this.climb("up");
         } else if ("fire" === keyMap[code] && !shift_pressed) {
-
             let weapon = this.cb.equipment.weapon;
             let ammo = this.cb.equipment.ammo;
             if (weapon !== null && ammo !== null &&
@@ -265,6 +284,8 @@ export default class Player extends Actor {
                 return;
             }
         } else if ("cast" === keyMap[code]) {
+            Game.log("You start casting a spell.", "defend");
+            Game.log("Select a target with the movement keys and press enter to cast the spell.", "defend");
             this.casting = true;
             restartTurn();
             return;

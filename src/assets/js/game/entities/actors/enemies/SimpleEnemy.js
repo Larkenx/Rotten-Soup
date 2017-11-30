@@ -47,7 +47,7 @@ export default class SimpleEnemy extends Actor {
         }
         Game.engine.unlock();
         super.act();
-        
+
     }
 
     interact(actor) {

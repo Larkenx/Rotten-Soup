@@ -63,12 +63,12 @@
             Game.drawViewPort();
             Game.drawMiniMap();
             Game.refreshDisplay();
-            // setInterval(() => {
-            // Game.updateDisplay();
-            // }, 100)
+            setInterval(() => { // setting the framerate to 30fps so that targeting is smooth
+                Game.updateDisplay();
+            }, 32);
             setInterval(() => {
                 Game.turn++;
-                Game.updateDisplay();
+                // Game.updateDisplay();
             }, 500)
             this.player = Game.player;
         },

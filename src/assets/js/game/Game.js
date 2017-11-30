@@ -41,7 +41,7 @@ export let Game = {
     message_history: [],
     minimap: null,
     selectedTile: null,
-    hoveredTile : null,
+    pathToTarget : {},
 
     init: function (dev = false) {
         this.dev = dev;
@@ -243,20 +243,55 @@ export let Game = {
         }
     },
 
+    clearSelectedTile() {
+        const targetingBorders = {id : 7418};
+        const untargetableBorders = {id : 7419};
+        let actors = Game.map.data[this.selectedTile.y][this.selectedTile.x].actors.filter((obs) => {
+            return obs.id !== targetingBorders.id && obs.id !== untargetableBorders.id;
+        });
+        Game.map.data[this.selectedTile.y][this.selectedTile.x].actors = actors;
+        this.selectedTile = null;
+        this.pathToTarget = {};
+    },
+
+    changeSelectedTile(diff) {
+        const targetingBorders = {id : 7418, visible : true};
+        const untargetableBorders = {id : 7419, visible : true};
+        let tile;
+        if (this.selectedTile === null) {
+            tile =  {x : this.player.x, y : this.player.y}; // haven't selected a tile before or it was cleared
+            if (!this.inbounds(tile.x+diff[0], tile.y+diff[1]) /* || not seen by the player */) return;
+        } else {
+        // we have had a previously selected tile and need to pop the targeting reticle before pushing it onto the new tile
+            tile = this.selectedTile;
+            if (!this.inbounds(tile.x+diff[0], tile.y+diff[1]) /* || not seen by the player */) return;
+            let actors = Game.map.data[tile.y][tile.x].actors.filter((obs) => {
+                return obs.id !== targetingBorders.id && obs.id !== untargetableBorders.id;
+            });
+            Game.map.data[tile.y][tile.x].actors = actors;
+        }
+        // changed the selected tile to the new tile position selected by movement keys
+        this.selectedTile = {
+            x : tile.x+diff[0],
+            y : tile.y+diff[1]
+        }
+        // let properBorder = Game.map.data[this.selectedTile.y][this.selectedTile.x].blocked()
+        this.map.data[this.selectedTile.y][this.selectedTile.x].actors.push(targetingBorders);
+        this.pathToTarget = {};
+        this.player.path.compute(this.selectedTile.x, this.selectedTile.y, (x, y) => {
+            this.pathToTarget[x+','+y] = true;
+        });
+        this.pathToTarget[this.player.x+','+this.player.y] = false;
+    },
+
     drawTile: function (x, y, tile, fov) {
         let symbols = tile.getSpriteIDS(this.turn % 2 === 0, fov);
         // if (symbols.some((e) => {return e === "0"})) throw "A tile is empty!"
-        if (x+','+y === this.hoveredTile) {
-            Game.display.draw(x, y, symbols, "rgba(250,250,0,0.5)", "rgba(250,250,0,0.5)");
-        }
-        else
+        // console.log(this.pathToTarget[x+','+y]);
+        if (this.pathToTarget[tile.x+','+tile.y]) {
+            Game.display.draw(x, y, symbols, "rgba(250,250,0,0.25)", "rgba(250,250,0,0.25)");
+        } else {
             Game.display.draw(x, y, symbols, "transparent", "transparent");
-    },
-
-    drawSelectedTile: function () {
-        let coords = this.selectedTile;
-        if (coords !== null && coords[0] !== -1 && coords[1] !== -1) {
-            Game.display.draw(coords[0], coords[1], "", "transparent", "rgba(250,250,250,0.5)");
         }
     },
 
@@ -309,7 +344,6 @@ export let Game = {
 
     updateDisplay: function () {
         this.drawViewPort();
-        this.drawSelectedTile();
         this.drawMiniMap();
     },
 
