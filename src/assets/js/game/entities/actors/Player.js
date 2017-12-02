@@ -63,6 +63,7 @@ export default class Player extends Actor {
                 hpRecovery: 5,
                 manaRecovery: 2.5,
                 invulnerable: false,
+                /* Magic */
                 spells : []
             }
         });
@@ -224,13 +225,13 @@ export default class Player extends Actor {
         // currently casting a spell
         if (this.casting) {
             if (! (code in keyMap) || ! movementKeys.includes(keyMap[code])) {
-                if (code === 90 || code == 27) {
+                if (code === 90 || code == 27)
                     Game.log("You stop casting the spell.", "information");
-                    Game.clearSelectedTile();
-                    this.casting = false;
-                } else {
+                 else
                     Game.log("Invalid command given. Try again.", "information");
-                }
+                
+                Game.clearSelectedTile();
+                this.casting = false;
                 restartTurn();
                 return;
             } else if ((code in keyMap) && movementKeys.includes(keyMap[code])) { // invalid key press, retry turn

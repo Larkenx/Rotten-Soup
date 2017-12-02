@@ -269,8 +269,6 @@ export let Game = {
             tile = this.selectedTile;
             let x = tile.x+diff[0];
             let y = tile.y+diff[1];
-            console.log(this.map.visible_tiles[x+','+y]);
-            console.log(x,y);
             if (!this.inbounds(x,y) || this.map.visible_tiles[x+','+y] === undefined) /* || ! x+','+y in this.map.visible_tiles) */
                 return;
             let actors = Game.map.data[tile.y][tile.x].actors.filter((obs) => {

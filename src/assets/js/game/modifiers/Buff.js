@@ -19,7 +19,6 @@ export class Buff extends Effect  {
             this.action(entity);
             this.duration--;
         } else if (this.duration === 1) {
-            console.log("The buff has expired");
             Game.log(`Your ${this.name} has expired.`, "alert")
             this.undoAction(entity);
             this.duration--;
