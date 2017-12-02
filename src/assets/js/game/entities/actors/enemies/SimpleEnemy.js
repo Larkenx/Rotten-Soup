@@ -14,6 +14,18 @@ export default class SimpleEnemy extends Actor {
 
     act() {
         Game.engine.lock();
+        // To make these computations more efficient, we can determine whether or not the SimpleEnemy
+        // is rendered on the current game screen. If not, we shouldn't really worry about what the enemy can see
+        // or its path to the player. So, we can essentially skip their turn.
+        let dx = Math.abs(this.x - Game.player.x);
+        let dy = Math.abs(this.y - Game.player.y);
+        if (dx > (Game.width / 2) || dy > (Game.height / 2)) {
+            Game.engine.unlock();
+            super.act();
+            return;
+        }
+
+        Game.player.recalculatePath();
 
         let fov = new ROT.FOV.PreciseShadowcasting(function (x, y) {
             return (Game.inbounds(x, y) && Game.map.data[y][x].visible());
@@ -30,7 +42,7 @@ export default class SimpleEnemy extends Actor {
             return actors.concat(tile.actors);
         }, []);
 
-        if (allVisibleActors.some(function(a) {return a === Game.player})) {
+        if (allVisibleActors.some(a => {return a === Game.player})) {
             if (!this.chasing) Game.log(`A ${this.name} sees you.`, 'alert');
             this.chasing = true;
             this.inView = true;
@@ -38,7 +50,7 @@ export default class SimpleEnemy extends Actor {
             Game.player.path.compute(this.x, this.y, function (x, y) {
                 pathToPlayer.push([x, y]);
             });
-            if (pathToPlayer.length >= 2) {
+            if (pathToPlayer.length >= 1) {
                 let newPos = pathToPlayer[1]; // 1 past the current position
                 this.tryMove(newPos[0], newPos[1]);
             }

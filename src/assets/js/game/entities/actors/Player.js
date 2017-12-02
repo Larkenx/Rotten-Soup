@@ -27,7 +27,7 @@ import {BleedEnchantment} from '#/modifiers/Enchantment.js'
 import Ladder from '#/entities/misc/Ladder.js'
 import {xp_levels} from '#/entities/Entity.js'
 
-function dijkstra_callback(x, y) {
+function pathfinding(x, y) {
     if (x <= 0 || x >= Game.map.width || y <= 0 || y >= Game.map.height) return false;
     return !Game.map.data[y][x].blocked();
 }
@@ -62,12 +62,12 @@ export default class Player extends Actor {
                 /* Per-turn effects */
                 hpRecovery: 5,
                 manaRecovery: 2.5,
-                invulnerable: false,
+                invulnerable: true,
                 /* Magic */
                 spells : []
             }
         });
-        this.path = new ROT.Path.AStar(this.x, this.y, dijkstra_callback);
+        this.path = new ROT.Path.AStar(this.x, this.y, pathfinding);
         this.nearbyEnemies = [];
         this.currentLevel = Game.currentLevel;
         // Inventory is an array of objects that contain items and an action that can be done with that item.
@@ -87,9 +87,13 @@ export default class Player extends Actor {
 
     }
 
+    recalculatePath() {
+        this.path = new ROT.Path.AStar(this.x, this.y, pathfinding);
+    }
+
     act() {
         super.act();
-        this.path = new ROT.Path.AStar(this.x, this.y, dijkstra_callback);
+        this.path = new ROT.Path.AStar(this.x, this.y, pathfinding);
         this.nearbyEnemies = Game.getNearbyEnemies();
         this.currentLevel = Game.currentLevel;
         Game.engine.lock();
@@ -225,13 +229,11 @@ export default class Player extends Actor {
         // currently casting a spell
         if (this.casting) {
             if (! (code in keyMap) || ! movementKeys.includes(keyMap[code])) {
-                if (code === 90 || code == 27)
+                if (code === 90 || code == 27) {
                     Game.log("You stop casting the spell.", "information");
-                 else
-                    Game.log("Invalid command given. Try again.", "information");
-                
-                Game.clearSelectedTile();
-                this.casting = false;
+                    this.casting = false;
+                    Game.clearSelectedTile();
+                }
                 restartTurn();
                 return;
             } else if ((code in keyMap) && movementKeys.includes(keyMap[code])) { // invalid key press, retry turn

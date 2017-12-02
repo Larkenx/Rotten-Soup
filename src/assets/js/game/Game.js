@@ -300,7 +300,7 @@ export let Game = {
         // if (symbols.some((e) => {return e === "0"})) throw "A tile is empty!"
         // console.log(this.pathToTarget[x+','+y]);
         if (this.pathToTarget[tile.x+','+tile.y]) {
-            Game.display.draw(x, y, symbols, "rgba(250,250,0,0.25)", "rgba(250,250,0,0.25)");
+            Game.display.draw(x, y, symbols, "rgba(250,250,0,0.2)", "rgba(250,250,0,0.2)");
         } else {
             Game.display.draw(x, y, symbols, "transparent", "transparent");
         }

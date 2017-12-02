@@ -65,7 +65,7 @@
             Game.refreshDisplay();
             setInterval(() => { // setting the framerate to 30fps so that targeting is smooth
                 Game.updateDisplay();
-            }, 32);
+            }, 100);
             setInterval(() => {
                 Game.turn++;
                 // Game.updateDisplay();
