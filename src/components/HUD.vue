@@ -71,9 +71,7 @@
                     </v-tabs-content>
                     <v-tabs-content key="spellBook" id="spellBook" >
                         <v-card flat class="v-tab-card">
-                            <v-container>
-                                Nothing here yet :)
-                            </v-container>
+                            <spellbook></spellbook>
                         </v-card>
                     </v-tabs-content>
                 </v-tabs-items>
@@ -90,6 +88,7 @@
     import enemyOverview from './EnemyOverview.vue';
     import minimap from './Minimap.vue';
     import statsTabContent from './HUD/StatsTabContent.vue'
+    import spellBook from './HUD/Spellbook.vue'
     export default {
         data() {
             return {
@@ -126,7 +125,8 @@
             'inventory': inventory,
             'enemy-overview': enemyOverview,
             'mini-map': minimap,
-            'stats-tab-content' : statsTabContent
+            'stats-tab-content' : statsTabContent,
+            'spellbook' : spellBook
         },
         created() {
             this.player = Game.player;

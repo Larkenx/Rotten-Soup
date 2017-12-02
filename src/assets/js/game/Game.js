@@ -260,11 +260,19 @@ export let Game = {
         let tile;
         if (this.selectedTile === null) {
             tile =  {x : this.player.x, y : this.player.y}; // haven't selected a tile before or it was cleared
-            if (!this.inbounds(tile.x+diff[0], tile.y+diff[1]) /* || not seen by the player */) return;
+            let x = tile.x+diff[0];
+            let y = tile.y+diff[1];
+            if (!this.inbounds(x,y) || this.map.visible_tiles[x+','+y] === undefined) /* || ! x+','+y in this.map.visible_tiles )*/
+                return;
         } else {
         // we have had a previously selected tile and need to pop the targeting reticle before pushing it onto the new tile
             tile = this.selectedTile;
-            if (!this.inbounds(tile.x+diff[0], tile.y+diff[1]) /* || not seen by the player */) return;
+            let x = tile.x+diff[0];
+            let y = tile.y+diff[1];
+            console.log(this.map.visible_tiles[x+','+y]);
+            console.log(x,y);
+            if (!this.inbounds(x,y) || this.map.visible_tiles[x+','+y] === undefined) /* || ! x+','+y in this.map.visible_tiles) */
+                return;
             let actors = Game.map.data[tile.y][tile.x].actors.filter((obs) => {
                 return obs.id !== targetingBorders.id && obs.id !== untargetableBorders.id;
             });
@@ -275,13 +283,18 @@ export let Game = {
             x : tile.x+diff[0],
             y : tile.y+diff[1]
         }
-        // let properBorder = Game.map.data[this.selectedTile.y][this.selectedTile.x].blocked()
-        this.map.data[this.selectedTile.y][this.selectedTile.x].actors.push(targetingBorders);
+        let mapTile = Game.map.data[this.selectedTile.y][this.selectedTile.x];
+        let properBorder = mapTile.blocked() ? untargetableBorders : targetingBorders;
+        this.map.data[this.selectedTile.y][this.selectedTile.x].actors.push(properBorder);
         this.pathToTarget = {};
-        this.player.path.compute(this.selectedTile.x, this.selectedTile.y, (x, y) => {
-            this.pathToTarget[x+','+y] = true;
-        });
-        this.pathToTarget[this.player.x+','+this.player.y] = false;
+        if (properBorder === untargetableBorders) {
+            this.pathToTarget = {};
+        } else {
+            this.player.path.compute(this.selectedTile.x, this.selectedTile.y, (x, y) => {
+                this.pathToTarget[x+','+y] = true;
+            });
+            this.pathToTarget[this.player.x+','+this.player.y] = false;
+        }
     },
 
     drawTile: function (x, y, tile, fov) {

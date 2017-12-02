@@ -62,10 +62,11 @@ export default class Player extends Actor {
                 /* Per-turn effects */
                 hpRecovery: 5,
                 manaRecovery: 2.5,
-                invulnerable: false
+                invulnerable: false,
+                spells : []
             }
         });
-        this.path = new ROT.Path.Dijkstra(this.x, this.y, dijkstra_callback);
+        this.path = new ROT.Path.AStar(this.x, this.y, dijkstra_callback);
         this.nearbyEnemies = [];
         this.currentLevel = Game.currentLevel;
         // Inventory is an array of objects that contain items and an action that can be done with that item.
@@ -87,7 +88,7 @@ export default class Player extends Actor {
 
     act() {
         super.act();
-        this.path = new ROT.Path.Dijkstra(this.x, this.y, dijkstra_callback);
+        this.path = new ROT.Path.AStar(this.x, this.y, dijkstra_callback);
         this.nearbyEnemies = Game.getNearbyEnemies();
         this.currentLevel = Game.currentLevel;
         Game.engine.lock();
