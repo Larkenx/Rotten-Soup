@@ -13,12 +13,12 @@
             >
                 <v-tooltip bottom align-center>
                     <p class="text-xs-center ma-0">
-                        Cast {{spell.name}}<br />
+                        Cast {{spell.name}} <span style="color: blue">{{spell.manaCost}} mana</span><br />
                         {{spell.description}}
                     </p>
                     <img
                         v-bind:class="{selectedSpell : highlightSpell(spell), spell : ! highlightSpell(spell)}"
-                        v-bind:src="getSpellSplashArt('conjuration', 'magic_dart')"
+                        v-bind:src="getSpellSplashArt(spell.type.toLowerCase(), spell.splashArt)"
                         slot="activator"
                     />
                 </v-tooltip>

@@ -25,7 +25,8 @@ export class Spell {
         if (options.effect === undefined ||
             options.name === undefined ||
             options.description === undefined ||
-            options.type === undefined) throw "Spell creation failed - insufficient information provided"
+            options.type === undefined ||
+            options.manaCost === undefined) throw "Spell creation failed - insufficient information provided"
             Object.assign(this,options);
         }
 
@@ -57,7 +58,8 @@ export class Spell {
                 description : "Deals 1-8 damage to a target",
                 effect : MagicDartEffect,
                 splashArt : "magic_dart",
-                type : spellTypes.CONJURATION
+                type : spellTypes.CONJURATION,
+                manaCost : 3
             });
         }
     }
