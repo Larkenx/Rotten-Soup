@@ -8,13 +8,16 @@
                 xs1
                 col
                 v-on:click=""
+                v-for="(spell, i) in getSpells()"
+                v-bind:key="i"
             >
                 <v-tooltip bottom align-center>
                     <p class="text-xs-center ma-0">
-                        Magic Dart
+                        Cast {{spell.name}}<br />
+                        {{spell.description}}
                     </p>
                     <img
-                        class="spell"
+                        v-bind:class="{selectedSpell : highlightSpell(spell), spell : ! highlightSpell(spell)}"
                         v-bind:src="getSpellSplashArt('conjuration', 'magic_dart')"
                         slot="activator"
                     />
@@ -32,8 +35,14 @@ export default {
         };
     },
     methods : {
+        highlightSpell(spell) {
+            return Game.player.currentSpell === spell;
+        },
         getSpellSplashArt(school, name) {
             return `../static/images/spells/${school}/${name}.png`;
+        },
+        getSpells() {
+            return this.spells;
         }
     },
 }
@@ -43,7 +52,12 @@ export default {
 .spell {
     cursor: pointer;
     border: 2px solid #4f4f4f;
-    background-color: #294646;
+    border-radius: 4px;
+}
+
+.selectedSpell {
+    cursor: pointer;
+    border: 2px solid #113BA7;
     border-radius: 4px;
 }
 </style>

@@ -16,6 +16,7 @@ export default class Weapon extends Item {
         super(x, y, options);
         this.cb = this.combat;
         this.cb.enchantments = [];
+        this.action = "Equip";
     }
 
     use() {

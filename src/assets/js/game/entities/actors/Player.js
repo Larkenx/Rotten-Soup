@@ -4,24 +4,23 @@
 import ROT from 'rot-js'
 import {Game} from '#/Game.js'
 import Actor from '#/entities/actors/Actor.js'
-// Items
 import Item from '#/entities/items/Item.js'
-// - Weapons
+// Weapons
 import Weapon from '#/entities/items/weapons/Weapon.js'
 import {Sword} from '#/entities/items/weapons/Sword.js'
 
 import {createBow} from '#/entities/items/weapons/ranged/Bow.js'
 import {SteelArrow} from '#/entities/items/weapons/ranged/ammo/Arrow.js'
 
-// - Potions
+// Potions
 import HealthPotion from '#/entities/items/potions/HealthPotion.js'
 import StrengthPotion from '#/entities/items/potions/StrengthPotion.js'
 import ManaPotion from '#/entities/items/potions/ManaPotion.js'
 
-
+// Spells
+import {MagicDart} from '#/magic/Spell.js'
 // effects
 import {BleedEnchantment} from '#/modifiers/Enchantment.js'
-
 
 // Misc
 import Ladder from '#/entities/misc/Ladder.js'
@@ -64,6 +63,7 @@ export default class Player extends Actor {
                 manaRecovery: 2.5,
                 invulnerable: true,
                 /* Magic */
+                currentSpell : null,
                 spells : []
             }
         });
@@ -83,8 +83,13 @@ export default class Player extends Actor {
         this.addToInventory(new HealthPotion(this.x,this.y, 488));
         this.addToInventory(new StrengthPotion(this.x,this.y, 969));
         // this.addToInventory(new ManaPotion(this.x,this.y, 495));
+        this.cb.spells.push(new MagicDart());
+    }
 
-
+    selectSpell(spell) {
+        if (this.cb.spells.includes(spell)) {
+            this.currentSpell = spell;
+        }
     }
 
     recalculatePath() {
@@ -202,11 +207,10 @@ export default class Player extends Actor {
         // currently firing a ranged weapon
         if (this.targeting) {
             if (!(code in keyMap) || ! movementKeys.includes(keyMap[code])) { // invalid key press, retry turn
-                if (code === 70 || code == 27) //escape key
+                if (code === 70 || code == 27){ //escape key
                     Game.log(`You put away your ${this.cb.equipment.weapon.type.toLowerCase()}.`, 'information');
-                else
-                    Game.log("Invalid command given.", 'information');
-                this.targeting = false;
+                    this.targeting = false;
+                }
                 restartTurn();
                 return;
             } else {

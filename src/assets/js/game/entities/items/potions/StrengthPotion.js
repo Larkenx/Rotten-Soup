@@ -1,8 +1,8 @@
-import Item from '#/entities/items/Item.js'
+import Potion from '#/entities/items/potions/Potion.js'
 import {Game} from '#/Game.js'
 import {StrengthBuff} from '#/modifiers/Buff.js';
 
-export default class StrengthPotion extends Item {
+export default class StrengthPotion extends Potion {
 
     constructor(x, y, id) {
         super(x, y, {
