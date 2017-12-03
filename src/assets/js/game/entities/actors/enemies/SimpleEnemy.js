@@ -1,11 +1,10 @@
-import Actor from '#/entities/actors/Actor.js'
-import Player from '#/entities/actors/Player.js'
-import {Game} from '#/Game.js'
-import ROT from 'rot-js'
+import Actor from "#/entities/actors/Actor.js";
+import {Game} from "#/Game.js";
+import ROT from "rot-js";
 
 /* Simple enemy class to encapsulate all enemies with very simple AI.
-Essentially, these enemies have a range that they can see the player from, and if the player
-enters within the distance between the enemy and player */
+ Essentially, these enemies have a range that they can see the player from, and if the player
+ enters within the distance between the enemy and player */
 export default class SimpleEnemy extends Actor {
 
     constructor(x, y, options, routine = null) {
@@ -42,7 +41,9 @@ export default class SimpleEnemy extends Actor {
             return actors.concat(tile.actors);
         }, []);
 
-        if (allVisibleActors.some(a => {return a === Game.player})) {
+        if (allVisibleActors.some(a => {
+                return a === Game.player
+            })) {
             if (!this.chasing) Game.log(`A ${this.name} sees you.`, 'alert');
             this.chasing = true;
             this.inView = true;

@@ -2,9 +2,8 @@
  * Created by larken on 7/12/17.
  */
 
-import {Game} from '#/Game.js'
-import {Entity} from '#/entities/Entity.js'
-import Weapon from '#/entities/items/weapons/Weapon.js'
+import {Game} from "#/Game.js";
+import {Entity} from "#/entities/Entity.js";
 
 
 export default class Item extends Entity {

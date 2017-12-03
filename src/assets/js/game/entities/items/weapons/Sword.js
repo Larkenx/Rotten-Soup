@@ -2,9 +2,9 @@
  * Created by Larken on 6/22/2017.
  */
 
-import Weapon from '#/entities/items/weapons/Weapon.js'
-import {getRandomInt} from '#/entities/Entity.js'
-import {BleedEnchantment} from '#/modifiers/Enchantment.js'
+import Weapon from "#/entities/items/weapons/Weapon.js";
+import {getRandomInt} from "#/entities/Entity.js";
+import {BleedEnchantment} from "#/modifiers/Enchantment.js";
 
 export class Sword extends Weapon {
     constructor(x, y, sides, rolls, name, id) {

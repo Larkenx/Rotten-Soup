@@ -1,8 +1,8 @@
 /**
  * Created by Larken on 6/22/2017.
  */
-import {Game} from '#/Game.js'
-import {Entity} from '#/entities/Entity.js'
+import {Game} from "#/Game.js";
+import {Entity} from "#/entities/Entity.js";
 
 export default class Ladder extends Entity {
     constructor(x, y, id, dir) {
@@ -32,7 +32,7 @@ export default class Ladder extends Entity {
                 Game.changeLevels(this.portal, this.direction == "down" ? "up" : "down");
                 return;
             } else {
-                Game.changeLevels(levelName + (levelNumber+1), this.direction == "down" ? "up" : "down", levelNumber);
+                Game.changeLevels(levelName + (levelNumber + 1), this.direction == "down" ? "up" : "down", levelNumber);
                 return;
             }
         } else {
@@ -45,7 +45,7 @@ export default class Ladder extends Entity {
                 Game.changeLevels("overworld");
                 return;
             }
-            Game.changeLevels(levelName + (levelNumber-1), this.direction == "down" ? "up" : "down", levelNumber);
+            Game.changeLevels(levelName + (levelNumber - 1), this.direction == "down" ? "up" : "down", levelNumber);
 
         }
     }

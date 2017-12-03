@@ -1,30 +1,25 @@
 /**
  * Created by Larken on 6/22/2017.
  */
-import ROT from 'rot-js'
-import {Game} from '#/Game.js'
-import Actor from '#/entities/actors/Actor.js'
-import Item from '#/entities/items/Item.js'
+import ROT from "rot-js";
+import {Game} from "#/Game.js";
+import Actor from "#/entities/actors/Actor.js";
+import Item from "#/entities/items/Item.js";
 // Weapons
-import Weapon from '#/entities/items/weapons/Weapon.js'
-import {Sword} from '#/entities/items/weapons/Sword.js'
+import {Sword} from "#/entities/items/weapons/Sword.js";
 
-import {createBow} from '#/entities/items/weapons/ranged/Bow.js'
-import {SteelArrow} from '#/entities/items/weapons/ranged/ammo/Arrow.js'
-
+import {createBow} from "#/entities/items/weapons/ranged/Bow.js";
+import {SteelArrow} from "#/entities/items/weapons/ranged/ammo/Arrow.js";
 // Potions
-import HealthPotion from '#/entities/items/potions/HealthPotion.js'
-import StrengthPotion from '#/entities/items/potions/StrengthPotion.js'
-import ManaPotion from '#/entities/items/potions/ManaPotion.js'
-
+import HealthPotion from "#/entities/items/potions/HealthPotion.js";
+import StrengthPotion from "#/entities/items/potions/StrengthPotion.js";
 // Spells
-import {MagicDart} from '#/magic/Spell.js'
+import {MagicDart} from "#/magic/Spell.js";
 // effects
-import {BleedEnchantment} from '#/modifiers/Enchantment.js'
-
+import {BleedEnchantment} from "#/modifiers/Enchantment.js";
 // Misc
-import Ladder from '#/entities/misc/Ladder.js'
-import {xp_levels} from '#/entities/Entity.js'
+import Ladder from "#/entities/misc/Ladder.js";
+import {xp_levels} from "#/entities/Entity.js";
 
 function pathfinding(x, y) {
     if (x <= 0 || x >= Game.map.width || y <= 0 || y >= Game.map.height) return false;
@@ -40,8 +35,8 @@ export default class Player extends Actor {
             fg: "yellow",
             bg: "black",
             visible: true,
-            targeting : false,
-            casting : false,
+            targeting: false,
+            casting: false,
             blocked: true,
             leveled_up: true,
             enemiesInView: [],
@@ -63,8 +58,8 @@ export default class Player extends Actor {
                 manaRecovery: 2.5,
                 invulnerable: true,
                 /* Magic */
-                currentSpell : null,
-                spells : []
+                currentSpell: null,
+                spells: []
             }
         });
         this.path = new ROT.Path.AStar(this.x, this.y, pathfinding);
@@ -78,17 +73,17 @@ export default class Player extends Actor {
         let sword = new Sword(this.x, this.y, 2, 2, "Training Sword", 35);
         this.addToInventory(sword);
         // this.equipWeapon(this.inventory[0].item);
-        this.addToInventory(createBow(this.x,this.y, 664))
-        this.addToInventory(new SteelArrow(this.x,this.y, 784, 5));
-        this.addToInventory(new HealthPotion(this.x,this.y, 488));
-        this.addToInventory(new StrengthPotion(this.x,this.y, 969));
+        this.addToInventory(createBow(this.x, this.y, 664))
+        this.addToInventory(new SteelArrow(this.x, this.y, 784, 5));
+        this.addToInventory(new HealthPotion(this.x, this.y, 488));
+        this.addToInventory(new StrengthPotion(this.x, this.y, 969));
         // this.addToInventory(new ManaPotion(this.x,this.y, 495));
         this.cb.spells.push(new MagicDart());
     }
 
     selectSpell(spell) {
         if (this.cb.spells.includes(spell)) {
-            this.currentSpell = spell;
+            this.cb.currentSpell = spell;
         }
     }
 
@@ -122,12 +117,12 @@ export default class Player extends Actor {
 
     gain_xp(xp) {
         this.cb.xp += xp;
-        if (xp_levels[this.cb.level+1] <= this.cb.xp)
+        if (xp_levels[this.cb.level + 1] <= this.cb.xp)
             this.level_up();
     }
 
     remainingXP() {
-        return xp_levels[this.cb.level+1] - this.cb.xp;
+        return xp_levels[this.cb.level + 1] - this.cb.xp;
     }
 
     level_up() {
@@ -160,7 +155,7 @@ export default class Player extends Actor {
             Game.engine.unlock();
         };
 
-        let restartTurn = function() {
+        let restartTurn = function () {
             window.removeEventListener("keydown", this);
             window.addEventListener("keydown", this);
         };
@@ -192,22 +187,23 @@ export default class Player extends Actor {
             72: 6,
             89: 7,
             /* Fire a weapon */
-            70 : "fire",
+            70: "fire",
             /* Cast a spell */
-            90 : "cast",
+            90: "cast",
             /* Rest, Pick Up Items, Climb Ladders */
             188: "pickup",
             71: "pickup",
             190: "rest",
         };
 
-        let movementKeys = [0,1,2,3,4,5,6,7];
+        let movementKeys = [0, 1, 2, 3, 4, 5, 6, 7];
+        let confirmKeys = [101, 13, 190];
         const targetingBorders = 7418;
         const untargetableBorders = 7419;
         // currently firing a ranged weapon
         if (this.targeting) {
-            if (!(code in keyMap) || ! movementKeys.includes(keyMap[code])) { // invalid key press, retry turn
-                if (code === 70 || code == 27){ //escape key
+            if (!(code in keyMap) || !movementKeys.includes(keyMap[code])) { // invalid key press, retry turn
+                if (code === 70 || code == 27) { //escape key
                     Game.log(`You put away your ${this.cb.equipment.weapon.type.toLowerCase()}.`, 'information');
                     this.targeting = false;
                 }
@@ -232,26 +228,34 @@ export default class Player extends Actor {
         }
         // currently casting a spell
         if (this.casting) {
-            if (! (code in keyMap) || ! movementKeys.includes(keyMap[code])) {
+            if (!movementKeys.includes(keyMap[code]) && !confirmKeys.includes(code)) {
                 if (code === 90 || code == 27) {
                     Game.log("You stop casting the spell.", "information");
                     this.casting = false;
                     Game.clearSelectedTile();
                 }
-                restartTurn();
-                return;
-            } else if ((code in keyMap) && movementKeys.includes(keyMap[code])) { // invalid key press, retry turn
+            } else if (movementKeys.includes(keyMap[code])) {
                 let diff = ROT.DIRS[8][keyMap[code]];
-                // here we can set default selected (or targeted) tiles based on nearby enemies, or just target ourselves
-                // by default. this can be dangerous if a player accidentally casts a spell on themself by accident
-                // changed the selected tile to the new tile position selected by movement keys
                 Game.changeSelectedTile(diff);
-                restartTurn(); // we've completed an action in the casting, but we're not done yet.
-                return;
             } else {
-                restartTurn();
-                return;
+                if (confirmKeys.includes(code)) {
+                    console.log("Casting a spell!");
+                    let {x, y} = Game.selectedTile;
+                    let tile = Game.map.data[y][x];
+                    // find actors on this tile
+                    let enemies = tile.actors.filter(e => {
+                        return e.cb !== undefined && e.cb.hostile;
+                    });
+                    if (enemies.length > 0) {
+                        this.currentSpell.cast(target);
+                        this.casting = false;
+                        endTurn();
+                        return;
+                    }
+                }
             }
+            restartTurn();
+            return;
         }
 
         if (!(code in keyMap)) { // invalid key press, retry turn
@@ -281,7 +285,7 @@ export default class Player extends Actor {
                 restartTurn();
                 return;
             } else {
-                if (weapon === null || ! weapon.cb.ranged)
+                if (weapon === null || !weapon.cb.ranged)
                     Game.log("You don't have a ranged weapon equipped!", "information");
                 else if (ammo === null)
                     Game.log("You don't have any ammunition equipped.", "information");
@@ -325,10 +329,12 @@ export default class Player extends Actor {
                 this.addToInventory(item);
                 ctile.removeActor(item);
             }
-            let prettyItemTypes = itemTypes.slice(1, itemTypes.length-1)
-            prettyItemTypes = prettyItemTypes.reduce((buf, str) => {return buf + ", a " + str} , "a  " + itemTypes.slice(0,1));
+            let prettyItemTypes = itemTypes.slice(1, itemTypes.length - 1)
+            prettyItemTypes = prettyItemTypes.reduce((buf, str) => {
+                return buf + ", a " + str
+            }, "a  " + itemTypes.slice(0, 1));
             let lastItem = ` and a ${itemTypes.slice(-1)}.`;
-            let buffer = `You picked up ${prettyItemTypes+lastItem}`;
+            let buffer = `You picked up ${prettyItemTypes + lastItem}`;
             Game.log(buffer, "information");
         } else {
             Game.log("There's nothing to pick up.", "information");
@@ -361,8 +367,10 @@ export default class Player extends Actor {
 
     climb(dir) {
         let ctile = Game.map.data[this.y][this.x];
-        let ladder = ctile.actors.filter((a) => {return a instanceof Ladder })[0];
-        if (ladder === undefined || ladder.direction !== dir ) {
+        let ladder = ctile.actors.filter((a) => {
+            return a instanceof Ladder
+        })[0];
+        if (ladder === undefined || ladder.direction !== dir) {
             Game.log(`You cannot climb ${dir} here.`, "information");
         } else {
             ladder.react(this);

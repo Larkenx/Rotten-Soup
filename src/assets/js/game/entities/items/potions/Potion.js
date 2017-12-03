@@ -1,4 +1,4 @@
-import Item from '#/entities/items/Item.js'
+import Item from "#/entities/items/Item.js";
 
 export default class Potion extends Item {
     constructor(x, y, options) {

@@ -1,16 +1,16 @@
 /**
  * Created by larken on 7/4/17.
  */
-import ROT from 'rot-js'
-import {Game} from '#/Game.js'
-import {getRandomInt} from '#/entities/Entity.js'
+import ROT from "rot-js";
+import {Game} from "#/Game.js";
+import {getRandomInt} from "#/entities/Entity.js";
 
 const symbolToEntityShop = {
-    ORC : [5292,5293,5294,5295,5296,5297,5299],
-    EMPOWERED_ORC : [5298],
-    GOBLIN : [7440, 7441,7442,7443,7444,7445,7446],
-    RAT : [2365],
-    KOBOLD : [5532,5533,5534,5535,5536,5537,5538,5539]
+    ORC: [5292, 5293, 5294, 5295, 5296, 5297, 5299],
+    EMPOWERED_ORC: [5298],
+    GOBLIN: [7440, 7441, 7442, 7443, 7444, 7445, 7446],
+    RAT: [2365],
+    KOBOLD: [5532, 5533, 5534, 5535, 5536, 5537, 5538, 5539]
 };
 
 
@@ -23,13 +23,13 @@ function randomProperty(object) {
 
 /* This is a random dungeon map generator. It essentially generates identical
  * JSON data to that of a TILED map, with the unnecessary properties left out */
-export function randomMap(width, height, dir, level=1) {
+export function randomMap(width, height, dir, level = 1) {
     const mobDistribution = {
-        "ORC" : 1 * (~~ (level / 4)) + 1,
-        "EMPOWERED_ORC" : 1 * (~~ (level / 6)) + 1,
-        "KOBOLD" : 1 * (~~ (level / 6)) + 1,
-        "GOBLIN" : 10 - (~~ (level / 2)),
-        "RAT" : 8 - (~~ (level / 4))
+        "ORC": 1 * (~~(level / 4)) + 1,
+        "EMPOWERED_ORC": 1 * (~~(level / 6)) + 1,
+        "KOBOLD": 1 * (~~(level / 6)) + 1,
+        "GOBLIN": 10 - (~~(level / 2)),
+        "RAT": 8 - (~~(level / 4))
     };
 
     // console.log(mobDistribution);
@@ -120,8 +120,8 @@ export function randomMap(width, height, dir, level=1) {
         let wtop = room.getTop();
         let wbottom = room.getBottom();
         let center = {
-            y : Math.floor((wtop + wbottom) / 2),
-            x : Math.floor((wright + wleft) / 2)
+            y: Math.floor((wtop + wbottom) / 2),
+            x: Math.floor((wright + wleft) / 2)
         }
         /* Generate the corner tiles */
         // Set the walls up
@@ -178,7 +178,7 @@ export function randomMap(width, height, dir, level=1) {
         // Now, we can mess around with the centers of each room and place items in the dungeons
 
         // this places a ladder going further into the dungeon (either deeper or higher)
-        let roll = getRandomInt(1,rogueMap.getRooms().length);
+        let roll = getRandomInt(1, rogueMap.getRooms().length);
         if (roll == 1 || createdLadders == 0) {
             map.layers[2].data[center.y][center.x] = dir === "down" ? 478 : 480;
             createdLadders++;
@@ -186,10 +186,10 @@ export function randomMap(width, height, dir, level=1) {
 
         // now I want to populate some random creatures in each room of the dungeon.
         let validTiles = []; // all the non-wall tiles in the room that don't already a ladder
-        for (let i = left+1; i < right-1; i++) {
-            for (let j = top+1; j < bottom-1; j++) {
+        for (let i = left + 1; i < right - 1; i++) {
+            for (let j = top + 1; j < bottom - 1; j++) {
                 if (map.layers[2].data[j][i] === 0)
-                    validTiles.push(j+','+i);
+                    validTiles.push(j + ',' + i);
             }
         }
         // function that will yield a random free space in the room
@@ -202,14 +202,14 @@ export function randomMap(width, height, dir, level=1) {
                 return null;
             }
         }
-        roll = getRandomInt(2,5);
+        roll = getRandomInt(2, 5);
         for (let i = 0; i < roll; i++) {
             let coords = randomTile();
             if (coords === null) break;
             let chosenMob = ROT.RNG.getWeightedValue(mobDistribution);
             // console.log(chosenMob);
             let mobArray = symbolToEntityShop[chosenMob];
-            let randomMob = mobArray[getRandomInt(0,mobArray.length-1)]+1;
+            let randomMob = mobArray[getRandomInt(0, mobArray.length - 1)] + 1;
             map.layers[2].data[coords[0]][coords[1]] = randomMob;
         }
     }

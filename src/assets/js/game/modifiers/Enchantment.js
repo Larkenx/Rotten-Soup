@@ -1,4 +1,4 @@
-import {BleedEffect} from '#/modifiers/Effect.js'
+import {BleedEffect} from "#/modifiers/Effect.js";
 
 export class Enchantment {
 
@@ -11,11 +11,13 @@ export class Enchantment {
 }
 
 export class BleedEnchantment extends Enchantment {
-    constructor () {
+    constructor() {
         super({
-            name : "Bleed",
-            description : "Applies a bleed effect on-hit, dealing % max health damage.",
-            getEffect : () => { return new BleedEffect() },
+            name: "Bleed",
+            description: "Applies a bleed effect on-hit, dealing % max health damage.",
+            getEffect: () => {
+                return new BleedEffect()
+            },
         });
     }
 

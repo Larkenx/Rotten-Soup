@@ -48,7 +48,7 @@
             'hud': hud,
             'item-transfer-modal': itemTransferModal,
             'death-modal': deathModal,
-            'help-dialog' : helpDialog
+            'help-dialog': helpDialog
         },
         created () {
             Game.init();
@@ -88,9 +88,9 @@
 
     #help {
         position: absolute;
-        left : 10;
+        left: 10;
         right: 0;
-        top : 0;
+        top: 0;
     }
 
     #git_logo {

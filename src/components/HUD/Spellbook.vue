@@ -7,13 +7,14 @@
             <v-flex
                 xs1
                 col
-                v-on:click=""
                 v-for="(spell, i) in getSpells()"
+                v-on:click="selectSpell(spell)"
                 v-bind:key="i"
             >
                 <v-tooltip bottom align-center>
                     <p class="text-xs-center ma-0">
-                        Cast {{spell.name}} <span style="color: blue">{{spell.manaCost}} mana</span><br />
+                        Cast {{spell.name}} <br/>
+                        Costs <span style="color: blue">{{spell.manaCost}} Mana</span><br/>
                         {{spell.description}}
                     </p>
                     <img
@@ -27,37 +28,40 @@
     </v-container>
 </template>
 <script>
-import {Game} from '@/assets/js/game/Game.js'
-export default {
-    data () {
-        return {
-            spells : Game.player.cb.spells,
-        };
-    },
-    methods : {
-        highlightSpell(spell) {
-            return Game.player.currentSpell === spell;
+    import {Game} from '@/assets/js/game/Game.js'
+    export default {
+        data () {
+            return {
+                spells: Game.player.cb.spells,
+            };
         },
-        getSpellSplashArt(school, name) {
-            return `../static/images/spells/${school}/${name}.png`;
+        methods: {
+            highlightSpell(spell) {
+                return Game.player.currentSpell === spell;
+            },
+            getSpellSplashArt(school, name) {
+                return `../static/images/spells/${school}/${name}.png`;
+            },
+            getSpells() {
+                return this.spells;
+            },
+            selectSpell(spell) {
+                Game.player.selectSpell(spell);
+            }
         },
-        getSpells() {
-            return this.spells;
-        }
-    },
-}
+    }
 
 </script>
 <style>
-.spell {
-    cursor: pointer;
-    border: 2px solid #4f4f4f;
-    border-radius: 4px;
-}
+    .spell {
+        cursor: pointer;
+        border: 2px solid #4f4f4f;
+        border-radius: 4px;
+    }
 
-.selectedSpell {
-    cursor: pointer;
-    border: 2px solid #113BA7;
-    border-radius: 4px;
-}
+    .selectedSpell {
+        cursor: pointer;
+        border: 2px solid #113BA7;
+        border-radius: 4px;
+    }
 </style>

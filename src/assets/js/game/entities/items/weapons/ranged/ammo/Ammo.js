@@ -1,11 +1,11 @@
 /**
  * Created by Larken on 6/22/2017.
  */
-import Item from '#/entities/items/Item.js'
-import {Game} from '#/Game.js'
+import Item from "#/entities/items/Item.js";
+import {Game} from "#/Game.js";
 
 export const AMMO_TYPES = {
-    ARROW : "Arrow"
+    ARROW: "Arrow"
 };
 
 export class Ammo extends Item {
@@ -15,7 +15,7 @@ export class Ammo extends Item {
         options.blocked = false;
         options.combat.equippable = true;
         options.combat.equipped = false;
-        super(x,y,options);
+        super(x, y, options);
         Object.assign(this, options);
         this.cb = this.combat;
     }

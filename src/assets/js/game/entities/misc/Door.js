@@ -1,17 +1,16 @@
 /**
  * Created by Larken on 7/8/2017.
  */
-import {Game} from '#/Game.js'
-import {tileset} from '#/Game.js'
-import {Entity} from '#/entities/Entity.js'
+import {Game, tileset} from "#/Game.js";
+import {Entity} from "#/entities/Entity.js";
 
 
 export default class Door extends Entity {
     constructor(x, y, id) {
         super(x, y, {
             id: id,
-            bg : "rgb(140, 80, 0)",
-            fg : "red",
+            bg: "rgb(140, 80, 0)",
+            fg: "red",
             visible: false,
             blocked: true,
         });
