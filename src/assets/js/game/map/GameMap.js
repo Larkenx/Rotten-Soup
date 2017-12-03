@@ -1,39 +1,28 @@
-import {Game} from '#/Game.js'
-import {tileset} from '#/Game.js'
-import {getTileInfo} from '#/map/Tile.js'
-import Tile from '#/map/Tile.js'
-
+import {Game, tileset} from "#/Game.js";
+import Tile, {getTileInfo} from "#/map/Tile.js";
 // Entities
-import Actor from '#/entities/actors/Actor.js'
-import Player from '#/entities/actors/Player.js'
-import NPC from '#/entities/actors/NPC.js'
-
+import Player from "#/entities/actors/Player.js";
+import NPC from "#/entities/actors/NPC.js";
 // Enemies
-import Goblin from '#/entities/actors/enemies/Goblin.js'
-import Kobold from '#/entities/actors/enemies/Kobold.js'
-import Orc from '#/entities/actors/enemies/Orc.js'
-import Rat from '#/entities/actors/enemies/Rat.js'
-
+import Goblin from "#/entities/actors/enemies/Goblin.js";
+import Kobold from "#/entities/actors/enemies/Kobold.js";
+import Orc from "#/entities/actors/enemies/Orc.js";
+import Rat from "#/entities/actors/enemies/Rat.js";
 // Items
 // Weapons
-import {createSword} from '#/entities/items/weapons/Sword.js'
-import {Sword} from '#/entities/items/weapons/Sword.js'
-import {createBow} from '#/entities/items/weapons/ranged/Bow.js'
-import {Bow} from '#/entities/items/weapons/ranged/Bow.js'
-import {SteelArrow} from '#/entities/items/weapons/ranged/ammo/Arrow.js'
-
+import {createSword, Sword} from "#/entities/items/weapons/Sword.js";
+import {Bow, createBow} from "#/entities/items/weapons/ranged/Bow.js";
+import {SteelArrow} from "#/entities/items/weapons/ranged/ammo/Arrow.js";
 // Potions
-import HealthPotion from '#/entities/items/potions/HealthPotion.js'
-import StrengthPotion from '#/entities/items/potions/StrengthPotion.js'
-import ManaPotion from '#/entities/items/potions/ManaPotion.js'
-
+import HealthPotion from "#/entities/items/potions/HealthPotion.js";
+import StrengthPotion from "#/entities/items/potions/StrengthPotion.js";
+import ManaPotion from "#/entities/items/potions/ManaPotion.js";
 // Misc
-import Chest from '#/entities/misc/Chest.js'
-import Door from '#/entities/misc/Door.js'
-import LockedDoor from '#/entities/misc/LockedDoor.js'
-import Key from '#/entities/items/misc/Key.js'
-import Ladder from '#/entities/misc/Ladder.js'
-import Store from '#/entities/misc/Store.js'
+import Chest from "#/entities/misc/Chest.js";
+import Door from "#/entities/misc/Door.js";
+import LockedDoor from "#/entities/misc/LockedDoor.js";
+import Key from "#/entities/items/misc/Key.js";
+import Ladder from "#/entities/misc/Ladder.js";
 
 
 const entityShop = {
@@ -71,31 +60,31 @@ const entityShop = {
         return new Chest(x, y, id);
     },
     11: (x, y, id) => {
-        return new HealthPotion(x,y,id);
+        return new HealthPotion(x, y, id);
     },
-    12 : (x,y,id) => {
-        return new StrengthPotion(x,y,id);
+    12: (x, y, id) => {
+        return new StrengthPotion(x, y, id);
     },
-    13 : (x,y,id) => {
-        return new ManaPotion(x,y,id);
+    13: (x, y, id) => {
+        return new ManaPotion(x, y, id);
     },
-    14 : (x,y,id) => {
+    14: (x, y, id) => {
         return new Sword(x, y, 4, 7, "Orc Purifier", id)
     },
-    15 : (x,y,id) => {
-        return new Key(x,y,id);
+    15: (x, y, id) => {
+        return new Key(x, y, id);
     },
-    16 : (x,y,id) => {
-        return new LockedDoor(x,y,id);
+    16: (x, y, id) => {
+        return new LockedDoor(x, y, id);
     },
-    17 : (x,y,id) => {
-        return createBow(x,y,id);
+    17: (x, y, id) => {
+        return createBow(x, y, id);
     },
-    18 : (x,y,id) => {
-        return new SteelArrow(x,y,id,5);
+    18: (x, y, id) => {
+        return new SteelArrow(x, y, id, 5);
     },
-    19 : (x,y,id) => {
-        return new Kobold(x,y,id);
+    19: (x, y, id) => {
+        return new Kobold(x, y, id);
     }
 };
 
@@ -214,7 +203,7 @@ export class GameMap {
                     if (properties.entity !== true) throw "Bad entity creation for tile " + id;
                     let newActor = createEntity(j, i, properties.entity_id, id);
                     this.actors.push(newActor); // add to the list of all actors
-                    this.findActor(j,i).addToInventory(newActor);
+                    this.findActor(j, i).addToInventory(newActor);
                 }
             }
         }
@@ -229,8 +218,10 @@ export class GameMap {
                     let properties = getTileInfo(id);
                     // now we've got a portal cell that tells us where a ladder should lead
                     // find the ladder at this location
-                    let ladders = this.data[i][j].actors.filter((a) => {return a instanceof Ladder});
-                    if (ladders.length === 0){
+                    let ladders = this.data[i][j].actors.filter((a) => {
+                        return a instanceof Ladder
+                    });
+                    if (ladders.length === 0) {
                         throw "tried to create a portal link for a ladder but no ladder was found";
                     } else {
                         ladders[0].portal = properties.level;
@@ -239,7 +230,6 @@ export class GameMap {
             }
         }
     }
-
 
 
     print() {
@@ -264,8 +254,10 @@ export class GameMap {
         console.log(buf);
     }
 
-    findActor(x,y) {
-        let chests = this.data[y][x].actors.filter((a) => {return a instanceof Chest});
+    findActor(x, y) {
+        let chests = this.data[y][x].actors.filter((a) => {
+            return a instanceof Chest
+        });
         // if there are no chests, then that means we need to find an actor who should have all of the items added to
         if (chests.length === 0) {
             let possibleActors = this.data[y][x].actors;

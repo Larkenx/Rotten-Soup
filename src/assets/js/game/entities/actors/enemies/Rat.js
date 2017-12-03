@@ -1,8 +1,8 @@
 /**
  * Created by Larken on 6/22/2017.
  */
-import {Game} from '#/Game.js'
-import SimpleEnemy from '#/entities/actors/enemies/SimpleEnemy.js'
+import {Game} from "#/Game.js";
+import SimpleEnemy from "#/entities/actors/enemies/SimpleEnemy.js";
 
 export default class Rat extends SimpleEnemy {
     constructor(x, y, id) {

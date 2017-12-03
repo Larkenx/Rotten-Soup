@@ -48,7 +48,7 @@
             'hud': hud,
             'item-transfer-modal': itemTransferModal,
             'death-modal': deathModal,
-            'help-dialog' : helpDialog
+            'help-dialog': helpDialog
         },
         created () {
             Game.init();
@@ -63,12 +63,12 @@
             Game.drawViewPort();
             Game.drawMiniMap();
             Game.refreshDisplay();
-            // setInterval(() => {
-            // Game.updateDisplay();
-            // }, 100)
+            setInterval(() => { // setting the framerate to 30fps so that targeting is smooth
+                Game.updateDisplay();
+            }, 100);
             setInterval(() => {
                 Game.turn++;
-                Game.updateDisplay();
+                // Game.updateDisplay();
             }, 500)
             this.player = Game.player;
         },
@@ -88,9 +88,9 @@
 
     #help {
         position: absolute;
-        left : 10;
+        left: 10;
         right: 0;
-        top : 0;
+        top: 0;
     }
 
     #git_logo {

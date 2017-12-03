@@ -1,16 +1,17 @@
-import Item from '#/entities/items/Item.js'
-import {Game} from '#/Game.js'
+import Potion from "#/entities/items/potions/Potion.js";
 
-export default class ManaPotion extends Item {
+import {Game} from "#/Game.js";
+
+export default class ManaPotion extends Potion {
 
     constructor(x, y, id) {
         super(x, y, {
-            id : id,
-            type : "Mana Potion"
+            id: id,
+            type: "Mana Potion"
         });
     }
 
-    use () {
+    use() {
         Game.log("You drink a mana potion. It restores a little mana.", "defend");
         Game.player.restore(10);
         Game.player.removeFromInventory(this);

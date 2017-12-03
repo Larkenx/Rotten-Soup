@@ -1,15 +1,14 @@
 /**
  * Created by larken on 7/12/17.
-*/
-import ROT from 'rot-js'
-import {Game} from '#/Game.js'
-import {Entity} from '#/entities/Entity.js'
-import {getRandomInt} from '#/entities/Entity.js'
+ */
+import ROT from "rot-js";
+import {Game} from "#/Game.js";
+import {Entity, getRandomInt} from "#/entities/Entity.js";
 
-import Door from '#/entities/misc/Door.js'
-import Weapon from '#/entities/items/weapons/Weapon.js'
-import {Ammo} from '#/entities/items/weapons/ranged/ammo/Ammo.js'
-import {Buff} from '#/modifiers/Buff.js'
+import Door from "#/entities/misc/Door.js";
+import Weapon from "#/entities/items/weapons/Weapon.js";
+import {Ammo} from "#/entities/items/weapons/ranged/ammo/Ammo.js";
+import {Buff} from "#/modifiers/Buff.js";
 
 function addPrefix(name) {
     const vowels = ['a', 'e', 'i', 'o', 'u'];
@@ -33,7 +32,7 @@ export default class Actor extends Entity {
             torso: null,
             legs: null,
             weapon: null,
-            ammo : null
+            ammo: null
         };
         this.inventory = [];
         for (let i = 0; i < 28; i++) {
@@ -45,12 +44,14 @@ export default class Actor extends Entity {
 
     /* Called by the ROT.js game scheduler to indicate a turn */
     act() {
-        this.cb.effects = this.cb.effects.filter((e) => {return e.duration > 0});
+        this.cb.effects = this.cb.effects.filter((e) => {
+            return e.duration > 0
+        });
         // apply all of the effects on this Actor at the beginning of their turn
         for (let effect of this.cb.effects) {
-            if (! effect instanceof Buff)
+            if (!effect instanceof Buff)
                 Game.log(effect.description(this), "alert");
-                
+
             effect.applyEffect(this);
         }
         // if any effects have expired, we remove them
@@ -67,8 +68,8 @@ export default class Actor extends Entity {
 
     memberOfInventory(item) {
         return -1 < this.inventory.findIndex((cell) => {
-            return Object.is(item, cell.item);
-        });
+                return Object.is(item, cell.item);
+            });
     }
 
     addToInventory(newItem) {
@@ -205,19 +206,21 @@ export default class Actor extends Entity {
             actor.damage(dmg);
 
         if (weapon && weapon.cb.enchantments.length > 0) {
-             for (let enchantment of weapon.cb.enchantments) {
-                 let effect = enchantment.getEffect();
-                 if (! actor.cb.effects.some((e) => { e.name === effect.name})) {
-                     actor.addNewEffect(effect);
-                 }
-             }
+            for (let enchantment of weapon.cb.enchantments) {
+                let effect = enchantment.getEffect();
+                if (!actor.cb.effects.some((e) => {
+                        e.name === effect.name
+                    })) {
+                    actor.addNewEffect(effect);
+                }
+            }
         }
 
         return dmg;
     }
 
     equipWeapon(item) {
-        if (!item instanceof Weapon || ! "cb" in item)
+        if (!item instanceof Weapon || !"cb" in item)
             throw "Error - equipped invalid item - " + this.item.type;
 
         // already wielding a weapon
@@ -229,7 +232,7 @@ export default class Actor extends Entity {
     }
 
     equipAmmo(item) {
-        if (!item instanceof Ammo || ! "cb" in item)
+        if (!item instanceof Ammo || !"cb" in item)
             throw "Error - equipped invalid item - " + this.item.type;
 
         // already wielding a weapon
@@ -244,10 +247,13 @@ export default class Actor extends Entity {
     /* Reduce hp. If less than 0, causes death */
     damage(hp) {
         if (this.cb.invulnerable) return;
-
         this.cb.hp -= hp;
         if (this.isDead()) {
+            if (this !== Game.player)
+                Game.player.gain_xp(Math.floor(hp * .75));
+                
             this.death();
+
         }
 
     }
@@ -277,8 +283,8 @@ export default class Actor extends Entity {
         let diff = ROT.DIRS[8][dir];
         // iterate from the first to last tile in the given direction
         for (let i = 1; i < range; i++) {
-            let tx = this.x + diff[0]*i;
-            let ty = this.y + diff[1]*i;
+            let tx = this.x + diff[0] * i;
+            let ty = this.y + diff[1] * i;
             let tile = Game.map.data[ty][tx];
             // if the tile is a blocked obstacle, then we want to cancel the projectile's motion
             // since water and some other special obstacles are "blocked", need to use the "blocks vision"
@@ -291,7 +297,7 @@ export default class Actor extends Entity {
                 return;
             }
             // if we find an enemy on the tile, we damage it and the projectile stops moving
-            let enemies = tile.actors.filter(function(e) {
+            let enemies = tile.actors.filter(function (e) {
                 return e.combat && e.cb.hostile
             });
             if (enemies.length > 0) {
@@ -311,10 +317,10 @@ export default class Actor extends Entity {
         console.log("The projectile did not hit anything");
         // place the ammo down at
         /*
-        let tx = this.x + diff[0]*range;
-        let ty = this.y + diff[1]*range;
-        let tile = Game.map.data[ty][tx];
-        */
+         let tx = this.x + diff[0]*range;
+         let ty = this.y + diff[1]*range;
+         let tile = Game.map.data[ty][tx];
+         */
     }
 
     death() {
@@ -337,8 +343,8 @@ export default class Actor extends Entity {
         // redraw the tile, either with an appropriate actor or the tile symbol
         Game.map.actors.splice(idx, 1);
         // Game.drawViewPort();
-        let blood = 2644 - getRandomInt(0,1);
-        ctile.obstacles.push({id : blood});
+        let blood = 2644 - getRandomInt(0, 1);
+        ctile.obstacles.push({id: blood});
 
         if (this === Game.player) {
             Game.log(`You died!`, "death");
@@ -371,7 +377,7 @@ export default class Actor extends Entity {
 
     getMaxDmg() {
         let wep = this.cb.equipment.weapon
-        let maxWeaponDmg = wep !== null ? wep.cb.rolls*wep.cb.sides : 0
+        let maxWeaponDmg = wep !== null ? wep.cb.rolls * wep.cb.sides : 0
         return this.cb.str + maxWeaponDmg;
     }
 }

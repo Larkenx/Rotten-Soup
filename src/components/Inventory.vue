@@ -12,7 +12,7 @@
             >
             <v-tooltip bottom v-if="cell.item !== null" align-center>
                 <p class="text-xs-center ma-0">
-                    Type: {{cell.item.type}}<br  />
+                    {{cell.item.action}} {{cell.item.type}}<br  />
                     <span v-if="'name' in cell.item">{{"Name: " + cell.item.name}}<br /></span>
                     {{cell.item.hoverInfo()}}
                 </p>

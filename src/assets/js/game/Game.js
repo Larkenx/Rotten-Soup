@@ -1,16 +1,12 @@
-import ROT from 'rot-js'
-import {GameMap} from '#/map/GameMap.js'
-import {getTilesetCoords} from '#/map/GameMap.js'
-import GameDisplay from '#/GameDisplay.js'
-import Actor from '#/entities/actors/Actor.js'
-import SimpleEnemy from '#/entities/actors/enemies/SimpleEnemy.js'
+import ROT from "rot-js";
+import {GameMap, getTilesetCoords} from "#/map/GameMap.js";
+import GameDisplay from "#/GameDisplay.js";
+import Actor from "#/entities/actors/Actor.js";
 
-import Player from '#/entities/actors/Player.js'
-import {randomMap} from '#/map/RandomMap.js'
-
-import Item from '#/entities/items/Item.js'
-import Door from '#/entities/misc/Door.js'
-import Ladder from '#/entities/misc/Ladder.js'
+import Player from "#/entities/actors/Player.js";
+import {randomMap} from "#/map/RandomMap.js";
+import Door from "#/entities/misc/Door.js";
+import Ladder from "#/entities/misc/Ladder.js";
 
 
 export const tileset = require('@/assets/maps/tileset/compiled_dawnlike.json')
@@ -41,7 +37,7 @@ export let Game = {
     message_history: [],
     minimap: null,
     selectedTile: null,
-    hoveredTile : null,
+    pathToTarget: {},
 
     init: function (dev = false) {
         this.dev = dev;
@@ -133,6 +129,7 @@ export let Game = {
     log: function (message, type) {
         let message_color = {
             'defend': 'lightblue',
+            'magic' : '#3C1CFD',
             'attack': 'red',
             'death': 'crimson',
             'information': 'yellow',
@@ -152,7 +149,7 @@ export let Game = {
 
     changeLevels: function (newLevel, dir, level) {
         if (this.levels[newLevel] === undefined) {
-            this.levels[newLevel] = new GameMap(randomMap(40, 40, dir,level));
+            this.levels[newLevel] = new GameMap(randomMap(40, 40, dir, level));
             console.log(newLevel + " does not exist, so a new random instance is being created.");
         }
 
@@ -176,8 +173,8 @@ export let Game = {
     drawViewPort: function () {
         // Camera positions
         let camera = { // camera x,y resides in the upper left corner
-            x: this.player.x - ~~ (Game.width / 2),
-            y: this.player.y - ~~ (Game.height / 2),
+            x: this.player.x - ~~(Game.width / 2),
+            y: this.player.y - ~~(Game.height / 2),
             width: Math.ceil(Game.width),
             height: Game.height,
         };
@@ -208,21 +205,6 @@ export let Game = {
             Game.map.visible_tiles[x + ',' + y] = true;
         });
 
-        // Draw the viewport
-        /*
-         for (let x = startingPos[0]; x < endingPos[0]; x++) {
-         for (let y = startingPos[1]; y < endingPos[1]; y++) {
-         let tile = this.map.data[y][x];
-         if (tile.x + "," + tile.y in this.map.visible_tiles) {
-         this.drawTile(dx, dy++, tile, false);
-         } else {
-         this.drawTile(dx, dy++, tile, ! this.map.revealed);
-         }
-         }
-         dx++;
-         dy = 0;
-         }
-         */
         for (let x = startingPos[0]; x < endingPos[0]; x++) {
             for (let y = startingPos[1]; y < endingPos[1]; y++) {
                 let tile = this.map.data[y][x];
@@ -243,25 +225,99 @@ export let Game = {
         }
     },
 
+    clearSelectedTile() {
+        const targetingBorders = {id: 7418};
+        const untargetableBorders = {id: 7419};
+        if (this.selectedTile !== null) {
+            let actors = Game.map.data[this.selectedTile.y][this.selectedTile.x].actors.filter((obs) => {
+                return obs.id !== targetingBorders.id && obs.id !== untargetableBorders.id;
+            });
+            Game.map.data[this.selectedTile.y][this.selectedTile.x].actors = actors;
+            this.selectedTile = null;
+            this.pathToTarget = {};
+        }
+    },
+
+    changeSelectedTile(diff) {
+        const targetingBorders = {id: 7418, visible: true};
+        const untargetableBorders = {id: 7419, visible: true};
+        let tile;
+        if (this.selectedTile === null) {
+            tile = {x: this.player.x, y: this.player.y}; // haven't selected a tile before or it was cleared
+            let x = tile.x + diff[0];
+            let y = tile.y + diff[1];
+            if (!this.inbounds(x, y) || this.map.visible_tiles[x + ',' + y] === undefined) /* || ! x+','+y in this.map.visible_tiles )*/
+                return;
+        } else {
+            // we have had a previously selected tile and need to pop the targeting reticle before pushing it onto the new tile
+            tile = this.selectedTile;
+            let x = tile.x + diff[0];
+            let y = tile.y + diff[1];
+            if (!this.inbounds(x, y) || this.map.visible_tiles[x + ',' + y] === undefined) /* || ! x+','+y in this.map.visible_tiles) */
+                return;
+            let actors = Game.map.data[tile.y][tile.x].actors.filter((obs) => {
+                return obs.id !== targetingBorders.id && obs.id !== untargetableBorders.id;
+            });
+            Game.map.data[tile.y][tile.x].actors = actors;
+        }
+        // changed the selected tile to the new tile position selected by movement keys
+        this.selectedTile = {
+            x: tile.x + diff[0],
+            y: tile.y + diff[1]
+        }
+        let mapTile = Game.map.data[this.selectedTile.y][this.selectedTile.x];
+        let properBorder = mapTile.blocked() ? untargetableBorders : targetingBorders;
+        this.map.data[this.selectedTile.y][this.selectedTile.x].actors.push(properBorder);
+        this.pathToTarget = {};
+        if (properBorder === untargetableBorders) {
+            this.pathToTarget = {};
+        } else {
+            this.player.path.compute(this.selectedTile.x, this.selectedTile.y, (x, y) => {
+                this.pathToTarget[x + ',' + y] = true;
+            });
+            this.pathToTarget[this.player.x + ',' + this.player.y] = false;
+        }
+    },
+
+    selectNearestEnemyTile() {
+        this.clearSelectedTile();
+        let enemy = this.getClosestEnemyToPlayer();
+        if (enemy !== undefined) {
+            this.changeToExactSelectedTile({x: enemy.x, y: enemy.y});
+        }
+    },
+
+    changeToExactSelectedTile(loc) {
+        const targetingBorders = {id: 7418, visible: true};
+        const untargetableBorders = {id: 7419, visible: true};
+        this.selectedTile = loc;
+        let mapTile = Game.map.data[this.selectedTile.y][this.selectedTile.x];
+        let properBorder = mapTile.blocked() ? untargetableBorders : targetingBorders;
+        this.map.data[this.selectedTile.y][this.selectedTile.x].actors.push(properBorder);
+        this.pathToTarget = {};
+        if (properBorder === untargetableBorders) {
+            this.pathToTarget = {};
+        } else {
+            this.player.path.compute(this.selectedTile.x, this.selectedTile.y, (x, y) => {
+                this.pathToTarget[x + ',' + y] = true;
+            });
+            this.pathToTarget[this.player.x + ',' + this.player.y] = false;
+        }
+    },
+
     drawTile: function (x, y, tile, fov) {
         let symbols = tile.getSpriteIDS(this.turn % 2 === 0, fov);
         // if (symbols.some((e) => {return e === "0"})) throw "A tile is empty!"
-        if (x+','+y === this.hoveredTile) {
-            Game.display.draw(x, y, symbols, "rgba(250,250,0,0.5)", "rgba(250,250,0,0.5)");
-        }
-        else
+        // console.log(this.pathToTarget[x+','+y]);
+        if (this.pathToTarget[tile.x + ',' + tile.y]) {
+            Game.display.draw(x, y, symbols, "rgba(250,250,0,0.2)", "rgba(250,250,0,0.2)");
+        } else {
             Game.display.draw(x, y, symbols, "transparent", "transparent");
-    },
-
-    drawSelectedTile: function () {
-        let coords = this.selectedTile;
-        if (coords !== null && coords[0] !== -1 && coords[1] !== -1) {
-            Game.display.draw(coords[0], coords[1], "", "transparent", "rgba(250,250,250,0.5)");
         }
     },
 
     drawMiniMap: function () {
-        let otherActors = this.map.actors.filter( (a) => {
+        let otherActors = this.map.actors.filter((a) => {
             return (a instanceof Ladder || a instanceof Door);
         });
         if (this.map.revealed) {
@@ -276,7 +332,7 @@ export let Game = {
             }
 
             for (let a of otherActors) {
-                    this.minimap.draw(a.x, a.y, " ", a.fg, a.bg);
+                this.minimap.draw(a.x, a.y, " ", a.fg, a.bg);
             }
 
         } else {
@@ -309,14 +365,13 @@ export let Game = {
 
     updateDisplay: function () {
         this.drawViewPort();
-        this.drawSelectedTile();
         this.drawMiniMap();
     },
 
     getNearbyEnemies: function () {
         let camera = { // camera x,y resides in the upper left corner
-            x: this.player.x - ~~ (Game.width / 2),
-            y: this.player.y - ~~ (Game.height / 2),
+            x: this.player.x - ~~(Game.width / 2),
+            y: this.player.y - ~~(Game.height / 2),
             width: Math.ceil(Game.width),
             height: Game.height,
         };
@@ -348,7 +403,17 @@ export let Game = {
             dx++;
             dy = 0;
         }
-        return actors.filter((actor) => {return actor.cb !== undefined && actor.cb.hostile});
+        return actors.filter((actor) => {
+            return actor.cb !== undefined && actor.cb.hostile
+        });
+    },
+
+    getClosestEnemyToPlayer() {
+        let nearbyEnemies = this.getNearbyEnemies();
+        return nearbyEnemies.slice(0, -1).reduce((closestActorSoFar, actor) => {
+            return actor.distanceTo(this.player) < closestActorSoFar.distanceTo(this.player) ?
+                   actor : closestActorSoFar
+        }, nearbyEnemies.slice(-1)[0]);
     },
 
     printPlayerTile: function () {

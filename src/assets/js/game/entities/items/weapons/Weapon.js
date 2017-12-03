@@ -1,9 +1,9 @@
 /**
  * Created by Larken on 6/22/2017.
  */
-import {Game} from '#/Game.js'
-import Item from '#/entities/items/Item.js'
-import {getRandomInt} from '#/entities/Entity.js'
+import {Game} from "#/Game.js";
+import Item from "#/entities/items/Item.js";
+import {getRandomInt} from "#/entities/Entity.js";
 
 export default class Weapon extends Item {
 
@@ -16,6 +16,7 @@ export default class Weapon extends Item {
         super(x, y, options);
         this.cb = this.combat;
         this.cb.enchantments = [];
+        this.action = "Equip";
     }
 
     use() {

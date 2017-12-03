@@ -1,33 +1,28 @@
 /**
  * Created by Larken on 6/22/2017.
  */
-import ROT from 'rot-js'
-import {Game} from '#/Game.js'
-import Actor from '#/entities/actors/Actor.js'
-// Items
-import Item from '#/entities/items/Item.js'
-// - Weapons
-import Weapon from '#/entities/items/weapons/Weapon.js'
-import {Sword} from '#/entities/items/weapons/Sword.js'
+import ROT from "rot-js";
+import {Game} from "#/Game.js";
+import Actor from "#/entities/actors/Actor.js";
+import Item from "#/entities/items/Item.js";
+// Weapons
+import {Sword} from "#/entities/items/weapons/Sword.js";
 
-import {createBow} from '#/entities/items/weapons/ranged/Bow.js'
-import {SteelArrow} from '#/entities/items/weapons/ranged/ammo/Arrow.js'
-
-// - Potions
-import HealthPotion from '#/entities/items/potions/HealthPotion.js'
-import StrengthPotion from '#/entities/items/potions/StrengthPotion.js'
-import ManaPotion from '#/entities/items/potions/ManaPotion.js'
-
-
+import {createBow} from "#/entities/items/weapons/ranged/Bow.js";
+import {SteelArrow} from "#/entities/items/weapons/ranged/ammo/Arrow.js";
+// Potions
+import HealthPotion from "#/entities/items/potions/HealthPotion.js";
+import StrengthPotion from "#/entities/items/potions/StrengthPotion.js";
+import ManaPotion from "#/entities/items/potions/ManaPotion.js";
+// Spells
+import {MagicDart} from "#/magic/Spell.js";
 // effects
-import {BleedEnchantment} from '#/modifiers/Enchantment.js'
-
-
+import {BleedEnchantment} from "#/modifiers/Enchantment.js";
 // Misc
-import Ladder from '#/entities/misc/Ladder.js'
-import {xp_levels} from '#/entities/Entity.js'
+import Ladder from "#/entities/misc/Ladder.js";
+import {xp_levels} from "#/entities/Entity.js";
 
-function dijkstra_callback(x, y) {
+function pathfinding(x, y) {
     if (x <= 0 || x >= Game.map.width || y <= 0 || y >= Game.map.height) return false;
     return !Game.map.data[y][x].blocked();
 }
@@ -41,7 +36,8 @@ export default class Player extends Actor {
             fg: "yellow",
             bg: "black",
             visible: true,
-            targeting : false,
+            targeting: false,
+            casting: false,
             blocked: true,
             leveled_up: true,
             enemiesInView: [],
@@ -61,10 +57,13 @@ export default class Player extends Actor {
                 /* Per-turn effects */
                 hpRecovery: 5,
                 manaRecovery: 2.5,
-                invulnerable: false
+                invulnerable: true,
+                /* Magic */
+                currentSpell: null,
+                spells: []
             }
         });
-        this.path = new ROT.Path.Dijkstra(this.x, this.y, dijkstra_callback);
+        this.path = new ROT.Path.AStar(this.x, this.y, pathfinding);
         this.nearbyEnemies = [];
         this.currentLevel = Game.currentLevel;
         // Inventory is an array of objects that contain items and an action that can be done with that item.
@@ -75,18 +74,29 @@ export default class Player extends Actor {
         let sword = new Sword(this.x, this.y, 2, 2, "Training Sword", 35);
         this.addToInventory(sword);
         // this.equipWeapon(this.inventory[0].item);
-        this.addToInventory(createBow(this.x,this.y, 664))
-        this.addToInventory(new SteelArrow(this.x,this.y, 784, 5));
-        this.addToInventory(new HealthPotion(this.x,this.y, 488));
-        this.addToInventory(new StrengthPotion(this.x,this.y, 969));
+        this.addToInventory(createBow(this.x, this.y, 664))
+        this.addToInventory(new SteelArrow(this.x, this.y, 784, 5));
+        this.addToInventory(new HealthPotion(this.x, this.y, 488));
+        this.addToInventory(new ManaPotion(this.x, this.y, 608));
+
         // this.addToInventory(new ManaPotion(this.x,this.y, 495));
+        this.cb.spells.push(new MagicDart());
+        this.selectSpell(this.cb.spells[0]);
+    }
 
+    selectSpell(spell) {
+        if (this.cb.spells.includes(spell)) {
+            this.cb.currentSpell = spell;
+        }
+    }
 
+    recalculatePath() {
+        this.path = new ROT.Path.AStar(this.x, this.y, pathfinding);
     }
 
     act() {
         super.act();
-        this.path = new ROT.Path.Dijkstra(this.x, this.y, dijkstra_callback);
+        this.path = new ROT.Path.AStar(this.x, this.y, pathfinding);
         this.nearbyEnemies = Game.getNearbyEnemies();
         this.currentLevel = Game.currentLevel;
         Game.engine.lock();
@@ -110,12 +120,12 @@ export default class Player extends Actor {
 
     gain_xp(xp) {
         this.cb.xp += xp;
-        if (xp_levels[this.cb.level+1] <= this.cb.xp)
+        if (xp_levels[this.cb.level + 1] <= this.cb.xp)
             this.level_up();
     }
 
     remainingXP() {
-        return xp_levels[this.cb.level+1] - this.cb.xp;
+        return xp_levels[this.cb.level + 1] - this.cb.xp;
     }
 
     level_up() {
@@ -146,11 +156,9 @@ export default class Player extends Actor {
         let endTurn = function () {
             window.removeEventListener("keydown", this);
             Game.engine.unlock();
-
-
         };
 
-        let restartTurn = function() {
+        let restartTurn = function () {
             window.removeEventListener("keydown", this);
             window.addEventListener("keydown", this);
         };
@@ -182,21 +190,26 @@ export default class Player extends Actor {
             72: 6,
             89: 7,
             /* Fire a weapon */
-            70 : "fire",
+            70: "fire",
+            /* Cast a spell */
+            90: "cast",
             /* Rest, Pick Up Items, Climb Ladders */
             188: "pickup",
             71: "pickup",
             190: "rest",
         };
 
+        let movementKeys = [0, 1, 2, 3, 4, 5, 6, 7];
+        let confirmKeys = [101, 13, 190];
+        const targetingBorders = 7418;
+        const untargetableBorders = 7419;
+        // currently firing a ranged weapon
         if (this.targeting) {
-            let validKeys = [0,1,2,3,4,5,6,7];
-            if (!(code in keyMap) || ! validKeys.includes(keyMap[code])) { // invalid key press, retry turn
-                if (code === 70 || code == 27) //escape key
+            if (!(code in keyMap) || !movementKeys.includes(keyMap[code])) { // invalid key press, retry turn
+                if (code === 70 || code == 27) { //escape key
                     Game.log(`You put away your ${this.cb.equipment.weapon.type.toLowerCase()}.`, 'information');
-                else
-                    Game.log("Invalid command given.", 'information');
-                this.targeting = false;
+                    this.targeting = false;
+                }
                 restartTurn();
                 return;
             } else {
@@ -216,13 +229,47 @@ export default class Player extends Actor {
                 return;
             }
         }
-
-        if (!(code in keyMap)) { // invalid key press, retry turn
-            // Game.log("Unknown command", 'information');
+        // currently casting a spell
+        if (this.casting) {
+            if (!movementKeys.includes(keyMap[code]) && !confirmKeys.includes(code)) {
+                if (code === 90 || code == 27) {
+                    Game.log("You stop casting the spell.", "information");
+                    this.casting = false;
+                    Game.clearSelectedTile();
+                }
+            } else if (movementKeys.includes(keyMap[code])) {
+                let diff = ROT.DIRS[8][keyMap[code]];
+                Game.changeSelectedTile(diff);
+            } else {
+                if (confirmKeys.includes(code)) {
+                    let {x, y} = Game.selectedTile;
+                    let tile = Game.map.data[y][x];
+                    // find actors on this tile
+                    let enemies = tile.actors.filter(e => {
+                        return e.cb !== undefined && e.cb.hostile;
+                    });
+                    if (enemies.length > 0) {
+                        let enemy = enemies[0];
+                        Game.log(`You cast ${this.cb.currentSpell.name} at the ${enemies[0].name}.`, "magic");
+                        this.cb.currentSpell.cast(enemies[0]);
+                    } else {
+                        Game.log(`You cast ${this.cb.currentSpell.name} but it hits nothing!`, "magic");
+                    }
+                    this.cb.mana -= this.cb.currentSpell.manaCost;
+                    this.casting = false;
+                    Game.clearSelectedTile();
+                    endTurn();
+                    return;
+                }
+            }
             restartTurn();
             return;
         }
 
+        if (!(code in keyMap)) { // invalid key press, retry turn
+            restartTurn();
+            return;
+        }
 
         if ("rest" === keyMap[code] && !shift_pressed) { // Rest
             // this.heal(this.cb.hpRecovery);
@@ -235,7 +282,6 @@ export default class Player extends Actor {
         } else if ("pickup" === keyMap[code] && shift_pressed) {
             this.climb("up");
         } else if ("fire" === keyMap[code] && !shift_pressed) {
-
             let weapon = this.cb.equipment.weapon;
             let ammo = this.cb.equipment.ammo;
             if (weapon !== null && ammo !== null &&
@@ -257,6 +303,23 @@ export default class Player extends Actor {
                 restartTurn();
                 return;
             }
+        } else if ("cast" === keyMap[code]) {
+            if (this.cb.currentSpell === null) {
+                Game.log("You must select a spell to cast. Select one from the spellbook!", "information");
+                restartTurn();
+                return;
+            } else if (this.cb.currentSpell.manaCost > this.cb.mana) {
+                Game.log(`You don't have enough mana to cast ${this.cb.currentSpell.name}!`, "alert");
+                restartTurn();
+                return;
+            }
+            Game.log("You begin casting a spell.", "defend");
+            Game.log("Select a target with the movement keys and press enter to cast the spell.", "player_move");
+            Game.selectNearestEnemyTile();
+            this.casting = true;
+            // our first selected tile can be the nearest enemy
+            restartTurn();
+            return;
         } else {
             let diff = ROT.DIRS[8][keyMap[code]];
             let nx = this.x + diff[0];
@@ -285,10 +348,12 @@ export default class Player extends Actor {
                 this.addToInventory(item);
                 ctile.removeActor(item);
             }
-            let prettyItemTypes = itemTypes.slice(1, itemTypes.length-1)
-            prettyItemTypes = prettyItemTypes.reduce((buf, str) => {return buf + ", a " + str} , "a  " + itemTypes.slice(0,1));
+            let prettyItemTypes = itemTypes.slice(1, itemTypes.length - 1)
+            prettyItemTypes = prettyItemTypes.reduce((buf, str) => {
+                return buf + ", a " + str
+            }, "a  " + itemTypes.slice(0, 1));
             let lastItem = ` and a ${itemTypes.slice(-1)}.`;
-            let buffer = `You picked up ${prettyItemTypes+lastItem}`;
+            let buffer = `You picked up ${prettyItemTypes + lastItem}`;
             Game.log(buffer, "information");
         } else {
             Game.log("There's nothing to pick up.", "information");
@@ -321,8 +386,10 @@ export default class Player extends Actor {
 
     climb(dir) {
         let ctile = Game.map.data[this.y][this.x];
-        let ladder = ctile.actors.filter((a) => {return a instanceof Ladder })[0];
-        if (ladder === undefined || ladder.direction !== dir ) {
+        let ladder = ctile.actors.filter((a) => {
+            return a instanceof Ladder
+        })[0];
+        if (ladder === undefined || ladder.direction !== dir) {
             Game.log(`You cannot climb ${dir} here.`, "information");
         } else {
             ladder.react(this);
@@ -355,7 +422,6 @@ export default class Player extends Actor {
 
     attack(actor) {
         let dmg = super.attack(actor);
-        this.gain_xp(Math.floor(dmg * .75));
     }
 
     death() {
