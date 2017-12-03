@@ -7,6 +7,7 @@ import {getRandomInt} from "#/entities/Entity.js";
 import {createSword, Sword} from "#/entities/items/weapons/Sword.js";
 import HealthPotion from "#/entities/items/potions/HealthPotion.js";
 import StrengthPotion from "#/entities/items/potions/StrengthPotion.js";
+import ManaPotion from "#/entities/items/potions/ManaPotion.js";
 import {Game} from "#/Game.js";
 import {SteelArrow} from "#/entities/items/weapons/ranged/ammo/Arrow.js";
 
@@ -39,10 +40,11 @@ export default class Goblin extends SimpleEnemy {
             }
         });
         let dropTable = {
-            "STRENGTH_POTION": 2,
+            "STRENGTH_POTION": 3,
             "HEALTH_POTION": 2,
-            "STEEL_ARROW": 1,
-            "SWORD": 1
+            "MANA_POTION" : 2,
+            "STEEL_ARROW": 2,
+            "SWORD" : 0
         }
         let roll = getRandomInt(0, 1);
         for (let i = 0; i < roll; i++) {
@@ -53,6 +55,9 @@ export default class Goblin extends SimpleEnemy {
                     break;
                 case "HEALTH_POTION":
                     this.addToInventory(new HealthPotion(this.x, this.y, 488));
+                    break;
+                case "MANA_POTION":
+                    this.addToInventory(new ManaPotion(this.x, this.y, 608));
                     break;
                 case "SWORD":
                     this.addToInventory(createSword(this.x, this.y, 35));

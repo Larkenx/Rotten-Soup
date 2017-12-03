@@ -205,21 +205,6 @@ export let Game = {
             Game.map.visible_tiles[x + ',' + y] = true;
         });
 
-        // Draw the viewport
-        /*
-         for (let x = startingPos[0]; x < endingPos[0]; x++) {
-         for (let y = startingPos[1]; y < endingPos[1]; y++) {
-         let tile = this.map.data[y][x];
-         if (tile.x + "," + tile.y in this.map.visible_tiles) {
-         this.drawTile(dx, dy++, tile, false);
-         } else {
-         this.drawTile(dx, dy++, tile, ! this.map.revealed);
-         }
-         }
-         dx++;
-         dy = 0;
-         }
-         */
         for (let x = startingPos[0]; x < endingPos[0]; x++) {
             for (let y = startingPos[1]; y < endingPos[1]; y++) {
                 let tile = this.map.data[y][x];
@@ -297,7 +282,6 @@ export let Game = {
     selectNearestEnemyTile() {
         this.clearSelectedTile();
         let enemy = this.getClosestEnemyToPlayer();
-        console.log(enemy);
         if (enemy !== undefined) {
             this.changeToExactSelectedTile({x: enemy.x, y: enemy.y});
         }

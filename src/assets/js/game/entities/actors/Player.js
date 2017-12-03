@@ -13,6 +13,7 @@ import {SteelArrow} from "#/entities/items/weapons/ranged/ammo/Arrow.js";
 // Potions
 import HealthPotion from "#/entities/items/potions/HealthPotion.js";
 import StrengthPotion from "#/entities/items/potions/StrengthPotion.js";
+import ManaPotion from "#/entities/items/potions/ManaPotion.js";
 // Spells
 import {MagicDart} from "#/magic/Spell.js";
 // effects
@@ -76,7 +77,8 @@ export default class Player extends Actor {
         this.addToInventory(createBow(this.x, this.y, 664))
         this.addToInventory(new SteelArrow(this.x, this.y, 784, 5));
         this.addToInventory(new HealthPotion(this.x, this.y, 488));
-        this.addToInventory(new StrengthPotion(this.x, this.y, 969));
+        this.addToInventory(new ManaPotion(this.x, this.y, 608));
+
         // this.addToInventory(new ManaPotion(this.x,this.y, 495));
         this.cb.spells.push(new MagicDart());
         this.selectSpell(this.cb.spells[0]);
@@ -313,7 +315,6 @@ export default class Player extends Actor {
             }
             Game.log("You begin casting a spell.", "defend");
             Game.log("Select a target with the movement keys and press enter to cast the spell.", "player_move");
-            console.log("Pressed the z key to cast a spell!")
             Game.selectNearestEnemyTile();
             this.casting = true;
             // our first selected tile can be the nearest enemy

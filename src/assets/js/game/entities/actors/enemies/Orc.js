@@ -4,6 +4,7 @@
 import SimpleEnemy from "#/entities/actors/enemies/SimpleEnemy.js";
 import HealthPotion from "#/entities/items/potions/HealthPotion.js";
 import StrengthPotion from "#/entities/items/potions/StrengthPotion.js";
+import ManaPotion from "#/entities/items/potions/ManaPotion.js";
 import {getRandomInt} from "#/entities/Entity.js";
 import {Sword} from "#/entities/items/weapons/Sword.js";
 import {Game} from "#/Game.js";
@@ -44,7 +45,7 @@ export default class Orc extends SimpleEnemy {
             "STRENGTH_POTION": 1,
             "HEALTH_POTION": 1,
             "STEEL_ARROW": 1,
-            "SWORD": 1,
+            "MANA_POTION": 1
         }
         let roll = getRandomInt(1, 3);
         let chosenItem = ROT.RNG.getWeightedValue(dropTable);
@@ -54,6 +55,9 @@ export default class Orc extends SimpleEnemy {
                 break;
             case "HEALTH_POTION":
                 this.addToInventory(new HealthPotion(this.x, this.y, 488));
+                break;
+            case "MANA_POTION":
+                this.addToInventory(new ManaPotion(this.x, this.y, 608));
                 break;
             case "SWORD":
                 this.addToInventory(new Sword(this.x, this.y, 3, 7, "Thrasher", 33));
