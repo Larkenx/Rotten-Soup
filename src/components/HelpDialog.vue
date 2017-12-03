@@ -42,6 +42,23 @@
                   <v-card flat>
                       <v-card-text class="pt-0">
                           <v-container fluid>
+                              <h5>Magic</h5>
+                              <p>To cast a spell, first select a spell from your spellbook by <code>clicking</code> on it. Then,
+                              you can press <code>z</code> to cast the selected spell. Press <code>.</code>, <code>5</code> on the numpad,
+                              or <code>enter</code> to confirm casting the spell.</p>
+                              <p> To cancel casting the spell, press <code>z</code> again or <code>escape</code>.</p>
+                              <p><h6>Magical Targeting</h6></p>
+                              If your spell is targeted (like Magic Dart), you will be able to select
+                              what tile you want to cast the spell on. By default, targeting will select the nearest enemy.
+                              You can change the selected tile with the standard <code>movement</code> keys. You cannot select
+                              a tile that is either blocked or is out of your line of sight.
+                              </v-container>
+                      </v-card-text>
+                  </v-card>
+                  <v-divider></v-divider>
+                  <v-card flat>
+                      <v-card-text class="pt-0">
+                          <v-container fluid>
                               <h5>Ladders, Resting, and Picking up Items</h5>
                               <p>To pick up items off the ground, press <code>,</code> or <code>g</code>.</p>
                               <p>To rest for a turn and restore a little health, press <code>.</code> or <code>5</code> on the numpad.</p>
