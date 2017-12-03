@@ -247,10 +247,13 @@ export default class Actor extends Entity {
     /* Reduce hp. If less than 0, causes death */
     damage(hp) {
         if (this.cb.invulnerable) return;
-
         this.cb.hp -= hp;
         if (this.isDead()) {
+            if (this !== Game.player)
+                Game.player.gain_xp(Math.floor(hp * .75));
+                
             this.death();
+
         }
 
     }

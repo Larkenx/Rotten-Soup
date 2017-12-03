@@ -14,8 +14,8 @@
                 <v-tooltip bottom align-center>
                     <p class="text-xs-center ma-0">
                         Cast {{spell.name}} <br/>
-                        Costs <span style="color: blue">{{spell.manaCost}} Mana</span><br/>
-                        {{spell.description}}
+                        Costs <b style="color: blue;">{{spell.manaCost}} Mana</b><br/>
+                        {{spell.hoverInfo}}
                     </p>
                     <img
                         v-bind:class="{selectedSpell : highlightSpell(spell), spell : ! highlightSpell(spell)}"
@@ -37,7 +37,7 @@
         },
         methods: {
             highlightSpell(spell) {
-                return Game.player.currentSpell === spell;
+                return Game.player.cb.currentSpell === spell;
             },
             getSpellSplashArt(school, name) {
                 return `../static/images/spells/${school}/${name}.png`;

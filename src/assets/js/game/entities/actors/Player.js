@@ -79,6 +79,7 @@ export default class Player extends Actor {
         this.addToInventory(new StrengthPotion(this.x, this.y, 969));
         // this.addToInventory(new ManaPotion(this.x,this.y, 495));
         this.cb.spells.push(new MagicDart());
+        this.selectSpell(this.cb.spells[0]);
     }
 
     selectSpell(spell) {
@@ -239,7 +240,6 @@ export default class Player extends Actor {
                 Game.changeSelectedTile(diff);
             } else {
                 if (confirmKeys.includes(code)) {
-                    console.log("Casting a spell!");
                     let {x, y} = Game.selectedTile;
                     let tile = Game.map.data[y][x];
                     // find actors on this tile
@@ -247,11 +247,17 @@ export default class Player extends Actor {
                         return e.cb !== undefined && e.cb.hostile;
                     });
                     if (enemies.length > 0) {
-                        this.currentSpell.cast(target);
-                        this.casting = false;
-                        endTurn();
-                        return;
+                        let enemy = enemies[0];
+                        Game.log(`You cast ${this.cb.currentSpell.name} at the ${enemies[0].name}.`, "magic");
+                        this.cb.currentSpell.cast(enemies[0]);
+                    } else {
+                        Game.log(`You cast ${this.cb.currentSpell.name} but it hits nothing!`, "magic");
                     }
+                    this.cb.mana -= this.cb.currentSpell.manaCost;
+                    this.casting = false;
+                    Game.clearSelectedTile();
+                    endTurn();
+                    return;
                 }
             }
             restartTurn();
@@ -285,7 +291,7 @@ export default class Player extends Actor {
                 restartTurn();
                 return;
             } else {
-                if (weapon === null || !weapon.cb.ranged)
+                if (weapon === null || ! weapon.cb.ranged)
                     Game.log("You don't have a ranged weapon equipped!", "information");
                 else if (ammo === null)
                     Game.log("You don't have any ammunition equipped.", "information");
@@ -296,9 +302,21 @@ export default class Player extends Actor {
                 return;
             }
         } else if ("cast" === keyMap[code]) {
-            Game.log("You start casting a spell.", "defend");
-            Game.log("Select a target with the movement keys and press enter to cast the spell.", "defend");
+            if (this.cb.currentSpell === null) {
+                Game.log("You must select a spell to cast. Select one from the spellbook!", "information");
+                restartTurn();
+                return;
+            } else if (this.cb.currentSpell.manaCost > this.cb.mana) {
+                Game.log(`You don't have enough mana to cast ${this.cb.currentSpell.name}!`, "alert");
+                restartTurn();
+                return;
+            }
+            Game.log("You begin casting a spell.", "defend");
+            Game.log("Select a target with the movement keys and press enter to cast the spell.", "player_move");
+            console.log("Pressed the z key to cast a spell!")
+            Game.selectNearestEnemyTile();
             this.casting = true;
+            // our first selected tile can be the nearest enemy
             restartTurn();
             return;
         } else {
@@ -403,7 +421,6 @@ export default class Player extends Actor {
 
     attack(actor) {
         let dmg = super.attack(actor);
-        this.gain_xp(Math.floor(dmg * .75));
     }
 
     death() {

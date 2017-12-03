@@ -129,6 +129,7 @@ export let Game = {
     log: function (message, type) {
         let message_color = {
             'defend': 'lightblue',
+            'magic' : '#3C1CFD',
             'attack': 'red',
             'death': 'crimson',
             'information': 'yellow',
@@ -242,12 +243,14 @@ export let Game = {
     clearSelectedTile() {
         const targetingBorders = {id: 7418};
         const untargetableBorders = {id: 7419};
-        let actors = Game.map.data[this.selectedTile.y][this.selectedTile.x].actors.filter((obs) => {
-            return obs.id !== targetingBorders.id && obs.id !== untargetableBorders.id;
-        });
-        Game.map.data[this.selectedTile.y][this.selectedTile.x].actors = actors;
-        this.selectedTile = null;
-        this.pathToTarget = {};
+        if (this.selectedTile !== null) {
+            let actors = Game.map.data[this.selectedTile.y][this.selectedTile.x].actors.filter((obs) => {
+                return obs.id !== targetingBorders.id && obs.id !== untargetableBorders.id;
+            });
+            Game.map.data[this.selectedTile.y][this.selectedTile.x].actors = actors;
+            this.selectedTile = null;
+            this.pathToTarget = {};
+        }
     },
 
     changeSelectedTile(diff) {
@@ -277,6 +280,33 @@ export let Game = {
             x: tile.x + diff[0],
             y: tile.y + diff[1]
         }
+        let mapTile = Game.map.data[this.selectedTile.y][this.selectedTile.x];
+        let properBorder = mapTile.blocked() ? untargetableBorders : targetingBorders;
+        this.map.data[this.selectedTile.y][this.selectedTile.x].actors.push(properBorder);
+        this.pathToTarget = {};
+        if (properBorder === untargetableBorders) {
+            this.pathToTarget = {};
+        } else {
+            this.player.path.compute(this.selectedTile.x, this.selectedTile.y, (x, y) => {
+                this.pathToTarget[x + ',' + y] = true;
+            });
+            this.pathToTarget[this.player.x + ',' + this.player.y] = false;
+        }
+    },
+
+    selectNearestEnemyTile() {
+        this.clearSelectedTile();
+        let enemy = this.getClosestEnemyToPlayer();
+        console.log(enemy);
+        if (enemy !== undefined) {
+            this.changeToExactSelectedTile({x: enemy.x, y: enemy.y});
+        }
+    },
+
+    changeToExactSelectedTile(loc) {
+        const targetingBorders = {id: 7418, visible: true};
+        const untargetableBorders = {id: 7419, visible: true};
+        this.selectedTile = loc;
         let mapTile = Game.map.data[this.selectedTile.y][this.selectedTile.x];
         let properBorder = mapTile.blocked() ? untargetableBorders : targetingBorders;
         this.map.data[this.selectedTile.y][this.selectedTile.x].actors.push(properBorder);
@@ -392,6 +422,14 @@ export let Game = {
         return actors.filter((actor) => {
             return actor.cb !== undefined && actor.cb.hostile
         });
+    },
+
+    getClosestEnemyToPlayer() {
+        let nearbyEnemies = this.getNearbyEnemies();
+        return nearbyEnemies.slice(0, -1).reduce((closestActorSoFar, actor) => {
+            return actor.distanceTo(this.player) < closestActorSoFar.distanceTo(this.player) ?
+                   actor : closestActorSoFar
+        }, nearbyEnemies.slice(-1)[0]);
     },
 
     printPlayerTile: function () {
