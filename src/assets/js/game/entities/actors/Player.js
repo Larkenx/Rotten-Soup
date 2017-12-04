@@ -156,9 +156,9 @@ export default class Player extends Actor {
         let movementKeys = [0, 1, 2, 3, 4, 5, 6, 7];
         let cycleKeys = [9, 61, 187, 191];
         let confirmKeys = [101, 13, 190];
-        if (confirmKeys.includes(code))
+        if (cycleKeys.includes(code))
             evt.preventDefault();
-            
+
         let endTurn = function () {
             window.removeEventListener("keydown", this);
             Game.engine.unlock();

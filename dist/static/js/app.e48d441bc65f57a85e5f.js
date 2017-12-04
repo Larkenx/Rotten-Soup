@@ -2095,7 +2095,7 @@ class Player extends __WEBPACK_IMPORTED_MODULE_2__entities_actors_Actor_js__["a"
         let movementKeys = [0, 1, 2, 3, 4, 5, 6, 7];
         let cycleKeys = [9, 61, 187, 191];
         let confirmKeys = [101, 13, 190];
-        if (confirmKeys.includes(code)) evt.preventDefault();
+        if (cycleKeys.includes(code)) evt.preventDefault();
 
         let endTurn = function () {
             window.removeEventListener("keydown", this);
@@ -4980,4 +4980,4 @@ module.exports = {"height":50,"layers":[{"data":[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
 /***/ })
 
 },["NHnr"]);
-//# sourceMappingURL=app.fa3437351d572d8fab49.js.map
+//# sourceMappingURL=app.e48d441bc65f57a85e5f.js.map
