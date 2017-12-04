@@ -57,7 +57,7 @@ export default class Player extends Actor {
                 /* Per-turn effects */
                 hpRecovery: 5,
                 manaRecovery: 2.5,
-                invulnerable: true,
+                invulnerable: false,
                 /* Magic */
                 currentSpell: null,
                 spells: []
@@ -139,6 +139,7 @@ export default class Player extends Actor {
     }
 
     handleEvent(evt) {
+
         /* Mouse controls to hover over tiles for info (describe) */
         if (evt.type === "click") {
             Game.eventToTile(evt);
@@ -152,7 +153,12 @@ export default class Player extends Actor {
 
         let code = evt.keyCode;
         let shift_pressed = evt.getModifierState("Shift");
-
+        let movementKeys = [0, 1, 2, 3, 4, 5, 6, 7];
+        let cycleKeys = [9, 61, 187, 191];
+        let confirmKeys = [101, 13, 190];
+        if (confirmKeys.includes(code))
+            evt.preventDefault();
+            
         let endTurn = function () {
             window.removeEventListener("keydown", this);
             Game.engine.unlock();
@@ -199,8 +205,7 @@ export default class Player extends Actor {
             190: "rest",
         };
 
-        let movementKeys = [0, 1, 2, 3, 4, 5, 6, 7];
-        let confirmKeys = [101, 13, 190];
+
         const targetingBorders = 7418;
         const untargetableBorders = 7419;
         // currently firing a ranged weapon
@@ -235,7 +240,10 @@ export default class Player extends Actor {
                 if (code === 90 || code == 27) {
                     Game.log("You stop casting the spell.", "information");
                     this.casting = false;
+                    Game.enemyCycle = null;
                     Game.clearSelectedTile();
+                } else if (cycleKeys.includes(code)) {
+                    Game.cycleThroughSelectableEnemies();
                 }
             } else if (movementKeys.includes(keyMap[code])) {
                 let diff = ROT.DIRS[8][keyMap[code]];
@@ -257,6 +265,7 @@ export default class Player extends Actor {
                     }
                     this.cb.mana -= this.cb.currentSpell.manaCost;
                     this.casting = false;
+                    Game.enemyCycle = null;
                     Game.clearSelectedTile();
                     endTurn();
                     return;

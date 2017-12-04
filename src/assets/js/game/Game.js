@@ -38,6 +38,8 @@ export let Game = {
     minimap: null,
     selectedTile: null,
     pathToTarget: {},
+    enemyCycle : null,
+    enemyCycleIndex : 0,
 
     init: function (dev = false) {
         this.dev = dev;
@@ -225,85 +227,6 @@ export let Game = {
         }
     },
 
-    clearSelectedTile() {
-        const targetingBorders = {id: 7418};
-        const untargetableBorders = {id: 7419};
-        if (this.selectedTile !== null) {
-            let actors = Game.map.data[this.selectedTile.y][this.selectedTile.x].actors.filter((obs) => {
-                return obs.id !== targetingBorders.id && obs.id !== untargetableBorders.id;
-            });
-            Game.map.data[this.selectedTile.y][this.selectedTile.x].actors = actors;
-            this.selectedTile = null;
-            this.pathToTarget = {};
-        }
-    },
-
-    changeSelectedTile(diff) {
-        const targetingBorders = {id: 7418, visible: true};
-        const untargetableBorders = {id: 7419, visible: true};
-        let tile;
-        if (this.selectedTile === null) {
-            tile = {x: this.player.x, y: this.player.y}; // haven't selected a tile before or it was cleared
-            let x = tile.x + diff[0];
-            let y = tile.y + diff[1];
-            if (!this.inbounds(x, y) || this.map.visible_tiles[x + ',' + y] === undefined) /* || ! x+','+y in this.map.visible_tiles )*/
-                return;
-        } else {
-            // we have had a previously selected tile and need to pop the targeting reticle before pushing it onto the new tile
-            tile = this.selectedTile;
-            let x = tile.x + diff[0];
-            let y = tile.y + diff[1];
-            if (!this.inbounds(x, y) || this.map.visible_tiles[x + ',' + y] === undefined) /* || ! x+','+y in this.map.visible_tiles) */
-                return;
-            let actors = Game.map.data[tile.y][tile.x].actors.filter((obs) => {
-                return obs.id !== targetingBorders.id && obs.id !== untargetableBorders.id;
-            });
-            Game.map.data[tile.y][tile.x].actors = actors;
-        }
-        // changed the selected tile to the new tile position selected by movement keys
-        this.selectedTile = {
-            x: tile.x + diff[0],
-            y: tile.y + diff[1]
-        }
-        let mapTile = Game.map.data[this.selectedTile.y][this.selectedTile.x];
-        let properBorder = mapTile.blocked() ? untargetableBorders : targetingBorders;
-        this.map.data[this.selectedTile.y][this.selectedTile.x].actors.push(properBorder);
-        this.pathToTarget = {};
-        if (properBorder === untargetableBorders) {
-            this.pathToTarget = {};
-        } else {
-            this.player.path.compute(this.selectedTile.x, this.selectedTile.y, (x, y) => {
-                this.pathToTarget[x + ',' + y] = true;
-            });
-            this.pathToTarget[this.player.x + ',' + this.player.y] = false;
-        }
-    },
-
-    selectNearestEnemyTile() {
-        this.clearSelectedTile();
-        let enemy = this.getClosestEnemyToPlayer();
-        if (enemy !== undefined) {
-            this.changeToExactSelectedTile({x: enemy.x, y: enemy.y});
-        }
-    },
-
-    changeToExactSelectedTile(loc) {
-        const targetingBorders = {id: 7418, visible: true};
-        const untargetableBorders = {id: 7419, visible: true};
-        this.selectedTile = loc;
-        let mapTile = Game.map.data[this.selectedTile.y][this.selectedTile.x];
-        let properBorder = mapTile.blocked() ? untargetableBorders : targetingBorders;
-        this.map.data[this.selectedTile.y][this.selectedTile.x].actors.push(properBorder);
-        this.pathToTarget = {};
-        if (properBorder === untargetableBorders) {
-            this.pathToTarget = {};
-        } else {
-            this.player.path.compute(this.selectedTile.x, this.selectedTile.y, (x, y) => {
-                this.pathToTarget[x + ',' + y] = true;
-            });
-            this.pathToTarget[this.player.x + ',' + this.player.y] = false;
-        }
-    },
 
     drawTile: function (x, y, tile, fov) {
         let symbols = tile.getSpriteIDS(this.turn % 2 === 0, fov);
@@ -403,17 +326,121 @@ export let Game = {
             dx++;
             dy = 0;
         }
-        return actors.filter((actor) => {
+        let enemies = actors.filter((actor) => {
             return actor.cb !== undefined && actor.cb.hostile
+        });
+
+        // we sort the enemies closest to farthest away
+        return enemies.sort((a1, a2) => {
+            if (a1.distanceTo(this.player) < a2.distanceTo(this.player))
+                return -1
+            else if (a2.distanceTo(this.player) < a1.distanceTo(this.player))
+                return 1
+            else
+                return 0
         });
     },
 
     getClosestEnemyToPlayer() {
-        let nearbyEnemies = this.getNearbyEnemies();
-        return nearbyEnemies.slice(0, -1).reduce((closestActorSoFar, actor) => {
-            return actor.distanceTo(this.player) < closestActorSoFar.distanceTo(this.player) ?
-                   actor : closestActorSoFar
-        }, nearbyEnemies.slice(-1)[0]);
+        return this.getNearbyEnemies()[0];
+    },
+
+
+    clearSelectedTile() {
+        const targetingBorders = {id: 7418};
+        const untargetableBorders = {id: 7419};
+        if (this.selectedTile !== null) {
+            let actors = Game.map.data[this.selectedTile.y][this.selectedTile.x].actors.filter((obs) => {
+                return obs.id !== targetingBorders.id && obs.id !== untargetableBorders.id;
+            });
+            Game.map.data[this.selectedTile.y][this.selectedTile.x].actors = actors;
+            this.selectedTile = null;
+            this.pathToTarget = {};
+        }
+    },
+
+    changeSelectedTile(diff) {
+        const targetingBorders = {id: 7418, visible: true};
+        const untargetableBorders = {id: 7419, visible: true};
+        let tile;
+        if (this.selectedTile === null) {
+            tile = {x: this.player.x, y: this.player.y}; // haven't selected a tile before or it was cleared
+            let x = tile.x + diff[0];
+            let y = tile.y + diff[1];
+            if (!this.inbounds(x, y) || this.map.visible_tiles[x + ',' + y] === undefined) /* || ! x+','+y in this.map.visible_tiles )*/
+                return;
+        } else {
+            // we have had a previously selected tile and need to pop the targeting reticle before pushing it onto the new tile
+            tile = this.selectedTile;
+            let x = tile.x + diff[0];
+            let y = tile.y + diff[1];
+            if (!this.inbounds(x, y) || this.map.visible_tiles[x + ',' + y] === undefined) /* || ! x+','+y in this.map.visible_tiles) */
+                return;
+            let actors = Game.map.data[tile.y][tile.x].actors.filter((obs) => {
+                return obs.id !== targetingBorders.id && obs.id !== untargetableBorders.id;
+            });
+            Game.map.data[tile.y][tile.x].actors = actors;
+        }
+        // changed the selected tile to the new tile position selected by movement keys
+        this.selectedTile = {
+            x: tile.x + diff[0],
+            y: tile.y + diff[1]
+        }
+        let mapTile = Game.map.data[this.selectedTile.y][this.selectedTile.x];
+        let properBorder = mapTile.blocked() ? untargetableBorders : targetingBorders;
+        this.map.data[this.selectedTile.y][this.selectedTile.x].actors.push(properBorder);
+        this.pathToTarget = {};
+        if (properBorder === untargetableBorders) {
+            this.pathToTarget = {};
+        } else {
+            this.player.path.compute(this.selectedTile.x, this.selectedTile.y, (x, y) => {
+                this.pathToTarget[x + ',' + y] = true;
+            });
+            this.pathToTarget[this.player.x + ',' + this.player.y] = false;
+        }
+    },
+
+    selectNearestEnemyTile() {
+        this.clearSelectedTile();
+        let enemy = this.getClosestEnemyToPlayer();
+        if (enemy !== undefined) {
+            this.changeToExactSelectedTile({x: enemy.x, y: enemy.y});
+        }
+    },
+
+    cycleThroughSelectableEnemies() {
+        if (this.enemyCycle === null) {
+            this.enemyCycle = this.getNearbyEnemies();
+            this.enemyCycleIndex = 0;
+        }
+        // if there's more than one enemy, we can cycle to the next closest enemy
+        if (this.enemyCycle.length > 1) {
+            this.clearSelectedTile();
+            this.enemyCycleIndex += 1;
+            if (this.enemyCycleIndex === this.enemyCycle.length)
+                this.enemyCycleIndex = 0;
+
+            let newTarget = this.enemyCycle[this.enemyCycleIndex];
+            this.changeToExactSelectedTile({x : newTarget.x, y : newTarget.y});
+        }
+    },
+
+    changeToExactSelectedTile(loc) {
+        const targetingBorders = {id: 7418, visible: true};
+        const untargetableBorders = {id: 7419, visible: true};
+        this.selectedTile = loc;
+        let mapTile = Game.map.data[this.selectedTile.y][this.selectedTile.x];
+        let properBorder = mapTile.blocked() ? untargetableBorders : targetingBorders;
+        this.map.data[this.selectedTile.y][this.selectedTile.x].actors.push(properBorder);
+        this.pathToTarget = {};
+        if (properBorder === untargetableBorders) {
+            this.pathToTarget = {};
+        } else {
+            this.player.path.compute(this.selectedTile.x, this.selectedTile.y, (x, y) => {
+                this.pathToTarget[x + ',' + y] = true;
+            });
+            this.pathToTarget[this.player.x + ',' + this.player.y] = false;
+        }
     },
 
     printPlayerTile: function () {

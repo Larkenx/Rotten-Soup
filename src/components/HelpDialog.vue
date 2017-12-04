@@ -50,8 +50,7 @@
                               <p><h6>Magical Targeting</h6></p>
                               If your spell is targeted (like Magic Dart), you will be able to select
                               what tile you want to cast the spell on. By default, targeting will select the nearest enemy.
-                              You can change the selected tile with the standard <code>movement</code> keys. You cannot select
-                              a tile that is either blocked or is out of your line of sight.
+                              You can change the selected tile with the standard <code>movement</code> keys. You can also cycle through enemies in view with <code>tab</code>, <code>=</code>, and <code>/</code>. You cannot select a tile that is either blocked or is out of your line of sight.
                               </v-container>
                       </v-card-text>
                   </v-card>
