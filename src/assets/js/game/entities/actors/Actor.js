@@ -10,7 +10,7 @@ import Weapon from "#/entities/items/weapons/Weapon.js";
 import {Ammo} from "#/entities/items/weapons/ranged/ammo/Ammo.js";
 import {Buff} from "#/modifiers/Buff.js";
 
-function addPrefix(name) {
+export function addPrefix(name) {
     const vowels = ['a', 'e', 'i', 'o', 'u'];
     if (name !== "you") {
         if (name[0] in vowels)
@@ -22,7 +22,7 @@ function addPrefix(name) {
     }
 }
 
-export default class Actor extends Entity {
+export class Actor extends Entity {
     constructor(x, y, options, routine = null) {
         super(x, y, options);
         this.cb = this.combat;
@@ -251,7 +251,7 @@ export default class Actor extends Entity {
         if (this.isDead()) {
             if (this !== Game.player)
                 Game.player.gain_xp(Math.floor(hp * .75));
-                
+
             this.death();
 
         }

@@ -1,7 +1,7 @@
 import ROT from "rot-js";
 import {GameMap, getTilesetCoords} from "#/map/GameMap.js";
 import GameDisplay from "#/GameDisplay.js";
-import Actor from "#/entities/actors/Actor.js";
+import {Actor} from "#/entities/actors/Actor.js";
 
 import Player from "#/entities/actors/Player.js";
 import {randomMap} from "#/map/RandomMap.js";
