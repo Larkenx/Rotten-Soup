@@ -1,4 +1,4 @@
-import Actor from "#/entities/actors/Actor.js";
+import {Actor} from "#/entities/actors/Actor.js";
 import {Game} from "#/Game.js";
 import ROT from "rot-js";
 

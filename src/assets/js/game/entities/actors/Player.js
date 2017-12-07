@@ -3,7 +3,8 @@
  */
 import ROT from "rot-js";
 import {Game} from "#/Game.js";
-import Actor from "#/entities/actors/Actor.js";
+import {Actor} from "#/entities/actors/Actor.js";
+import {addPrefix} from "#/entities/actors/Actor.js";
 import Item from "#/entities/items/Item.js";
 // Weapons
 import {Sword} from "#/entities/items/weapons/Sword.js";
@@ -205,35 +206,88 @@ export default class Player extends Actor {
             190: "rest",
         };
 
+        // // currently firing a ranged weapon
+        // if (this.targeting) {
+        //     if (!(code in keyMap) || !movementKeys.includes(keyMap[code])) { // invalid key press, retry turn
+        //         if (code === 70 || code == 27) { //escape key
+        //             Game.log(`You put away your ${this.cb.equipment.weapon.type.toLowerCase()}.`, 'information');
+        //             this.targeting = false;
+        //         }
+        //         restartTurn();
+        //         return;
+        //     } else {
+        //         // valid target direction
+        //         let ammo = this.cb.equipment.ammo;
+        //         ammo.quantity--;
+        //         if (ammo.quantity === 0) {
+        //             Game.log(`You fire your last ${ammo.type.toLowerCase()}!`, "alert");
+        //         }
+        //         this.fireRangedWeapon(ammo, keyMap[code]);
+        //         this.targeting = false;
+        //         if (ammo.quantity === 0) { // used up all the ammo, need to remove it from the inventory
+        //             this.unequipAmmo();
+        //             this.removeFromInventory(ammo);
+        //         }
+        //         endTurn();
+        //         return;
+        //     }
+        // }
 
-        const targetingBorders = 7418;
-        const untargetableBorders = 7419;
-        // currently firing a ranged weapon
         if (this.targeting) {
-            if (!(code in keyMap) || !movementKeys.includes(keyMap[code])) { // invalid key press, retry turn
-                if (code === 70 || code == 27) { //escape key
+            if (!movementKeys.includes(keyMap[code]) && !confirmKeys.includes(code)) {
+                if (code === 70 || code == 27) {
                     Game.log(`You put away your ${this.cb.equipment.weapon.type.toLowerCase()}.`, 'information');
                     this.targeting = false;
+                    Game.enemyCycle = null;
+                    Game.clearSelectedTile();
+                } else if (cycleKeys.includes(code)) {
+                    Game.cycleThroughSelectableEnemies();
                 }
-                restartTurn();
-                return;
+            } else if (movementKeys.includes(keyMap[code])) {
+                let diff = ROT.DIRS[8][keyMap[code]];
+                Game.changeSelectedTile(diff);
             } else {
-                // valid target direction
-                let ammo = this.cb.equipment.ammo;
-                ammo.quantity--;
-                if (ammo.quantity === 0) {
-                    Game.log(`You fire your last ${ammo.type.toLowerCase()}!`, "alert");
+                if (confirmKeys.includes(code)) {
+                    let {x, y} = Game.selectedTile;
+                    let tile = Game.map.data[y][x];
+                    // find actors on this tile
+                    let enemies = tile.actors.filter(e => {
+                        return e.cb !== undefined && e.cb.hostile;
+                    });
+                    if (enemies.length > 0) {
+                        let enemy = enemies[0];
+                        let ammo = this.cb.equipment.ammo;
+                        let weapon = this.cb.equipment.weapon;
+                        let dmg = weapon.roll() + ammo.cb.damage + this.cb.str;
+                        ammo.quantity--;
+                        if (ammo.quantity === 0) {
+                            Game.log(`You fire your last ${ammo.type.toLowerCase()}!`, "alert");
+                        }
+                        this.targeting = false;
+                        let evtdamage = `${addPrefix(this.name).capitalize()} hit ${addPrefix(enemy.name)} with ${addPrefix(ammo.type.toLowerCase())} and dealt ${dmg} damage.`;
+                        if (Game.player === this)
+                            Game.log(evtdamage, 'player_move');
+
+                        enemy.damage(dmg);
+                        if (ammo.quantity == 0) {
+                            this.unequipAmmo();
+                            this.removeFromInventory(ammo);
+                        }
+                    } else {
+                        Game.log(`Your ${ammo.type.toLowerCase()} didn't hit anything!`, "alert");
+                    }
+                    this.targeting = false;
+                    Game.enemyCycle = null;
+                    Game.clearSelectedTile();
+                    endTurn();
+                    return;
                 }
-                this.fireRangedWeapon(ammo, keyMap[code]);
-                this.targeting = false;
-                if (ammo.quantity === 0) { // used up all the ammo, need to remove it from the inventory
-                    this.unequipAmmo();
-                    this.removeFromInventory(ammo);
-                }
-                endTurn();
-                return;
             }
+            restartTurn();
+            return;
         }
+
+
         // currently casting a spell
         if (this.casting) {
             if (!movementKeys.includes(keyMap[code]) && !confirmKeys.includes(code)) {
@@ -298,6 +352,8 @@ export default class Player extends Actor {
                 ammo.cb.ammoType === weapon.cb.ammoType &&
                 ammo.quantity > 0) {
                 Game.log(`You take aim with your ${weapon.type.toLowerCase()}.`, 'information');
+                Game.log(`Select a target with the movement keys and press [enter] to fire your ${weapon.type.toLowerCase()}.`, "player_move");
+                Game.selectNearestEnemyTile();
                 this.targeting = true;
                 restartTurn();
                 return;
@@ -323,7 +379,7 @@ export default class Player extends Actor {
                 return;
             }
             Game.log("You begin casting a spell.", "defend");
-            Game.log("Select a target with the movement keys and press enter to cast the spell.", "player_move");
+            Game.log("Select a target with the movement keys and press [enter] to cast the spell.", "player_move");
             Game.selectNearestEnemyTile();
             this.casting = true;
             // our first selected tile can be the nearest enemy

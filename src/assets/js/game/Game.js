@@ -1,7 +1,7 @@
 import ROT from "rot-js";
 import {GameMap, getTilesetCoords} from "#/map/GameMap.js";
 import GameDisplay from "#/GameDisplay.js";
-import Actor from "#/entities/actors/Actor.js";
+import {Actor} from "#/entities/actors/Actor.js";
 
 import Player from "#/entities/actors/Player.js";
 import {randomMap} from "#/map/RandomMap.js";
@@ -389,15 +389,27 @@ export let Game = {
         let mapTile = Game.map.data[this.selectedTile.y][this.selectedTile.x];
         let properBorder = mapTile.blocked() ? untargetableBorders : targetingBorders;
         this.map.data[this.selectedTile.y][this.selectedTile.x].actors.push(properBorder);
+        // highlighting the path from the player to the target reticle using bresenham line algorithm
+        /* https://rosettacode.org/wiki/Bitmap/Bresenham%27s_line_algorithm#JavaScript */
         this.pathToTarget = {};
-        if (properBorder === untargetableBorders) {
-            this.pathToTarget = {};
-        } else {
-            this.player.path.compute(this.selectedTile.x, this.selectedTile.y, (x, y) => {
-                this.pathToTarget[x + ',' + y] = true;
-            });
-            this.pathToTarget[this.player.x + ',' + this.player.y] = false;
+        if (properBorder === targetingBorders) {
+            let x0 = this.player.x;
+            let x1 = this.selectedTile.x;
+            let y0 = this.player.y;
+            let y1 = this.selectedTile.y;
+            let dx = Math.abs(x1 - x0), sx = x0 < x1 ? 1 : -1;
+            let dy = Math.abs(y1 - y0), sy = y0 < y1 ? 1 : -1;
+            let err = (dx>dy ? dx : -dy)/2;
+            while (true) {
+                this.pathToTarget[x0 + ',' + y0] = true;
+                if (x0 === x1 && y0 === y1) break;
+                let e2 = err;
+                if (e2 > -dx) { err -= dy; x0 += sx; }
+                if (e2 < dy) { err += dx; y0 += sy; }
+            }
         }
+        this.pathToTarget[this.player.x + ',' + this.player.y] = false;
+
     },
 
     selectNearestEnemyTile() {
