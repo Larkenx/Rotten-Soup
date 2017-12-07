@@ -59,7 +59,8 @@ export default class Player extends Actor {
                 hpRecovery: 5,
                 manaRecovery: 2.5,
                 invulnerable: false,
-                /* Magic */
+                /* Magic & Ranged */
+                validTarget: null,
                 currentSpell: null,
                 spells: []
             }
@@ -241,21 +242,16 @@ export default class Player extends Actor {
                     Game.enemyCycle = null;
                     Game.clearSelectedTile();
                 } else if (cycleKeys.includes(code)) {
-                    Game.cycleThroughSelectableEnemies();
+                    this.validTarget = Game.cycleThroughSelectableEnemies();
                 }
             } else if (movementKeys.includes(keyMap[code])) {
                 let diff = ROT.DIRS[8][keyMap[code]];
-                Game.changeSelectedTile(diff);
+                this.validTarget = Game.changeSelectedTile(diff);
             } else {
                 if (confirmKeys.includes(code)) {
-                    let {x, y} = Game.selectedTile;
-                    let tile = Game.map.data[y][x];
-                    // find actors on this tile
-                    let enemies = tile.actors.filter(e => {
-                        return e.cb !== undefined && e.cb.hostile;
-                    });
-                    if (enemies.length > 0) {
-                        let enemy = enemies[0];
+                    if (this.validTarget) {
+                        let {x, y} = Game.selectedTile;
+                        let tile = Game.map.data[y][x];
                         let ammo = this.cb.equipment.ammo;
                         let weapon = this.cb.equipment.weapon;
                         let dmg = weapon.roll() + ammo.cb.damage + this.cb.str;
@@ -263,24 +259,32 @@ export default class Player extends Actor {
                         if (ammo.quantity === 0) {
                             Game.log(`You fire your last ${ammo.type.toLowerCase()}!`, "alert");
                         }
-                        this.targeting = false;
-                        let evtdamage = `${addPrefix(this.name).capitalize()} hit ${addPrefix(enemy.name)} with ${addPrefix(ammo.type.toLowerCase())} and dealt ${dmg} damage.`;
-                        if (Game.player === this)
+                        // find actors on this tile
+                        let enemies = tile.actors.filter(e => {
+                            return e.cb !== undefined && e.cb.hostile;
+                        });
+                        if (enemies.length > 0) {
+                            let enemy = enemies[0];
+                            this.targeting = false;
+                            let evtdamage = `${addPrefix(this.name).capitalize()} hit ${addPrefix(enemy.name)} with ${addPrefix(ammo.type.toLowerCase())} and dealt ${dmg} damage.`;
                             Game.log(evtdamage, 'player_move');
-
-                        enemy.damage(dmg);
+                            enemy.damage(dmg);
+                        } else {
+                            Game.log(`Your ${ammo.type.toLowerCase()} didn't hit anything!`, "alert");
+                        }
                         if (ammo.quantity == 0) {
                             this.unequipAmmo();
                             this.removeFromInventory(ammo);
                         }
+                        this.targeting = false;
+                        Game.enemyCycle = null;
+                        this.validTarget = null;
+                        Game.clearSelectedTile();
+                        endTurn();
+                        return;
                     } else {
-                        Game.log(`Your ${ammo.type.toLowerCase()} didn't hit anything!`, "alert");
+                        Game.log("You cannot shoot this tile because it's blocked or out of range!", "alert");
                     }
-                    this.targeting = false;
-                    Game.enemyCycle = null;
-                    Game.clearSelectedTile();
-                    endTurn();
-                    return;
                 }
             }
             restartTurn();
@@ -297,33 +301,39 @@ export default class Player extends Actor {
                     Game.enemyCycle = null;
                     Game.clearSelectedTile();
                 } else if (cycleKeys.includes(code)) {
-                    Game.cycleThroughSelectableEnemies();
+                    this.validTarget = Game.cycleThroughSelectableEnemies();
                 }
             } else if (movementKeys.includes(keyMap[code])) {
                 let diff = ROT.DIRS[8][keyMap[code]];
-                Game.changeSelectedTile(diff);
+                this.validTarget = Game.changeSelectedTile(diff);
             } else {
-                if (confirmKeys.includes(code)) {
-                    let {x, y} = Game.selectedTile;
-                    let tile = Game.map.data[y][x];
-                    // find actors on this tile
-                    let enemies = tile.actors.filter(e => {
-                        return e.cb !== undefined && e.cb.hostile;
-                    });
-                    if (enemies.length > 0) {
-                        let enemy = enemies[0];
-                        Game.log(`You cast ${this.cb.currentSpell.name} at the ${enemies[0].name}.`, "magic");
-                        this.cb.currentSpell.cast(enemies[0]);
-                    } else {
-                        Game.log(`You cast ${this.cb.currentSpell.name} but it hits nothing!`, "magic");
+                if (this.validTarget) {
+                    if (confirmKeys.includes(code)) {
+                        let {x, y} = Game.selectedTile;
+                        let tile = Game.map.data[y][x];
+                        // find actors on this tile
+                        let enemies = tile.actors.filter(e => {
+                            return e.cb !== undefined && e.cb.hostile;
+                        });
+                        if (enemies.length > 0) {
+                            let enemy = enemies[0];
+                            Game.log(`You cast ${this.cb.currentSpell.name} at the ${enemies[0].name}.`, "magic");
+                            this.cb.currentSpell.cast(enemies[0]);
+                        } else {
+                            Game.log(`You cast ${this.cb.currentSpell.name} but it hits nothing!`, "magic");
+                        }
+                        this.cb.mana -= this.cb.currentSpell.manaCost;
+                        this.casting = false;
+                        Game.enemyCycle = null;
+                        Game.clearSelectedTile();
+                        this.validTarget = null;
+                        endTurn();
+                        return;
                     }
-                    this.cb.mana -= this.cb.currentSpell.manaCost;
-                    this.casting = false;
-                    Game.enemyCycle = null;
-                    Game.clearSelectedTile();
-                    endTurn();
-                    return;
+                } else {
+                    Game.log(`You cannot cast ${this.cb.currentSpell.name} at this tile because it's blocked or too far away.`, "alert");
                 }
+
             }
             restartTurn();
             return;
@@ -353,7 +363,7 @@ export default class Player extends Actor {
                 ammo.quantity > 0) {
                 Game.log(`You take aim with your ${weapon.type.toLowerCase()}.`, 'information');
                 Game.log(`Select a target with the movement keys and press [enter] to fire your ${weapon.type.toLowerCase()}.`, "player_move");
-                Game.selectNearestEnemyTile();
+                this.validTarget = Game.selectNearestEnemyTile();
                 this.targeting = true;
                 restartTurn();
                 return;
@@ -380,7 +390,7 @@ export default class Player extends Actor {
             }
             Game.log("You begin casting a spell.", "defend");
             Game.log("Select a target with the movement keys and press [enter] to cast the spell.", "player_move");
-            Game.selectNearestEnemyTile();
+            this.validTarget = Game.selectNearestEnemyTile();
             this.casting = true;
             // our first selected tile can be the nearest enemy
             restartTurn();

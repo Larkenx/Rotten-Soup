@@ -357,6 +357,7 @@ export let Game = {
             this.selectedTile = null;
             this.pathToTarget = {};
         }
+        this.updateDisplay();
     },
 
     changeSelectedTile(diff) {
@@ -367,14 +368,14 @@ export let Game = {
             tile = {x: this.player.x, y: this.player.y}; // haven't selected a tile before or it was cleared
             let x = tile.x + diff[0];
             let y = tile.y + diff[1];
-            if (!this.inbounds(x, y) || this.map.visible_tiles[x + ',' + y] === undefined) /* || ! x+','+y in this.map.visible_tiles )*/
+            if (!this.inbounds(x, y)) /* || ! x+','+y in this.map.visible_tiles )*/
                 return;
         } else {
             // we have had a previously selected tile and need to pop the targeting reticle before pushing it onto the new tile
             tile = this.selectedTile;
             let x = tile.x + diff[0];
             let y = tile.y + diff[1];
-            if (!this.inbounds(x, y) || this.map.visible_tiles[x + ',' + y] === undefined) /* || ! x+','+y in this.map.visible_tiles) */
+            if (!this.inbounds(x, y)) /* || ! x+','+y in this.map.visible_tiles) */
                 return;
             let actors = Game.map.data[tile.y][tile.x].actors.filter((obs) => {
                 return obs.id !== targetingBorders.id && obs.id !== untargetableBorders.id;
@@ -386,8 +387,11 @@ export let Game = {
             x: tile.x + diff[0],
             y: tile.y + diff[1]
         }
+        let {x,y} = this.selectedTile;
         let mapTile = Game.map.data[this.selectedTile.y][this.selectedTile.x];
-        let properBorder = mapTile.blocked() ? untargetableBorders : targetingBorders;
+        let properBorder = mapTile.blocked() || this.map.visible_tiles[x + ',' + y] === undefined ?
+            untargetableBorders :
+            targetingBorders;
         this.map.data[this.selectedTile.y][this.selectedTile.x].actors.push(properBorder);
         // highlighting the path from the player to the target reticle using bresenham line algorithm
         /* https://rosettacode.org/wiki/Bitmap/Bresenham%27s_line_algorithm#JavaScript */
@@ -400,24 +404,27 @@ export let Game = {
             let dx = Math.abs(x1 - x0), sx = x0 < x1 ? 1 : -1;
             let dy = Math.abs(y1 - y0), sy = y0 < y1 ? 1 : -1;
             let err = (dx>dy ? dx : -dy)/2;
-            while (true) {
+            while (! (x0 === x1 && y0 === y1)) {
                 this.pathToTarget[x0 + ',' + y0] = true;
-                if (x0 === x1 && y0 === y1) break;
                 let e2 = err;
                 if (e2 > -dx) { err -= dy; x0 += sx; }
                 if (e2 < dy) { err += dx; y0 += sy; }
             }
+            this.pathToTarget[x0 + ',' + y0] = true;
+            this.pathToTarget[this.player.x + ',' + this.player.y] = false;
         }
-        this.pathToTarget[this.player.x + ',' + this.player.y] = false;
-
+        this.updateDisplay();
+        return properBorder === targetingBorders;
     },
 
     selectNearestEnemyTile() {
         this.clearSelectedTile();
         let enemy = this.getClosestEnemyToPlayer();
-        if (enemy !== undefined) {
-            this.changeToExactSelectedTile({x: enemy.x, y: enemy.y});
-        }
+        if (enemy !== undefined)
+            return this.changeToExactSelectedTile({x: enemy.x, y: enemy.y});
+        else
+            return false;
+
     },
 
     cycleThroughSelectableEnemies() {
@@ -433,7 +440,7 @@ export let Game = {
                 this.enemyCycleIndex = 0;
 
             let newTarget = this.enemyCycle[this.enemyCycleIndex];
-            this.changeToExactSelectedTile({x : newTarget.x, y : newTarget.y});
+            return this.changeToExactSelectedTile({x : newTarget.x, y : newTarget.y});
         }
     },
 
@@ -442,17 +449,30 @@ export let Game = {
         const untargetableBorders = {id: 7419, visible: true};
         this.selectedTile = loc;
         let mapTile = Game.map.data[this.selectedTile.y][this.selectedTile.x];
-        let properBorder = mapTile.blocked() ? untargetableBorders : targetingBorders;
+        let properBorder = mapTile.blocked() || this.map.visible_tiles[this.selectedTile. x+ ',' + this.selectedTile.y] === undefined ?
+            untargetableBorders :
+            targetingBorders;
         this.map.data[this.selectedTile.y][this.selectedTile.x].actors.push(properBorder);
         this.pathToTarget = {};
-        if (properBorder === untargetableBorders) {
-            this.pathToTarget = {};
-        } else {
-            this.player.path.compute(this.selectedTile.x, this.selectedTile.y, (x, y) => {
-                this.pathToTarget[x + ',' + y] = true;
-            });
+        if (properBorder === targetingBorders) {
+            let x0 = this.player.x;
+            let x1 = this.selectedTile.x;
+            let y0 = this.player.y;
+            let y1 = this.selectedTile.y;
+            let dx = Math.abs(x1 - x0), sx = x0 < x1 ? 1 : -1;
+            let dy = Math.abs(y1 - y0), sy = y0 < y1 ? 1 : -1;
+            let err = (dx>dy ? dx : -dy)/2;
+            while (! (x0 === x1 && y0 === y1)) {
+                this.pathToTarget[x0 + ',' + y0] = true;
+                let e2 = err;
+                if (e2 > -dx) { err -= dy; x0 += sx; }
+                if (e2 < dy) { err += dx; y0 += sy; }
+            }
+            this.pathToTarget[x0 + ',' + y0] = true;
             this.pathToTarget[this.player.x + ',' + this.player.y] = false;
         }
+        this.updateDisplay();
+        return properBorder === targetingBorders;
     },
 
     printPlayerTile: function () {

@@ -18,5 +18,5 @@ export class Bow extends RangedWeapon {
 }
 
 export const createBow = (x, y, id) => {
-    return new Bow(x, y, id, "Bow of the Sunwalker", 3, 3, 8);
+    return new Bow(x, y, id, "Bow of the Sunwalker", 3, 2, 8);
 }
