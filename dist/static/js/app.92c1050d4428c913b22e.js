@@ -4301,6 +4301,7 @@ class NPC extends __WEBPACK_IMPORTED_MODULE_0__entities_actors_Actor_js__["a" /*
     constructor(x, y, id) {
         super(x, y, {
             id: id,
+            name: "non-player character",
             visible: true,
             blocked: true,
             combat: {
@@ -5184,4 +5185,4 @@ module.exports = {"height":50,"layers":[{"data":[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
 /***/ })
 
 },["NHnr"]);
-//# sourceMappingURL=app.263e4af9cc751a433606.js.map
+//# sourceMappingURL=app.92c1050d4428c913b22e.js.map
