@@ -8,7 +8,7 @@
             <!-- Temporary log item for displaying info that isn't stored (examine text, or "this is blocked")  -->
             <li>
                 <p>
-                    <b style="grey">{{getTempMessage()}}</b>
+                    <b style="color: gray">{{getTempMessage().text}}</b>
                 </p>
             </li>
         </v-list>
@@ -16,14 +16,15 @@
 </template>
 
 <script>
-    import {Game} from '@/assets/js/game/Game.js'
+    import {Game} from '#/Game.js'
 
     /* import your actions here */
     export default {
         data() {
             return {
+                player : Game.player,
                 messages: Game.message_history,
-                tempMessage: Game.tempMessage,
+                tempMessage: Game.player.tempMessage,
             };
         },
         methods: {
@@ -31,7 +32,7 @@
                 return this.messages;
             },
             getTempMessage() {
-                return this.tempMessage;
+                return this.player.tempMessage;
             },
         },
     }

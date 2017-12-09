@@ -53,7 +53,6 @@
         created () {
             Game.init();
             this.player = Game.player;
-            this.actors = Game.actors;
         },
         mounted () {
             $('#game_container').html(Game.display.getContainer());

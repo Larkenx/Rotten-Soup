@@ -1,12 +1,11 @@
 <template>
     <v-layout fluid class="hud elevation-0" column style="max-width: 450px;">
         <!-- Health Bar -->
-        <v-flex>
             <v-layout row align-center style=" margin-bottom: -40px;">
                 <v-flex style="min-width: 75px;" md1 col><b>Health </b></v-flex>
                 <v-flex md4 col>
                     <v-progress-linear
-                        class="statsBar"
+                        id="hpBar"
                         color="error"
                         :value="(getHP() / getMaxHP()) * 100"
                         height="13"
@@ -14,15 +13,13 @@
                 </v-flex>
                 <v-flex md3 col style="padding-left: 5px;">{{getHP()}} / {{getMaxHP()}}</v-flex>
             </v-layout>
-        </v-flex>
 
         <!-- Magic Bar -->
-        <v-flex>
             <v-layout row align-center>
                 <v-flex md1 style="min-width: 75px;" col><b>Magic</b></v-flex>
                 <v-flex md4 col>
                     <v-progress-linear
-                        class="statsBar"
+                        id="manaBar"
                         :value="(getMana() / getMaxMana()) * 100"
                         height="13"
                         info
@@ -30,20 +27,16 @@
                 </v-flex>
                 <v-flex md3 col style="padding-left: 5px;">{{getMana()}} / {{getMaxMana()}}</v-flex>
             </v-layout>
-        </v-flex>
 
         <!-- Current World -->
-        <v-flex>
             <v-layout row align-center>
                 <v-flex xs5  col><b>Place: {{getCurrentLevel().capitalize()}}</b></v-flex>
                 <v-flex v-if="getCurrentLevelDepth() > 0" col><b>Level: {{getCurrentLevelDepth()}}</b></v-flex>
             </v-layout>
-        </v-flex>
 
         <!-- Mini-map -->
         <mini-map></mini-map>
 
-        <v-flex>
             <v-tabs :scrollable="false" grow v-model="activeTab"
                     style="max-width: 350px; margin-top: 10px; margin-bottom: 10px; font-size: 11px;">
                 <v-tabs-bar class="cyan darken-4" dark>
@@ -76,7 +69,6 @@
                     </v-tabs-content>
                 </v-tabs-items>
             </v-tabs>
-        </v-flex>
         <!-- Inventory -->
         <inventory></inventory>
     </v-layout>
@@ -140,9 +132,18 @@
         margin-left: 20px;
     }
 
-    .statsBar {
-        border : solid 2px goldenrod;
+    #hpBar {
+        border : solid 2px hsl(0, 59%, 40%);
         border-radius: 2px;
+    }
+    #manaBar {
+        border : solid 2px rgb(20, 99, 177);;
+        border-radius: 2px;
+    }
+
+    .statsBar {
+        /*border : solid 2px goldenrod;*/
+        /*border-radius: 2px;*/
     }
 
     .xpCircleFont {

@@ -35,7 +35,7 @@ export let Game = {
     currentLevel: "overworld",
     map: null,
     message_history: [],
-    tempMessage : "",
+    tempMessage : {text: "", color : ""},
     minimap: null,
     selectedTile: null,
     pathToTarget: {},
@@ -131,7 +131,8 @@ export let Game = {
 
 
     clearTempLog() {
-        this.tempLog = "";
+        this.tempMessage = {color : "gray", text : ""};
+        this.player.tempMessage = this.tempMessage;
     },
 
     inbounds(x, y) {
@@ -444,13 +445,13 @@ export let Game = {
         this.map.data[this.selectedTile.y][this.selectedTile.x].actors.push(properBorder);
         this.pathToTarget = {};
         if (properBorder === targetingBorders) {
-            let x0 = this.player.x;
-            let x1 = this.selectedTile.x;
-            let y0 = this.player.y;
-            let y1 = this.selectedTile.y;
-            let dx = Math.abs(x1 - x0), sx = x0 < x1 ? 1 : -1;
-            let dy = Math.abs(y1 - y0), sy = y0 < y1 ? 1 : -1;
-            let err = (dx>dy ? dx : -dy)/2;
+            let x0 = this.player.x,
+                x1 = this.selectedTile.x,
+                y0 = this.player.y,
+                y1 = this.selectedTile.y,
+                dx = Math.abs(x1 - x0), sx = x0 < x1 ? 1 : -1,
+                dy = Math.abs(y1 - y0), sy = y0 < y1 ? 1 : -1,
+                err = (dx>dy ? dx : -dy)/2;
             while (! (x0 === x1 && y0 === y1)) {
                 this.pathToTarget[x0 + ',' + y0] = true;
                 let e2 = err;
@@ -465,18 +466,25 @@ export let Game = {
         return properBorder === targetingBorders;
     },
 
+    logToTemp(msg) {
+        this.tempMessage = {text : msg, color : "gray"};
+        this.player.tempMessage = this.tempMessage;
+    },
+
     describeSelectedTile() {
+        const targetingBorders = {id: 7418, visible: true};
+        const untargetableBorders = {id: 7419, visible: true};
         /* Returns an array of strings describing what exists on the currently selected tile.
         this can be obstacles, items, traps, or enemies */
         let tile = this.map.data[this.selectedTile.y][this.selectedTile.x];
-        let names = tile.actors.filter(a => {return a.id !== 7148 || ad.id !== 7149}).map(a => {return a.name});
-        let prettyNames = names.slice(1, names.length - 1)
+        let names = tile.actors.filter(a => {return a instanceof Actor && a !== this.player}).map(a => {return a.name});
+        let prettyNames = names.slice(1, names.length - 1);
         prettyNames = prettyNames.reduce((buf, str) => {
             return buf + ", a " + str
         }, "a  " + names.slice(0, 1));
-        let lastName = ` and a ${names.slice(-1)}.`;
-        let buffer = `You picked up ${prettyNames + lastName}`;
-        this.logToTemp("Hello world");
+        if (names.length > 1) prettyNames + ` and a ${names.slice(-1)}.`
+        else if (names.length == 0) prettyNames = "nothing"
+        this.logToTemp(`[You see ${prettyNames} here.]`);
     },
 
     printPlayerTile() {
@@ -514,7 +522,5 @@ export let Game = {
         }, 800);
     },
 
-    logToTemp(msg) {
-        this.tempMessage = msg;
-    },
+
 };
