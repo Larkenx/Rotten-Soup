@@ -8,8 +8,6 @@ export default class ManaPotion extends Potion {
         super(x, y, {
             id: id,
             type: "Mana Potion",
-            name: "Mana Potion"
-
         });
     }
 

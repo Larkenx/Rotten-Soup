@@ -353,9 +353,7 @@ class ManaPotion extends __WEBPACK_IMPORTED_MODULE_0__entities_items_potions_Pot
     constructor(x, y, id) {
         super(x, y, {
             id: id,
-            type: "Mana Potion",
-            name: "Mana Potion"
-
+            type: "Mana Potion"
         });
     }
 
@@ -545,7 +543,6 @@ class StrengthPotion extends __WEBPACK_IMPORTED_MODULE_0__entities_items_potions
     constructor(x, y, id) {
         super(x, y, {
             id: id,
-            name: "Strength Potion",
             type: "Strength Potion"
         });
         this.buff = new __WEBPACK_IMPORTED_MODULE_2__modifiers_Buff_js__["b" /* StrengthBuff */](3);
@@ -1455,8 +1452,9 @@ function randomMap(width, height, dir, level = 1) {
         if (!blocked) freeCells[x + "," + y] = true;
     };
     let rogueMap = new __WEBPACK_IMPORTED_MODULE_0_rot_js___default.a.Map.Digger(width, height, {
-        roomWidth: [4, 20],
-        corrdiorLength: [3, 20]
+        roomWidth: [6, 20],
+        corrdiorLength: [4, 4],
+        roomDugPercentage: 0.1
     }).create(diggerCallback);
     // Initialize obstacles and actors
     for (let j = 0; j < height; j++) {
@@ -1511,6 +1509,99 @@ function randomMap(width, height, dir, level = 1) {
     };
     /* For every room in the dungeon, we're going to add
      * textures from the tileset for the walls and the floors */
+
+    let buildsCorrWalls = function (x, y, horizontal, end = false) {
+        let floor_ids = Object.values(corridorFloor.vertical) + Object.values(floor) + Object.values(corridorFloor.horizontal) + [7741, 569 + 1, 568 + 1];
+        if (horizontal) {
+            let above = map.layers[0].data[y - 1][x];
+            let below = map.layers[0].data[y + 1][x];
+            map.layers[0].data[y - 1][x] = !floor_ids.includes(above - 1) ? walls.top + 1 : above;
+            map.layers[0].data[y + 1][x] = !floor_ids.includes(below - 1) ? walls.bottom + 1 : below;
+        } else {
+            let left = map.layers[0].data[y][x - 1];
+            let right = map.layers[0].data[y][x + 1];
+            map.layers[0].data[y][x - 1] = !floor_ids.includes(left - 1) ? walls.left + 1 : left;
+            map.layers[0].data[y][x + 1] = !floor_ids.includes(right - 1) ? walls.right + 1 : right;
+        }
+
+        if (end) {
+            let ul = map.layers[0].data[y - 1][x - 1];
+            let ur = map.layers[0].data[y - 1][x + 1];
+            let ll = map.layers[0].data[y + 1][x - 1];
+            let lr = map.layers[0].data[y + 1][x + 1];
+            let above = map.layers[0].data[y - 1][x];
+            let below = map.layers[0].data[y + 1][x];
+            let left = map.layers[0].data[y][x - 1];
+            let right = map.layers[0].data[y][x + 1];
+            map.layers[0].data[y - 1][x - 1] = ul === 7046 ? walls.upperLeft + 1 : ul;
+            map.layers[0].data[y - 1][x + 1] = ur === 7046 ? walls.upperRight + 1 : ur;
+            map.layers[0].data[y + 1][x - 1] = ll === 7046 ? walls.lowerLeft + 1 : ll;
+            map.layers[0].data[y + 1][x + 1] = lr === 7046 ? walls.lowerRight + 1 : lr;
+            map.layers[0].data[y - 1][x] = !floor_ids.includes(above - 1) ? walls.top + 1 : above;
+            map.layers[0].data[y + 1][x] = !floor_ids.includes(below - 1) ? walls.bottom + 1 : below;
+            map.layers[0].data[y][x - 1] = !floor_ids.includes(left - 1) ? walls.left + 1 : left;
+            map.layers[0].data[y][x + 1] = !floor_ids.includes(right - 1) ? walls.right + 1 : right;
+        }
+    };
+
+    let sortCorridors = function (a, b) {
+        if (a._startX === a._endX && b._startX !== b._endX) {
+            return -1;
+        } else if (b._startX === b._endX && a._startX !== a._endX) {
+            return 1;
+        } else {
+            return 0;
+        }
+    };
+
+    /* After rooms, we need to clean up textures for corridors, which
+     * are stretches of rows or columns */
+    for (let corridor of rogueMap.getCorridors().sort(sortCorridors)) {
+        let sx = corridor._startX;
+        let sy = corridor._startY;
+        let ex = corridor._endX;
+        let ey = corridor._endY;
+        if (sx === ex) {
+            // vertical corridor |
+            if (sy > ey) {
+                let temp = sy;
+                sy = ey;
+                ey = temp;
+            }
+            let y = sy;
+            buildsCorrWalls(sx, y, false, true);
+            map.layers[0].data[y][sx] = corridorFloor.vertical.top + 1;
+            y++;
+            while (y < ey) {
+                buildsCorrWalls(sx, y, false);
+                map.layers[0].data[y][sx] = corridorFloor.vertical.middle + 1;
+                y++;
+            }
+            map.layers[0].data[ey][sx] = corridorFloor.vertical.bottom + 1;
+            buildsCorrWalls(sx, y, false, true);
+        } else if (sy === ey) {
+            // horizontal corridor ------
+            if (sx > ex) {
+                let temp = sx;
+                sx = ex;
+                ex = temp;
+            }
+            let x = sx;
+            buildsCorrWalls(x, sy, true, true);
+            map.layers[0].data[sy][x] = corridorFloor.horizontal.left + 1;
+            x++;
+            while (x < ex) {
+                buildsCorrWalls(x, sy, true);
+                map.layers[0].data[sy][x] = corridorFloor.horizontal.middle + 1;
+                x++;
+            }
+            buildsCorrWalls(x, sy, true, true);
+            map.layers[0].data[ey][x] = corridorFloor.horizontal.right + 1;
+        } else {
+            console.log(`[${sx}, ${sy}] => [${ex},${ey}]`);
+        }
+    }
+
     for (let room of rogueMap.getRooms()) {
         let left = room.getLeft() - 1;
         let right = room.getRight() + 1;
@@ -1613,97 +1704,27 @@ function randomMap(width, height, dir, level = 1) {
         }
     }
 
-    let buildsCorrWalls = function (x, y, horizontal, end = false) {
-        let floor_ids = Object.values(corridorFloor.vertical) + Object.values(floor) + Object.values(corridorFloor.horizontal) + [7741, 569 + 1, 568 + 1];
-        if (horizontal) {
-            let above = map.layers[0].data[y - 1][x];
-            let below = map.layers[0].data[y + 1][x];
-            map.layers[0].data[y - 1][x] = !floor_ids.includes(above - 1) ? walls.top + 1 : above;
-            map.layers[0].data[y + 1][x] = !floor_ids.includes(below - 1) ? walls.bottom + 1 : below;
-        } else {
-            let left = map.layers[0].data[y][x - 1];
-            let right = map.layers[0].data[y][x + 1];
-            map.layers[0].data[y][x - 1] = !floor_ids.includes(left - 1) ? walls.left + 1 : left;
-            map.layers[0].data[y][x + 1] = !floor_ids.includes(right - 1) ? walls.right + 1 : right;
-        }
-
-        if (end) {
-            let ul = map.layers[0].data[y - 1][x - 1];
-            let ur = map.layers[0].data[y - 1][x + 1];
-            let ll = map.layers[0].data[y + 1][x - 1];
-            let lr = map.layers[0].data[y + 1][x + 1];
-            let above = map.layers[0].data[y - 1][x];
-            let below = map.layers[0].data[y + 1][x];
-            let left = map.layers[0].data[y][x - 1];
-            let right = map.layers[0].data[y][x + 1];
-            map.layers[0].data[y - 1][x - 1] = ul === 7046 ? walls.upperLeft + 1 : ul;
-            map.layers[0].data[y - 1][x + 1] = ur === 7046 ? walls.upperRight + 1 : ur;
-            map.layers[0].data[y + 1][x - 1] = ll === 7046 ? walls.lowerLeft + 1 : ll;
-            map.layers[0].data[y + 1][x + 1] = lr === 7046 ? walls.lowerRight + 1 : lr;
-            map.layers[0].data[y - 1][x] = !floor_ids.includes(above - 1) ? walls.top + 1 : above;
-            map.layers[0].data[y + 1][x] = !floor_ids.includes(below - 1) ? walls.bottom + 1 : below;
-            map.layers[0].data[y][x - 1] = !floor_ids.includes(left - 1) ? walls.left + 1 : left;
-            map.layers[0].data[y][x + 1] = !floor_ids.includes(right - 1) ? walls.right + 1 : right;
-        }
-    };
-
-    let sortCorridors = function (a, b) {
-        if (a._startX === a._endX && b._startX !== b._endX) {
-            return -1;
-        } else if (b._startX === b._endX && a._startX !== a._endX) {
-            return 1;
-        } else {
-            return 0;
-        }
-    };
-
-    /* After rooms, we need to clean up textures for corridors, which
-     * are stretches of rows or columns */
-    for (let corridor of rogueMap.getCorridors().sort(sortCorridors)) {
-        let sx = corridor._startX;
-        let sy = corridor._startY;
-        let ex = corridor._endX;
-        let ey = corridor._endY;
-        if (sx === ex) {
-            // vertical corridor |
-            if (sy > ey) {
-                let temp = sy;
-                sy = ey;
-                ey = temp;
-            }
-            let y = sy;
-            buildsCorrWalls(sx, y, false, true);
-            map.layers[0].data[y][sx] = corridorFloor.vertical.top + 1;
-            y++;
-            while (y < ey) {
-                buildsCorrWalls(sx, y, false);
-                map.layers[0].data[y][sx] = corridorFloor.vertical.middle + 1;
-                y++;
-            }
-            map.layers[0].data[ey][sx] = corridorFloor.vertical.bottom + 1;
-            buildsCorrWalls(sx, y, false, true);
-        } else if (sy === ey) {
-            // horizontal corridor ------
-            if (sx > ex) {
-                let temp = sx;
-                sx = ex;
-                ex = temp;
-            }
-            let x = sx;
-            buildsCorrWalls(x, sy, true, true);
-            map.layers[0].data[sy][x] = corridorFloor.horizontal.left + 1;
-            x++;
-            while (x < ex) {
-                buildsCorrWalls(x, sy, true);
-                map.layers[0].data[sy][x] = corridorFloor.horizontal.middle + 1;
-                x++;
-            }
-            buildsCorrWalls(x, sy, true, true);
-            map.layers[0].data[ey][x] = corridorFloor.horizontal.right + 1;
-        } else {
-            console.log(`[${sx}, ${sy}] => [${ex},${ey}]`);
-        }
-    }
+    // Cleaning up the corners...
+    // let floor_ids = Object.values(corridorFloor.vertical) + Object.values(floor) + Object.values(corridorFloor.horizontal) + [7741, 569 + 1, 568 + 1];
+    // console.log(floor_ids);
+    // for (let y = 0; y < height; y++) {
+    //     for (let x = 0; x < width; x++) {
+    //         let symbol = map.layers[0].data[y][x];
+    //         if (symbol === walls.top+1) {
+    //             let ul = map.layers[0].data[y - 1][x - 1];
+    //             let ur = map.layers[0].data[y - 1][x + 1];
+    //             let ll = map.layers[0].data[y + 1][x - 1];
+    //             let lr = map.layers[0].data[y + 1][x + 1];
+    //             let above = map.layers[0].data[y - 1][x];
+    //             let below = map.layers[0].data[y + 1][x];
+    //             let left = map.layers[0].data[y][x - 1];
+    //             let right = map.layers[0].data[y][x + 1];
+    //             if (above === walls.right && (corridorFloor.vertical.includes(right-1))) {
+    //                 map.layers[0].data[y][x] = walls.lowerRight+1;
+    //             }
+    //         }
+    //     }
+    // }
 
     // Randomly select starting position for player
     let start = randomProperty(freeCells).split(',');
@@ -2632,7 +2653,6 @@ class SteelArrow extends Arrow {
     constructor(x, y, id, quantity) {
         super(x, y, {
             id: id,
-            name: "Steel Arrow",
             type: "Steel Arrow",
             combat: {
                 damage: 0
@@ -2905,7 +2925,8 @@ let Game = {
     changeLevels(newLevel, dir, level) {
         if (this.levels[newLevel] === undefined) {
             this.levels[newLevel] = new __WEBPACK_IMPORTED_MODULE_1__map_GameMap_js__["a" /* GameMap */](__webpack_require__.i(__WEBPACK_IMPORTED_MODULE_7__map_RandomMap_js__["a" /* randomMap */])(40, 40, dir, level));
-            console.log(newLevel + " does not exist, so a new random instance is being created.");
+            this.levels[newLevel].revealed = false;
+            // console.log(newLevel + " does not exist, so a new random instance is being created.");
         }
 
         this.map.playerLocation = [Game.player.x, Game.player.y];
@@ -4400,7 +4421,6 @@ class HealthPotion extends __WEBPACK_IMPORTED_MODULE_0__entities_items_potions_P
     constructor(x, y, id) {
         super(x, y, {
             id: id,
-            name: "health potion",
             type: "Health Potion"
         });
     }
@@ -5185,4 +5205,4 @@ module.exports = {"height":50,"layers":[{"data":[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
 /***/ })
 
 },["NHnr"]);
-//# sourceMappingURL=app.92c1050d4428c913b22e.js.map
+//# sourceMappingURL=app.3ad105665e6f04963f50.js.map

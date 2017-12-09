@@ -6,7 +6,6 @@ export default class HealthPotion extends Potion {
     constructor(x, y, id) {
         super(x, y, {
             id: id,
-            name : "health potion",
             type: "Health Potion"
         });
     }

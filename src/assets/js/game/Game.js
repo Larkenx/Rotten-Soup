@@ -131,7 +131,6 @@ export let Game = {
         this.drawMiniMap();
     },
 
-
     clearTempLog() {
         this.tempMessage = {color : "gray", text : ""};
         this.player.tempMessage = this.tempMessage;
@@ -144,7 +143,8 @@ export let Game = {
     changeLevels(newLevel, dir, level) {
         if (this.levels[newLevel] === undefined) {
             this.levels[newLevel] = new GameMap(randomMap(40, 40, dir, level));
-            console.log(newLevel + " does not exist, so a new random instance is being created.");
+            this.levels[newLevel].revealed = false;
+            // console.log(newLevel + " does not exist, so a new random instance is being created.");
         }
 
         this.map.playerLocation = [Game.player.x, Game.player.y];
@@ -239,9 +239,9 @@ export let Game = {
                 for (let x = 0; x < this.map.width; x++) {
                     let tile = this.map.data[y][x];
                     if (tile.x + ',' + tile.y in this.map.visible_tiles)
-                    this.minimap.draw(x, y, " ", tile.bg(), this.brightenColor(tile.bg()));
+                        this.minimap.draw(x, y, " ", tile.bg(), this.brightenColor(tile.bg()));
                     else
-                    this.minimap.draw(x, y, " ", tile.bg(), tile.bg());
+                        this.minimap.draw(x, y, " ", tile.bg(), tile.bg());
                 }
             }
 

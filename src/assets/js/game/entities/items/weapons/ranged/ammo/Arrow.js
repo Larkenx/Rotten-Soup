@@ -11,7 +11,6 @@ export class SteelArrow extends Arrow {
     constructor(x, y, id, quantity) {
         super(x, y, {
             id: id,
-            name: "Steel Arrow",
             type: "Steel Arrow",
             combat: {
                 damage: 0,
