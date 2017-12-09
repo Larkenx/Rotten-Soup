@@ -2,11 +2,13 @@ import ROT from "rot-js";
 import {GameMap, getTilesetCoords} from "#/map/GameMap.js";
 import GameDisplay from "#/GameDisplay.js";
 import {Actor} from "#/entities/actors/Actor.js";
-
+import {Entity} from "#/entities/Entity.js";
+import Item from '#/entities/items/Item.js';
 import Player from "#/entities/actors/Player.js";
 import {randomMap} from "#/map/RandomMap.js";
 import Door from "#/entities/misc/Door.js";
 import Ladder from "#/entities/misc/Ladder.js";
+
 
 
 export const tileset = require('@/assets/maps/tileset/compiled_dawnlike.json')
@@ -35,13 +37,14 @@ export let Game = {
     currentLevel: "overworld",
     map: null,
     message_history: [],
+    tempMessage : {text: "", color : ""},
     minimap: null,
     selectedTile: null,
     pathToTarget: {},
     enemyCycle : null,
     enemyCycleIndex : 0,
 
-    init: function (dev = false) {
+    init(dev = false) {
         this.dev = dev;
         this.map = new GameMap(overworldMap);
         this.levels["overworld"] = this.map;
@@ -61,13 +64,13 @@ export let Game = {
             if (id in tileset.tileproperties) {
                 let properties = tileset.tileproperties[id];
                 if (properties.FOV)
-                    tileMap[properties.FOV_id] = getTilesetCoords(properties.FOV_id);
+                tileMap[properties.FOV_id] = getTilesetCoords(properties.FOV_id);
                 if (properties.animated)
-                    tileMap[properties.animated_id] = getTilesetCoords(properties.animated_id);
+                tileMap[properties.animated_id] = getTilesetCoords(properties.animated_id);
                 if (properties.animated && properties.FOV)
-                    tileMap[properties.animated_fov_id] = getTilesetCoords(properties.animated_fov_id);
+                tileMap[properties.animated_fov_id] = getTilesetCoords(properties.animated_fov_id);
                 if (properties.activated_id)
-                    tileMap[properties.activated_id] = getTilesetCoords(properties.activated_id);
+                tileMap[properties.activated_id] = getTilesetCoords(properties.activated_id);
             }
         }
         this.displayOptions = {
@@ -92,7 +95,7 @@ export let Game = {
         this.drawViewPort();
         this.initializeMinimap();
         this.engine.start(); // Start the engine
-        tileSet.onload = function () {
+        tileSet.onload = () => {
             Game.drawViewPort();
             Game.drawMiniMap();
         };
@@ -102,7 +105,7 @@ export let Game = {
         Game.display.setOptions(this.displayOptions);
     },
 
-    scheduleAllActors: function () {
+    scheduleAllActors() {
         // Set up the ROT engine and scheduler
         this.scheduler = new ROT.Scheduler.Simple();
         this.scheduler.add(new GameDisplay(), true);
@@ -116,7 +119,7 @@ export let Game = {
         this.engine = new ROT.Engine(this.scheduler); // Create new engine with the newly created scheduler
     },
 
-    initializeMinimap: function () {
+    initializeMinimap() {
         /* Create a ROT.JS display for the minimap! */
         this.minimap = new ROT.Display({
             width: this.map.width,
@@ -128,28 +131,17 @@ export let Game = {
         this.drawMiniMap();
     },
 
-    log: function (message, type) {
-        let message_color = {
-            'defend': 'lightblue',
-            'magic' : '#3C1CFD',
-            'attack': 'red',
-            'death': 'crimson',
-            'information': 'yellow',
-            'player_move': 'grey',
-            'level_up': 'green',
-            'alert': 'orange',
-        };
-        this.message_history.push([message, message_color[type]]);
-        $('#fix_scroll').stop().animate({
-            scrollTop: $('#fix_scroll')[0].scrollHeight
-        }, 800);
+
+    clearTempLog() {
+        this.tempMessage = {color : "gray", text : ""};
+        this.player.tempMessage = this.tempMessage;
     },
 
-    inbounds: function (x, y) {
+    inbounds(x, y) {
         return !(x < 0 || x >= this.map.width || y < 0 || y >= this.map.height);
     },
 
-    changeLevels: function (newLevel, dir, level) {
+    changeLevels(newLevel, dir, level) {
         if (this.levels[newLevel] === undefined) {
             this.levels[newLevel] = new GameMap(randomMap(40, 40, dir, level));
             console.log(newLevel + " does not exist, so a new random instance is being created.");
@@ -172,7 +164,7 @@ export let Game = {
 
     },
 
-    drawViewPort: function () {
+    drawViewPort() {
         // Camera positions
         let camera = { // camera x,y resides in the upper left corner
             x: this.player.x - ~~(Game.width / 2),
@@ -182,11 +174,11 @@ export let Game = {
         };
         let startingPos = [camera.x, camera.y];
         if (camera.x < 0) // far left
-            startingPos[0] = 0;
+        startingPos[0] = 0;
         if (camera.x + camera.width > Game.map.width) // far right
-            startingPos[0] = Game.map.width - camera.width;
+        startingPos[0] = Game.map.width - camera.width;
         if (camera.y <= 0) // at the top of the map
-            startingPos[1] = 0;
+        startingPos[1] = 0;
         if (camera.y + camera.height > Game.map.height) { // at the bottom of the map
             startingPos[1] = Game.map.height - camera.height;
         }
@@ -227,8 +219,7 @@ export let Game = {
         }
     },
 
-
-    drawTile: function (x, y, tile, fov) {
+    drawTile(x, y, tile, fov) {
         let symbols = tile.getSpriteIDS(this.turn % 2 === 0, fov);
         // if (symbols.some((e) => {return e === "0"})) throw "A tile is empty!"
         // console.log(this.pathToTarget[x+','+y]);
@@ -239,7 +230,7 @@ export let Game = {
         }
     },
 
-    drawMiniMap: function () {
+    drawMiniMap() {
         let otherActors = this.map.actors.filter((a) => {
             return (a instanceof Ladder || a instanceof Door);
         });
@@ -248,9 +239,9 @@ export let Game = {
                 for (let x = 0; x < this.map.width; x++) {
                     let tile = this.map.data[y][x];
                     if (tile.x + ',' + tile.y in this.map.visible_tiles)
-                        this.minimap.draw(x, y, " ", tile.bg(), this.brightenColor(tile.bg()));
+                    this.minimap.draw(x, y, " ", tile.bg(), this.brightenColor(tile.bg()));
                     else
-                        this.minimap.draw(x, y, " ", tile.bg(), tile.bg());
+                    this.minimap.draw(x, y, " ", tile.bg(), tile.bg());
                 }
             }
 
@@ -272,26 +263,26 @@ export let Game = {
             }
             for (let a of otherActors) {
                 if (a.x + "," + a.y in this.map.seen_tiles)
-                    this.minimap.draw(a.x, a.y, " ", a.fg, a.bg);
+                this.minimap.draw(a.x, a.y, " ", a.fg, a.bg);
             }
         }
         // Draw the actor in the mini-map
         this.minimap.draw(this.player.x, this.player.y, " ", "yellow", "yellow");
     },
 
-    brightenColor: function (color) {
+    brightenColor(color) {
         // console.log(color);
         let hsl_color = ROT.Color.rgb2hsl(ROT.Color.fromString(color));
         hsl_color[2] *= 1.25;
         return ROT.Color.toRGB(ROT.Color.hsl2rgb(hsl_color));
     },
 
-    updateDisplay: function () {
+    updateDisplay() {
         this.drawViewPort();
         this.drawMiniMap();
     },
 
-    getNearbyEnemies: function () {
+    getNearbyEnemies() {
         let camera = { // camera x,y resides in the upper left corner
             x: this.player.x - ~~(Game.width / 2),
             y: this.player.y - ~~(Game.height / 2),
@@ -300,11 +291,11 @@ export let Game = {
         };
         let startingPos = [camera.x, camera.y];
         if (camera.x < 0) // far left
-            startingPos[0] = 0;
+        startingPos[0] = 0;
         if (camera.x + camera.width > Game.map.width) // far right
-            startingPos[0] = Game.map.width - camera.width;
+        startingPos[0] = Game.map.width - camera.width;
         if (camera.y <= 0) // at the top of the map
-            startingPos[1] = 0;
+        startingPos[1] = 0;
         if (camera.y + camera.height > Game.map.height) { // at the bottom of the map
             startingPos[1] = Game.map.height - camera.height;
         }
@@ -320,7 +311,7 @@ export let Game = {
                     actors = actors.concat(tile.actors);
                 } else {
                     if (tile.x + "," + tile.y in this.map.visible_tiles)
-                        actors = actors.concat(tile.actors);
+                    actors = actors.concat(tile.actors);
                 }
             }
             dx++;
@@ -333,18 +324,17 @@ export let Game = {
         // we sort the enemies closest to farthest away
         return enemies.sort((a1, a2) => {
             if (a1.distanceTo(this.player) < a2.distanceTo(this.player))
-                return -1
+            return -1
             else if (a2.distanceTo(this.player) < a1.distanceTo(this.player))
-                return 1
+            return 1
             else
-                return 0
+            return 0
         });
     },
 
     getClosestEnemyToPlayer() {
         return this.getNearbyEnemies()[0];
     },
-
 
     clearSelectedTile() {
         const targetingBorders = {id: 7418};
@@ -357,6 +347,7 @@ export let Game = {
             this.selectedTile = null;
             this.pathToTarget = {};
         }
+        this.clearTempLog(); // clear the temporary log which describes the tile we're on
         this.updateDisplay();
     },
 
@@ -369,14 +360,14 @@ export let Game = {
             let x = tile.x + diff[0];
             let y = tile.y + diff[1];
             if (!this.inbounds(x, y)) /* || ! x+','+y in this.map.visible_tiles )*/
-                return;
+            return;
         } else {
             // we have had a previously selected tile and need to pop the targeting reticle before pushing it onto the new tile
             tile = this.selectedTile;
             let x = tile.x + diff[0];
             let y = tile.y + diff[1];
             if (!this.inbounds(x, y)) /* || ! x+','+y in this.map.visible_tiles) */
-                return;
+            return;
             let actors = Game.map.data[tile.y][tile.x].actors.filter((obs) => {
                 return obs.id !== targetingBorders.id && obs.id !== untargetableBorders.id;
             });
@@ -390,8 +381,8 @@ export let Game = {
         let {x,y} = this.selectedTile;
         let mapTile = Game.map.data[this.selectedTile.y][this.selectedTile.x];
         let properBorder = mapTile.blocked() || this.map.visible_tiles[x + ',' + y] === undefined ?
-            untargetableBorders :
-            targetingBorders;
+        untargetableBorders :
+        targetingBorders;
         this.map.data[this.selectedTile.y][this.selectedTile.x].actors.push(properBorder);
         // highlighting the path from the player to the target reticle using bresenham line algorithm
         /* https://rosettacode.org/wiki/Bitmap/Bresenham%27s_line_algorithm#JavaScript */
@@ -413,6 +404,7 @@ export let Game = {
             this.pathToTarget[x0 + ',' + y0] = true;
             this.pathToTarget[this.player.x + ',' + this.player.y] = false;
         }
+        this.describeSelectedTile();
         this.updateDisplay();
         return properBorder === targetingBorders;
     },
@@ -421,9 +413,9 @@ export let Game = {
         this.clearSelectedTile();
         let enemy = this.getClosestEnemyToPlayer();
         if (enemy !== undefined)
-            return this.changeToExactSelectedTile({x: enemy.x, y: enemy.y});
+        return this.changeToExactSelectedTile({x: enemy.x, y: enemy.y});
         else
-            return false;
+        return false;
 
     },
 
@@ -437,7 +429,7 @@ export let Game = {
             this.clearSelectedTile();
             this.enemyCycleIndex += 1;
             if (this.enemyCycleIndex === this.enemyCycle.length)
-                this.enemyCycleIndex = 0;
+            this.enemyCycleIndex = 0;
 
             let newTarget = this.enemyCycle[this.enemyCycleIndex];
             return this.changeToExactSelectedTile({x : newTarget.x, y : newTarget.y});
@@ -450,18 +442,18 @@ export let Game = {
         this.selectedTile = loc;
         let mapTile = Game.map.data[this.selectedTile.y][this.selectedTile.x];
         let properBorder = mapTile.blocked() || this.map.visible_tiles[this.selectedTile. x+ ',' + this.selectedTile.y] === undefined ?
-            untargetableBorders :
-            targetingBorders;
+        untargetableBorders :
+        targetingBorders;
         this.map.data[this.selectedTile.y][this.selectedTile.x].actors.push(properBorder);
         this.pathToTarget = {};
         if (properBorder === targetingBorders) {
-            let x0 = this.player.x;
-            let x1 = this.selectedTile.x;
-            let y0 = this.player.y;
-            let y1 = this.selectedTile.y;
-            let dx = Math.abs(x1 - x0), sx = x0 < x1 ? 1 : -1;
-            let dy = Math.abs(y1 - y0), sy = y0 < y1 ? 1 : -1;
-            let err = (dx>dy ? dx : -dy)/2;
+            let x0 = this.player.x,
+                x1 = this.selectedTile.x,
+                y0 = this.player.y,
+                y1 = this.selectedTile.y,
+                dx = Math.abs(x1 - x0), sx = x0 < x1 ? 1 : -1,
+                dy = Math.abs(y1 - y0), sy = y0 < y1 ? 1 : -1,
+                err = (dx>dy ? dx : -dy)/2;
             while (! (x0 === x1 && y0 === y1)) {
                 this.pathToTarget[x0 + ',' + y0] = true;
                 let e2 = err;
@@ -472,10 +464,39 @@ export let Game = {
             this.pathToTarget[this.player.x + ',' + this.player.y] = false;
         }
         this.updateDisplay();
+        this.describeSelectedTile();
         return properBorder === targetingBorders;
     },
 
-    printPlayerTile: function () {
+    logToTemp(msg) {
+        this.tempMessage = {text : msg, color : "gray"};
+        this.player.tempMessage = this.tempMessage;
+        $('#fix_scroll').stop().animate({
+            scrollTop: $('#fix_scroll')[0].scrollHeight
+        }, 800);
+    },
+
+    describeSelectedTile() {
+        /* Returns an array of strings describing what exists on the currently selected tile.
+        this can be obstacles, items, traps, or enemies */
+        let tile = this.map.data[this.selectedTile.y][this.selectedTile.x];
+        let names = tile.actors.filter(a => {return a instanceof Entity && a !== this.player}).map(a => {
+            return a instanceof Item ? a.type.toLowerCase() : a.name.toLowerCase();
+        });
+        let prettyNames = [];
+        prettyNames = names.slice(1,-1).reduce((buf, str) => {
+            return buf + ", a " + str
+        }, "a  " + names.slice(0, 1));
+
+        if (names.length > 1)
+            prettyNames = prettyNames + [` and a ${names.slice(-1)}`]
+        else if (names.length == 0)
+            prettyNames = "nothing"
+
+        this.logToTemp(`[You see ${prettyNames} here.]`);
+    },
+
+    printPlayerTile() {
         console.log(Game.map.data[this.player.y][this.player.x]);
     },
 
@@ -491,5 +512,24 @@ export let Game = {
         let x = t[0] + this.camera.x;
         let y = t[1] + this.camera.y;
         this.hoveredTile = t[0] + ',' + t[1];
-    }
+    },
+
+    log(message, type) {
+        let message_color = {
+            'defend': 'lightblue',
+            'magic' : '#3C1CFD',
+            'attack': 'red',
+            'death': 'crimson',
+            'information': 'yellow',
+            'player_move': 'grey',
+            'level_up': 'green',
+            'alert': 'orange',
+        };
+        this.message_history.push([message, message_color[type]]);
+        $('#fix_scroll').stop().animate({
+            scrollTop: $('#fix_scroll')[0].scrollHeight
+        }, 800);
+    },
+
+
 };

@@ -8,6 +8,7 @@ import Key from "#/entities/items/misc/Key.js";
 export default class LockedDoor extends Door {
     constructor(x, y, id) {
         super(x, y, id);
+        this.name = "locked door";
     }
 
     react(actor) {

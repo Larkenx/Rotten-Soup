@@ -8,6 +8,7 @@ import {Entity} from "#/entities/Entity.js";
 export default class Chest extends Entity {
     constructor(x, y, id) {
         super(x, y, {
+            name : "chest",
             id: id,
             visible: true,
             blocked: true,

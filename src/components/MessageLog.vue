@@ -5,23 +5,34 @@
             <li v-for="(message, index) in getMessages()" v-bind:key="index">
                 <p><b v-bind:style="{color : message[1]}">{{message[0]}}</b></p>
             </li>
+            <!-- Temporary log item for displaying info that isn't stored (examine text, or "this is blocked")  -->
+            <li>
+                <p>
+                    <b style="color: gray">{{getTempMessage().text}}</b>
+                </p>
+            </li>
         </v-list>
     </v-layout>
 </template>
 
 <script>
-    import {Game} from '@/assets/js/game/Game.js'
+    import {Game} from '#/Game.js'
 
     /* import your actions here */
     export default {
         data() {
             return {
+                player : Game.player,
                 messages: Game.message_history,
+                tempMessage: Game.player.tempMessage,
             };
         },
         methods: {
             getMessages() {
                 return this.messages;
+            },
+            getTempMessage() {
+                return this.player.tempMessage;
             },
         },
     }
