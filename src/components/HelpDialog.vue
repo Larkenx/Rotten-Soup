@@ -53,11 +53,11 @@
                         </v-card>
                     </v-expansion-panel-content>
                     <v-expansion-panel-content>
-                        <div slot="header">Movement</div>
+                        <div slot="header">Movement and Examining</div>
                         <v-card flat>
                             <v-card-text class="pb-0 pt-0">
                                 <v-container>
-                                    <p>You can move with arrow keys, the numpad, or vi keys. You can move in all 8 directions.</p>
+                                    <p>You can move with arrow keys, the numpad, or vi keys. You can move in all 8 directions. </p>
                                     <v-container class="text-xs-center">
                                       <pre>y  k  u      7  8  9  </pre>
                                       <pre> \ | /        \ | /   </pre>
@@ -66,6 +66,9 @@
                                       <pre>b  j  n      1  2  3  </pre>
                                       <pre>vi-keys     numberpad </pre>
                                     </v-container>
+                                    <p>
+                                        When in targeting mode, you can use these keys to switch to different tiles. Press <code>x</code> to examine your surroundings. Press <code>x</code> or <code>escape</code> to leave the examine mode.
+                                    </p>
                                 </v-container>
                             </v-card-text>
                         </v-card>
@@ -132,6 +135,7 @@ export default {
                 {code : ">", description : "Climb down a ladder"},
                 {code : "f", description : "Fire a ranged weapon"},
                 {code : "z", description : "Cast a spell"},
+                {code : "x", description : "Examine the area"},
             ]
         }
     },

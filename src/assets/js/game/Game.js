@@ -2,11 +2,13 @@ import ROT from "rot-js";
 import {GameMap, getTilesetCoords} from "#/map/GameMap.js";
 import GameDisplay from "#/GameDisplay.js";
 import {Actor} from "#/entities/actors/Actor.js";
-
+import {Entity} from "#/entities/Entity.js";
+import Item from '#/entities/items/Item.js';
 import Player from "#/entities/actors/Player.js";
 import {randomMap} from "#/map/RandomMap.js";
 import Door from "#/entities/misc/Door.js";
 import Ladder from "#/entities/misc/Ladder.js";
+
 
 
 export const tileset = require('@/assets/maps/tileset/compiled_dawnlike.json')
@@ -469,21 +471,28 @@ export let Game = {
     logToTemp(msg) {
         this.tempMessage = {text : msg, color : "gray"};
         this.player.tempMessage = this.tempMessage;
+        $('#fix_scroll').stop().animate({
+            scrollTop: $('#fix_scroll')[0].scrollHeight
+        }, 800);
     },
 
     describeSelectedTile() {
-        const targetingBorders = {id: 7418, visible: true};
-        const untargetableBorders = {id: 7419, visible: true};
         /* Returns an array of strings describing what exists on the currently selected tile.
         this can be obstacles, items, traps, or enemies */
         let tile = this.map.data[this.selectedTile.y][this.selectedTile.x];
-        let names = tile.actors.filter(a => {return a instanceof Actor && a !== this.player}).map(a => {return a.name});
-        let prettyNames = names.slice(1, names.length - 1);
-        prettyNames = prettyNames.reduce((buf, str) => {
+        let names = tile.actors.filter(a => {return a instanceof Entity && a !== this.player}).map(a => {
+            return a instanceof Item ? a.type.toLowerCase() : a.name.toLowerCase();
+        });
+        let prettyNames = [];
+        prettyNames = names.slice(1,-1).reduce((buf, str) => {
             return buf + ", a " + str
         }, "a  " + names.slice(0, 1));
-        if (names.length > 1) prettyNames + ` and a ${names.slice(-1)}.`
-        else if (names.length == 0) prettyNames = "nothing"
+
+        if (names.length > 1)
+            prettyNames = prettyNames + [` and a ${names.slice(-1)}`]
+        else if (names.length == 0)
+            prettyNames = "nothing"
+
         this.logToTemp(`[You see ${prettyNames} here.]`);
     },
 

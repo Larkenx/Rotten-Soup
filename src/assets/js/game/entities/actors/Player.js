@@ -39,6 +39,7 @@ export default class Player extends Actor {
             visible: true,
             targeting: false,
             casting: false,
+            examining : false,
             blocked: true,
             leveled_up: true,
             enemiesInView: [],
@@ -202,10 +203,11 @@ export default class Player extends Actor {
             70: "fire",
             /* Cast a spell */
             90: "cast",
-            /* Rest, Pick Up Items, Climb Ladders */
+            /* Misc */
             188: "pickup",
             71: "pickup",
             190: "rest",
+            88 : "examine",
         };
 
         // // currently firing a ranged weapon
@@ -292,7 +294,6 @@ export default class Player extends Actor {
             return;
         }
 
-
         // currently casting a spell
         if (this.casting) {
             if (!movementKeys.includes(keyMap[code]) && !confirmKeys.includes(code)) {
@@ -334,8 +335,23 @@ export default class Player extends Actor {
                 } else {
                     Game.log(`You cannot cast ${this.cb.currentSpell.name} at this tile because it's blocked or too far away.`, "alert");
                 }
-
             }
+            restartTurn();
+            return;
+        }
+
+        if (this.examining) {
+            if (!movementKeys.includes(keyMap[code])) {
+                if (code === 27 || code == 88) {
+                    Game.log("You quit examining the area.", "information");
+                    this.examining = false;
+                    Game.clearSelectedTile();
+                }
+            } else if (movementKeys.includes(keyMap[code])) {
+                let diff = ROT.DIRS[8][keyMap[code]];
+                this.validTarget = Game.changeSelectedTile(diff);
+            }
+
             restartTurn();
             return;
         }
@@ -394,6 +410,11 @@ export default class Player extends Actor {
             this.validTarget = Game.selectNearestEnemyTile();
             this.casting = true;
             // our first selected tile can be the nearest enemy
+            restartTurn();
+            return;
+        } else if ("examine" === keyMap[code]) {
+            this.examining = true;
+            Game.selectNearestEnemyTile()
             restartTurn();
             return;
         } else {

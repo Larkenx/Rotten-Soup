@@ -8,6 +8,7 @@ import {Entity} from "#/entities/Entity.js";
 export default class Door extends Entity {
     constructor(x, y, id) {
         super(x, y, {
+            name : "door",
             id: id,
             bg: "rgb(140, 80, 0)",
             fg: "red",

@@ -7,7 +7,8 @@ export default class StrengthPotion extends Potion {
     constructor(x, y, id) {
         super(x, y, {
             id: id,
-            type: "Strength Potion"
+            name: "Strength Potion",
+            type: "Strength Potion",
         });
         this.buff = new StrengthBuff(3);
     }
