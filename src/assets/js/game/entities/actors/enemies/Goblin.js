@@ -3,7 +3,7 @@
  */
 import ROT from "rot-js";
 import SimpleEnemy from "#/entities/actors/enemies/SimpleEnemy.js";
-import {getRandomInt} from "#/entities/Entity.js";
+import {getRandomInt} from "#/utils/HelperFunctions.js";
 import {createSword, Sword} from "#/entities/items/weapons/Sword.js";
 import HealthPotion from "#/entities/items/potions/HealthPotion.js";
 import StrengthPotion from "#/entities/items/potions/StrengthPotion.js";

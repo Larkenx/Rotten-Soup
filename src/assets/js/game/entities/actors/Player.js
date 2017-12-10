@@ -4,7 +4,7 @@
 import ROT from "rot-js";
 import {Game} from "#/Game.js";
 import {Actor} from "#/entities/actors/Actor.js";
-import {addPrefix} from "#/entities/actors/Actor.js";
+import {addPrefix} from "#/utils/HelperFunctions.js";
 import Item from "#/entities/items/Item.js";
 // Weapons
 import {Sword} from "#/entities/items/weapons/Sword.js";

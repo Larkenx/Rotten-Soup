@@ -1,7 +1,7 @@
 /* Class to hold spells. Spells can be self-casted or targeted. Some special cases can be considered,
  such as "reanimate the nearest dead character". */
 
-import {getRandomInt} from "#/entities/Entity.js";
+import {getRandomInt} from "#/utils/HelperFunctions.js";
 import {Effect} from "#/modifiers/Effect.js";
 import {Game} from "#/Game.js";
 

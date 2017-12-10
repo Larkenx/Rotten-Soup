@@ -5,7 +5,7 @@ import SimpleEnemy from "#/entities/actors/enemies/SimpleEnemy.js";
 import HealthPotion from "#/entities/items/potions/HealthPotion.js";
 import StrengthPotion from "#/entities/items/potions/StrengthPotion.js";
 import ManaPotion from "#/entities/items/potions/ManaPotion.js";
-import {getRandomInt} from "#/entities/Entity.js";
+import {getRandomInt} from "#/utils/HelperFunctions.js";
 import {Sword} from "#/entities/items/weapons/Sword.js";
 import {Game} from "#/Game.js";
 import ROT from "rot-js";
