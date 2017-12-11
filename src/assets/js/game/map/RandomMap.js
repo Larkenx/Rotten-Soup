@@ -15,10 +15,20 @@ const symbolToEntityShop = {
 
 const flatten = arr => arr.reduce((acc, val) => acc.concat(Array.isArray(val) ? flatten(val) : val), []);
 
+// function that will yield a random free space in the room
+const randomTile = (validTiles) => {
+    let index = getRandomInt(0, validTiles.length); // index of a tile
+    let tile = validTiles.splice(index, 1);
+    if (tile.length === 1) {
+        return tile[0].split(',').map(e => Number(e));
+    } else {
+        return null;
+    }
+}
 
 /* This is a random dungeon map generator. It essentially generates identical
  * JSON data to that of a TILED map, with the unnecessary properties left out */
-export function randomMap(width, height, dir, level = 1) {
+export function randomDungeon(width, height, dir, level = 1) {
     const mobDistribution = {
         "ORC": 1 * (~~(level / 4)) + 1,
         "EMPOWERED_ORC": (~~(level / 4)),
@@ -106,7 +116,6 @@ export function randomMap(width, height, dir, level = 1) {
     };
     /* For every room in the dungeon, we're going to add
      * textures from the tileset for the walls and the floors */
-
 
     let buildsCorrWalls = function (x, y, horizontal, end = false) {
         let floor_ids = Object.values(corridorFloor.vertical) + Object.values(floor) + Object.values(corridorFloor.horizontal) + [7741, 569 + 1, 568 + 1];
@@ -281,31 +290,22 @@ export function randomMap(width, height, dir, level = 1) {
                     validTiles.push(j + ',' + i);
             }
         }
-        // function that will yield a random free space in the room
-        let randomTile = () => {
-            let index = getRandomInt(0, validTiles.length); // index of a tile
-            let randomTile = validTiles.splice(index, 1);
-            if (randomTile.length === 1) {
-                return randomTile[0].split(',')
-            } else {
-                return null;
-            }
-        }
+
         roll = getNormalRandomInt(1, 5);
         for (let i = 0; i < roll; i++) {
-            let coords = randomTile();
+            let coords = randomTile(validTiles);
             if (coords === null) break;
             let chosenMob = ROT.RNG.getWeightedValue(mobDistribution);
             // console.log(chosenMob);
             let mobArray = symbolToEntityShop[chosenMob];
             let randomMob = mobArray[getRandomInt(0, mobArray.length - 1)] + 1;
-            map.layers[2].data[coords[0]][coords[1]] = randomMob;
+            map.layers[2].data[coords[1]][coords[0]] = randomMob;
         }
         // if there atleast 4 enemies in the room, drop a chest in the room too!
         if (roll >= 4) {
-            let coords = randomTile();
+            let coords = randomTile(validTiles);
             if (coords !== null) {
-                map.layers[2].data[coords[0]][coords[1]] = 58;
+                map.layers[2].data[coords[1]][coords[0]] = 58;
             }
         }
 
@@ -338,6 +338,86 @@ export function randomMap(width, height, dir, level = 1) {
     // let start = [1, 44];
     map.layers[2].data[start[1]][start[0]] = Game.playerID; // set random spot to be the player
     map.layers[3].data[start[1]][start[0]] = dir === "down" ? 480 : 478; // place a ladder going back up a level underneath the player.
+
+    // Flatten the layers to mimic Tiled map data
+    for (let i = 0; i < map.layers.length; i++)
+        map.layers[i].data = flatten(map.layers[i].data);
+
+    return map;
+}
+
+export function randomCave(width, height, dir, level = 1) {
+    let map = {};
+    let createdLadders = 0;
+    map.revealed = true;
+    map.width = width;
+    map.height = height;
+    map.layers = [
+        {"data": [], "properties": {"obstacles": true}},
+        {"data": [], "properties": {"obstacles": true}},
+        {"data": [], "properties": {"actors": true}},
+        {"data": [], "properties": {"actors": true}}];
+    let freeCells = {};
+    let mapCallback = function (x, y, blocked) {
+        if (!blocked) freeCells[x + "," + y] = true;
+    };
+    let cellularMap = new ROT.Map.Cellular(width, height);
+    cellularMap.randomize(0.5);
+    for (let i = 0; i < 10; i++)
+        cellularMap.create();
+
+    cellularMap.connect(mapCallback);
+
+    // Initialize obstacles and actors
+    for (let j = 0; j < height; j++) {
+        for (let l = 0; l < map.layers.length; l++)
+            map.layers[l].data.push([]);
+
+        for (let i = 0; i < width; i++) {
+            if (i + "," + j in freeCells)
+                map.layers[0].data[j].push(9297+1);
+            else
+                map.layers[0].data[j].push(9200+1);
+
+            map.layers[1].data[j].push(0);
+            map.layers[2].data[j].push(0);
+            map.layers[3].data[j].push(0);
+        }
+    }
+
+    let validTiles = Object.keys(freeCells);
+    // Randomly select starting position for player
+    let start = randomTile(validTiles);
+    if ((start) === null)
+        throw "Could not find an open spot on the map to place the player!";
+
+    map.layers[2].data[start[1]][start[0]] = Game.playerID; // set random spot to be the player
+    map.layers[3].data[start[1]][start[0]] = dir === "down" ? 238 : 237; // place a ladder going back up a level underneath the player.
+
+    let ladderGoingDown = randomTile(validTiles);
+    map.layers[2].data[ladderGoingDown[1]][ladderGoingDown[0]] = dir === "down" ? 237 : 238;
+    ladderGoingDown = randomTile(validTiles);
+    map.layers[2].data[ladderGoingDown[1]][ladderGoingDown[0]] = dir === "down" ? 237 : 238;
+
+    const mobDistribution = {
+        "ORC": 1 * (~~(level / 4)) + 1,
+        "EMPOWERED_ORC": (~~(level / 4)),
+        "KOBOLD": (~~(level / 3)),
+        "GOBLIN": 10 - (~~(level / 2)),
+        "RAT": 8 - (~~(level / 4))
+    };
+
+    let roll = getNormalRandomInt(7+level, 25+level);
+    console.log(roll);
+    for (let i = 0; i < roll; i++) {
+        let coords = randomTile(validTiles);
+        if (coords === null) break;
+        let chosenMob = ROT.RNG.getWeightedValue(mobDistribution);
+        // console.log(chosenMob);
+        let mobArray = symbolToEntityShop[chosenMob];
+        let randomMob = mobArray[getRandomInt(0, mobArray.length - 1)] + 1;
+        map.layers[2].data[coords[1]][coords[0]] = randomMob;
+    }
 
     // Flatten the layers to mimic Tiled map data
     for (let i = 0; i < map.layers.length; i++)
