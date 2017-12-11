@@ -3,24 +3,12 @@
  */
 import ROT from "rot-js";
 import {Game} from "#/Game.js";
-import {Entity, getRandomInt} from "#/entities/Entity.js";
-
+import {Entity} from "#/entities/Entity.js";
+import {getRandomInt, addPrefix} from '#/utils/HelperFunctions.js';
 import Door from "#/entities/misc/Door.js";
 import Weapon from "#/entities/items/weapons/Weapon.js";
 import {Ammo} from "#/entities/items/weapons/ranged/ammo/Ammo.js";
 import {Buff} from "#/modifiers/Buff.js";
-
-export function addPrefix(name) {
-    const vowels = ['a', 'e', 'i', 'o', 'u'];
-    if (name !== "you") {
-        if (name[0] in vowels)
-            return "an " + name;
-        else
-            return "a " + name;
-    } else {
-        return name;
-    }
-}
 
 export class Actor extends Entity {
     constructor(x, y, options, routine = null) {

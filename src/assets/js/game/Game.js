@@ -3,18 +3,18 @@ import {GameMap, getTilesetCoords} from "#/map/GameMap.js";
 import GameDisplay from "#/GameDisplay.js";
 import {Actor} from "#/entities/actors/Actor.js";
 import {Entity} from "#/entities/Entity.js";
+import {getItemsFromDropTable} from "#/utils/HelperFunctions.js";
+
 import Item from '#/entities/items/Item.js';
 import Player from "#/entities/actors/Player.js";
 import {randomMap} from "#/map/RandomMap.js";
 import Door from "#/entities/misc/Door.js";
 import Ladder from "#/entities/misc/Ladder.js";
-
-
+import Chest from '#/entities/misc/Chest.js'
 
 export const tileset = require('@/assets/maps/tileset/compiled_dawnlike.json')
 export const overworldMap = require('@/assets/maps/map_file/overworld.json')
 export const orcCastle = require('@/assets/maps/map_file/orcCastle.json')
-
 
 if (!ROT.isSupported()) {
     alert("The rot.js library isn't supported by your browser.");
@@ -141,9 +141,29 @@ export let Game = {
     },
 
     changeLevels(newLevel, dir, level) {
-        if (this.levels[newLevel] === undefined) {
+        if (this.levels[newLevel] === undefined) { // generating a new random room
             this.levels[newLevel] = new GameMap(randomMap(40, 40, dir, level));
             this.levels[newLevel].revealed = false;
+            for (let actor of this.levels[newLevel].actors) {
+                if (actor instanceof Chest) {
+                    console.log("filling chest with goodies!");
+                    // we want to populate the chests with loot
+                    let items = getItemsFromDropTable({
+                        minItems : 1,
+                        maxItems : 4,
+                        dropTable : {
+                            "STRENGTH_POTION": 1,
+                            "HEALTH_POTION": 1,
+                            "STEEL_ARROW": 1,
+                            "MANA_POTION": 1,
+                            "SWORD" : 1
+                        },
+                        x : actor.x,
+                        y : actor.y
+                    });
+                    items.forEach(item => actor.addToInventory(item));
+                }
+            }
             // console.log(newLevel + " does not exist, so a new random instance is being created.");
         }
 

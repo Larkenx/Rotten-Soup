@@ -3,7 +3,7 @@
  */
 import {Game} from "#/Game.js";
 import Item from "#/entities/items/Item.js";
-import {getRandomInt} from "#/entities/Entity.js";
+import {getRandomInt} from "#/utils/HelperFunctions.js";
 
 export default class Weapon extends Item {
 

@@ -3,7 +3,7 @@
  */
 
 import Weapon from "#/entities/items/weapons/Weapon.js";
-import {getRandomInt} from "#/entities/Entity.js";
+import {getRandomInt} from "#/utils/HelperFunctions.js";
 import {BleedEnchantment} from "#/modifiers/Enchantment.js";
 
 export class Sword extends Weapon {

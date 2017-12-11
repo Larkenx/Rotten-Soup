@@ -5,7 +5,7 @@ import SimpleEnemy from "#/entities/actors/enemies/SimpleEnemy.js";
 import HealthPotion from "#/entities/items/potions/HealthPotion.js";
 import StrengthPotion from "#/entities/items/potions/StrengthPotion.js";
 import ManaPotion from "#/entities/items/potions/ManaPotion.js";
-import {getRandomInt} from "#/entities/Entity.js";
+import {getRandomInt, getItemsFromDropTable} from "#/utils/HelperFunctions.js";
 import {Sword} from "#/entities/items/weapons/Sword.js";
 import {Game} from "#/Game.js";
 import ROT from "rot-js";
@@ -41,35 +41,20 @@ export default class Orc extends SimpleEnemy {
                 empowered: empowered,
             }
         });
-        let dropTable = {
-            "STRENGTH_POTION": 1,
-            "HEALTH_POTION": 1,
-            "STEEL_ARROW": 1,
-            "MANA_POTION": 1
-        }
-        let roll = getRandomInt(1, 3);
-        let chosenItem = ROT.RNG.getWeightedValue(dropTable);
-        switch (chosenItem) {
-            case "STRENGTH_POTION":
-                this.addToInventory(new StrengthPotion(this.x, this.y, 969));
-                break;
-            case "HEALTH_POTION":
-                this.addToInventory(new HealthPotion(this.x, this.y, 488));
-                break;
-            case "MANA_POTION":
-                this.addToInventory(new ManaPotion(this.x, this.y, 608));
-                break;
-            case "SWORD":
-                this.addToInventory(new Sword(this.x, this.y, 3, 7, "Thrasher", 33));
-                break;
-            case "STEEL_ARROW":
-                this.addToInventory(new SteelArrow(this.x, this.y, 784, 10));
-                break;
-            default:
-                console.log("tried to add some item that doesn't exist to an inventroy from drop table");
-                console.log(chosenItem);
-
-        }
+        let items = getItemsFromDropTable({
+            minItems : 0,
+            maxItems : 2,
+            dropTable : {
+                "STRENGTH_POTION": 1,
+                "HEALTH_POTION": 1,
+                "STEEL_ARROW": 1,
+                "MANA_POTION": 1,
+                "SWORD" : 1
+            },
+            x : this.x,
+            y : this.y
+        });
+        items.forEach(item => this.addToInventory(item));
     }
 
     interact(actor) {

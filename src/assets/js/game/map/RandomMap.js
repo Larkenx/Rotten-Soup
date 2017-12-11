@@ -3,7 +3,7 @@
  */
 import ROT from "rot-js";
 import {Game} from "#/Game.js";
-import {getRandomInt} from "#/entities/Entity.js";
+import {getRandomInt, getNormalRandomInt, randomProperty} from "#/utils/HelperFunctions.js";
 
 const symbolToEntityShop = {
     ORC: [5292, 5293, 5294, 5295, 5296, 5297, 5299],
@@ -15,18 +15,14 @@ const symbolToEntityShop = {
 
 const flatten = arr => arr.reduce((acc, val) => acc.concat(Array.isArray(val) ? flatten(val) : val), []);
 
-function randomProperty(object) {
-    let keys = Object.keys(object);
-    return keys[Math.floor(keys.length * Math.random())];
-}
 
 /* This is a random dungeon map generator. It essentially generates identical
  * JSON data to that of a TILED map, with the unnecessary properties left out */
 export function randomMap(width, height, dir, level = 1) {
     const mobDistribution = {
         "ORC": 1 * (~~(level / 4)) + 1,
-        "EMPOWERED_ORC": 1 * (~~(level / 6)) + 1,
-        "KOBOLD": 1 * (~~(level / 6)) + 1,
+        "EMPOWERED_ORC": (~~(level / 4)),
+        "KOBOLD": (~~(level / 3)),
         "GOBLIN": 10 - (~~(level / 2)),
         "RAT": 8 - (~~(level / 4))
     };
@@ -270,7 +266,6 @@ export function randomMap(width, height, dir, level = 1) {
         });
 
         // Now, we can mess around with the centers of each room and place items in the dungeons
-
         // this places a ladder going further into the dungeon (either deeper or higher)
         let roll = getRandomInt(1, rogueMap.getRooms().length);
         if (roll == 1 || createdLadders == 0) {
@@ -296,7 +291,7 @@ export function randomMap(width, height, dir, level = 1) {
                 return null;
             }
         }
-        roll = getRandomInt(2, 5);
+        roll = getNormalRandomInt(1, 5);
         for (let i = 0; i < roll; i++) {
             let coords = randomTile();
             if (coords === null) break;
@@ -306,6 +301,14 @@ export function randomMap(width, height, dir, level = 1) {
             let randomMob = mobArray[getRandomInt(0, mobArray.length - 1)] + 1;
             map.layers[2].data[coords[0]][coords[1]] = randomMob;
         }
+        // if there atleast 4 enemies in the room, drop a chest in the room too!
+        if (roll >= 4) {
+            let coords = randomTile();
+            if (coords !== null) {
+                map.layers[2].data[coords[0]][coords[1]] = 58;
+            }
+        }
+
     }
 
     // Cleaning up the corners...

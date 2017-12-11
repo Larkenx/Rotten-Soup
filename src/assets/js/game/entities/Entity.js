@@ -20,12 +20,6 @@ export const EntityTypes = {
     STRENGTH_POTION: 12
 }
 
-export function getRandomInt(min, max) {
-    min = Math.ceil(min);
-    max = Math.floor(max);
-    return Math.floor(Math.random() * (max - min + 1)) + min; //The maximum is exclusive and the minimum is inclusive
-}
-
 /* Entities are in-game objects that exist in the map. They have symbols,
  * foregrounds, backgrounds, descriptions, names, visibility, and blocked properties. */
 export class Entity {
