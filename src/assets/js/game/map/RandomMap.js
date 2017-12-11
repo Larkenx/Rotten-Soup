@@ -3,7 +3,7 @@
  */
 import ROT from "rot-js";
 import {Game} from "#/Game.js";
-import {getRandomInt, randomProperty} from "#/utils/HelperFunctions.js";
+import {getRandomInt, getNormalRandomInt, randomProperty} from "#/utils/HelperFunctions.js";
 
 const symbolToEntityShop = {
     ORC: [5292, 5293, 5294, 5295, 5296, 5297, 5299],
@@ -21,8 +21,8 @@ const flatten = arr => arr.reduce((acc, val) => acc.concat(Array.isArray(val) ? 
 export function randomMap(width, height, dir, level = 1) {
     const mobDistribution = {
         "ORC": 1 * (~~(level / 4)) + 1,
-        "EMPOWERED_ORC": 1 * (~~(level / 6)) + 1,
-        "KOBOLD": 1 * (~~(level / 6)) + 1,
+        "EMPOWERED_ORC": (~~(level / 4)),
+        "KOBOLD": (~~(level / 3)),
         "GOBLIN": 10 - (~~(level / 2)),
         "RAT": 8 - (~~(level / 4))
     };
@@ -291,7 +291,7 @@ export function randomMap(width, height, dir, level = 1) {
                 return null;
             }
         }
-        roll = getRandomInt(0, 5);
+        roll = getNormalRandomInt(1, 5);
         for (let i = 0; i < roll; i++) {
             let coords = randomTile();
             if (coords === null) break;
@@ -301,8 +301,8 @@ export function randomMap(width, height, dir, level = 1) {
             let randomMob = mobArray[getRandomInt(0, mobArray.length - 1)] + 1;
             map.layers[2].data[coords[0]][coords[1]] = randomMob;
         }
-        // if there were 5 enemies in the room, drop a chest in the room too!
-        if (roll === 5) {
+        // if there atleast 4 enemies in the room, drop a chest in the room too!
+        if (roll >= 4) {
             let coords = randomTile();
             if (coords !== null) {
                 map.layers[2].data[coords[0]][coords[1]] = 58;

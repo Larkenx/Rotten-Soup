@@ -3,6 +3,7 @@ import {GameMap, getTilesetCoords} from "#/map/GameMap.js";
 import GameDisplay from "#/GameDisplay.js";
 import {Actor} from "#/entities/actors/Actor.js";
 import {Entity} from "#/entities/Entity.js";
+import {getItemsFromDropTable} from "#/utils/HelperFunctions.js";
 
 import Item from '#/entities/items/Item.js';
 import Player from "#/entities/actors/Player.js";
@@ -145,38 +146,22 @@ export let Game = {
             this.levels[newLevel].revealed = false;
             for (let actor of this.levels[newLevel].actors) {
                 if (actor instanceof Chest) {
+                    console.log("filling chest with goodies!");
                     // we want to populate the chests with loot
-                    let dropTable = {
-                        "STRENGTH_POTION": 3,
-                        "HEALTH_POTION": 2,
-                        "MANA_POTION" : 2,
-                        "STEEL_ARROW": 2,
-                        "SWORD" : 1,
-                    };
-                    let roll = getRandomInt(2, 5);
-                    for (let i = 0; i < roll; i++) {
-                        let chosenItem = ROT.RNG.getWeightedValue(dropTable);
-                        switch (chosenItem) {
-                            case "STRENGTH_POTION":
-                                this.addToInventory(new StrengthPotion(this.x, this.y, 969));
-                                break;
-                            case "HEALTH_POTION":
-                                this.addToInventory(new HealthPotion(this.x, this.y, 488));
-                                break;
-                            case "MANA_POTION":
-                                this.addToInventory(new ManaPotion(this.x, this.y, 608));
-                                break;
-                            case "SWORD":
-                                this.addToInventory(createSword(this.x, this.y, 35));
-                                break;
-                            case "STEEL_ARROW":
-                                this.addToInventory(new SteelArrow(this.x, this.y, 784, getRandomInt(5,15)));
-                                break;
-                            default:
-                                console.log("tried to add some item that doesn't exist to an inventory from drop table");
-                                console.log(chosenItem);
-                        }
-                    }
+                    let items = getItemsFromDropTable({
+                        minItems : 1,
+                        maxItems : 4,
+                        dropTable : {
+                            "STRENGTH_POTION": 1,
+                            "HEALTH_POTION": 1,
+                            "STEEL_ARROW": 1,
+                            "MANA_POTION": 1,
+                            "SWORD" : 1
+                        },
+                        x : actor.x,
+                        y : actor.y
+                    });
+                    items.forEach(item => actor.addToInventory(item));
                 }
             }
             // console.log(newLevel + " does not exist, so a new random instance is being created.");

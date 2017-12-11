@@ -1,7 +1,26 @@
+import ROT from "rot-js";
+
+import HealthPotion from "#/entities/items/potions/HealthPotion.js";
+import StrengthPotion from "#/entities/items/potions/StrengthPotion.js";
+import ManaPotion from "#/entities/items/potions/ManaPotion.js";
+import {createSword} from "#/entities/items/weapons/Sword.js";
+import {SteelArrow} from "#/entities/items/weapons/ranged/ammo/Arrow.js";
+
 export function getRandomInt(min, max) {
     min = Math.ceil(min);
     max = Math.floor(max);
     return Math.floor(Math.random() * (max - min + 1)) + min; //The maximum is exclusive and the minimum is inclusive
+}
+
+export function getNormalRandomInt(min, max) {
+    let gaussianRand = () => {
+        let rand = 0;
+        for (let i = 0; i < 6; i++)
+            rand += Math.random();
+
+        return rand / 6
+    }
+    return Math.floor(min + gaussianRand() * (max - min + 1));
 }
 
 export function randomProperty(object) {
@@ -36,35 +55,32 @@ export function getItemsFromDropTable(options) {
         options.x == undefined || options.y == undefined)
         throw "Not enough arguments given. Expected drop table object, min and max number of items to produce, and x,y location";
 
+    let {dropTable, minItems, maxItems, x, y} = options;
     let items = [];
-    let roll = getRandomInt(1, 3);
+    let roll = getRandomInt(minItems, maxItems);
     for (let i = 0; i < roll; i++) {
         let chosenItem = ROT.RNG.getWeightedValue(dropTable);
         switch (chosenItem) {
             case itemTypes.STRENGTH_POTION:
-                this.addToInventory(new StrengthPotion(this.x, this.y, 969));
+                items.push(new StrengthPotion(x, y, 969));
                 break;
             case itemTypes.HEALTH_POTION:
-                this.addToInventory(new HealthPotion(this.x, this.y, 488));
+                items.push(new HealthPotion(x, y, 488));
                 break;
             case itemTypes.MANA_POTION:
-                this.addTo
+                items.push(new ManaPotion(x, y, 608));
+                break;
             case itemTypes.SWORD:
-                this.addToInventory(createSword(this.x, this.y, 35));
+                items.push(createSword(x, y, 35));
                 break;
             case itemTypes.STEEL_ARROW:
-                this.addToInventory(new SteelArrow(this.x, this.y, 784, 5));
+                items.push(new SteelArrow(x, y, 784, 5));
                 break;
             default:
                 console.log("tried to add some item that doesn't exist to an inventroy from drop table");
                 console.log(chosenItem);
         }
     }
+    // console.log("Generated drop table", items)
     return items;
-}
-let dropTable = {
-    "STRENGTH_POTION": 1,
-    "HEALTH_POTION": 1,
-    "STEEL_ARROW": 2,
-    "SWORD": 1
 }
