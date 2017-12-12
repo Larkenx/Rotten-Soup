@@ -284,9 +284,10 @@ export function randomDungeon(width, height, dir, level = 1) {
 
         // now I want to populate some random creatures in each room of the dungeon.
         let validTiles = []; // all the non-wall tiles in the room that don't already a ladder
+        let possibleWalls = Object.values(walls);
         for (let i = left + 1; i < right - 1; i++) {
             for (let j = top + 1; j < bottom - 1; j++) {
-                if (map.layers[2].data[j][i] === 0)
+                if (map.layers[2].data[j][i] === 0 && ! possibleWalls.includes(map.layers[0].data[j][i]))
                     validTiles.push(j + ',' + i);
             }
         }
