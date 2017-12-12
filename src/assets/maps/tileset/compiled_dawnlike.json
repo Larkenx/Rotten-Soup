@@ -2490,6 +2490,20 @@
         {
          "blocked":true
         },
+     "3704":
+        {
+         "animated":true,
+         "animated_id":3712,
+         "entity":true,
+         "entity_id":"20"
+        },
+     "3706":
+        {
+         "animated":true,
+         "animated_id":3714,
+         "entity":true,
+         "entity_id":"20"
+        },
      "3840":
         {
          "animated":false,
@@ -34415,6 +34429,20 @@
      "3701":
         {
          "blocked":"bool"
+        },
+     "3704":
+        {
+         "animated":"bool",
+         "animated_id":"int",
+         "entity":"bool",
+         "entity_id":"string"
+        },
+     "3706":
+        {
+         "animated":"bool",
+         "animated_id":"int",
+         "entity":"bool",
+         "entity_id":"string"
         },
      "3840":
         {

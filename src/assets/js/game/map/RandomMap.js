@@ -10,6 +10,7 @@ const symbolToEntityShop = {
     EMPOWERED_ORC: [5298],
     GOBLIN: [7440, 7441, 7442, 7443, 7444, 7445, 7446],
     RAT: [2365],
+    BAT: [3704, 3706],
     KOBOLD: [5532, 5533, 5534, 5535, 5536, 5537, 5538, 5539]
 };
 
@@ -405,6 +406,7 @@ export function randomCave(width, height, dir, level = 1) {
         "EMPOWERED_ORC": (~~(level / 4)),
         "KOBOLD": (~~(level / 3)),
         "GOBLIN": 10 - (~~(level / 2)),
+        "BAT": 8 - (~~(level / 4)),
         "RAT": 8 - (~~(level / 4))
     };
 
