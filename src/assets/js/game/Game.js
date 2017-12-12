@@ -46,8 +46,12 @@ export let Game = {
 
     init(dev = false) {
         this.dev = dev;
-        this.map = new GameMap(overworldMap);
-        this.levels["overworld"] = this.map;
+        // this.map = new GameMap(overworldMap);
+        // this.levels["overworld"] = this.map;
+
+        this.map = new GameMap(randomDungeon(40, 40, "down", 1));
+        this.levels["randomDungeon"] = this.map;
+
         this.levels["Orc Castle"] = new GameMap(orcCastle);
         this.map.revealed = true;
         this.playerLocation = this.map.playerLocation;

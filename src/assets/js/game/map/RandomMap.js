@@ -27,6 +27,7 @@ const randomTile = (validTiles) => {
     }
 }
 
+
 /* This is a random dungeon map generator. It essentially generates identical
  * JSON data to that of a TILED map, with the unnecessary properties left out */
 export function randomDungeon(width, height, dir, level = 1) {
@@ -35,7 +36,8 @@ export function randomDungeon(width, height, dir, level = 1) {
         "EMPOWERED_ORC": (~~(level / 4)),
         "KOBOLD": (~~(level / 3)),
         "GOBLIN": 10 - (~~(level / 2)),
-        "RAT": 8 - (~~(level / 4))
+        "RAT": 8 - (~~(level / 4)),
+        "BAT": 6 - (~~(level / 4))
     };
 
     // console.log(mobDistribution);
@@ -117,22 +119,126 @@ export function randomDungeon(width, height, dir, level = 1) {
     };
     /* For every room in the dungeon, we're going to add
      * textures from the tileset for the walls and the floors */
+     for (let room of rogueMap.getRooms()) {
+         let left = room.getLeft() - 1;
+         let right = room.getRight() + 1;
+         let top = room.getTop() - 1;
+         let bottom = room.getBottom() + 1;
+         let wleft = room.getLeft();
+         let wright = room.getRight();
+         let wtop = room.getTop();
+         let wbottom = room.getBottom();
+         let center = {
+             y: Math.floor((wtop + wbottom) / 2),
+             x: Math.floor((wright + wleft) / 2)
+         }
+         /* Generate the corner tiles */
+         // Set the walls up
+         map.layers[0].data[top][left] = walls.upperLeft + 1;
+         map.layers[0].data[bottom][left] = walls.lowerLeft + 1;
+         map.layers[0].data[top][right] = walls.upperRight + 1;
+         map.layers[0].data[bottom][right] = walls.lowerRight + 1;
+         // Set the floors up
+         map.layers[0].data[wtop][wleft] = floor.upperLeft + 1;
+         map.layers[0].data[wbottom][wleft] = floor.lowerLeft + 1;
+         map.layers[0].data[wtop][wright] = floor.upperRight + 1;
+         map.layers[0].data[wbottom][wright] = floor.lowerRight + 1;
+         /* Generate the side tiles */
+         // Set the walls up
+         let x = left + 1;
+         while (x <= right - 1) {
+             map.layers[0].data[top][x] = walls.top + 1;
+             map.layers[0].data[bottom][x] = walls.bottom + 1;
+             x++;
+         }
+         let y = top + 1;
+         while (y <= bottom - 1) {
+             map.layers[0].data[y][left] = walls.left + 1;
+             map.layers[0].data[y][right] = walls.right + 1;
+             y++;
+         }
+         // Set the floors up
+         let wx = wleft + 1;
+         while (wx <= wright - 1) {
+             map.layers[0].data[wtop][wx] = floor.top + 1;
+             map.layers[0].data[wbottom][wx] = floor.bottom + 1;
+             wx++;
+         }
+         let wy = wtop + 1;
+         while (wy <= wbottom - 1) {
+             map.layers[0].data[wy][wleft] = floor.left + 1;
+             map.layers[0].data[wy][wright] = floor.right + 1;
+             wy++;
+         }
+         /* Set up the doors of the room
+          * TODO: Doors need to be entities in layer 2 or 3*/
+         room.getDoors((dx, dy) => {
+             let above = map.layers[0].data[dy - 1][dx];
+             let below = map.layers[0].data[dy + 1][dx];
+             if (above === walls.right + 1 || above === walls.left + 1 || below === walls.left + 1 || below === walls.right + 1) {
+                 map.layers[0].data[dy][dx] = 7741 + 1;
+                 map.layers[3].data[dy][dx] = 569 + 1;
+             } else {
+                 map.layers[0].data[dy][dx] = 7741 + 1;
+                 map.layers[3].data[dy][dx] = 568 + 1;
+             }
+         });
 
-    let buildsCorrWalls = function (x, y, horizontal, end = false) {
+         // Now, we can mess around with the centers of each room and place items in the dungeons
+         // this places a ladder going further into the dungeon (either deeper or higher)
+         let roll = getRandomInt(1, rogueMap.getRooms().length);
+         if (roll == 1 || createdLadders == 0) {
+             map.layers[2].data[center.y][center.x] = dir === "down" ? 478 : 480;
+             createdLadders++;
+         }
+
+         // now I want to populate some random creatures in each room of the dungeon.
+         let validTiles = []; // all the non-wall tiles in the room that don't already a ladder
+         let possibleWalls = Object.values(walls);
+         for (let j = wtop; j < wbottom; j++) {
+             for (let i = wleft; i < wright; i++) {
+                 if (map.layers[2].data[j][i] === 0 && ! possibleWalls.includes(map.layers[0].data[j][i]))
+                     validTiles.push(i + ',' + j);
+             }
+         }
+
+         roll = getNormalRandomInt(1, 5);
+         for (let i = 0; i < roll; i++) {
+             let coords = randomTile(validTiles);
+             if (coords === null) break;
+             let chosenMob = ROT.RNG.getWeightedValue(mobDistribution);
+             // console.log(chosenMob);
+             let mobArray = symbolToEntityShop[chosenMob];
+             let randomMob = mobArray[getRandomInt(0, mobArray.length - 1)] + 1;
+             map.layers[2].data[coords[1]][coords[0]] = randomMob;
+         }
+         // if there atleast 4 enemies in the room, drop a chest in the room too!
+         if (roll >= 4) {
+             let coords = randomTile(validTiles);
+             if (coords !== null) {
+                 map.layers[2].data[coords[1]][coords[0]] = 58;
+             }
+         }
+
+     }
+
+    let buildsCorrWalls = function (x, y, horizontal, beginning = false, end = false) {
         let floor_ids = Object.values(corridorFloor.vertical) + Object.values(floor) + Object.values(corridorFloor.horizontal) + [7741, 569 + 1, 568 + 1];
         if (horizontal) {
             let above = map.layers[0].data[y - 1][x];
             let below = map.layers[0].data[y + 1][x];
             map.layers[0].data[y - 1][x] = !floor_ids.includes(above - 1) ? walls.top + 1 : above;
             map.layers[0].data[y + 1][x] = !floor_ids.includes(below - 1) ? walls.bottom + 1 : below;
-        } else {
+        } else { // vertical corridors
             let left = map.layers[0].data[y][x - 1];
             let right = map.layers[0].data[y][x + 1];
             map.layers[0].data[y][x - 1] = !floor_ids.includes(left - 1) ? walls.left + 1 : left;
             map.layers[0].data[y][x + 1] = !floor_ids.includes(right - 1) ? walls.right + 1 : right;
         }
 
-        if (end) {
+        if (end || beginning) {
+            /* TODO : check and see if the end tile connects to
+            another corridor and place a corner floor tile */
             let ul = map.layers[0].data[y - 1][x - 1];
             let ur = map.layers[0].data[y - 1][x + 1];
             let ll = map.layers[0].data[y + 1][x - 1];
@@ -149,10 +255,34 @@ export function randomDungeon(width, height, dir, level = 1) {
             map.layers[0].data[y + 1][x] = !floor_ids.includes(below - 1) ? walls.bottom + 1 : below;
             map.layers[0].data[y][x - 1] = !floor_ids.includes(left - 1) ? walls.left + 1 : left;
             map.layers[0].data[y][x + 1] = !floor_ids.includes(right - 1) ? walls.right + 1 : right;
+
+            /* if we are laying a horizontal corridor, then we also need to resolve
+               where vertical corridor (laid before horizontal) so that we can add proper turns in
+               snaking corridors
+
+               there are four cases we have to resolve:
+                1) horiz corr is placed NW of vert corr
+                2) placed SW
+                3) placed SE
+                4) placed NE
+
+               if the cases are SE or NE, then we know that
+               the conflicting endpoint with some vert corr
+               is going to be the right most tile of the horiz corr
+
+               else if NW or SW, conflict lies in the left-most
+            */
+            if (horizontal && beginning) {
+
+                if (lr === walls.bottom+1) {
+
+                }
+            }
+
         }
 
     };
-
+    // when placing corridors, we want to prioritize vertical columns
     let sortCorridors = function (a, b,) {
         if (a._startX === a._endX && b._startX !== b._endX) {
             return -1;
@@ -177,7 +307,7 @@ export function randomDungeon(width, height, dir, level = 1) {
                 ey = temp;
             }
             let y = sy;
-            buildsCorrWalls(sx, y, false, true);
+            buildsCorrWalls(sx, y, false, true, false);
             map.layers[0].data[y][sx] = corridorFloor.vertical.top + 1;
             y++;
             while (y < ey) {
@@ -186,7 +316,7 @@ export function randomDungeon(width, height, dir, level = 1) {
                 y++;
             }
             map.layers[0].data[ey][sx] = corridorFloor.vertical.bottom + 1;
-            buildsCorrWalls(sx, y, false, true);
+            buildsCorrWalls(sx, y, false, false, true);
         } else if (sy === ey) { // horizontal corridor ------
             if (sx > ex) {
                 let temp = sx;
@@ -194,7 +324,7 @@ export function randomDungeon(width, height, dir, level = 1) {
                 ex = temp;
             }
             let x = sx;
-            buildsCorrWalls(x, sy, true, true);
+            buildsCorrWalls(x, sy, true, true, false);
             map.layers[0].data[sy][x] = corridorFloor.horizontal.left + 1;
             x++;
             while (x < ex) {
@@ -202,7 +332,7 @@ export function randomDungeon(width, height, dir, level = 1) {
                 map.layers[0].data[sy][x] = corridorFloor.horizontal.middle + 1;
                 x++;
             }
-            buildsCorrWalls(x, sy, true, true);
+            buildsCorrWalls(x, sy, true, false, true);
             map.layers[0].data[ey][x] = corridorFloor.horizontal.right + 1;
         } else {
             console.log(`[${sx}, ${sy}] => [${ex},${ey}]`);
@@ -210,108 +340,7 @@ export function randomDungeon(width, height, dir, level = 1) {
     }
 
 
-    for (let room of rogueMap.getRooms()) {
-        let left = room.getLeft() - 1;
-        let right = room.getRight() + 1;
-        let top = room.getTop() - 1;
-        let bottom = room.getBottom() + 1;
-        let wleft = room.getLeft();
-        let wright = room.getRight();
-        let wtop = room.getTop();
-        let wbottom = room.getBottom();
-        let center = {
-            y: Math.floor((wtop + wbottom) / 2),
-            x: Math.floor((wright + wleft) / 2)
-        }
-        /* Generate the corner tiles */
-        // Set the walls up
-        map.layers[0].data[top][left] = walls.upperLeft + 1;
-        map.layers[0].data[bottom][left] = walls.lowerLeft + 1;
-        map.layers[0].data[top][right] = walls.upperRight + 1;
-        map.layers[0].data[bottom][right] = walls.lowerRight + 1;
-        // Set the floors up
-        map.layers[0].data[wtop][wleft] = floor.upperLeft + 1;
-        map.layers[0].data[wbottom][wleft] = floor.lowerLeft + 1;
-        map.layers[0].data[wtop][wright] = floor.upperRight + 1;
-        map.layers[0].data[wbottom][wright] = floor.lowerRight + 1;
-        /* Generate the side tiles */
-        // Set the walls up
-        let x = left + 1;
-        while (x <= right - 1) {
-            map.layers[0].data[top][x] = walls.top + 1;
-            map.layers[0].data[bottom][x] = walls.bottom + 1;
-            x++;
-        }
-        let y = top + 1;
-        while (y <= bottom - 1) {
-            map.layers[0].data[y][left] = walls.left + 1;
-            map.layers[0].data[y][right] = walls.right + 1;
-            y++;
-        }
-        // Set the floors up
-        let wx = wleft + 1;
-        while (wx <= wright - 1) {
-            map.layers[0].data[wtop][wx] = floor.top + 1;
-            map.layers[0].data[wbottom][wx] = floor.bottom + 1;
-            wx++;
-        }
-        let wy = wtop + 1;
-        while (wy <= wbottom - 1) {
-            map.layers[0].data[wy][wleft] = floor.left + 1;
-            map.layers[0].data[wy][wright] = floor.right + 1;
-            wy++;
-        }
-        /* Set up the doors of the room
-         * TODO: Doors need to be entities in layer 2 or 3*/
-        room.getDoors((dx, dy) => {
-            let above = map.layers[0].data[dy - 1][dx];
-            let below = map.layers[0].data[dy + 1][dx];
-            if (above === walls.right + 1 || above === walls.left + 1 || below === walls.left + 1 || below === walls.right + 1) {
-                map.layers[0].data[dy][dx] = 7741 + 1;
-                map.layers[3].data[dy][dx] = 569 + 1;
-            } else {
-                map.layers[0].data[dy][dx] = 7741 + 1;
-                map.layers[3].data[dy][dx] = 568 + 1;
-            }
-        });
 
-        // Now, we can mess around with the centers of each room and place items in the dungeons
-        // this places a ladder going further into the dungeon (either deeper or higher)
-        let roll = getRandomInt(1, rogueMap.getRooms().length);
-        if (roll == 1 || createdLadders == 0) {
-            map.layers[2].data[center.y][center.x] = dir === "down" ? 478 : 480;
-            createdLadders++;
-        }
-
-        // now I want to populate some random creatures in each room of the dungeon.
-        let validTiles = []; // all the non-wall tiles in the room that don't already a ladder
-        let possibleWalls = Object.values(walls);
-        for (let i = left + 1; i < right - 1; i++) {
-            for (let j = top + 1; j < bottom - 1; j++) {
-                if (map.layers[2].data[j][i] === 0 && ! possibleWalls.includes(map.layers[0].data[j][i]))
-                    validTiles.push(j + ',' + i);
-            }
-        }
-
-        roll = getNormalRandomInt(1, 5);
-        for (let i = 0; i < roll; i++) {
-            let coords = randomTile(validTiles);
-            if (coords === null) break;
-            let chosenMob = ROT.RNG.getWeightedValue(mobDistribution);
-            // console.log(chosenMob);
-            let mobArray = symbolToEntityShop[chosenMob];
-            let randomMob = mobArray[getRandomInt(0, mobArray.length - 1)] + 1;
-            map.layers[2].data[coords[1]][coords[0]] = randomMob;
-        }
-        // if there atleast 4 enemies in the room, drop a chest in the room too!
-        if (roll >= 4) {
-            let coords = randomTile(validTiles);
-            if (coords !== null) {
-                map.layers[2].data[coords[1]][coords[0]] = 58;
-            }
-        }
-
-    }
 
     // Cleaning up the corners...
     // let floor_ids = Object.values(corridorFloor.vertical) + Object.values(floor) + Object.values(corridorFloor.horizontal) + [7741, 569 + 1, 568 + 1];
@@ -411,7 +440,6 @@ export function randomCave(width, height, dir, level = 1) {
     };
 
     let roll = getNormalRandomInt(7+level, 25+level);
-    console.log(roll);
     for (let i = 0; i < roll; i++) {
         let coords = randomTile(validTiles);
         if (coords === null) break;
