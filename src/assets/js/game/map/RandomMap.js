@@ -27,6 +27,140 @@ const randomTile = (validTiles) => {
     }
 }
 
+// enum class TILE {
+//
+//   WALL_SINGLE,
+//
+//   WALL_TOP_END,
+//
+//   WALL_SIDE_RIGHT_END,
+//
+//   WALL_BOTTOM_LEFT,
+//
+//   WALL_BOTTOM_END,
+//
+//   WALL_SIDE,
+//
+//   WALL_TOP_LEFT,
+//
+//   WALL_SIDE_LEFT_T,
+//
+//   WALL_SIDE_LEFT_END,
+//
+//   WALL_BOTTOM_RIGHT,
+//
+//   WALL_TOP,
+//
+//   WALL_BOTTOM_T,
+//
+//   WALL_TOP_RIGHT,
+//
+//   WALL_SIDE_RIGHT_T,
+//
+//   WALL_TOP_T,
+//
+//   WALL_INTERSECTION,
+//
+//   WALL_DOOR_LOCKED,
+//
+//   WALL_DOOR_UNLOCKED,
+//
+//   WALL_ENTRANCE,
+//
+//   FLOOR,
+//
+//   FLOOR_ALT,
+//
+//   EMPTY,
+//
+//   COUNT
+//
+// };
+
+export function newRandomDungeon(width, height, dir, level=1) {
+    let floor = {
+        upperLeft: 7736,
+        top: 7737,
+        upperRight: 7738,
+        left: 7856,
+        center: 7857,
+        right: 7858,
+        lowerLeft: 7976,
+        bottom: 7977,
+        lowerRight: 7978,
+    };
+
+    let corridorFloor = {
+        horizontal: {
+            left: 7860,
+            middle: 7861,
+            right: 7862,
+        },
+        vertical: {
+            top: 7739,
+            middle: 7859,
+            bottom: 7979,
+        },
+    };
+
+    let walls = {
+        upperLeft: 8117,
+        top: 8118,
+        upperRight: 8119,
+        left: 8237,
+        center: 8238,
+        right: 8237,
+        lowerLeft: 8357,
+        bottom: 8118,
+        lowerRight: 8359,
+
+        leftT : 8240,
+        middleT : 8241,
+        rightT : 8242,
+        topT : 8121
+        bottomT : 8361
+
+
+    };
+
+    let map = {};
+    let createdLadders = 0;
+    map.revealed = true;
+    map.width = width;
+    map.height = height;
+    map.layers = [
+        {"data": [], "properties": {"obstacles": true}},
+        {"data": [], "properties": {"obstacles": true}},
+        {"data": [], "properties": {"actors": true}},
+        {"data": [], "properties": {"actors": true}}];
+    let freeCells = {};
+    // ROT.RNG.setSeed(1499200778495);
+    let diggerCallback = function (x, y, blocked) {
+        if (!blocked) freeCells[x + "," + y] = true;
+    };
+    let rogueMap = new ROT.Map.Digger(width, height, {
+        roomWidth: [6, 20],
+        corrdiorLength: [4, 4],
+        roomDugPercentage : 0.1,
+    }).create(diggerCallback);
+    // Initialize obstacles and actors
+    for (let j = 0; j < height; j++) {
+        for (let l = 0; l < map.layers.length; l++)
+            map.layers[l].data.push([]);
+
+        for (let i = 0; i < width; i++) {
+            if (i + "," + j in freeCells)
+                map.layers[0].data[j].push(7858);
+            else
+                map.layers[0].data[j].push(7046);
+
+            map.layers[1].data[j].push(0);
+            map.layers[2].data[j].push(0);
+            map.layers[3].data[j].push(0);
+        }
+    }
+
+}
 
 /* This is a random dungeon map generator. It essentially generates identical
  * JSON data to that of a TILED map, with the unnecessary properties left out */
@@ -117,6 +251,10 @@ export function randomDungeon(width, height, dir, level = 1) {
         bottom: 8361,
         lowerRight: 8359,
     };
+
+
+
+
     /* For every room in the dungeon, we're going to add
      * textures from the tileset for the walls and the floors */
      for (let room of rogueMap.getRooms()) {
