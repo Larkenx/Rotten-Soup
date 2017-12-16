@@ -5,19 +5,6 @@
  "margin":0,
  "name":"Dawnlike_Compiled",
  "spacing":0,
- "terrains":[
-        {
-         "name":"Water",
-         "tile":8297
-        }, 
-        {
-         "name":"Trees",
-         "tile":7473
-        }, 
-        {
-         "name":"Grass",
-         "tile":7864
-        }],
  "tilecount":13080,
  "tileheight":32,
  "tileproperties":
@@ -2490,6 +2477,20 @@
         {
          "blocked":true
         },
+     "3704":
+        {
+         "animated":true,
+         "animated_id":3712,
+         "entity":true,
+         "entity_id":"20"
+        },
+     "3706":
+        {
+         "animated":true,
+         "animated_id":3714,
+         "entity":true,
+         "entity_id":"20"
+        },
      "3840":
         {
          "animated":false,
@@ -2985,18 +2986,22 @@
         },
      "3928":
         {
+         "bg":"#824d03",
          "blocked":false
         },
      "3929":
         {
+         "bg":"#824d03",
          "blocked":true
         },
      "3930":
         {
+         "bg":"#824d03",
          "blocked":true
         },
      "3931":
         {
+         "bg":"#824d03",
          "blocked":true
         },
      "3932":
@@ -3017,18 +3022,22 @@
         },
      "3936":
         {
+         "bg":"#824d03",
          "blocked":true
         },
      "3937":
         {
+         "bg":"#824d03",
          "blocked":true
         },
      "3938":
         {
+         "bg":"#824d03",
          "blocked":true
         },
      "3939":
         {
+         "bg":"#824d03",
          "blocked":true
         },
      "3940":
@@ -12955,6 +12964,12 @@
          "blocks_vision":false,
          "entity":false
         },
+     "7046":
+        {
+         "bg":"black",
+         "blocked":"true",
+         "blocks_vision":"true"
+        },
      "7080":
         {
          "animated":true,
@@ -14838,7 +14853,7 @@
          "FOV_id":7712,
          "animated":false,
          "animated_id":0,
-         "bg":"darkgreen",
+         "bg":"#014a01",
          "blocked":true,
          "blocks_vision":true,
          "entity":false
@@ -14849,7 +14864,7 @@
          "FOV_id":7713,
          "animated":false,
          "animated_id":0,
-         "bg":"darkgreen",
+         "bg":"#014a01",
          "blocked":true,
          "blocks_vision":true,
          "entity":false
@@ -14860,7 +14875,7 @@
          "FOV_id":7714,
          "animated":false,
          "animated_id":0,
-         "bg":"darkgreen",
+         "bg":"#014a01",
          "blocked":true,
          "blocks_vision":true,
          "entity":false
@@ -14871,7 +14886,7 @@
          "FOV_id":7715,
          "animated":false,
          "animated_id":0,
-         "bg":"darkgreen",
+         "bg":"#014a01",
          "blocked":true,
          "blocks_vision":true,
          "entity":false
@@ -14882,7 +14897,7 @@
          "FOV_id":7716,
          "animated":false,
          "animated_id":0,
-         "bg":"darkgreen",
+         "bg":"#014a01",
          "blocked":true,
          "blocks_vision":true,
          "entity":false
@@ -14893,7 +14908,7 @@
          "FOV_id":7717,
          "animated":false,
          "animated_id":0,
-         "bg":"darkgreen",
+         "bg":"#014a01",
          "blocked":true,
          "blocks_vision":true,
          "entity":false
@@ -15740,7 +15755,7 @@
          "FOV_id":7832,
          "animated":false,
          "animated_id":0,
-         "bg":"darkgreen",
+         "bg":"#014a01",
          "blocked":true,
          "blocks_vision":true,
          "entity":false
@@ -15751,7 +15766,7 @@
          "FOV_id":7833,
          "animated":false,
          "animated_id":0,
-         "bg":"darkgreen",
+         "bg":"#014a01",
          "blocked":true,
          "blocks_vision":true,
          "entity":false
@@ -15762,7 +15777,7 @@
          "FOV_id":7834,
          "animated":false,
          "animated_id":0,
-         "bg":"darkgreen",
+         "bg":"#014a01",
          "blocked":true,
          "blocks_vision":true,
          "entity":false
@@ -15773,7 +15788,7 @@
          "FOV_id":0,
          "animated":false,
          "animated_id":0,
-         "bg":"darkgreen",
+         "bg":"#014a01",
          "blocked":true,
          "blocks_vision":true,
          "entity":false
@@ -15784,7 +15799,7 @@
          "FOV_id":7836,
          "animated":false,
          "animated_id":0,
-         "bg":"darkgreen",
+         "bg":"#014a01",
          "blocked":true,
          "blocks_vision":true,
          "entity":false
@@ -15795,7 +15810,7 @@
          "FOV_id":7837,
          "animated":false,
          "animated_id":0,
-         "bg":"darkgreen",
+         "bg":"#014a01",
          "blocked":true,
          "blocks_vision":true,
          "entity":false
@@ -16631,7 +16646,7 @@
          "FOV_id":7952,
          "animated":false,
          "animated_id":0,
-         "bg":"darkgreen",
+         "bg":"#014a01",
          "blocked":true,
          "blocks_vision":true,
          "entity":false
@@ -16642,7 +16657,7 @@
          "FOV_id":7953,
          "animated":false,
          "animated_id":0,
-         "bg":"darkgreen",
+         "bg":"#014a01",
          "blocked":true,
          "blocks_vision":true,
          "entity":false
@@ -16653,7 +16668,7 @@
          "FOV_id":7954,
          "animated":false,
          "animated_id":0,
-         "bg":"darkgreen",
+         "bg":"#014a01",
          "blocked":true,
          "blocks_vision":true,
          "entity":false
@@ -16664,7 +16679,7 @@
          "FOV_id":0,
          "animated":false,
          "animated_id":0,
-         "bg":"darkgreen",
+         "bg":"#014a01",
          "blocked":true,
          "blocks_vision":true,
          "entity":false
@@ -16675,7 +16690,7 @@
          "FOV_id":7956,
          "animated":false,
          "animated_id":0,
-         "bg":"darkgreen",
+         "bg":"#014a01",
          "blocked":true,
          "blocks_vision":true,
          "entity":false
@@ -16686,7 +16701,7 @@
          "FOV_id":7957,
          "animated":false,
          "animated_id":0,
-         "bg":"darkgreen",
+         "bg":"#014a01",
          "blocked":true,
          "blocks_vision":true,
          "entity":false
@@ -17522,7 +17537,7 @@
          "FOV_id":0,
          "animated":false,
          "animated_id":0,
-         "bg":"darkgreen",
+         "bg":"#014a01",
          "blocked":true,
          "blocks_vision":true,
          "entity":false
@@ -17533,7 +17548,7 @@
          "FOV_id":0,
          "animated":false,
          "animated_id":0,
-         "bg":"darkgreen",
+         "bg":"#014a01",
          "blocked":true,
          "blocks_vision":true,
          "entity":false
@@ -17544,7 +17559,7 @@
          "FOV_id":0,
          "animated":false,
          "animated_id":0,
-         "bg":"darkgreen",
+         "bg":"#014a01",
          "blocked":true,
          "blocks_vision":true,
          "entity":false
@@ -17555,7 +17570,7 @@
          "FOV_id":0,
          "animated":false,
          "animated_id":0,
-         "bg":"darkgreen",
+         "bg":"#014a01",
          "blocked":true,
          "blocks_vision":true,
          "entity":false
@@ -17566,7 +17581,7 @@
          "FOV_id":0,
          "animated":false,
          "animated_id":0,
-         "bg":"darkgreen",
+         "bg":"#014a01",
          "blocked":true,
          "blocks_vision":true,
          "entity":false
@@ -17577,7 +17592,7 @@
          "FOV_id":0,
          "animated":false,
          "animated_id":0,
-         "bg":"darkgreen",
+         "bg":"#014a01",
          "blocked":true,
          "blocks_vision":true,
          "entity":false
@@ -18413,7 +18428,7 @@
          "FOV_id":0,
          "animated":false,
          "animated_id":0,
-         "bg":"darkgreen",
+         "bg":"#014a01",
          "blocked":true,
          "blocks_vision":true,
          "entity":false
@@ -18424,7 +18439,7 @@
          "FOV_id":0,
          "animated":false,
          "animated_id":0,
-         "bg":"darkgreen",
+         "bg":"#014a01",
          "blocked":true,
          "blocks_vision":true,
          "entity":false
@@ -18435,7 +18450,7 @@
          "FOV_id":0,
          "animated":false,
          "animated_id":0,
-         "bg":"darkgreen",
+         "bg":"#014a01",
          "blocked":true,
          "blocks_vision":true,
          "entity":false
@@ -18446,7 +18461,7 @@
          "FOV_id":0,
          "animated":false,
          "animated_id":0,
-         "bg":"darkgreen",
+         "bg":"#014a01",
          "blocked":true,
          "blocks_vision":true,
          "entity":false
@@ -18457,7 +18472,7 @@
          "FOV_id":0,
          "animated":false,
          "animated_id":0,
-         "bg":"darkgreen",
+         "bg":"#014a01",
          "blocked":true,
          "blocks_vision":true,
          "entity":false
@@ -18468,7 +18483,7 @@
          "FOV_id":0,
          "animated":false,
          "animated_id":0,
-         "bg":"darkgreen",
+         "bg":"#014a01",
          "blocked":true,
          "blocks_vision":true,
          "entity":false
@@ -19323,7 +19338,7 @@
          "FOV_id":0,
          "animated":false,
          "animated_id":0,
-         "bg":"darkgreen",
+         "bg":"#014a01",
          "blocked":true,
          "blocks_vision":true,
          "entity":false
@@ -19334,7 +19349,7 @@
          "FOV_id":0,
          "animated":false,
          "animated_id":0,
-         "bg":"darkgreen",
+         "bg":"#014a01",
          "blocked":true,
          "blocks_vision":true,
          "entity":false
@@ -19345,7 +19360,7 @@
          "FOV_id":0,
          "animated":false,
          "animated_id":0,
-         "bg":"darkgreen",
+         "bg":"#014a01",
          "blocked":true,
          "blocks_vision":true,
          "entity":false
@@ -19356,7 +19371,7 @@
          "FOV_id":0,
          "animated":false,
          "animated_id":0,
-         "bg":"darkgreen",
+         "bg":"#014a01",
          "blocked":true,
          "blocks_vision":true,
          "entity":false
@@ -19367,7 +19382,7 @@
          "FOV_id":0,
          "animated":false,
          "animated_id":0,
-         "bg":"darkgreen",
+         "bg":"#014a01",
          "blocked":true,
          "blocks_vision":true,
          "entity":false
@@ -19378,7 +19393,7 @@
          "FOV_id":0,
          "animated":false,
          "animated_id":0,
-         "bg":"darkgreen",
+         "bg":"#014a01",
          "blocked":true,
          "blocks_vision":true,
          "entity":false
@@ -20582,7 +20597,7 @@
      "8120":
         {
          "FOV":true,
-         "FOV_id":8219,
+         "FOV_id":8480,
          "bg":"black",
          "blocked":"true",
          "blocks_vision":"true"
@@ -21321,7 +21336,7 @@
      "8239":
         {
          "FOV":true,
-         "FOV_id":8219,
+         "FOV_id":8599,
          "bg":"black",
          "blocked":"true",
          "blocks_vision":"true"
@@ -27190,7 +27205,9 @@
         },
      "9200":
         {
-         "bg":"darkbrown",
+         "FOV":true,
+         "FOV_id":9560,
+         "bg":"brown",
          "blocked":"true",
          "blocks_vision":"true"
         },
@@ -27676,10 +27693,10 @@
      "9297":
         {
          "FOV":true,
-         "FOV_id":10017,
+         "FOV_id":9657,
          "animated":false,
          "animated_id":0,
-         "bg":"brown",
+         "bg":"rgb(153, 90, 31)",
          "blocked":false,
          "blocks_vision":false,
          "entity":false
@@ -29359,7 +29376,7 @@
         },
      "9560":
         {
-         "bg":"darkbrown",
+         "bg":"brown",
          "blocked":"true",
          "blocks_vision":"true"
         },
@@ -29848,7 +29865,7 @@
          "FOV_id":0,
          "animated":false,
          "animated_id":0,
-         "bg":"brown",
+         "bg":"rgb(153, 90, 31)",
          "blocked":false,
          "blocks_vision":false,
          "entity":false
@@ -34414,6 +34431,20 @@
         {
          "blocked":"bool"
         },
+     "3704":
+        {
+         "animated":"bool",
+         "animated_id":"int",
+         "entity":"bool",
+         "entity_id":"string"
+        },
+     "3706":
+        {
+         "animated":"bool",
+         "animated_id":"int",
+         "entity":"bool",
+         "entity_id":"string"
+        },
      "3840":
         {
          "animated":"bool",
@@ -34909,18 +34940,22 @@
         },
      "3928":
         {
+         "bg":"string",
          "blocked":"bool"
         },
      "3929":
         {
+         "bg":"string",
          "blocked":"bool"
         },
      "3930":
         {
+         "bg":"string",
          "blocked":"bool"
         },
      "3931":
         {
+         "bg":"string",
          "blocked":"bool"
         },
      "3932":
@@ -34941,18 +34976,22 @@
         },
      "3936":
         {
+         "bg":"string",
          "blocked":"bool"
         },
      "3937":
         {
+         "bg":"string",
          "blocked":"bool"
         },
      "3938":
         {
+         "bg":"string",
          "blocked":"bool"
         },
      "3939":
         {
+         "bg":"string",
          "blocked":"bool"
         },
      "3940":
@@ -44879,6 +44918,12 @@
          "blocks_vision":"bool",
          "entity":"bool"
         },
+     "7046":
+        {
+         "bg":"string",
+         "blocked":"string",
+         "blocks_vision":"string"
+        },
      "7080":
         {
          "animated":"bool",
@@ -59114,6 +59159,8 @@
         },
      "9200":
         {
+         "FOV":"bool",
+         "FOV_id":"int",
          "bg":"string",
          "blocked":"string",
          "blocks_vision":"string"
@@ -63884,98 +63931,6 @@
              "y":0
             }
         },
-     "7352":
-        {
-         "terrain":[1, 1, 1, 1]
-        },
-     "7353":
-        {
-         "terrain":[1, 1, 1, 1]
-        },
-     "7354":
-        {
-         "terrain":[1, 1, 1, 1]
-        },
-     "7472":
-        {
-         "terrain":[1, 1, 1, 1]
-        },
-     "7473":
-        {
-         "terrain":[1, 1, 1, 1]
-        },
-     "7474":
-        {
-         "terrain":[1, 1, 1, 1]
-        },
-     "7592":
-        {
-         "terrain":[1, 1, 1, 1]
-        },
-     "7593":
-        {
-         "terrain":[1, 1, 1, 1]
-        },
-     "7594":
-        {
-         "terrain":[1, 1, 1, 1]
-        },
-     "7743":
-        {
-         "terrain":[2, 2, 2, 2]
-        },
-     "7744":
-        {
-         "terrain":[2, 2, 2, 2]
-        },
-     "7745":
-        {
-         "terrain":[2, 2, 2, 2]
-        },
-     "7863":
-        {
-         "terrain":[2, 2, 2, 2]
-        },
-     "7864":
-        {
-         "terrain":[2, 2, 2, 2]
-        },
-     "7865":
-        {
-         "terrain":[2, 2, 2, 2]
-        },
-     "7983":
-        {
-         "terrain":[2, 2, 2, 2]
-        },
-     "7984":
-        {
-         "terrain":[2, 2, 2, 2]
-        },
-     "7985":
-        {
-         "terrain":[2, 2, 2, 2]
-        },
-     "8176":
-        {
-         "terrain":[-1, -1, -1, 0]
-        },
-     "8177":
-        {
-         "terrain":[-1, -1, 0, 0]
-        },
-     "8178":
-        {
-         "terrain":[-1, -1, 0, -1]
-        },
-     "8296":
-        {
-         "terrain":[-1, 0, -1, -1]
-        },
-     "8297":
-        {
-         "terrain":[0, 0, -1, -1]
-        },
      "8298":
         {
          "objectgroup":
@@ -63988,8 +63943,7 @@
              "visible":true,
              "x":0,
              "y":0
-            },
-         "terrain":[0, -1, -1, -1]
+            }
         }
     },
  "tilewidth":32,
