@@ -41,20 +41,22 @@ export default class Orc extends SimpleEnemy {
                 empowered: empowered,
             }
         });
-        let items = getItemsFromDropTable({
-            minItems : 0,
-            maxItems : 2,
-            dropTable : {
-                "STRENGTH_POTION": 1,
-                "HEALTH_POTION": 1,
-                "STEEL_ARROW": 1,
-                "MANA_POTION": 1,
-                "SWORD" : 1
-            },
-            x : this.x,
-            y : this.y
-        });
-        items.forEach(item => this.addToInventory(item));
+        if (getRandomInt(1,10) < 5) {
+            let items = getItemsFromDropTable({
+                minItems : 0,
+                maxItems : 2,
+                dropTable : {
+                    "STRENGTH_POTION": 1,
+                    "HEALTH_POTION": 1,
+                    "STEEL_ARROW": 1,
+                    "MANA_POTION": 1,
+                    "SWORD" : 1
+                },
+                x : this.x,
+                y : this.y
+            });
+            items.forEach(item => this.addToInventory(item));
+        }
     }
 
     interact(actor) {

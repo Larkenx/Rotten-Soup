@@ -39,20 +39,22 @@ export default class Goblin extends SimpleEnemy {
                 invulnerable: false,
             }
         });
-        let items = getItemsFromDropTable({
-            minItems : 0,
-            maxItems : 1,
-            dropTable : {
-                "STRENGTH_POTION": 3,
-                "HEALTH_POTION": 2,
-                "MANA_POTION" : 2,
-                "STEEL_ARROW": 2,
-                "SWORD" : 0
-            },
-            x : this.x,
-            y : this.y
-        });
-        items.forEach(item => this.addToInventory(item));
-    }
 
+        if (getRandomInt(1,10) < 2) {
+            let items = getItemsFromDropTable({
+                minItems : 0,
+                maxItems : 1,
+                dropTable : {
+                    "STRENGTH_POTION": 3,
+                    "HEALTH_POTION": 2,
+                    "MANA_POTION" : 2,
+                    "STEEL_ARROW": 2,
+                    "SWORD" : 0
+                },
+                x : this.x,
+                y : this.y
+            });
+            items.forEach(item => this.addToInventory(item));
+        }
+    }
 }

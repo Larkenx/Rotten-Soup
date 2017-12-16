@@ -15,14 +15,16 @@
                         "{{enemy.description}}"<br />
                     </span>
                     <div slot="activator">
-                            <v-layout class="text-xs-center"align-center row style="font-size: 10px; margin: 0px auto -10px 0px;" >
-                                {{enemy.name.capitalize()}}
+                            <v-layout class="text-xs-center" align-center row style="font-size: 10px; margin: 0px auto -10px 0px;" >
+                                <v-flex>{{enemy.name.capitalize()}}</v-flex>
                             </v-layout>
-                            <v-layout row style="margin: 0 auto;">
+                            <v-layout row style="margin: 0 auto; margin-bottom: -5px;">
+                                <v-flex>
                                 <v-progress-linear :value="(enemy.getHP() / enemy.getMaxHP()) * 100"
                                                    height="4"
                                                    color="error"
                                 ></v-progress-linear>
+                                </v-flex>
                             </v-layout>
                     </div>
                 </v-tooltip>
