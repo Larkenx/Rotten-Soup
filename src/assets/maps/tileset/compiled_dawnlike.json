@@ -12964,6 +12964,12 @@
          "blocks_vision":false,
          "entity":false
         },
+     "7046":
+        {
+         "bg":"black",
+         "blocked":"true",
+         "blocks_vision":"true"
+        },
      "7080":
         {
          "animated":true,
@@ -20591,7 +20597,7 @@
      "8120":
         {
          "FOV":true,
-         "FOV_id":8219,
+         "FOV_id":8480,
          "bg":"black",
          "blocked":"true",
          "blocks_vision":"true"
@@ -21330,7 +21336,7 @@
      "8239":
         {
          "FOV":true,
-         "FOV_id":8219,
+         "FOV_id":8599,
          "bg":"black",
          "blocked":"true",
          "blocks_vision":"true"
@@ -44911,6 +44917,12 @@
          "blocked":"bool",
          "blocks_vision":"bool",
          "entity":"bool"
+        },
+     "7046":
+        {
+         "bg":"string",
+         "blocked":"string",
+         "blocks_vision":"string"
         },
      "7080":
         {
