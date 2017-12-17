@@ -11,14 +11,14 @@ import ManaPotion from "#/entities/items/potions/ManaPotion.js";
 import {Game} from "#/Game.js";
 import {SteelArrow} from "#/entities/items/weapons/ranged/ammo/Arrow.js";
 
-export default class Goblin extends SimpleEnemy {
+export default class Bat extends SimpleEnemy {
     constructor(x, y, id) {
-        let randomHP = getRandomInt(10, 15);
-        let randomStr = getRandomInt(5, 9);
+        let randomHP = getRandomInt(4, 8);
+        let randomStr = getRandomInt(3, 5);
         super(x, y, {
             id: id,
-            name: "goblin",
-            description: "A mean, green goblin!",
+            name: "bat",
+            description: "A creature of the night!",
             visible: true,
             blocked: true,
             chasing: false,
@@ -39,22 +39,16 @@ export default class Goblin extends SimpleEnemy {
                 invulnerable: false,
             }
         });
-
-        if (getRandomInt(1,10) < 2) {
-            let items = getItemsFromDropTable({
-                minItems : 0,
-                maxItems : 1,
-                dropTable : {
-                    "STRENGTH_POTION": 3,
-                    "HEALTH_POTION": 2,
-                    "MANA_POTION" : 2,
-                    "STEEL_ARROW": 2,
-                    "SWORD" : 0
-                },
-                x : this.x,
-                y : this.y
-            });
-            items.forEach(item => this.addToInventory(item));
-        }
+        // let items = getItemsFromDropTable({
+        //     minItems : 0,
+        //     maxItems : 1,
+        //     dropTable : {
+        //
+        //     },
+        //     x : this.x,
+        //     y : this.y
+        // });
+        // items.forEach(item => this.addToInventory(item));
     }
+
 }

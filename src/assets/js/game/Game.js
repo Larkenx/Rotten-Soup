@@ -7,7 +7,7 @@ import {getItemsFromDropTable} from "#/utils/HelperFunctions.js";
 
 import Item from '#/entities/items/Item.js';
 import Player from "#/entities/actors/Player.js";
-import {randomMap} from "#/map/RandomMap.js";
+import {randomDungeon, randomCave} from "#/map/randomMap.js";
 import Door from "#/entities/misc/Door.js";
 import Ladder from "#/entities/misc/Ladder.js";
 import Chest from '#/entities/misc/Chest.js'
@@ -142,7 +142,10 @@ export let Game = {
 
     changeLevels(newLevel, dir, level) {
         if (this.levels[newLevel] === undefined) { // generating a new random room
-            this.levels[newLevel] = new GameMap(randomMap(40, 40, dir, level));
+            if (newLevel.toLowerCase().includes("cave"))
+                this.levels[newLevel] = new GameMap(randomCave(80, 40, dir, level));
+            else
+                this.levels[newLevel] = new GameMap(randomDungeon(40, 40, dir, level));
             this.levels[newLevel].revealed = false;
             for (let actor of this.levels[newLevel].actors) {
                 if (actor instanceof Chest) {
@@ -156,7 +159,7 @@ export let Game = {
                             "HEALTH_POTION": 1,
                             "STEEL_ARROW": 1,
                             "MANA_POTION": 1,
-                            "SWORD" : 1
+                            "SWORD" : 3
                         },
                         x : actor.x,
                         y : actor.y
