@@ -26957,79 +26957,58 @@
      "9176":
         {
          "FOV":true,
-         "FOV_id":9896,
-         "animated":false,
-         "animated_id":0,
-         "bg":"brown",
+         "FOV_id":9536,
+         "bg":"rgb(153, 90, 31)",
          "blocked":false,
-         "blocks_vision":false,
-         "entity":false
+         "blocks_vision":false
         },
      "9177":
         {
          "FOV":true,
-         "FOV_id":9897,
-         "animated":false,
-         "animated_id":0,
+         "FOV_id":9537,
          "bg":"brown",
          "blocked":false,
-         "blocks_vision":false,
-         "entity":false
+         "blocks_vision":false
         },
      "9178":
         {
          "FOV":true,
-         "FOV_id":9898,
-         "animated":false,
-         "animated_id":0,
+         "FOV_id":9538,
          "bg":"brown",
          "blocked":false,
-         "blocks_vision":false,
-         "entity":false
+         "blocks_vision":false
         },
      "9179":
         {
          "FOV":true,
-         "FOV_id":9899,
-         "animated":false,
-         "animated_id":0,
-         "bg":"brown",
+         "FOV_id":9539,
+         "bg":"rgb(153, 90, 31)",
          "blocked":false,
-         "blocks_vision":false,
-         "entity":false
+         "blocks_vision":false
         },
      "9180":
         {
          "FOV":true,
-         "FOV_id":0,
-         "animated":false,
-         "animated_id":0,
-         "bg":"brown",
+         "FOV_id":9657,
+         "bg":"rgb(153, 90, 31)",
          "blocked":false,
-         "blocks_vision":false,
-         "entity":false
+         "blocks_vision":false
         },
      "9181":
         {
          "FOV":true,
-         "FOV_id":9901,
-         "animated":false,
-         "animated_id":0,
-         "bg":"brown",
+         "FOV_id":9657,
+         "bg":"rgb(153, 90, 31)",
          "blocked":false,
-         "blocks_vision":false,
-         "entity":false
+         "blocks_vision":false
         },
      "9182":
         {
          "FOV":true,
-         "FOV_id":0,
-         "animated":false,
-         "animated_id":0,
-         "bg":"brown",
+         "FOV_id":9657,
+         "bg":"rgb(153, 90, 31)",
          "blocked":false,
-         "blocks_vision":false,
-         "entity":false
+         "blocks_vision":false
         },
      "9183":
         {
@@ -27690,79 +27669,58 @@
      "9296":
         {
          "FOV":true,
-         "FOV_id":10016,
-         "animated":false,
-         "animated_id":0,
-         "bg":"brown",
+         "FOV_id":9656,
+         "bg":"rgb(153, 90, 31)",
          "blocked":false,
-         "blocks_vision":false,
-         "entity":false
+         "blocks_vision":false
         },
      "9297":
         {
          "FOV":true,
          "FOV_id":9657,
-         "animated":false,
-         "animated_id":0,
          "bg":"rgb(153, 90, 31)",
          "blocked":false,
-         "blocks_vision":false,
-         "entity":false
+         "blocks_vision":false
         },
      "9298":
         {
          "FOV":true,
-         "FOV_id":10018,
-         "animated":false,
-         "animated_id":0,
-         "bg":"brown",
+         "FOV_id":9658,
+         "bg":"rgb(153, 90, 31)",
          "blocked":false,
-         "blocks_vision":false,
-         "entity":false
+         "blocks_vision":false
         },
      "9299":
         {
          "FOV":true,
-         "FOV_id":10019,
-         "animated":false,
-         "animated_id":0,
-         "bg":"brown",
+         "FOV_id":9659,
+         "bg":"rgb(153, 90, 31)",
          "blocked":false,
-         "blocks_vision":false,
-         "entity":false
+         "blocks_vision":false
         },
      "9300":
         {
          "FOV":true,
-         "FOV_id":10020,
-         "animated":false,
-         "animated_id":0,
-         "bg":"brown",
+         "FOV_id":9660,
+         "bg":"rgb(153, 90, 31)",
          "blocked":false,
-         "blocks_vision":false,
-         "entity":false
+         "blocks_vision":false
         },
      "9301":
         {
          "FOV":true,
-         "FOV_id":10021,
-         "animated":false,
-         "animated_id":0,
-         "bg":"brown",
+         "FOV_id":9661,
+         "bg":"rgb(153, 90, 31)",
          "blocked":false,
-         "blocks_vision":false,
-         "entity":false
+         "blocks_vision":false
         },
      "9302":
         {
          "FOV":true,
-         "FOV_id":10022,
-         "animated":false,
-         "animated_id":0,
-         "bg":"brown",
+         "FOV_id":9662,
+         "bg":"rgb(153, 90, 31)",
          "blocked":false,
-         "blocks_vision":false,
-         "entity":false
+         "blocks_vision":false
         },
      "9303":
         {
@@ -28425,79 +28383,58 @@
      "9416":
         {
          "FOV":true,
-         "FOV_id":0,
-         "animated":false,
-         "animated_id":10136,
-         "bg":"brown",
+         "FOV_id":9776,
+         "bg":"rgb(153, 90, 31)",
          "blocked":false,
-         "blocks_vision":false,
-         "entity":false
+         "blocks_vision":false
         },
      "9417":
         {
          "FOV":true,
-         "FOV_id":0,
-         "animated":false,
-         "animated_id":10137,
-         "bg":"brown",
+         "FOV_id":9777,
+         "bg":"rgb(153, 90, 31)",
          "blocked":false,
-         "blocks_vision":false,
-         "entity":false
+         "blocks_vision":false
         },
      "9418":
         {
          "FOV":true,
-         "FOV_id":0,
-         "animated":false,
-         "animated_id":10138,
-         "bg":"brown",
+         "FOV_id":9778,
+         "bg":"rgb(153, 90, 31)",
          "blocked":false,
-         "blocks_vision":false,
-         "entity":false
+         "blocks_vision":false
         },
      "9419":
         {
          "FOV":true,
-         "FOV_id":0,
-         "animated":false,
-         "animated_id":10139,
-         "bg":"brown",
+         "FOV_id":9779,
+         "bg":"rgb(153, 90, 31)",
          "blocked":false,
-         "blocks_vision":false,
-         "entity":false
+         "blocks_vision":false
         },
      "9420":
         {
          "FOV":true,
-         "FOV_id":0,
-         "animated":false,
-         "animated_id":0,
-         "bg":"brown",
+         "FOV_id":9657,
+         "bg":"rgb(153, 90, 31)",
          "blocked":false,
-         "blocks_vision":false,
-         "entity":false
+         "blocks_vision":false
         },
      "9421":
         {
          "FOV":true,
-         "FOV_id":0,
-         "animated":false,
-         "animated_id":0,
-         "bg":"brown",
+         "FOV_id":9657,
+         "bg":"rgb(153, 90, 31)",
          "blocked":false,
-         "blocks_vision":false,
-         "entity":false
+         "blocks_vision":false
         },
      "9422":
         {
          "FOV":true,
-         "FOV_id":0,
-         "animated":false,
-         "animated_id":0,
-         "bg":"brown",
+         "FOV_id":9657,
+         "bg":"rgb(153, 90, 31)",
          "blocked":false,
-         "blocks_vision":false,
-         "entity":false
+         "blocks_vision":false
         },
      "9423":
         {
@@ -58978,78 +58915,57 @@
         {
          "FOV":"bool",
          "FOV_id":"int",
-         "animated":"bool",
-         "animated_id":"int",
          "bg":"string",
          "blocked":"bool",
-         "blocks_vision":"bool",
-         "entity":"bool"
+         "blocks_vision":"bool"
         },
      "9177":
         {
          "FOV":"bool",
          "FOV_id":"int",
-         "animated":"bool",
-         "animated_id":"int",
          "bg":"string",
          "blocked":"bool",
-         "blocks_vision":"bool",
-         "entity":"bool"
+         "blocks_vision":"bool"
         },
      "9178":
         {
          "FOV":"bool",
          "FOV_id":"int",
-         "animated":"bool",
-         "animated_id":"int",
          "bg":"string",
          "blocked":"bool",
-         "blocks_vision":"bool",
-         "entity":"bool"
+         "blocks_vision":"bool"
         },
      "9179":
         {
          "FOV":"bool",
          "FOV_id":"int",
-         "animated":"bool",
-         "animated_id":"int",
          "bg":"string",
          "blocked":"bool",
-         "blocks_vision":"bool",
-         "entity":"bool"
+         "blocks_vision":"bool"
         },
      "9180":
         {
          "FOV":"bool",
          "FOV_id":"int",
-         "animated":"bool",
-         "animated_id":"int",
          "bg":"string",
          "blocked":"bool",
-         "blocks_vision":"bool",
-         "entity":"bool"
+         "blocks_vision":"bool"
         },
      "9181":
         {
          "FOV":"bool",
          "FOV_id":"int",
-         "animated":"bool",
-         "animated_id":"int",
          "bg":"string",
          "blocked":"bool",
-         "blocks_vision":"bool",
-         "entity":"bool"
+         "blocks_vision":"bool"
         },
      "9182":
         {
          "FOV":"bool",
          "FOV_id":"int",
-         "animated":"bool",
-         "animated_id":"int",
          "bg":"string",
          "blocked":"bool",
-         "blocks_vision":"bool",
-         "entity":"bool"
+         "blocks_vision":"bool"
         },
      "9183":
         {
@@ -59711,78 +59627,57 @@
         {
          "FOV":"bool",
          "FOV_id":"int",
-         "animated":"bool",
-         "animated_id":"int",
          "bg":"string",
          "blocked":"bool",
-         "blocks_vision":"bool",
-         "entity":"bool"
+         "blocks_vision":"bool"
         },
      "9297":
         {
          "FOV":"bool",
          "FOV_id":"int",
-         "animated":"bool",
-         "animated_id":"int",
          "bg":"string",
          "blocked":"bool",
-         "blocks_vision":"bool",
-         "entity":"bool"
+         "blocks_vision":"bool"
         },
      "9298":
         {
          "FOV":"bool",
          "FOV_id":"int",
-         "animated":"bool",
-         "animated_id":"int",
          "bg":"string",
          "blocked":"bool",
-         "blocks_vision":"bool",
-         "entity":"bool"
+         "blocks_vision":"bool"
         },
      "9299":
         {
          "FOV":"bool",
          "FOV_id":"int",
-         "animated":"bool",
-         "animated_id":"int",
          "bg":"string",
          "blocked":"bool",
-         "blocks_vision":"bool",
-         "entity":"bool"
+         "blocks_vision":"bool"
         },
      "9300":
         {
          "FOV":"bool",
          "FOV_id":"int",
-         "animated":"bool",
-         "animated_id":"int",
          "bg":"string",
          "blocked":"bool",
-         "blocks_vision":"bool",
-         "entity":"bool"
+         "blocks_vision":"bool"
         },
      "9301":
         {
          "FOV":"bool",
          "FOV_id":"int",
-         "animated":"bool",
-         "animated_id":"int",
          "bg":"string",
          "blocked":"bool",
-         "blocks_vision":"bool",
-         "entity":"bool"
+         "blocks_vision":"bool"
         },
      "9302":
         {
          "FOV":"bool",
          "FOV_id":"int",
-         "animated":"bool",
-         "animated_id":"int",
          "bg":"string",
          "blocked":"bool",
-         "blocks_vision":"bool",
-         "entity":"bool"
+         "blocks_vision":"bool"
         },
      "9303":
         {
@@ -60446,78 +60341,57 @@
         {
          "FOV":"bool",
          "FOV_id":"int",
-         "animated":"bool",
-         "animated_id":"int",
          "bg":"string",
          "blocked":"bool",
-         "blocks_vision":"bool",
-         "entity":"bool"
+         "blocks_vision":"bool"
         },
      "9417":
         {
          "FOV":"bool",
          "FOV_id":"int",
-         "animated":"bool",
-         "animated_id":"int",
          "bg":"string",
          "blocked":"bool",
-         "blocks_vision":"bool",
-         "entity":"bool"
+         "blocks_vision":"bool"
         },
      "9418":
         {
          "FOV":"bool",
          "FOV_id":"int",
-         "animated":"bool",
-         "animated_id":"int",
          "bg":"string",
          "blocked":"bool",
-         "blocks_vision":"bool",
-         "entity":"bool"
+         "blocks_vision":"bool"
         },
      "9419":
         {
          "FOV":"bool",
          "FOV_id":"int",
-         "animated":"bool",
-         "animated_id":"int",
          "bg":"string",
          "blocked":"bool",
-         "blocks_vision":"bool",
-         "entity":"bool"
+         "blocks_vision":"bool"
         },
      "9420":
         {
          "FOV":"bool",
          "FOV_id":"int",
-         "animated":"bool",
-         "animated_id":"int",
          "bg":"string",
          "blocked":"bool",
-         "blocks_vision":"bool",
-         "entity":"bool"
+         "blocks_vision":"bool"
         },
      "9421":
         {
          "FOV":"bool",
          "FOV_id":"int",
-         "animated":"bool",
-         "animated_id":"int",
          "bg":"string",
          "blocked":"bool",
-         "blocks_vision":"bool",
-         "entity":"bool"
+         "blocks_vision":"bool"
         },
      "9422":
         {
          "FOV":"bool",
          "FOV_id":"int",
-         "animated":"bool",
-         "animated_id":"int",
          "bg":"string",
          "blocked":"bool",
-         "blocks_vision":"bool",
-         "entity":"bool"
+         "blocks_vision":"bool"
         },
      "9423":
         {

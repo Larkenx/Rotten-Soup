@@ -543,6 +543,26 @@ export function randomCave(width, height, dir, level = 1) {
         middleT : 9201,
     }
 
+    let floors = {
+        upperLeft: 9176,
+        top: 9177,
+        upperRight: 9178,
+        left: 9296,
+        center: 9297,
+        right: 9298,
+        lowerLeft: 9416,
+        bottom: 9417,
+        lowerRight: 9418,
+
+        endLeft: 9300,
+        middleCorridorHorizontal: 9301,
+        endRight: 9302,
+
+        endTop : 9179,
+        middleCorridorVertical : 9299
+        endBottom : 9419
+    }
+
     let computeBitmask = (x,y) => {
         let sum = 0
         let above = `${x},${y-1}`
