@@ -527,6 +527,201 @@ export function randomCave(width, height, dir, level = 1) {
         }
     }
 
+    let walls = {
+        upperLeft: 9197,
+        top: 9198,
+        upperRight: 9199,
+        left: 9317,
+        center: 9318,
+        right: 9317,
+        lowerLeft: 9437,
+        bottom: 9198,
+        lowerRight: 9439,
+        endBottom : 9318,
+        endTop : 9319,
+
+        middleT : 9201,
+    }
+
+    let computeBitmask = (x,y) => {
+        let sum = 0
+        let above = `${x},${y-1}`
+        let below = `${x},${y+1}`
+        let left = `${x-1},${y}`
+        let right = `${x+1},${y}`
+
+        let ur = `${x+1},${y-1}`;
+        let ll = `${x-1},${y+1}`;
+
+        let ul = `${x-1},${y-1}`;
+        let lr = `${x+1},${y+1}`;
+
+        if (above in freeCells) sum += 1
+        if (right in freeCells) sum += 2
+        if (below in freeCells) sum += 4
+        if (left in freeCells) sum += 8
+
+        if (sum == 0) {
+            if (ul in freeCells && above in freeCells && lr in freeCells)
+                return 20
+            else if (lr in freeCells && below in freeCells && ul in freeCells)
+                return 20
+            else if (ul in freeCells)
+                return 16
+            else if (ur in freeCells)
+                return 17
+            else if (ll in freeCells)
+                return 18
+            else if (lr in freeCells)
+                return 19
+        }
+
+
+        return sum
+    }
+
+    let wallSums = {
+        /*
+            ? 0 ?
+            0 0 0
+            ? 0 ?
+        */
+        0 : 7046, // empty space (black spot)
+        /*
+            ? 1 ?
+            0 0 0
+            ? 0 ?
+        */
+        1 : walls.bottom,
+        /*
+            ? 0 ?
+            0 0 1
+            ? 0 ?
+        */
+        2 : walls.left,
+        /*
+            ? 1 ?
+            0 0 1
+            ? 0 ?
+        */
+        3 : walls.upperRight,
+        /*
+            ? 0 ?
+            0 0 0
+            ? 1 ?
+        */
+        4 : walls.top,
+        /*
+            ? 1 ?
+            0 0 0
+            ? 1 ?
+        */
+        5 : walls.top,
+        /*
+            ? 0 ?
+            0 0 1
+            ? 1 ?
+        */
+        6 : walls.lowerRight,
+        /*
+            ? 1 ?
+            0 0 1
+            ? 1 ?
+        */
+        7 : walls.bottom, // this case is a hard one. Need a new tile that properly ends a wall in one tile
+        /*
+            ? 0 ?
+            1 0 0
+            ? 0 ?
+        */
+        8 : walls.right,
+        /*
+            ? 1 ?
+            1 0 0
+            ? 0 ?
+        */
+        9 : walls.upperLeft,
+        /*
+            ? 0 ?
+            1 0 1
+            ? 0 ?
+        */
+        10 : walls.left, // vertical
+        /*
+            ? 1 ?
+            1 0 1
+            ? 0 ?
+        */
+        11 : walls.endTop,
+        /*
+            ? 0 ?
+            1 0 0
+            ? 1 ?
+        */
+        12 : walls.lowerLeft,
+        /*
+            ? 1 ?
+            1 0 0
+            ? 1 ?
+        */
+        13 : walls.bottom,
+        /*
+            ? 0 ?
+            1 0 1
+            ? 1 ?
+        */
+        14 : walls.endBottom,
+        /*
+            ? 1 ?
+            1 0 1
+            ? 1 ?
+        */
+        15 : walls.center,
+        /*
+            1 0 ?
+            0 0 0
+            ? 0 ?
+        */
+        16 : walls.lowerRight,
+        /*
+            ? 0 1
+            0 0 0
+            ? 0 ?
+        */
+        17 : walls.lowerLeft,
+        /*
+            ? 0 ?
+            0 0 0
+            1 0 ?
+        */
+        18 : walls.upperRight,
+        /*
+            ? 0 ?
+            0 0 0
+            ? 0 1
+        */
+        19 : walls.upperLeft,
+        /*
+            1 1 0    1 0 0
+            0 0 0 || 0 0 0
+            0 0 1    0 1 1
+        */
+        20 : walls.middleT,
+    }
+
+    // we want to start +1 from the top and left, and bottom and right -1
+    for (let y = 0; y < height; y++) {
+        for (let x = 0; x < width; x++) {
+            if (! (`${x},${y}` in freeCells)) { // only want to place a wall somewhere if it's not a free cell
+                // console.log("computing bitmask for", x, y);
+                let sum = computeBitmask(x,y);
+                // console.log(wallSums[sum]);
+                let sym = wallSums[sum]+1;
+                map.layers[0].data[y][x] = wallSums[sum]+1;
+            }
+        }
+    }
+
     let validTiles = Object.keys(freeCells)
     // Randomly select starting position for player
     let start = randomTile(validTiles)

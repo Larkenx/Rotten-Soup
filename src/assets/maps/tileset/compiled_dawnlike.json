@@ -27187,19 +27187,25 @@
         },
      "9197":
         {
-         "bg":"darkbrown",
+         "FOV":true,
+         "FOV_id":9557,
+         "bg":"brown",
          "blocked":"true",
          "blocks_vision":"true"
         },
      "9198":
         {
-         "bg":"darkbrown",
+         "FOV":true,
+         "FOV_id":9558,
+         "bg":"brown",
          "blocked":"true",
          "blocks_vision":"true"
         },
      "9199":
         {
-         "bg":"darkbrown",
+         "FOV":true,
+         "FOV_id":9559,
+         "bg":"brown",
          "blocked":"true",
          "blocks_vision":"true"
         },
@@ -27213,7 +27219,9 @@
         },
      "9201":
         {
-         "bg":"darkbrown",
+         "FOV":true,
+         "FOV_id":9561,
+         "bg":"brown",
          "blocked":"true",
          "blocks_vision":"true"
         },
@@ -27912,37 +27920,49 @@
         },
      "9317":
         {
-         "bg":"darkbrown",
+         "FOV":true,
+         "FOV_id":9677,
+         "bg":"brown",
          "blocked":"true",
          "blocks_vision":"true"
         },
      "9318":
         {
-         "bg":"darkbrown",
+         "FOV":true,
+         "FOV_id":9678,
+         "bg":"brown",
          "blocked":"true",
          "blocks_vision":"true"
         },
      "9319":
         {
-         "bg":"darkbrown",
+         "FOV":true,
+         "FOV_id":9667,
+         "bg":"brown",
          "blocked":"true",
          "blocks_vision":"true"
         },
      "9320":
         {
-         "bg":"darkbrown",
+         "FOV":true,
+         "FOV_id":9680,
+         "bg":"brown",
          "blocked":"true",
          "blocks_vision":"true"
         },
      "9321":
         {
-         "bg":"darkbrown",
+         "FOV":true,
+         "FOV_id":9681,
+         "bg":"brown",
          "blocked":"true",
          "blocks_vision":"true"
         },
      "9322":
         {
-         "bg":"darkbrown",
+         "FOV":true,
+         "FOV_id":9682,
+         "bg":"brown",
          "blocked":"true",
          "blocks_vision":"true"
         },
@@ -28635,31 +28655,41 @@
         },
      "9437":
         {
-         "bg":"darkbrown",
+         "FOV":true,
+         "FOV_id":9797,
+         "bg":"brown",
          "blocked":"true",
          "blocks_vision":"true"
         },
      "9438":
         {
-         "bg":"darkbrown",
+         "FOV":true,
+         "FOV_id":9678,
+         "bg":"brown",
          "blocked":"true",
          "blocks_vision":"true"
         },
      "9439":
         {
-         "bg":"darkbrown",
+         "FOV":true,
+         "FOV_id":9799,
+         "bg":"brown",
          "blocked":"true",
          "blocks_vision":"true"
         },
      "9440":
         {
-         "bg":"darkbrown",
+         "FOV":true,
+         "FOV_id":9678,
+         "bg":"brown",
          "blocked":"true",
          "blocks_vision":"true"
         },
      "9441":
         {
-         "bg":"darkbrown",
+         "FOV":true,
+         "FOV_id":9801,
+         "bg":"brown",
          "blocked":"true",
          "blocks_vision":"true"
         },
@@ -29358,37 +29388,49 @@
         },
      "9557":
         {
-         "bg":"darkbrown",
+         "FOV":true,
+         "FOV_id":9678,
+         "bg":"brown",
          "blocked":"true",
          "blocks_vision":"true"
         },
      "9558":
         {
-         "bg":"darkbrown",
+         "FOV":true,
+         "FOV_id":9678,
+         "bg":"brown",
          "blocked":"true",
          "blocks_vision":"true"
         },
      "9559":
         {
-         "bg":"darkbrown",
+         "FOV":true,
+         "FOV_id":9678,
+         "bg":"brown",
          "blocked":"true",
          "blocks_vision":"true"
         },
      "9560":
         {
+         "FOV":true,
+         "FOV_id":9678,
          "bg":"brown",
          "blocked":"true",
          "blocks_vision":"true"
         },
      "9561":
         {
-         "bg":"darkbrown",
+         "FOV":true,
+         "FOV_id":9678,
+         "bg":"brown",
          "blocked":"true",
          "blocks_vision":"true"
         },
      "9562":
         {
-         "bg":"darkbrown",
+         "FOV":true,
+         "FOV_id":9678,
+         "bg":"brown",
          "blocked":"true",
          "blocks_vision":"true"
         },
@@ -30081,37 +30123,49 @@
         },
      "9677":
         {
-         "bg":"darkbrown",
+         "FOV":true,
+         "FOV_id":9678,
+         "bg":"brown",
          "blocked":"true",
          "blocks_vision":"true"
         },
      "9678":
         {
-         "bg":"darkbrown",
+         "FOV":true,
+         "FOV_id":9678,
+         "bg":"brown",
          "blocked":"true",
          "blocks_vision":"true"
         },
      "9679":
         {
-         "bg":"darkbrown",
+         "FOV":true,
+         "FOV_id":9678,
+         "bg":"brown",
          "blocked":"true",
          "blocks_vision":"true"
         },
      "9680":
         {
-         "bg":"darkbrown",
+         "FOV":true,
+         "FOV_id":9678,
+         "bg":"brown",
          "blocked":"true",
          "blocks_vision":"true"
         },
      "9681":
         {
-         "bg":"darkbrown",
+         "FOV":true,
+         "FOV_id":9678,
+         "bg":"brown",
          "blocked":"true",
          "blocks_vision":"true"
         },
      "9682":
         {
-         "bg":"darkbrown",
+         "FOV":true,
+         "FOV_id":9678,
+         "bg":"brown",
          "blocked":"true",
          "blocks_vision":"true"
         },
@@ -30811,37 +30865,49 @@
         },
      "9797":
         {
-         "bg":"darkbrown",
+         "FOV":true,
+         "FOV_id":9678,
+         "bg":"brown",
          "blocked":"true",
          "blocks_vision":"true"
         },
      "9798":
         {
-         "bg":"darkbrown",
+         "FOV":true,
+         "FOV_id":9678,
+         "bg":"brown",
          "blocked":"true",
          "blocks_vision":"true"
         },
      "9799":
         {
-         "bg":"darkbrown",
+         "FOV":true,
+         "FOV_id":9678,
+         "bg":"brown",
          "blocked":"true",
          "blocks_vision":"true"
         },
      "9800":
         {
-         "bg":"darkbrown",
+         "FOV":true,
+         "FOV_id":9678,
+         "bg":"brown",
          "blocked":"true",
          "blocks_vision":"true"
         },
      "9801":
         {
-         "bg":"darkbrown",
+         "FOV":true,
+         "FOV_id":9678,
+         "bg":"brown",
          "blocked":"true",
          "blocks_vision":"true"
         },
      "9802":
         {
-         "bg":"darkbrown",
+         "FOV":true,
+         "FOV_id":9678,
+         "bg":"brown",
          "blocked":"true",
          "blocks_vision":"true"
         },
@@ -59141,18 +59207,24 @@
         },
      "9197":
         {
+         "FOV":"bool",
+         "FOV_id":"int",
          "bg":"string",
          "blocked":"string",
          "blocks_vision":"string"
         },
      "9198":
         {
+         "FOV":"bool",
+         "FOV_id":"int",
          "bg":"string",
          "blocked":"string",
          "blocks_vision":"string"
         },
      "9199":
         {
+         "FOV":"bool",
+         "FOV_id":"int",
          "bg":"string",
          "blocked":"string",
          "blocks_vision":"string"
@@ -59167,6 +59239,8 @@
         },
      "9201":
         {
+         "FOV":"bool",
+         "FOV_id":"int",
          "bg":"string",
          "blocked":"string",
          "blocks_vision":"string"
@@ -59866,36 +59940,48 @@
         },
      "9317":
         {
+         "FOV":"bool",
+         "FOV_id":"int",
          "bg":"string",
          "blocked":"string",
          "blocks_vision":"string"
         },
      "9318":
         {
+         "FOV":"bool",
+         "FOV_id":"int",
          "bg":"string",
          "blocked":"string",
          "blocks_vision":"string"
         },
      "9319":
         {
+         "FOV":"bool",
+         "FOV_id":"int",
          "bg":"string",
          "blocked":"string",
          "blocks_vision":"string"
         },
      "9320":
         {
+         "FOV":"bool",
+         "FOV_id":"int",
          "bg":"string",
          "blocked":"string",
          "blocks_vision":"string"
         },
      "9321":
         {
+         "FOV":"bool",
+         "FOV_id":"int",
          "bg":"string",
          "blocked":"string",
          "blocks_vision":"string"
         },
      "9322":
         {
+         "FOV":"bool",
+         "FOV_id":"int",
          "bg":"string",
          "blocked":"string",
          "blocks_vision":"string"
@@ -60589,30 +60675,40 @@
         },
      "9437":
         {
+         "FOV":"bool",
+         "FOV_id":"int",
          "bg":"string",
          "blocked":"string",
          "blocks_vision":"string"
         },
      "9438":
         {
+         "FOV":"bool",
+         "FOV_id":"int",
          "bg":"string",
          "blocked":"string",
          "blocks_vision":"string"
         },
      "9439":
         {
+         "FOV":"bool",
+         "FOV_id":"int",
          "bg":"string",
          "blocked":"string",
          "blocks_vision":"string"
         },
      "9440":
         {
+         "FOV":"bool",
+         "FOV_id":"int",
          "bg":"string",
          "blocked":"string",
          "blocks_vision":"string"
         },
      "9441":
         {
+         "FOV":"bool",
+         "FOV_id":"int",
          "bg":"string",
          "blocked":"string",
          "blocks_vision":"string"
@@ -61312,36 +61408,48 @@
         },
      "9557":
         {
+         "FOV":"bool",
+         "FOV_id":"int",
          "bg":"string",
          "blocked":"string",
          "blocks_vision":"string"
         },
      "9558":
         {
+         "FOV":"bool",
+         "FOV_id":"int",
          "bg":"string",
          "blocked":"string",
          "blocks_vision":"string"
         },
      "9559":
         {
+         "FOV":"bool",
+         "FOV_id":"int",
          "bg":"string",
          "blocked":"string",
          "blocks_vision":"string"
         },
      "9560":
         {
+         "FOV":"bool",
+         "FOV_id":"int",
          "bg":"string",
          "blocked":"string",
          "blocks_vision":"string"
         },
      "9561":
         {
+         "FOV":"bool",
+         "FOV_id":"int",
          "bg":"string",
          "blocked":"string",
          "blocks_vision":"string"
         },
      "9562":
         {
+         "FOV":"bool",
+         "FOV_id":"int",
          "bg":"string",
          "blocked":"string",
          "blocks_vision":"string"
@@ -62035,36 +62143,48 @@
         },
      "9677":
         {
+         "FOV":"bool",
+         "FOV_id":"int",
          "bg":"string",
          "blocked":"string",
          "blocks_vision":"string"
         },
      "9678":
         {
+         "FOV":"bool",
+         "FOV_id":"int",
          "bg":"string",
          "blocked":"string",
          "blocks_vision":"string"
         },
      "9679":
         {
+         "FOV":"bool",
+         "FOV_id":"int",
          "bg":"string",
          "blocked":"string",
          "blocks_vision":"string"
         },
      "9680":
         {
+         "FOV":"bool",
+         "FOV_id":"int",
          "bg":"string",
          "blocked":"string",
          "blocks_vision":"string"
         },
      "9681":
         {
+         "FOV":"bool",
+         "FOV_id":"int",
          "bg":"string",
          "blocked":"string",
          "blocks_vision":"string"
         },
      "9682":
         {
+         "FOV":"bool",
+         "FOV_id":"int",
          "bg":"string",
          "blocked":"string",
          "blocks_vision":"string"
@@ -62765,36 +62885,48 @@
         },
      "9797":
         {
+         "FOV":"bool",
+         "FOV_id":"int",
          "bg":"string",
          "blocked":"string",
          "blocks_vision":"string"
         },
      "9798":
         {
+         "FOV":"bool",
+         "FOV_id":"int",
          "bg":"string",
          "blocked":"string",
          "blocks_vision":"string"
         },
      "9799":
         {
+         "FOV":"bool",
+         "FOV_id":"int",
          "bg":"string",
          "blocked":"string",
          "blocks_vision":"string"
         },
      "9800":
         {
+         "FOV":"bool",
+         "FOV_id":"int",
          "bg":"string",
          "blocked":"string",
          "blocks_vision":"string"
         },
      "9801":
         {
+         "FOV":"bool",
+         "FOV_id":"int",
          "bg":"string",
          "blocked":"string",
          "blocks_vision":"string"
         },
      "9802":
         {
+         "FOV":"bool",
+         "FOV_id":"int",
          "bg":"string",
          "blocked":"string",
          "blocks_vision":"string"
