@@ -46,16 +46,10 @@ export let Game = {
 
     init(dev = false) {
         this.dev = dev;
-        // this.map = new GameMap(overworldMap);
-        this.map = new GameMap(randomCave(40, 40, "down", 0));
+        this.map = new GameMap(overworldMap);
         this.levels["overworld"] = this.map;
-
-        // this.levels["randomDungeon"] = this.map;
-        // this.levels["randomDungeonTest"] = new GameMap(newRandomDungeon(40, 40, "down", 1));
-
-
         this.levels["Orc Castle"] = new GameMap(orcCastle);
-        this.map.revealed = false;
+        this.map.revealed = true;
         this.playerLocation = this.map.playerLocation;
         /* !Important! - PlayerID must be allocated before other maps are drawn... */
         this.playerID = this.map.playerID;
