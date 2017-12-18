@@ -26997,7 +26997,7 @@
      "9181":
         {
          "FOV":true,
-         "FOV_id":9657,
+         "FOV_id":9541,
          "bg":"rgb(153, 90, 31)",
          "blocked":false,
          "blocks_vision":false
@@ -27895,7 +27895,7 @@
      "9319":
         {
          "FOV":true,
-         "FOV_id":9667,
+         "FOV_id":9679,
          "bg":"brown",
          "blocked":"true",
          "blocks_vision":"true"
