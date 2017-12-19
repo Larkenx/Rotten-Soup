@@ -46,8 +46,8 @@ export let Game = {
 
     init(dev = false) {
         this.dev = dev;
-        // this.map = new GameMap(overworldMap);
-        this.map = new GameMap(new randomDungeon(40,40,"down", 1));
+        this.map = new GameMap(overworldMap);
+        // this.map = new GameMap(new randomDungeon(40,40,"down", 1));
         // this.map = new GameMap(new randomCave(40,40,"down", 1));
 
         this.levels["overworld"] = this.map;

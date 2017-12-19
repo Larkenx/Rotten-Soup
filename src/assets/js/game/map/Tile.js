@@ -4,6 +4,8 @@
 
 import {tileset} from "#/Game.js";
 import {Game} from '#/Game.js';
+import Player from '#/entities/actors/Player.js'
+import Chest from '#/entities/misc/Chest.js'
 
 export function getTileInfo(id) {
     /*
@@ -42,7 +44,12 @@ export default class Tile {
     blocked() {
         for (let actor of this.actors) {
             console.log(actor !== Game.Player);
-            if (actor.blocked && actor !== Game.Player)
+            console.log(actor instanceof Chest);
+            console.log(actor instanceof Player);
+            console.log(!actor instanceof Player);
+            console.log(! (actor instanceof Player));
+
+            if (actor.blocked && !actor instanceof Player)
                 return true;
         }
 
