@@ -30,7 +30,7 @@
 
         <!-- Current World -->
             <v-layout row align-center>
-                <v-flex xs5  col><b>Place: {{getCurrentLevel().capitalize()}}</b></v-flex>
+                <v-flex xs5  col><b>Location: {{getCurrentLevel().capitalize()}}</b></v-flex>
                 <v-flex v-if="getCurrentLevelDepth() > 0" col><b>Level: {{getCurrentLevelDepth()}}</b></v-flex>
             </v-layout>
 
