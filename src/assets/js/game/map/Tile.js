@@ -2,9 +2,8 @@
  * Created by Larken on 6/28/2017.
  */
 
-import {tileset} from "#/Game.js";
-import {Game} from '#/Game.js';
-
+import {tileset, Game} from "#/Game.js";
+import Player from '#/entities/actors/Player.js'
 export function getTileInfo(id) {
     /*
      "FOV": boolean,
@@ -40,10 +39,14 @@ export default class Tile {
     /* Indicates whether or not a tile is blocked; however, this excludes the player
      * for AI purposes. */
     blocked() {
+
+        // TODO: fix it so that this actually fires off properly without blocking enemies from moving
+        /*
         for (let actor of this.actors) {
-            if (actor.blocked && actor !== Game.Player)
+            if (actor.blocked)
                 return true;
         }
+        */
 
         if (this.obstacles.length > 0)
             return this.obstacles[this.obstacles.length - 1].blocked;

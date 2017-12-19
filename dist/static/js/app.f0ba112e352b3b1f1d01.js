@@ -206,6 +206,13 @@ var Component = normalizeComponent(
 
 /***/ }),
 
+/***/ "4WwT":
+/***/ (function(module, exports) {
+
+// removed by extract-text-webpack-plugin
+
+/***/ }),
+
 /***/ "5HgB":
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -287,17 +294,6 @@ class RangedWeapon extends __WEBPACK_IMPORTED_MODULE_0__entities_items_weapons_W
 }
 /* harmony export (immutable) */ __webpack_exports__["a"] = RangedWeapon;
 
-
-/***/ }),
-
-/***/ "7Ou+":
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('v-layout',{staticClass:"hud elevation-0",staticStyle:{"max-width":"450px"},attrs:{"fluid":"","column":""}},[_c('v-layout',{staticStyle:{"margin-bottom":"-40px"},attrs:{"row":"","align-center":""}},[_c('v-flex',{staticStyle:{"min-width":"75px"},attrs:{"md1":"","col":""}},[_c('b',[_vm._v("Health ")])]),_vm._v(" "),_c('v-flex',{attrs:{"md4":"","col":""}},[_c('v-progress-linear',{attrs:{"id":"hpBar","color":"error","value":(_vm.getHP() / _vm.getMaxHP()) * 100,"height":"13"}})],1),_vm._v(" "),_c('v-flex',{staticStyle:{"padding-left":"5px"},attrs:{"md3":"","col":""}},[_vm._v(_vm._s(_vm.getHP())+" / "+_vm._s(_vm.getMaxHP()))])],1),_vm._v(" "),_c('v-layout',{attrs:{"row":"","align-center":""}},[_c('v-flex',{staticStyle:{"min-width":"75px"},attrs:{"md1":"","col":""}},[_c('b',[_vm._v("Magic")])]),_vm._v(" "),_c('v-flex',{attrs:{"md4":"","col":""}},[_c('v-progress-linear',{attrs:{"id":"manaBar","value":(_vm.getMana() / _vm.getMaxMana()) * 100,"height":"13","info":""}})],1),_vm._v(" "),_c('v-flex',{staticStyle:{"padding-left":"5px"},attrs:{"md3":"","col":""}},[_vm._v(_vm._s(_vm.getMana())+" / "+_vm._s(_vm.getMaxMana()))])],1),_vm._v(" "),_c('v-layout',{attrs:{"row":"","align-center":""}},[_c('v-flex',{attrs:{"xs5":"","col":""}},[_c('b',[_vm._v("Place: "+_vm._s(_vm.getCurrentLevel().capitalize()))])]),_vm._v(" "),(_vm.getCurrentLevelDepth() > 0)?_c('v-flex',{attrs:{"col":""}},[_c('b',[_vm._v("Level: "+_vm._s(_vm.getCurrentLevelDepth()))])]):_vm._e()],1),_vm._v(" "),_c('mini-map'),_vm._v(" "),_c('v-tabs',{staticStyle:{"max-width":"350px","margin-top":"10px","margin-bottom":"10px","font-size":"11px"},attrs:{"scrollable":false,"grow":""},model:{value:(_vm.activeTab),callback:function ($$v) {_vm.activeTab=$$v},expression:"activeTab"}},[_c('v-tabs-bar',{staticClass:"cyan darken-4",attrs:{"dark":""}},[_c('v-tabs-item',{key:"stats",attrs:{"href":"#stats","ripple":""}},[_vm._v("\n                    Stats\n                ")]),_vm._v(" "),_c('v-tabs-item',{key:"enemyOverview",attrs:{"href":"#enemyOverview","ripple":""}},[_vm._v("\n                    Enemy Overview\n                ")]),_vm._v(" "),_c('v-tabs-item',{key:"spellBook",attrs:{"href":"#spellBook","ripple":""}},[_vm._v("\n                    Spellbook\n                ")]),_vm._v(" "),_c('v-tabs-slider',{attrs:{"color":"yellow"}})],1),_vm._v(" "),_c('v-tabs-items',[_c('v-tabs-content',{key:"stats",attrs:{"id":"stats"}},[_c('v-card',{staticClass:"v-tab-card",attrs:{"flat":""}},[_c('stats-tab-content')],1)],1),_vm._v(" "),_c('v-tabs-content',{key:"enemyOverview",attrs:{"id":"enemyOverview"}},[_c('v-card',{staticClass:"v-tab-card",attrs:{"flat":""}},[_c('enemy-overview')],1)],1),_vm._v(" "),_c('v-tabs-content',{key:"spellBook",attrs:{"id":"spellBook"}},[_c('v-card',{staticClass:"v-tab-card",attrs:{"flat":""}},[_c('spellbook')],1)],1)],1)],1),_vm._v(" "),_c('inventory')],1)}
-var staticRenderFns = []
-var esExports = { render: render, staticRenderFns: staticRenderFns }
-/* harmony default export */ __webpack_exports__["a"] = (esExports);
 
 /***/ }),
 
@@ -4286,9 +4282,9 @@ var esExports = { render: render, staticRenderFns: staticRenderFns }
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_lib_selector_type_script_index_0_HUD_vue__ = __webpack_require__("esFw");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__node_modules_vue_loader_lib_template_compiler_index_id_data_v_0061ec39_hasScoped_false_transformToRequire_video_src_source_src_img_src_image_xlink_href_buble_transforms_node_modules_vue_loader_lib_selector_type_template_index_0_HUD_vue__ = __webpack_require__("7Ou+");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__node_modules_vue_loader_lib_template_compiler_index_id_data_v_2950c54e_hasScoped_false_transformToRequire_video_src_source_src_img_src_image_xlink_href_buble_transforms_node_modules_vue_loader_lib_selector_type_template_index_0_HUD_vue__ = __webpack_require__("wUSE");
 function injectStyle (ssrContext) {
-  __webpack_require__("i9Sy")
+  __webpack_require__("4WwT")
 }
 var normalizeComponent = __webpack_require__("VU/8")
 /* script */
@@ -4305,7 +4301,7 @@ var __vue_scopeId__ = null
 var __vue_module_identifier__ = null
 var Component = normalizeComponent(
   __WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_lib_selector_type_script_index_0_HUD_vue__["a" /* default */],
-  __WEBPACK_IMPORTED_MODULE_1__node_modules_vue_loader_lib_template_compiler_index_id_data_v_0061ec39_hasScoped_false_transformToRequire_video_src_source_src_img_src_image_xlink_href_buble_transforms_node_modules_vue_loader_lib_selector_type_template_index_0_HUD_vue__["a" /* default */],
+  __WEBPACK_IMPORTED_MODULE_1__node_modules_vue_loader_lib_template_compiler_index_id_data_v_2950c54e_hasScoped_false_transformToRequire_video_src_source_src_img_src_image_xlink_href_buble_transforms_node_modules_vue_loader_lib_selector_type_template_index_0_HUD_vue__["a" /* default */],
   __vue_template_functional__,
   __vue_styles__,
   __vue_scopeId__,
@@ -4370,10 +4366,10 @@ var Component = normalizeComponent(
 "use strict";
 /* harmony export (immutable) */ __webpack_exports__["b"] = getTileInfo;
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__Game_js__ = __webpack_require__("TiVF");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__entities_actors_Player_js__ = __webpack_require__("OS/i");
 /**
  * Created by Larken on 6/28/2017.
  */
-
 
 
 
@@ -4413,9 +4409,14 @@ class Tile {
     /* Indicates whether or not a tile is blocked; however, this excludes the player
      * for AI purposes. */
     blocked() {
+
+        // TODO: fix it so that this actually fires off properly without blocking enemies from moving
+        /*
         for (let actor of this.actors) {
-            if (actor.blocked && !actor !== __WEBPACK_IMPORTED_MODULE_0__Game_js__["a" /* Game */].Player) return true;
+            if (actor.blocked)
+                return true;
         }
+        */
 
         if (this.obstacles.length > 0) return this.obstacles[this.obstacles.length - 1].blocked;
 
@@ -4908,13 +4909,6 @@ var esExports = { render: render, staticRenderFns: staticRenderFns }
         }
     }
 });
-
-/***/ }),
-
-/***/ "i9Sy":
-/***/ (function(module, exports) {
-
-// removed by extract-text-webpack-plugin
 
 /***/ }),
 
@@ -5817,6 +5811,17 @@ var Component = normalizeComponent(
 
 /***/ }),
 
+/***/ "wUSE":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('v-layout',{staticClass:"hud elevation-0",staticStyle:{"max-width":"450px"},attrs:{"fluid":"","column":""}},[_c('v-layout',{staticStyle:{"margin-bottom":"-40px"},attrs:{"row":"","align-center":""}},[_c('v-flex',{staticStyle:{"min-width":"75px"},attrs:{"md1":"","col":""}},[_c('b',[_vm._v("Health ")])]),_vm._v(" "),_c('v-flex',{attrs:{"md4":"","col":""}},[_c('v-progress-linear',{attrs:{"id":"hpBar","color":"error","value":(_vm.getHP() / _vm.getMaxHP()) * 100,"height":"13"}})],1),_vm._v(" "),_c('v-flex',{staticStyle:{"padding-left":"5px"},attrs:{"md3":"","col":""}},[_vm._v(_vm._s(_vm.getHP())+" / "+_vm._s(_vm.getMaxHP()))])],1),_vm._v(" "),_c('v-layout',{attrs:{"row":"","align-center":""}},[_c('v-flex',{staticStyle:{"min-width":"75px"},attrs:{"md1":"","col":""}},[_c('b',[_vm._v("Magic")])]),_vm._v(" "),_c('v-flex',{attrs:{"md4":"","col":""}},[_c('v-progress-linear',{attrs:{"id":"manaBar","value":(_vm.getMana() / _vm.getMaxMana()) * 100,"height":"13","info":""}})],1),_vm._v(" "),_c('v-flex',{staticStyle:{"padding-left":"5px"},attrs:{"md3":"","col":""}},[_vm._v(_vm._s(_vm.getMana())+" / "+_vm._s(_vm.getMaxMana()))])],1),_vm._v(" "),_c('v-layout',{attrs:{"row":"","align-center":""}},[_c('v-flex',{attrs:{"xs5":"","col":""}},[_c('b',[_vm._v("Location: "+_vm._s(_vm.getCurrentLevel().capitalize()))])]),_vm._v(" "),(_vm.getCurrentLevelDepth() > 0)?_c('v-flex',{attrs:{"col":""}},[_c('b',[_vm._v("Level: "+_vm._s(_vm.getCurrentLevelDepth()))])]):_vm._e()],1),_vm._v(" "),_c('mini-map'),_vm._v(" "),_c('v-tabs',{staticStyle:{"max-width":"350px","margin-top":"10px","margin-bottom":"10px","font-size":"11px"},attrs:{"scrollable":false,"grow":""},model:{value:(_vm.activeTab),callback:function ($$v) {_vm.activeTab=$$v},expression:"activeTab"}},[_c('v-tabs-bar',{staticClass:"cyan darken-4",attrs:{"dark":""}},[_c('v-tabs-item',{key:"stats",attrs:{"href":"#stats","ripple":""}},[_vm._v("\n                    Stats\n                ")]),_vm._v(" "),_c('v-tabs-item',{key:"enemyOverview",attrs:{"href":"#enemyOverview","ripple":""}},[_vm._v("\n                    Enemy Overview\n                ")]),_vm._v(" "),_c('v-tabs-item',{key:"spellBook",attrs:{"href":"#spellBook","ripple":""}},[_vm._v("\n                    Spellbook\n                ")]),_vm._v(" "),_c('v-tabs-slider',{attrs:{"color":"yellow"}})],1),_vm._v(" "),_c('v-tabs-items',[_c('v-tabs-content',{key:"stats",attrs:{"id":"stats"}},[_c('v-card',{staticClass:"v-tab-card",attrs:{"flat":""}},[_c('stats-tab-content')],1)],1),_vm._v(" "),_c('v-tabs-content',{key:"enemyOverview",attrs:{"id":"enemyOverview"}},[_c('v-card',{staticClass:"v-tab-card",attrs:{"flat":""}},[_c('enemy-overview')],1)],1),_vm._v(" "),_c('v-tabs-content',{key:"spellBook",attrs:{"id":"spellBook"}},[_c('v-card',{staticClass:"v-tab-card",attrs:{"flat":""}},[_c('spellbook')],1)],1)],1)],1),_vm._v(" "),_c('inventory')],1)}
+var staticRenderFns = []
+var esExports = { render: render, staticRenderFns: staticRenderFns }
+/* harmony default export */ __webpack_exports__["a"] = (esExports);
+
+/***/ }),
+
 /***/ "x/l/":
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -6050,4 +6055,4 @@ module.exports = {"height":50,"layers":[{"data":[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
 /***/ })
 
 },["NHnr"]);
-//# sourceMappingURL=app.bb8f3f69212d3e860cf9.js.map
+//# sourceMappingURL=app.f0ba112e352b3b1f1d01.js.map
