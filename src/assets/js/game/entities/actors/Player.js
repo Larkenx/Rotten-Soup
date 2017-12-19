@@ -141,7 +141,7 @@ export default class Player extends Actor {
         this.currentLevel = Game.currentLevel;
         Game.engine.lock();
         window.addEventListener("keydown", this);
-        window.addEventListener("click", this);
+        // window.addEventListener("click", this);
     }
 
     handleEvent(evt) {

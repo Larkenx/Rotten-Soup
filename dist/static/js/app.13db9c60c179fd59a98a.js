@@ -2852,7 +2852,7 @@ class Player extends __WEBPACK_IMPORTED_MODULE_2__entities_actors_Actor_js__["a"
         this.currentLevel = __WEBPACK_IMPORTED_MODULE_1__Game_js__["a" /* Game */].currentLevel;
         __WEBPACK_IMPORTED_MODULE_1__Game_js__["a" /* Game */].engine.lock();
         window.addEventListener("keydown", this);
-        window.addEventListener("click", this);
+        // window.addEventListener("click", this);
     }
 
     handleEvent(evt) {
@@ -4370,13 +4370,9 @@ var Component = normalizeComponent(
 "use strict";
 /* harmony export (immutable) */ __webpack_exports__["b"] = getTileInfo;
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__Game_js__ = __webpack_require__("TiVF");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__entities_actors_Player_js__ = __webpack_require__("OS/i");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__entities_misc_Chest_js__ = __webpack_require__("o9En");
 /**
  * Created by Larken on 6/28/2017.
  */
-
-
 
 
 
@@ -4418,13 +4414,7 @@ class Tile {
      * for AI purposes. */
     blocked() {
         for (let actor of this.actors) {
-            console.log(actor !== __WEBPACK_IMPORTED_MODULE_0__Game_js__["a" /* Game */].Player);
-            console.log(actor instanceof __WEBPACK_IMPORTED_MODULE_2__entities_misc_Chest_js__["a" /* default */]);
-            console.log(actor instanceof __WEBPACK_IMPORTED_MODULE_1__entities_actors_Player_js__["a" /* default */]);
-            console.log(!actor instanceof __WEBPACK_IMPORTED_MODULE_1__entities_actors_Player_js__["a" /* default */]);
-            console.log(!(actor instanceof __WEBPACK_IMPORTED_MODULE_1__entities_actors_Player_js__["a" /* default */]));
-
-            if (actor.blocked && !actor instanceof __WEBPACK_IMPORTED_MODULE_1__entities_actors_Player_js__["a" /* default */]) return true;
+            if (actor.blocked && actor !== __WEBPACK_IMPORTED_MODULE_0__Game_js__["a" /* Game */].Player) return true;
         }
 
         if (this.obstacles.length > 0) return this.obstacles[this.obstacles.length - 1].blocked;
@@ -6060,4 +6050,4 @@ module.exports = {"height":50,"layers":[{"data":[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
 /***/ })
 
 },["NHnr"]);
-//# sourceMappingURL=app.f5c6072685a12033ba43.js.map
+//# sourceMappingURL=app.13db9c60c179fd59a98a.js.map
