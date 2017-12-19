@@ -238,21 +238,6 @@ export function randomDungeon(width, height, dir, level = 1) {
         return sum
     }
 
-    // if (sum == 0) {
-    //     if (ul in freeCells && above in freeCells && lr in freeCells)
-    //         return 20
-    //     else if (lr in freeCells && below in freeCells && ul in freeCells)
-    //         return 20
-    //     else if (ul in freeCells)
-    //         return 16
-    //     else if (ur in freeCells)
-    //         return 17
-    //     else if (ll in freeCells)
-    //         return 18
-    //     else if (lr in freeCells)
-    //         return 19
-    // }
-
     let floorSums = {
         /*
             ? 0 ?

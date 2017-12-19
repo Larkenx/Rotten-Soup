@@ -21352,7 +21352,7 @@
      "8241":
         {
          "FOV":true,
-         "FOV_id":8219,
+         "FOV_id":8601,
          "bg":"black",
          "blocked":"true",
          "blocks_vision":"true"
