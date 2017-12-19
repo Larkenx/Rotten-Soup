@@ -132,7 +132,8 @@ export function randomDungeon(width, height, dir, level = 1) {
         }
     ]
     let freeCells = {}
-    // ROT.RNG.setSeed(1513141461592)
+    // ROT.RNG.setSeed(1513663807130)
+    // console.log(ROT.RNG.getSeed());
     let diggerCallback = function(x, y, blocked) {
         if (!blocked) freeCells[x + "," + y] = true
     }
@@ -169,7 +170,7 @@ export function randomDungeon(width, height, dir, level = 1) {
     }
 
     /* TODO: Define bitmasking operators to create walls alone. Should be 4-bit bitmask */
-    let computeBitmask = (x,y) => {
+    let computeBitmaskFloors = (x,y) => {
         let sum = 0
         let above = `${x},${y-1}`
         let below = `${x},${y+1}`
@@ -182,16 +183,57 @@ export function randomDungeon(width, height, dir, level = 1) {
         let ul = `${x-1},${y-1}`;
         let lr = `${x+1},${y+1}`;
 
-        if (above in freeCells) sum += 1
-        if (right in freeCells) sum += 2
-        if (below in freeCells) sum += 4
-        if (left in freeCells) sum += 8
 
+        let debug = () => {
+            console.log(ul in freeCells, above in freeCells)
+        }
+
+        let free = coord => {return coord in freeCells}
+
+        if (free(above)) sum += 1
+        if (free(right)) sum += 2
+        if (free(below)) sum += 4
+        if (free(left)) sum += 8
         if (sum == 0) {
-            if (ul in freeCells) return 16
-            else if (ur in freeCells) return 17
-            else if (ll in freeCells) return 18
-            else if (lr in freeCells) return 19
+            if (free(ul)) { return 16 }
+            else if (free(ur)) { return 17 }
+            else if (free(ll)) { return 18 }
+            else if (free(lr)) { return 19 }
+        }
+        return sum
+    }
+
+    let computeBitmaskWalls = (x,y) => {
+        let sum = 0
+        let above = `${x},${y-1}`
+        let below = `${x},${y+1}`
+        let left = `${x-1},${y}`
+        let right = `${x+1},${y}`
+
+        let ur = `${x+1},${y-1}`;
+        let ll = `${x-1},${y+1}`;
+
+        let ul = `${x-1},${y-1}`;
+        let lr = `${x+1},${y+1}`;
+
+        let debug = () => {
+            console.log(ul in freeCells, above in freeCells)
+        }
+
+        let free = coord => {return coord in freeCells}
+
+        if (free(above)) sum += 1
+        if (free(right)) sum += 2
+        if (free(below)) sum += 4
+        if (free(left)) sum += 8
+        if (free(above) && !free(below) && ! free(right) && ! free(left) && (free(ll) || free(lr))) {
+            return 20
+        }
+        if (sum == 0) {
+            if (free(ul))  return 16
+            else if (free(ur))  return 17
+            else if (free(ll))  return 18
+            else if (free(lr))  return 19
         }
         return sum
     }
@@ -454,16 +496,23 @@ export function randomDungeon(width, height, dir, level = 1) {
             ? 0 1
         */
         19 : walls.upperLeft,
+        /*
+            0 1 0    0 1 0
+            0 0 0 || 0 0 0
+            1 0 0    0 0 1
+        */
+        20 : walls.middleT,
     }
 
     // we want to start +1 from the top and left, and bottom and right -1
     for (let y = 0; y < height; y++) {
         for (let x = 0; x < width; x++) {
-            let sum = computeBitmask(x,y);
             if (! (`${x},${y}` in freeCells)) { // only want to place a wall somewhere if it's not a free cell
+                let sum = computeBitmaskWalls(x,y);
                 let sym = wallSums[sum]+1;
                 map.layers[0].data[y][x] = sym;
             } else {
+                let sum = computeBitmaskFloors(x,y);
                 let sym = floorSums[sum]+1;
                 map.layers[0].data[y][x] = sym;
             }
@@ -496,7 +545,7 @@ export function randomDungeon(width, height, dir, level = 1) {
             } else { // vertical door frame
                 map.layers[3].data[dy][dx] = 569 + 1
             }
-            let sum = computeBitmask(dx,dy);
+            let sum = computeBitmaskFloors(dx,dy);
             let sym = floorSums[sum]+1;
             map.layers[0].data[dy][dx] = sym;
         })
@@ -626,6 +675,8 @@ export function randomCave(width, height, dir, level = 1) {
         endTop : 9319,
 
         middleT : 9201,
+        middleIntersection : 9321,
+
     }
 
     let floors = {
@@ -663,23 +714,27 @@ export function randomCave(width, height, dir, level = 1) {
         let ul = `${x-1},${y-1}`;
         let lr = `${x+1},${y+1}`;
 
-        if (above in freeCells) sum += 1
-        if (right in freeCells) sum += 2
-        if (below in freeCells) sum += 4
-        if (left in freeCells) sum += 8
+        let free = coords => {return coords in freeCells}
+
+        if (free(above)) sum += 1
+        if (free(right)) sum += 2
+        if (free(below)) sum += 4
+        if (free(left)) sum += 8
 
         if (sum == 0) {
-            if (ul in freeCells && above in freeCells && lr in freeCells)
+            if ((free(ll) && free(ur)) || (free(ul) && free(lr)))
+                return 21
+            else if (free(ul) && free(above) && free(lr))
                 return 20
-            else if (lr in freeCells && below in freeCells && ul in freeCells)
+            else if (free(lr) && free(below) && free(ul))
                 return 20
-            else if (ul in freeCells)
+            else if (free(ul))
                 return 16
-            else if (ur in freeCells)
+            else if (free(ur))
                 return 17
-            else if (ll in freeCells)
+            else if (free(ll))
                 return 18
-            else if (lr in freeCells)
+            else if (free(lr))
                 return 19
         }
 
@@ -814,6 +869,12 @@ export function randomCave(width, height, dir, level = 1) {
             0 0 1    0 1 1
         */
         20 : walls.middleT,
+        /*
+            0 0 1    1 0 0
+            0 0 0 || 0 0 0
+            1 0 0    0 0 1
+        */
+        21 : walls.middleIntersection
     }
 
     let floorSums = {
