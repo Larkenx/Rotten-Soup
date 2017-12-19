@@ -3,7 +3,9 @@
  */
 
 import {tileset} from "#/Game.js";
-import Player from "#/entities/actors/Player.js";
+import {Game} from '#/Game.js';
+import Player from '#/entities/actors/Player.js'
+import Chest from '#/entities/misc/Chest.js'
 
 export function getTileInfo(id) {
     /*
@@ -40,13 +42,20 @@ export default class Tile {
     /* Indicates whether or not a tile is blocked; however, this excludes the player
      * for AI purposes. */
     blocked() {
-        if (this.obstacles[this.obstacles.length - 1].blocked)
-            return true;
-
         for (let actor of this.actors) {
+            console.log(actor !== Game.Player);
+            console.log(actor instanceof Chest);
+            console.log(actor instanceof Player);
+            console.log(!actor instanceof Player);
+            console.log(! (actor instanceof Player));
+
             if (actor.blocked && !actor instanceof Player)
                 return true;
         }
+
+        if (this.obstacles.length > 0)
+            return this.obstacles[this.obstacles.length - 1].blocked;
+
         return false;
     }
 

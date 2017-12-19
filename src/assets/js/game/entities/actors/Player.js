@@ -98,15 +98,7 @@ export default class Player extends Actor {
         this.path = new ROT.Path.AStar(this.x, this.y, pathfinding);
     }
 
-    act() {
-        super.act();
-        this.path = new ROT.Path.AStar(this.x, this.y, pathfinding);
-        this.nearbyEnemies = Game.getNearbyEnemies();
-        this.currentLevel = Game.currentLevel;
-        Game.engine.lock();
-        window.addEventListener("keydown", this);
-        // window.addEventListener("mousemove", this);
-    }
+
 
     interact(actor) { // returns true if we can continue to move to the tile
         if ("cb" in actor && actor.cb.hostile) {
@@ -142,11 +134,21 @@ export default class Player extends Actor {
         Game.log(`Your strength and health have improved.`, 'level_up');
     }
 
+    act() {
+        super.act();
+        this.path = new ROT.Path.AStar(this.x, this.y, pathfinding);
+        this.nearbyEnemies = Game.getNearbyEnemies();
+        this.currentLevel = Game.currentLevel;
+        Game.engine.lock();
+        window.addEventListener("keydown", this);
+        window.addEventListener("click", this);
+    }
+
     handleEvent(evt) {
 
         /* Mouse controls to hover over tiles for info (describe) */
         if (evt.type === "click") {
-            Game.eventToTile(evt);
+            console.log(Game.eventToTile(evt));
             return;
         }
 
