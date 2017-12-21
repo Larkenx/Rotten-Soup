@@ -1,3 +1,7 @@
+import {Actor} from "#/entities/actors/Actor.js";
+import {Game} from "#/Game.js";
+import ROT from "rot-js";
+
 export default class Lich extends Actor {
     constructor(x, y, id) {
         super(x, y, {

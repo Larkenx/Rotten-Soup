@@ -238,7 +238,7 @@ export class Actor extends Entity {
         this.cb.hp -= hp;
         if (this.isDead()) {
             if (this !== Game.player)
-                Game.player.gain_xp(Math.floor(hp * .75));
+                Game.player.gain_xp(Math.floor(this.cb.maxhp * .75));
 
             this.death();
 

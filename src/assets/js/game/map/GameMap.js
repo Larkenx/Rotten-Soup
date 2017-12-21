@@ -9,7 +9,7 @@ import Kobold from "#/entities/actors/enemies/Kobold.js";
 import Orc from "#/entities/actors/enemies/Orc.js";
 import Rat from "#/entities/actors/enemies/Rat.js";
 import Bat from "#/entities/actors/enemies/Bat.js";
-
+import Lich from "#/entities/actors/enemies/boss/Lich.js";
 // Items
 // Weapons
 import {createSword, Sword} from "#/entities/items/weapons/Sword.js";
@@ -90,6 +90,9 @@ const entityShop = {
     },
     20 : (x,y,id) => {
         return new Bat(x,y,id);
+    },
+    21 : (x,y,id) => {
+        return new Lich(x,y,id);
     }
 };
 

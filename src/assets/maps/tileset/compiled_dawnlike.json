@@ -2155,6 +2155,13 @@
          "entity":true,
          "entity_id":15
         },
+     "2558":
+        {
+         "animated":true,
+         "animated_id":2566,
+         "entity":true,
+         "entity_id":"21"
+        },
      "2736":
         {
          "blocked":true
@@ -6899,7 +6906,7 @@
         },
      "4774":
         {
-         "blocked":true
+         "blocked":false
         },
      "4775":
         {
@@ -7450,6 +7457,8 @@
         },
      "4891":
         {
+         "animated":true,
+         "animated_id":4899,
          "blocked":true
         },
      "4892":
@@ -9610,61 +9619,61 @@
         },
      "5368":
         {
-         "blocked":"true"
+         "blocked":true
         },
      "5369":
         {
-         "blocked":"true"
+         "blocked":true
         },
      "5370":
         {
-         "blocked":"true"
+         "blocked":true
         },
      "5371":
         {
-         "blocked":"true"
+         "blocked":true
         },
      "5372":
         {
          "animated":true,
          "animated_id":5380,
-         "blocked":"true"
+         "blocked":true
         },
      "5373":
         {
-         "blocked":"true"
+         "blocked":true
         },
      "5374":
         {
-         "blocked":"true"
+         "blocked":true
         },
      "5375":
         {
-         "blocked":"true"
+         "blocked":true
         },
      "5376":
         {
-         "blocked":"true"
+         "blocked":true
         },
      "5377":
         {
-         "blocked":"true"
+         "blocked":true
         },
      "5378":
         {
-         "blocked":"true"
+         "blocked":true
         },
      "5379":
         {
-         "blocked":"true"
+         "blocked":true
         },
      "5380":
         {
-         "blocked":"true"
+         "blocked":true
         },
      "5381":
         {
-         "blocked":"true"
+         "blocked":true
         },
      "5382":
         {
@@ -10138,61 +10147,61 @@
         },
      "5488":
         {
-         "blocked":"true"
+         "blocked":true
         },
      "5489":
         {
-         "blocked":"true"
+         "blocked":true
         },
      "5490":
         {
-         "blocked":"true"
+         "blocked":true
         },
      "5491":
         {
-         "blocked":"true"
+         "blocked":true
         },
      "5492":
         {
          "animated":true,
          "animated_id":5500,
-         "blocked":"true"
+         "blocked":true
         },
      "5493":
         {
-         "blocked":"true"
+         "blocked":true
         },
      "5494":
         {
-         "blocked":"true"
+         "blocked":true
         },
      "5495":
         {
-         "blocked":"true"
+         "blocked":true
         },
      "5496":
         {
-         "blocked":"true"
+         "blocked":true
         },
      "5497":
         {
-         "blocked":"true"
+         "blocked":true
         },
      "5498":
         {
-         "blocked":"true"
+         "blocked":true
         },
      "5499":
         {
-         "blocked":"true"
+         "blocked":true
         },
      "5500":
         {
-         "blocked":"true"
+         "blocked":true
         },
      "5501":
         {
-         "blocked":"true"
+         "blocked":true
         },
      "5502":
         {
@@ -12122,7 +12131,12 @@
         },
      "60":
         {
-         "blocked":true
+         "activated_id":68,
+         "animated":false,
+         "animated_id":0,
+         "blocked":true,
+         "entity":true,
+         "entity_id":10
         },
      "608":
         {
@@ -12151,11 +12165,19 @@
         {
          "blocked":true
         },
+     "6330":
+        {
+         "blocked":true
+        },
      "6336":
         {
          "blocked":true
         },
      "6337":
+        {
+         "blocked":true
+        },
+     "6338":
         {
          "blocked":true
         },
@@ -12168,6 +12190,14 @@
          "animated":true,
          "animated_id":6457,
          "blocked":true
+        },
+     "6464":
+        {
+         "animated":true,
+         "animated_id":6472,
+         "bg":"red",
+         "blocked":true,
+         "blocks_vision":false
         },
      "65":
         {
@@ -34112,6 +34142,13 @@
          "entity":"bool",
          "entity_id":"int"
         },
+     "2558":
+        {
+         "animated":"bool",
+         "animated_id":"int",
+         "entity":"bool",
+         "entity_id":"string"
+        },
      "2736":
         {
          "blocked":"bool"
@@ -39407,6 +39444,8 @@
         },
      "4891":
         {
+         "animated":"bool",
+         "animated_id":"int",
          "blocked":"bool"
         },
      "4892":
@@ -41567,61 +41606,61 @@
         },
      "5368":
         {
-         "blocked":"string"
+         "blocked":"bool"
         },
      "5369":
         {
-         "blocked":"string"
+         "blocked":"bool"
         },
      "5370":
         {
-         "blocked":"string"
+         "blocked":"bool"
         },
      "5371":
         {
-         "blocked":"string"
+         "blocked":"bool"
         },
      "5372":
         {
          "animated":"bool",
          "animated_id":"int",
-         "blocked":"string"
+         "blocked":"bool"
         },
      "5373":
         {
-         "blocked":"string"
+         "blocked":"bool"
         },
      "5374":
         {
-         "blocked":"string"
+         "blocked":"bool"
         },
      "5375":
         {
-         "blocked":"string"
+         "blocked":"bool"
         },
      "5376":
         {
-         "blocked":"string"
+         "blocked":"bool"
         },
      "5377":
         {
-         "blocked":"string"
+         "blocked":"bool"
         },
      "5378":
         {
-         "blocked":"string"
+         "blocked":"bool"
         },
      "5379":
         {
-         "blocked":"string"
+         "blocked":"bool"
         },
      "5380":
         {
-         "blocked":"string"
+         "blocked":"bool"
         },
      "5381":
         {
-         "blocked":"string"
+         "blocked":"bool"
         },
      "5382":
         {
@@ -42095,61 +42134,61 @@
         },
      "5488":
         {
-         "blocked":"string"
+         "blocked":"bool"
         },
      "5489":
         {
-         "blocked":"string"
+         "blocked":"bool"
         },
      "5490":
         {
-         "blocked":"string"
+         "blocked":"bool"
         },
      "5491":
         {
-         "blocked":"string"
+         "blocked":"bool"
         },
      "5492":
         {
          "animated":"bool",
          "animated_id":"int",
-         "blocked":"string"
+         "blocked":"bool"
         },
      "5493":
         {
-         "blocked":"string"
+         "blocked":"bool"
         },
      "5494":
         {
-         "blocked":"string"
+         "blocked":"bool"
         },
      "5495":
         {
-         "blocked":"string"
+         "blocked":"bool"
         },
      "5496":
         {
-         "blocked":"string"
+         "blocked":"bool"
         },
      "5497":
         {
-         "blocked":"string"
+         "blocked":"bool"
         },
      "5498":
         {
-         "blocked":"string"
+         "blocked":"bool"
         },
      "5499":
         {
-         "blocked":"string"
+         "blocked":"bool"
         },
      "5500":
         {
-         "blocked":"string"
+         "blocked":"bool"
         },
      "5501":
         {
-         "blocked":"string"
+         "blocked":"bool"
         },
      "5502":
         {
@@ -44079,7 +44118,12 @@
         },
      "60":
         {
-         "blocked":"bool"
+         "activated_id":"int",
+         "animated":"bool",
+         "animated_id":"int",
+         "blocked":"bool",
+         "entity":"bool",
+         "entity_id":"int"
         },
      "608":
         {
@@ -44108,11 +44152,19 @@
         {
          "blocked":"bool"
         },
+     "6330":
+        {
+         "blocked":"bool"
+        },
      "6336":
         {
          "blocked":"bool"
         },
      "6337":
+        {
+         "blocked":"bool"
+        },
+     "6338":
         {
          "blocked":"bool"
         },
@@ -44125,6 +44177,14 @@
          "animated":"bool",
          "animated_id":"int",
          "blocked":"bool"
+        },
+     "6464":
+        {
+         "animated":"bool",
+         "animated_id":"int",
+         "bg":"string",
+         "blocked":"bool",
+         "blocks_vision":"bool"
         },
      "65":
         {
