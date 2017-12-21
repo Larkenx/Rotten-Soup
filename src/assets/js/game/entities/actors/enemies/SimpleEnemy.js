@@ -46,7 +46,6 @@ export default class SimpleEnemy extends Actor {
             })) {
             if (!this.chasing) Game.log(`A ${this.name} sees you.`, 'alert');
             this.chasing = true;
-            this.inView = true;
             let pathToPlayer = [];
             Game.player.path.compute(this.x, this.y, function (x, y) {
                 pathToPlayer.push([x, y]);
@@ -55,8 +54,6 @@ export default class SimpleEnemy extends Actor {
                 let newPos = pathToPlayer[1]; // 1 past the current position
                 this.tryMove(newPos[0], newPos[1]);
             }
-        } else {
-            this.inView = false;
         }
         Game.engine.unlock();
         super.act();
