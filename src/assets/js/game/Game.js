@@ -47,12 +47,12 @@ export let Game = {
 
     init(dev = false) {
         this.dev = dev;
-        this.map = new GameMap(lichBoss);
-        this.levels["Lich Boss"] = this.map;
-        this.currentLevel = "Lich Boss";
-
+        this.currentLevel = "overworld";
+        this.levels["Lich Boss"] = new GameMap(lichBoss);
         this.levels["overworld"] = new GameMap(overworldMap);
         this.levels["Orc Castle"] = new GameMap(orcCastle);
+
+        this.map = this.levels[this.currentLevel];
         this.map.revealed = true;
         this.playerLocation = this.map.playerLocation;
         /* !Important! - PlayerID must be allocated before other maps are drawn... */
@@ -78,8 +78,8 @@ export let Game = {
             }
         }
         this.displayOptions = {
-            width: 30,
-            height: 18,
+            width: 40,
+            height: 23,
             forceSquareRatio: true,
             layout: "tile",
             // bg: "transparent",
