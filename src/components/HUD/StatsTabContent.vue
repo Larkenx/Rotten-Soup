@@ -83,8 +83,9 @@ export default {
             return Game.player.remainingXP();
         },
         getPercentToLevel() {
-            let experienceTowardsNext = xp_levels[this.getLevel()+1] - this.getRemainingXP();
-            return experienceTowardsNext / xp_levels[this.getLevel()+1];
+            let costOfLevel = xp_levels[this.getLevel() + 1] - xp_levels[this.getLevel()];
+            let experienceTowardsNext = costOfLevel - this.getRemainingXP();
+            return experienceTowardsNext / costOfLevel;
         }
     }
 }

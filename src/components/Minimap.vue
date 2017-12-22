@@ -1,5 +1,5 @@
 <template>
-        <v-flex align-center id="minimap_container"style="text-xs-center"></v-flex>
+        <v-layout row align-center id="minimap_container" style="text-xs-center"></v-layout>
 </template>
 
 <script>

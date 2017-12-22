@@ -78,8 +78,8 @@ export let Game = {
             }
         }
         this.displayOptions = {
-            width: 40,
-            height: 23,
+            width: 35,
+            height: 22,
             forceSquareRatio: true,
             layout: "tile",
             // bg: "transparent",
@@ -153,7 +153,7 @@ export let Game = {
             this.levels[newLevel].revealed = false;
             for (let actor of this.levels[newLevel].actors) {
                 if (actor instanceof Chest) {
-                    console.log("filling chest with goodies!");
+                    // console.log("filling chest with goodies!");
                     // we want to populate the chests with loot
                     let items = getItemsFromDropTable({
                         minItems : 1,

@@ -1,5 +1,6 @@
 <template>
-    <v-flex>
+    <v-layout row>
+    <v-container fluid>
         <v-layout v-for="(row, index) in 4" class="inventory_row" row v-bind:key="index">
             <v-flex
                 xs1
@@ -8,33 +9,33 @@
                 v-bind:key="i"
                 v-bind:class="{selectedItem : colorSlot(cell), inventory_cell : ! colorSlot(cell)}"
                 align-center
-                style="max-width: 32px; margin: 3px;"
+                style="max-width: 32px; margin: 2px;"
             >
-            <v-tooltip bottom v-if="cell.item !== null" align-center>
-                <p class="text-xs-center ma-0">
-                    {{cell.item.action}} {{cell.item.type}}<br  />
-                    <span v-if="'name' in cell.item">{{"Name: " + cell.item.name}}<br /></span>
-                    {{cell.item.hoverInfo()}}
-                </p>
-                <v-layout
-                    ripple
-                    v-on:click="useItem(cell.item, $event)"
-                    v-if="cell.item !== null"
-                    slot="activator"
-                    row
-                >
-                <v-badge overlay bottom color="grey" overlap>
-                    <span v-if="cell.item.quantity !== undefined" slot="badge" dark>
-                        <b>{{cell.item.quantity}}</b>
-                    </span>
-                    <img v-bind:src="getInventorySprite(cell.item.id)"/>
-                </v-badge>
-            </v-layout>
-        </v-tooltip>
-
-    </v-flex>
+                <v-tooltip bottom v-if="cell.item !== null" align-center>
+                    <p class="text-xs-center ma-0">
+                        {{cell.item.action}} {{cell.item.type}}<br  />
+                        <span v-if="'name' in cell.item">{{"Name: " + cell.item.name}}<br /></span>
+                        {{cell.item.hoverInfo()}}
+                    </p>
+                    <v-layout
+                        ripple
+                        v-on:click="useItem(cell.item, $event)"
+                        v-if="cell.item !== null"
+                        slot="activator"
+                        row
+                    >
+                    <v-badge overlay bottom color="grey" overlap>
+                        <span v-if="cell.item.quantity !== undefined" slot="badge" dark>
+                            <b>{{cell.item.quantity}}</b>
+                        </span>
+                        <img v-bind:src="getInventorySprite(cell.item.id)"/>
+                    </v-badge>
+                </v-layout>
+            </v-tooltip>
+        </v-flex>
+    </v-layout>
+</v-container>
 </v-layout>
-</v-flex>
 </template>
 
 <script>
