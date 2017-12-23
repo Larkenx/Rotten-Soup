@@ -47,7 +47,7 @@ export let Game = {
 
     init(dev = false) {
         this.dev = dev;
-        this.currentLevel = "overworld";
+        this.currentLevel = "Lich Boss";
         this.levels["Lich Boss"] = new GameMap(lichBoss);
         this.levels["overworld"] = new GameMap(overworldMap);
         this.levels["Orc Castle"] = new GameMap(orcCastle);
@@ -89,8 +89,9 @@ export let Game = {
             tileMap: tileMap,
             tileColorize: true
         };
-        this.width = this.displayOptions.width;
-        this.height = this.displayOptions.height;
+
+        this.width = this.map.width < this.displayOptions.width ? this.map.width : this.displayOptions.width;
+        this.height = this.map.height < this.displayOptions.height ? this.map.height : this.displayOptions.height;
         this.display = new ROT.Display(this.displayOptions);
         this.player = new Player(this.playerLocation[0], this.playerLocation[1], this.playerID);
         this.map.actors.push(this.player); // add to the list of all actors
