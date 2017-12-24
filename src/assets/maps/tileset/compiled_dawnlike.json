@@ -4838,9 +4838,9 @@
      "4335":
         {
          "animated":true,
-         "animated_id":0,
+         "animated_id":4343,
          "entity":true,
-         "entity_id":0
+         "entity_id":6
         },
      "4336":
         {
@@ -19058,6 +19058,10 @@
         {
          "bg":"#00cc33"
         },
+     "7900":
+        {
+         "level":"Graveyard"
+        },
      "7920":
         {
          "animated":true,
@@ -24415,6 +24419,14 @@
         {
          "bg":"#00cc33"
         },
+     "8743":
+        {
+         "animated":true,
+         "animated_id":9583,
+         "blocked":true,
+         "entity":true,
+         "entity_id":22
+        },
      "8760":
         {
          "animated":true,
@@ -25137,6 +25149,14 @@
      "8856":
         {
          "bg":"#00cc33"
+        },
+     "8863":
+        {
+         "animated":true,
+         "animated_id":4896,
+         "blocked":true,
+         "entity":true,
+         "entity_id":22
         },
      "8880":
         {
@@ -25861,6 +25881,14 @@
         {
          "bg":"#00cc33"
         },
+     "8983":
+        {
+         "animated":true,
+         "animated_id":4896,
+         "blocked":true,
+         "entity":true,
+         "entity_id":22
+        },
      "9000":
         {
          "animated":true,
@@ -26583,6 +26611,20 @@
      "9096":
         {
          "bg":"#00cc33"
+        },
+     "9103":
+        {
+         "animated":true,
+         "animated_id":4896,
+         "blocked":true,
+         "entity":true,
+         "entity_id":22
+        },
+     "9111":
+        {
+         "animated":true,
+         "animated_id":9951,
+         "blocked":false
         },
      "9120":
         {
@@ -51045,6 +51087,10 @@
         {
          "bg":"string"
         },
+     "7900":
+        {
+         "level":"string"
+        },
      "7920":
         {
          "animated":"bool",
@@ -56402,6 +56448,14 @@
         {
          "bg":"string"
         },
+     "8743":
+        {
+         "animated":"bool",
+         "animated_id":"int",
+         "blocked":"bool",
+         "entity":"bool",
+         "entity_id":"int"
+        },
      "8760":
         {
          "animated":"bool",
@@ -57124,6 +57178,14 @@
      "8856":
         {
          "bg":"string"
+        },
+     "8863":
+        {
+         "animated":"bool",
+         "animated_id":"int",
+         "blocked":"bool",
+         "entity":"bool",
+         "entity_id":"int"
         },
      "8880":
         {
@@ -57848,6 +57910,14 @@
         {
          "bg":"string"
         },
+     "8983":
+        {
+         "animated":"bool",
+         "animated_id":"int",
+         "blocked":"bool",
+         "entity":"bool",
+         "entity_id":"int"
+        },
      "9000":
         {
          "animated":"bool",
@@ -58570,6 +58640,20 @@
      "9096":
         {
          "bg":"string"
+        },
+     "9103":
+        {
+         "animated":"bool",
+         "animated_id":"int",
+         "blocked":"bool",
+         "entity":"bool",
+         "entity_id":"int"
+        },
+     "9111":
+        {
+         "animated":"bool",
+         "animated_id":"int",
+         "blocked":"bool"
         },
      "9120":
         {

@@ -25,6 +25,8 @@ import Door from "#/entities/misc/Door.js";
 import LockedDoor from "#/entities/misc/LockedDoor.js";
 import Key from "#/entities/items/misc/Key.js";
 import Ladder from "#/entities/misc/Ladder.js";
+import LevelTransition from "#/entities/misc/LevelTransition.js";
+
 
 
 const entityShop = {
@@ -93,6 +95,9 @@ const entityShop = {
     },
     21 : (x,y,id) => {
         return new Lich(x,y,id);
+    },
+    22 : (x,y,id) => {
+        return new LevelTransition(x,y,id);
     }
 };
 
@@ -227,10 +232,10 @@ export class GameMap {
                     // now we've got a portal cell that tells us where a ladder should lead
                     // find the ladder at this location
                     let ladders = this.data[i][j].actors.filter((a) => {
-                        return a instanceof Ladder
+                        return (a instanceof Ladder || a instanceof LevelTransition) // throwing in condition that it can also be level transition
                     });
                     if (ladders.length === 0) {
-                        throw "tried to create a portal link for a ladder but no ladder was found";
+                        throw "tried to create a portal link for a ladder or level transition but neither was found";
                     } else {
                         ladders[0].portal = properties.level;
                     }
