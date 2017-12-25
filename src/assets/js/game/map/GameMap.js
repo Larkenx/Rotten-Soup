@@ -9,6 +9,9 @@ import Kobold from "#/entities/actors/enemies/Kobold.js";
 import Orc from "#/entities/actors/enemies/Orc.js";
 import Rat from "#/entities/actors/enemies/Rat.js";
 import Bat from "#/entities/actors/enemies/Bat.js";
+import Skeleton from "#/entities/actors/enemies/Skeleton.js";
+import Zombie from "#/entities/actors/enemies/Zombie.js";
+
 import Lich from "#/entities/actors/enemies/boss/Lich.js";
 // Items
 // Weapons
@@ -98,6 +101,12 @@ const entityShop = {
     },
     22 : (x,y,id) => {
         return new LevelTransition(x,y,id);
+    },
+    23 : (x,y,id) => {
+        return new Zombie(x,y,id);
+    },
+    24 : (x,y,id) => {
+        return new Skeleton(x,y,id);
     }
 };
 

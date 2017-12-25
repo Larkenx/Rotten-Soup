@@ -10,6 +10,7 @@ import Weapon from "#/entities/items/weapons/Weapon.js";
 import {Ammo} from "#/entities/items/weapons/ranged/ammo/Ammo.js";
 import {Buff} from "#/modifiers/Buff.js";
 
+
 export class Actor extends Entity {
     constructor(x, y, options, routine = null) {
         super(x, y, options);
@@ -332,7 +333,7 @@ export class Actor extends Entity {
         Game.map.actors.splice(idx, 1);
         // Game.drawViewPort();
         let blood = 2644 - getRandomInt(0, 1);
-        ctile.obstacles.push({id: blood});
+        if (this.name !== "skeleton") ctile.obstacles.push({id: blood}); // really horrible way of making sure it's not a skeleton
 
         if (this === Game.player) {
             Game.log(`You died!`, "death");
