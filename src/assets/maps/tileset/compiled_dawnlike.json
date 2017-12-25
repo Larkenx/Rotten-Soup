@@ -7504,6 +7504,8 @@
         },
      "4894":
         {
+         "animated":true,
+         "animated_id":4902,
          "blocked":true
         },
      "4895":
@@ -39566,6 +39568,8 @@
         },
      "4894":
         {
+         "animated":"bool",
+         "animated_id":"int",
          "blocked":"bool"
         },
      "4895":
