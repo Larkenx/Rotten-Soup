@@ -27,7 +27,7 @@ import Chest from '#/entities/misc/Chest.js'
 export const tileset = require('@/assets/maps/tileset/compiled_dawnlike.json')
 export const overworldMap = require('@/assets/maps/map_file/overworld.json')
 export const orcCastle = require('@/assets/maps/map_file/orcCastle.json')
-export const lichBoss = require('@/assets/maps/map_file/lichBoss.json')
+export const graveyard = require('@/assets/maps/map_file/graveyard.json')
 
 if (!ROT.isSupported()) {
     alert("The rot.js library isn't supported by your browser.");
@@ -63,7 +63,8 @@ export let Game = {
     init(dev = false) {
         this.dev = dev;
         this.currentLevel = "overworld";
-        // this.levels["Lich Boss"] = new GameMap(lichBoss);
+        this.levels["graveyard"] = new GameMap(graveyard);
+        this.levels["graveyard"].revealed = true;
         this.levels["overworld"] = new GameMap(overworldMap);
         this.levels["Orc Castle"] = new GameMap(orcCastle);
 
