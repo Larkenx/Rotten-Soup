@@ -2,6 +2,8 @@ import {Actor} from "#/entities/actors/Actor.js";
 import {Game} from "#/Game.js";
 import ROT from "rot-js";
 
+import {targetTypes, MagicDart, Regeneration, Pain, VampiricDraining, AnimateDead } from "#/magic/Spell.js";
+
 export default class Lich extends Actor {
     constructor(x, y, id) {
         super(x, y, {
@@ -28,6 +30,12 @@ export default class Lich extends Actor {
                 invulnerable: false,
             }
         });
+
+        let regeneration = new Regeneration();
+        let pain = new Pain();
+        let vampiricDraining = new VampiricDraining();
+        let animateDead = new AnimateDead();
+        this.spells = {regeneration, pain, vampiricDraining, animateDead}
     }
 
     act() {
