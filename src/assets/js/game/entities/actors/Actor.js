@@ -9,12 +9,15 @@ import Door from "#/entities/misc/Door.js";
 import Weapon from "#/entities/items/weapons/Weapon.js";
 import {Ammo} from "#/entities/items/weapons/ranged/ammo/Ammo.js";
 import {Buff} from "#/modifiers/Buff.js";
-
+import {Corpse, corpseTypes} from '#/entities/items/misc/Corpse.js';
 
 export class Actor extends Entity {
     constructor(x, y, options, routine = null) {
         super(x, y, options);
         this.cb = this.combat;
+        if (this.corpseType === undefined)
+            this.corpseType = corpseTypes.HUMANOID
+            
         this.cb.effects = [];
         this.cb.equipment = {
             head: null,
@@ -331,9 +334,16 @@ export class Actor extends Entity {
         }
         // redraw the tile, either with an appropriate actor or the tile symbol
         Game.map.actors.splice(idx, 1);
-        // Game.drawViewPort();
+        /* On death, we want to spray some blood on the tile.
+         * We also want to place a corpse corresponding to the actor as well
+        */
         let blood = 2644 - getRandomInt(0, 1);
-        if (this.name !== "skeleton") ctile.obstacles.push({id: blood}); // really horrible way of making sure it's not a skeleton
+        if (this.corpseType !== corpseTypes.SKELETON) // specifically don't want to add blood if it's a skeleton...
+            ctile.obstacles.push({id: blood});
+
+        if (this.corpseType !== undefined) {
+            ctile.actors.push(new Corpse(this.x, this.y, this.name, this.corpseType));
+        }
 
         if (this === Game.player) {
             Game.log(`You died!`, "death");

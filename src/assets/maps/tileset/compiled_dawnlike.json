@@ -2138,6 +2138,13 @@
          "FOV":false,
          "bg":"darkgreen"
         },
+     "2280":
+        {
+         "animated":true,
+         "animated_id":2760,
+         "entity":true,
+         "entity_id":"25"
+        },
      "2314":
         {
          "animated":true,
@@ -10218,7 +10225,11 @@
         },
      "5489":
         {
-         "blocked":true
+         "animated":true,
+         "animated_id":5497,
+         "blocked":false,
+         "entity":true,
+         "entity_id":"25"
         },
      "5490":
         {
@@ -34342,6 +34353,13 @@
          "FOV":"bool",
          "bg":"string"
         },
+     "2280":
+        {
+         "animated":"bool",
+         "animated_id":"int",
+         "entity":"bool",
+         "entity_id":"string"
+        },
      "2314":
         {
          "animated":"bool",
@@ -42422,7 +42440,11 @@
         },
      "5489":
         {
-         "blocked":"bool"
+         "animated":"bool",
+         "animated_id":"int",
+         "blocked":"bool",
+         "entity":"bool",
+         "entity_id":"string"
         },
      "5490":
         {

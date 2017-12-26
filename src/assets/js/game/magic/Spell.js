@@ -1,9 +1,12 @@
 /* Class to hold spells. Spells can be self-casted or targeted. Some special cases can be considered,
  such as 'reanimate the nearest dead character'. */
-
+import ROT from "rot-js";
 import {getRandomInt, getDiceRoll} from '#/utils/HelperFunctions.js';
 import {RegenerationEffect} from "#/modifiers/Effect.js";
 import {Game} from "#/Game.js";
+import {Corpse, corpseTypes} from '#/entities/items/misc/Corpse.js';
+import Skeleton from "#/entities/actors/enemies/Skeleton.js";
+import Zombie from "#/entities/actors/enemies/Zombie.js";
 
 
 export const spellTypes = {
@@ -57,10 +60,10 @@ export class MagicDart extends Spell {
 
     cast(target, caster) {
         let dmg = getRandomInt(1, 8); // remember to update hover info if this changes!
-        if (entity === Game.player)
+        if (target === Game.player)
             Game.log(`You took ${dmg} damage from a Magic Dart spell!`, 'attack')
         else
-            Game.log(`Magic Dart blasts the ${entity.name} for ${dmg} magical damage.`, 'player_move')
+            Game.log(`Magic Dart blasts the ${target.name} for ${dmg} magical damage.`, 'player_move')
 
         this.action(target, dmg);
     }
@@ -89,7 +92,7 @@ export class Pain extends Spell {
         if (target === Game.player)
             Game.log(`You feel ${adjective} pain and take ${dmg} damage from a Pain spell!`, 'attack')
         else
-            Game.log(`Pain blasts the ${entity.name} for ${dmg} magical damage.`, 'player_move')
+            Game.log(`Pain blasts the ${target.name} for ${dmg} magical damage.`, 'player_move')
 
         this.action(target, dmg);
     }
@@ -114,7 +117,7 @@ export class Regeneration extends Spell {
         if (caster === Game.player)
             Game.log(`You begin regenerating your wounds with dark magic.`, 'player_move')
         else
-            Game.log(`${entity.name.capitalize()} begins regenerating its wounds.`, 'alert')
+            Game.log(`${caster.name.capitalize()} begins regenerating its wounds.`, 'alert')
 
         this.action(target);
     }
@@ -146,5 +149,61 @@ export class VampiricDraining extends Spell {
         }
         this.action(target, dmg);
         caster.heal(~~ (dmg / 2));
+    }
+}
+
+const reanimate = (corpse) => {
+    let ctile = Game.map.data[corpse.y][corpse.x];
+    // remove the corpse from the ground
+    ctile.removeActor(corpse);
+    let idx = Game.map.actors.indexOf(corpse);
+    Game.map.actors.splice(idx, 1);
+    let undeadActor = corpse.id === corpseTypes.HUMANOID ?
+        new Zombie(corpse.x, corpse.y, 2317) :
+        new Skeleton(corpse.x, corpse.y, 2552);
+
+    ctile.actors.push(undeadActor);
+    Game.map.actors.push(undeadActor)
+    Game.scheduler.add(undeadActor, true);
+}
+
+export class AnimateDead extends Spell {
+    constructor() {
+        super({
+            name: 'Animate Dead',
+            hoverInfo: 'Raises all skeletons and corpses within caster\'s line of sight as undead.',
+            action: (caster) => {
+                 let fov = new ROT.FOV.PreciseShadowcasting(function(x, y) {
+                     return (Game.inbounds(x, y) && Game.map.data[y][x].visible());
+                 });
+
+                 let visibleTiles = [];
+                 fov.compute(caster.x, caster.y, caster.cb.range, function(x, y, r, visibility) {
+                     if (Game.inbounds(x, y))
+                         visibleTiles.push(Game.map.data[y][x]);
+                 });
+
+                 for (let tile of visibleTiles) {
+                     let corpses = tile.actors.filter((e) => {return e instanceof Corpse});
+                     /* TODO: If player is casting this spell, reanimated corpses should be friendly! */
+                     if (corpses.length >= 1)
+                        reanimate(corpses[0]);
+                 }
+            },
+            splashArt: 'animate_dead',
+            type: spellTypes.NECROMANCY,
+            targetType: targetTypes.SELF,
+            manaCost: 7
+        })
+    }
+
+    cast(target, caster) {
+        this.action(caster);
+        if (caster === Game.player) {
+            Game.log(`You raise nearby dead corpses around you into undead zombies and skeletons.`, 'lightgreen')
+        } else {
+            Game.log(`The ${caster.capitalize()} raises all the corpses nearby from the dead`, 'lightpurple')
+        }
+
     }
 }

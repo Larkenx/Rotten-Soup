@@ -16,7 +16,7 @@ import HealthPotion from "#/entities/items/potions/HealthPotion.js";
 import StrengthPotion from "#/entities/items/potions/StrengthPotion.js";
 import ManaPotion from "#/entities/items/potions/ManaPotion.js";
 // Spells
-import {targetTypes, MagicDart, Regeneration, Pain, VampiricDraining } from "#/magic/Spell.js";
+import {targetTypes, MagicDart, Regeneration, Pain, VampiricDraining, AnimateDead } from "#/magic/Spell.js";
 // effects
 import {BleedEnchantment} from "#/modifiers/Enchantment.js";
 // Misc
@@ -63,7 +63,8 @@ export default class Player extends Actor {
                 /* Magic & Ranged */
                 validTarget: null,
                 currentSpell: null,
-                spells: []
+                spells: [],
+                range: 7, // how far we can see
             }
         });
         this.path = new ROT.Path.AStar(this.x, this.y, pathfinding);
@@ -87,7 +88,7 @@ export default class Player extends Actor {
         this.cb.spells.push(new Pain());
         this.cb.spells.push(new Regeneration());
         this.cb.spells.push(new VampiricDraining());
-
+        this.cb.spells.push(new AnimateDead());
 
         this.selectSpell(this.cb.spells[0]);
     }
@@ -415,8 +416,9 @@ export default class Player extends Actor {
 
             /* TODO : check if the cast is targeted or self casted */
             if (currentSpell.targetType === targetTypes.SELF) {
-                Game.log(`You cast ${currentSpell.name} on yourself.`, "magic");
+                Game.log(`You cast ${currentSpell.name}.`, "magic");
                 currentSpell.cast(this, this);
+                this.cb.mana -= currentSpell.manaCost;
                 restartTurn();
                 return;
             } else if (currentSpell.targetType === targetTypes.TARGET) {

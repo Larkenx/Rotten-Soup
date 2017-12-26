@@ -4,6 +4,7 @@
 import {Game} from "#/Game.js";
 import {getRandomInt, getItemsFromDropTable} from "#/utils/HelperFunctions.js";
 import SimpleEnemy from "#/entities/actors/enemies/SimpleEnemy.js";
+import {corpseTypes} from '#/entities/items/misc/Corpse.js';
 
 export default class Skeleton extends SimpleEnemy {
     constructor(x, y, id) {
@@ -13,6 +14,7 @@ export default class Skeleton extends SimpleEnemy {
             id: id,
             name: "skeleton",
             description: "A skeleton raised from the dead!",
+            corpseType : corpseTypes.SKELETON,
             visible: true,
             blocked: true,
             chasing: false,

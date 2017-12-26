@@ -62,7 +62,7 @@ export let Game = {
 
     init(dev = false) {
         this.dev = dev;
-        this.currentLevel = "overworld";
+        this.currentLevel = "graveyard";
         this.levels["graveyard"] = new GameMap(graveyard);
         this.levels["graveyard"].revealed = true;
         this.levels["overworld"] = new GameMap(overworldMap);
@@ -245,7 +245,7 @@ export let Game = {
             return (Game.inbounds(x, y) && Game.map.data[y][x].visible());
         });
 
-        fov.compute(this.player.x, this.player.y, 7, function(x, y, r, visibility) {
+        fov.compute(this.player.x, this.player.y, this.player.cb.range, function(x, y, r, visibility) {
             Game.map.visible_tiles[x + ',' + y] = true;
         });
 

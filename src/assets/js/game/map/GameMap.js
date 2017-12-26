@@ -11,6 +11,7 @@ import Rat from "#/entities/actors/enemies/Rat.js";
 import Bat from "#/entities/actors/enemies/Bat.js";
 import Skeleton from "#/entities/actors/enemies/Skeleton.js";
 import Zombie from "#/entities/actors/enemies/Zombie.js";
+import {Corpse, corpseTypes} from '#/entities/items/misc/Corpse.js';
 
 import Lich from "#/entities/actors/enemies/boss/Lich.js";
 // Items
@@ -107,6 +108,12 @@ const entityShop = {
     },
     24 : (x,y,id) => {
         return new Skeleton(x,y,id);
+    },
+    25 : (x,y,id) => {
+        return new Corpse(x, y, "zombie", id);
+    },
+    26 : (x,y,id) => {
+        return new Corpse(x, y, "skeleton", id);
     }
 };
 
