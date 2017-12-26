@@ -62,7 +62,7 @@ export let Game = {
 
     init(dev = false) {
         this.dev = dev;
-        this.currentLevel = "graveyard";
+        this.currentLevel = "overworld";
         this.levels["graveyard"] = new GameMap(graveyard);
         this.levels["graveyard"].revealed = true;
         this.levels["overworld"] = new GameMap(overworldMap);
@@ -204,6 +204,18 @@ export let Game = {
         this.currentLevel = newLevel;
         this.playerLocation = this.map.playerLocation;
         this.player.placeAt(this.playerLocation[0], this.playerLocation[1]);
+        // before drawing the viewport, we need to clear the screen of whatever was here last
+        for (let y = 0; y < this.height; y++)
+            for (let x = 0; x < this.width; x++)
+                this.display.draw(x,y, "", "black", "black")
+                
+        this.width = this.map.width < this.displayOptions.width ? this.map.width : this.displayOptions.width;
+        this.height = this.map.height < this.displayOptions.height ? this.map.height : this.displayOptions.height;
+        // before drawing the viewport, we need to clear the screen of whatever was here last
+        for (let y = 0; y < this.height; y++)
+            for (let x = 0; x < this.width; x++)
+                this.display.draw(x,y, "", "black", "black")
+
         this.scheduleAllActors();
         this.drawViewPort();
         this.initializeMinimap();

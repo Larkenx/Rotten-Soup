@@ -92,7 +92,7 @@ export class Pain extends Spell {
         if (target === Game.player)
             Game.log(`You feel ${adjective} pain and take ${dmg} damage from a Pain spell!`, 'attack')
         else
-            Game.log(`Pain blasts the ${target.name} for ${dmg} magical damage.`, 'player_move')
+            Game.log(`Pain causes ${adjective} trauma the ${target.name} for ${dmg} magical damage.`, 'player_move')
 
         this.action(target, dmg);
     }
@@ -162,6 +162,7 @@ const reanimate = (corpse) => {
         new Zombie(corpse.x, corpse.y, 2317) :
         new Skeleton(corpse.x, corpse.y, 2552);
 
+    undeadActor.chasing = true;
     ctile.actors.push(undeadActor);
     Game.map.actors.push(undeadActor)
     Game.scheduler.add(undeadActor, true);
@@ -203,6 +204,8 @@ export class AnimateDead extends Spell {
             Game.log(`You raise nearby dead corpses around you into undead zombies and skeletons.`, 'lightgreen')
         } else {
             Game.log(`The ${caster.capitalize()} raises all the corpses nearby from the dead`, 'lightpurple')
+            Game.log(`The undead corpses begin marching towards you.`, 'lightpurple')
+
         }
 
     }
