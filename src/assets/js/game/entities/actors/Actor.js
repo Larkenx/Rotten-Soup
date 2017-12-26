@@ -38,7 +38,7 @@ export class Actor extends Entity {
         });
         // apply all of the effects on this Actor at the beginning of their turn
         for (let effect of this.cb.effects) {
-            if (!effect instanceof Buff)
+            if (! (effect instanceof Buff))
                 Game.log(effect.description(this), "alert");
 
             effect.applyEffect(this);

@@ -3,13 +3,14 @@
         <v-layout row>
             <v-flex xs4><b>Learned Spells</b></v-flex>
         </v-layout>
-        <v-layout row style="margin-top: 5px;">
+        <v-layout row wrap style="margin-top: 5px;">
             <v-flex
                 xs1
                 col
                 v-for="(spell, i) in getSpells()"
                 v-on:click="selectSpell(spell)"
                 v-bind:key="i"
+                style="margin: 4px;"
             >
                 <v-tooltip bottom align-center>
                     <p class="text-xs-center ma-0">

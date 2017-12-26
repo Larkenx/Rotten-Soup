@@ -48,6 +48,14 @@ export let itemTypes = {
     STEEL_ARROW : "STEEL_ARROW",
 }
 
+export function getDiceRoll(rolls, sides) {
+    let n = 0;
+    for (let i = 0; i < rolls; i++) {
+        n += getRandomInt(1, sides);
+    }
+    return n;
+}
+
 export function getItemsFromDropTable(options) {
     if (options.dropTable == undefined ||
         options.minItems == undefined ||

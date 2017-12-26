@@ -16,7 +16,7 @@ import HealthPotion from "#/entities/items/potions/HealthPotion.js";
 import StrengthPotion from "#/entities/items/potions/StrengthPotion.js";
 import ManaPotion from "#/entities/items/potions/ManaPotion.js";
 // Spells
-import {MagicDart} from "#/magic/Spell.js";
+import {targetTypes, MagicDart, Regeneration, Pain, VampiricDraining } from "#/magic/Spell.js";
 // effects
 import {BleedEnchantment} from "#/modifiers/Enchantment.js";
 // Misc
@@ -84,6 +84,11 @@ export default class Player extends Actor {
 
         // this.addToInventory(new ManaPotion(this.x,this.y, 495));
         this.cb.spells.push(new MagicDart());
+        this.cb.spells.push(new Pain());
+        this.cb.spells.push(new Regeneration());
+        this.cb.spells.push(new VampiricDraining());
+
+
         this.selectSpell(this.cb.spells[0]);
     }
 
@@ -321,7 +326,7 @@ export default class Player extends Actor {
                         if (enemies.length > 0) {
                             let enemy = enemies[0];
                             Game.log(`You cast ${this.cb.currentSpell.name} at the ${enemies[0].name}.`, "magic");
-                            this.cb.currentSpell.cast(enemies[0]);
+                            this.cb.currentSpell.cast(enemies[0], this);
                         } else {
                             Game.log(`You cast ${this.cb.currentSpell.name} but it hits nothing!`, "magic");
                         }
@@ -397,22 +402,33 @@ export default class Player extends Actor {
                 return;
             }
         } else if ("cast" === keyMap[code]) {
-            if (this.cb.currentSpell === null) {
+            let currentSpell = this.cb.currentSpell;
+            if (currentSpell === null) {
                 Game.log("You must select a spell to cast. Select one from the spellbook!", "information");
                 restartTurn();
                 return;
-            } else if (this.cb.currentSpell.manaCost > this.cb.mana) {
-                Game.log(`You don't have enough mana to cast ${this.cb.currentSpell.name}!`, "alert");
+            } else if (currentSpell.manaCost > this.cb.mana) {
+                Game.log(`You don't have enough mana to cast ${currentSpell.name}!`, "alert");
                 restartTurn();
                 return;
             }
-            Game.log("You begin casting a spell.", "defend");
-            Game.log("Select a target with the movement keys and press [enter] to cast the spell.", "player_move");
-            this.validTarget = Game.selectNearestEnemyTile();
-            this.casting = true;
-            // our first selected tile can be the nearest enemy
-            restartTurn();
-            return;
+
+            /* TODO : check if the cast is targeted or self casted */
+            if (currentSpell.targetType === targetTypes.SELF) {
+                Game.log(`You cast ${currentSpell.name} on yourself.`, "magic");
+                currentSpell.cast(this, this);
+                restartTurn();
+                return;
+            } else if (currentSpell.targetType === targetTypes.TARGET) {
+                Game.log("You begin casting a spell.", "defend");
+                Game.log("Select a target with the movement keys and press [enter] to cast the spell.", "player_move");
+                this.validTarget = Game.selectNearestEnemyTile();
+                this.casting = true;
+                // our first selected tile can be the nearest enemy
+                restartTurn();
+                return;
+            }
+
         } else if ("examine" === keyMap[code]) {
             this.examining = true;
             Game.selectNearestEnemyTile()

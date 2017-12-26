@@ -42,3 +42,21 @@ export class BleedEffect extends Effect {
         });
     }
 }
+
+export class RegenerationEffect extends Effect {
+    constructor() {
+        super({
+            name: 'Regeneration',
+            action : (entity) => {
+                entity.heal(10);
+            },
+            description : (entity) => {
+                if (entity === Game.player)
+                    return `You regenerate 10 health.`
+                else
+                    return `${entity.name.capitalize()} regenerated 10 health.`
+            },
+            duration : 5
+        });
+    }
+}

@@ -630,7 +630,8 @@ export let Game = {
             'level_up': 'green',
             'alert': 'orange',
         };
-        this.message_history.push([message, message_color[type]]);
+        let color = type in message_color ? message_color[type] : type;
+        this.message_history.push([message, color]);
         $('#fix_scroll').stop().animate({
             scrollTop: $('#fix_scroll')[0].scrollHeight
         }, 800);

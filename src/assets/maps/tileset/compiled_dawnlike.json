@@ -1485,6 +1485,13 @@
          "entity":true,
          "entity_id":5
         },
+     "1475":
+        {
+         "animated":true,
+         "animated_id":1499,
+         "entity":true,
+         "entity_id":"6"
+        },
      "1482":
         {
          "FOV":false,
@@ -33681,6 +33688,13 @@
         {
          "entity":"bool",
          "entity_id":"int"
+        },
+     "1475":
+        {
+         "animated":"bool",
+         "animated_id":"int",
+         "entity":"bool",
+         "entity_id":"string"
         },
      "1482":
         {
