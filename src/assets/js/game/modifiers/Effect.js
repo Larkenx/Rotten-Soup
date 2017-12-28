@@ -6,57 +6,57 @@
  ~ examples include a health potion that restores HP immediately vs a strength potion which might increase str for 5 turns
  */
 
-import {Game} from "#/Game.js";
+import {Game} from '#/Game.js'
 
 export class Effect {
-    constructor(options) {
-        Object.assign(this, options);
-        if (this.name === undefined || this.description === undefined || this.action === undefined || this.duration === undefined)
-            throw "Effect missing critical fields";
-    }
+	constructor(options) {
+		Object.assign(this, options)
+		if (this.name === undefined || this.description === undefined || this.action === undefined || this.duration === undefined)
+			throw 'Effect missing critical fields'
+	}
 
-    applyEffect(entity) {
-        if (this.duration == 0) {
-            return;
-        }
-        this.action(entity);
-        this.duration--;
-    }
+	applyEffect(entity) {
+		if (this.duration == 0) {
+			return
+		}
+		this.action(entity)
+		this.duration--
+	}
 }
 
 export class BleedEffect extends Effect {
-    constructor() {
-        super({
-            name: "Bleed",
-            action: (entity) => {
-                entity.damage(~~(entity.cb.maxhp * .10))
-            },
-            description: (entity) => {
-                let dmg = ~~(entity.cb.maxhp * .10);
-                if (entity === Game.player)
-                    return `You bleed for ${dmg} damage.`
-                else
-                    return `${entity.name.capitalize()} took ${dmg} bleed damage.`
-            },
-            duration: 3
-        });
-    }
+	constructor() {
+		super({
+			name: 'Bleed',
+			action: (entity) => {
+				entity.damage(~~(entity.cb.maxhp * .10))
+			},
+			description: (entity) => {
+				let dmg = ~~(entity.cb.maxhp * .10)
+				if (entity === Game.player)
+					return `You bleed for ${dmg} damage.`
+				else
+					return `${entity.name.capitalize()} took ${dmg} bleed damage.`
+			},
+			duration: 3
+		})
+	}
 }
 
 export class RegenerationEffect extends Effect {
-    constructor() {
-        super({
-            name: 'Regeneration',
-            action : (entity) => {
-                entity.heal(10);
-            },
-            description : (entity) => {
-                if (entity === Game.player)
-                    return `You regenerate 10 health.`
-                else
-                    return `${entity.name.capitalize()} regenerated 10 health.`
-            },
-            duration : 5
-        });
-    }
+	constructor() {
+		super({
+			name: 'Regeneration',
+			action : (entity) => {
+				entity.heal(10)
+			},
+			description : (entity) => {
+				if (entity === Game.player)
+					return 'You regenerate 10 health.'
+				else
+					return `${entity.name.capitalize()} regenerated 10 health.`
+			},
+			duration : 5
+		})
+	}
 }
