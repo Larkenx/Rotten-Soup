@@ -1,7 +1,6 @@
-import {Game} from '#/Game.js'
+import { Game } from '#/Game.js'
 export default class GameDisplay {
-	constructor() {
-	}
+	constructor() {}
 
 	act() {
 		Game.engine.lock()

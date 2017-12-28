@@ -1,8 +1,7 @@
-import {Game} from '#/Game.js'
+import { Game } from '#/Game.js'
 
 export let xp_levels = [50]
-for (let i = 1; i < 100; i++)
-	xp_levels.push(1.5 * xp_levels[i - 1])
+for (let i = 1; i < 100; i++) xp_levels.push(1.5 * xp_levels[i - 1])
 
 export const EntityTypes = {
 	PLAYER: 0,
@@ -48,5 +47,4 @@ export class Entity {
 		this.x = nx // update x,y coords to new coords
 		this.y = ny
 	}
-
 }

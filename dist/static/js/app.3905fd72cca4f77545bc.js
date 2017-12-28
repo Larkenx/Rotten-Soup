@@ -47,16 +47,16 @@ var Component = normalizeComponent(
 
 class Key extends __WEBPACK_IMPORTED_MODULE_0__entities_items_Item_js__["a" /* default */] {
 
-    constructor(x, y, id) {
-        super(x, y, {
-            id: id,
-            type: "Key"
-        });
-    }
+	constructor(x, y, id) {
+		super(x, y, {
+			id: id,
+			type: 'Key'
+		});
+	}
 
-    hoverInfo() {
-        return "";
-    }
+	hoverInfo() {
+		return '';
+	}
 }
 /* harmony export (immutable) */ __webpack_exports__["a"] = Key;
 
@@ -86,37 +86,37 @@ class Key extends __WEBPACK_IMPORTED_MODULE_0__entities_items_Item_js__["a" /* d
 
 
 const spellTypes = {
-    CONJURATION: 'CONJURATION',
-    CHARMS: 'CHARMS',
-    ICE: 'ICE',
-    AIR: 'AIR',
-    EARTH: 'EARTH',
-    FIRE: 'FIRE',
-    POISON: 'POISON',
-    NECROMANCY: 'NECROMANCY',
-    TRANSLOCATION: 'TRANSLOCATION',
-    TRANSMUTATION: 'TRANSMUTATION',
-    HEXES: 'HEXES'
+	CONJURATION: 'CONJURATION',
+	CHARMS: 'CHARMS',
+	ICE: 'ICE',
+	AIR: 'AIR',
+	EARTH: 'EARTH',
+	FIRE: 'FIRE',
+	POISON: 'POISON',
+	NECROMANCY: 'NECROMANCY',
+	TRANSLOCATION: 'TRANSLOCATION',
+	TRANSMUTATION: 'TRANSMUTATION',
+	HEXES: 'HEXES'
 };
 /* unused harmony export spellTypes */
 
 
 const targetTypes = {
-    SELF: 'SELF', // applies spell to self
-    TARGET: 'TARGET' // applies to a target
+	SELF: 'SELF', // applies spell to self
+	TARGET: 'TARGET' // applies to a target
 };
 /* harmony export (immutable) */ __webpack_exports__["f"] = targetTypes;
 
 
 class Spell {
-    constructor(options) {
-        // any characteristics of the spell we get from extensions can just be properties on the class
-        if (options.name === undefined || options.hoverInfo === undefined || options.action === undefined || options.type === undefined || options.manaCost === undefined || options.targetType === undefined) throw 'Spell creation failed - insufficient information provided';
+	constructor(options) {
+		// any characteristics of the spell we get from extensions can just be properties on the class
+		if (options.name === undefined || options.hoverInfo === undefined || options.action === undefined || options.type === undefined || options.manaCost === undefined || options.targetType === undefined) throw 'Spell creation failed - insufficient information provided';
 
-        Object.assign(this, options);
-    }
+		Object.assign(this, options);
+	}
 
-    cast() {} // to be overwritten
+	cast() {} // to be overwritten
 }
 /* unused harmony export Spell */
 
@@ -124,26 +124,26 @@ class Spell {
 /* Conjuration Spellls */
 
 class MagicDart extends Spell {
-    constructor() {
-        super({
-            name: 'Magic Dart',
-            hoverInfo: 'Deals 1-8 damage to a target',
-            action: (entity, hit) => {
-                entity.damage(hit);
-            },
-            splashArt: 'magic_dart',
-            type: spellTypes.CONJURATION,
-            targetType: targetTypes.TARGET,
-            manaCost: 3
-        });
-    }
+	constructor() {
+		super({
+			name: 'Magic Dart',
+			hoverInfo: 'Deals 1-8 damage to a target',
+			action: (entity, hit) => {
+				entity.damage(hit);
+			},
+			splashArt: 'magic_dart',
+			type: spellTypes.CONJURATION,
+			targetType: targetTypes.TARGET,
+			manaCost: 3
+		});
+	}
 
-    cast(target, caster) {
-        let dmg = __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__utils_HelperFunctions_js__["b" /* getRandomInt */])(1, 8); // remember to update hover info if this changes!
-        if (target === __WEBPACK_IMPORTED_MODULE_3__Game_js__["a" /* Game */].player) __WEBPACK_IMPORTED_MODULE_3__Game_js__["a" /* Game */].log(`You took ${dmg} damage from a Magic Dart spell!`, 'attack');else __WEBPACK_IMPORTED_MODULE_3__Game_js__["a" /* Game */].log(`Magic Dart blasts the ${target.name} for ${dmg} magical damage.`, 'player_move');
+	cast(target, caster) {
+		let dmg = __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__utils_HelperFunctions_js__["b" /* getRandomInt */])(1, 8); // remember to update hover info if this changes!
+		if (target === __WEBPACK_IMPORTED_MODULE_3__Game_js__["a" /* Game */].player) __WEBPACK_IMPORTED_MODULE_3__Game_js__["a" /* Game */].log(`You took ${dmg} damage from a Magic Dart spell!`, 'attack');else __WEBPACK_IMPORTED_MODULE_3__Game_js__["a" /* Game */].log(`Magic Dart blasts the ${target.name} for ${dmg} magical damage.`, 'player_move');
 
-        this.action(target, dmg);
-    }
+		this.action(target, dmg);
+	}
 }
 /* harmony export (immutable) */ __webpack_exports__["a"] = MagicDart;
 
@@ -151,139 +151,139 @@ class MagicDart extends Spell {
 /* Necromancy Spells */
 
 class Pain extends Spell {
-    constructor() {
-        super({
-            name: 'Pain',
-            hoverInfo: 'Deals 3-9 negative energy to a target',
-            action: (entity, hit) => {
-                entity.damage(hit);
-            },
-            splashArt: 'pain',
-            type: spellTypes.NECROMANCY,
-            targetType: targetTypes.TARGET,
-            manaCost: 3
-        });
-    }
+	constructor() {
+		super({
+			name: 'Pain',
+			hoverInfo: 'Deals 3-9 negative energy to a target',
+			action: (entity, hit) => {
+				entity.damage(hit);
+			},
+			splashArt: 'pain',
+			type: spellTypes.NECROMANCY,
+			targetType: targetTypes.TARGET,
+			manaCost: 3
+		});
+	}
 
-    cast(target, caster) {
-        let dmg = __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__utils_HelperFunctions_js__["f" /* getDiceRoll */])(3, 3); // remember to update hover info if this changes!
-        let adjective = dmg >= 7 ? 'extreme' : 'some';
-        if (target === __WEBPACK_IMPORTED_MODULE_3__Game_js__["a" /* Game */].player) __WEBPACK_IMPORTED_MODULE_3__Game_js__["a" /* Game */].log(`You feel ${adjective} pain and take ${dmg} damage from a Pain spell!`, 'attack');else __WEBPACK_IMPORTED_MODULE_3__Game_js__["a" /* Game */].log(`Pain causes ${adjective} trauma the ${target.name} for ${dmg} magical damage.`, 'player_move');
+	cast(target, caster) {
+		let dmg = __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__utils_HelperFunctions_js__["f" /* getDiceRoll */])(3, 3); // remember to update hover info if this changes!
+		let adjective = dmg >= 7 ? 'extreme' : 'some';
+		if (target === __WEBPACK_IMPORTED_MODULE_3__Game_js__["a" /* Game */].player) __WEBPACK_IMPORTED_MODULE_3__Game_js__["a" /* Game */].log(`You feel ${adjective} pain and take ${dmg} damage from a Pain spell!`, 'attack');else __WEBPACK_IMPORTED_MODULE_3__Game_js__["a" /* Game */].log(`Pain causes ${adjective} trauma the ${target.name} for ${dmg} magical damage.`, 'player_move');
 
-        this.action(target, dmg);
-    }
+		this.action(target, dmg);
+	}
 }
 /* harmony export (immutable) */ __webpack_exports__["b"] = Pain;
 
 
 class Regeneration extends Spell {
-    constructor() {
-        super({
-            name: 'Regeneration',
-            hoverInfo: 'Regenerates 10 health per turn by reanimating wounds with necromancy.',
-            action: entity => {
-                entity.addNewEffect(new __WEBPACK_IMPORTED_MODULE_2__modifiers_Effect_js__["c" /* RegenerationEffect */]());
-            },
-            splashArt: 'regeneration',
-            type: spellTypes.NECROMANCY,
-            targetType: targetTypes.SELF,
-            manaCost: 3
-        });
-    }
+	constructor() {
+		super({
+			name: 'Regeneration',
+			hoverInfo: 'Regenerates 10 health per turn by reanimating wounds with necromancy.',
+			action: entity => {
+				entity.addNewEffect(new __WEBPACK_IMPORTED_MODULE_2__modifiers_Effect_js__["c" /* RegenerationEffect */]());
+			},
+			splashArt: 'regeneration',
+			type: spellTypes.NECROMANCY,
+			targetType: targetTypes.SELF,
+			manaCost: 3
+		});
+	}
 
-    cast(target, caster) {
-        if (caster === __WEBPACK_IMPORTED_MODULE_3__Game_js__["a" /* Game */].player) __WEBPACK_IMPORTED_MODULE_3__Game_js__["a" /* Game */].log(`You begin regenerating your wounds with dark magic.`, 'player_move');else __WEBPACK_IMPORTED_MODULE_3__Game_js__["a" /* Game */].log(`${caster.name.capitalize()} begins regenerating its wounds.`, 'alert');
+	cast(target, caster) {
+		if (caster === __WEBPACK_IMPORTED_MODULE_3__Game_js__["a" /* Game */].player) __WEBPACK_IMPORTED_MODULE_3__Game_js__["a" /* Game */].log('You begin regenerating your wounds with dark magic.', 'player_move');else __WEBPACK_IMPORTED_MODULE_3__Game_js__["a" /* Game */].log(`${caster.name.capitalize()} begins regenerating its wounds.`, 'alert');
 
-        this.action(target);
-    }
+		this.action(target);
+	}
 }
 /* harmony export (immutable) */ __webpack_exports__["c"] = Regeneration;
 
 
 class VampiricDraining extends Spell {
-    constructor() {
-        super({
-            name: 'Vampiric Draining',
-            hoverInfo: 'Drains the health of an enemy for 10-20 damage, healing the caster half of the damage dealt',
-            action: (entity, dmg) => {
-                entity.damage(dmg);
-            },
-            splashArt: 'vampiric_draining',
-            type: spellTypes.NECROMANCY,
-            targetType: targetTypes.TARGET,
-            manaCost: 3
-        });
-    }
+	constructor() {
+		super({
+			name: 'Vampiric Draining',
+			hoverInfo: 'Drains the health of an enemy for 10-20 damage, healing the caster half of the damage dealt',
+			action: (entity, dmg) => {
+				entity.damage(dmg);
+			},
+			splashArt: 'vampiric_draining',
+			type: spellTypes.NECROMANCY,
+			targetType: targetTypes.TARGET,
+			manaCost: 3
+		});
+	}
 
-    cast(target, caster) {
-        let dmg = __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__utils_HelperFunctions_js__["f" /* getDiceRoll */])(10, 2); // remember to update hover info if this changes!
-        if (caster === __WEBPACK_IMPORTED_MODULE_3__Game_js__["a" /* Game */].player) {
-            __WEBPACK_IMPORTED_MODULE_3__Game_js__["a" /* Game */].log(`You suck the life energy out of the ${target.name.toLowerCase()}, damaging it for ${dmg} hp.`, 'player_move');
-            __WEBPACK_IMPORTED_MODULE_3__Game_js__["a" /* Game */].log(`You siphon ${~~(dmg / 2)} hp from the enemy and gain it as health.`, 'lightgreen');
-        } else {
-            __WEBPACK_IMPORTED_MODULE_3__Game_js__["a" /* Game */].log(`You feel your life energy siphoning away and take ${dmg} damage.`, 'attack');
-            __WEBPACK_IMPORTED_MODULE_3__Game_js__["a" /* Game */].log(`${caster.name.capitalize()}`);
-        }
-        this.action(target, dmg);
-        caster.heal(~~(dmg / 2));
-    }
+	cast(target, caster) {
+		let dmg = __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__utils_HelperFunctions_js__["f" /* getDiceRoll */])(10, 2); // remember to update hover info if this changes!
+		if (caster === __WEBPACK_IMPORTED_MODULE_3__Game_js__["a" /* Game */].player) {
+			__WEBPACK_IMPORTED_MODULE_3__Game_js__["a" /* Game */].log(`You suck the life energy out of the ${target.name.toLowerCase()}, damaging it for ${dmg} hp.`, 'player_move');
+			__WEBPACK_IMPORTED_MODULE_3__Game_js__["a" /* Game */].log(`You siphon ${~~(dmg / 2)} hp from the enemy and gain it as health.`, 'lightgreen');
+		} else {
+			__WEBPACK_IMPORTED_MODULE_3__Game_js__["a" /* Game */].log(`You feel your life energy siphoning away and take ${dmg} damage.`, 'attack');
+			__WEBPACK_IMPORTED_MODULE_3__Game_js__["a" /* Game */].log(`${caster.name.capitalize()}`);
+		}
+		this.action(target, dmg);
+		caster.heal(~~(dmg / 2));
+	}
 }
 /* harmony export (immutable) */ __webpack_exports__["d"] = VampiricDraining;
 
 
 const reanimate = corpse => {
-    let ctile = __WEBPACK_IMPORTED_MODULE_3__Game_js__["a" /* Game */].map.data[corpse.y][corpse.x];
-    // remove the corpse from the ground
-    ctile.removeActor(corpse);
-    let idx = __WEBPACK_IMPORTED_MODULE_3__Game_js__["a" /* Game */].map.actors.indexOf(corpse);
-    __WEBPACK_IMPORTED_MODULE_3__Game_js__["a" /* Game */].map.actors.splice(idx, 1);
-    let undeadActor = corpse.id === __WEBPACK_IMPORTED_MODULE_4__entities_items_misc_Corpse_js__["a" /* corpseTypes */].HUMANOID ? new __WEBPACK_IMPORTED_MODULE_6__entities_actors_enemies_Zombie_js__["a" /* default */](corpse.x, corpse.y, 2317) : new __WEBPACK_IMPORTED_MODULE_5__entities_actors_enemies_Skeleton_js__["a" /* default */](corpse.x, corpse.y, 2552);
+	let ctile = __WEBPACK_IMPORTED_MODULE_3__Game_js__["a" /* Game */].map.data[corpse.y][corpse.x];
+	// remove the corpse from the ground
+	ctile.removeActor(corpse);
+	let idx = __WEBPACK_IMPORTED_MODULE_3__Game_js__["a" /* Game */].map.actors.indexOf(corpse);
+	__WEBPACK_IMPORTED_MODULE_3__Game_js__["a" /* Game */].map.actors.splice(idx, 1);
+	let undeadActor = corpse.id === __WEBPACK_IMPORTED_MODULE_4__entities_items_misc_Corpse_js__["a" /* corpseTypes */].HUMANOID ? new __WEBPACK_IMPORTED_MODULE_6__entities_actors_enemies_Zombie_js__["a" /* default */](corpse.x, corpse.y, 2317) : new __WEBPACK_IMPORTED_MODULE_5__entities_actors_enemies_Skeleton_js__["a" /* default */](corpse.x, corpse.y, 2552);
 
-    undeadActor.chasing = true;
-    ctile.actors.push(undeadActor);
-    __WEBPACK_IMPORTED_MODULE_3__Game_js__["a" /* Game */].map.actors.push(undeadActor);
-    __WEBPACK_IMPORTED_MODULE_3__Game_js__["a" /* Game */].scheduler.add(undeadActor, true);
+	undeadActor.chasing = true;
+	ctile.actors.push(undeadActor);
+	__WEBPACK_IMPORTED_MODULE_3__Game_js__["a" /* Game */].map.actors.push(undeadActor);
+	__WEBPACK_IMPORTED_MODULE_3__Game_js__["a" /* Game */].scheduler.add(undeadActor, true);
 };
 
 class AnimateDead extends Spell {
-    constructor() {
-        super({
-            name: 'Animate Dead',
-            hoverInfo: 'Raises all skeletons and corpses within caster\'s line of sight as undead.',
-            action: caster => {
-                let fov = new __WEBPACK_IMPORTED_MODULE_0_rot_js___default.a.FOV.PreciseShadowcasting(function (x, y) {
-                    return __WEBPACK_IMPORTED_MODULE_3__Game_js__["a" /* Game */].inbounds(x, y) && __WEBPACK_IMPORTED_MODULE_3__Game_js__["a" /* Game */].map.data[y][x].visible();
-                });
+	constructor() {
+		super({
+			name: 'Animate Dead',
+			hoverInfo: 'Raises all skeletons and corpses within caster\'s line of sight as undead.',
+			action: caster => {
+				let fov = new __WEBPACK_IMPORTED_MODULE_0_rot_js___default.a.FOV.PreciseShadowcasting(function (x, y) {
+					return __WEBPACK_IMPORTED_MODULE_3__Game_js__["a" /* Game */].inbounds(x, y) && __WEBPACK_IMPORTED_MODULE_3__Game_js__["a" /* Game */].map.data[y][x].visible();
+				});
 
-                let visibleTiles = [];
-                fov.compute(caster.x, caster.y, caster.cb.range, function (x, y, r, visibility) {
-                    if (__WEBPACK_IMPORTED_MODULE_3__Game_js__["a" /* Game */].inbounds(x, y)) visibleTiles.push(__WEBPACK_IMPORTED_MODULE_3__Game_js__["a" /* Game */].map.data[y][x]);
-                });
+				let visibleTiles = [];
+				fov.compute(caster.x, caster.y, caster.cb.range, function (x, y, r, visibility) {
+					if (__WEBPACK_IMPORTED_MODULE_3__Game_js__["a" /* Game */].inbounds(x, y)) visibleTiles.push(__WEBPACK_IMPORTED_MODULE_3__Game_js__["a" /* Game */].map.data[y][x]);
+				});
 
-                for (let tile of visibleTiles) {
-                    let corpses = tile.actors.filter(e => {
-                        return e instanceof __WEBPACK_IMPORTED_MODULE_4__entities_items_misc_Corpse_js__["b" /* Corpse */];
-                    });
-                    /* TODO: If player is casting this spell, reanimated corpses should be friendly! */
-                    if (corpses.length >= 1) reanimate(corpses[0]);
-                }
-            },
-            splashArt: 'animate_dead',
-            type: spellTypes.NECROMANCY,
-            targetType: targetTypes.SELF,
-            manaCost: 7
-        });
-    }
+				for (let tile of visibleTiles) {
+					let corpses = tile.actors.filter(e => {
+						return e instanceof __WEBPACK_IMPORTED_MODULE_4__entities_items_misc_Corpse_js__["b" /* Corpse */];
+					});
+					/* TODO: If player is casting this spell, reanimated corpses should be friendly! */
+					if (corpses.length >= 1) reanimate(corpses[0]);
+				}
+			},
+			splashArt: 'animate_dead',
+			type: spellTypes.NECROMANCY,
+			targetType: targetTypes.SELF,
+			manaCost: 7
+		});
+	}
 
-    cast(target, caster) {
-        this.action(caster);
-        if (caster === __WEBPACK_IMPORTED_MODULE_3__Game_js__["a" /* Game */].player) {
-            __WEBPACK_IMPORTED_MODULE_3__Game_js__["a" /* Game */].log(`You raise nearby dead corpses around you into undead zombies and skeletons.`, 'lightgreen');
-        } else {
-            __WEBPACK_IMPORTED_MODULE_3__Game_js__["a" /* Game */].log(`The ${caster.capitalize()} raises all the corpses nearby from the dead`, 'lightpurple');
-            __WEBPACK_IMPORTED_MODULE_3__Game_js__["a" /* Game */].log(`The undead corpses begin marching towards you.`, 'lightpurple');
-        }
-    }
+	cast(target, caster) {
+		this.action(caster);
+		if (caster === __WEBPACK_IMPORTED_MODULE_3__Game_js__["a" /* Game */].player) {
+			__WEBPACK_IMPORTED_MODULE_3__Game_js__["a" /* Game */].log('You raise nearby dead corpses around you into undead zombies and skeletons.', 'lightgreen');
+		} else {
+			__WEBPACK_IMPORTED_MODULE_3__Game_js__["a" /* Game */].log(`The ${caster.capitalize()} raises all the corpses nearby from the dead`, 'lightpurple');
+			__WEBPACK_IMPORTED_MODULE_3__Game_js__["a" /* Game */].log('The undead corpses begin marching towards you.', 'lightpurple');
+		}
+	}
 }
 /* harmony export (immutable) */ __webpack_exports__["e"] = AnimateDead;
 
@@ -461,14 +461,14 @@ var esExports = { render: render, staticRenderFns: staticRenderFns }
 
 class RangedWeapon extends __WEBPACK_IMPORTED_MODULE_0__entities_items_weapons_Weapon_js__["a" /* default */] {
 
-    constructor(x, y, options) {
-        super(x, y, options);
-        this.cb.ranged = true;
-    }
+	constructor(x, y, options) {
+		super(x, y, options);
+		this.cb.ranged = true;
+	}
 
-    hoverInfo() {
-        return `Damage: ${this.cb.rolls}-${this.cb.sides * this.cb.rolls} Range: ${this.cb.range}`;
-    }
+	hoverInfo() {
+		return `Damage: ${this.cb.rolls}-${this.cb.sides * this.cb.rolls} Range: ${this.cb.range}`;
+	}
 }
 /* harmony export (immutable) */ __webpack_exports__["a"] = RangedWeapon;
 
@@ -503,35 +503,35 @@ var esExports = { render: render, staticRenderFns: staticRenderFns }
 
 
 class Skeleton extends __WEBPACK_IMPORTED_MODULE_2__entities_actors_enemies_SimpleEnemy_js__["a" /* default */] {
-    constructor(x, y, id) {
-        let randomHP = __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__utils_HelperFunctions_js__["b" /* getRandomInt */])(10, 15);
-        let randomStr = __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__utils_HelperFunctions_js__["b" /* getRandomInt */])(5, 9);
-        super(x, y, {
-            id: id,
-            name: "skeleton",
-            description: "A skeleton raised from the dead!",
-            corpseType: __WEBPACK_IMPORTED_MODULE_3__entities_items_misc_Corpse_js__["a" /* corpseTypes */].SKELETON,
-            visible: true,
-            blocked: true,
-            chasing: false,
-            combat: {
-                /* options.combat, dedicated to all things related to combat */
-                description: [" attacked "],
-                /* max stats */
-                maxhp: randomHP,
-                maxmana: 5,
-                /* current stats */
-                hp: randomHP,
-                mana: 5,
-                str: randomStr,
-                def: 1,
-                /* misc */
-                hostile: true,
-                range: 7,
-                invulnerable: false
-            }
-        });
-    }
+	constructor(x, y, id) {
+		let randomHP = __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__utils_HelperFunctions_js__["b" /* getRandomInt */])(10, 15);
+		let randomStr = __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__utils_HelperFunctions_js__["b" /* getRandomInt */])(5, 9);
+		super(x, y, {
+			id: id,
+			name: 'skeleton',
+			description: 'A skeleton raised from the dead!',
+			corpseType: __WEBPACK_IMPORTED_MODULE_3__entities_items_misc_Corpse_js__["a" /* corpseTypes */].SKELETON,
+			visible: true,
+			blocked: true,
+			chasing: false,
+			combat: {
+				/* options.combat, dedicated to all things related to combat */
+				description: [' attacked '],
+				/* max stats */
+				maxhp: randomHP,
+				maxmana: 5,
+				/* current stats */
+				hp: randomHP,
+				mana: 5,
+				str: randomStr,
+				def: 1,
+				/* misc */
+				hostile: true,
+				range: 7,
+				invulnerable: false
+			}
+		});
+	}
 }
 /* harmony export (immutable) */ __webpack_exports__["a"] = Skeleton;
 
@@ -550,21 +550,21 @@ class Skeleton extends __WEBPACK_IMPORTED_MODULE_2__entities_actors_enemies_Simp
 // import Zombie from "#/entities/actors/enemies/Zombie.js";
 
 const corpseTypes = {
-    SKELETON: 5489,
-    HUMANOID: 2280
+	SKELETON: 5489,
+	HUMANOID: 2280
 };
 /* harmony export (immutable) */ __webpack_exports__["a"] = corpseTypes;
 
 
 class Corpse extends __WEBPACK_IMPORTED_MODULE_0__entities_items_Item_js__["a" /* default */] {
 
-    constructor(x, y, name, id) {
-        super(x, y, { id, type: `${name.capitalize()} Corpse` });
-    }
+	constructor(x, y, name, id) {
+		super(x, y, { id, type: `${name.capitalize()} Corpse` });
+	}
 
-    hoverInfo() {
-        return '';
-    }
+	hoverInfo() {
+		return '';
+	}
 
 }
 /* harmony export (immutable) */ __webpack_exports__["b"] = Corpse;
@@ -614,22 +614,22 @@ class Corpse extends __WEBPACK_IMPORTED_MODULE_0__entities_items_Item_js__["a" /
 
 class ManaPotion extends __WEBPACK_IMPORTED_MODULE_0__entities_items_potions_Potion_js__["a" /* default */] {
 
-    constructor(x, y, id) {
-        super(x, y, {
-            id: id,
-            type: "Mana Potion"
-        });
-    }
+	constructor(x, y, id) {
+		super(x, y, {
+			id: id,
+			type: 'Mana Potion'
+		});
+	}
 
-    use() {
-        __WEBPACK_IMPORTED_MODULE_1__Game_js__["a" /* Game */].log("You drink a mana potion. It restores a little mana.", "defend");
-        __WEBPACK_IMPORTED_MODULE_1__Game_js__["a" /* Game */].player.restore(10);
-        __WEBPACK_IMPORTED_MODULE_1__Game_js__["a" /* Game */].player.removeFromInventory(this);
-    }
+	use() {
+		__WEBPACK_IMPORTED_MODULE_1__Game_js__["a" /* Game */].log('You drink a mana potion. It restores a little mana.', 'defend');
+		__WEBPACK_IMPORTED_MODULE_1__Game_js__["a" /* Game */].player.restore(10);
+		__WEBPACK_IMPORTED_MODULE_1__Game_js__["a" /* Game */].player.removeFromInventory(this);
+	}
 
-    hoverInfo() {
-        return "Effect: Restores 10 mana";
-    }
+	hoverInfo() {
+		return 'Effect: Restores 10 mana';
+	}
 }
 /* harmony export (immutable) */ __webpack_exports__["a"] = ManaPotion;
 
@@ -822,23 +822,23 @@ var esExports = { render: render, staticRenderFns: staticRenderFns }
 
 class StrengthPotion extends __WEBPACK_IMPORTED_MODULE_0__entities_items_potions_Potion_js__["a" /* default */] {
 
-    constructor(x, y, id) {
-        super(x, y, {
-            id: id,
-            type: "Strength Potion"
-        });
-        this.buff = new __WEBPACK_IMPORTED_MODULE_2__modifiers_Buff_js__["a" /* StrengthBuff */](3);
-    }
+	constructor(x, y, id) {
+		super(x, y, {
+			id: id,
+			type: 'Strength Potion'
+		});
+		this.buff = new __WEBPACK_IMPORTED_MODULE_2__modifiers_Buff_js__["a" /* StrengthBuff */](3);
+	}
 
-    use() {
-        __WEBPACK_IMPORTED_MODULE_1__Game_js__["a" /* Game */].player.addNewBuff(this.buff);
-        __WEBPACK_IMPORTED_MODULE_1__Game_js__["a" /* Game */].log(`You drink a strength potion. It boosts your strength for the next ${this.buff.duration + 1} moves.`, "defend");
-        __WEBPACK_IMPORTED_MODULE_1__Game_js__["a" /* Game */].player.removeFromInventory(this);
-    }
+	use() {
+		__WEBPACK_IMPORTED_MODULE_1__Game_js__["a" /* Game */].player.addNewBuff(this.buff);
+		__WEBPACK_IMPORTED_MODULE_1__Game_js__["a" /* Game */].log(`You drink a strength potion. It boosts your strength for the next ${this.buff.duration + 1} moves.`, 'defend');
+		__WEBPACK_IMPORTED_MODULE_1__Game_js__["a" /* Game */].player.removeFromInventory(this);
+	}
 
-    hoverInfo() {
-        return `Effect: +${this.buff.amount} STR for ${this.buff.duration} moves`;
-    }
+	hoverInfo() {
+		return `Effect: +${this.buff.amount} STR for ${this.buff.duration} moves`;
+	}
 }
 /* harmony export (immutable) */ __webpack_exports__["a"] = StrengthPotion;
 
@@ -901,40 +901,40 @@ class StrengthPotion extends __WEBPACK_IMPORTED_MODULE_0__entities_items_potions
 
 class Weapon extends __WEBPACK_IMPORTED_MODULE_1__entities_items_Item_js__["a" /* default */] {
 
-    constructor(x, y, options) {
-        if (options.combat === null) throw `Error - no options.combat property defined. Bad weapon creation for ${options.name}`;
-        options.visible = true;
-        options.blocked = false;
-        options.combat.equippable = true;
-        options.combat.equipped = false;
-        super(x, y, options);
-        this.cb = this.combat;
-        this.cb.enchantments = [];
-        this.action = "Equip";
-    }
+	constructor(x, y, options) {
+		if (options.combat === null) throw `Error - no options.combat property defined. Bad weapon creation for ${options.name}`;
+		options.visible = true;
+		options.blocked = false;
+		options.combat.equippable = true;
+		options.combat.equipped = false;
+		super(x, y, options);
+		this.cb = this.combat;
+		this.cb.enchantments = [];
+		this.action = 'Equip';
+	}
 
-    use() {
-        __WEBPACK_IMPORTED_MODULE_0__Game_js__["a" /* Game */].player.equipWeapon(this);
-    }
+	use() {
+		__WEBPACK_IMPORTED_MODULE_0__Game_js__["a" /* Game */].player.equipWeapon(this);
+	}
 
-    roll() {
-        let dmg = 0;
-        for (let i = 0; i < this.cb.rolls; i++) {
-            dmg += __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_2__utils_HelperFunctions_js__["b" /* getRandomInt */])(1, this.cb.sides);
-        }
-        return dmg;
-    }
+	roll() {
+		let dmg = 0;
+		for (let i = 0; i < this.cb.rolls; i++) {
+			dmg += __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_2__utils_HelperFunctions_js__["b" /* getRandomInt */])(1, this.cb.sides);
+		}
+		return dmg;
+	}
 
-    /* Effects are equivalent to enchantments, in a way...
+	/* Effects are equivalent to enchantments, in a way...
      * Might need to do some work on editing how these are displayed in the UI
      */
-    addNewEnchantment(enchantment) {
-        this.cb.enchantments.push(enchantment);
-    }
+	addNewEnchantment(enchantment) {
+		this.cb.enchantments.push(enchantment);
+	}
 
-    hoverInfo() {
-        return `Damage: ${this.cb.rolls}-${this.cb.sides * this.cb.rolls}`;
-    }
+	hoverInfo() {
+		return `Damage: ${this.cb.rolls}-${this.cb.sides * this.cb.rolls}`;
+	}
 }
 /* harmony export (immutable) */ __webpack_exports__["a"] = Weapon;
 
@@ -956,34 +956,34 @@ class Weapon extends __WEBPACK_IMPORTED_MODULE_1__entities_items_Item_js__["a" /
 
 
 class Skeleton extends __WEBPACK_IMPORTED_MODULE_2__entities_actors_enemies_SimpleEnemy_js__["a" /* default */] {
-    constructor(x, y, id) {
-        let randomHP = __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__utils_HelperFunctions_js__["b" /* getRandomInt */])(15, 20);
-        let randomStr = __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__utils_HelperFunctions_js__["b" /* getRandomInt */])(3, 7);
-        super(x, y, {
-            id: id,
-            name: "zombie",
-            description: "A zombie raised from the dead!",
-            visible: true,
-            blocked: true,
-            chasing: false,
-            combat: {
-                /* options.combat, dedicated to all things related to combat */
-                description: [" attacked "],
-                /* max stats */
-                maxhp: randomHP,
-                maxmana: 5,
-                /* current stats */
-                hp: randomHP,
-                mana: 5,
-                str: randomStr,
-                def: 1,
-                /* misc */
-                hostile: true,
-                range: 7,
-                invulnerable: false
-            }
-        });
-    }
+	constructor(x, y, id) {
+		let randomHP = __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__utils_HelperFunctions_js__["b" /* getRandomInt */])(15, 20);
+		let randomStr = __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__utils_HelperFunctions_js__["b" /* getRandomInt */])(3, 7);
+		super(x, y, {
+			id: id,
+			name: 'zombie',
+			description: 'A zombie raised from the dead!',
+			visible: true,
+			blocked: true,
+			chasing: false,
+			combat: {
+				/* options.combat, dedicated to all things related to combat */
+				description: [' attacked '],
+				/* max stats */
+				maxhp: randomHP,
+				maxmana: 5,
+				/* current stats */
+				hp: randomHP,
+				mana: 5,
+				str: randomStr,
+				def: 1,
+				/* misc */
+				hostile: true,
+				range: 7,
+				invulnerable: false
+			}
+		});
+	}
 }
 /* harmony export (immutable) */ __webpack_exports__["a"] = Skeleton;
 
@@ -1004,32 +1004,32 @@ class Skeleton extends __WEBPACK_IMPORTED_MODULE_2__entities_actors_enemies_Simp
 
 
 class Item extends __WEBPACK_IMPORTED_MODULE_1__entities_Entity_js__["b" /* Entity */] {
-    constructor(x, y, options) {
-        options.visible = true;
-        super(x, y, options);
-    }
+	constructor(x, y, options) {
+		options.visible = true;
+		super(x, y, options);
+	}
 
-    /* UI / Front End functions */
-    hoverInfo() {
-        return `${this.type}${this.name}\n`;
-    }
+	/* UI / Front End functions */
+	hoverInfo() {
+		return `${this.type}${this.name}\n`;
+	}
 
-    clipLocation() {
-        let c = getTilesetCoords(this.id);
-        // let css = `rect(${c[1]}px 32px 32px ${c[0]}px)`;
-        let css = `rect(0,32,32,0)`;
-        return css;
-    }
+	clipLocation() {
+		let c = getTilesetCoords(this.id);
+		// let css = `rect(${c[1]}px 32px 32px ${c[0]}px)`;
+		let css = 'rect(0,32,32,0)';
+		return css;
+	}
 
-    use() {}
-    // to be overwritten
+	use() {}
+	// to be overwritten
 
 
-    // making a major assumption that the player is the only thing that drops things.
-    // might change if some enemy type needs to do so
-    drop() {
-        __WEBPACK_IMPORTED_MODULE_0__Game_js__["a" /* Game */].player.dropItem(this);
-    }
+	// making a major assumption that the player is the only thing that drops things.
+	// might change if some enemy type needs to do so
+	drop() {
+		__WEBPACK_IMPORTED_MODULE_0__Game_js__["a" /* Game */].player.dropItem(this);
+	}
 }
 /* harmony export (immutable) */ __webpack_exports__["a"] = Item;
 
@@ -1101,270 +1101,270 @@ class Item extends __WEBPACK_IMPORTED_MODULE_1__entities_Entity_js__["b" /* Enti
 
 
 const entityShop = {
-    0: (x, y, id) => {
-        return new __WEBPACK_IMPORTED_MODULE_2__entities_actors_Player_js__["a" /* default */](x, y, id);
-    },
-    1: (x, y, id) => {
-        return new __WEBPACK_IMPORTED_MODULE_4__entities_actors_enemies_Goblin_js__["a" /* default */](x, y, id);
-    },
-    2: (x, y, id) => {
-        return new __WEBPACK_IMPORTED_MODULE_7__entities_actors_enemies_Rat_js__["a" /* default */](x, y, id);
-    },
-    3: (x, y, id) => {
-        return new __WEBPACK_IMPORTED_MODULE_23__entities_misc_Ladder_js__["a" /* default */](x, y, id, "down");
-    },
-    4: (x, y, id) => {
-        return new __WEBPACK_IMPORTED_MODULE_23__entities_misc_Ladder_js__["a" /* default */](x, y, id, "up");
-    },
-    5: (x, y, id) => {
-        return __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_13__entities_items_weapons_Sword_js__["a" /* createSword */])(x, y, id);
-    },
-    6: (x, y, id) => {
-        return new __WEBPACK_IMPORTED_MODULE_3__entities_actors_NPC_js__["a" /* default */](x, y, id);
-    },
-    7: (x, y, id) => {
-        // normal Orc
-        return new __WEBPACK_IMPORTED_MODULE_6__entities_actors_enemies_Orc_js__["a" /* default */](x, y, id);
-    },
-    8: (x, y, id) => {
-        // empowered Orc
-        return new __WEBPACK_IMPORTED_MODULE_6__entities_actors_enemies_Orc_js__["a" /* default */](x, y, id, true);
-    },
-    9: (x, y, id) => {
-        return new __WEBPACK_IMPORTED_MODULE_20__entities_misc_Door_js__["a" /* default */](x, y, id);
-    },
-    10: (x, y, id) => {
-        return new __WEBPACK_IMPORTED_MODULE_19__entities_misc_Chest_js__["a" /* default */](x, y, id);
-    },
-    11: (x, y, id) => {
-        return new __WEBPACK_IMPORTED_MODULE_16__entities_items_potions_HealthPotion_js__["a" /* default */](x, y, id);
-    },
-    12: (x, y, id) => {
-        return new __WEBPACK_IMPORTED_MODULE_17__entities_items_potions_StrengthPotion_js__["a" /* default */](x, y, id);
-    },
-    13: (x, y, id) => {
-        return new __WEBPACK_IMPORTED_MODULE_18__entities_items_potions_ManaPotion_js__["a" /* default */](x, y, id);
-    },
-    14: (x, y, id) => {
-        return new __WEBPACK_IMPORTED_MODULE_13__entities_items_weapons_Sword_js__["b" /* Sword */](x, y, 4, 7, "Orc Purifier", id);
-    },
-    15: (x, y, id) => {
-        return new __WEBPACK_IMPORTED_MODULE_22__entities_items_misc_Key_js__["a" /* default */](x, y, id);
-    },
-    16: (x, y, id) => {
-        return new __WEBPACK_IMPORTED_MODULE_21__entities_misc_LockedDoor_js__["a" /* default */](x, y, id);
-    },
-    17: (x, y, id) => {
-        return __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_14__entities_items_weapons_ranged_Bow_js__["a" /* createBow */])(x, y, id);
-    },
-    18: (x, y, id) => {
-        return new __WEBPACK_IMPORTED_MODULE_15__entities_items_weapons_ranged_ammo_Arrow_js__["a" /* SteelArrow */](x, y, id, 5);
-    },
-    19: (x, y, id) => {
-        return new __WEBPACK_IMPORTED_MODULE_5__entities_actors_enemies_Kobold_js__["a" /* default */](x, y, id);
-    },
-    20: (x, y, id) => {
-        return new __WEBPACK_IMPORTED_MODULE_8__entities_actors_enemies_Bat_js__["a" /* default */](x, y, id);
-    },
-    21: (x, y, id) => {
-        return new __WEBPACK_IMPORTED_MODULE_12__entities_actors_enemies_boss_Lich_js__["a" /* default */](x, y, id);
-    },
-    22: (x, y, id) => {
-        return new __WEBPACK_IMPORTED_MODULE_24__entities_misc_LevelTransition_js__["a" /* default */](x, y, id);
-    },
-    23: (x, y, id) => {
-        return new __WEBPACK_IMPORTED_MODULE_10__entities_actors_enemies_Zombie_js__["a" /* default */](x, y, id);
-    },
-    24: (x, y, id) => {
-        return new __WEBPACK_IMPORTED_MODULE_9__entities_actors_enemies_Skeleton_js__["a" /* default */](x, y, id);
-    },
-    25: (x, y, id) => {
-        return new __WEBPACK_IMPORTED_MODULE_11__entities_items_misc_Corpse_js__["b" /* Corpse */](x, y, "zombie", id);
-    },
-    26: (x, y, id) => {
-        return new __WEBPACK_IMPORTED_MODULE_11__entities_items_misc_Corpse_js__["b" /* Corpse */](x, y, "skeleton", id);
-    }
+	0: (x, y, id) => {
+		return new __WEBPACK_IMPORTED_MODULE_2__entities_actors_Player_js__["a" /* default */](x, y, id);
+	},
+	1: (x, y, id) => {
+		return new __WEBPACK_IMPORTED_MODULE_4__entities_actors_enemies_Goblin_js__["a" /* default */](x, y, id);
+	},
+	2: (x, y, id) => {
+		return new __WEBPACK_IMPORTED_MODULE_7__entities_actors_enemies_Rat_js__["a" /* default */](x, y, id);
+	},
+	3: (x, y, id) => {
+		return new __WEBPACK_IMPORTED_MODULE_23__entities_misc_Ladder_js__["a" /* default */](x, y, id, 'down');
+	},
+	4: (x, y, id) => {
+		return new __WEBPACK_IMPORTED_MODULE_23__entities_misc_Ladder_js__["a" /* default */](x, y, id, 'up');
+	},
+	5: (x, y, id) => {
+		return __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_13__entities_items_weapons_Sword_js__["a" /* createSword */])(x, y, id);
+	},
+	6: (x, y, id) => {
+		return new __WEBPACK_IMPORTED_MODULE_3__entities_actors_NPC_js__["a" /* default */](x, y, id);
+	},
+	7: (x, y, id) => {
+		// normal Orc
+		return new __WEBPACK_IMPORTED_MODULE_6__entities_actors_enemies_Orc_js__["a" /* default */](x, y, id);
+	},
+	8: (x, y, id) => {
+		// empowered Orc
+		return new __WEBPACK_IMPORTED_MODULE_6__entities_actors_enemies_Orc_js__["a" /* default */](x, y, id, true);
+	},
+	9: (x, y, id) => {
+		return new __WEBPACK_IMPORTED_MODULE_20__entities_misc_Door_js__["a" /* default */](x, y, id);
+	},
+	10: (x, y, id) => {
+		return new __WEBPACK_IMPORTED_MODULE_19__entities_misc_Chest_js__["a" /* default */](x, y, id);
+	},
+	11: (x, y, id) => {
+		return new __WEBPACK_IMPORTED_MODULE_16__entities_items_potions_HealthPotion_js__["a" /* default */](x, y, id);
+	},
+	12: (x, y, id) => {
+		return new __WEBPACK_IMPORTED_MODULE_17__entities_items_potions_StrengthPotion_js__["a" /* default */](x, y, id);
+	},
+	13: (x, y, id) => {
+		return new __WEBPACK_IMPORTED_MODULE_18__entities_items_potions_ManaPotion_js__["a" /* default */](x, y, id);
+	},
+	14: (x, y, id) => {
+		return new __WEBPACK_IMPORTED_MODULE_13__entities_items_weapons_Sword_js__["b" /* Sword */](x, y, 4, 7, 'Orc Purifier', id);
+	},
+	15: (x, y, id) => {
+		return new __WEBPACK_IMPORTED_MODULE_22__entities_items_misc_Key_js__["a" /* default */](x, y, id);
+	},
+	16: (x, y, id) => {
+		return new __WEBPACK_IMPORTED_MODULE_21__entities_misc_LockedDoor_js__["a" /* default */](x, y, id);
+	},
+	17: (x, y, id) => {
+		return __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_14__entities_items_weapons_ranged_Bow_js__["a" /* createBow */])(x, y, id);
+	},
+	18: (x, y, id) => {
+		return new __WEBPACK_IMPORTED_MODULE_15__entities_items_weapons_ranged_ammo_Arrow_js__["a" /* SteelArrow */](x, y, id, 5);
+	},
+	19: (x, y, id) => {
+		return new __WEBPACK_IMPORTED_MODULE_5__entities_actors_enemies_Kobold_js__["a" /* default */](x, y, id);
+	},
+	20: (x, y, id) => {
+		return new __WEBPACK_IMPORTED_MODULE_8__entities_actors_enemies_Bat_js__["a" /* default */](x, y, id);
+	},
+	21: (x, y, id) => {
+		return new __WEBPACK_IMPORTED_MODULE_12__entities_actors_enemies_boss_Lich_js__["a" /* default */](x, y, id);
+	},
+	22: (x, y, id) => {
+		return new __WEBPACK_IMPORTED_MODULE_24__entities_misc_LevelTransition_js__["a" /* default */](x, y, id);
+	},
+	23: (x, y, id) => {
+		return new __WEBPACK_IMPORTED_MODULE_10__entities_actors_enemies_Zombie_js__["a" /* default */](x, y, id);
+	},
+	24: (x, y, id) => {
+		return new __WEBPACK_IMPORTED_MODULE_9__entities_actors_enemies_Skeleton_js__["a" /* default */](x, y, id);
+	},
+	25: (x, y, id) => {
+		return new __WEBPACK_IMPORTED_MODULE_11__entities_items_misc_Corpse_js__["b" /* Corpse */](x, y, 'zombie', id);
+	},
+	26: (x, y, id) => {
+		return new __WEBPACK_IMPORTED_MODULE_11__entities_items_misc_Corpse_js__["b" /* Corpse */](x, y, 'skeleton', id);
+	}
 };
 
 function getTilesetCoords(id) {
-    let tileWidth = __WEBPACK_IMPORTED_MODULE_0__Game_js__["b" /* tileset */].tilewidth;
-    let tileHeight = __WEBPACK_IMPORTED_MODULE_0__Game_js__["b" /* tileset */].tileheight;
-    let cols = __WEBPACK_IMPORTED_MODULE_0__Game_js__["b" /* tileset */].columns;
-    let rowNumber = Math.floor(id / cols) * tileHeight;
-    let colNumber = id % cols * tileHeight;
-    return [colNumber, rowNumber];
+	let tileWidth = __WEBPACK_IMPORTED_MODULE_0__Game_js__["b" /* tileset */].tilewidth;
+	let tileHeight = __WEBPACK_IMPORTED_MODULE_0__Game_js__["b" /* tileset */].tileheight;
+	let cols = __WEBPACK_IMPORTED_MODULE_0__Game_js__["b" /* tileset */].columns;
+	let rowNumber = Math.floor(id / cols) * tileHeight;
+	let colNumber = id % cols * tileHeight;
+	return [colNumber, rowNumber];
 }
 
 function createEntity(x, y, entity_id, frame_id) {
-    if (entity_id in entityShop) {
-        return entityShop[entity_id](x, y, frame_id);
-    } else {
-        throw `No entity assigned to ID ${entity_id} for frame ${frame_id} at ${x + "," + y}`;
-    }
+	if (entity_id in entityShop) {
+		return entityShop[entity_id](x, y, frame_id);
+	} else {
+		throw `No entity assigned to ID ${entity_id} for frame ${frame_id} at ${x + ',' + y}`;
+	}
 }
 
 /**
  * Created by Larken on 6/28/2017.
  */
 class GameMap {
-    constructor(json) {
-        console.log("Generating new map...");
-        if (!json) throw "Bad map creation";
-        this.loadedIDS = [];
-        this.playerLocation = null; // this field is used exclusively for saving the player's last location before they change levels
-        this.width = json.width;
-        this.height = json.height;
-        this.actors = []; // store all of the actors in array
-        this.data = new Array(this.height); // stores all tiles in the game
-        this.visible_tiles = {};
-        this.seen_tiles = {};
-        console.log("Loading game map and actors...");
-        // Intialize all of the tiles...
-        for (let i = 0; i < this.height; i++) {
-            this.data[i] = new Array(this.width);
-            for (let j = 0; j < this.width; j++) {
-                this.data[i][j] = new __WEBPACK_IMPORTED_MODULE_1__map_Tile_js__["a" /* default */](j, i);
-            }
-        }
-        // Process all of the json layers
-        // process the group layers last. this is specifically for placing static itemsets into treasure chests in the overworld.
-        // process it last so that all of the chest entities have been created already
-        let itemLayers = [];
-        let portalLayers = [];
-        for (let layer of json.layers) {
-            // Obstacle Layer
-            if (layer.properties.obstacles === true) this.processObstacleLayer(layer);else if (layer.properties.items === true) itemLayers.push(layer);else if (layer.properties.actors === true) this.processActorLayer(layer);else if (layer.properties.portal === true) portalLayers.push(layer);else throw "A layer has been added to the map and is invalid";
-        }
-        // if (this.playerLocation === null) throw "Error - no player starting position!";
-        // add chest items to chests where appropriate
-        for (let layer of itemLayers) {
-            this.processItemLayer(layer);
-        }
+	constructor(json) {
+		console.log('Generating new map...');
+		if (!json) throw 'Bad map creation';
+		this.loadedIDS = [];
+		this.playerLocation = null; // this field is used exclusively for saving the player's last location before they change levels
+		this.width = json.width;
+		this.height = json.height;
+		this.actors = []; // store all of the actors in array
+		this.data = new Array(this.height); // stores all tiles in the game
+		this.visible_tiles = {};
+		this.seen_tiles = {};
+		console.log('Loading game map and actors...');
+		// Intialize all of the tiles...
+		for (let i = 0; i < this.height; i++) {
+			this.data[i] = new Array(this.width);
+			for (let j = 0; j < this.width; j++) {
+				this.data[i][j] = new __WEBPACK_IMPORTED_MODULE_1__map_Tile_js__["a" /* default */](j, i);
+			}
+		}
+		// Process all of the json layers
+		// process the group layers last. this is specifically for placing static itemsets into treasure chests in the overworld.
+		// process it last so that all of the chest entities have been created already
+		let itemLayers = [];
+		let portalLayers = [];
+		for (let layer of json.layers) {
+			// Obstacle Layer
+			if (layer.properties.obstacles === true) this.processObstacleLayer(layer);else if (layer.properties.items === true) itemLayers.push(layer);else if (layer.properties.actors === true) this.processActorLayer(layer);else if (layer.properties.portal === true) portalLayers.push(layer);else throw 'A layer has been added to the map and is invalid';
+		}
+		// if (this.playerLocation === null) throw "Error - no player starting position!";
+		// add chest items to chests where appropriate
+		for (let layer of itemLayers) {
+			this.processItemLayer(layer);
+		}
 
-        for (let layer of portalLayers) {
-            this.processPortalLayer(layer);
-        }
-    }
+		for (let layer of portalLayers) {
+			this.processPortalLayer(layer);
+		}
+	}
 
-    processObstacleLayer(layer) {
-        for (let i = 0; i < this.height; i++) {
-            for (let j = 0; j < this.width; j++) {
-                // Grabs the ID from the layer
-                let id = layer.data[i * this.width + j] - 1;
-                if (id > 1) {
-                    if (!this.loadedIDS.includes(id)) __WEBPACK_IMPORTED_MODULE_0__Game_js__["a" /* Game */].loadedIDS.push(id);
-                    this.data[i][j].updateTileInfo(id);
-                }
-            }
-        }
-    }
+	processObstacleLayer(layer) {
+		for (let i = 0; i < this.height; i++) {
+			for (let j = 0; j < this.width; j++) {
+				// Grabs the ID from the layer
+				let id = layer.data[i * this.width + j] - 1;
+				if (id > 1) {
+					if (!this.loadedIDS.includes(id)) __WEBPACK_IMPORTED_MODULE_0__Game_js__["a" /* Game */].loadedIDS.push(id);
+					this.data[i][j].updateTileInfo(id);
+				}
+			}
+		}
+	}
 
-    processActorLayer(layer) {
-        // console.log("Loading actors...");
-        for (let i = 0; i < this.height; i++) {
-            for (let j = 0; j < this.width; j++) {
-                let id = layer.data[i * this.width + j] - 1; // grab the id in the json data
-                if (id > 1) {
-                    // id of zero indicates no actor in this spot
-                    if (!this.loadedIDS.includes(id)) __WEBPACK_IMPORTED_MODULE_0__Game_js__["a" /* Game */].loadedIDS.push(id);
-                    let properties = __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__map_Tile_js__["b" /* getTileInfo */])(id);
-                    if (properties.entity !== true) throw "Bad entity creation for tile " + id;
-                    if (properties.entity_id === 0) {
-                        this.playerLocation = [j, i];
-                        this.playerID = id;
-                    } else {
-                        let newActor = createEntity(j, i, properties.entity_id, id);
-                        this.actors.push(newActor); // add to the list of all actors
-                        this.data[i][j].actors.push(newActor); // also push to the tiles' actors
-                    }
-                }
-            }
-        }
-    }
+	processActorLayer(layer) {
+		// console.log("Loading actors...");
+		for (let i = 0; i < this.height; i++) {
+			for (let j = 0; j < this.width; j++) {
+				let id = layer.data[i * this.width + j] - 1; // grab the id in the json data
+				if (id > 1) {
+					// id of zero indicates no actor in this spot
+					if (!this.loadedIDS.includes(id)) __WEBPACK_IMPORTED_MODULE_0__Game_js__["a" /* Game */].loadedIDS.push(id);
+					let properties = __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__map_Tile_js__["b" /* getTileInfo */])(id);
+					if (properties.entity !== true) throw 'Bad entity creation for tile ' + id;
+					if (properties.entity_id === 0) {
+						this.playerLocation = [j, i];
+						this.playerID = id;
+					} else {
+						let newActor = createEntity(j, i, properties.entity_id, id);
+						this.actors.push(newActor); // add to the list of all actors
+						this.data[i][j].actors.push(newActor); // also push to the tiles' actors
+					}
+				}
+			}
+		}
+	}
 
-    processItemLayer(layer) {
-        for (let i = 0; i < this.height; i++) {
-            for (let j = 0; j < this.width; j++) {
-                let id = layer.data[i * this.width + j] - 1; // grab the id in the json data
-                if (id > 1) {
-                    // id of zero indicates no actor in this spot
-                    if (!this.loadedIDS.includes(id)) __WEBPACK_IMPORTED_MODULE_0__Game_js__["a" /* Game */].loadedIDS.push(id);
-                    let properties = __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__map_Tile_js__["b" /* getTileInfo */])(id);
-                    if (properties.entity !== true) throw "Bad entity creation for tile " + id;
-                    let newActor = createEntity(j, i, properties.entity_id, id);
-                    this.actors.push(newActor); // add to the list of all actors
-                    this.findActor(j, i).addToInventory(newActor);
-                }
-            }
-        }
-    }
+	processItemLayer(layer) {
+		for (let i = 0; i < this.height; i++) {
+			for (let j = 0; j < this.width; j++) {
+				let id = layer.data[i * this.width + j] - 1; // grab the id in the json data
+				if (id > 1) {
+					// id of zero indicates no actor in this spot
+					if (!this.loadedIDS.includes(id)) __WEBPACK_IMPORTED_MODULE_0__Game_js__["a" /* Game */].loadedIDS.push(id);
+					let properties = __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__map_Tile_js__["b" /* getTileInfo */])(id);
+					if (properties.entity !== true) throw 'Bad entity creation for tile ' + id;
+					let newActor = createEntity(j, i, properties.entity_id, id);
+					this.actors.push(newActor); // add to the list of all actors
+					this.findActor(j, i).addToInventory(newActor);
+				}
+			}
+		}
+	}
 
-    processPortalLayer(layer) {
-        for (let i = 0; i < this.height; i++) {
-            for (let j = 0; j < this.width; j++) {
-                let id = layer.data[i * this.width + j] - 1; // grab the id in the json data
-                if (id > 1) {
-                    // id of zero indicates no actor in this spot
-                    if (!this.loadedIDS.includes(id)) __WEBPACK_IMPORTED_MODULE_0__Game_js__["a" /* Game */].loadedIDS.push(id);
-                    let properties = __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__map_Tile_js__["b" /* getTileInfo */])(id);
-                    // now we've got a portal cell that tells us where a ladder should lead
-                    // find the ladder at this location
-                    let ladders = this.data[i][j].actors.filter(a => {
-                        return a instanceof __WEBPACK_IMPORTED_MODULE_23__entities_misc_Ladder_js__["a" /* default */] || a instanceof __WEBPACK_IMPORTED_MODULE_24__entities_misc_LevelTransition_js__["a" /* default */]; // throwing in condition that it can also be level transition
-                    });
-                    if (ladders.length === 0) {
-                        throw "tried to create a portal link for a ladder or level transition but neither was found";
-                    } else {
-                        ladders[0].portal = properties.level;
-                    }
-                }
-            }
-        }
-    }
+	processPortalLayer(layer) {
+		for (let i = 0; i < this.height; i++) {
+			for (let j = 0; j < this.width; j++) {
+				let id = layer.data[i * this.width + j] - 1; // grab the id in the json data
+				if (id > 1) {
+					// id of zero indicates no actor in this spot
+					if (!this.loadedIDS.includes(id)) __WEBPACK_IMPORTED_MODULE_0__Game_js__["a" /* Game */].loadedIDS.push(id);
+					let properties = __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__map_Tile_js__["b" /* getTileInfo */])(id);
+					// now we've got a portal cell that tells us where a ladder should lead
+					// find the ladder at this location
+					let ladders = this.data[i][j].actors.filter(a => {
+						return a instanceof __WEBPACK_IMPORTED_MODULE_23__entities_misc_Ladder_js__["a" /* default */] || a instanceof __WEBPACK_IMPORTED_MODULE_24__entities_misc_LevelTransition_js__["a" /* default */]; // throwing in condition that it can also be level transition
+					});
+					if (ladders.length === 0) {
+						throw 'tried to create a portal link for a ladder or level transition but neither was found';
+					} else {
+						ladders[0].portal = properties.level;
+					}
+				}
+			}
+		}
+	}
 
-    print() {
-        let buf = "";
-        for (let i = 0; i < this.height; i++) {
-            let row = "";
-            for (let j = 0; j < this.width; j++) row += this.data[i][j].symbol; //+ " ";
-            buf += row + '\n';
-        }
+	print() {
+		let buf = '';
+		for (let i = 0; i < this.height; i++) {
+			let row = '';
+			for (let j = 0; j < this.width; j++) row += this.data[i][j].symbol; //+ " ";
+			buf += row + '\n';
+		}
 
-        for (let i = 0; i < this.actors.length; i++) {
-            let actor = this.actors[i];
-            /* to calculate where the actor should go, we have to consider
+		for (let i = 0; i < this.actors.length; i++) {
+			let actor = this.actors[i];
+			/* to calculate where the actor should go, we have to consider
              the new line character in each line of the buffer, which is equal
              to the actor's y coord. */
-            let index = actor.y * this.width + actor.x + actor.y;
-            buf = buf.substr(0, index) + actor.symbol + buf.substr(index + 1);
-        }
-        console.log(buf);
-    }
+			let index = actor.y * this.width + actor.x + actor.y;
+			buf = buf.substr(0, index) + actor.symbol + buf.substr(index + 1);
+		}
+		console.log(buf);
+	}
 
-    findActor(x, y) {
-        let chests = this.data[y][x].actors.filter(a => {
-            return a instanceof __WEBPACK_IMPORTED_MODULE_19__entities_misc_Chest_js__["a" /* default */];
-        });
-        // if there are no chests, then that means we need to find an actor who should have all of the items added to
-        if (chests.length === 0) {
-            let possibleActors = this.data[y][x].actors;
-            if (possibleActors.length === 0) throw `There's no actor in which an item can be placed at (${x},${y})`;
-            return possibleActors[0];
-        } else {
-            return chests[0];
-        }
-    }
+	findActor(x, y) {
+		let chests = this.data[y][x].actors.filter(a => {
+			return a instanceof __WEBPACK_IMPORTED_MODULE_19__entities_misc_Chest_js__["a" /* default */];
+		});
+		// if there are no chests, then that means we need to find an actor who should have all of the items added to
+		if (chests.length === 0) {
+			let possibleActors = this.data[y][x].actors;
+			if (possibleActors.length === 0) throw `There's no actor in which an item can be placed at (${x},${y})`;
+			return possibleActors[0];
+		} else {
+			return chests[0];
+		}
+	}
 
-    /* Returns the tiles adjacent to the given tile */
-    adjTiles(tile) {
-        let adjacentTiles = [];
-        for (let dist of ROT.DIRS[8]) {
-            let nx = tile.x + dist[0];
-            let ny = tile.y + dist[1];
-            if (!(nx < 0 || nx === this.width || ny < 0 || ny === this.height)) adjacentTiles.push(this.data[ny][nx]);
-        }
-        return adjacentTiles;
-    }
+	/* Returns the tiles adjacent to the given tile */
+	adjTiles(tile) {
+		let adjacentTiles = [];
+		for (let dist of ROT.DIRS[8]) {
+			let nx = tile.x + dist[0];
+			let ny = tile.y + dist[1];
+			if (!(nx < 0 || nx === this.width || ny < 0 || ny === this.height)) adjacentTiles.push(this.data[ny][nx]);
+		}
+		return adjacentTiles;
+	}
 }
 /* harmony export (immutable) */ __webpack_exports__["a"] = GameMap;
 
@@ -1399,346 +1399,346 @@ class GameMap {
 
 
 class Actor extends __WEBPACK_IMPORTED_MODULE_2__entities_Entity_js__["b" /* Entity */] {
-    constructor(x, y, options, routine = null) {
-        super(x, y, options);
-        this.cb = this.combat;
-        if (this.corpseType === undefined) this.corpseType = __WEBPACK_IMPORTED_MODULE_8__entities_items_misc_Corpse_js__["a" /* corpseTypes */].HUMANOID;
+	constructor(x, y, options, routine = null) {
+		super(x, y, options);
+		this.cb = this.combat;
+		if (this.corpseType === undefined) this.corpseType = __WEBPACK_IMPORTED_MODULE_8__entities_items_misc_Corpse_js__["a" /* corpseTypes */].HUMANOID;
 
-        this.cb.effects = [];
-        this.cb.equipment = {
-            head: null,
-            torso: null,
-            legs: null,
-            weapon: null,
-            ammo: null
-        };
-        this.inventory = [];
-        for (let i = 0; i < 28; i++) {
-            this.inventory.push({
-                item: null
-            });
-        }
-    }
+		this.cb.effects = [];
+		this.cb.equipment = {
+			head: null,
+			torso: null,
+			legs: null,
+			weapon: null,
+			ammo: null
+		};
+		this.inventory = [];
+		for (let i = 0; i < 28; i++) {
+			this.inventory.push({
+				item: null
+			});
+		}
+	}
 
-    /* Called by the ROT.js game scheduler to indicate a turn */
-    act() {
-        this.cb.effects = this.cb.effects.filter(e => {
-            return e.duration > 0;
-        });
-        // apply all of the effects on this Actor at the beginning of their turn
-        for (let effect of this.cb.effects) {
-            if (!(effect instanceof __WEBPACK_IMPORTED_MODULE_7__modifiers_Buff_js__["b" /* Buff */])) __WEBPACK_IMPORTED_MODULE_1__Game_js__["a" /* Game */].log(effect.description(this), "alert");
+	/* Called by the ROT.js game scheduler to indicate a turn */
+	act() {
+		this.cb.effects = this.cb.effects.filter(e => {
+			return e.duration > 0;
+		});
+		// apply all of the effects on this Actor at the beginning of their turn
+		for (let effect of this.cb.effects) {
+			if (!(effect instanceof __WEBPACK_IMPORTED_MODULE_7__modifiers_Buff_js__["b" /* Buff */])) __WEBPACK_IMPORTED_MODULE_1__Game_js__["a" /* Game */].log(effect.description(this), 'alert');
 
-            effect.applyEffect(this);
-        }
-        // if any effects have expired, we remove them
-    }
+			effect.applyEffect(this);
+		}
+		// if any effects have expired, we remove them
+	}
 
-    addNewEffect(effect) {
-        this.cb.effects.push(effect);
-    }
+	addNewEffect(effect) {
+		this.cb.effects.push(effect);
+	}
 
-    addNewBuff(buff) {
-        buff.applyEffect(this);
-        this.cb.effects.push(buff);
-    }
+	addNewBuff(buff) {
+		buff.applyEffect(this);
+		this.cb.effects.push(buff);
+	}
 
-    memberOfInventory(item) {
-        return -1 < this.inventory.findIndex(cell => {
-            return Object.is(item, cell.item);
-        });
-    }
+	memberOfInventory(item) {
+		return -1 < this.inventory.findIndex(cell => {
+			return Object.is(item, cell.item);
+		});
+	}
 
-    addToInventory(newItem) {
-        if ("quantity" in newItem) {
-            for (let i = 0; i < this.inventory.length; i++) {
-                let item = this.inventory[i].item;
-                if (item !== null && item.type === newItem.type) {
-                    item.quantity += newItem.quantity;
-                    return item;
-                }
-            }
-        }
+	addToInventory(newItem) {
+		if ('quantity' in newItem) {
+			for (let i = 0; i < this.inventory.length; i++) {
+				let item = this.inventory[i].item;
+				if (item !== null && item.type === newItem.type) {
+					item.quantity += newItem.quantity;
+					return item;
+				}
+			}
+		}
 
-        let nextFreeIndex = null;
-        for (let i = 0; i < this.inventory.length; i++) {
-            if (this.inventory[i].item == null) {
-                nextFreeIndex = i;
-                break;
-            }
-        }
-        if (nextFreeIndex === null) {
-            __WEBPACK_IMPORTED_MODULE_1__Game_js__["a" /* Game */].log("Your inventory is full! Drop something in order to pick this up.");
-            // if your item is in a chest and you try to pick it up, but your inventory is full,
-            // it will drop the item below you.
-            this.placeEntityBelow(newItem);
-            return newItem;
-        }
+		let nextFreeIndex = null;
+		for (let i = 0; i < this.inventory.length; i++) {
+			if (this.inventory[i].item == null) {
+				nextFreeIndex = i;
+				break;
+			}
+		}
+		if (nextFreeIndex === null) {
+			__WEBPACK_IMPORTED_MODULE_1__Game_js__["a" /* Game */].log('Your inventory is full! Drop something in order to pick this up.');
+			// if your item is in a chest and you try to pick it up, but your inventory is full,
+			// it will drop the item below you.
+			this.placeEntityBelow(newItem);
+			return newItem;
+		}
 
-        this.inventory[nextFreeIndex].item = newItem;
-        // this.inventory[nextFreeIndex].action = newItem.use;
-        return this.inventory[nextFreeIndex].item;
-    }
+		this.inventory[nextFreeIndex].item = newItem;
+		// this.inventory[nextFreeIndex].action = newItem.use;
+		return this.inventory[nextFreeIndex].item;
+	}
 
-    placeEntityBelow(entity) {
-        __WEBPACK_IMPORTED_MODULE_1__Game_js__["a" /* Game */].map.data[this.y][this.x].actors.push(entity);
-    }
+	placeEntityBelow(entity) {
+		__WEBPACK_IMPORTED_MODULE_1__Game_js__["a" /* Game */].map.data[this.y][this.x].actors.push(entity);
+	}
 
-    // expressly want to just remove the item from the inventory.
-    // no actions are taken to mutate the item (like unequipping it from the player - this is done in those classes)
-    removeFromInventory(removeItem) {
-        let idx = this.inventory.findIndex(cell => {
-            return Object.is(removeItem, cell.item);
-        });
-        if (idx != -1) {
-            this.inventory[idx].item = null;
-        } else {
-            throw "invalid item removal - trying to remove an item that cannot be found in inventory!";
-        }
-    }
+	// expressly want to just remove the item from the inventory.
+	// no actions are taken to mutate the item (like unequipping it from the player - this is done in those classes)
+	removeFromInventory(removeItem) {
+		let idx = this.inventory.findIndex(cell => {
+			return Object.is(removeItem, cell.item);
+		});
+		if (idx != -1) {
+			this.inventory[idx].item = null;
+		} else {
+			throw 'invalid item removal - trying to remove an item that cannot be found in inventory!';
+		}
+	}
 
-    dropItem(item) {
-        if (!this.memberOfInventory(item)) throw "Error - trying to drop an item you don't have in your inventory";
+	dropItem(item) {
+		if (!this.memberOfInventory(item)) throw 'Error - trying to drop an item you don\'t have in your inventory';
 
-        this.removeFromInventory(item);
-        if (item !== null && "cb" in item) {
-            item.cb.equipped = false;
-            if (this.cb.equipment.weapon == item) this.cb.equipment.weapon = null;
-        }
-        let ctile = __WEBPACK_IMPORTED_MODULE_1__Game_js__["a" /* Game */].map.data[this.y][this.x];
-        ctile.actors.unshift(item);
-    }
+		this.removeFromInventory(item);
+		if (item !== null && 'cb' in item) {
+			item.cb.equipped = false;
+			if (this.cb.equipment.weapon == item) this.cb.equipment.weapon = null;
+		}
+		let ctile = __WEBPACK_IMPORTED_MODULE_1__Game_js__["a" /* Game */].map.data[this.y][this.x];
+		ctile.actors.unshift(item);
+	}
 
-    /* The inventory property of actors is an array of object 'slots'. This function
+	/* The inventory property of actors is an array of object 'slots'. This function
      * returns the actual items that are held at any given time */
-    items() {
-        return this.inventory.filter(e => e.item !== null).map(e => e.item);
-    }
+	items() {
+		return this.inventory.filter(e => e.item !== null).map(e => e.item);
+	}
 
-    distanceTo(actor) {
-        // linear distance, no obstacles factored in
-        return Math.sqrt(Math.pow(this.x - actor.x, 2) + Math.pow(this.y - actor.y, 2));
-    }
+	distanceTo(actor) {
+		// linear distance, no obstacles factored in
+		return Math.sqrt(Math.pow(this.x - actor.x, 2) + Math.pow(this.y - actor.y, 2));
+	}
 
-    /* Used to perform an action against another actor */
-    interact(actor) {
-        return null;
-    }
+	/* Used to perform an action against another actor */
+	interact(actor) {
+		return null;
+	}
 
-    /* Used to react to the interaction of another actor */
-    react(actor) {
-        return null;
-    }
+	/* Used to react to the interaction of another actor */
+	react(actor) {
+		return null;
+	}
 
-    tryMove(nx, ny) {
-        // returns true if the turn should end here
-        if (nx < 0 || nx === __WEBPACK_IMPORTED_MODULE_1__Game_js__["a" /* Game */].map.width || ny < 0 || ny === __WEBPACK_IMPORTED_MODULE_1__Game_js__["a" /* Game */].map.height) return false;
-        let ntile = __WEBPACK_IMPORTED_MODULE_1__Game_js__["a" /* Game */].map.data[ny][nx]; // new tile to move to
-        if (ntile.actors.length === 0 && !ntile.blocked()) {
-            this.move(nx, ny);
-            return true;
-        } else if (ntile.actors.length > 0) {
-            for (let i = 0; i < ntile.actors.length; i++) {
-                let actor = ntile.actors[i];
-                // this actor has stumbled upon another actor
-                if (actor instanceof Actor && actor.blocked && actor.visible) {
-                    if (!actor.isDead()) this.interact(actor);
-                    return true;
-                }
-                // actor has stumbled upon a non-Actor entity (an item or miscellaneous entity like a door)
-                if (actor instanceof __WEBPACK_IMPORTED_MODULE_4__entities_misc_Door_js__["a" /* default */]) {
-                    this.interact(actor);
-                    // return actor.blocked;
-                }
-            }
-        }
+	tryMove(nx, ny) {
+		// returns true if the turn should end here
+		if (nx < 0 || nx === __WEBPACK_IMPORTED_MODULE_1__Game_js__["a" /* Game */].map.width || ny < 0 || ny === __WEBPACK_IMPORTED_MODULE_1__Game_js__["a" /* Game */].map.height) return false;
+		let ntile = __WEBPACK_IMPORTED_MODULE_1__Game_js__["a" /* Game */].map.data[ny][nx]; // new tile to move to
+		if (ntile.actors.length === 0 && !ntile.blocked()) {
+			this.move(nx, ny);
+			return true;
+		} else if (ntile.actors.length > 0) {
+			for (let i = 0; i < ntile.actors.length; i++) {
+				let actor = ntile.actors[i];
+				// this actor has stumbled upon another actor
+				if (actor instanceof Actor && actor.blocked && actor.visible) {
+					if (!actor.isDead()) this.interact(actor);
+					return true;
+				}
+				// actor has stumbled upon a non-Actor entity (an item or miscellaneous entity like a door)
+				if (actor instanceof __WEBPACK_IMPORTED_MODULE_4__entities_misc_Door_js__["a" /* default */]) {
+					this.interact(actor);
+					// return actor.blocked;
+				}
+			}
+		}
 
-        if (!ntile.blocked()) {
-            this.move(nx, ny);
-            return true;
-        }
+		if (!ntile.blocked()) {
+			this.move(nx, ny);
+			return true;
+		}
 
-        return false;
-    }
+		return false;
+	}
 
-    /* attacks another actor with a melee attack */
-    attack(actor) {
-        let weapon = this.cb.equipment.weapon;
-        let dmg = weapon !== null ? this.cb.str + weapon.roll() : this.cb.str;
-        if (weapon && weapon.cb.ranged) dmg = this.cb.str;
+	/* attacks another actor with a melee attack */
+	attack(actor) {
+		let weapon = this.cb.equipment.weapon;
+		let dmg = weapon !== null ? this.cb.str + weapon.roll() : this.cb.str;
+		if (weapon && weapon.cb.ranged) dmg = this.cb.str;
 
-        let len = this.cb.description.length;
-        let evtdamage = `${__webpack_require__.i(__WEBPACK_IMPORTED_MODULE_3__utils_HelperFunctions_js__["e" /* addPrefix */])(this.name).capitalize()}${this.cb.description[Math.floor(Math.random() * len)]}${__webpack_require__.i(__WEBPACK_IMPORTED_MODULE_3__utils_HelperFunctions_js__["e" /* addPrefix */])(actor.name)} and dealt ${dmg} damage.`;
-        if (__WEBPACK_IMPORTED_MODULE_1__Game_js__["a" /* Game */].player === this) __WEBPACK_IMPORTED_MODULE_1__Game_js__["a" /* Game */].log(evtdamage, 'player_move');else __WEBPACK_IMPORTED_MODULE_1__Game_js__["a" /* Game */].log(evtdamage, 'attack');
+		let len = this.cb.description.length;
+		let evtdamage = `${__webpack_require__.i(__WEBPACK_IMPORTED_MODULE_3__utils_HelperFunctions_js__["e" /* addPrefix */])(this.name).capitalize()}${this.cb.description[Math.floor(Math.random() * len)]}${__webpack_require__.i(__WEBPACK_IMPORTED_MODULE_3__utils_HelperFunctions_js__["e" /* addPrefix */])(actor.name)} and dealt ${dmg} damage.`;
+		if (__WEBPACK_IMPORTED_MODULE_1__Game_js__["a" /* Game */].player === this) __WEBPACK_IMPORTED_MODULE_1__Game_js__["a" /* Game */].log(evtdamage, 'player_move');else __WEBPACK_IMPORTED_MODULE_1__Game_js__["a" /* Game */].log(evtdamage, 'attack');
 
-        if (dmg > 0) actor.damage(dmg);
+		if (dmg > 0) actor.damage(dmg);
 
-        if (weapon && weapon.cb.enchantments.length > 0) {
-            for (let enchantment of weapon.cb.enchantments) {
-                let effect = enchantment.getEffect();
-                if (!actor.cb.effects.some(e => {
-                    e.name === effect.name;
-                })) {
-                    actor.addNewEffect(effect);
-                }
-            }
-        }
+		if (weapon && weapon.cb.enchantments.length > 0) {
+			for (let enchantment of weapon.cb.enchantments) {
+				let effect = enchantment.getEffect();
+				if (!actor.cb.effects.some(e => {
+					e.name === effect.name;
+				})) {
+					actor.addNewEffect(effect);
+				}
+			}
+		}
 
-        return dmg;
-    }
+		return dmg;
+	}
 
-    equipWeapon(item) {
-        if (!item instanceof __WEBPACK_IMPORTED_MODULE_5__entities_items_weapons_Weapon_js__["a" /* default */] || !"cb" in item) throw "Error - equipped invalid item - " + this.item.type;
+	equipWeapon(item) {
+		if (!(item instanceof __WEBPACK_IMPORTED_MODULE_5__entities_items_weapons_Weapon_js__["a" /* default */]) || !('cb' in item)) throw 'Error - equipped invalid item - ' + this.item.type;
 
-        // already wielding a weapon
-        if (this.cb.equipment.weapon !== null) {
-            this.cb.equipment.weapon.cb.equipped = false;
-        }
-        this.cb.equipment.weapon = item;
-        item.cb.equipped = true;
-    }
+		// already wielding a weapon
+		if (this.cb.equipment.weapon !== null) {
+			this.cb.equipment.weapon.cb.equipped = false;
+		}
+		this.cb.equipment.weapon = item;
+		item.cb.equipped = true;
+	}
 
-    equipAmmo(item) {
-        if (!item instanceof __WEBPACK_IMPORTED_MODULE_6__entities_items_weapons_ranged_ammo_Ammo_js__["a" /* Ammo */] || !"cb" in item) throw "Error - equipped invalid item - " + this.item.type;
+	equipAmmo(item) {
+		if (!(item instanceof __WEBPACK_IMPORTED_MODULE_6__entities_items_weapons_ranged_ammo_Ammo_js__["a" /* Ammo */]) || !('cb' in item)) throw 'Error - equipped invalid item - ' + this.item.type;
 
-        // already wielding a weapon
-        if (this.cb.equipment.ammo !== null) {
-            this.cb.equipment.ammo.cb.equipped = false;
-        }
-        this.cb.equipment.ammo = item;
-        this.cb.equipment.ammo.cb.equipped = true;
-    }
+		// already wielding a weapon
+		if (this.cb.equipment.ammo !== null) {
+			this.cb.equipment.ammo.cb.equipped = false;
+		}
+		this.cb.equipment.ammo = item;
+		this.cb.equipment.ammo.cb.equipped = true;
+	}
 
-    /* Reduce hp. If less than 0, causes death */
-    damage(hp) {
-        if (this.cb.invulnerable) return;
-        this.cb.hp -= hp;
-        if (this.isDead()) {
-            if (this !== __WEBPACK_IMPORTED_MODULE_1__Game_js__["a" /* Game */].player) __WEBPACK_IMPORTED_MODULE_1__Game_js__["a" /* Game */].player.gain_xp(Math.floor(this.cb.maxhp * .75));
+	/* Reduce hp. If less than 0, causes death */
+	damage(hp) {
+		if (this.cb.invulnerable) return;
+		this.cb.hp -= hp;
+		if (this.isDead()) {
+			if (this !== __WEBPACK_IMPORTED_MODULE_1__Game_js__["a" /* Game */].player) __WEBPACK_IMPORTED_MODULE_1__Game_js__["a" /* Game */].player.gain_xp(Math.floor(this.cb.maxhp * .75));
 
-            this.death();
-        }
-    }
+			this.death();
+		}
+	}
 
-    /* Restore HP up to maxhp */
-    heal(hp) {
-        if (this.cb.hp + hp > this.cb.maxhp) this.cb.hp = this.cb.maxhp;else this.cb.hp += hp;
-    }
+	/* Restore HP up to maxhp */
+	heal(hp) {
+		if (this.cb.hp + hp > this.cb.maxhp) this.cb.hp = this.cb.maxhp;else this.cb.hp += hp;
+	}
 
-    /* Restores mana up to max */
-    restore(mana) {
-        if (this.cb.mana + mana > this.cb.maxmana) this.cb.mana = this.cb.maxmana;else this.cb.mana += mana;
-    }
+	/* Restores mana up to max */
+	restore(mana) {
+		if (this.cb.mana + mana > this.cb.maxmana) this.cb.mana = this.cb.maxmana;else this.cb.mana += mana;
+	}
 
-    /* Starting out with basic 8 dir firing */
-    fireRangedWeapon(ammo, dir) {
-        // assuming we have a ranged weapon and ammunition to fire
-        let weapon = this.cb.equipment.weapon;
-        let range = weapon.cb.range;
-        let dmg = weapon.roll() + ammo.cb.damage + this.cb.str;
-        let diff = __WEBPACK_IMPORTED_MODULE_0_rot_js___default.a.DIRS[8][dir];
-        // iterate from the first to last tile in the given direction
-        for (let i = 1; i < range; i++) {
-            let tx = this.x + diff[0] * i;
-            let ty = this.y + diff[1] * i;
-            let tile = __WEBPACK_IMPORTED_MODULE_1__Game_js__["a" /* Game */].map.data[ty][tx];
-            // if the tile is a blocked obstacle, then we want to cancel the projectile's motion
-            // since water and some other special obstacles are "blocked", need to use the "blocks vision"
-            // attribute to determine if a projectile can pass through
-            // (e.g if light can pass through, so can an arrow or crossbow bolt)
-            if (!tile.visible()) {
-                if (__WEBPACK_IMPORTED_MODULE_1__Game_js__["a" /* Game */].player === this) __WEBPACK_IMPORTED_MODULE_1__Game_js__["a" /* Game */].log(`Your ${ammo.type.toLowerCase()} hit an obstacle!`, "alert");
-                console.log("Projectile collided with an obstacle!");
-                return;
-            }
-            // if we find an enemy on the tile, we damage it and the projectile stops moving
-            let enemies = tile.actors.filter(function (e) {
-                return e.combat && e.cb.hostile;
-            });
-            if (enemies.length > 0) {
+	/* Starting out with basic 8 dir firing */
+	fireRangedWeapon(ammo, dir) {
+		// assuming we have a ranged weapon and ammunition to fire
+		let weapon = this.cb.equipment.weapon;
+		let range = weapon.cb.range;
+		let dmg = weapon.roll() + ammo.cb.damage + this.cb.str;
+		let diff = __WEBPACK_IMPORTED_MODULE_0_rot_js___default.a.DIRS[8][dir];
+		// iterate from the first to last tile in the given direction
+		for (let i = 1; i < range; i++) {
+			let tx = this.x + diff[0] * i;
+			let ty = this.y + diff[1] * i;
+			let tile = __WEBPACK_IMPORTED_MODULE_1__Game_js__["a" /* Game */].map.data[ty][tx];
+			// if the tile is a blocked obstacle, then we want to cancel the projectile's motion
+			// since water and some other special obstacles are "blocked", need to use the "blocks vision"
+			// attribute to determine if a projectile can pass through
+			// (e.g if light can pass through, so can an arrow or crossbow bolt)
+			if (!tile.visible()) {
+				if (__WEBPACK_IMPORTED_MODULE_1__Game_js__["a" /* Game */].player === this) __WEBPACK_IMPORTED_MODULE_1__Game_js__["a" /* Game */].log(`Your ${ammo.type.toLowerCase()} hit an obstacle!`, 'alert');
+				console.log('Projectile collided with an obstacle!');
+				return;
+			}
+			// if we find an enemy on the tile, we damage it and the projectile stops moving
+			let enemies = tile.actors.filter(function (e) {
+				return e.combat && e.cb.hostile;
+			});
+			if (enemies.length > 0) {
 
-                console.log("The project collided with an enemy");
-                let enemy = enemies[0];
-                let evtdamage = `${__webpack_require__.i(__WEBPACK_IMPORTED_MODULE_3__utils_HelperFunctions_js__["e" /* addPrefix */])(this.name).capitalize()} hit ${__webpack_require__.i(__WEBPACK_IMPORTED_MODULE_3__utils_HelperFunctions_js__["e" /* addPrefix */])(enemy.name)} with ${__webpack_require__.i(__WEBPACK_IMPORTED_MODULE_3__utils_HelperFunctions_js__["e" /* addPrefix */])(ammo.type.toLowerCase())} and dealt ${dmg} damage.`;
-                if (__WEBPACK_IMPORTED_MODULE_1__Game_js__["a" /* Game */].player === this) __WEBPACK_IMPORTED_MODULE_1__Game_js__["a" /* Game */].log(evtdamage, 'player_move');else __WEBPACK_IMPORTED_MODULE_1__Game_js__["a" /* Game */].log(evtdamage, 'attack');
-                enemy.damage(dmg);
-                return;
-            }
-        }
-        __WEBPACK_IMPORTED_MODULE_1__Game_js__["a" /* Game */].log(`Your ${ammo.type.toLowerCase()} didn't hit anything!`, "alert");
-        console.log("The projectile did not hit anything");
-        // place the ammo down at
-        /*
+				console.log('The project collided with an enemy');
+				let enemy = enemies[0];
+				let evtdamage = `${__webpack_require__.i(__WEBPACK_IMPORTED_MODULE_3__utils_HelperFunctions_js__["e" /* addPrefix */])(this.name).capitalize()} hit ${__webpack_require__.i(__WEBPACK_IMPORTED_MODULE_3__utils_HelperFunctions_js__["e" /* addPrefix */])(enemy.name)} with ${__webpack_require__.i(__WEBPACK_IMPORTED_MODULE_3__utils_HelperFunctions_js__["e" /* addPrefix */])(ammo.type.toLowerCase())} and dealt ${dmg} damage.`;
+				if (__WEBPACK_IMPORTED_MODULE_1__Game_js__["a" /* Game */].player === this) __WEBPACK_IMPORTED_MODULE_1__Game_js__["a" /* Game */].log(evtdamage, 'player_move');else __WEBPACK_IMPORTED_MODULE_1__Game_js__["a" /* Game */].log(evtdamage, 'attack');
+				enemy.damage(dmg);
+				return;
+			}
+		}
+		__WEBPACK_IMPORTED_MODULE_1__Game_js__["a" /* Game */].log(`Your ${ammo.type.toLowerCase()} didn't hit anything!`, 'alert');
+		console.log('The projectile did not hit anything');
+		// place the ammo down at
+		/*
          let tx = this.x + diff[0]*range;
          let ty = this.y + diff[1]*range;
          let tile = Game.map.data[ty][tx];
          */
-    }
+	}
 
-    death() {
-        let idx = __WEBPACK_IMPORTED_MODULE_1__Game_js__["a" /* Game */].engine._scheduler.remove(this);
-        let ctile = __WEBPACK_IMPORTED_MODULE_1__Game_js__["a" /* Game */].map.data[this.y][this.x];
-        // remove this actor from the global actors list and the occupied tile
-        ctile.removeActor(this);
-        idx = __WEBPACK_IMPORTED_MODULE_1__Game_js__["a" /* Game */].map.actors.indexOf(this);
-        // dump the contents of the actor's inventory (items) onto the ground.
-        if (this.inventory.length > 0) {
-            let items = this.items();
-            for (let item of items) {
-                // if the item was previously equipped, it needs to be 'unequipped'
-                if (item !== null && "cb" in item) {
-                    item.cb.equipped = false;
-                }
-                ctile.actors.push(item);
-            }
-        }
-        // redraw the tile, either with an appropriate actor or the tile symbol
-        __WEBPACK_IMPORTED_MODULE_1__Game_js__["a" /* Game */].map.actors.splice(idx, 1);
-        /* On death, we want to spray some blood on the tile.
+	death() {
+		let idx = __WEBPACK_IMPORTED_MODULE_1__Game_js__["a" /* Game */].engine._scheduler.remove(this);
+		let ctile = __WEBPACK_IMPORTED_MODULE_1__Game_js__["a" /* Game */].map.data[this.y][this.x];
+		// remove this actor from the global actors list and the occupied tile
+		ctile.removeActor(this);
+		idx = __WEBPACK_IMPORTED_MODULE_1__Game_js__["a" /* Game */].map.actors.indexOf(this);
+		// dump the contents of the actor's inventory (items) onto the ground.
+		if (this.inventory.length > 0) {
+			let items = this.items();
+			for (let item of items) {
+				// if the item was previously equipped, it needs to be 'unequipped'
+				if (item !== null && 'cb' in item) {
+					item.cb.equipped = false;
+				}
+				ctile.actors.push(item);
+			}
+		}
+		// redraw the tile, either with an appropriate actor or the tile symbol
+		__WEBPACK_IMPORTED_MODULE_1__Game_js__["a" /* Game */].map.actors.splice(idx, 1);
+		/* On death, we want to spray some blood on the tile.
          * We also want to place a corpse corresponding to the actor as well
         */
-        let blood = 2644 - __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_3__utils_HelperFunctions_js__["b" /* getRandomInt */])(0, 1);
-        if (this.corpseType !== __WEBPACK_IMPORTED_MODULE_8__entities_items_misc_Corpse_js__["a" /* corpseTypes */].SKELETON) // specifically don't want to add blood if it's a skeleton...
-            ctile.obstacles.push({ id: blood });
+		let blood = 2644 - __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_3__utils_HelperFunctions_js__["b" /* getRandomInt */])(0, 1);
+		if (this.corpseType !== __WEBPACK_IMPORTED_MODULE_8__entities_items_misc_Corpse_js__["a" /* corpseTypes */].SKELETON) // specifically don't want to add blood if it's a skeleton...
+			ctile.obstacles.push({ id: blood });
 
-        if (this.corpseType !== undefined) {
-            ctile.actors.push(new __WEBPACK_IMPORTED_MODULE_8__entities_items_misc_Corpse_js__["b" /* Corpse */](this.x, this.y, this.name, this.corpseType));
-        }
+		if (this.corpseType !== undefined) {
+			ctile.actors.push(new __WEBPACK_IMPORTED_MODULE_8__entities_items_misc_Corpse_js__["b" /* Corpse */](this.x, this.y, this.name, this.corpseType));
+		}
 
-        if (this === __WEBPACK_IMPORTED_MODULE_1__Game_js__["a" /* Game */].player) {
-            __WEBPACK_IMPORTED_MODULE_1__Game_js__["a" /* Game */].log(`You died!`, "death");
-        } else {
-            __WEBPACK_IMPORTED_MODULE_1__Game_js__["a" /* Game */].log(`You killed the ${this.name}.`, "death");
-        }
-    }
+		if (this === __WEBPACK_IMPORTED_MODULE_1__Game_js__["a" /* Game */].player) {
+			__WEBPACK_IMPORTED_MODULE_1__Game_js__["a" /* Game */].log('You died!', 'death');
+		} else {
+			__WEBPACK_IMPORTED_MODULE_1__Game_js__["a" /* Game */].log(`You killed the ${this.name}.`, 'death');
+		}
+	}
 
-    isDead() {
-        return this.cb.hp <= 0;
-    }
+	isDead() {
+		return this.cb.hp <= 0;
+	}
 
-    getHP() {
-        return this.cb.hp;
-    }
+	getHP() {
+		return this.cb.hp;
+	}
 
-    getMaxHP() {
-        return this.cb.maxhp;
-    }
+	getMaxHP() {
+		return this.cb.maxhp;
+	}
 
-    getHoverInfo() {
-        return `HP: ${this.getHP()} / ${this.getMaxHP()}<br />\"${this.description}\"`;
-    }
+	getHoverInfo() {
+		return `HP: ${this.getHP()} / ${this.getMaxHP()}<br />\"${this.description}\"`;
+	}
 
-    getMinDmg() {
-        let wep = this.cb.equipment.weapon;
-        let minWeaponDmg = wep !== null ? wep.cb.rolls : 0;
-        return this.cb.str + minWeaponDmg;
-    }
+	getMinDmg() {
+		let wep = this.cb.equipment.weapon;
+		let minWeaponDmg = wep !== null ? wep.cb.rolls : 0;
+		return this.cb.str + minWeaponDmg;
+	}
 
-    getMaxDmg() {
-        let wep = this.cb.equipment.weapon;
-        let maxWeaponDmg = wep !== null ? wep.cb.rolls * wep.cb.sides : 0;
-        return this.cb.str + maxWeaponDmg;
-    }
+	getMaxDmg() {
+		let wep = this.cb.equipment.weapon;
+		let maxWeaponDmg = wep !== null ? wep.cb.rolls * wep.cb.sides : 0;
+		return this.cb.str + maxWeaponDmg;
+	}
 }
 /* harmony export (immutable) */ __webpack_exports__["a"] = Actor;
 
@@ -2779,10 +2779,10 @@ function randomCave(width, height, dir, level = 1) {
 
 
 class Potion extends __WEBPACK_IMPORTED_MODULE_0__entities_items_Item_js__["a" /* default */] {
-    constructor(x, y, options) {
-        options.action = "Drink";
-        super(x, y, options);
-    }
+	constructor(x, y, options) {
+		options.action = 'Drink';
+		super(x, y, options);
+	}
 }
 /* harmony export (immutable) */ __webpack_exports__["a"] = Potion;
 
@@ -2799,25 +2799,25 @@ class Potion extends __WEBPACK_IMPORTED_MODULE_0__entities_items_Item_js__["a" /
 
 
 class Bow extends __WEBPACK_IMPORTED_MODULE_0__entities_items_weapons_ranged_RangedWeapon_js__["a" /* default */] {
-    constructor(x, y, id, name, rolls, sides, range) {
-        super(x, y, {
-            id: id,
-            name: name,
-            type: "Bow",
-            combat: {
-                rolls: rolls,
-                sides: sides,
-                range: range,
-                ammoType: __WEBPACK_IMPORTED_MODULE_1__entities_items_weapons_ranged_ammo_Ammo_js__["b" /* AMMO_TYPES */].ARROW
-            }
-        });
-    }
+	constructor(x, y, id, name, rolls, sides, range) {
+		super(x, y, {
+			id: id,
+			name: name,
+			type: 'Bow',
+			combat: {
+				rolls: rolls,
+				sides: sides,
+				range: range,
+				ammoType: __WEBPACK_IMPORTED_MODULE_1__entities_items_weapons_ranged_ammo_Ammo_js__["b" /* AMMO_TYPES */].ARROW
+			}
+		});
+	}
 }
 /* unused harmony export Bow */
 
 
 const createBow = (x, y, id) => {
-    return new Bow(x, y, id, "Bow of the Sunwalker", 3, 2, 8);
+	return new Bow(x, y, id, 'Bow of the Sunwalker', 3, 2, 8);
 };
 /* harmony export (immutable) */ __webpack_exports__["a"] = createBow;
 
@@ -2841,28 +2841,28 @@ const createBow = (x, y, id) => {
 
 
 class Sword extends __WEBPACK_IMPORTED_MODULE_0__entities_items_weapons_Weapon_js__["a" /* default */] {
-    constructor(x, y, sides, rolls, name, id) {
-        super(x, y, {
-            id: id,
-            name: name,
-            type: "Sword",
-            fg: 'orange',
-            combat: {
-                rolls: rolls,
-                sides: sides
-            }
-        });
-    }
+	constructor(x, y, sides, rolls, name, id) {
+		super(x, y, {
+			id: id,
+			name: name,
+			type: 'Sword',
+			fg: 'orange',
+			combat: {
+				rolls: rolls,
+				sides: sides
+			}
+		});
+	}
 }
 /* harmony export (immutable) */ __webpack_exports__["b"] = Sword;
 
 
-let swordNames = ["Caledfwlch", "Hywelbane", "Brightkiller", "Excalibur", "Joyeux", "Dyrnwyn", "Johnny Corkscrew", "The Sword of Leah", "The Sword of Shannara", "The Vorpal Sword", "Seraph Blade", "Glorious", "Cortana", "Heosphorous", "Phaesphoros", "Maellartach", "The Rivan Sword", "The Sword of Shadows", "Sikanda", "Dragnipur", "Chance", "Vengeance", "Grief", "The Swords of Night and Day", "The Swords of Blood and Fire", "Snaga", "The Sword of Truth", "The Lady Vivamus", "Sword of Martin", "Verminfate", "Rapscallion sword", "Callandor", "Heron Mark Sword", "Graywand", "Scalpel", "Rhindon", "Blackfyre", "Brightroar", "Dark Siste", "Dawn", "Hearteater", "Heartsbane", "Widow's Wail", "Ice", "Lady Forlorn", "Longclaw", "Red Rain", "Albitr", "Needle", "The Black Blade", "Mournblade", "Oathkeeper", "Naegling", "Arvindr", "Ravenbrand", "Zar'roc", "Lion's Tooth", "Doomgiver", "Kanajana", "Támerlein", "Shieldbreaker", "Woundhealer", "Narsil", "Lightbringer", "Soulcutter", "Sightblinder", "Wayfinder", "Orcrist", "Stonecutter", "Townsaver", "The Sword of Gryffindor", "Farslayer", "Mindsword", "Dragonslicer", "Katopris", "Backbiter", "Undbitr", "Brisingr", "Barrow-blade", "Coinspinner", "Lhang", "Traitor", "Anglachel", "Hadhafang", "Vrangr", "The Darksword", "The Lightsword", "Herugrim", "Anaklusmos", "Gúthwinë", "Terminus Est", "Memory", "Khazid'hea", "Clamorer", "Backbiter", "Thorn", "Charon's Claw", "Twinkle", "Godsbane", "Icingdeath", "Hrunting", "Naegling", "The Sword of the Dawn", "Hill Cleaver", "Werewindle", "Kijin-marukuni-shige", "Balaraw", "Keyblade", "Hina", "Tessaiga", "Sorrow", "Singing Sword", "Sword of Chaos", "The Starsword", "Biggoron Sword", "Grayswandir", "Rain Dragon", "Shisui", "Gurthang", "Aranrúth", "Nightfall", "Sting"];
+let swordNames = ['Caledfwlch', 'Hywelbane', 'Brightkiller', 'Excalibur', 'Joyeux', 'Dyrnwyn', 'Johnny Corkscrew', 'The Sword of Leah', 'The Sword of Shannara', 'The Vorpal Sword', 'Seraph Blade', 'Glorious', 'Cortana', 'Heosphorous', 'Phaesphoros', 'Maellartach', 'The Rivan Sword', 'The Sword of Shadows', 'Sikanda', 'Dragnipur', 'Chance', 'Vengeance', 'Grief', 'The Swords of Night and Day', 'The Swords of Blood and Fire', 'Snaga', 'The Sword of Truth', 'The Lady Vivamus', 'Sword of Martin', 'Verminfate', 'Rapscallion sword', 'Callandor', 'Heron Mark Sword', 'Graywand', 'Scalpel', 'Rhindon', 'Blackfyre', 'Brightroar', 'Dark Siste', 'Dawn', 'Hearteater', 'Heartsbane', 'Widow\'s Wail', 'Ice', 'Lady Forlorn', 'Longclaw', 'Red Rain', 'Albitr', 'Needle', 'The Black Blade', 'Mournblade', 'Oathkeeper', 'Naegling', 'Arvindr', 'Ravenbrand', 'Zar\'roc', 'Lion\'s Tooth', 'Doomgiver', 'Kanajana', 'Támerlein', 'Shieldbreaker', 'Woundhealer', 'Narsil', 'Lightbringer', 'Soulcutter', 'Sightblinder', 'Wayfinder', 'Orcrist', 'Stonecutter', 'Townsaver', 'The Sword of Gryffindor', 'Farslayer', 'Mindsword', 'Dragonslicer', 'Katopris', 'Backbiter', 'Undbitr', 'Brisingr', 'Barrow-blade', 'Coinspinner', 'Lhang', 'Traitor', 'Anglachel', 'Hadhafang', 'Vrangr', 'The Darksword', 'The Lightsword', 'Herugrim', 'Anaklusmos', 'Gúthwinë', 'Terminus Est', 'Memory', 'Khazid\'hea', 'Clamorer', 'Backbiter', 'Thorn', 'Charon\'s Claw', 'Twinkle', 'Godsbane', 'Icingdeath', 'Hrunting', 'Naegling', 'The Sword of the Dawn', 'Hill Cleaver', 'Werewindle', 'Kijin-marukuni-shige', 'Balaraw', 'Keyblade', 'Hina', 'Tessaiga', 'Sorrow', 'Singing Sword', 'Sword of Chaos', 'The Starsword', 'Biggoron Sword', 'Grayswandir', 'Rain Dragon', 'Shisui', 'Gurthang', 'Aranrúth', 'Nightfall', 'Sting'];
 
 function createSword(x, y, id) {
-    let sword = new Sword(x, y, __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__utils_HelperFunctions_js__["b" /* getRandomInt */])(2, 5), __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__utils_HelperFunctions_js__["b" /* getRandomInt */])(2, 3), swordNames[__webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__utils_HelperFunctions_js__["b" /* getRandomInt */])(0, swordNames.length - 1)], id);
-    sword.addNewEnchantment(new __WEBPACK_IMPORTED_MODULE_2__modifiers_Enchantment_js__["a" /* BleedEnchantment */]());
-    return sword;
+	let sword = new Sword(x, y, __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__utils_HelperFunctions_js__["b" /* getRandomInt */])(2, 5), __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__utils_HelperFunctions_js__["b" /* getRandomInt */])(2, 3), swordNames[__webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__utils_HelperFunctions_js__["b" /* getRandomInt */])(0, swordNames.length - 1)], id);
+	sword.addNewEnchantment(new __WEBPACK_IMPORTED_MODULE_2__modifiers_Enchantment_js__["a" /* BleedEnchantment */]());
+	return sword;
 }
 
 /***/ }),
@@ -2925,27 +2925,27 @@ module.exports = {"columns":120,"image":"../../../../static/images/DawnLike/Comp
 
 
 class LockedDoor extends __WEBPACK_IMPORTED_MODULE_1__entities_misc_Door_js__["a" /* default */] {
-    constructor(x, y, id) {
-        super(x, y, id);
-        this.name = "locked door";
-    }
+	constructor(x, y, id) {
+		super(x, y, id);
+		this.name = 'locked door';
+	}
 
-    react(actor) {
-        if (this.closed && actor === __WEBPACK_IMPORTED_MODULE_0__Game_js__["a" /* Game */].player) {
-            // if it's closed, then we need to make sure this
-            // actor who is trying to open the door has a key
-            let keys = actor.items().filter(i => {
-                return i instanceof __WEBPACK_IMPORTED_MODULE_2__entities_items_misc_Key_js__["a" /* default */];
-            });
-            if (keys.length === 0) {
-                __WEBPACK_IMPORTED_MODULE_0__Game_js__["a" /* Game */].log("You need a key to open this door.", "alert");
-            } else {
-                __WEBPACK_IMPORTED_MODULE_0__Game_js__["a" /* Game */].log("You use a key to unlock the door.", "player_move");
-                actor.removeFromInventory(keys[0]);
-                this.openDoor();
-            }
-        }
-    }
+	react(actor) {
+		if (this.closed && actor === __WEBPACK_IMPORTED_MODULE_0__Game_js__["a" /* Game */].player) {
+			// if it's closed, then we need to make sure this
+			// actor who is trying to open the door has a key
+			let keys = actor.items().filter(i => {
+				return i instanceof __WEBPACK_IMPORTED_MODULE_2__entities_items_misc_Key_js__["a" /* default */];
+			});
+			if (keys.length === 0) {
+				__WEBPACK_IMPORTED_MODULE_0__Game_js__["a" /* Game */].log('You need a key to open this door.', 'alert');
+			} else {
+				__WEBPACK_IMPORTED_MODULE_0__Game_js__["a" /* Game */].log('You use a key to unlock the door.', 'player_move');
+				actor.removeFromInventory(keys[0]);
+				this.openDoor();
+			}
+		}
+	}
 }
 /* harmony export (immutable) */ __webpack_exports__["a"] = LockedDoor;
 
@@ -2991,13 +2991,13 @@ new __WEBPACK_IMPORTED_MODULE_0_vue__["a" /* default */]({
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__Game_js__ = __webpack_require__("TiVF");
 
 class GameDisplay {
-    constructor() {}
+	constructor() {}
 
-    act() {
-        __WEBPACK_IMPORTED_MODULE_0__Game_js__["a" /* Game */].engine.lock();
-        __WEBPACK_IMPORTED_MODULE_0__Game_js__["a" /* Game */].updateDisplay();
-        __WEBPACK_IMPORTED_MODULE_0__Game_js__["a" /* Game */].engine.unlock();
-    }
+	act() {
+		__WEBPACK_IMPORTED_MODULE_0__Game_js__["a" /* Game */].engine.lock();
+		__WEBPACK_IMPORTED_MODULE_0__Game_js__["a" /* Game */].updateDisplay();
+		__WEBPACK_IMPORTED_MODULE_0__Game_js__["a" /* Game */].engine.unlock();
+	}
 }
 /* harmony export (immutable) */ __webpack_exports__["a"] = GameDisplay;
 
@@ -3057,521 +3057,528 @@ module.exports = {"height":29,"layers":[{"data":[10018,10018,10018,10018,10018,1
 
 
 function pathfinding(x, y) {
-    if (x <= 0 || x >= __WEBPACK_IMPORTED_MODULE_1__Game_js__["a" /* Game */].map.width || y <= 0 || y >= __WEBPACK_IMPORTED_MODULE_1__Game_js__["a" /* Game */].map.height) return false;
-    return !__WEBPACK_IMPORTED_MODULE_1__Game_js__["a" /* Game */].map.data[y][x].blocked();
+	if (x <= 0 || x >= __WEBPACK_IMPORTED_MODULE_1__Game_js__["a" /* Game */].map.width || y <= 0 || y >= __WEBPACK_IMPORTED_MODULE_1__Game_js__["a" /* Game */].map.height) return false;
+	return !__WEBPACK_IMPORTED_MODULE_1__Game_js__["a" /* Game */].map.data[y][x].blocked();
 }
 
 class Player extends __WEBPACK_IMPORTED_MODULE_2__entities_actors_Actor_js__["a" /* Actor */] {
-    constructor(x, y, id) {
-        super(x, y, {
-            id: id,
-            name: "you",
-            description: "It's you!",
-            fg: "yellow",
-            bg: "black",
-            visible: true,
-            targeting: false,
-            casting: false,
-            examining: false,
-            blocked: true,
-            leveled_up: true,
-            tempMessage: {},
-            combat: {
-                /* options.combat, dedicated to all things related to combat */
-                description: [" attacked ", " stabbed ", " jabbed ", " smashed "],
-                /* stat caps */
-                maxhp: 100,
-                maxmana: 15,
-                /* current stats */
-                xp: 0,
-                level: 1,
-                hp: 100,
-                mana: 15,
-                str: 6,
-                def: 3,
-                /* Per-turn effects */
-                hpRecovery: 5,
-                manaRecovery: 2.5,
-                invulnerable: false,
-                /* Magic & Ranged */
-                validTarget: null,
-                currentSpell: null,
-                spells: [],
-                range: 7 // how far we can see
-            }
-        });
-        this.path = new __WEBPACK_IMPORTED_MODULE_0_rot_js___default.a.Path.AStar(this.x, this.y, pathfinding);
-        this.nearbyEnemies = [];
-        this.currentLevel = __WEBPACK_IMPORTED_MODULE_1__Game_js__["a" /* Game */].currentLevel;
-        // Inventory is an array of objects that contain items and an action that can be done with that item.
-        // You can think of the objects as individual 'slots' to store the item with actions like 'use' or 'equip'.
-        // Give the player a few starting items:
-        // - a health potion
-        // - a random sword (equip the sword)
-        let sword = new __WEBPACK_IMPORTED_MODULE_5__entities_items_weapons_Sword_js__["b" /* Sword */](this.x, this.y, 2, 2, "Training Sword", 35);
-        this.addToInventory(sword);
-        // this.equipWeapon(this.inventory[0].item);
-        this.addToInventory(__webpack_require__.i(__WEBPACK_IMPORTED_MODULE_6__entities_items_weapons_ranged_Bow_js__["a" /* createBow */])(this.x, this.y, 664));
-        this.addToInventory(new __WEBPACK_IMPORTED_MODULE_7__entities_items_weapons_ranged_ammo_Arrow_js__["a" /* SteelArrow */](this.x, this.y, 784, 5));
-        this.addToInventory(new __WEBPACK_IMPORTED_MODULE_8__entities_items_potions_HealthPotion_js__["a" /* default */](this.x, this.y, 488));
-        this.addToInventory(new __WEBPACK_IMPORTED_MODULE_10__entities_items_potions_ManaPotion_js__["a" /* default */](this.x, this.y, 608));
+	constructor(x, y, id) {
+		super(x, y, {
+			id: id,
+			name: 'you',
+			description: 'It\'s you!',
+			fg: 'yellow',
+			bg: 'black',
+			visible: true,
+			targeting: false,
+			casting: false,
+			examining: false,
+			blocked: true,
+			leveled_up: true,
+			tempMessage: {},
+			combat: {
+				/* options.combat, dedicated to all things related to combat */
+				description: [' attacked ', ' stabbed ', ' jabbed ', ' smashed '],
+				/* stat caps */
+				maxhp: 100,
+				maxmana: 15,
+				/* current stats */
+				xp: 0,
+				level: 1,
+				hp: 100,
+				mana: 15,
+				str: 6,
+				def: 3,
+				/* Per-turn effects */
+				hpRecovery: 5,
+				manaRecovery: 2.5,
+				invulnerable: false,
+				/* Magic & Ranged */
+				validTarget: null,
+				currentSpell: null,
+				spells: [],
+				range: 7 // how far we can see
+			}
+		});
+		this.path = new __WEBPACK_IMPORTED_MODULE_0_rot_js___default.a.Path.AStar(this.x, this.y, pathfinding);
+		this.nearbyEnemies = [];
+		this.currentLevel = __WEBPACK_IMPORTED_MODULE_1__Game_js__["a" /* Game */].currentLevel;
+		// Inventory is an array of objects that contain items and an action that can be done with that item.
+		// You can think of the objects as individual 'slots' to store the item with actions like 'use' or 'equip'.
+		// Give the player a few starting items:
+		// - a health potion
+		// - a random sword (equip the sword)
+		let sword = new __WEBPACK_IMPORTED_MODULE_5__entities_items_weapons_Sword_js__["b" /* Sword */](this.x, this.y, 2, 2, 'Training Sword', 35);
+		this.addToInventory(sword);
+		// this.equipWeapon(this.inventory[0].item);
+		this.addToInventory(__webpack_require__.i(__WEBPACK_IMPORTED_MODULE_6__entities_items_weapons_ranged_Bow_js__["a" /* createBow */])(this.x, this.y, 664));
+		this.addToInventory(new __WEBPACK_IMPORTED_MODULE_7__entities_items_weapons_ranged_ammo_Arrow_js__["a" /* SteelArrow */](this.x, this.y, 784, 5));
+		this.addToInventory(new __WEBPACK_IMPORTED_MODULE_8__entities_items_potions_HealthPotion_js__["a" /* default */](this.x, this.y, 488));
+		this.addToInventory(new __WEBPACK_IMPORTED_MODULE_10__entities_items_potions_ManaPotion_js__["a" /* default */](this.x, this.y, 608));
 
-        // this.addToInventory(new ManaPotion(this.x,this.y, 495));
-        this.cb.spells.push(new __WEBPACK_IMPORTED_MODULE_11__magic_Spell_js__["a" /* MagicDart */]());
-        this.cb.spells.push(new __WEBPACK_IMPORTED_MODULE_11__magic_Spell_js__["b" /* Pain */]());
-        this.cb.spells.push(new __WEBPACK_IMPORTED_MODULE_11__magic_Spell_js__["c" /* Regeneration */]());
-        this.cb.spells.push(new __WEBPACK_IMPORTED_MODULE_11__magic_Spell_js__["d" /* VampiricDraining */]());
-        this.cb.spells.push(new __WEBPACK_IMPORTED_MODULE_11__magic_Spell_js__["e" /* AnimateDead */]());
+		// this.addToInventory(new ManaPotion(this.x,this.y, 495));
+		this.cb.spells.push(new __WEBPACK_IMPORTED_MODULE_11__magic_Spell_js__["a" /* MagicDart */]());
+		this.cb.spells.push(new __WEBPACK_IMPORTED_MODULE_11__magic_Spell_js__["b" /* Pain */]());
+		this.cb.spells.push(new __WEBPACK_IMPORTED_MODULE_11__magic_Spell_js__["c" /* Regeneration */]());
+		this.cb.spells.push(new __WEBPACK_IMPORTED_MODULE_11__magic_Spell_js__["d" /* VampiricDraining */]());
+		this.cb.spells.push(new __WEBPACK_IMPORTED_MODULE_11__magic_Spell_js__["e" /* AnimateDead */]());
 
-        this.selectSpell(this.cb.spells[0]);
-    }
+		this.selectSpell(this.cb.spells[0]);
+	}
 
-    selectSpell(spell) {
-        if (this.cb.spells.includes(spell)) {
-            this.cb.currentSpell = spell;
-        }
-    }
+	selectSpell(spell) {
+		if (this.cb.spells.includes(spell)) {
+			this.cb.currentSpell = spell;
+		}
+	}
 
-    recalculatePath() {
-        this.path = new __WEBPACK_IMPORTED_MODULE_0_rot_js___default.a.Path.AStar(this.x, this.y, pathfinding);
-    }
+	recalculatePath() {
+		this.path = new __WEBPACK_IMPORTED_MODULE_0_rot_js___default.a.Path.AStar(this.x, this.y, pathfinding);
+	}
 
-    interact(actor) {
-        // returns true if we can continue to move to the tile
-        if ("cb" in actor && actor.cb.hostile) {
-            this.attack(actor);
-            if (!actor.isDead()) actor.react(this);else return true; // we can move
-        } else {
-            // non-combat interaction which leties from each actor to another,
-            // so we will design non-combat based actors to simply perform actions
-            // in a reactionary manner so that it offloads player code blocks.
-            actor.react(this);
-            return false;
-        }
-    }
+	interact(actor) {
+		// returns true if we can continue to move to the tile
+		if ('cb' in actor && actor.cb.hostile) {
+			this.attack(actor);
+			if (!actor.isDead()) actor.react(this);else return true; // we can move
+		} else {
+			// non-combat interaction which leties from each actor to another,
+			// so we will design non-combat based actors to simply perform actions
+			// in a reactionary manner so that it offloads player code blocks.
+			actor.react(this);
+			return false;
+		}
+	}
 
-    gain_xp(xp) {
-        this.cb.xp += xp;
-        if (__WEBPACK_IMPORTED_MODULE_14__entities_Entity_js__["a" /* xp_levels */][this.cb.level + 1] <= this.cb.xp) this.level_up();
-    }
+	gain_xp(xp) {
+		this.cb.xp += xp;
+		if (__WEBPACK_IMPORTED_MODULE_14__entities_Entity_js__["a" /* xp_levels */][this.cb.level + 1] <= this.cb.xp) {
+			this.level_up();
+		}
+	}
 
-    remainingXP() {
-        return __WEBPACK_IMPORTED_MODULE_14__entities_Entity_js__["a" /* xp_levels */][this.cb.level + 1] - this.cb.xp;
-    }
+	remainingXP() {
+		return __WEBPACK_IMPORTED_MODULE_14__entities_Entity_js__["a" /* xp_levels */][this.cb.level + 1] - this.cb.xp;
+	}
 
-    level_up() {
-        this.cb.level += 1;
-        this.cb.maxhp += 5;
-        this.cb.str += 1;
-        this.cb.hp = this.cb.maxhp;
-        this.cb.mana = this.cb.maxmana;
-        __WEBPACK_IMPORTED_MODULE_1__Game_js__["a" /* Game */].log(`You leveled up! You are now Level ${this.cb.level}.`, 'level_up');
-        __WEBPACK_IMPORTED_MODULE_1__Game_js__["a" /* Game */].log(`Your strength and health have improved.`, 'level_up');
-    }
+	level_up() {
+		this.cb.level += 1;
+		this.cb.maxhp += 5;
+		this.cb.str += 1;
+		this.cb.hp = this.cb.maxhp;
+		this.cb.mana = this.cb.maxmana;
+		__WEBPACK_IMPORTED_MODULE_1__Game_js__["a" /* Game */].log(`You leveled up! You are now Level ${this.cb.level}.`, 'level_up');
+		__WEBPACK_IMPORTED_MODULE_1__Game_js__["a" /* Game */].log('Your strength and health have improved.', 'level_up');
+	}
 
-    act() {
-        super.act();
-        this.path = new __WEBPACK_IMPORTED_MODULE_0_rot_js___default.a.Path.AStar(this.x, this.y, pathfinding);
-        this.nearbyEnemies = __WEBPACK_IMPORTED_MODULE_1__Game_js__["a" /* Game */].getNearbyEnemies();
-        this.currentLevel = __WEBPACK_IMPORTED_MODULE_1__Game_js__["a" /* Game */].currentLevel;
-        __WEBPACK_IMPORTED_MODULE_1__Game_js__["a" /* Game */].engine.lock();
-        window.addEventListener("keydown", this);
-        // window.addEventListener("click", this);
-    }
+	act() {
+		super.act();
+		this.path = new __WEBPACK_IMPORTED_MODULE_0_rot_js___default.a.Path.AStar(this.x, this.y, pathfinding);
+		this.nearbyEnemies = __WEBPACK_IMPORTED_MODULE_1__Game_js__["a" /* Game */].getNearbyEnemies();
+		this.currentLevel = __WEBPACK_IMPORTED_MODULE_1__Game_js__["a" /* Game */].currentLevel;
+		__WEBPACK_IMPORTED_MODULE_1__Game_js__["a" /* Game */].engine.lock();
+		window.addEventListener('keydown', this);
+		// window.addEventListener("click", this);
+	}
 
-    handleEvent(evt) {
+	handleEvent(evt) {
+		/* Mouse controls to hover over tiles for info (describe) */
+		if (evt.type === 'click') {
+			console.log(__WEBPACK_IMPORTED_MODULE_1__Game_js__["a" /* Game */].eventToTile(evt));
+			return;
+		}
 
-        /* Mouse controls to hover over tiles for info (describe) */
-        if (evt.type === "click") {
-            console.log(__WEBPACK_IMPORTED_MODULE_1__Game_js__["a" /* Game */].eventToTile(evt));
-            return;
-        }
+		if (evt.type === 'mousemove') {
+			__WEBPACK_IMPORTED_MODULE_1__Game_js__["a" /* Game */].hoverTile(evt);
+			return;
+		}
 
-        if (evt.type === "mousemove") {
-            __WEBPACK_IMPORTED_MODULE_1__Game_js__["a" /* Game */].hoverTile(evt);
-            return;
-        }
+		let code = evt.keyCode;
+		let shift_pressed = evt.getModifierState('Shift');
+		let movementKeys = [0, 1, 2, 3, 4, 5, 6, 7];
+		let cycleKeys = [9, 61, 187, 191];
+		let confirmKeys = [101, 13, 190];
+		if (cycleKeys.includes(code)) {
+			evt.preventDefault();
+		}
 
-        let code = evt.keyCode;
-        let shift_pressed = evt.getModifierState("Shift");
-        let movementKeys = [0, 1, 2, 3, 4, 5, 6, 7];
-        let cycleKeys = [9, 61, 187, 191];
-        let confirmKeys = [101, 13, 190];
-        if (cycleKeys.includes(code)) evt.preventDefault();
+		let endTurn = function () {
+			window.removeEventListener('keydown', this);
+			__WEBPACK_IMPORTED_MODULE_1__Game_js__["a" /* Game */].engine.unlock();
+		};
 
-        let endTurn = function () {
-            window.removeEventListener("keydown", this);
-            __WEBPACK_IMPORTED_MODULE_1__Game_js__["a" /* Game */].engine.unlock();
-        };
+		let restartTurn = function () {
+			window.removeEventListener('keydown', this);
+			window.addEventListener('keydown', this);
+		};
 
-        let restartTurn = function () {
-            window.removeEventListener("keydown", this);
-            window.addEventListener("keydown", this);
-        };
+		let keyMap = {
+			/* Arrow Key movement */
+			39: 2,
+			37: 6,
+			38: 0,
+			40: 4,
+			/* Num Pad Movement */
+			104: 0,
+			105: 1,
+			102: 2,
+			99: 3,
+			98: 4,
+			97: 5,
+			100: 6,
+			103: 7,
+			/* Rest using '5' in numpad */
+			101: 'rest',
+			/* vi movement */
+			75: 0,
+			85: 1,
+			76: 2,
+			78: 3,
+			74: 4,
+			66: 5,
+			72: 6,
+			89: 7,
+			/* Fire a weapon */
+			70: 'fire',
+			/* Cast a spell */
+			90: 'cast',
+			/* Misc */
+			188: 'pickup',
+			71: 'pickup',
+			190: 'rest',
+			88: 'examine'
 
-        let keyMap = {
-            /* Arrow Key movement */
-            39: 2,
-            37: 6,
-            38: 0,
-            40: 4,
-            /* Num Pad Movement */
-            104: 0,
-            105: 1,
-            102: 2,
-            99: 3,
-            98: 4,
-            97: 5,
-            100: 6,
-            103: 7,
-            /* Rest using '5' in numpad */
-            101: "rest",
-            /* vi movement */
-            75: 0,
-            85: 1,
-            76: 2,
-            78: 3,
-            74: 4,
-            66: 5,
-            72: 6,
-            89: 7,
-            /* Fire a weapon */
-            70: "fire",
-            /* Cast a spell */
-            90: "cast",
-            /* Misc */
-            188: "pickup",
-            71: "pickup",
-            190: "rest",
-            88: "examine"
-        };
+			// // currently firing a ranged weapon
+			// if (this.targeting) {
+			//     if (!(code in keyMap) || !movementKeys.includes(keyMap[code])) { // invalid key press, retry turn
+			//         if (code === 70 || code == 27) { //escape key
+			//             Game.log(`You put away your ${this.cb.equipment.weapon.type.toLowerCase()}.`, 'information');
+			//             this.targeting = false;
+			//         }
+			//         restartTurn();
+			//         return;
+			//     } else {
+			//         // valid target direction
+			//         let ammo = this.cb.equipment.ammo;
+			//         ammo.quantity--;
+			//         if (ammo.quantity === 0) {
+			//             Game.log(`You fire your last ${ammo.type.toLowerCase()}!`, "alert");
+			//         }
+			//         this.fireRangedWeapon(ammo, keyMap[code]);
+			//         this.targeting = false;
+			//         if (ammo.quantity === 0) { // used up all the ammo, need to remove it from the inventory
+			//             this.unequipAmmo();
+			//             this.removeFromInventory(ammo);
+			//         }
+			//         endTurn();
+			//         return;
+			//     }
+			// }
 
-        // // currently firing a ranged weapon
-        // if (this.targeting) {
-        //     if (!(code in keyMap) || !movementKeys.includes(keyMap[code])) { // invalid key press, retry turn
-        //         if (code === 70 || code == 27) { //escape key
-        //             Game.log(`You put away your ${this.cb.equipment.weapon.type.toLowerCase()}.`, 'information');
-        //             this.targeting = false;
-        //         }
-        //         restartTurn();
-        //         return;
-        //     } else {
-        //         // valid target direction
-        //         let ammo = this.cb.equipment.ammo;
-        //         ammo.quantity--;
-        //         if (ammo.quantity === 0) {
-        //             Game.log(`You fire your last ${ammo.type.toLowerCase()}!`, "alert");
-        //         }
-        //         this.fireRangedWeapon(ammo, keyMap[code]);
-        //         this.targeting = false;
-        //         if (ammo.quantity === 0) { // used up all the ammo, need to remove it from the inventory
-        //             this.unequipAmmo();
-        //             this.removeFromInventory(ammo);
-        //         }
-        //         endTurn();
-        //         return;
-        //     }
-        // }
+		};if (this.targeting) {
+			if (!movementKeys.includes(keyMap[code]) && !confirmKeys.includes(code)) {
+				if (code === 70 || code == 27) {
+					__WEBPACK_IMPORTED_MODULE_1__Game_js__["a" /* Game */].log(`You put away your ${this.cb.equipment.weapon.type.toLowerCase()}.`, 'information');
+					this.targeting = false;
+					__WEBPACK_IMPORTED_MODULE_1__Game_js__["a" /* Game */].enemyCycle = null;
+					__WEBPACK_IMPORTED_MODULE_1__Game_js__["a" /* Game */].clearSelectedTile();
+				} else if (cycleKeys.includes(code)) {
+					this.validTarget = __WEBPACK_IMPORTED_MODULE_1__Game_js__["a" /* Game */].cycleThroughSelectableEnemies();
+				}
+			} else if (movementKeys.includes(keyMap[code])) {
+				let diff = __WEBPACK_IMPORTED_MODULE_0_rot_js___default.a.DIRS[8][keyMap[code]];
+				this.validTarget = __WEBPACK_IMPORTED_MODULE_1__Game_js__["a" /* Game */].changeSelectedTile(diff);
+			} else {
+				if (confirmKeys.includes(code)) {
+					if (this.validTarget) {
+						let { x, y } = __WEBPACK_IMPORTED_MODULE_1__Game_js__["a" /* Game */].selectedTile;
+						let tile = __WEBPACK_IMPORTED_MODULE_1__Game_js__["a" /* Game */].map.data[y][x];
+						let ammo = this.cb.equipment.ammo;
+						let weapon = this.cb.equipment.weapon;
+						let dmg = weapon.roll() + ammo.cb.damage + this.cb.str;
+						ammo.quantity--;
+						if (ammo.quantity === 0) {
+							__WEBPACK_IMPORTED_MODULE_1__Game_js__["a" /* Game */].log(`You fire your last ${ammo.type.toLowerCase()}!`, 'alert');
+						}
+						// find actors on this tile
+						let enemies = tile.actors.filter(e => {
+							return e.cb !== undefined && e.cb.hostile;
+						});
+						if (enemies.length > 0) {
+							let enemy = enemies[0];
+							this.targeting = false;
+							let evtdamage = `${__webpack_require__.i(__WEBPACK_IMPORTED_MODULE_3__utils_HelperFunctions_js__["e" /* addPrefix */])(this.name).capitalize()} hit ${__webpack_require__.i(__WEBPACK_IMPORTED_MODULE_3__utils_HelperFunctions_js__["e" /* addPrefix */])(enemy.name)} with ${__webpack_require__.i(__WEBPACK_IMPORTED_MODULE_3__utils_HelperFunctions_js__["e" /* addPrefix */])(ammo.type.toLowerCase())} and dealt ${dmg} damage.`;
+							__WEBPACK_IMPORTED_MODULE_1__Game_js__["a" /* Game */].log(evtdamage, 'player_move');
+							enemy.damage(dmg);
+						} else {
+							__WEBPACK_IMPORTED_MODULE_1__Game_js__["a" /* Game */].log(`Your ${ammo.type.toLowerCase()} didn't hit anything!`, 'alert');
+						}
+						if (ammo.quantity == 0) {
+							this.unequipAmmo();
+							this.removeFromInventory(ammo);
+						}
+						this.targeting = false;
+						__WEBPACK_IMPORTED_MODULE_1__Game_js__["a" /* Game */].enemyCycle = null;
+						this.validTarget = null;
+						__WEBPACK_IMPORTED_MODULE_1__Game_js__["a" /* Game */].clearSelectedTile();
+						endTurn();
+						return;
+					} else {
+						__WEBPACK_IMPORTED_MODULE_1__Game_js__["a" /* Game */].log('You cannot shoot this tile because it\'s blocked or out of range!', 'alert');
+					}
+				}
+			}
+			restartTurn();
+			return;
+		}
 
-        if (this.targeting) {
-            if (!movementKeys.includes(keyMap[code]) && !confirmKeys.includes(code)) {
-                if (code === 70 || code == 27) {
-                    __WEBPACK_IMPORTED_MODULE_1__Game_js__["a" /* Game */].log(`You put away your ${this.cb.equipment.weapon.type.toLowerCase()}.`, 'information');
-                    this.targeting = false;
-                    __WEBPACK_IMPORTED_MODULE_1__Game_js__["a" /* Game */].enemyCycle = null;
-                    __WEBPACK_IMPORTED_MODULE_1__Game_js__["a" /* Game */].clearSelectedTile();
-                } else if (cycleKeys.includes(code)) {
-                    this.validTarget = __WEBPACK_IMPORTED_MODULE_1__Game_js__["a" /* Game */].cycleThroughSelectableEnemies();
-                }
-            } else if (movementKeys.includes(keyMap[code])) {
-                let diff = __WEBPACK_IMPORTED_MODULE_0_rot_js___default.a.DIRS[8][keyMap[code]];
-                this.validTarget = __WEBPACK_IMPORTED_MODULE_1__Game_js__["a" /* Game */].changeSelectedTile(diff);
-            } else {
-                if (confirmKeys.includes(code)) {
-                    if (this.validTarget) {
-                        let { x, y } = __WEBPACK_IMPORTED_MODULE_1__Game_js__["a" /* Game */].selectedTile;
-                        let tile = __WEBPACK_IMPORTED_MODULE_1__Game_js__["a" /* Game */].map.data[y][x];
-                        let ammo = this.cb.equipment.ammo;
-                        let weapon = this.cb.equipment.weapon;
-                        let dmg = weapon.roll() + ammo.cb.damage + this.cb.str;
-                        ammo.quantity--;
-                        if (ammo.quantity === 0) {
-                            __WEBPACK_IMPORTED_MODULE_1__Game_js__["a" /* Game */].log(`You fire your last ${ammo.type.toLowerCase()}!`, "alert");
-                        }
-                        // find actors on this tile
-                        let enemies = tile.actors.filter(e => {
-                            return e.cb !== undefined && e.cb.hostile;
-                        });
-                        if (enemies.length > 0) {
-                            let enemy = enemies[0];
-                            this.targeting = false;
-                            let evtdamage = `${__webpack_require__.i(__WEBPACK_IMPORTED_MODULE_3__utils_HelperFunctions_js__["e" /* addPrefix */])(this.name).capitalize()} hit ${__webpack_require__.i(__WEBPACK_IMPORTED_MODULE_3__utils_HelperFunctions_js__["e" /* addPrefix */])(enemy.name)} with ${__webpack_require__.i(__WEBPACK_IMPORTED_MODULE_3__utils_HelperFunctions_js__["e" /* addPrefix */])(ammo.type.toLowerCase())} and dealt ${dmg} damage.`;
-                            __WEBPACK_IMPORTED_MODULE_1__Game_js__["a" /* Game */].log(evtdamage, 'player_move');
-                            enemy.damage(dmg);
-                        } else {
-                            __WEBPACK_IMPORTED_MODULE_1__Game_js__["a" /* Game */].log(`Your ${ammo.type.toLowerCase()} didn't hit anything!`, "alert");
-                        }
-                        if (ammo.quantity == 0) {
-                            this.unequipAmmo();
-                            this.removeFromInventory(ammo);
-                        }
-                        this.targeting = false;
-                        __WEBPACK_IMPORTED_MODULE_1__Game_js__["a" /* Game */].enemyCycle = null;
-                        this.validTarget = null;
-                        __WEBPACK_IMPORTED_MODULE_1__Game_js__["a" /* Game */].clearSelectedTile();
-                        endTurn();
-                        return;
-                    } else {
-                        __WEBPACK_IMPORTED_MODULE_1__Game_js__["a" /* Game */].log("You cannot shoot this tile because it's blocked or out of range!", "alert");
-                    }
-                }
-            }
-            restartTurn();
-            return;
-        }
+		// currently casting a spell
+		if (this.casting) {
+			if (!movementKeys.includes(keyMap[code]) && !confirmKeys.includes(code)) {
+				if (code === 90 || code == 27) {
+					__WEBPACK_IMPORTED_MODULE_1__Game_js__["a" /* Game */].log('You stop casting the spell.', 'information');
+					this.casting = false;
+					__WEBPACK_IMPORTED_MODULE_1__Game_js__["a" /* Game */].enemyCycle = null;
+					__WEBPACK_IMPORTED_MODULE_1__Game_js__["a" /* Game */].clearSelectedTile();
+				} else if (cycleKeys.includes(code)) {
+					this.validTarget = __WEBPACK_IMPORTED_MODULE_1__Game_js__["a" /* Game */].cycleThroughSelectableEnemies();
+				}
+			} else if (movementKeys.includes(keyMap[code])) {
+				let diff = __WEBPACK_IMPORTED_MODULE_0_rot_js___default.a.DIRS[8][keyMap[code]];
+				this.validTarget = __WEBPACK_IMPORTED_MODULE_1__Game_js__["a" /* Game */].changeSelectedTile(diff);
+			} else {
+				if (this.validTarget) {
+					if (confirmKeys.includes(code)) {
+						let { x, y } = __WEBPACK_IMPORTED_MODULE_1__Game_js__["a" /* Game */].selectedTile;
+						let tile = __WEBPACK_IMPORTED_MODULE_1__Game_js__["a" /* Game */].map.data[y][x];
+						// find actors on this tile
+						let enemies = tile.actors.filter(e => {
+							return e.cb !== undefined && e.cb.hostile;
+						});
+						if (enemies.length > 0) {
+							let enemy = enemies[0];
+							__WEBPACK_IMPORTED_MODULE_1__Game_js__["a" /* Game */].log(`You cast ${this.cb.currentSpell.name} at the ${enemies[0].name}.`, 'magic');
+							this.cb.currentSpell.cast(enemies[0], this);
+						} else {
+							__WEBPACK_IMPORTED_MODULE_1__Game_js__["a" /* Game */].log(`You cast ${this.cb.currentSpell.name} but it hits nothing!`, 'magic');
+						}
+						this.cb.mana -= this.cb.currentSpell.manaCost;
+						this.casting = false;
+						__WEBPACK_IMPORTED_MODULE_1__Game_js__["a" /* Game */].enemyCycle = null;
+						__WEBPACK_IMPORTED_MODULE_1__Game_js__["a" /* Game */].clearSelectedTile();
+						this.validTarget = null;
+						endTurn();
+						return;
+					}
+				} else {
+					__WEBPACK_IMPORTED_MODULE_1__Game_js__["a" /* Game */].log(`You cannot cast ${this.cb.currentSpell.name} at this tile because it's blocked or too far away.`, 'alert');
+				}
+			}
+			restartTurn();
+			return;
+		}
 
-        // currently casting a spell
-        if (this.casting) {
-            if (!movementKeys.includes(keyMap[code]) && !confirmKeys.includes(code)) {
-                if (code === 90 || code == 27) {
-                    __WEBPACK_IMPORTED_MODULE_1__Game_js__["a" /* Game */].log("You stop casting the spell.", "information");
-                    this.casting = false;
-                    __WEBPACK_IMPORTED_MODULE_1__Game_js__["a" /* Game */].enemyCycle = null;
-                    __WEBPACK_IMPORTED_MODULE_1__Game_js__["a" /* Game */].clearSelectedTile();
-                } else if (cycleKeys.includes(code)) {
-                    this.validTarget = __WEBPACK_IMPORTED_MODULE_1__Game_js__["a" /* Game */].cycleThroughSelectableEnemies();
-                }
-            } else if (movementKeys.includes(keyMap[code])) {
-                let diff = __WEBPACK_IMPORTED_MODULE_0_rot_js___default.a.DIRS[8][keyMap[code]];
-                this.validTarget = __WEBPACK_IMPORTED_MODULE_1__Game_js__["a" /* Game */].changeSelectedTile(diff);
-            } else {
-                if (this.validTarget) {
-                    if (confirmKeys.includes(code)) {
-                        let { x, y } = __WEBPACK_IMPORTED_MODULE_1__Game_js__["a" /* Game */].selectedTile;
-                        let tile = __WEBPACK_IMPORTED_MODULE_1__Game_js__["a" /* Game */].map.data[y][x];
-                        // find actors on this tile
-                        let enemies = tile.actors.filter(e => {
-                            return e.cb !== undefined && e.cb.hostile;
-                        });
-                        if (enemies.length > 0) {
-                            let enemy = enemies[0];
-                            __WEBPACK_IMPORTED_MODULE_1__Game_js__["a" /* Game */].log(`You cast ${this.cb.currentSpell.name} at the ${enemies[0].name}.`, "magic");
-                            this.cb.currentSpell.cast(enemies[0], this);
-                        } else {
-                            __WEBPACK_IMPORTED_MODULE_1__Game_js__["a" /* Game */].log(`You cast ${this.cb.currentSpell.name} but it hits nothing!`, "magic");
-                        }
-                        this.cb.mana -= this.cb.currentSpell.manaCost;
-                        this.casting = false;
-                        __WEBPACK_IMPORTED_MODULE_1__Game_js__["a" /* Game */].enemyCycle = null;
-                        __WEBPACK_IMPORTED_MODULE_1__Game_js__["a" /* Game */].clearSelectedTile();
-                        this.validTarget = null;
-                        endTurn();
-                        return;
-                    }
-                } else {
-                    __WEBPACK_IMPORTED_MODULE_1__Game_js__["a" /* Game */].log(`You cannot cast ${this.cb.currentSpell.name} at this tile because it's blocked or too far away.`, "alert");
-                }
-            }
-            restartTurn();
-            return;
-        }
+		if (this.examining) {
+			if (!movementKeys.includes(keyMap[code])) {
+				if (code === 27 || code == 88) {
+					__WEBPACK_IMPORTED_MODULE_1__Game_js__["a" /* Game */].log('You quit examining the area.', 'information');
+					this.examining = false;
+					__WEBPACK_IMPORTED_MODULE_1__Game_js__["a" /* Game */].clearSelectedTile();
+				}
+			} else if (movementKeys.includes(keyMap[code])) {
+				let diff = __WEBPACK_IMPORTED_MODULE_0_rot_js___default.a.DIRS[8][keyMap[code]];
+				this.validTarget = __WEBPACK_IMPORTED_MODULE_1__Game_js__["a" /* Game */].changeSelectedTile(diff);
+			}
 
-        if (this.examining) {
-            if (!movementKeys.includes(keyMap[code])) {
-                if (code === 27 || code == 88) {
-                    __WEBPACK_IMPORTED_MODULE_1__Game_js__["a" /* Game */].log("You quit examining the area.", "information");
-                    this.examining = false;
-                    __WEBPACK_IMPORTED_MODULE_1__Game_js__["a" /* Game */].clearSelectedTile();
-                }
-            } else if (movementKeys.includes(keyMap[code])) {
-                let diff = __WEBPACK_IMPORTED_MODULE_0_rot_js___default.a.DIRS[8][keyMap[code]];
-                this.validTarget = __WEBPACK_IMPORTED_MODULE_1__Game_js__["a" /* Game */].changeSelectedTile(diff);
-            }
+			restartTurn();
+			return;
+		}
 
-            restartTurn();
-            return;
-        }
+		if (!(code in keyMap)) {
+			// invalid key press, retry turn
+			restartTurn();
+			return;
+		}
 
-        if (!(code in keyMap)) {
-            // invalid key press, retry turn
-            restartTurn();
-            return;
-        }
+		if (keyMap[code] === 'rest' && !shift_pressed) {
+			// Rest
+			// this.heal(this.cb.hpRecovery);
+			// this.restore(this.cb.manaRecovery);
+			__WEBPACK_IMPORTED_MODULE_1__Game_js__["a" /* Game */].log('You rest for a turn.', 'player_move');
+		} else if (keyMap[code] === 'pickup' && !shift_pressed) {
+			this.pickup();
+		} else if (keyMap[code] === 'rest' && shift_pressed) {
+			// climb down
+			this.climb('down');
+		} else if (keyMap[code] === 'pickup' && shift_pressed) {
+			this.climb('up');
+		} else if (keyMap[code] === 'fire' && !shift_pressed) {
+			let weapon = this.cb.equipment.weapon;
+			let ammo = this.cb.equipment.ammo;
+			if (weapon !== null && ammo !== null && weapon.cb.ranged && ammo.cb.ammoType === weapon.cb.ammoType && ammo.quantity > 0) {
+				__WEBPACK_IMPORTED_MODULE_1__Game_js__["a" /* Game */].log(`You take aim with your ${weapon.type.toLowerCase()}.`, 'information');
+				__WEBPACK_IMPORTED_MODULE_1__Game_js__["a" /* Game */].log(`Select a target with the movement keys and press [enter] to fire your ${weapon.type.toLowerCase()}.`, 'player_move');
+				this.validTarget = __WEBPACK_IMPORTED_MODULE_1__Game_js__["a" /* Game */].selectNearestEnemyTile();
+				this.targeting = true;
+				restartTurn();
+				return;
+			} else {
+				if (weapon === null || !weapon.cb.ranged) {
+					__WEBPACK_IMPORTED_MODULE_1__Game_js__["a" /* Game */].log('You don\'t have a ranged weapon equipped!', 'information');
+				} else if (ammo === null) {
+					__WEBPACK_IMPORTED_MODULE_1__Game_js__["a" /* Game */].log('You don\'t have any ammunition equipped.', 'information');
+				} else if (ammo.cb.ammoType !== weapon.cb.ammoType) {
+					__WEBPACK_IMPORTED_MODULE_1__Game_js__["a" /* Game */].log('You don\'t have the right ammunition equipped for this weapon.', 'information');
+				}
 
-        if ("rest" === keyMap[code] && !shift_pressed) {
-            // Rest
-            // this.heal(this.cb.hpRecovery);
-            // this.restore(this.cb.manaRecovery);
-            __WEBPACK_IMPORTED_MODULE_1__Game_js__["a" /* Game */].log("You rest for a turn.", 'player_move');
-        } else if ("pickup" === keyMap[code] && !shift_pressed) {
-            this.pickup();
-        } else if ("rest" === keyMap[code] && shift_pressed) {
-            // climb down
-            this.climb("down");
-        } else if ("pickup" === keyMap[code] && shift_pressed) {
-            this.climb("up");
-        } else if ("fire" === keyMap[code] && !shift_pressed) {
-            let weapon = this.cb.equipment.weapon;
-            let ammo = this.cb.equipment.ammo;
-            if (weapon !== null && ammo !== null && weapon.cb.ranged && ammo.cb.ammoType === weapon.cb.ammoType && ammo.quantity > 0) {
-                __WEBPACK_IMPORTED_MODULE_1__Game_js__["a" /* Game */].log(`You take aim with your ${weapon.type.toLowerCase()}.`, 'information');
-                __WEBPACK_IMPORTED_MODULE_1__Game_js__["a" /* Game */].log(`Select a target with the movement keys and press [enter] to fire your ${weapon.type.toLowerCase()}.`, "player_move");
-                this.validTarget = __WEBPACK_IMPORTED_MODULE_1__Game_js__["a" /* Game */].selectNearestEnemyTile();
-                this.targeting = true;
-                restartTurn();
-                return;
-            } else {
-                if (weapon === null || !weapon.cb.ranged) __WEBPACK_IMPORTED_MODULE_1__Game_js__["a" /* Game */].log("You don't have a ranged weapon equipped!", "information");else if (ammo === null) __WEBPACK_IMPORTED_MODULE_1__Game_js__["a" /* Game */].log("You don't have any ammunition equipped.", "information");else if (ammo.cb.ammoType !== weapon.cb.ammoType) __WEBPACK_IMPORTED_MODULE_1__Game_js__["a" /* Game */].log("You don't have the right ammunition equipped for this weapon.", "information");
+				restartTurn();
+				return;
+			}
+		} else if (keyMap[code] === 'cast') {
+			let currentSpell = this.cb.currentSpell;
+			if (currentSpell === null) {
+				__WEBPACK_IMPORTED_MODULE_1__Game_js__["a" /* Game */].log('You must select a spell to cast. Select one from the spellbook!', 'information');
+				restartTurn();
+				return;
+			} else if (currentSpell.manaCost > this.cb.mana) {
+				__WEBPACK_IMPORTED_MODULE_1__Game_js__["a" /* Game */].log(`You don't have enough mana to cast ${currentSpell.name}!`, 'alert');
+				restartTurn();
+				return;
+			}
 
-                restartTurn();
-                return;
-            }
-        } else if ("cast" === keyMap[code]) {
-            let currentSpell = this.cb.currentSpell;
-            if (currentSpell === null) {
-                __WEBPACK_IMPORTED_MODULE_1__Game_js__["a" /* Game */].log("You must select a spell to cast. Select one from the spellbook!", "information");
-                restartTurn();
-                return;
-            } else if (currentSpell.manaCost > this.cb.mana) {
-                __WEBPACK_IMPORTED_MODULE_1__Game_js__["a" /* Game */].log(`You don't have enough mana to cast ${currentSpell.name}!`, "alert");
-                restartTurn();
-                return;
-            }
+			/* TODO : check if the cast is targeted or self casted */
+			if (currentSpell.targetType === __WEBPACK_IMPORTED_MODULE_11__magic_Spell_js__["f" /* targetTypes */].SELF) {
+				__WEBPACK_IMPORTED_MODULE_1__Game_js__["a" /* Game */].log(`You cast ${currentSpell.name}.`, 'magic');
+				currentSpell.cast(this, this);
+				this.cb.mana -= currentSpell.manaCost;
+				restartTurn();
+				return;
+			} else if (currentSpell.targetType === __WEBPACK_IMPORTED_MODULE_11__magic_Spell_js__["f" /* targetTypes */].TARGET) {
+				__WEBPACK_IMPORTED_MODULE_1__Game_js__["a" /* Game */].log('You begin casting a spell.', 'defend');
+				__WEBPACK_IMPORTED_MODULE_1__Game_js__["a" /* Game */].log('Select a target with the movement keys and press [enter] to cast the spell.', 'player_move');
+				this.validTarget = __WEBPACK_IMPORTED_MODULE_1__Game_js__["a" /* Game */].selectNearestEnemyTile();
+				this.casting = true;
+				// our first selected tile can be the nearest enemy
+				restartTurn();
+				return;
+			}
+		} else if (keyMap[code] === 'examine') {
+			this.examining = true;
+			__WEBPACK_IMPORTED_MODULE_1__Game_js__["a" /* Game */].selectNearestEnemyTile();
+			restartTurn();
+			return;
+		} else {
+			let diff = __WEBPACK_IMPORTED_MODULE_0_rot_js___default.a.DIRS[8][keyMap[code]];
+			let nx = this.x + diff[0];
+			let ny = this.y + diff[1];
+			if (!this.tryMove(nx, ny)) {
+				restartTurn();
+				return;
+			}
+		}
+		endTurn();
+	}
 
-            /* TODO : check if the cast is targeted or self casted */
-            if (currentSpell.targetType === __WEBPACK_IMPORTED_MODULE_11__magic_Spell_js__["f" /* targetTypes */].SELF) {
-                __WEBPACK_IMPORTED_MODULE_1__Game_js__["a" /* Game */].log(`You cast ${currentSpell.name}.`, "magic");
-                currentSpell.cast(this, this);
-                this.cb.mana -= currentSpell.manaCost;
-                restartTurn();
-                return;
-            } else if (currentSpell.targetType === __WEBPACK_IMPORTED_MODULE_11__magic_Spell_js__["f" /* targetTypes */].TARGET) {
-                __WEBPACK_IMPORTED_MODULE_1__Game_js__["a" /* Game */].log("You begin casting a spell.", "defend");
-                __WEBPACK_IMPORTED_MODULE_1__Game_js__["a" /* Game */].log("Select a target with the movement keys and press [enter] to cast the spell.", "player_move");
-                this.validTarget = __WEBPACK_IMPORTED_MODULE_1__Game_js__["a" /* Game */].selectNearestEnemyTile();
-                this.casting = true;
-                // our first selected tile can be the nearest enemy
-                restartTurn();
-                return;
-            }
-        } else if ("examine" === keyMap[code]) {
-            this.examining = true;
-            __WEBPACK_IMPORTED_MODULE_1__Game_js__["a" /* Game */].selectNearestEnemyTile();
-            restartTurn();
-            return;
-        } else {
-            let diff = __WEBPACK_IMPORTED_MODULE_0_rot_js___default.a.DIRS[8][keyMap[code]];
-            let nx = this.x + diff[0];
-            let ny = this.y + diff[1];
-            if (!this.tryMove(nx, ny)) {
-                restartTurn();
-                return;
-            }
-        }
-        endTurn();
-    }
+	pickup() {
+		let ctile = __WEBPACK_IMPORTED_MODULE_1__Game_js__["a" /* Game */].map.data[this.y][this.x];
+		let tileItems = ctile.actors.filter(function (el) {
+			return el instanceof __WEBPACK_IMPORTED_MODULE_4__entities_items_Item_js__["a" /* default */];
+		});
+		if (tileItems.length === 1) {
+			__WEBPACK_IMPORTED_MODULE_1__Game_js__["a" /* Game */].log(`You picked up a ${tileItems[0].type.toLowerCase()}.`, 'information');
+			this.addToInventory(tileItems[0]);
+			ctile.removeActor(tileItems[0]);
+		} else if (tileItems.length > 1) {
+			let itemTypes = [];
+			for (let item of tileItems) {
+				itemTypes.push(item.type.toLowerCase());
+				this.addToInventory(item);
+				ctile.removeActor(item);
+			}
+			let prettyItemTypes = itemTypes.slice(1, itemTypes.length - 1);
+			prettyItemTypes = prettyItemTypes.reduce((buf, str) => {
+				return buf + ', a ' + str;
+			}, 'a  ' + itemTypes.slice(0, 1));
+			let lastItem = ` and a ${itemTypes.slice(-1)}.`;
+			let buffer = `You picked up ${prettyItemTypes + lastItem}`;
+			__WEBPACK_IMPORTED_MODULE_1__Game_js__["a" /* Game */].log(buffer, 'information');
+		} else {
+			__WEBPACK_IMPORTED_MODULE_1__Game_js__["a" /* Game */].log('There\'s nothing to pick up.', 'information');
+		}
+	}
 
-    pickup() {
-        let ctile = __WEBPACK_IMPORTED_MODULE_1__Game_js__["a" /* Game */].map.data[this.y][this.x];
-        let tileItems = ctile.actors.filter(function (el) {
-            return el instanceof __WEBPACK_IMPORTED_MODULE_4__entities_items_Item_js__["a" /* default */];
-        });
-        if (tileItems.length === 1) {
-            __WEBPACK_IMPORTED_MODULE_1__Game_js__["a" /* Game */].log(`You picked up a ${tileItems[0].type.toLowerCase()}.`, 'information');
-            this.addToInventory(tileItems[0]);
-            ctile.removeActor(tileItems[0]);
-        } else if (tileItems.length > 1) {
-            let itemTypes = [];
-            for (let item of tileItems) {
-                itemTypes.push(item.type.toLowerCase());
-                this.addToInventory(item);
-                ctile.removeActor(item);
-            }
-            let prettyItemTypes = itemTypes.slice(1, itemTypes.length - 1);
-            prettyItemTypes = prettyItemTypes.reduce((buf, str) => {
-                return buf + ", a " + str;
-            }, "a  " + itemTypes.slice(0, 1));
-            let lastItem = ` and a ${itemTypes.slice(-1)}.`;
-            let buffer = `You picked up ${prettyItemTypes + lastItem}`;
-            __WEBPACK_IMPORTED_MODULE_1__Game_js__["a" /* Game */].log(buffer, "information");
-        } else {
-            __WEBPACK_IMPORTED_MODULE_1__Game_js__["a" /* Game */].log("There's nothing to pick up.", "information");
-        }
-    }
+	// Overriding the actor
+	equipWeapon(item) {
+		super.equipWeapon(item);
+		__WEBPACK_IMPORTED_MODULE_1__Game_js__["a" /* Game */].log(`You wield the ${item.type.toLowerCase()}.`, 'information');
+	}
 
-    // Overriding the actor
-    equipWeapon(item) {
-        super.equipWeapon(item);
-        __WEBPACK_IMPORTED_MODULE_1__Game_js__["a" /* Game */].log(`You wield the ${item.type.toLowerCase()}.`, 'information');
-    }
+	unequipWeapon() {
+		if (this.cb.equipment.weapon !== null) {
+			this.cb.equipment.weapon.cb.equipped = false;
+			this.cb.equipment.weapon = null;
+		} else {
+			throw 'Tried to uneqip weapon but no item was equipped.';
+		}
+	}
 
-    unequipWeapon() {
-        if (this.cb.equipment.weapon !== null) {
-            this.cb.equipment.weapon.cb.equipped = false;
-            this.cb.equipment.weapon = null;
-        } else {
-            throw "Tried to uneqip weapon but no item was equipped.";
-        }
-    }
+	unequipAmmo() {
+		if (this.cb.equipment.ammo !== null) {
+			this.cb.equipment.ammo.cb.equipped = false;
+			this.cb.equipment.ammo = null;
+		} else {
+			throw 'Tried to uneqip ammo but no item was equipped.';
+		}
+	}
 
-    unequipAmmo() {
-        if (this.cb.equipment.ammo !== null) {
-            this.cb.equipment.ammo.cb.equipped = false;
-            this.cb.equipment.ammo = null;
-        } else {
-            throw "Tried to uneqip ammo but no item was equipped.";
-        }
-    }
+	climb(dir) {
+		let ctile = __WEBPACK_IMPORTED_MODULE_1__Game_js__["a" /* Game */].map.data[this.y][this.x];
+		let ladder = ctile.actors.filter(a => {
+			return a instanceof __WEBPACK_IMPORTED_MODULE_13__entities_misc_Ladder_js__["a" /* default */];
+		})[0];
+		if (ladder === undefined || ladder.direction !== dir) {
+			__WEBPACK_IMPORTED_MODULE_1__Game_js__["a" /* Game */].log(`You cannot climb ${dir} here.`, 'information');
+		} else {
+			ladder.react(this);
+		}
+	}
 
-    climb(dir) {
-        let ctile = __WEBPACK_IMPORTED_MODULE_1__Game_js__["a" /* Game */].map.data[this.y][this.x];
-        let ladder = ctile.actors.filter(a => {
-            return a instanceof __WEBPACK_IMPORTED_MODULE_13__entities_misc_Ladder_js__["a" /* default */];
-        })[0];
-        if (ladder === undefined || ladder.direction !== dir) {
-            __WEBPACK_IMPORTED_MODULE_1__Game_js__["a" /* Game */].log(`You cannot climb ${dir} here.`, "information");
-        } else {
-            ladder.react(this);
-        }
-    }
+	tryMove(nx, ny) {
+		// returns true if the turn should end here
+		if (nx < 0 || nx === __WEBPACK_IMPORTED_MODULE_1__Game_js__["a" /* Game */].map.width || ny < 0 || ny === __WEBPACK_IMPORTED_MODULE_1__Game_js__["a" /* Game */].map.height) return;
+		let ntile = __WEBPACK_IMPORTED_MODULE_1__Game_js__["a" /* Game */].map.data[ny][nx]; // new tile to move to
+		if (ntile.actors.length === 0 && !ntile.blocked()) {
+			this.move(nx, ny);
+			return true;
+		} else if (ntile.actors.length > 0) {
+			for (let i = 0; i < ntile.actors.length; i++) {
+				let actor = ntile.actors[i];
+				if (actor.blocked) {
+					this.interact(actor);
+					return true;
+				}
+			}
+		}
 
-    tryMove(nx, ny) {
-        // returns true if the turn should end here
-        if (nx < 0 || nx === __WEBPACK_IMPORTED_MODULE_1__Game_js__["a" /* Game */].map.width || ny < 0 || ny === __WEBPACK_IMPORTED_MODULE_1__Game_js__["a" /* Game */].map.height) return;
-        let ntile = __WEBPACK_IMPORTED_MODULE_1__Game_js__["a" /* Game */].map.data[ny][nx]; // new tile to move to
-        if (ntile.actors.length === 0 && !ntile.blocked()) {
-            this.move(nx, ny);
-            return true;
-        } else if (ntile.actors.length > 0) {
-            for (let i = 0; i < ntile.actors.length; i++) {
-                let actor = ntile.actors[i];
-                if (actor.blocked) {
-                    this.interact(actor);
-                    return true;
-                }
-            }
-        }
+		if (!ntile.blocked()) {
+			this.move(nx, ny);
+			return true;
+		}
 
-        if (!ntile.blocked()) {
-            this.move(nx, ny);
-            return true;
-        }
+		return false;
+	}
 
-        return false;
-    }
+	attack(actor) {
+		let dmg = super.attack(actor);
+	}
 
-    attack(actor) {
-        let dmg = super.attack(actor);
-    }
-
-    death() {
-        super.death();
-        window.removeEventListener("keydown", this);
-        this.cb.hp = 0;
-        // Game.scheduler.remove(Game.player);
-        __WEBPACK_IMPORTED_MODULE_1__Game_js__["a" /* Game */].scheduler.clear();
-    }
-
+	death() {
+		super.death();
+		window.removeEventListener('keydown', this);
+		this.cb.hp = 0;
+		// Game.scheduler.remove(Game.player);
+		__WEBPACK_IMPORTED_MODULE_1__Game_js__["a" /* Game */].scheduler.clear();
+	}
 }
 /* harmony export (immutable) */ __webpack_exports__["a"] = Player;
 
@@ -3588,7 +3595,7 @@ class Player extends __WEBPACK_IMPORTED_MODULE_2__entities_actors_Actor_js__["a"
 /***/ "OyU/":
 /***/ (function(module, exports) {
 
-module.exports = {"height":60,"layers":[{"data":[7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7866,9298,7864,7865,7865,7865,7865,7865,7865,7865,7865,7865,7866,8297,8298,8298,8298,8298,8299,7864,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7866,9298,7864,7865,7865,7865,7865,7865,7865,7865,7865,7865,7866,8297,8298,8298,8298,8298,8299,7864,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7765,7766,7766,7766,7766,7767,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7866,9298,7864,7865,7865,7865,7865,7865,7865,7865,7865,7865,7866,8297,8298,8298,8298,8298,8299,7864,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7885,9184,9185,9185,9186,7885,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7866,9298,7864,7865,7865,7865,7865,7865,7865,7865,7865,7865,7866,8297,8298,8298,8298,8298,8299,7864,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7885,9304,9305,9305,9306,7885,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7866,9298,7864,7865,7865,7865,7865,7865,7865,7865,7865,7865,7866,8297,8298,8298,8058,8298,8299,7864,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7885,9304,9305,9305,9306,9189,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7866,9298,7864,7865,7865,7865,7865,7865,7865,7865,7865,7865,7866,8297,8298,8298,8058,8058,8299,7864,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7885,9304,9305,9305,9306,7885,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7866,9298,7864,7865,7865,7865,7865,7865,7865,7865,7865,7865,7866,8297,8298,8298,8058,8058,8299,7864,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7885,9304,9305,9305,9306,7885,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7866,9298,7864,7865,7865,7865,7865,7865,7865,7865,7865,7865,7866,8297,8298,8298,8058,8058,8299,7864,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,8005,7766,7766,7766,7766,8007,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7866,9298,7864,7865,7865,7865,7865,7865,7865,7865,7865,7865,7866,8297,8298,8298,8058,8058,8299,7864,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7866,9298,7864,7865,7865,7865,7865,7865,7865,7865,7865,7865,7866,8297,8298,8298,8058,8058,8299,7864,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7866,9298,7864,7865,7865,7865,7865,7865,7865,7865,7865,7865,7866,8297,8298,8298,8058,8058,8299,7864,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7765,7766,7766,7766,7766,7766,7766,7766,7766,7766,7766,7766,7766,7766,7766,7766,7767,7865,7865,7865,7865,7865,7865,7866,9298,7984,7985,7985,7985,7985,7985,7985,7985,7985,7985,7986,8297,8298,8298,8058,8058,8299,7984,7985,7985,7985,7985,7985,7985,7985,7985,7985,7985,7985,7985,7985,7985,7985,7985,7985,7985,7985,7985,7985,7985,7985,7985,7985,7985,7985,7985,7985,7985,7985,7985,7985,7985,7985,7985,7985,7985,7985,7985,7985,7985,7985,7985,7985,7985,7985,7985,7985,7985,7985,7985,7985,7865,7865,7865,7865,7885,9184,9185,9185,9185,9185,9185,9185,9185,9185,9185,9185,9185,9185,9185,9186,7885,7865,7865,7865,7865,7865,7865,7866,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7866,8297,8298,8298,8058,8058,8299,7864,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7885,9304,9305,9305,9305,9305,9305,9305,9305,9305,9305,9305,9305,9305,9305,9306,7885,7865,7865,7865,7865,7865,7865,7866,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7866,8297,8298,8298,8298,8298,8299,7864,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7885,9304,9305,9305,9305,9305,9305,9305,9305,9305,9305,9305,9305,9305,9305,9306,7885,7865,7865,7865,7865,7865,7865,7866,7865,7865,7744,7745,7745,7745,7745,7745,7745,7745,7745,7746,7937,7938,7938,7938,7938,7938,7744,7745,7745,7745,7745,7745,7745,7745,7745,7745,7745,7745,7745,7745,7745,7745,7745,7745,7745,7745,7745,7745,7745,7745,7745,7745,7745,7745,7745,7745,7745,7745,7745,7745,7745,7745,7745,7745,7745,7745,7745,7745,7745,7745,7745,7745,7745,7745,7745,7745,7745,7745,7745,7745,7865,7865,7865,7865,7885,9304,7409,9305,9305,9305,9305,7409,9305,9305,9305,9305,7409,9305,9305,9306,7885,7865,7865,7865,7865,7865,7865,7866,7865,7865,7864,7865,7865,7865,7865,7865,7865,7865,7865,7866,8297,8298,8298,8058,8058,8299,7864,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7885,9304,7526,9305,9305,9305,9305,7526,9305,9305,9305,9305,7526,9305,9305,9306,9310,9302,9302,9302,9302,9302,9302,9302,7865,7865,7864,7865,7865,7865,7865,7865,7865,7865,7865,7866,8297,8298,8298,8058,8058,8299,7864,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7885,9304,9305,9305,9305,9305,9305,9305,9305,9305,9305,9305,9305,9305,9305,9306,7885,7865,7865,7865,7865,7865,7865,7866,7865,7865,7864,7865,7865,7865,7865,7865,7865,7865,7865,7866,8297,8298,8298,8298,8298,8299,7864,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7885,9304,9305,9305,9305,9305,9305,9305,9305,9305,9305,9305,9305,9305,9305,9306,7885,7865,7865,7865,7865,7865,7865,7866,7865,7865,7864,7865,7865,7865,7865,7865,7865,7865,7865,7866,8297,8298,8298,8298,8298,8299,7864,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7885,9304,9305,9305,9305,9305,9305,9305,9305,9305,9305,9305,9305,9305,9305,9306,7885,7865,7865,7865,7865,7865,7865,7866,7865,7865,7864,7865,7865,7865,7865,7865,7865,7865,7865,7866,8297,8298,8298,8298,8298,8299,7864,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7885,9424,9425,9305,9425,9425,9425,9425,9425,9425,9425,9425,9305,9425,9425,9426,7885,7865,7865,7865,7865,7865,7865,7866,7865,7865,7864,7865,7865,7865,7865,7865,7865,7865,7865,7866,8297,8298,8298,8058,8298,8299,7864,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,8005,7766,7766,9427,7766,7766,7766,7766,7766,7766,7766,7766,9427,7766,7766,7766,8007,7865,7865,7865,7865,7865,7865,7866,7865,7865,7864,7865,7865,7865,7865,7865,7865,7865,7865,7866,8297,8298,8298,8058,8058,8299,7864,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7866,7865,7984,7985,7985,7985,7985,7985,7985,7986,7865,7984,7985,7985,7985,7985,7985,7985,7985,7985,7985,7986,7865,7865,7864,7865,7865,7865,7865,7865,7865,7865,7865,7866,8297,8298,8298,8058,8058,8299,7864,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7866,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7866,7865,7865,7864,7865,7865,7865,7865,7865,7865,7865,7865,7866,8297,8298,8298,8298,8298,8299,7864,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7745,7745,7745,7745,7745,7746,7865,7744,7745,7745,7745,7745,7745,7745,7745,7745,7745,7745,7745,7745,7746,7865,7865,7864,7865,7865,7865,7865,7865,7865,7865,7865,7866,8297,8298,8298,8058,8298,8299,7864,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7985,7985,7985,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7866,7865,7864,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7866,7865,7865,7864,7865,7865,7865,7865,7865,7865,7865,7865,7866,8297,8298,8298,8058,8058,8299,7864,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7866,7865,7865,7865,7864,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7866,7865,7864,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7866,7865,7865,7864,7865,7865,7865,7865,7865,7865,7865,7865,7866,8297,8298,8298,8058,8058,8299,7864,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7866,7865,7865,7865,7864,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7985,7985,7985,7985,7985,7986,7865,7984,7985,7985,7985,7985,7985,7865,7865,7865,7865,7865,7865,7865,7866,7865,7865,7864,7865,7865,7865,7865,7865,7865,7865,7865,7866,8297,8298,8298,8298,8298,8299,7864,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7866,7865,9298,7865,7864,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,9298,9298,9298,9298,9298,9298,7865,9298,9298,9298,9298,9298,9298,7865,7865,7865,7865,7865,7865,7865,7866,7865,7865,7864,7865,7865,7865,7865,7865,7865,7865,7865,7866,8297,8298,8298,8298,8298,8299,7864,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7745,7745,7745,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7745,7745,7745,7745,7745,7746,7865,7744,7745,7745,7745,7745,7745,7865,7865,7865,7865,7865,7865,7865,7866,7865,7865,7864,7865,7865,7865,7865,7865,7865,7865,7865,7866,8297,8298,8298,8298,8298,8299,7864,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7866,7865,7864,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7866,7865,7865,7864,7865,7865,7865,7865,7865,7865,7865,7865,7866,8297,8298,8298,8058,8298,8299,7864,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7985,7985,7985,7986,7985,7984,7985,7985,7985,7865,7865,7865,7865,7865,7865,7865,7865,7865,7866,7865,7865,7864,7865,7865,7865,7865,7865,7865,7865,7865,7866,8297,8298,8298,8058,8058,8299,7864,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7866,7865,7865,7865,7865,7865,7865,7865,7865,7865,7864,7865,7865,7865,7865,7865,7865,7865,7865,7866,7865,7865,7864,7865,7865,7865,7865,7865,7865,7865,7865,7866,8297,8298,8298,8058,8058,8299,7864,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7866,7865,7865,7865,7865,7865,7865,7865,7865,7865,7864,7865,7865,7865,7865,7865,7865,7865,7865,7866,7865,7865,7864,7865,7865,7865,7865,7865,7865,7865,7865,7866,8297,8298,8298,8298,8298,8299,7864,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7866,7865,7865,7865,7865,7865,7865,7865,7865,7865,7864,7865,7865,7865,7865,7865,7865,7865,7865,7866,7865,7865,7864,7865,7865,7865,7865,7865,7865,7865,7865,7866,8297,8298,8298,8298,8298,8299,7864,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7985,7986,7865,7865,7865,7865,7865,7865,7865,7865,7865,7984,7985,7865,7865,7865,7865,7865,7865,7865,7866,7865,7865,7864,7865,7865,7865,7865,7865,7865,7865,7865,7866,8297,8298,8298,8298,8298,8299,7864,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,9298,9298,7865,7865,7865,7865,7865,7865,7865,7865,7865,9298,9298,7865,7865,7865,7865,7865,7865,7865,7866,7865,7865,7864,7865,7865,7865,7865,7865,7865,7865,7865,7866,8297,8298,8298,8298,8298,8299,7864,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7745,7746,7865,7865,7865,7865,7865,7865,7865,7865,7865,7744,7745,7865,7865,7865,7865,7865,7865,7865,7866,7865,7865,7864,7865,7865,7865,7865,7865,7865,7865,7865,7866,8297,8298,8298,8058,8298,8299,7864,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7866,7865,7865,7865,7865,7865,7865,7865,7865,7865,7864,7865,7865,7865,7865,7865,7865,7865,7865,7866,7865,7865,7864,7865,7865,7865,7865,7865,7865,7865,7865,7866,8297,8298,8298,8058,8058,8299,7864,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7866,7865,7865,7865,7865,7865,7865,7865,7865,7865,7864,7865,7865,7865,7865,7865,7865,7865,7865,7866,7865,7865,7864,7865,7865,7865,7865,7865,7865,7865,7865,7866,8297,8298,8298,8058,8058,8299,7864,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7866,7865,7865,7865,7865,7865,7865,7865,7865,7865,7864,7865,7865,7865,7865,7865,7865,7865,7865,7866,7865,7865,7864,7865,7865,7865,7865,7865,7865,7865,7865,7866,8297,8298,8298,8298,8058,8299,7864,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7745,7745,7745,7746,7865,7744,7745,7745,7745,7865,7865,7865,7865,7865,7865,7865,7865,7865,7866,7865,7865,7864,7865,7865,7865,7865,7865,7865,7865,7865,7866,8297,8298,8298,8298,8298,8299,7864,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7866,7865,7864,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7866,7865,7865,7864,7865,7865,7865,7865,7865,7865,7865,7865,7866,8297,8298,8298,8298,8298,8299,7864,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7985,7985,7985,7985,7985,7985,7985,7985,7985,7985,7985,7985,7985,7985,7985,7985,7985,7985,7985,7985,7985,7985,7985,7985,7985,7985,7985,7985,7985,7865,7865,7865,7865,7865,7865,7865,7985,7985,7985,7985,7985,7986,7865,7984,7985,7985,7985,7985,7985,7865,7865,7865,7865,7865,7865,7865,7866,7865,7865,7864,7865,7865,7865,7865,7865,7865,7865,7865,7866,8297,8298,8298,8298,8298,8299,7864,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7866,8177,8178,8178,8178,8178,8178,8178,8178,8178,8178,8178,8178,8178,8178,8178,8178,8178,8178,8178,8178,8178,8178,8178,8178,8178,8178,8178,8178,8178,7865,7865,7865,7865,7865,7865,7865,9298,9298,9298,9298,9298,9298,7865,9298,9298,9298,9298,9298,9298,7865,7865,7865,7865,7865,7865,7865,7866,7865,7865,7864,7865,7865,7865,7865,7865,7865,7865,7865,7866,8297,8298,8298,8298,8298,8299,7864,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7866,8297,8298,8298,8298,8298,8298,8298,8298,8298,8298,8298,8298,8298,8298,8298,8298,8298,8298,8298,8298,8298,8298,8298,8298,8298,8298,8298,8298,8298,7865,7865,7865,7865,7865,7865,7865,7745,7745,7745,7745,7745,7746,7865,7744,7745,7745,7745,7745,7745,7865,7865,7865,7865,7865,7865,7865,7866,7865,7865,7864,7865,7865,7865,7865,7865,7865,7865,7865,7866,8297,8298,8298,8298,8298,8299,7864,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7866,8297,8299,7744,7745,7745,7745,7745,7745,7745,7745,7745,7745,7745,7745,7745,7745,7745,7745,7745,7745,7745,7745,7745,7745,7745,7745,7745,7745,7745,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7866,7865,7864,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7866,7865,7865,7864,7865,7865,7865,7865,7865,7865,7865,7865,7866,8297,8298,8298,8298,8298,8299,7864,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7866,8297,8299,7864,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7866,7865,7864,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7866,7865,7865,7864,7865,7865,7865,7865,7865,7865,7865,7865,7866,8297,8298,8298,8298,8298,8299,7864,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7866,8297,8299,7864,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7866,7865,7984,7985,7985,7985,7985,7985,7985,7985,7985,7985,7985,7985,7985,7986,7865,7865,7864,7865,7865,7865,7865,7865,7865,7865,7865,7866,8297,8298,8298,8298,8298,8299,7864,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7866,8297,8299,7864,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7866,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7866,7865,7865,7984,7985,7985,7985,7985,7985,7985,7985,7985,7986,8297,8298,8298,8298,8298,8299,7984,7985,7985,7985,7985,7985,7985,7985,7985,7985,7985,7985,7985,7985,7985,7985,7985,7985,7985,7985,7985,7985,7985,7985,7986,8297,8299,7984,7985,7985,7985,7985,7985,7985,7985,7985,7985,7985,7985,7985,7985,7985,7985,7985,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7745,7745,7745,7745,7745,7745,7745,7745,7745,7745,7745,7745,7745,7745,7746,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7866,8297,8298,8298,8298,8298,8299,7864,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,8057,8299,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7866,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7866,8297,8298,8298,8298,8298,8299,7864,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,8297,8299,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7745,7745,7745,7745,7745,7745,7745,7745,7745,7745,7745,7746,7937,7938,7938,7938,7938,7938,7744,7745,7745,7745,7745,7745,7745,7745,7745,7745,7745,7745,7745,7745,7745,7745,7745,7745,7745,7745,7745,7745,7745,7745,7746,7937,7938,7744,7745,7745,7745,7745,7745,7745,7745,7745,7745,7745,7745,7745,7745,7745,7745,7745,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7866,8297,8298,8298,8298,8298,8299,7864,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7866,8297,8299,7864,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7866,8297,8298,8298,8298,8058,8299,7864,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7866,8297,8299,7864,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7866,8297,8298,8298,8298,8058,8299,7864,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7866,8297,8299,7864,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7866,8297,8298,8298,8298,8058,8299,7864,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7985,7865,7865,7865,7866,8297,8299,7864,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7866,8297,8298,8298,8298,8058,8299,7864,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7866,7749,7864,7865,7865,7866,8297,8299,7984,7985,7985,7985,7985,7985,7985,7985,7985,7985,7985,7985,7985,7985,7985,7985,7985,7985,7985,7985,7985,7985,7985,7985,7985,7985,7985,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7866,8297,8298,8298,8298,8058,8299,7864,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7745,7865,7865,7865,7866,8297,8298,8178,8178,8178,8178,8178,8178,8178,8178,8178,8178,8178,8178,8178,8178,8178,8178,8178,8178,8178,8178,8178,8178,8178,8178,8178,8178,8178,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7866,8297,8298,8298,8298,8058,8299,7864,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,8297,8298,8298,8298,8298,8298,8298,8298,8298,8298,8298,8298,8298,8298,8298,8298,8298,8298,8298,8298,8298,8298,8298,8298,8298,8298,8298,8298,8298],"height":60,"name":"Tile Layer 1","opacity":1,"properties":{"obstacles":true},"propertytypes":{"obstacles":"bool"},"type":"tilelayer","visible":true,"width":100,"x":0,"y":0},{"data":[7474,7475,7356,7356,7473,7475,7356,7356,7356,7356,7356,7356,7356,7356,7356,7356,7356,7473,7474,7474,7474,7474,7474,7474,7474,7474,7474,7475,0,7473,7474,7474,7474,7474,7474,7474,7474,7474,7474,7475,0,0,0,0,0,0,0,1243,1243,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,7594,7595,7356,7356,7593,7595,7356,0,0,0,7356,7356,0,0,1363,1364,0,7593,7594,7594,7594,7594,7594,7594,7594,7594,7594,7595,0,7593,7594,7594,7594,7594,7594,7594,7594,7594,7594,7595,0,0,0,0,0,0,0,1243,1243,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,7356,7356,0,0,0,0,4889,0,5381,0,0,0,0,0,0,0,1243,1363,1364,0,0,1363,1364,0,0,0,1487,0,0,4535,0,1243,0,1487,0,0,0,0,0,0,0,0,0,0,0,0,0,1243,1243,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,7474,7475,0,0,0,5021,0,0,5250,0,0,0,0,0,1243,1244,1243,1243,1244,0,0,0,0,0,0,0,0,1243,0,1243,1243,1243,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1243,1243,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,7594,7595,0,0,0,0,5612,5613,5614,0,0,0,0,1243,1363,1364,1363,1243,1244,0,0,0,0,0,0,0,0,1243,0,1243,1243,1243,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1243,1243,1243,1243,1243,1243,1243,1243,1243,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,7356,7356,0,0,0,0,5732,5733,5734,0,0,0,0,1363,1364,1363,1364,1363,1364,0,0,0,0,0,0,1487,0,1243,0,1243,1243,1243,0,0,0,1487,0,0,0,0,0,0,0,0,0,0,0,0,0,1243,1243,1243,1243,1243,1243,1243,1243,1243,1243,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,7356,0,0,1495,0,0,5852,5853,5854,0,0,0,0,0,0,1363,1364,1243,1244,0,0,1243,1243,1244,0,0,0,0,0,0,1243,1243,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1243,1243,1243,1243,1243,1243,1243,1243,1243,1243,0,0,0,0,1243,1243,1243,1243,1243,1243,1243,1243,1243,1243,1243,0,0,0,0,0,1243,1243,1243,1243,1243,1243,1243,0,0,1243,1243,1243,0,0,0,0,0,0,1243,1243,0,0,1495,0,0,0,0,0,5254,0,0,0,0,1243,1244,0,0,1243,1244,0,0,1243,1363,1364,0,0,0,0,0,1243,1243,1243,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1243,1243,1243,1243,1243,1243,1243,1243,1243,1243,1243,1243,1243,1243,1243,1243,1243,1243,1243,1243,1243,1243,1243,1243,1243,1243,1243,1243,1243,1243,1243,1243,1243,1243,1243,1243,1243,1243,1243,1243,0,1243,1243,1243,1243,1243,0,0,0,0,0,0,4889,0,4651,0,0,0,0,1363,1364,0,0,1363,1364,1243,1244,1363,1364,0,0,0,0,0,0,1243,1243,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1243,1243,1243,1243,1243,1243,1243,1243,1243,1243,1243,1243,1243,1243,1243,1243,1243,1243,1243,1243,1243,1243,1243,1243,1243,1243,1243,0,0,0,0,0,5263,5263,5263,5263,0,0,0,0,0,0,0,0,0,0,0,1363,1364,0,0,1243,1244,0,1243,1243,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1243,1243,1243,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1243,1243,1243,1243,1243,0,0,0,0,0,0,1495,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1363,1364,0,1363,1363,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,4057,4057,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,7356,0,0,0,0,4412,4413,0,177,4412,4413,0,0,0,5132,0,5019,0,4420,4411,0,0,1243,1244,0,0,0,0,7737,7739,7738,7738,7738,7738,7738,7738,7738,7738,7738,7738,7738,7738,7738,7738,7738,7738,7738,7738,7738,7738,7738,7738,7738,7738,7738,7738,7738,7738,7738,7738,7738,7738,7738,7738,7738,7738,7738,7738,7738,7738,7738,7738,7738,7738,7738,7738,7738,7738,7738,7738,7738,7738,7738,7738,7738,7738,7738,7738,7738,7738,7738,7738,7738,7738,7738,7738,7738,7738,7738,7738,7356,7356,0,0,0,0,0,0,0,0,0,0,0,0,5133,0,5019,0,0,0,0,0,1243,1244,1243,1244,0,0,7977,7979,7978,7978,7978,7978,7978,7978,7978,7978,7978,7978,7978,7978,7978,7978,7978,7978,7978,7978,7978,7978,7978,7978,7978,7978,7978,7978,7978,7978,7978,7978,7978,7978,7978,7978,7978,7978,7978,7978,7978,7978,7978,7978,7978,7978,7978,7978,7978,7978,7978,7978,7978,7978,7978,7978,7978,7978,7978,7978,7978,7978,7978,7978,7978,7978,7978,7978,7978,7978,7978,7978,7356,7356,0,0,0,5129,5130,5130,5130,5130,5130,5130,5131,0,5134,0,5019,0,0,5020,0,0,1363,1364,1363,1364,0,0,7857,7859,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1243,1243,1243,0,1243,1243,1243,1243,1243,1243,1243,1243,1243,0,0,0,0,0,0,0,0,0,0,0,7356,7356,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1363,1364,0,0,7857,7859,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1243,1243,1243,1243,1243,1243,1243,1243,1243,1243,1243,1243,1243,1243,1243,0,0,0,0,0,0,0,0,0,0,7356,0,0,0,0,0,4890,0,0,0,0,4890,0,0,0,0,4890,0,0,0,0,0,1243,1244,0,0,0,0,7857,7859,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1243,1243,1243,1243,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1243,0,0,0,0,0,0,0,0,0,0,0,0,1243,1243,1243,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,5609,5610,5610,5610,5610,5610,5610,5610,5610,5610,5610,5610,5611,0,0,0,1363,1364,0,0,0,0,7857,7859,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1243,1243,0,0,0,0,0,0,0,0,0,0,0,0,0,1243,1243,0,0,0,0,0,0,0,0,0,0,0,0,1495,0,0,5729,5730,5730,5730,5730,5730,5730,5730,5730,5730,5730,5730,5731,0,0,0,0,0,0,0,0,0,7857,7859,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,7765,7766,7766,7766,7766,7767,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1243,1243,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1243,1243,0,0,0,0,0,0,0,0,0,0,1495,0,0,0,0,5849,5850,5850,5850,5850,5850,5850,5850,5850,5850,5850,5850,5851,0,0,0,0,0,0,1243,1244,0,7857,7859,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,7885,9184,9185,9185,9186,7885,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1243,1243,1243,0,0,0,0,0,0,0,0,0,0,0,0,0,1243,1243,1243,1243,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1243,1244,1244,1243,1244,1364,0,7857,7859,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,7885,9304,9305,9305,9306,7885,0,0,0,0,0,0,0,0,0,0,0,1243,1243,1243,1243,0,0,0,1243,1243,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1243,1243,1243,1243,1243,0,0,0,0,0,0,0,0,0,1495,0,0,0,4889,0,4889,0,4656,4650,0,0,0,0,0,0,0,0,0,1363,1364,1364,1363,1364,0,0,7857,7859,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,7885,9304,9305,9305,9306,7885,0,0,0,0,0,0,0,0,0,0,1243,0,1243,1243,1243,1243,1243,1243,1243,1243,0,0,0,0,0,0,0,0,0,0,0,0,0,1243,1243,1243,1243,1243,1243,1243,0,0,0,0,0,0,0,0,0,0,0,0,0,7860,0,0,0,0,0,0,0,0,7860,0,0,0,0,0,0,0,0,0,0,0,7857,7859,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,7885,9304,9305,9305,9306,7885,0,1243,1243,1243,1243,1243,1243,1243,1243,1243,1243,1243,0,0,1243,1243,1243,1243,1243,0,0,0,0,0,0,0,0,1243,1243,0,0,0,0,1243,1243,1243,1243,1243,1243,1243,0,0,0,0,0,0,0,0,0,0,0,0,0,7861,7862,7862,7862,7862,7862,7862,7862,7862,7862,7862,7862,7862,7862,7862,7862,7862,7862,7862,7862,7863,7857,7859,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,7885,7766,7766,9189,7766,7885,1243,0,0,1243,1243,1243,1243,1243,1243,1243,1243,1243,1243,0,0,1243,1243,1243,1243,0,0,0,0,0,0,1243,1243,1243,1243,1243,1243,1243,0,1243,1243,1243,1243,1243,1243,1243,1243,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,7740,0,0,0,0,0,0,0,0,0,0,0,0,0,0,7857,7859,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,7885,9184,9185,9185,9186,7885,0,1243,1243,0,0,1243,1243,1243,1243,1243,1243,1243,1243,1243,0,1243,1243,1243,1243,0,0,0,0,0,0,1243,1243,1243,1243,1243,1243,1243,0,0,1243,1243,1243,1243,1243,1243,1243,1243,0,0,0,0,0,7765,7766,7766,7766,7766,7767,0,0,0,1363,1364,0,7860,0,1491,1364,0,0,0,7765,7766,7766,7766,7766,7767,0,0,7857,7859,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,7885,9304,9305,9305,9306,7885,1243,0,1243,1243,1243,1243,1243,1243,1243,1243,1243,1243,0,1243,1243,1243,1243,1243,0,0,0,0,0,0,1243,1243,0,0,0,0,1243,1243,0,0,1243,1243,1243,1243,1243,1243,1243,1243,0,0,0,0,0,7885,9184,9185,9185,9186,7885,0,1363,1364,1363,1364,0,7860,0,1363,1364,1363,1364,0,7885,9184,9185,9185,9186,7885,0,0,7857,7859,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,7885,9304,9305,9305,9306,7885,1243,1243,0,1243,1243,0,1243,1243,1243,0,1243,1243,1243,1243,1243,1243,1243,1243,1243,0,0,0,1243,1243,1243,1243,0,0,0,0,1243,1243,0,0,0,1243,1243,1243,1243,1243,1243,1243,0,0,0,0,0,7885,9304,9305,9305,9306,7885,1363,1491,1363,1364,0,0,7860,0,0,1363,1491,0,0,7885,9304,9305,9305,9306,7885,0,0,7857,7859,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,7885,9304,9305,9305,9306,7885,0,1243,1243,1243,0,0,1243,1243,1243,1243,1243,1243,1243,1243,1243,1243,1243,1243,1243,1243,1243,1243,1243,0,0,1243,0,0,0,0,1243,1243,0,0,0,1243,1243,1243,1243,1243,1243,1243,0,0,0,0,0,7885,9304,9305,9305,9305,9310,1363,1364,0,1363,1364,0,7860,0,1363,1364,1363,1364,0,9308,9305,9305,9305,9306,7885,0,0,7857,7859,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1243,7885,9424,9425,9425,9426,7885,1243,0,1243,0,0,1243,1243,1243,1243,1243,1243,1243,1243,1243,1243,1243,1243,1243,1243,0,0,1243,0,0,0,1243,1243,0,0,0,1243,1243,1243,0,0,1243,1243,1243,1243,1243,1243,1243,0,0,0,0,0,7885,9304,9305,9305,9306,7885,0,1363,1364,1491,1363,1364,7860,1363,1363,1491,1363,1364,0,7885,9304,9305,9305,9306,7885,0,0,7857,7859,0,0,0,0,0,0,0,0,0,3931,3932,3932,3932,3932,3932,3932,0,1243,8005,9189,7766,7766,7766,8007,0,1243,1243,1243,1243,1243,1243,1243,1243,1243,1243,1243,1243,1243,1243,1243,1243,1243,1243,0,0,1243,1243,1243,1243,1243,1243,1243,1243,1243,1243,1243,0,0,0,1243,1243,1243,1243,1243,1243,0,0,0,0,0,0,7885,9304,9305,9305,9306,7885,0,1363,1364,1363,1364,0,7860,0,0,0,0,0,7356,7885,9304,9305,9305,9306,7885,0,0,7857,7859,0,0,0,0,0,0,0,0,0,0,9308,9309,9309,9309,9309,9310,1243,1243,1243,0,1243,1243,0,1243,1243,1243,1243,1243,1243,0,1243,0,1243,1243,1243,1243,1243,1243,1243,1243,1243,1243,1243,0,0,1243,1243,1243,1243,1243,1243,1243,1243,1243,1243,1243,1243,0,0,0,1243,1243,1243,1243,1243,0,0,0,0,0,0,8005,7766,7766,7766,7766,8007,0,0,0,0,0,0,7860,0,0,0,0,0,0,8005,7766,7766,7766,7766,8007,0,0,7857,7859,0,0,0,0,0,0,0,0,0,0,8177,8178,8178,8178,8178,8179,1243,0,0,0,1243,1243,1243,1243,1243,1243,1243,1243,1243,1243,1243,1243,1243,1243,1243,1243,1243,1243,1243,1243,1243,1243,1243,1243,1243,1243,0,1243,1243,1243,1243,1243,1243,1243,1243,1243,1243,1243,0,0,1243,1243,1243,1243,1243,0,0,0,0,0,0,0,0,0,0,0,0,0,0,7742,7742,7742,7742,7742,7742,7742,7742,7742,0,0,0,0,0,0,0,0,0,0,7857,7859,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1243,1243,1488,1243,1243,0,1243,1243,1243,1243,1243,1243,1243,1243,1243,1243,1243,1243,1243,1243,1243,1243,1243,1243,1243,1243,1243,1243,0,0,1243,0,1243,1243,1243,0,1243,1243,1243,1243,0,0,0,0,1243,1243,1243,1243,0,0,0,0,0,0,7765,7766,7766,7766,7766,7767,0,0,7742,7858,7858,7858,7858,7858,7858,7858,7742,0,0,7765,7766,7766,7766,7766,7767,0,0,7857,7859,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1243,1488,1488,1243,1244,1243,1244,1244,1243,1243,1243,1243,1243,1243,1243,1243,0,0,1243,1243,1243,1243,1243,1243,1243,0,1243,0,0,1243,1243,0,0,0,1243,1243,1243,0,0,0,0,1243,1243,1243,1243,1243,0,1243,0,0,0,0,0,0,7885,9184,9185,9185,9186,7885,0,0,7742,7858,7858,7858,7858,7858,7858,7858,7742,0,0,7885,9184,9185,9185,9186,7885,0,0,7857,7859,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1243,1243,1243,1243,1243,1243,1243,1243,1243,1244,1243,1243,1243,1243,1243,1243,1243,1243,1243,1243,1243,1243,0,0,0,0,0,0,1243,0,0,1243,1243,1243,1243,0,0,0,0,0,0,0,1243,1243,1243,1243,1243,0,0,0,0,0,0,7885,9304,9305,9305,9306,7885,0,0,7742,7858,7858,7744,7745,7746,7858,7858,7742,0,0,7885,9304,9305,9305,9306,7885,0,0,7857,7859,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1243,1244,1243,1244,1244,1243,1243,1243,1243,1243,1243,1243,1243,1243,1243,1243,1243,1243,1243,0,0,0,0,0,0,0,1243,1243,1243,1243,1243,1243,1243,1243,0,0,0,1243,1243,0,0,1243,0,1243,1243,0,0,0,0,0,0,1495,7885,9304,9305,9305,9305,9310,0,0,7742,7858,7858,7864,7865,7866,7858,7858,7742,0,0,9308,9305,9305,9305,9306,7885,0,0,7857,7859,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1243,1244,1243,1243,1243,1243,1243,1243,1243,1243,1243,1243,1243,1243,1243,1243,1243,0,0,0,0,0,0,0,1243,1243,1243,1243,1243,1243,1243,1243,0,0,0,0,1243,1243,1243,1243,1243,1243,0,1243,1243,0,0,0,0,0,0,0,7885,9304,9305,9305,9306,7885,0,0,7742,7858,7858,7984,7985,7986,7858,7858,7742,0,0,7885,9304,9305,9305,9306,7885,0,0,7857,7859,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1243,1243,1243,1243,1243,1243,1243,1243,1243,1243,1243,1243,1243,1243,0,0,0,0,0,0,0,0,0,1243,1243,1243,1243,1243,1243,1243,0,0,0,0,0,0,0,1243,1243,1243,1243,1243,0,0,0,0,0,0,0,0,0,0,7885,9304,9305,9305,9306,7885,0,0,7742,7858,7858,7858,7858,7858,7858,7858,7742,0,0,7885,9304,9305,9305,9306,7885,0,0,7857,7859,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1244,1243,1243,1243,1243,1243,1243,1243,1243,1243,1243,1243,0,0,0,0,0,0,0,0,0,1243,1243,1243,1243,0,0,0,0,0,0,0,1243,1243,1243,1243,1243,1243,0,0,0,0,0,0,0,0,0,0,0,0,8005,7766,7766,7766,7766,8007,0,0,7742,7858,7858,7858,7858,7858,7858,7858,7742,0,7356,8005,7766,7766,7766,7766,8007,0,0,7857,7859,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1243,1243,0,0,0,1243,1243,1243,1243,1243,0,0,0,0,0,0,0,0,0,1243,1243,1243,1243,1243,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,7356,0,0,0,0,0,0,0,0,7742,7742,7742,7742,7742,7742,7742,7742,7742,0,0,0,0,0,0,0,0,0,0,7857,7859,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1243,1243,1243,1243,1243,1243,1243,0,0,0,0,0,0,0,1243,1243,1243,1243,1243,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,7356,7765,7766,7766,7766,7766,7767,0,0,0,0,0,0,7740,0,0,0,0,0,0,7765,7766,7766,7766,7766,7767,0,0,7857,7859,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1243,1243,1243,0,1243,1243,1243,0,0,0,0,0,0,1243,1243,1243,1243,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,7356,7885,9184,9185,9185,9186,7885,0,1495,1364,1363,1491,0,7860,0,0,0,0,1363,1364,7885,9184,9185,9185,9186,7885,0,0,7857,7859,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1243,1483,1483,1483,0,0,0,0,1243,1243,1243,1243,1243,1243,0,0,0,0,0,0,1243,1243,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,7356,7885,9304,9305,9305,9306,7885,0,0,1363,1364,0,0,7860,1363,1364,0,1363,1364,0,7885,9304,9305,9305,9306,7885,0,0,7857,7859,0,0,0,1243,1244,0,0,0,0,0,0,0,0,0,0,0,0,0,1483,1243,0,1243,0,0,0,1243,1243,1243,1243,1243,1243,1243,1243,0,0,0,1243,1243,1243,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,7356,7885,9304,9305,9305,9305,9310,0,0,1491,0,0,0,7860,0,0,0,1495,1364,0,9308,9305,9305,9305,9306,7885,0,0,7857,7859,0,7398,7399,7399,7399,7400,0,0,0,0,0,0,0,0,0,0,0,1243,1243,1243,0,0,0,0,1487,0,1243,1243,1243,1243,1243,0,1243,1243,1243,1243,1243,1243,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,7356,7885,9304,9305,9305,9306,7885,0,1363,1364,1363,1364,0,7860,0,0,1363,1364,0,0,7885,9304,9305,9305,9306,7885,0,0,7857,7859,0,7519,7737,7738,7739,7518,1244,0,0,0,0,0,0,0,0,0,1243,1243,1243,1243,0,0,1243,1243,1244,0,0,0,0,1243,1243,1243,1243,1243,1243,1243,1243,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,7356,7885,9304,9305,9305,9306,7885,0,0,0,0,0,0,7860,0,1363,1364,0,0,0,7885,9304,9305,9305,9306,7885,0,0,7857,7859,0,7742,7857,7858,7859,7518,1364,0,0,0,0,0,0,0,0,0,1243,1243,1243,1243,1243,1243,1243,1243,1243,1243,1243,1243,1243,1243,1243,1243,0,0,0,0,0,0,0,0,0,0,0,0,0,1243,1243,1243,1243,0,7398,7399,7399,7399,7522,7399,7399,7399,7399,7399,7399,7399,7399,7399,7399,7399,7399,7399,7399,7400,7356,8005,7766,7766,7766,7766,8007,0,0,1363,1364,0,0,7860,0,0,0,1363,1364,0,8005,7766,7766,7766,7766,8007,0,0,7857,7859,0,7520,7977,7978,7979,7518,0,0,0,0,0,0,0,0,0,0,1243,1243,1483,1243,1244,1243,1243,1243,0,0,0,0,0,0,0,1243,1243,1243,1243,1243,1243,0,0,0,1243,0,0,0,0,1243,1243,1243,1243,0,7518,7737,7738,7739,7518,7737,7738,7738,7738,7738,7738,7738,7738,7738,7738,7738,7738,7738,7739,7518,7356,7356,0,0,0,0,0,1363,1364,0,0,1363,1364,7860,0,0,0,0,0,0,0,0,0,0,0,0,0,0,7857,7859,1243,7638,7399,7399,7399,7640,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1243,1243,0,0,0,0,1243,1243,1243,1243,0,7518,7977,7978,7979,7518,7857,7858,7858,7858,7858,7858,7858,7858,7858,7858,7858,7858,7858,7859,7518,7356,7356,7356,0,0,0,0,0,0,0,0,0,0,7742,7862,7862,7862,7862,7862,7862,7862,7862,7862,7862,7862,7862,7862,7863,7857,7859,1724,1364,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1243,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1243,1243,1243,0,0,0,0,0,0,0,0,0,7521,7399,7742,7399,7640,7857,7858,7858,7858,7858,7858,7858,7858,7858,7858,7858,7858,7858,7859,7518,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1363,1364,0,0,0,0,0,0,0,0,0,1243,1244,7737,7739,7738,7738,7738,7738,7738,7738,7738,7738,7738,7738,7738,7738,7738,7738,7738,7738,7738,7738,7738,7738,7738,7738,7738,7738,7738,7738,7738,7738,7738,7738,7738,7738,7738,7738,7738,7738,7738,7738,7738,7738,7738,7738,7738,7738,7738,7738,7738,7738,7738,7738,7518,7737,7738,7738,7738,7857,7858,7858,7858,7858,7858,7858,7858,7858,7858,7858,7858,7858,7859,7518,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1363,1363,1364,0,1363,1364,0,0,0,0,0,0,1363,1364,7977,7979,7978,7978,7978,7978,7978,7978,7978,7978,7978,7978,7978,7978,7978,7978,7978,7978,7978,7978,7978,7978,7978,7978,7978,7978,7978,7978,7978,7978,7978,7978,7978,7978,7978,7978,7978,7978,7978,7978,7978,7978,7978,7978,7978,7978,7978,7978,7978,7978,7978,7978,7518,7857,7858,7858,7978,7857,7858,7858,7858,7858,7858,7858,7858,7858,7858,7858,7858,7858,7859,7518,0,0,10617,10618,10619,0,10617,10618,10619,0,0,0,0,0,1363,1364,0,7353,7354,7354,7354,7355,0,0,0,0,0,0,0,1607,1244,0,0,1243,1244,0,0,0,0,0,0,0,0,0,0,0,1243,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1243,1243,1243,1243,1243,1243,0,0,0,0,0,0,0,0,0,7518,7977,7978,7979,7520,7857,7858,7858,7858,7858,7858,7858,7858,7858,7858,7858,7858,7858,7859,7518,0,0,10737,10738,10739,0,10737,10738,10739,0,0,0,0,0,1363,1364,0,7473,7474,7474,7474,7474,7475,0,0,0,0,0,0,1363,1364,0,0,1363,1364,0,0,0,0,0,0,0,0,0,0,0,1243,0,0,1243,1243,0,0,1243,1243,1243,0,0,0,0,1243,1243,1243,1243,1243,1243,0,0,0,1243,1243,0,0,0,0,1243,1243,0,0,0,7638,7399,7742,7399,7518,7857,7858,7858,7858,7858,7858,7858,7858,7858,7858,7858,7858,7858,7859,7518,0,0,10737,10738,10739,0,10737,10738,10739,0,0,0,1363,1364,1363,1364,7356,7473,7474,7474,7474,7474,7354,7354,7354,7354,7355,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1487,1243,1243,1243,1243,1243,1243,1243,1243,1243,1243,1243,1243,1243,1243,1243,0,0,0,0,1243,1243,0,0,0,0,1243,1243,1243,0,1243,0,1243,0,0,7518,7857,7858,7858,7858,7858,7858,7858,7858,7858,7858,7858,7858,7858,7859,7518,7356,0,10737,10738,10739,0,10737,10738,10739,0,0,0,0,0,0,7356,7356,7353,7474,7474,7474,7474,7474,7474,7474,7354,7355,0,0,0,0,0,0,0,0,0,0,5484,0,0,0,0,0,0,0,0,0,0,1243,1243,1243,1243,0,1243,1243,1243,1243,1243,1243,1243,1243,1243,1243,1243,0,1243,1243,1243,1243,1243,1243,0,0,0,0,1243,1243,1243,1243,1243,1243,1243,1243,0,7518,7977,7978,7978,7978,7978,7978,7978,7978,7978,7978,7978,7978,7978,7979,7518,7356,0,10737,10738,10739,0,10737,10738,10739,0,0,0,0,0,7356,7356,7473,7474,7474,7474,7474,7474,7474,7474,7474,7354,7355,7356,0,0,0,0,0,0,0,0,0,5484,0,0,0,0,0,0,0,0,0,1243,1243,1243,1243,1243,0,1243,1243,1243,1243,1243,1243,1243,1243,1243,1243,0,1243,1243,1243,1243,1243,0,1243,0,0,0,0,0,0,0,0,1243,1243,1243,1243,1243,7638,7399,7399,7399,7399,7399,7399,7399,7399,7399,7399,7399,7399,7399,7399,7640,7356,7356,10737,10738,10739,0,10737,10738,10739,0,0,0,0,1363,1363,1364,7605,7605,7474,7474,7474,7474,7474,7474,7474,7474,7354,7356,7356,0,0,0,0,0,0,0,0,5484,0,0,0,0,0,0,0,0,0,1243,1243,1243,1243,1243,1243,1243,0,1243,1243,1243,1243,1243,1243,1243,1243,1243,1243,1243,0,1243,1243,0,1243,0,0,0,0,0,0,0,0,0,0,0,0,1243,1243,1243,1243,1243,1243,1243,1243,1243,1243,1243,1243,1243,1243,1243,1243,1243,7356,7356,10857,10858,10859,0,10857,10858,10859,0,0,0,0,1363,1364,1363,1364,7485,7474,7474,7474,7474,7474,7474,7474,7474,7474,7354,7354,7354,0,0,0,0,0,0,5484,5484,0,0,0,0,0,0,0,0,0,1487,1243,1243,1243,1243,1243,0,0,0,1244,1243,1243,1243,1243,1243,1243,1243,1243,1243,0,1243,1243,0,1243,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,7356,7356,0,0,0,0,0,0,0,0,0,0,0,0,7356,7473,7474,7474,7474,7474,7474,7474,7474,7474,7474,7474,7474,7474,7474,7474,0,0,0,5484,0,0,5484,0,0,0,0,0,0,0,0,0,0,1243,1243,1243,0,1243,1243,1243,1243,0,1244,1244,0,1243,1243,1243,1243,1243,1243,1243,1243,1243,1243,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],"height":60,"name":"Tile Layer 2","opacity":0.899999976158142,"properties":{"obstacles":true},"propertytypes":{"obstacles":"bool"},"type":"tilelayer","visible":true,"width":100,"x":0,"y":0},{"data":[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,7474,7474,7474,7474,7474,7474,7474,7474,7474,7474,7474,7474,7474,7474,7474,7474,7474,7474,7474,7474,7474,7474,7474,7474,7474,7474,7474,7474,7474,7474,7474,7474,7474,7474,7474,7474,7474,7474,7474,7474,7474,7474,7474,7474,7474,7474,7474,7474,7474,7474,7474,7474,7474,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,7474,7474,7474,7474,7474,7474,7474,7474,7474,7474,7474,7474,7474,7474,7474,7474,7474,7474,7474,7474,7474,7474,7474,7474,7474,7474,7474,7474,7474,7474,7474,7474,7474,7474,7474,7474,7474,7474,7474,7474,7474,7474,7474,7474,7474,7474,7474,7474,7474,7474,7474,7474,7474,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,7593,7474,7474,7474,7474,7474,7474,7474,7474,7474,7474,7474,7474,7474,7474,7474,7474,7474,7474,7474,7474,7474,7474,7474,7474,7474,7474,7474,7474,7474,7474,7474,7474,7474,7474,7474,7474,7474,7474,7474,7474,7474,7474,7474,7474,7474,7474,7474,7474,7474,7474,7474,7474,0,0,0,0,0,0,5132,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,7593,7356,7473,7474,7474,7474,7474,7474,7474,7474,7474,7474,7474,7474,7474,7474,7474,7474,7474,7474,7474,7474,7474,7474,7474,7474,7474,7474,7474,7474,7474,7474,7474,7474,7474,7474,7474,7474,7474,7474,7474,7474,7474,7474,7474,7474,7474,7474,7474,7474,7474,7474,0,0,0,0,0,0,5133,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,7593,7594,7594,7594,7474,7474,7474,7474,7474,7474,7474,7474,7474,7474,7474,7474,7474,7474,7474,7474,7474,7474,7474,7474,7474,7474,7474,7474,7474,7474,7474,7474,7474,7474,7474,7474,7474,7474,7474,7474,7474,7474,7474,7474,7474,7474,7474,7474,7474,7474,0,0,0,0,0,0,5133,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,7356,7356,7473,7474,7474,7474,7474,7474,7474,7474,7474,7474,7474,7474,7474,7474,7474,7474,7474,7474,7474,7474,7474,7474,7474,7474,7474,7474,7474,7474,7474,7474,7474,7474,7474,7474,7474,7474,7474,7474,7474,7474,7474,7474,7474,7474,7594,7594,0,0,0,0,0,0,5134,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,7593,7594,7594,7594,7594,7594,7594,7594,7594,7594,7594,7594,7594,7594,7594,7594,7594,7594,7594,7594,7594,7594,7474,7474,7474,7474,7474,7474,7594,7594,7594,7594,7594,7594,7594,7594,7594,7594,7594,7594,7594,7594,7594,7594,7595,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,7594,7594,7594,7594,7594,7595,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,4293,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1243,7473,7474,7474,7474,7354,7354,7354,7354,7354,7354,7354,7354,7354,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1243,1243,1243,1243,7473,7474,7474,7474,7354,7354,7354,7354,7354,7474,7474,7474,7474,7475,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,4771,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1243,1243,1243,0,0,7473,7474,7474,7474,7474,7474,7474,7474,7474,7474,7474,7474,7474,7474,7475,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,4769,4770,4771,0,0,0,4769,4770,4771,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1243,1243,1243,0,0,0,0,7473,7474,7474,7474,7474,7474,7474,7474,7474,7474,7474,7474,7474,7474,7475,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,4771,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,5009,5009,0,0,0,1243,1243,1243,1243,1243,1243,1243,1243,1243,1243,1243,1243,1243,0,0,0,0,0,0,7473,7474,7474,7474,7474,7474,7474,7474,7474,7474,7474,7474,7474,7474,7474,7475,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,5012,4298,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1243,1243,1243,0,0,0,1243,1243,1243,0,0,0,0,0,0,0,0,0,7473,7473,7474,7474,7474,7474,7474,7474,7474,7474,7474,7474,7474,7474,7474,7474,7475,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1243,1243,1243,0,1243,1243,1243,0,0,0,0,0,0,0,0,0,0,0,7473,7473,7474,7474,7474,7474,7474,7474,7474,7474,7474,7474,7474,7474,7474,7474,7475,7475,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1489,1490,0,1487,1488,0,0,0,0,1489,1490,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1243,0,0,0,0,0,0,0,1243,1243,1243,0,0,0,0,0,0,0,0,0,0,0,0,7473,7474,7474,7474,7474,7474,7474,7474,7474,7474,7474,7474,7474,7474,7474,7474,7474,7474,7475,7475,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1243,1243,0,0,0,0,0,0,0,0,0,0,0,0,7473,7473,7474,7474,7474,7474,7474,7474,7474,7474,7474,7474,7594,7594,7594,7594,7594,7474,7474,7475,7475,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1243,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,7473,7474,7474,7474,7474,7474,7474,7474,7474,7474,7475,7594,0,0,0,0,7473,7474,7474,7475,7475,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1243,0,0,5129,5130,5131,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,7473,7474,7474,7474,7474,7474,7474,7474,7474,7474,7475,0,9198,9199,9200,0,7473,7474,7474,7475,0,0,0,0,0,0,0,0,0,0,0,0,0,4302,4780,4781,4782,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,5017,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1243,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,5012,5012,5012,0,7473,7474,7474,7474,7474,7474,7474,7474,7474,7474,7475,0,9318,0,9318,0,7473,7474,7474,7475,0,7356,0,0,0,0,0,0,0,0,0,0,0,4289,5612,5613,5614,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,5612,5613,5614,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,5255,5255,5255,0,7593,7594,7474,7474,7474,7474,7474,7474,7474,7474,7475,0,9438,0,9440,0,7473,7473,7473,7474,7474,7356,0,0,0,0,0,0,0,0,0,0,0,0,5732,5733,5734,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,5732,5733,5734,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,4769,4770,4771,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,7476,0,0,7473,7474,7474,7474,7474,7474,7474,7474,7475,0,0,0,0,0,7473,7353,7474,7474,7474,7356,7356,0,0,0,0,0,0,0,0,0,0,0,5852,5853,5854,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,5852,5853,5854,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,3938,0,0,0,4662,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,7476,7476,0,0,7473,7474,7474,7474,7474,7474,7474,7474,7356,7356,7356,0,0,0,7473,7473,7474,7474,7356,7356,0,0,0,0,0,0,0,0,0,0,0,5018,0,0,6221,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,7476,0,7356,7356,7593,7358,7474,7474,7474,7474,7474,7474,7474,7356,7356,0,0,0,7356,7473,7474,7474,7474,7356,0,0,0,0,0,0,0,0,0,0,0,0,4889,4176,4176,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,4889,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,7476,7476,0,7356,0,0,7356,0,7473,7474,7474,7474,7474,7474,7474,7474,7474,7475,7356,0,0,7356,7356,7474,7474,7356,7356,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1491,0,7356,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,7356,0,0,0,0,0,0,0,0,0,0,0,0,0,1243,0,0,0,0,0,7356,0,7356,0,0,0,7473,7474,7474,7474,7474,7474,7474,7474,7474,7356,7356,0,0,0,7356,7474,7474,7356,7356,7356,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,7356,7356,0,0,1363,1363,1487,1363,1363,1363,1363,1363,1363,1363,1364,0,0,7476,0,7476,7476,7356,0,0,7353,7474,7474,7474,7474,7474,7474,7474,7474,7474,7474,7356,0,0,0,0,7356,7474,7474,7356,7356,7356,0,0,0,0,0,0,0,0,0,0,4414,4414,5010,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,4409,5013,4297,4298,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,7353,7354,7356,0,0,0,0,0,0,0,0,0,0,0,1243,0,0,7476,7476,0,7356,7353,7478,7474,7474,7474,7474,7474,7474,7474,7474,7474,7474,7474,7356,7356,0,0,0,7356,7356,7474,7474,7356,7356,0,0,0,0,0,0,0,0,0,0,0,0,5609,5610,5611,0,0,0,0,0,0,1493,1487,1491,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,7473,7474,7473,7354,7355,0,0,0,0,0,0,0,0,0,0,0,7356,0,7356,7356,7353,7478,7474,7474,7474,7474,7474,7474,7474,7474,7474,7474,7475,7356,7356,0,0,0,0,7356,7356,7474,7474,7474,7356,0,0,0,0,0,0,0,0,0,0,0,0,5729,5730,5731,0,0,0,0,0,0,1494,6450,1492,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,7473,7474,7474,7474,7474,7474,7474,7475,0,0,0,0,0,0,0,0,7356,7356,0,7353,7478,7474,7474,7474,7474,7474,7474,7474,7474,7474,7475,7356,7356,7356,0,0,0,0,0,0,7356,7356,7356,7356,7356,0,0,0,0,0,0,0,0,0,0,0,0,5849,5850,5851,0,0,0,0,0,0,1491,1488,1363,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,7473,7357,7358,7474,7474,7474,7474,7474,7475,0,0,0,0,0,0,7353,7354,7354,7354,7478,7474,7474,7474,7474,7474,7474,7474,7474,7474,7475,7356,7356,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,6220,0,5012,5012,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,4777,4778,4779,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,7473,7477,7478,7474,7474,7357,7358,7474,7474,7475,0,0,0,0,0,7473,7474,7474,7474,7474,7474,7474,7474,7474,7474,7474,7474,7475,7475,7356,7356,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,4889,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,4173,4889,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,7473,7474,7474,7474,7474,7477,7478,7474,7474,7474,7475,0,0,0,0,7473,7474,7474,7474,7474,7474,7474,7474,7474,7474,7475,7356,7356,7356,7356,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1491,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,7473,7357,7357,7358,7474,7474,7474,7357,7358,7474,7475,0,0,0,0,7473,7474,7474,7474,7474,7474,7474,7475,7356,7356,7356,7356,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1364,1243,1244,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,7473,7477,7477,7478,7357,7358,7474,7477,7478,7474,7475,0,0,0,0,7473,7474,7474,7474,7474,7474,7474,7475,7356,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,5018,0,4409,4414,0,0,0,0,0,0,0,0,0,1363,0,0,0,0,0,4414,4410,0,5013,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,7473,7477,7474,7474,7477,7478,7474,7474,7474,7474,7475,0,0,0,0,7473,7474,7474,7474,7474,7474,7474,7357,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,5612,5613,5614,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,5609,5610,5611,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,7473,7357,7358,7478,7357,7358,7478,7474,7474,7474,7475,0,0,0,0,7473,7474,7474,7474,7474,7474,7475,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,5732,5733,5734,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,5729,5730,5731,0,0,0,0,0,0,0,0,0,4890,0,0,0,0,0,0,0,0,0,0,0,0,7473,7477,7478,7474,7477,7474,7474,7474,7475,7594,7595,0,0,0,0,7593,7594,7594,7594,7594,7594,7595,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,5011,5852,5853,5854,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,5849,5850,5851,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,7473,7474,7474,7474,7474,7474,7474,7474,7357,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,5011,0,4773,4774,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,5012,0,4292,4293,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,7593,7594,7594,7594,7594,7594,7595,7594,7595,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,4173,4889,0,4173,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,4889,4173,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,5612,5621,5621,5621,5621,5621,5621,5621,5621,5621,5621,5621,5135,5135,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,5732,5733,5733,5733,5733,5733,5733,5733,5733,5733,5733,5733,5733,5734,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,5732,5733,5733,5733,5733,0,5733,5733,5733,5733,5733,0,5733,5734,0,3940,3940,3940,3940,3940,3940,3940,3940,3940,3929,3940,3940,3938,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,5732,5733,5733,5733,5733,5733,5733,5733,5733,5733,5733,5733,5733,5734,0,0,0,7985,7985,7985,7985,7985,7985,7985,0,0,0,3930,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,5732,5733,5733,5733,5733,5733,5733,5733,5733,5733,5733,5733,5733,5734,0,0,7866,1610,1608,1606,7747,1612,1603,1612,7864,0,0,3930,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,5732,5733,5733,5733,5733,5733,5733,5733,5733,5733,5733,5733,5733,5734,0,0,7866,1610,1608,1606,7867,1612,1603,1612,7864,0,0,3930,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,7353,7354,7355,7355,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,5732,5733,5733,5733,5733,5733,5733,5733,5733,5733,5733,5733,5733,5734,0,0,7866,1610,1608,1606,7867,1612,1603,1612,7864,0,0,3930,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,7353,7354,7354,7354,7355,0,0,0,0,0,0,0,0,0,0,7356,7473,7474,7475,7354,7355,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,5732,5733,5733,5733,5733,5733,5733,5733,5733,5733,5733,5733,5733,5734,0,0,7866,1730,1616,1606,7867,1612,1603,1612,7864,0,0,3930,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,7353,7474,7474,7474,7474,7354,7355,5011,5014,0,0,0,0,0,5012,7356,7593,7594,7356,7474,7475,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,5852,5853,5853,5853,5853,5853,5853,5853,5853,5853,5853,5853,5853,5854,0,0,7866,1730,1616,1606,7867,1612,1603,1612,7864,0,0,3930,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,7473,7474,7357,7358,7474,7474,7474,7475,177,0,0,0,0,0,177,7353,7354,3097,3098,3099,7353,7354,7355,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,7866,1730,1616,1606,7867,1612,1603,1603,7864,0,0,3930,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,7356,7473,7474,7357,7358,7474,7474,7474,7475,5011,5014,0,0,0,5255,7593,7594,7595,3217,2645,3217,7473,7474,7475,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,7866,1730,1616,1606,7987,1612,1603,1603,7864,0,0,3930,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,7356,7473,7474,7477,7357,7358,7474,7474,7475,0,0,0,0,0,0,7356,0,0,3337,0,3339,7353,7354,7355,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,7745,7745,7745,7745,7745,7745,7745,0,0,0,3930,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,7356,7356,7473,7474,7474,7477,7478,7474,7474,7595,5012,0,0,0,0,0,0,0,0,0,0,0,7473,7474,7475,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],"height":60,"name":"Tile Layer 3","opacity":1,"properties":{"obstacles":true},"propertytypes":{"obstacles":"bool"},"type":"tilelayer","visible":true,"width":100,"x":0,"y":0},{"data":[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,9112,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,4889,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1363,1363,1363,1363,1363,1363,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,177,0,0,1363,0,0,0,0,0,1363,1363,0,1485,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,4889,0,9112,0,0,1363,1485,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1363,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1363,1363,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1363,0,0,0,0,0,0,0,0,153,0,0,1487,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1363,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1363,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1363,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1247,0,0,0,0,0,0,1247,0,0,0,0,0,0,0,0,0,0,0,0,1363,1363,1363,0,1363,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1363,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1485,0,1363,1363,0,1363,0,0,0,0,0,0,1487,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1363,1363,1363,1363,1363,1363,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1363,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1363,1363,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1363,1363,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1363,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1363,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1363,1363,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1363,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1363,1363,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1363,1363,1363,1363,1363,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1363,1363,1363,1363,1363,1363,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1363,1363,1363,1363,0,1363,1363,1363,1363,1363,1363,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1363,1363,1363,1363,1363,1363,1363,1363,0,0,1363,1363,1363,1363,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,7520,0,0,7520,0,0,7520,0,0,7520,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,7519,0,0,7519,0,0,7519,0,0,7519,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,6338,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,7520,0,0,7520,0,0,7520,0,0,7520,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,7519,0,0,7519,0,0,7519,0,0,7519,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,9112,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],"height":60,"name":"Tile Layer 4","opacity":1,"properties":{"obstacles":true},"propertytypes":{"obstacles":"bool"},"type":"tilelayer","visible":true,"width":100,"x":0,"y":0},{"data":[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,6210,4301,0,0,0,0,0,0,0,0,0,0,0,6211,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,4530,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,4890,0,0,4889,0,0,4890,0,0,4889,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,4890,0,0,4889,0,0,4890,0,0,4889,4298,5011,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,4300,0,0,0,0,0,0,0,0,0,0,0,5011,6213,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],"height":60,"name":"Tile Layer 5","opacity":1,"properties":{"obstacles":true},"propertytypes":{"obstacles":"bool"},"type":"tilelayer","visible":true,"width":100,"x":0,"y":0},{"data":[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,970,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,970,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],"height":60,"name":"Item Layer 1","opacity":1,"properties":{"items":true},"propertytypes":{"items":"bool"},"type":"tilelayer","visible":true,"width":100,"x":0,"y":0},{"data":[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,489,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,489,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],"height":60,"name":"Item Layer 2","opacity":1,"properties":{"items":true},"propertytypes":{"items":"bool"},"type":"tilelayer","visible":true,"width":100,"x":0,"y":0},{"data":[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,489,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,489,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,38,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],"height":60,"name":"Item Layer 3","opacity":1,"properties":{"items":true},"propertytypes":{"items":"bool"},"type":"tilelayer","visible":true,"width":100,"x":0,"y":0},{"data":[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,489,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,489,0,0,25,0,35,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,489,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,785,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,25,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],"height":60,"name":"Item Layer 4","opacity":1,"properties":{"items":true},"propertytypes":{"items":"bool"},"type":"tilelayer","visible":true,"width":100,"x":0,"y":0},{"data":[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,8744,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,5180,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,4696,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,58,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,8402,0,0,0,570,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,57,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,4336,1476,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,570,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,5173,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,8162,0,5174,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,57,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,3974,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,569,0,0,0,0,0,0,0,0,569,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,569,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,3975,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,238,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,569,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,570,0,0,0,0,0,0,0,0,0,0,0,0,0,570,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,569,0,0,0,0,0,0,0,0,0,0,0,0,0,0,3857,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,570,0,0,0,0,0,0,0,0,0,0,0,0,0,570,0,8045,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,8041,0,0,570,0,0,0,0,0,0,0,0,0,0,0,0,0,570,0,0,8041,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,8042,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,690,0,480,2366,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,478,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,691,0,0,7444,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,5300,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,5300,0,0,5299,0,58,0,0,0,0,0,0,0,0,8044,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,7445,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,7442,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,689,0,0,0,0,0,0,0,0,0,0,0,5300,0,0,0,0,0,0,0,0,8043,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,7447,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,5173,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,7441,0,0,0,58,0,0,811,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,7444,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],"height":60,"name":"Actors","opacity":1,"properties":{"actors":true},"propertytypes":{"actors":"bool"},"type":"tilelayer","visible":true,"width":100,"x":0,"y":0},{"data":[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,7901,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,7541,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,7781,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,7421,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],"height":60,"name":"Portal Layer","opacity":1,"properties":{"portal":true},"propertytypes":{"portal":"bool"},"type":"tilelayer","visible":true,"width":100,"x":0,"y":0}],"nextobjectid":4,"orientation":"orthogonal","renderorder":"right-down","tiledversion":"1.0.3","tileheight":32,"tilesets":[{"firstgid":1,"source":"../tileset/compiled_dawnlike.json"}],"tilewidth":32,"type":"map","version":1,"width":100}
+module.exports = {"height":60,"layers":[{"data":[7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7866,9298,7864,7865,7865,7865,7865,7865,7865,7865,7865,7865,7866,8297,8298,8298,8298,8298,8299,7864,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7866,9298,7864,7865,7865,7865,7865,7865,7865,7865,7865,7865,7866,8297,8298,8298,8298,8298,8299,7864,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7765,7766,7766,7766,7766,7767,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7866,9298,7864,7865,7865,7865,7865,7865,7865,7865,7865,7865,7866,8297,8298,8298,8298,8298,8299,7864,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7885,9184,9185,9185,9186,7885,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7866,9298,7864,7865,7865,7865,7865,7865,7865,7865,7865,7865,7866,8297,8298,8298,8298,8298,8299,7864,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7885,9304,9305,9305,9306,7885,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7866,9298,7864,7865,7865,7865,7865,7865,7865,7865,7865,7865,7866,8297,8298,8298,8058,8298,8299,7864,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7885,9304,9305,9305,9306,9189,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7866,9298,7864,7865,7865,7865,7865,7865,7865,7865,7865,7865,7866,8297,8298,8298,8058,8058,8299,7864,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7885,9304,9305,9305,9306,7885,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7866,9298,7864,7865,7865,7865,7865,7865,7865,7865,7865,7865,7866,8297,8298,8298,8058,8058,8299,7864,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7885,9304,9305,9305,9306,7885,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7866,9298,7864,7865,7865,7865,7865,7865,7865,7865,7865,7865,7866,8297,8298,8298,8058,8058,8299,7864,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,8005,7766,7766,7766,7766,8007,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7866,9298,7864,7865,7865,7865,7865,7865,7865,7865,7865,7865,7866,8297,8298,8298,8058,8058,8299,7864,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7866,9298,7864,7865,7865,7865,7865,7865,7865,7865,7865,7865,7866,8297,8298,8298,8058,8058,8299,7864,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7866,9298,7864,7865,7865,7865,7865,7865,7865,7865,7865,7865,7866,8297,8298,8298,8058,8058,8299,7864,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7765,7766,7766,7766,7766,7766,7766,7766,7766,7766,7766,7766,7766,7766,7766,7766,7767,7865,7865,7865,7865,7865,7865,7866,9298,7984,7985,7985,7985,7985,7985,7985,7985,7985,7985,7986,8297,8298,8298,8058,8058,8299,7984,7985,7985,7985,7985,7985,7985,7985,7985,7985,7985,7985,7985,7985,7985,7985,7985,7985,7985,7985,7985,7985,7985,7985,7985,7985,7985,7985,7985,7985,7985,7985,7985,7985,7985,7985,7985,7985,7985,7985,7985,7985,7985,7985,7985,7985,7985,7985,7985,7985,7985,7985,7985,7985,7865,7865,7865,7865,7885,9184,9185,9185,9185,9185,9185,9185,9185,9185,9185,9185,9185,9185,9185,9186,7885,7865,7865,7865,7865,7865,7865,7866,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7866,8297,8298,8298,8058,8058,8299,7864,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7885,9304,9305,9305,9305,9305,9305,9305,9305,9305,9305,9305,9305,9305,9305,9306,7885,7865,7865,7865,7865,7865,7865,7866,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7866,8297,8298,8298,8298,8298,8299,7864,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7885,9304,9305,9305,9305,9305,9305,9305,9305,9305,9305,9305,9305,9305,9305,9306,7885,7865,7865,7865,7865,7865,7865,7866,7865,7865,7744,7745,7745,7745,7745,7745,7745,7745,7745,7746,7937,7938,7938,7938,7938,7938,7744,7745,7745,7745,7745,7745,7745,7745,7745,7745,7745,7745,7745,7745,7745,7745,7745,7745,7745,7745,7745,7745,7745,7745,7745,7745,7745,7745,7745,7745,7745,7745,7745,7745,7745,7745,7745,7745,7745,7745,7745,7745,7745,7745,7745,7745,7745,7745,7745,7745,7745,7745,7745,7745,7865,7865,7865,7865,7885,9304,7409,9305,9305,9305,9305,7409,9305,9305,9305,9305,7409,9305,9305,9306,7885,7865,7865,7865,7865,7865,7865,7866,7865,7865,7864,7865,7865,7865,7865,7865,7865,7865,7865,7866,8297,8298,8298,8058,8058,8299,7864,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7885,9304,7526,9305,9305,9305,9305,7526,9305,9305,9305,9305,7526,9305,9305,9306,9310,9302,9302,9302,9302,9302,9302,9302,7865,7865,7864,7865,7865,7865,7865,7865,7865,7865,7865,7866,8297,8298,8298,8058,8058,8299,7864,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7885,9304,9305,9305,9305,9305,9305,9305,9305,9305,9305,9305,9305,9305,9305,9306,7885,7865,7865,7865,7865,7865,7865,7866,7865,7865,7864,7865,7865,7865,7865,7865,7865,7865,7865,7866,8297,8298,8298,8298,8298,8299,7864,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7885,9304,9305,9305,9305,9305,9305,9305,9305,9305,9305,9305,9305,9305,9305,9306,7885,7865,7865,7865,7865,7865,7865,7866,7865,7865,7864,7865,7865,7865,7865,7865,7865,7865,7865,7866,8297,8298,8298,8298,8298,8299,7864,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7885,9304,9305,9305,9305,9305,9305,9305,9305,9305,9305,9305,9305,9305,9305,9306,7885,7865,7865,7865,7865,7865,7865,7866,7865,7865,7864,7865,7865,7865,7865,7865,7865,7865,7865,7866,8297,8298,8298,8298,8298,8299,7864,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7885,9424,9425,9305,9425,9425,9425,9425,9425,9425,9425,9425,9305,9425,9425,9426,7885,7865,7865,7865,7865,7865,7865,7866,7865,7865,7864,7865,7865,7865,7865,7865,7865,7865,7865,7866,8297,8298,8298,8058,8298,8299,7864,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,8005,7766,7766,9427,7766,7766,7766,7766,7766,7766,7766,7766,9427,7766,7766,7766,8007,7865,7865,7865,7865,7865,7865,7866,7865,7865,7864,7865,7865,7865,7865,7865,7865,7865,7865,7866,8297,8298,8298,8058,8058,8299,7864,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7866,7865,7984,7985,7985,7985,7985,7985,7985,7986,7865,7984,7985,7985,7985,7985,7985,7985,7985,7985,7985,7986,7865,7865,7864,7865,7865,7865,7865,7865,7865,7865,7865,7866,8297,8298,8298,8058,8058,8299,7864,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7866,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7866,7865,7865,7864,7865,7865,7865,7865,7865,7865,7865,7865,7866,8297,8298,8298,8298,8298,8299,7864,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7745,7745,7745,7745,7745,7746,7865,7744,7745,7745,7745,7745,7745,7745,7745,7745,7745,7745,7745,7745,7746,7865,7865,7864,7865,7865,7865,7865,7865,7865,7865,7865,7866,8297,8298,8298,8058,8298,8299,7864,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7985,7985,7985,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7866,7865,7864,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7866,7865,7865,7864,7865,7865,7865,7865,7865,7865,7865,7865,7866,8297,8298,8298,8058,8058,8299,7864,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7866,7865,7865,7865,7864,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7866,7865,7864,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7866,7865,7865,7864,7865,7865,7865,7865,7865,7865,7865,7865,7866,8297,8298,8298,8058,8058,8299,7864,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7866,7865,7865,7865,7864,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7985,7985,7985,7985,7985,7986,7865,7984,7985,7985,7985,7985,7985,7865,7865,7865,7865,7865,7865,7865,7866,7865,7865,7864,7865,7865,7865,7865,7865,7865,7865,7865,7866,8297,8298,8298,8298,8298,8299,7864,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7866,7865,9298,7865,7864,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,9298,9298,9298,9298,9298,9298,7865,9298,9298,9298,9298,9298,9298,7865,7865,7865,7865,7865,7865,7865,7866,7865,7865,7864,7865,7865,7865,7865,7865,7865,7865,7865,7866,8297,8298,8298,8298,8298,8299,7864,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7745,7745,7745,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7745,7745,7745,7745,7745,7746,7865,7744,7745,7745,7745,7745,7745,7865,7865,7865,7865,7865,7865,7865,7866,7865,7865,7864,7865,7865,7865,7865,7865,7865,7865,7865,7866,8297,8298,8298,8298,8298,8299,7864,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7866,7865,7864,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7866,7865,7865,7864,7865,7865,7865,7865,7865,7865,7865,7865,7866,8297,8298,8298,8058,8298,8299,7864,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7985,7985,7985,7986,7985,7984,7985,7985,7985,7865,7865,7865,7865,7865,7865,7865,7865,7865,7866,7865,7865,7864,7865,7865,7865,7865,7865,7865,7865,7865,7866,8297,8298,8298,8058,8058,8299,7864,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7866,7865,7865,7865,7865,7865,7865,7865,7865,7865,7864,7865,7865,7865,7865,7865,7865,7865,7865,7866,7865,7865,7864,7865,7865,7865,7865,7865,7865,7865,7865,7866,8297,8298,8298,8058,8058,8299,7864,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7866,7865,7865,7865,7865,7865,7865,7865,7865,7865,7864,7865,7865,7865,7865,7865,7865,7865,7865,7866,7865,7865,7864,7865,7865,7865,7865,7865,7865,7865,7865,7866,8297,8298,8298,8298,8298,8299,7864,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7866,7865,7865,7865,7865,7865,7865,7865,7865,7865,7864,7865,7865,7865,7865,7865,7865,7865,7865,7866,7865,7865,7864,7865,7865,7865,7865,7865,7865,7865,7865,7866,8297,8298,8298,8298,8298,8299,7864,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7985,7986,7865,7865,7865,7865,7865,7865,7865,7865,7865,7984,7985,7865,7865,7865,7865,7865,7865,7865,7866,7865,7865,7864,7865,7865,7865,7865,7865,7865,7865,7865,7866,8297,8298,8298,8298,8298,8299,7864,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,9298,9298,7865,7865,7865,7865,7865,7865,7865,7865,7865,9298,9298,7865,7865,7865,7865,7865,7865,7865,7866,7865,7865,7864,7865,7865,7865,7865,7865,7865,7865,7865,7866,8297,8298,8298,8298,8298,8299,7864,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7745,7746,7865,7865,7865,7865,7865,7865,7865,7865,7865,7744,7745,7865,7865,7865,7865,7865,7865,7865,7866,7865,7865,7864,7865,7865,7865,7865,7865,7865,7865,7865,7866,8297,8298,8298,8058,8298,8299,7864,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7866,7865,7865,7865,7865,7865,7865,7865,7865,7865,7864,7865,7865,7865,7865,7865,7865,7865,7865,7866,7865,7865,7864,7865,7865,7865,7865,7865,7865,7865,7865,7866,8297,8298,8298,8058,8058,8299,7864,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7866,7865,7865,7865,7865,7865,7865,7865,7865,7865,7864,7865,7865,7865,7865,7865,7865,7865,7865,7866,7865,7865,7864,7865,7865,7865,7865,7865,7865,7865,7865,7866,8297,8298,8298,8058,8058,8299,7864,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7866,7865,7865,7865,7865,7865,7865,7865,7865,7865,7864,7865,7865,7865,7865,7865,7865,7865,7865,7866,7865,7865,7864,7865,7865,7865,7865,7865,7865,7865,7865,7866,8297,8298,8298,8298,8058,8299,7864,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7745,7745,7745,7746,7865,7744,7745,7745,7745,7865,7865,7865,7865,7865,7865,7865,7865,7865,7866,7865,7865,7864,7865,7865,7865,7865,7865,7865,7865,7865,7866,8297,8298,8298,8298,8298,8299,7864,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7866,7865,7864,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7866,7865,7865,7864,7865,7865,7865,7865,7865,7865,7865,7865,7866,8297,8298,8298,8298,8298,8299,7864,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7985,7985,7985,7985,7985,7985,7985,7985,7985,7985,7985,7985,7985,7985,7985,7985,7985,7985,7985,7985,7985,7985,7985,7985,7985,7985,7985,7985,7985,7865,7865,7865,7865,7865,7865,7865,7985,7985,7985,7985,7985,7986,7865,7984,7985,7985,7985,7985,7985,7865,7865,7865,7865,7865,7865,7865,7866,7865,7865,7864,7865,7865,7865,7865,7865,7865,7865,7865,7866,8297,8298,8298,8298,8298,8299,7864,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7866,8177,8178,8178,8178,8178,8178,8178,8178,8178,8178,8178,8178,8178,8178,8178,8178,8178,8178,8178,8178,8178,8178,8178,8178,8178,8178,8178,8178,8178,7865,7865,7865,7865,7865,7865,7865,9298,9298,9298,9298,9298,9298,7865,9298,9298,9298,9298,9298,9298,7865,7865,7865,7865,7865,7865,7865,7866,7865,7865,7864,7865,7865,7865,7865,7865,7865,7865,7865,7866,8297,8298,8298,8298,8298,8299,7864,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7866,8297,8298,8298,8298,8298,8298,8298,8298,8298,8298,8298,8298,8298,8298,8298,8298,8298,8298,8298,8298,8298,8298,8298,8298,8298,8298,8298,8298,8298,7865,7865,7865,7865,7865,7865,7865,7745,7745,7745,7745,7745,7746,7865,7744,7745,7745,7745,7745,7745,7865,7865,7865,7865,7865,7865,7865,7866,7865,7865,7864,7865,7865,7865,7865,7865,7865,7865,7865,7866,8297,8298,8298,8298,8298,8299,7864,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7866,8297,8299,7744,7745,7745,7745,7745,7745,7745,7745,7745,7745,7745,7745,7745,7745,7745,7745,7745,7745,7745,7745,7745,7745,7745,7745,7745,7745,7745,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7866,7865,7864,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7866,7865,7865,7864,7865,7865,7865,7865,7865,7865,7865,7865,7866,8297,8298,8298,8298,8298,8299,7864,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7866,8297,8299,7864,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7866,7865,7864,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7866,7865,7865,7864,7865,7865,7865,7865,7865,7865,7865,7865,7866,8297,8298,8298,8298,8298,8299,7864,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7866,8297,8299,7864,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7866,7865,7984,7985,7985,7985,7985,7985,7985,7985,7985,7985,7985,7985,7985,7986,7865,7865,7864,7865,7865,7865,7865,7865,7865,7865,7865,7866,8297,8298,8298,8298,8298,8299,7864,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7866,8297,8299,7864,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7866,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7866,7865,7865,7984,7985,7985,7985,7985,7985,7985,7985,7985,7986,8297,8298,8298,8298,8298,8299,7984,7985,7985,7985,7985,7985,7985,7985,7985,7985,7985,7985,7985,7985,7985,7985,7985,7985,7985,7985,7985,7985,7985,7985,7986,8297,8299,7984,7985,7985,7985,7985,7985,7985,7985,7985,7985,7985,7985,7985,7985,7985,7985,7985,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7745,7745,7745,7745,7745,7745,7745,7745,7745,7745,7745,7745,7745,7745,7746,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7866,8297,8298,8298,8298,8298,8299,7864,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,8057,8299,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7866,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7866,8297,8298,8298,8298,8298,8299,7864,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,8297,8299,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7745,7745,7745,7745,7745,7745,7745,7745,7745,7745,7745,7746,7937,7938,7938,7938,7938,7938,7744,7745,7745,7745,7745,7745,7745,7745,7745,7745,7745,7745,7745,7745,7745,7745,7745,7745,7745,7745,7745,7745,7745,7745,7746,7937,7938,7744,7745,7745,7745,7745,7745,7745,7745,7745,7745,7745,7745,7745,7745,7745,7745,7745,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7866,8297,8298,8298,8298,8298,8299,7864,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7866,8297,8299,7864,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7866,8297,8298,8298,8298,8058,8299,7864,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7866,8297,8299,7864,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7866,8297,8298,8298,8298,8058,8299,7864,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7866,8297,8299,7864,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7866,8297,8298,8298,8298,8058,8299,7864,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7985,7865,7865,7865,7866,8297,8299,7864,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7866,8297,8298,8298,8298,8058,8299,7864,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7866,7749,7864,7865,7865,7866,8297,8299,7984,7985,7985,7985,7985,7985,7985,7985,7985,7985,7985,7985,7985,7985,7985,7985,7985,7985,7985,7985,7985,7985,7985,7985,7985,7985,7985,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7866,8297,8298,8298,8298,8058,8299,7864,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7745,7865,7865,7865,7866,8297,8298,8178,8178,8178,8178,8178,8178,8178,8178,8178,8178,8178,8178,8178,8178,8178,8178,8178,8178,8178,8178,8178,8178,8178,8178,8178,8178,8178,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7866,8297,8298,8298,8298,8058,8299,7864,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,7865,8297,8298,8298,8298,8298,8298,8298,8298,8298,8298,8298,8298,8298,8298,8298,8298,8298,8298,8298,8298,8298,8298,8298,8298,8298,8298,8298,8298,8298],"height":60,"name":"Tile Layer 1","opacity":1,"properties":{"obstacles":true},"propertytypes":{"obstacles":"bool"},"type":"tilelayer","visible":true,"width":100,"x":0,"y":0},{"data":[7474,7475,7356,7356,7473,7475,7356,7356,7356,7356,7356,7356,7356,7356,7356,7356,7356,7473,7474,7474,7474,7474,7474,7474,7474,7474,7474,7475,0,7473,7474,7474,7474,7474,7474,7474,7474,7474,7474,7475,0,0,0,0,0,0,0,1243,1243,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,7594,7595,7356,7356,7593,7595,7356,0,0,0,7356,7356,0,0,1363,1364,0,7593,7594,7594,7594,7594,7594,7594,7594,7594,7594,7595,0,7593,7594,7594,7594,7594,7594,7594,7594,7594,7594,7595,0,0,0,0,0,0,0,1243,1243,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,7356,7356,0,0,0,0,4889,0,5381,0,0,0,0,0,0,0,1243,1363,1364,0,0,1363,1364,0,0,0,1487,0,0,4535,0,1243,0,1487,0,0,0,0,0,0,0,0,0,0,0,0,0,1243,1243,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,7474,7475,0,0,0,5021,0,0,5250,0,0,0,0,0,1243,1244,1243,1243,1244,0,0,0,0,0,0,0,0,1243,0,1243,1243,1243,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1243,1243,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,7594,7595,0,0,0,0,5612,5613,5614,0,0,0,0,1243,1363,1364,1363,1243,1244,0,0,0,0,0,0,0,0,1243,0,1243,1243,1243,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1243,1243,1243,1243,1243,1243,1243,1243,1243,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,7356,7356,0,0,0,0,5732,5733,5734,0,0,0,0,1363,1364,1363,1364,1363,1364,0,0,0,0,0,0,1487,0,1243,0,1243,1243,1243,0,0,0,1487,0,0,0,0,0,0,0,0,0,0,0,0,0,1243,1243,1243,1243,1243,1243,1243,1243,1243,1243,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,7356,0,0,1495,0,0,5852,5853,5854,0,0,0,0,0,0,1363,1364,1243,1244,0,0,1243,1243,1244,0,0,0,0,0,0,1243,1243,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1243,1243,1243,1243,1243,1243,1243,1243,1243,1243,0,0,0,0,1243,1243,1243,1243,1243,1243,1243,1243,1243,1243,1243,0,0,0,0,0,1243,1243,1243,1243,1243,1243,1243,0,0,1243,1243,1243,0,0,0,0,0,0,1243,1243,0,0,1495,0,0,0,0,0,5254,0,0,0,0,1243,1244,0,0,1243,1244,0,0,1243,1363,1364,0,0,0,0,0,1243,1243,1243,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1243,1243,1243,1243,1243,1243,1243,1243,1243,1243,1243,1243,1243,1243,1243,1243,1243,1243,1243,1243,1243,1243,1243,1243,1243,1243,1243,1243,1243,1243,1243,1243,1243,1243,1243,1243,1243,1243,1243,1243,0,1243,1243,1243,1243,1243,0,0,0,0,0,0,4889,0,4651,0,0,0,0,1363,1364,0,0,1363,1364,1243,1244,1363,1364,0,0,0,0,0,0,1243,1243,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1243,1243,1243,1243,1243,1243,1243,1243,1243,1243,1243,1243,1243,1243,1243,1243,1243,1243,1243,1243,1243,1243,1243,1243,1243,1243,1243,0,0,0,0,0,5263,5263,5263,5263,0,0,0,0,0,0,0,0,0,0,0,1363,1364,0,0,1243,1244,0,1243,1243,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1243,1243,1243,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1243,1243,1243,1243,1243,0,0,0,0,0,0,1495,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1363,1364,0,1363,1363,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,4057,4057,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,7356,0,0,0,0,4412,4413,0,177,4412,4413,0,0,0,5132,0,5019,0,4420,4411,0,0,1243,1244,0,0,0,0,7737,7739,7738,7738,7738,7738,7738,7738,7738,7738,7738,7738,7738,7738,7738,7738,7738,7738,7738,7738,7738,7738,7738,7738,7738,7738,7738,7738,7738,7738,7738,7738,7738,7738,7738,7738,7738,7738,7738,7738,7738,7738,7738,7738,7738,7738,7738,7738,7738,7738,7738,7738,7738,7738,7738,7738,7738,7738,7738,7738,7738,7738,7738,7738,7738,7738,7738,7738,7738,7738,7738,7738,7356,7356,0,0,0,0,0,0,0,0,0,0,0,0,5133,0,5019,0,0,0,0,0,1243,1244,1243,1244,0,0,7977,7979,7978,7978,7978,7978,7978,7978,7978,7978,7978,7978,7978,7978,7978,7978,7978,7978,7978,7978,7978,7978,7978,7978,7978,7978,7978,7978,7978,7978,7978,7978,7978,7978,7978,7978,7978,7978,7978,7978,7978,7978,7978,7978,7978,7978,7978,7978,7978,7978,7978,7978,7978,7978,7978,7978,7978,7978,7978,7978,7978,7978,7978,7978,7978,7978,7978,7978,7978,7978,7978,7978,7356,7356,0,0,0,5129,5130,5130,5130,5130,5130,5130,5131,0,5134,0,5019,0,0,5020,0,0,1363,1364,1363,1364,0,0,7857,7859,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1243,1243,1243,0,1243,1243,1243,1243,1243,1243,1243,1243,1243,0,0,0,0,0,0,0,0,0,0,0,7356,7356,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1363,1364,0,0,7857,7859,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1243,1243,1243,1243,1243,1243,1243,1243,1243,1243,1243,1243,1243,1243,1243,0,0,0,0,0,0,0,0,0,0,7356,0,0,0,0,0,4890,0,0,0,0,4890,0,0,0,0,4890,0,0,0,0,0,1243,1244,0,0,0,0,7857,7859,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1243,1243,1243,1243,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1243,0,0,0,0,0,0,0,0,0,0,0,0,1243,1243,1243,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,5609,5610,5610,5610,5610,5610,5610,5610,5610,5610,5610,5610,5611,0,0,0,1363,1364,0,0,0,0,7857,7859,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1243,1243,0,0,0,0,0,0,0,0,0,0,0,0,0,1243,1243,0,0,0,0,0,0,0,0,0,0,0,0,1495,0,0,5729,5730,5730,5730,5730,5730,5730,5730,5730,5730,5730,5730,5731,0,0,0,0,0,0,0,0,0,7857,7859,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,7765,7766,7766,7766,7766,7767,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1243,1243,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1243,1243,0,0,0,0,0,0,0,0,0,0,1495,0,0,0,0,5849,5850,5850,5850,5850,5850,5850,5850,5850,5850,5850,5850,5851,0,0,0,0,0,0,1243,1244,0,7857,7859,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,7885,9184,9185,9185,9186,7885,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1243,1243,1243,0,0,0,0,0,0,0,0,0,0,0,0,0,1243,1243,1243,1243,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1243,1244,1244,1243,1244,1364,0,7857,7859,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,7885,9304,9305,9305,9306,7885,0,0,0,0,0,0,0,0,0,0,0,1243,1243,1243,1243,0,0,0,1243,1243,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1243,1243,1243,1243,1243,0,0,0,0,0,0,0,0,0,1495,0,0,0,4889,0,4889,0,4656,4650,0,0,0,0,0,0,0,0,0,1363,1364,1364,1363,1364,0,0,7857,7859,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,7885,9304,9305,9305,9306,7885,0,0,0,0,0,0,0,0,0,0,1243,0,1243,1243,1243,1243,1243,1243,1243,1243,0,0,0,0,0,0,0,0,0,0,0,0,0,1243,1243,1243,1243,1243,1243,1243,0,0,0,0,0,0,0,0,0,0,0,0,0,7860,0,0,0,0,0,0,0,0,7860,0,0,0,0,0,0,0,0,0,0,0,7857,7859,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,7885,9304,9305,9305,9306,7885,0,1243,1243,1243,1243,1243,1243,1243,1243,1243,1243,1243,0,0,1243,1243,1243,1243,1243,0,0,0,0,0,0,0,0,1243,1243,0,0,0,0,1243,1243,1243,1243,1243,1243,1243,0,0,0,0,0,0,0,0,0,0,0,0,0,7861,7862,7862,7862,7862,7862,7862,7862,7862,7862,7862,7862,7862,7862,7862,7862,7862,7862,7862,7862,7863,7857,7859,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,7885,7766,7766,9189,7766,7885,1243,0,0,1243,1243,1243,1243,1243,1243,1243,1243,1243,1243,0,0,1243,1243,1243,1243,0,0,0,0,0,0,1243,1243,1243,1243,1243,1243,1243,0,1243,1243,1243,1243,1243,1243,1243,1243,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,7740,0,0,0,0,0,0,0,0,0,0,0,0,0,0,7857,7859,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,7885,9184,9185,9185,9186,7885,0,1243,1243,0,0,1243,1243,1243,1243,1243,1243,1243,1243,1243,0,1243,1243,1243,1243,0,0,0,0,0,0,1243,1243,1243,1243,1243,1243,1243,0,0,1243,1243,1243,1243,1243,1243,1243,1243,0,0,0,0,0,7765,7766,7766,7766,7766,7767,0,0,0,1363,1364,0,7860,0,1491,1364,0,0,0,7765,7766,7766,7766,7766,7767,0,0,7857,7859,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,7885,9304,9305,9305,9306,7885,1243,0,1243,1243,1243,1243,1243,1243,1243,1243,1243,1243,0,1243,1243,1243,1243,1243,0,0,0,0,0,0,1243,1243,0,0,0,0,1243,1243,0,0,1243,1243,1243,1243,1243,1243,1243,1243,0,0,0,0,0,7885,9184,9185,9185,9186,7885,0,1363,1364,1363,1364,0,7860,0,1363,1364,1363,1364,0,7885,9184,9185,9185,9186,7885,0,0,7857,7859,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,7885,9304,9305,9305,9306,7885,1243,1243,0,1243,1243,0,1243,1243,1243,0,1243,1243,1243,1243,1243,1243,1243,1243,1243,0,0,0,1243,1243,1243,1243,0,0,0,0,1243,1243,0,0,0,1243,1243,1243,1243,1243,1243,1243,0,0,0,0,0,7885,9304,9305,9305,9306,7885,1363,1491,1363,1364,0,0,7860,0,0,1363,1491,0,0,7885,9304,9305,9305,9306,7885,0,0,7857,7859,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,7885,9304,9305,9305,9306,7885,0,1243,1243,1243,0,0,1243,1243,1243,1243,1243,1243,1243,1243,1243,1243,1243,1243,1243,1243,1243,1243,1243,0,0,1243,0,0,0,0,1243,1243,0,0,0,1243,1243,1243,1243,1243,1243,1243,0,0,0,0,0,7885,9304,9305,9305,9305,9310,1363,1364,0,1363,1364,0,7860,0,1363,1364,1363,1364,0,9308,9305,9305,9305,9306,7885,0,0,7857,7859,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1243,7885,9424,9425,9425,9426,7885,1243,0,1243,0,0,1243,1243,1243,1243,1243,1243,1243,1243,1243,1243,1243,1243,1243,1243,0,0,1243,0,0,0,1243,1243,0,0,0,1243,1243,1243,0,0,1243,1243,1243,1243,1243,1243,1243,0,0,0,0,0,7885,9304,9305,9305,9306,7885,0,1363,1364,1491,1363,1364,7860,1363,1363,1491,1363,1364,0,7885,9304,9305,9305,9306,7885,0,0,7857,7859,0,0,0,0,0,0,0,0,0,3931,3932,3932,3932,3932,3932,3932,0,1243,8005,9189,7766,7766,7766,8007,0,1243,1243,1243,1243,1243,1243,1243,1243,1243,1243,1243,1243,1243,1243,1243,1243,1243,1243,0,0,1243,1243,1243,1243,1243,1243,1243,1243,1243,1243,1243,0,0,0,1243,1243,1243,1243,1243,1243,0,0,0,0,0,0,7885,9304,9305,9305,9306,7885,0,1363,1364,1363,1364,0,7860,0,0,0,0,0,7356,7885,9304,9305,9305,9306,7885,0,0,7857,7859,0,0,0,0,0,0,0,0,0,0,9308,9309,9309,9309,9309,9310,1243,1243,1243,0,1243,1243,0,1243,1243,1243,1243,1243,1243,0,1243,0,1243,1243,1243,1243,1243,1243,1243,1243,1243,1243,1243,0,0,1243,1243,1243,1243,1243,1243,1243,1243,1243,1243,1243,1243,0,0,0,1243,1243,1243,1243,1243,0,0,0,0,0,0,8005,7766,7766,7766,7766,8007,0,0,0,0,0,0,7860,0,0,0,0,0,0,8005,7766,7766,7766,7766,8007,0,0,7857,7859,0,0,0,0,0,0,0,0,0,0,8177,8178,8178,8178,8178,8179,1243,0,0,0,1243,1243,1243,1243,1243,1243,1243,1243,1243,1243,1243,1243,1243,1243,1243,1243,1243,1243,1243,1243,1243,1243,1243,1243,1243,1243,0,1243,1243,1243,1243,1243,1243,1243,1243,1243,1243,1243,0,0,1243,1243,1243,1243,1243,0,0,0,0,0,0,0,0,0,0,0,0,0,0,7742,7742,7742,7742,7742,7742,7742,7742,7742,0,0,0,0,0,0,0,0,0,0,7857,7859,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1243,1243,1488,1243,1243,0,1243,1243,1243,1243,1243,1243,1243,1243,1243,1243,1243,1243,1243,1243,1243,1243,1243,1243,1243,1243,1243,1243,0,0,1243,0,1243,1243,1243,0,1243,1243,1243,1243,0,0,0,0,1243,1243,1243,1243,0,0,0,0,0,0,7765,7766,7766,7766,7766,7767,0,0,7742,7858,7858,7858,7858,7858,7858,7858,7742,0,0,7765,7766,7766,7766,7766,7767,0,0,7857,7859,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1243,1488,1488,1243,1244,1243,1244,1244,1243,1243,1243,1243,1243,1243,1243,1243,0,0,1243,1243,1243,1243,1243,1243,1243,0,1243,0,0,1243,1243,0,0,0,1243,1243,1243,0,0,0,0,1243,1243,1243,1243,1243,0,1243,0,0,0,0,0,0,7885,9184,9185,9185,9186,7885,0,0,7742,7858,7858,7858,7858,7858,7858,7858,7742,0,0,7885,9184,9185,9185,9186,7885,0,0,7857,7859,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1243,1243,1243,1243,1243,1243,1243,1243,1243,1244,1243,1243,1243,1243,1243,1243,1243,1243,1243,1243,1243,1243,0,0,0,0,0,0,1243,0,0,1243,1243,1243,1243,0,0,0,0,0,0,0,1243,1243,1243,1243,1243,0,0,0,0,0,0,7885,9304,9305,9305,9306,7885,0,0,7742,7858,7858,7744,7745,7746,7858,7858,7742,0,0,7885,9304,9305,9305,9306,7885,0,0,7857,7859,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1243,1244,1243,1244,1244,1243,1243,1243,1243,1243,1243,1243,1243,1243,1243,1243,1243,1243,1243,0,0,0,0,0,0,0,1243,1243,1243,1243,1243,1243,1243,1243,0,0,0,1243,1243,0,0,1243,0,1243,1243,0,0,0,0,0,0,1495,7885,9304,9305,9305,9305,9310,0,0,7742,7858,7858,7864,7865,7866,7858,7858,7742,0,0,9308,9305,9305,9305,9306,7885,0,0,7857,7859,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1243,1244,1243,1243,1243,1243,1243,1243,1243,1243,1243,1243,1243,1243,1243,1243,1243,0,0,0,0,0,0,0,1243,1243,1243,1243,1243,1243,1243,1243,0,0,0,0,1243,1243,1243,1243,1243,1243,0,1243,1243,0,0,0,0,0,0,0,7885,9304,9305,9305,9306,7885,0,0,7742,7858,7858,7984,7985,7986,7858,7858,7742,0,0,7885,9304,9305,9305,9306,7885,0,0,7857,7859,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1243,1243,1243,1243,1243,1243,1243,1243,1243,1243,1243,1243,1243,1243,0,0,0,0,0,0,0,0,0,1243,1243,1243,1243,1243,1243,1243,0,0,0,0,0,0,0,1243,1243,1243,1243,1243,0,0,0,0,0,0,0,0,0,0,7885,9304,9305,9305,9306,7885,0,0,7742,7858,7858,7858,7858,7858,7858,7858,7742,0,0,7885,9304,9305,9305,9306,7885,0,0,7857,7859,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1244,1243,1243,1243,1243,1243,1243,1243,1243,1243,1243,1243,0,0,0,0,0,0,0,0,0,1243,1243,1243,1243,0,0,0,0,0,0,0,1243,1243,1243,1243,1243,1243,0,0,0,0,0,0,0,0,0,0,0,0,8005,7766,7766,7766,7766,8007,0,0,7742,7858,7858,7858,7858,7858,7858,7858,7742,0,7356,8005,7766,7766,7766,7766,8007,0,0,7857,7859,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1243,1243,0,0,0,1243,1243,1243,1243,1243,0,0,0,0,0,0,0,0,0,1243,1243,1243,1243,1243,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,7356,0,0,0,0,0,0,0,0,7742,7742,7742,7742,7742,7742,7742,7742,7742,0,0,0,0,0,0,0,0,0,0,7857,7859,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1243,1243,1243,1243,1243,1243,1243,0,0,0,0,0,0,0,1243,1243,1243,1243,1243,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,7356,7765,7766,7766,7766,7766,7767,0,0,0,0,0,0,7740,0,0,0,0,0,0,7765,7766,7766,7766,7766,7767,0,0,7857,7859,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1243,1243,1243,0,1243,1243,1243,0,0,0,0,0,0,1243,1243,1243,1243,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,7356,7885,9184,9185,9185,9186,7885,0,1495,1364,1363,1491,0,7860,0,0,0,0,1363,1364,7885,9184,9185,9185,9186,7885,0,0,7857,7859,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1243,1483,1483,1483,0,0,0,0,1243,1243,1243,1243,1243,1243,0,0,0,0,0,0,1243,1243,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,7356,7885,9304,9305,9305,9306,7885,0,0,1363,1364,0,0,7860,1363,1364,0,1363,1364,0,7885,9304,9305,9305,9306,7885,0,0,7857,7859,0,0,0,1243,1244,0,0,0,0,0,0,0,0,0,0,0,0,0,1483,1243,0,1243,0,0,0,1243,1243,1243,1243,1243,1243,1243,1243,0,0,0,1243,1243,1243,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,7356,7885,9304,9305,9305,9305,9310,0,0,1491,0,0,0,7860,0,0,0,1495,1364,0,9308,9305,9305,9305,9306,7885,0,0,7857,7859,0,7398,7399,7399,7399,7400,0,0,0,0,0,0,0,0,0,0,0,1243,1243,1243,0,0,0,0,1487,0,1243,1243,1243,1243,1243,0,1243,1243,1243,1243,1243,1243,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,7356,7885,9304,9305,9305,9306,7885,0,1363,1364,1363,1364,0,7860,0,0,1363,1364,0,0,7885,9304,9305,9305,9306,7885,0,0,7857,7859,0,7519,7737,7738,7739,7518,1244,0,0,0,0,0,0,0,0,0,1243,1243,1243,1243,0,0,1243,1243,1244,0,0,0,0,1243,1243,1243,1243,1243,1243,1243,1243,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,7356,7885,9304,9305,9305,9306,7885,0,0,0,0,0,0,7860,0,1363,1364,0,0,0,7885,9304,9305,9305,9306,7885,0,0,7857,7859,0,7742,7857,7858,7859,7518,1364,0,0,0,0,0,0,0,0,0,1243,1243,1243,1243,1243,1243,1243,1243,1243,1243,1243,1243,1243,1243,1243,1243,0,0,0,0,0,0,0,0,0,0,0,0,0,1243,1243,1243,1243,0,7398,7399,7399,7399,7522,7399,7399,7399,7399,7399,7399,7399,7399,7399,7399,7399,7399,7399,7399,7400,7356,8005,7766,7766,7766,7766,8007,0,0,1363,1364,0,0,7860,0,0,0,1363,1364,0,8005,7766,7766,7766,7766,8007,0,0,7857,7859,0,7520,7977,7978,7979,7518,0,0,0,0,0,0,0,0,0,0,1243,1243,1483,1243,1244,1243,1243,1243,0,0,0,0,0,0,0,1243,1243,1243,1243,1243,1243,0,0,0,1243,0,0,0,0,1243,1243,1243,1243,0,7518,7737,7738,7739,7518,7737,7738,7738,7738,7738,7738,7738,7738,7738,7738,7738,7738,7738,7739,7518,7356,7356,0,0,0,0,0,1363,1364,0,0,1363,1364,7860,0,0,0,0,0,0,0,0,0,0,0,0,0,0,7857,7859,1243,7638,7399,7399,7399,7640,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1243,1243,0,0,0,0,1243,1243,1243,1243,0,7518,7977,7978,7979,7518,7857,7858,7858,7858,7858,7858,7858,7858,7858,7858,7858,7858,7858,7859,7518,7356,7356,7356,0,0,0,0,0,0,0,0,0,0,7742,7862,7862,7862,7862,7862,7862,7862,7862,7862,7862,7862,7862,7862,7863,7857,7859,1724,1364,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1243,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1243,1243,1243,0,0,0,0,0,0,0,0,0,7521,7399,7742,7399,7640,7857,7858,7858,7858,7858,7858,7858,7858,7858,7858,7858,7858,7858,7859,7518,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1363,1364,0,0,0,0,0,0,0,0,0,1243,1244,7737,7739,7738,7738,7738,7738,7738,7738,7738,7738,7738,7738,7738,7738,7738,7738,7738,7738,7738,7738,7738,7738,7738,7738,7738,7738,7738,7738,7738,7738,7738,7738,7738,7738,7738,7738,7738,7738,7738,7738,7738,7738,7738,7738,7738,7738,7738,7738,7738,7738,7738,7738,7518,7737,7738,7738,7738,7857,7858,7858,7858,7858,7858,7858,7858,7858,7858,7858,7858,7858,7859,7518,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1363,1363,1364,0,1363,1364,0,0,0,0,0,0,1363,1364,7977,7979,7978,7978,7978,7978,7978,7978,7978,7978,7978,7978,7978,7978,7978,7978,7978,7978,7978,7978,7978,7978,7978,7978,7978,7978,7978,7978,7978,7978,7978,7978,7978,7978,7978,7978,7978,7978,7978,7978,7978,7978,7978,7978,7978,7978,7978,7978,7978,7978,7978,7978,7518,7857,7858,7858,7978,7857,7858,7858,7858,7858,7858,7858,7858,7858,7858,7858,7858,7858,7859,7518,0,0,10617,10618,10619,0,10617,10618,10619,0,0,0,0,0,1363,1364,0,7353,7354,7354,7354,7355,0,0,0,0,0,0,0,1607,1244,0,0,1243,1244,0,0,0,0,0,0,0,0,0,0,0,1243,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1243,1243,1243,1243,1243,1243,0,0,0,0,0,0,0,0,0,7518,7977,7978,7979,7520,7857,7858,7858,7858,7858,7858,7858,7858,7858,7858,7858,7858,7858,7859,7518,0,0,10737,10738,10739,0,10737,10738,10739,0,0,0,0,0,1363,1364,0,7473,7474,7474,7474,7474,7475,0,0,0,0,0,0,1363,1364,0,0,1363,1364,0,0,0,0,0,0,0,0,0,0,0,1243,0,0,1243,1243,0,0,1243,1243,1243,0,0,0,0,1243,1243,1243,1243,1243,1243,0,0,0,1243,1243,0,0,0,0,1243,1243,0,0,0,7638,7399,7742,7399,7518,7857,7858,7858,7858,7858,7858,7858,7858,7858,7858,7858,7858,7858,7859,7518,0,0,10737,10738,10739,0,10737,10738,10739,0,0,0,1363,1364,1363,1364,7356,7473,7474,7474,7474,7474,7354,7354,7354,7354,7355,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1487,1243,1243,1243,1243,1243,1243,1243,1243,1243,1243,1243,1243,1243,1243,1243,0,0,0,0,1243,1243,0,0,0,0,1243,1243,1243,0,1243,0,1243,0,0,7518,7857,7858,7858,7858,7858,7858,7858,7858,7858,7858,7858,7858,7858,7859,7518,7356,0,10737,10738,10739,0,10737,10738,10739,0,0,0,0,0,0,7356,7356,7353,7474,7474,7474,7474,7474,7474,7474,7354,7355,0,0,0,0,0,0,0,0,0,0,5484,0,0,0,0,0,0,0,0,0,0,1243,1243,1243,1243,0,1243,1243,1243,1243,1243,1243,1243,1243,1243,1243,1243,0,1243,1243,1243,1243,1243,1243,0,0,0,0,1243,1243,1243,1243,1243,1243,1243,1243,0,7518,7977,7978,7978,7978,7978,7978,7978,7978,7978,7978,7978,7978,7978,7979,7518,7356,0,10737,10738,10739,0,10737,10738,10739,0,0,0,0,0,7356,7356,7473,7474,7474,7474,7474,7474,7474,7474,7474,7354,7355,7356,0,0,0,0,0,0,0,0,0,5484,0,0,0,0,0,0,0,0,0,1243,1243,1243,1243,1243,0,1243,1243,1243,1243,1243,1243,1243,1243,1243,1243,0,1243,1243,1243,1243,1243,0,1243,0,0,0,0,0,0,0,0,1243,1243,1243,1243,1243,7638,7399,7399,7399,7399,7399,7399,7399,7399,7399,7399,7399,7399,7399,7399,7640,7356,7356,10737,10738,10739,0,10737,10738,10739,0,0,0,0,1363,1363,1364,7605,7605,7474,7474,7474,7474,7474,7474,7474,7474,7354,7356,7356,0,0,0,0,0,0,0,0,5484,0,0,0,0,0,0,0,0,0,1243,1243,1243,1243,1243,1243,1243,0,1243,1243,1243,1243,1243,1243,1243,1243,1243,1243,1243,0,1243,1243,0,1243,0,0,0,0,0,0,0,0,0,0,0,0,1243,1243,1243,1243,1243,1243,1243,1243,1243,1243,1243,1243,1243,1243,1243,1243,1243,7356,7356,10857,10858,10859,0,10857,10858,10859,0,0,0,0,1363,1364,1363,1364,7485,7474,7474,7474,7474,7474,7474,7474,7474,7474,7354,7354,7354,0,0,0,0,0,0,5484,5484,0,0,0,0,0,0,0,0,0,1487,1243,1243,1243,1243,1243,0,0,0,1244,1243,1243,1243,1243,1243,1243,1243,1243,1243,0,1243,1243,0,1243,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,7356,7356,0,0,0,0,0,0,0,0,0,0,0,0,7356,7473,7474,7474,7474,7474,7474,7474,7474,7474,7474,7474,7474,7474,7474,7474,0,0,0,5484,0,0,5484,0,0,0,0,0,0,0,0,0,0,1243,1243,1243,0,1243,1243,1243,1243,0,1244,1244,0,1243,1243,1243,1243,1243,1243,1243,1243,1243,1243,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],"height":60,"name":"Tile Layer 2","opacity":0.899999976158142,"properties":{"obstacles":true},"propertytypes":{"obstacles":"bool"},"type":"tilelayer","visible":true,"width":100,"x":0,"y":0},{"data":[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,7474,7474,7474,7474,7474,7474,7474,7474,7474,7474,7474,7474,7474,7474,7474,7474,7474,7474,7474,7474,7474,7474,7474,7474,7474,7474,7474,7474,7474,7474,7474,7474,7474,7474,7474,7474,7474,7474,7474,7474,7474,7474,7474,7474,7474,7474,7474,7474,7474,7474,7474,7474,7474,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,7474,7474,7474,7474,7474,7474,7474,7474,7474,7474,7474,7474,7474,7474,7474,7474,7474,7474,7474,7474,7474,7474,7474,7474,7474,7474,7474,7474,7474,7474,7474,7474,7474,7474,7474,7474,7474,7474,7474,7474,7474,7474,7474,7474,7474,7474,7474,7474,7474,7474,7474,7474,7474,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,7593,7474,7474,7474,7474,7474,7474,7474,7474,7474,7474,7474,7474,7474,7474,7474,7474,7474,7474,7474,7474,7474,7474,7474,7474,7474,7474,7474,7474,7474,7474,7474,7474,7474,7474,7474,7474,7474,7474,7474,7474,7474,7474,7474,7474,7474,7474,7474,7474,7474,7474,7474,7474,0,0,0,0,0,0,5132,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,7593,7356,7473,7474,7474,7474,7474,7474,7474,7474,7474,7474,7474,7474,7474,7474,7474,7474,7474,7474,7474,7474,7474,7474,7474,7474,7474,7474,7474,7474,7474,7474,7474,7474,7474,7474,7474,7474,7474,7474,7474,7474,7474,7474,7474,7474,7474,7474,7474,7474,7474,7474,0,0,0,0,0,0,5133,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,7593,7594,7594,7594,7474,7474,7474,7474,7474,7474,7474,7474,7474,7474,7474,7474,7474,7474,7474,7474,7474,7474,7474,7474,7474,7474,7474,7474,7474,7474,7474,7474,7474,7474,7474,7474,7474,7474,7474,7474,7474,7474,7474,7474,7474,7474,7474,7474,7474,7474,0,0,0,0,0,0,5133,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,7356,7356,7473,7474,7474,7474,7474,7474,7474,7474,7474,7474,7474,7474,7474,7474,7474,7474,7474,7474,7474,7474,7474,7474,7474,7474,7474,7474,7474,7474,7474,7474,7474,7474,7474,7474,7474,7474,7474,7474,7474,7474,7474,7474,7474,7474,7594,7594,0,0,0,0,0,0,5134,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,7593,7594,7594,7594,7594,7594,7594,7594,7594,7594,7594,7594,7594,7594,7594,7594,7594,7594,7594,7594,7594,7594,7474,7474,7474,7474,7474,7474,7594,7594,7594,7594,7594,7594,7594,7594,7594,7594,7594,7594,7594,7594,7594,7594,7595,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,7594,7594,7594,7594,7594,7595,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,4293,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1243,7473,7474,7474,7474,7354,7354,7354,7354,7354,7354,7354,7354,7354,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1243,1243,1243,1243,7473,7474,7474,7474,7354,7354,7354,7354,7354,7474,7474,7474,7474,7475,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,4771,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1243,1243,1243,0,0,7473,7474,7474,7474,7474,7474,7474,7474,7474,7474,7474,7474,7474,7474,7475,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,4769,4770,4771,0,0,0,4769,4770,4771,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1243,1243,1243,0,0,0,0,7473,7474,7474,7474,7474,7474,7474,7474,7474,7474,7474,7474,7474,7474,7475,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,4771,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,5009,5009,0,0,0,1243,1243,1243,1243,1243,1243,1243,1243,1243,1243,1243,1243,1243,0,0,0,0,0,0,7473,7474,7474,7474,7474,7474,7474,7474,7474,7474,7474,7474,7474,7474,7474,7475,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,5012,4298,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1243,1243,1243,0,0,0,1243,1243,1243,0,0,0,0,0,0,0,0,0,7473,7473,7474,7474,7474,7474,7474,7474,7474,7474,7474,7474,7474,7474,7474,7474,7475,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1243,1243,1243,0,1243,1243,1243,0,0,0,0,0,0,0,0,0,0,0,7473,7473,7474,7474,7474,7474,7474,7474,7474,7474,7474,7474,7474,7474,7474,7474,7475,7475,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1489,1490,0,1487,1488,0,0,0,0,1489,1490,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1243,0,0,0,0,0,0,0,1243,1243,1243,0,0,0,0,0,0,0,0,0,0,0,0,7473,7474,7474,7474,7474,7474,7474,7474,7474,7474,7474,7474,7474,7474,7474,7474,7474,7474,7475,7475,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1243,1243,0,0,0,0,0,0,0,0,0,0,0,0,7473,7473,7474,7474,7474,7474,7474,7474,7474,7474,7474,7474,7594,7594,7594,7594,7594,7474,7474,7475,7475,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1243,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,7473,7474,7474,7474,7474,7474,7474,7474,7474,7474,7475,7594,0,0,0,0,7473,7474,7474,7475,7475,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1243,0,0,5129,5130,5131,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,7473,7474,7474,7474,7474,7474,7474,7474,7474,7474,7475,0,9198,9199,9200,0,7473,7474,7474,7475,0,0,0,0,0,0,0,0,0,0,0,0,0,4302,4780,4781,4782,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,5017,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1243,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,5012,5012,5012,0,7473,7474,7474,7474,7474,7474,7474,7474,7474,7474,7475,0,9318,0,9318,0,7473,7474,7474,7475,0,7356,0,0,0,0,0,0,0,0,0,0,0,4289,5612,5613,5614,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,5612,5613,5614,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,5255,5255,5255,0,7593,7594,7474,7474,7474,7474,7474,7474,7474,7474,7475,0,9438,0,9440,0,7473,7473,7473,7474,7474,7356,0,0,0,0,0,0,0,0,0,0,0,0,5732,5733,5734,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,5732,5733,5734,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,4769,4770,4771,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,7476,0,0,7473,7474,7474,7474,7474,7474,7474,7474,7475,0,0,0,0,0,7473,7353,7474,7474,7474,7356,7356,0,0,0,0,0,0,0,0,0,0,0,5852,5853,5854,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,5852,5853,5854,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,3938,0,0,0,4662,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,7476,7476,0,0,7473,7474,7474,7474,7474,7474,7474,7474,7356,7356,7356,0,0,0,7473,7473,7474,7474,7356,7356,0,0,0,0,0,0,0,0,0,0,0,5018,0,0,6221,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,7476,0,7356,7356,7593,7358,7474,7474,7474,7474,7474,7474,7474,7356,7356,0,0,0,7356,7473,7474,7474,7474,7356,0,0,0,0,0,0,0,0,0,0,0,0,4889,4176,4176,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,4889,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,7476,7476,0,7356,0,0,7356,0,7473,7474,7474,7474,7474,7474,7474,7474,7474,7475,7356,0,0,7356,7356,7474,7474,7356,7356,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1491,0,7356,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,7356,0,0,0,0,0,0,0,0,0,0,0,0,0,1243,0,0,0,0,0,7356,0,7356,0,0,0,7473,7474,7474,7474,7474,7474,7474,7474,7474,7356,7356,0,0,0,7356,7474,7474,7356,7356,7356,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,7356,7356,0,0,1363,1363,1487,1363,1363,1363,1363,1363,1363,1363,1364,0,0,7476,0,7476,7476,7356,0,0,7353,7474,7474,7474,7474,7474,7474,7474,7474,7474,7474,7356,0,0,0,0,7356,7474,7474,7356,7356,7356,0,0,0,0,0,0,0,0,0,0,4414,4414,5010,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,4409,5013,4297,4298,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,7353,7354,7356,0,0,0,0,0,0,0,0,0,0,0,1243,0,0,7476,7476,0,7356,7353,7478,7474,7474,7474,7474,7474,7474,7474,7474,7474,7474,7474,7356,7356,0,0,0,7356,7356,7474,7474,7356,7356,0,0,0,0,0,0,0,0,0,0,0,0,5609,5610,5611,0,0,0,0,0,0,1493,1487,1491,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,7473,7474,7473,7354,7355,0,0,0,0,0,0,0,0,0,0,0,7356,0,7356,7356,7353,7478,7474,7474,7474,7474,7474,7474,7474,7474,7474,7474,7475,7356,7356,0,0,0,0,7356,7356,7474,7474,7474,7356,0,0,0,0,0,0,0,0,0,0,0,0,5729,5730,5731,0,0,0,0,0,0,1494,6450,1492,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,7473,7474,7474,7474,7474,7474,7474,7475,0,0,0,0,0,0,0,0,7356,7356,0,7353,7478,7474,7474,7474,7474,7474,7474,7474,7474,7474,7475,7356,7356,7356,0,0,0,0,0,0,7356,7356,7356,7356,7356,0,0,0,0,0,0,0,0,0,0,0,0,5849,5850,5851,0,0,0,0,0,0,1491,1488,1363,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,7473,7357,7358,7474,7474,7474,7474,7474,7475,0,0,0,0,0,0,7353,7354,7354,7354,7478,7474,7474,7474,7474,7474,7474,7474,7474,7474,7475,7356,7356,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,6220,0,5012,5012,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,4777,4778,4779,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,7473,7477,7478,7474,7474,7357,7358,7474,7474,7475,0,0,0,0,0,7473,7474,7474,7474,7474,7474,7474,7474,7474,7474,7474,7474,7475,7475,7356,7356,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,4889,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,4173,4889,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,7473,7474,7474,7474,7474,7477,7478,7474,7474,7474,7475,0,0,0,0,7473,7474,7474,7474,7474,7474,7474,7474,7474,7474,7475,7356,7356,7356,7356,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1491,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,7473,7357,7357,7358,7474,7474,7474,7357,7358,7474,7475,0,0,0,0,7473,7474,7474,7474,7474,7474,7474,7475,7356,7356,7356,7356,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1364,1243,1244,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,7473,7477,7477,7478,7357,7358,7474,7477,7478,7474,7475,0,0,0,0,7473,7474,7474,7474,7474,7474,7474,7475,7356,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,5018,0,4409,4414,0,0,0,0,0,0,0,0,0,1363,0,0,0,0,0,4414,4410,0,5013,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,7473,7477,7474,7474,7477,7478,7474,7474,7474,7474,7475,0,0,0,0,7473,7474,7474,7474,7474,7474,7474,7357,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,5612,5613,5614,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,5609,5610,5611,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,7473,7357,7358,7478,7357,7358,7478,7474,7474,7474,7475,0,0,0,0,7473,7474,7474,7474,7474,7474,7475,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,5732,5733,5734,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,5729,5730,5731,0,0,0,0,0,0,0,0,0,4890,0,0,0,0,0,0,0,0,0,0,0,0,7473,7477,7478,7474,7477,7474,7474,7474,7475,7594,7595,0,0,0,0,7593,7594,7594,7594,7594,7594,7595,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,5011,5852,5853,5854,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,5849,5850,5851,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,7473,7474,7474,7474,7474,7474,7474,7474,7357,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,5011,0,4773,4774,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,5012,0,4292,4293,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,7593,7594,7594,7594,7594,7594,7595,7594,7595,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,4173,4889,0,4173,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,4889,4173,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,5612,5621,5621,5621,5621,5621,5621,5621,5621,5621,5621,5621,5135,5135,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,5732,5733,5733,5733,5733,5733,5733,5733,5733,5733,5733,5733,5733,5734,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,5732,5733,5733,5733,5733,0,5733,5733,5733,5733,5733,0,5733,5734,0,3940,3940,3940,3940,3940,3940,3940,3940,3940,3929,3940,3940,3938,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,5732,5733,5733,5733,5733,5733,5733,5733,5733,5733,5733,5733,5733,5734,0,0,0,7985,7985,7985,7985,7985,7985,7985,0,0,0,3930,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,5732,5733,5733,5733,5733,5733,5733,5733,5733,5733,5733,5733,5733,5734,0,0,7866,1610,1608,1606,7747,1612,1603,1612,7864,0,0,3930,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,5732,5733,5733,5733,5733,5733,5733,5733,5733,5733,5733,5733,5733,5734,0,0,7866,1610,1608,1606,7867,1612,1603,1612,7864,0,0,3930,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,7353,7354,7355,7355,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,5732,5733,5733,5733,5733,5733,5733,5733,5733,5733,5733,5733,5733,5734,0,0,7866,1610,1608,1606,7867,1612,1603,1612,7864,0,0,3930,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,7353,7354,7354,7354,7355,0,0,0,0,0,0,0,0,0,0,7356,7473,7474,7475,7354,7355,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,5732,5733,5733,5733,5733,5733,5733,5733,5733,5733,5733,5733,5733,5734,0,0,7866,1730,1616,1606,7867,1612,1603,1612,7864,0,0,3930,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,7353,7474,7474,7474,7474,7354,7355,5011,5014,0,0,0,0,0,5012,7356,7593,7594,7356,7474,7475,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,5852,5853,5853,5853,5853,5853,5853,5853,5853,5853,5853,5853,5853,5854,0,0,7866,1730,1616,1606,7867,1612,1603,1612,7864,0,0,3930,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,7473,7474,7357,7358,7474,7474,7474,7475,177,0,0,0,0,0,177,7353,7354,3097,3098,3099,7353,7354,7355,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,7866,1730,1616,1606,7867,1612,1603,1603,7864,0,0,3930,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,7356,7473,7474,7357,7358,7474,7474,7474,7475,5011,5014,0,0,0,5255,7593,7594,7595,3217,2645,3217,7473,7474,7475,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,7866,1730,1616,1606,7987,1612,1603,1603,7864,0,0,3930,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,7356,7473,7474,7477,7357,7358,7474,7474,7475,0,0,0,0,0,0,7356,0,0,3337,0,3339,7353,7354,7355,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,7745,7745,7745,7745,7745,7745,7745,0,0,0,3930,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,7356,7356,7473,7474,7474,7477,7478,7474,7474,7595,5012,0,0,0,0,0,0,0,0,0,0,0,7473,7474,7475,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],"height":60,"name":"Tile Layer 3","opacity":1,"properties":{"obstacles":true},"propertytypes":{"obstacles":"bool"},"type":"tilelayer","visible":true,"width":100,"x":0,"y":0},{"data":[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,9112,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,4889,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1363,1363,1363,1363,1363,1363,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,177,0,0,1363,0,0,0,0,0,1363,1363,0,1485,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,4889,0,9112,0,0,1363,1485,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1363,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1363,1363,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1363,0,0,0,0,0,0,0,0,153,0,0,1487,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1363,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1363,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1363,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1247,0,0,0,0,0,0,1247,0,0,0,0,0,0,0,0,0,0,0,0,1363,1363,1363,0,1363,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1363,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1485,0,1363,1363,0,1363,0,0,0,0,0,0,1487,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1363,1363,1363,1363,1363,1363,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1363,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1363,1363,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1363,1363,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1363,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1363,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1363,1363,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1363,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1363,1363,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1363,1363,1363,1363,1363,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1363,1363,1363,1363,1363,1363,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1363,1363,1363,1363,0,1363,1363,1363,1363,1363,1363,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1363,1363,1363,1363,1363,1363,1363,1363,0,0,1363,1363,1363,1363,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,7520,0,0,7520,0,0,7520,0,0,7520,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,7519,0,0,7519,0,0,7519,0,0,7519,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,6338,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,7520,0,0,7520,0,0,7520,0,0,7520,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,7519,0,0,7519,0,0,7519,0,0,7519,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,9112,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],"height":60,"name":"Tile Layer 4","opacity":1,"properties":{"obstacles":true},"propertytypes":{"obstacles":"bool"},"type":"tilelayer","visible":true,"width":100,"x":0,"y":0},{"data":[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,6210,4301,0,0,0,0,0,0,0,0,0,0,0,6211,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,4530,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,4890,0,0,4889,0,0,4890,0,0,4889,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,4890,0,0,4889,0,0,4890,0,0,4889,4298,5011,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,4300,0,0,0,0,0,0,0,0,0,0,0,5011,6213,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],"height":60,"name":"Tile Layer 5","opacity":1,"properties":{"obstacles":true},"propertytypes":{"obstacles":"bool"},"type":"tilelayer","visible":true,"width":100,"x":0,"y":0},{"data":[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,970,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,970,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],"height":60,"name":"Item Layer 1","opacity":1,"properties":{"items":true},"propertytypes":{"items":"bool"},"type":"tilelayer","visible":true,"width":100,"x":0,"y":0},{"data":[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,489,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,489,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],"height":60,"name":"Item Layer 2","opacity":1,"properties":{"items":true},"propertytypes":{"items":"bool"},"type":"tilelayer","visible":true,"width":100,"x":0,"y":0},{"data":[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,489,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,489,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,38,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],"height":60,"name":"Item Layer 3","opacity":1,"properties":{"items":true},"propertytypes":{"items":"bool"},"type":"tilelayer","visible":true,"width":100,"x":0,"y":0},{"data":[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,489,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,489,0,0,25,0,35,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,489,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,785,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,25,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],"height":60,"name":"Item Layer 4","opacity":1,"properties":{"items":true},"propertytypes":{"items":"bool"},"type":"tilelayer","visible":true,"width":100,"x":0,"y":0},{"data":[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,8744,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,5180,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,58,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,8402,0,0,0,570,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,57,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,4336,1476,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,570,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,5173,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,8162,0,5174,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,57,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,3974,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,569,0,0,0,0,0,0,0,0,569,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,569,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,3975,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,238,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,569,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,570,0,0,0,0,0,0,0,0,0,0,0,0,0,570,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,569,0,0,0,0,0,0,0,0,0,0,0,0,0,0,3857,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,570,0,0,0,0,0,0,0,0,0,0,0,0,0,570,0,8045,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,8041,0,0,570,0,0,0,0,0,0,0,0,0,0,0,0,0,570,0,0,8041,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,8042,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,690,0,480,2366,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,478,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,691,0,0,7444,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,5300,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,4696,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,5300,0,0,5299,0,58,0,0,0,0,0,0,0,0,8044,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,7445,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,7442,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,689,0,0,0,0,0,0,0,0,0,0,0,5300,0,0,0,0,0,0,0,0,8043,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,7447,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,5173,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,7441,0,0,0,58,0,0,811,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,7444,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],"height":60,"name":"Actors","opacity":1,"properties":{"actors":true},"propertytypes":{"actors":"bool"},"type":"tilelayer","visible":true,"width":100,"x":0,"y":0},{"data":[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,7901,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,7541,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,7781,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,7421,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],"height":60,"name":"Portal Layer","opacity":1,"properties":{"portal":true},"propertytypes":{"portal":"bool"},"type":"tilelayer","visible":true,"width":100,"x":0,"y":0}],"nextobjectid":4,"orientation":"orthogonal","renderorder":"right-down","tiledversion":"1.0.3","tileheight":32,"tilesets":[{"firstgid":1,"source":"../tileset/compiled_dawnlike.json"}],"tilewidth":32,"type":"map","version":1,"width":100}
 
 /***/ }),
 
@@ -3687,6 +3694,7 @@ module.exports = {"height":60,"layers":[{"data":[7865,7865,7865,7865,7865,7865,7
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_rot_js__ = __webpack_require__("cVUK");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_rot_js___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_rot_js__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__magic_Spell_js__ = __webpack_require__("1LjL");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__utils_HelperFunctions__ = __webpack_require__("qJpE");
 
 
 
@@ -3694,98 +3702,110 @@ module.exports = {"height":60,"layers":[{"data":[7865,7865,7865,7865,7865,7865,7
 
 
 class Lich extends __WEBPACK_IMPORTED_MODULE_0__entities_actors_Actor_js__["a" /* Actor */] {
-    constructor(x, y, id) {
-        super(x, y, {
-            id: id,
-            name: "Lich",
-            description: "Once a powerful necromancer, now transformed into a lich.",
-            visible: true,
-            blocked: true,
-            chasing: false,
-            combat: {
-                /* options.combat, dedicated to all things related to combat */
-                description: [" attacked "],
-                /* max stats */
-                maxhp: 120,
-                maxmana: 25,
-                /* current stats */
-                hp: 120,
-                mana: 25,
-                str: 10,
-                def: 5,
-                /* misc */
-                hostile: true,
-                range: 7,
-                invulnerable: false
-            }
-        });
+	constructor(x, y, id) {
+		super(x, y, {
+			id: id,
+			name: 'Lich',
+			description: 'Once a powerful necromancer, now transformed into a lich.',
+			visible: true,
+			blocked: true,
+			chasing: false,
+			combat: {
+				/* options.combat, dedicated to all things related to combat */
+				description: [' attacked '],
+				/* max stats */
+				maxhp: 120,
+				maxmana: 25,
+				/* current stats */
+				hp: 120,
+				mana: 25,
+				str: 10,
+				def: 5,
+				/* misc */
+				hostile: true,
+				range: 7,
+				invulnerable: false
+			}
+		});
 
-        let regeneration = new __WEBPACK_IMPORTED_MODULE_3__magic_Spell_js__["c" /* Regeneration */]();
-        let pain = new __WEBPACK_IMPORTED_MODULE_3__magic_Spell_js__["b" /* Pain */]();
-        let vampiricDraining = new __WEBPACK_IMPORTED_MODULE_3__magic_Spell_js__["d" /* VampiricDraining */]();
-        let animateDead = new __WEBPACK_IMPORTED_MODULE_3__magic_Spell_js__["e" /* AnimateDead */]();
-        this.spells = { regeneration, pain, vampiricDraining, animateDead };
-    }
+		this.spells = {
+			regeneration: {
+				spell: new __WEBPACK_IMPORTED_MODULE_3__magic_Spell_js__["c" /* Regeneration */](),
+				cooldown: 0,
+				maxCooldown: 5
+			},
+			pain: {
+				spell: new __WEBPACK_IMPORTED_MODULE_3__magic_Spell_js__["b" /* Pain */](),
+				cooldown: 0,
+				maxCooldown: 1
+			},
+			vampiricDraining: {
+				spell: new __WEBPACK_IMPORTED_MODULE_3__magic_Spell_js__["d" /* VampiricDraining */](),
+				cooldown: 0,
+				maxCooldown: 5
+			},
+			animateDead: {
+				spell: new __WEBPACK_IMPORTED_MODULE_3__magic_Spell_js__["e" /* AnimateDead */](),
+				cooldown: 0,
+				maxCooldown: 7
+			}
+		};
+	}
 
-    act() {
-        __WEBPACK_IMPORTED_MODULE_1__Game_js__["a" /* Game */].engine.lock();
-        // To make these computations more efficient, we can determine whether or not the SimpleEnemy
-        // is rendered on the current game screen. If not, we shouldn't really worry about what the enemy can see
-        // or its path to the player. So, we can essentially skip their turn.
-        let dx = Math.abs(this.x - __WEBPACK_IMPORTED_MODULE_1__Game_js__["a" /* Game */].player.x);
-        let dy = Math.abs(this.y - __WEBPACK_IMPORTED_MODULE_1__Game_js__["a" /* Game */].player.y);
-        if (dx > __WEBPACK_IMPORTED_MODULE_1__Game_js__["a" /* Game */].width / 2 || dy > __WEBPACK_IMPORTED_MODULE_1__Game_js__["a" /* Game */].height / 2) {
-            __WEBPACK_IMPORTED_MODULE_1__Game_js__["a" /* Game */].engine.unlock();
-            super.act();
-            return;
-        }
+	act() {
+		__WEBPACK_IMPORTED_MODULE_1__Game_js__["a" /* Game */].engine.lock();
+		// To make these computations more efficient, we can determine whether or not the SimpleEnemy
+		// is rendered on the current game screen. If not, we shouldn't really worry about what the enemy can see
+		// or its path to the player. So, we can essentially skip their turn.
+		let dx = Math.abs(this.x - __WEBPACK_IMPORTED_MODULE_1__Game_js__["a" /* Game */].player.x);
+		let dy = Math.abs(this.y - __WEBPACK_IMPORTED_MODULE_1__Game_js__["a" /* Game */].player.y);
+		if (dx > __WEBPACK_IMPORTED_MODULE_1__Game_js__["a" /* Game */].width / 2 || dy > __WEBPACK_IMPORTED_MODULE_1__Game_js__["a" /* Game */].height / 2) {
+			__WEBPACK_IMPORTED_MODULE_1__Game_js__["a" /* Game */].engine.unlock();
+			super.act();
+			return;
+		}
 
-        __WEBPACK_IMPORTED_MODULE_1__Game_js__["a" /* Game */].player.recalculatePath();
+		__WEBPACK_IMPORTED_MODULE_1__Game_js__["a" /* Game */].player.recalculatePath();
 
-        let fov = new __WEBPACK_IMPORTED_MODULE_2_rot_js___default.a.FOV.PreciseShadowcasting(function (x, y) {
-            return __WEBPACK_IMPORTED_MODULE_1__Game_js__["a" /* Game */].inbounds(x, y) && __WEBPACK_IMPORTED_MODULE_1__Game_js__["a" /* Game */].map.data[y][x].visible();
-        });
+		let visibleTiles = __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_4__utils_HelperFunctions__["g" /* getVisibleTiles */])(this);
+		let allVisibleActors = visibleTiles.reduce((actors, tile) => {
+			return actors.concat(tile.actors);
+		}, []);
+		let pathToPlayer = [];
 
-        let visibleTiles = [];
-        fov.compute(this.x, this.y, this.cb.range, function (x, y, r, visibility) {
-            // console.log(x + ',' + y);
-            if (__WEBPACK_IMPORTED_MODULE_1__Game_js__["a" /* Game */].inbounds(x, y)) visibleTiles.push(__WEBPACK_IMPORTED_MODULE_1__Game_js__["a" /* Game */].map.data[y][x]);
-        });
+		if (allVisibleActors.some(a => {
+			return a === __WEBPACK_IMPORTED_MODULE_1__Game_js__["a" /* Game */].player;
+		})) {
+			if (!this.chasing) __WEBPACK_IMPORTED_MODULE_1__Game_js__["a" /* Game */].log(`A ${this.name} sees you.`, 'alert');
+			this.chasing = true;
+			__WEBPACK_IMPORTED_MODULE_1__Game_js__["a" /* Game */].player.path.compute(this.x, this.y, function (x, y) {
+				pathToPlayer.push([x, y]);
+			});
 
-        let allVisibleActors = visibleTiles.reduce((actors, tile) => {
-            return actors.concat(tile.actors);
-        }, []);
-        let pathToPlayer = [];
-        if (allVisibleActors.some(a => {
-            return a === __WEBPACK_IMPORTED_MODULE_1__Game_js__["a" /* Game */].player;
-        })) {
-            if (!this.chasing) __WEBPACK_IMPORTED_MODULE_1__Game_js__["a" /* Game */].log(`A ${this.name} sees you.`, 'alert');
-            this.chasing = true;
-            __WEBPACK_IMPORTED_MODULE_1__Game_js__["a" /* Game */].player.path.compute(this.x, this.y, function (x, y) {
-                pathToPlayer.push([x, y]);
-            });
-        }
+			// We can see the player
+			if (pathToPlayer.length === 2) {// player is in melee range
 
-        if (pathToPlayer.length >= 1) {// we can physically reach the player & the player is in view
-            // move towards the player
-        }
+			} else {// player is out of range
 
-        __WEBPACK_IMPORTED_MODULE_1__Game_js__["a" /* Game */].engine.unlock();
-        super.act();
-    }
+				}
+		} else {}
 
-    interact(actor) {
-        if (actor === __WEBPACK_IMPORTED_MODULE_1__Game_js__["a" /* Game */].player) {
-            let dmg = this.attack(actor);
-            if (this.cb.empowered) {
-                let amtHealed = Math.floor(dmg / 2);
-                __WEBPACK_IMPORTED_MODULE_1__Game_js__["a" /* Game */].log(`The empowered orc steals your health and regenerates ${amtHealed} health!`, "alert");
-                this.heal(amtHealed);
-            }
-        } else {
-            actor.react(this);
-        }
-    }
+		__WEBPACK_IMPORTED_MODULE_1__Game_js__["a" /* Game */].engine.unlock();
+		super.act();
+	}
+
+	interact(actor) {
+		if (actor === __WEBPACK_IMPORTED_MODULE_1__Game_js__["a" /* Game */].player) {
+			let dmg = this.attack(actor);
+			if (this.cb.empowered) {
+				let amtHealed = Math.floor(dmg / 2);
+				__WEBPACK_IMPORTED_MODULE_1__Game_js__["a" /* Game */].log(`The empowered orc steals your health and regenerates ${amtHealed} health!`, 'alert');
+				this.heal(amtHealed);
+			}
+		} else {
+			actor.react(this);
+		}
+	}
 }
 /* harmony export (immutable) */ __webpack_exports__["a"] = Lich;
 
@@ -3800,25 +3820,25 @@ class Lich extends __WEBPACK_IMPORTED_MODULE_0__entities_actors_Actor_js__["a" /
 
 
 class Arrow extends __WEBPACK_IMPORTED_MODULE_0__entities_items_weapons_ranged_ammo_Ammo_js__["a" /* Ammo */] {
-    constructor(x, y, options) {
-        options.combat.ammoType = __WEBPACK_IMPORTED_MODULE_0__entities_items_weapons_ranged_ammo_Ammo_js__["b" /* AMMO_TYPES */].ARROW;
-        super(x, y, options);
-    }
+	constructor(x, y, options) {
+		options.combat.ammoType = __WEBPACK_IMPORTED_MODULE_0__entities_items_weapons_ranged_ammo_Ammo_js__["b" /* AMMO_TYPES */].ARROW;
+		super(x, y, options);
+	}
 }
 /* unused harmony export Arrow */
 
 
 class SteelArrow extends Arrow {
-    constructor(x, y, id, quantity) {
-        super(x, y, {
-            id: id,
-            type: "Steel Arrow",
-            combat: {
-                damage: 0
-            },
-            quantity: quantity
-        });
-    }
+	constructor(x, y, id, quantity) {
+		super(x, y, {
+			id: id,
+			type: 'Steel Arrow',
+			combat: {
+				damage: 0
+			},
+			quantity: quantity
+		});
+	}
 }
 /* harmony export (immutable) */ __webpack_exports__["a"] = SteelArrow;
 
@@ -3848,48 +3868,48 @@ class SteelArrow extends Arrow {
 
 
 class Kobold extends __WEBPACK_IMPORTED_MODULE_0__entities_actors_enemies_SimpleEnemy_js__["a" /* default */] {
-    constructor(x, y, id, ranged = false) {
-        let randomHP = __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__utils_HelperFunctions_js__["b" /* getRandomInt */])(40, 45);
-        let randomStr = __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__utils_HelperFunctions_js__["b" /* getRandomInt */])(15, 20);
-        super(x, y, {
-            id: id,
-            name: "Kobold",
-            description: "A cold-blooded kobold!",
-            visible: true,
-            blocked: true,
-            chasing: false,
-            combat: {
-                /* options.combat, dedicated to all things related to combat */
-                description: [" attacked "],
-                /* max stats */
-                maxhp: randomHP,
-                maxmana: 5,
-                /* current stats */
-                hp: randomHP,
-                mana: 5,
-                str: randomStr,
-                def: 1,
-                /* misc */
-                hostile: true,
-                range: 9,
-                invulnerable: false
-            }
-        });
+	constructor(x, y, id, ranged = false) {
+		let randomHP = __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__utils_HelperFunctions_js__["b" /* getRandomInt */])(40, 45);
+		let randomStr = __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__utils_HelperFunctions_js__["b" /* getRandomInt */])(15, 20);
+		super(x, y, {
+			id: id,
+			name: 'Kobold',
+			description: 'A cold-blooded kobold!',
+			visible: true,
+			blocked: true,
+			chasing: false,
+			combat: {
+				/* options.combat, dedicated to all things related to combat */
+				description: [' attacked '],
+				/* max stats */
+				maxhp: randomHP,
+				maxmana: 5,
+				/* current stats */
+				hp: randomHP,
+				mana: 5,
+				str: randomStr,
+				def: 1,
+				/* misc */
+				hostile: true,
+				range: 9,
+				invulnerable: false
+			}
+		});
 
-        let items = __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__utils_HelperFunctions_js__["a" /* getItemsFromDropTable */])({
-            minItems: 0,
-            maxItems: 2,
-            dropTable: {
-                "STRENGTH_POTION": 1,
-                "HEALTH_POTION": 1,
-                "STEEL_ARROW": 2,
-                "SWORD": 1
-            },
-            x: this.x,
-            y: this.y
-        });
-        items.forEach(item => this.addToInventory(item));
-    }
+		let items = __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__utils_HelperFunctions_js__["a" /* getItemsFromDropTable */])({
+			minItems: 0,
+			maxItems: 2,
+			dropTable: {
+				'STRENGTH_POTION': 1,
+				'HEALTH_POTION': 1,
+				'STEEL_ARROW': 2,
+				'SWORD': 1
+			},
+			x: this.x,
+			y: this.y
+		});
+		items.forEach(item => this.addToInventory(item));
+	}
 
 }
 /* harmony export (immutable) */ __webpack_exports__["a"] = Kobold;
@@ -3943,592 +3963,653 @@ const graveyard = __webpack_require__("NQ7f");
 
 
 if (!__WEBPACK_IMPORTED_MODULE_0_rot_js___default.a.isSupported()) {
-    alert("The rot.js library isn't supported by your browser.");
+	alert("The rot.js library isn't supported by your browser.");
 }
 
 let Game = {
-    overview: null,
-    dev: false,
-    display: null,
-    HUD: null,
-    console: null,
-    player: null,
-    playerLocation: null,
-    playerID: 4696,
-    loadedIDS: [],
-    scheduler: null,
-    turn: 0,
-    engine: null,
-    levels: {},
-    currentLevel: "overworld",
-    map: null,
-    message_history: [],
-    tempMessage: {
-        text: "",
-        color: ""
-    },
-    minimap: null,
-    selectedTile: null,
-    pathToTarget: {},
-    enemyCycle: null,
-    enemyCycleIndex: 0,
+	overview: null,
+	dev: false,
+	display: null,
+	HUD: null,
+	console: null,
+	player: null,
+	playerLocation: null,
+	playerID: 4696,
+	loadedIDS: [],
+	scheduler: null,
+	turn: 0,
+	engine: null,
+	levels: {},
+	currentLevel: 'overworld',
+	map: null,
+	message_history: [],
+	tempMessage: {
+		text: '',
+		color: ''
+	},
+	minimap: null,
+	selectedTile: null,
+	pathToTarget: {},
+	enemyCycle: null,
+	enemyCycleIndex: 0,
 
-    init(dev = false) {
-        this.dev = dev;
-        this.currentLevel = "overworld";
-        this.levels["graveyard"] = new __WEBPACK_IMPORTED_MODULE_1__map_GameMap_js__["a" /* GameMap */](graveyard);
-        this.levels["graveyard"].revealed = true;
-        this.levels["overworld"] = new __WEBPACK_IMPORTED_MODULE_1__map_GameMap_js__["a" /* GameMap */](overworldMap);
-        this.levels["Orc Castle"] = new __WEBPACK_IMPORTED_MODULE_1__map_GameMap_js__["a" /* GameMap */](orcCastle);
+	init(dev = false) {
+		this.dev = dev;
+		this.currentLevel = 'overworld';
+		this.levels['graveyard'] = new __WEBPACK_IMPORTED_MODULE_1__map_GameMap_js__["a" /* GameMap */](graveyard);
+		this.levels['graveyard'].revealed = true;
+		this.levels['overworld'] = new __WEBPACK_IMPORTED_MODULE_1__map_GameMap_js__["a" /* GameMap */](overworldMap);
+		this.levels['Orc Castle'] = new __WEBPACK_IMPORTED_MODULE_1__map_GameMap_js__["a" /* GameMap */](orcCastle);
 
-        this.map = this.levels[this.currentLevel];
-        this.map.revealed = true;
-        this.playerLocation = this.map.playerLocation;
-        /* !Important! - PlayerID must be allocated before other maps are drawn... */
-        this.playerID = this.map.playerID;
-        // Set up the ROT.JS game display
-        let tileSet = document.createElement("img");
-        tileSet.src = "static/images/DawnLike/Compiled/compiled_tileset_32x32.png";
-        let tileSize = 32;
-        let tileMap = {};
-        /*for (let id of this.loadedIDS) {*/
-        for (let id in tileset.tileproperties + this.loadedIDS) {
-            tileMap[id.toString()] = __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__map_GameMap_js__["b" /* getTilesetCoords */])(id);
-            if (id in tileset.tileproperties) {
-                let properties = tileset.tileproperties[id];
-                if (properties.FOV) tileMap[properties.FOV_id] = __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__map_GameMap_js__["b" /* getTilesetCoords */])(properties.FOV_id);
-                if (properties.animated) tileMap[properties.animated_id] = __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__map_GameMap_js__["b" /* getTilesetCoords */])(properties.animated_id);
-                if (properties.animated && properties.FOV) tileMap[properties.animated_fov_id] = __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__map_GameMap_js__["b" /* getTilesetCoords */])(properties.animated_fov_id);
-                if (properties.activated_id) tileMap[properties.activated_id] = __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__map_GameMap_js__["b" /* getTilesetCoords */])(properties.activated_id);
-            }
-        }
-        this.displayOptions = {
-            width: 35,
-            height: 22,
-            forceSquareRatio: true,
-            layout: "tile",
-            // bg: "transparent",
-            tileWidth: tileSize,
-            tileHeight: tileSize,
-            tileSet: tileSet,
-            tileMap: tileMap,
-            tileColorize: true
-        };
+		this.map = this.levels[this.currentLevel];
+		this.map.revealed = true;
+		this.playerLocation = this.map.playerLocation;
+		/* !Important! - PlayerID must be allocated before other maps are drawn... */
+		this.playerID = this.map.playerID;
+		// Set up the ROT.JS game display
+		let tileSet = document.createElement('img');
+		tileSet.src = 'static/images/DawnLike/Compiled/compiled_tileset_32x32.png';
+		let tileSize = 32;
+		let tileMap = {};
+		/* for (let id of this.loadedIDS) { */
+		for (let id in tileset.tileproperties + this.loadedIDS) {
+			tileMap[id.toString()] = __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__map_GameMap_js__["b" /* getTilesetCoords */])(id);
+			if (id in tileset.tileproperties) {
+				let properties = tileset.tileproperties[id];
+				if (properties.FOV) {
+					tileMap[properties.FOV_id] = __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__map_GameMap_js__["b" /* getTilesetCoords */])(properties.FOV_id);
+				}
+				if (properties.animated) {
+					tileMap[properties.animated_id] = __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__map_GameMap_js__["b" /* getTilesetCoords */])(properties.animated_id);
+				}
+				if (properties.animated && properties.FOV) {
+					tileMap[properties.animated_fov_id] = __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__map_GameMap_js__["b" /* getTilesetCoords */])(properties.animated_fov_id);
+				}
+				if (properties.activated_id) {
+					tileMap[properties.activated_id] = __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__map_GameMap_js__["b" /* getTilesetCoords */])(properties.activated_id);
+				}
+			}
+		}
+		this.displayOptions = {
+			width: 35,
+			height: 22,
+			forceSquareRatio: true,
+			layout: 'tile',
+			// bg: "transparent",
+			tileWidth: tileSize,
+			tileHeight: tileSize,
+			tileSet: tileSet,
+			tileMap: tileMap,
+			tileColorize: true
+		};
 
-        this.width = this.map.width < this.displayOptions.width ? this.map.width : this.displayOptions.width;
-        this.height = this.map.height < this.displayOptions.height ? this.map.height : this.displayOptions.height;
-        this.display = new __WEBPACK_IMPORTED_MODULE_0_rot_js___default.a.Display(this.displayOptions);
-        this.player = new __WEBPACK_IMPORTED_MODULE_7__entities_actors_Player_js__["a" /* default */](this.playerLocation[0], this.playerLocation[1], this.playerID);
-        this.map.actors.push(this.player); // add to the list of all actors
-        this.map.data[this.playerLocation[1]][this.playerLocation[0]].actors.push(this.player); // also push to the tiles' actors
-        this.scheduleAllActors();
-        this.drawViewPort();
-        this.initializeMinimap();
-        this.engine.start(); // Start the engine
-        tileSet.onload = () => {
-            Game.drawViewPort();
-            Game.drawMiniMap();
-        };
-    },
+		this.width = this.map.width < this.displayOptions.width ? this.map.width : this.displayOptions.width;
+		this.height = this.map.height < this.displayOptions.height ? this.map.height : this.displayOptions.height;
+		this.display = new __WEBPACK_IMPORTED_MODULE_0_rot_js___default.a.Display(this.displayOptions);
+		this.player = new __WEBPACK_IMPORTED_MODULE_7__entities_actors_Player_js__["a" /* default */](this.playerLocation[0], this.playerLocation[1], this.playerID);
+		this.map.actors.push(this.player); // add to the list of all actors
+		this.map.data[this.playerLocation[1]][this.playerLocation[0]].actors.push(this.player); // also push to the tiles' actors
+		this.scheduleAllActors();
+		this.drawViewPort();
+		this.initializeMinimap();
+		this.engine.start(); // Start the engine
+		tileSet.onload = () => {
+			Game.drawViewPort();
+			Game.drawMiniMap();
+		};
+	},
 
-    refreshDisplay() {
-        Game.display.setOptions(this.displayOptions);
-    },
+	refreshDisplay() {
+		Game.display.setOptions(this.displayOptions);
+	},
 
-    scheduleAllActors() {
-        // Set up the ROT engine and scheduler
-        this.scheduler = new __WEBPACK_IMPORTED_MODULE_0_rot_js___default.a.Scheduler.Simple();
-        this.scheduler.add(new __WEBPACK_IMPORTED_MODULE_2__GameDisplay_js__["a" /* default */](), true);
-        this.scheduler.add(this.player, true); // Add the player to the scheduler
-        for (let i = 0; i < this.map.actors.length; i++) {
-            // Some 'actor' objects do not take turns, such as ladders / items
-            if (this.map.actors[i] !== this.player && this.map.actors[i] instanceof __WEBPACK_IMPORTED_MODULE_3__entities_actors_Actor_js__["a" /* Actor */]) {
-                this.scheduler.add(this.map.actors[i], true);
-            }
-        }
-        this.engine = new __WEBPACK_IMPORTED_MODULE_0_rot_js___default.a.Engine(this.scheduler); // Create new engine with the newly created scheduler
-    },
+	scheduleAllActors() {
+		// Set up the ROT engine and scheduler
+		this.scheduler = new __WEBPACK_IMPORTED_MODULE_0_rot_js___default.a.Scheduler.Simple();
+		this.scheduler.add(new __WEBPACK_IMPORTED_MODULE_2__GameDisplay_js__["a" /* default */](), true);
+		this.scheduler.add(this.player, true); // Add the player to the scheduler
+		for (let i = 0; i < this.map.actors.length; i++) {
+			// Some 'actor' objects do not take turns, such as ladders / items
+			if (this.map.actors[i] !== this.player && this.map.actors[i] instanceof __WEBPACK_IMPORTED_MODULE_3__entities_actors_Actor_js__["a" /* Actor */]) {
+				this.scheduler.add(this.map.actors[i], true);
+			}
+		}
+		this.engine = new __WEBPACK_IMPORTED_MODULE_0_rot_js___default.a.Engine(this.scheduler); // Create new engine with the newly created scheduler
+	},
 
-    initializeMinimap() {
-        /* Create a ROT.JS display for the minimap! */
-        this.minimap = new __WEBPACK_IMPORTED_MODULE_0_rot_js___default.a.Display({
-            width: this.map.width,
-            height: this.map.height,
-            fontSize: 2,
-            spacing: 2,
-            forceSquareRatio: true
-        });
-        this.drawMiniMap();
-    },
+	initializeMinimap() {
+		/* Create a ROT.JS display for the minimap! */
+		this.minimap = new __WEBPACK_IMPORTED_MODULE_0_rot_js___default.a.Display({
+			width: this.map.width,
+			height: this.map.height,
+			fontSize: 2,
+			spacing: 2,
+			forceSquareRatio: true
+		});
+		this.drawMiniMap();
+	},
 
-    clearTempLog() {
-        this.tempMessage = {
-            color: "gray",
-            text: ""
-        };
-        this.player.tempMessage = this.tempMessage;
-    },
+	clearTempLog() {
+		this.tempMessage = {
+			color: 'gray',
+			text: ''
+		};
+		this.player.tempMessage = this.tempMessage;
+	},
 
-    inbounds(x, y) {
-        return !(x < 0 || x >= this.map.width || y < 0 || y >= this.map.height);
-    },
+	inbounds(x, y) {
+		return !(x < 0 || x >= this.map.width || y < 0 || y >= this.map.height);
+	},
 
-    changeLevels(newLevel, dir, level) {
-        if (this.levels[newLevel] === undefined) {
-            // generating a new random room
-            if (newLevel.toLowerCase().includes("cave")) this.levels[newLevel] = new __WEBPACK_IMPORTED_MODULE_1__map_GameMap_js__["a" /* GameMap */](__webpack_require__.i(__WEBPACK_IMPORTED_MODULE_8__map_randomMap_js__["a" /* randomCave */])(80, 40, dir, level));else this.levels[newLevel] = new __WEBPACK_IMPORTED_MODULE_1__map_GameMap_js__["a" /* GameMap */](__webpack_require__.i(__WEBPACK_IMPORTED_MODULE_8__map_randomMap_js__["b" /* randomDungeon */])(40, 40, dir, level));
-            this.levels[newLevel].revealed = false;
-            for (let actor of this.levels[newLevel].actors) {
-                if (actor instanceof __WEBPACK_IMPORTED_MODULE_11__entities_misc_Chest_js__["a" /* default */]) {
-                    // console.log("filling chest with goodies!");
-                    // we want to populate the chests with loot
-                    let items = __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_5__utils_HelperFunctions_js__["a" /* getItemsFromDropTable */])({
-                        minItems: 1,
-                        maxItems: 4,
-                        dropTable: {
-                            "STRENGTH_POTION": 1,
-                            "HEALTH_POTION": 1,
-                            "STEEL_ARROW": 1,
-                            "MANA_POTION": 1,
-                            "SWORD": 3
-                        },
-                        x: actor.x,
-                        y: actor.y
-                    });
-                    items.forEach(item => actor.addToInventory(item));
-                }
-            }
-            // console.log(newLevel + " does not exist, so a new random instance is being created.");
-        }
+	changeLevels(newLevel, dir, level) {
+		if (this.levels[newLevel] === undefined) {
+			// generating a new random room
+			if (newLevel.toLowerCase().includes('cave')) {
+				this.levels[newLevel] = new __WEBPACK_IMPORTED_MODULE_1__map_GameMap_js__["a" /* GameMap */](__webpack_require__.i(__WEBPACK_IMPORTED_MODULE_8__map_randomMap_js__["a" /* randomCave */])(80, 40, dir, level));
+			} else {
+				this.levels[newLevel] = new __WEBPACK_IMPORTED_MODULE_1__map_GameMap_js__["a" /* GameMap */](__webpack_require__.i(__WEBPACK_IMPORTED_MODULE_8__map_randomMap_js__["b" /* randomDungeon */])(40, 40, dir, level));
+			}
+			this.levels[newLevel].revealed = false;
+			for (let actor of this.levels[newLevel].actors) {
+				if (actor instanceof __WEBPACK_IMPORTED_MODULE_11__entities_misc_Chest_js__["a" /* default */]) {
+					// console.log("filling chest with goodies!");
+					// we want to populate the chests with loot
+					let items = __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_5__utils_HelperFunctions_js__["a" /* getItemsFromDropTable */])({
+						minItems: 1,
+						maxItems: 4,
+						dropTable: {
+							STRENGTH_POTION: 1,
+							HEALTH_POTION: 1,
+							STEEL_ARROW: 1,
+							MANA_POTION: 1,
+							SWORD: 3
+						},
+						x: actor.x,
+						y: actor.y
+					});
+					items.forEach(item => actor.addToInventory(item));
+				}
+			}
+			// console.log(newLevel + " does not exist, so a new random instance is being created.");
+		}
 
-        this.map.playerLocation = [Game.player.x, Game.player.y];
-        // Save the old map
-        this.levels[this.currentLevel] = this.map; // add the old map to 'levels'
-        // Unshift player from ladder position (so that when resurfacing, no player is present)
-        this.map.data[this.player.y][this.player.x].removeActor(this.player);
-        // Add the new GameMap to the game
-        this.map = this.levels[newLevel];
-        this.currentLevel = newLevel;
-        this.playerLocation = this.map.playerLocation;
-        this.player.placeAt(this.playerLocation[0], this.playerLocation[1]);
-        // before drawing the viewport, we need to clear the screen of whatever was here last
-        for (let y = 0; y < this.height; y++) for (let x = 0; x < this.width; x++) this.display.draw(x, y, "", "black", "black");
+		this.map.playerLocation = [Game.player.x, Game.player.y];
+		// Save the old map
+		this.levels[this.currentLevel] = this.map; // add the old map to 'levels'
+		// Unshift player from ladder position (so that when resurfacing, no player is present)
+		this.map.data[this.player.y][this.player.x].removeActor(this.player);
+		// Add the new GameMap to the game
+		this.map = this.levels[newLevel];
+		this.currentLevel = newLevel;
+		this.playerLocation = this.map.playerLocation;
+		this.player.placeAt(this.playerLocation[0], this.playerLocation[1]);
+		// before drawing the viewport, we need to clear the screen of whatever was here last
+		for (let y = 0; y < this.height; y++) {
+			for (let x = 0; x < this.width; x++) {
+				this.display.draw(x, y, '', 'black', 'black');
+			}
+		}
 
-        this.width = this.map.width < this.displayOptions.width ? this.map.width : this.displayOptions.width;
-        this.height = this.map.height < this.displayOptions.height ? this.map.height : this.displayOptions.height;
-        // before drawing the viewport, we need to clear the screen of whatever was here last
-        for (let y = 0; y < this.height; y++) for (let x = 0; x < this.width; x++) this.display.draw(x, y, "", "black", "black");
+		this.width = this.map.width < this.displayOptions.width ? this.map.width : this.displayOptions.width;
+		this.height = this.map.height < this.displayOptions.height ? this.map.height : this.displayOptions.height;
+		// before drawing the viewport, we need to clear the screen of whatever was here last
+		for (let y = 0; y < this.height; y++) {
+			for (let x = 0; x < this.width; x++) {
+				this.display.draw(x, y, '', 'black', 'black');
+			}
+		}
 
-        this.scheduleAllActors();
-        this.drawViewPort();
-        this.initializeMinimap();
-        $('#minimap_container').html(this.minimap.getContainer()); // resetting the canvas / minimap display fixes ghosting
-    },
+		this.scheduleAllActors();
+		this.drawViewPort();
+		this.initializeMinimap();
+		$('#minimap_container').html(this.minimap.getContainer()); // resetting the canvas / minimap display fixes ghosting
+	},
 
-    drawViewPort() {
-        // Camera positions
-        let camera = { // camera x,y resides in the upper left corner
-            x: this.player.x - ~~(Game.width / 2),
-            y: this.player.y - ~~(Game.height / 2),
-            width: Math.ceil(Game.width),
-            height: Game.height
-        };
-        let startingPos = [camera.x, camera.y];
-        if (camera.x < 0) // far left
-            startingPos[0] = 0;
-        if (camera.x + camera.width > Game.map.width) // far right
-            startingPos[0] = Game.map.width - camera.width;
-        if (camera.y <= 0) // at the top of the map
-            startingPos[1] = 0;
-        if (camera.y + camera.height > Game.map.height) {
-            // at the bottom of the map
-            startingPos[1] = Game.map.height - camera.height;
-        }
-        this.camera = {
-            x: startingPos[0],
-            y: startingPos[1]
-        };
-        let endingPos = [startingPos[0] + camera.width, startingPos[1] + camera.height];
-        let dx = 0;
-        let dy = 0;
-        // Clear the last visible tiles that were available to be seen
-        Object.assign(this.map.seen_tiles, this.map.visible_tiles);
-        this.map.visible_tiles = {};
+	drawViewPort() {
+		// Camera positions
+		let camera = {
+			// camera x,y resides in the upper left corner
+			x: this.player.x - ~~(Game.width / 2),
+			y: this.player.y - ~~(Game.height / 2),
+			width: Math.ceil(Game.width),
+			height: Game.height
+		};
+		let startingPos = [camera.x, camera.y];
+		if (camera.x < 0) {
+			// far left
+			startingPos[0] = 0;
+		}
+		if (camera.x + camera.width > Game.map.width) {
+			// far right
+			startingPos[0] = Game.map.width - camera.width;
+		}
+		if (camera.y <= 0) {
+			// at the top of the map
+			startingPos[1] = 0;
+		}
+		if (camera.y + camera.height > Game.map.height) {
+			// at the bottom of the map
+			startingPos[1] = Game.map.height - camera.height;
+		}
+		this.camera = {
+			x: startingPos[0],
+			y: startingPos[1]
+		};
+		let endingPos = [startingPos[0] + camera.width, startingPos[1] + camera.height];
+		let dx = 0;
+		let dy = 0;
+		// Clear the last visible tiles that were available to be seen
+		Object.assign(this.map.seen_tiles, this.map.visible_tiles);
+		this.map.visible_tiles = {};
 
-        // FOV calculations
-        let fov = new __WEBPACK_IMPORTED_MODULE_0_rot_js___default.a.FOV.PreciseShadowcasting(function (x, y) {
-            return Game.inbounds(x, y) && Game.map.data[y][x].visible();
-        });
+		// FOV calculations
+		let fov = new __WEBPACK_IMPORTED_MODULE_0_rot_js___default.a.FOV.PreciseShadowcasting(function (x, y) {
+			return Game.inbounds(x, y) && Game.map.data[y][x].visible();
+		});
 
-        fov.compute(this.player.x, this.player.y, this.player.cb.range, function (x, y, r, visibility) {
-            Game.map.visible_tiles[x + ',' + y] = true;
-        });
+		fov.compute(this.player.x, this.player.y, this.player.cb.range, function (x, y, r, visibility) {
+			Game.map.visible_tiles[x + ',' + y] = true;
+		});
 
-        for (let x = startingPos[0]; x < endingPos[0]; x++) {
-            for (let y = startingPos[1]; y < endingPos[1]; y++) {
-                let tile = this.map.data[y][x];
-                if (this.map.revealed) {
-                    this.drawTile(dx, dy++, tile, false);
-                } else {
-                    if (tile.x + "," + tile.y in this.map.visible_tiles) {
-                        this.drawTile(dx, dy++, tile, false);
-                    } else if (tile.x + "," + tile.y in this.map.seen_tiles) {
-                        this.drawTile(dx, dy++, tile, true);
-                    } else {
-                        Game.display.draw(dx, dy++, "", "black", "black");
-                    }
-                }
-            }
-            dx++;
-            dy = 0;
-        }
-    },
+		for (let x = startingPos[0]; x < endingPos[0]; x++) {
+			for (let y = startingPos[1]; y < endingPos[1]; y++) {
+				let tile = this.map.data[y][x];
+				if (this.map.revealed) {
+					this.drawTile(dx, dy++, tile, false);
+				} else {
+					if (tile.x + ',' + tile.y in this.map.visible_tiles) {
+						this.drawTile(dx, dy++, tile, false);
+					} else if (tile.x + ',' + tile.y in this.map.seen_tiles) {
+						this.drawTile(dx, dy++, tile, true);
+					} else {
+						Game.display.draw(dx, dy++, '', 'black', 'black');
+					}
+				}
+			}
+			dx++;
+			dy = 0;
+		}
+	},
 
-    drawTile(x, y, tile, fov) {
-        let symbols = tile.getSpriteIDS(this.turn % 2 === 0, fov);
-        // if (symbols.some((e) => {return e === "0"})) throw "A tile is empty!"
-        // console.log(this.pathToTarget[x+','+y]);
-        if (this.pathToTarget[tile.x + ',' + tile.y]) {
-            Game.display.draw(x, y, symbols, "rgba(250,250,0,0.2)", "rgba(250,250,0,0.2)");
-        } else {
-            Game.display.draw(x, y, symbols, "transparent", "transparent");
-        }
-    },
+	drawTile(x, y, tile, fov) {
+		let symbols = tile.getSpriteIDS(this.turn % 2 === 0, fov);
+		// if (symbols.some((e) => {return e === "0"})) throw "A tile is empty!"
+		// console.log(this.pathToTarget[x+','+y]);
+		if (this.pathToTarget[tile.x + ',' + tile.y]) {
+			Game.display.draw(x, y, symbols, 'rgba(250,250,0,0.2)', 'rgba(250,250,0,0.2)');
+		} else {
+			Game.display.draw(x, y, symbols, 'transparent', 'transparent');
+		}
+	},
 
-    drawMiniMap() {
-        let otherActors = this.map.actors.filter(a => {
-            return a instanceof __WEBPACK_IMPORTED_MODULE_10__entities_misc_Ladder_js__["a" /* default */] || a instanceof __WEBPACK_IMPORTED_MODULE_9__entities_misc_Door_js__["a" /* default */];
-        });
-        if (this.map.revealed) {
-            for (let y = 0; y < this.map.height; y++) {
-                for (let x = 0; x < this.map.width; x++) {
-                    let tile = this.map.data[y][x];
-                    if (tile.x + ',' + tile.y in this.map.visible_tiles) this.minimap.draw(x, y, " ", tile.bg(), this.brightenColor(tile.bg()));else this.minimap.draw(x, y, " ", tile.bg(), tile.bg());
-                }
-            }
+	drawMiniMap() {
+		let otherActors = this.map.actors.filter(a => {
+			return a instanceof __WEBPACK_IMPORTED_MODULE_10__entities_misc_Ladder_js__["a" /* default */] || a instanceof __WEBPACK_IMPORTED_MODULE_9__entities_misc_Door_js__["a" /* default */];
+		});
+		if (this.map.revealed) {
+			for (let y = 0; y < this.map.height; y++) {
+				for (let x = 0; x < this.map.width; x++) {
+					let tile = this.map.data[y][x];
+					if (tile.x + ',' + tile.y in this.map.visible_tiles) {
+						this.minimap.draw(x, y, ' ', tile.bg(), this.brightenColor(tile.bg()));
+					} else {
+						this.minimap.draw(x, y, ' ', tile.bg(), tile.bg());
+					}
+				}
+			}
 
-            for (let a of otherActors) {
-                this.minimap.draw(a.x, a.y, " ", a.fg, a.bg);
-            }
-        } else {
-            for (let y = 0; y < this.map.height; y++) {
-                for (let x = 0; x < this.map.width; x++) {
-                    let tile = this.map.data[y][x];
-                    if (tile.x + ',' + tile.y in this.map.visible_tiles) {
-                        this.minimap.draw(x, y, " ", tile.bg(), this.brightenColor(tile.bg()));
-                    } else if (tile.x + ',' + tile.y in this.map.seen_tiles) {
-                        this.minimap.draw(x, y, " ", tile.bg(), tile.bg());
-                    }
-                }
-            }
-            for (let a of otherActors) {
-                if (a.x + "," + a.y in this.map.seen_tiles) this.minimap.draw(a.x, a.y, " ", a.fg, a.bg);
-            }
-        }
-        // Draw the actor in the mini-map
-        this.minimap.draw(this.player.x, this.player.y, " ", "yellow", "yellow");
-    },
+			for (let a of otherActors) {
+				this.minimap.draw(a.x, a.y, ' ', a.fg, a.bg);
+			}
+		} else {
+			for (let y = 0; y < this.map.height; y++) {
+				for (let x = 0; x < this.map.width; x++) {
+					let tile = this.map.data[y][x];
+					if (tile.x + ',' + tile.y in this.map.visible_tiles) {
+						this.minimap.draw(x, y, ' ', tile.bg(), this.brightenColor(tile.bg()));
+					} else if (tile.x + ',' + tile.y in this.map.seen_tiles) {
+						this.minimap.draw(x, y, ' ', tile.bg(), tile.bg());
+					}
+				}
+			}
+			for (let a of otherActors) {
+				if (a.x + ',' + a.y in this.map.seen_tiles) {
+					this.minimap.draw(a.x, a.y, ' ', a.fg, a.bg);
+				}
+			}
+		}
+		// Draw the actor in the mini-map
+		this.minimap.draw(this.player.x, this.player.y, ' ', 'yellow', 'yellow');
+	},
 
-    brightenColor(color) {
-        // console.log(color);
-        let hsl_color = __WEBPACK_IMPORTED_MODULE_0_rot_js___default.a.Color.rgb2hsl(__WEBPACK_IMPORTED_MODULE_0_rot_js___default.a.Color.fromString(color));
-        hsl_color[2] *= 1.25;
-        return __WEBPACK_IMPORTED_MODULE_0_rot_js___default.a.Color.toRGB(__WEBPACK_IMPORTED_MODULE_0_rot_js___default.a.Color.hsl2rgb(hsl_color));
-    },
+	brightenColor(color) {
+		// console.log(color);
+		let hsl_color = __WEBPACK_IMPORTED_MODULE_0_rot_js___default.a.Color.rgb2hsl(__WEBPACK_IMPORTED_MODULE_0_rot_js___default.a.Color.fromString(color));
+		hsl_color[2] *= 1.25;
+		return __WEBPACK_IMPORTED_MODULE_0_rot_js___default.a.Color.toRGB(__WEBPACK_IMPORTED_MODULE_0_rot_js___default.a.Color.hsl2rgb(hsl_color));
+	},
 
-    updateDisplay() {
-        this.drawViewPort();
-        this.drawMiniMap();
-    },
+	updateDisplay() {
+		this.drawViewPort();
+		this.drawMiniMap();
+	},
 
-    getNearbyEnemies() {
-        let camera = { // camera x,y resides in the upper left corner
-            x: this.player.x - ~~(Game.width / 2),
-            y: this.player.y - ~~(Game.height / 2),
-            width: Math.ceil(Game.width),
-            height: Game.height
-        };
-        let startingPos = [camera.x, camera.y];
-        if (camera.x < 0) // far left
-            startingPos[0] = 0;
-        if (camera.x + camera.width > Game.map.width) // far right
-            startingPos[0] = Game.map.width - camera.width;
-        if (camera.y <= 0) // at the top of the map
-            startingPos[1] = 0;
-        if (camera.y + camera.height > Game.map.height) {
-            // at the bottom of the map
-            startingPos[1] = Game.map.height - camera.height;
-        }
-        this.camera = {
-            x: startingPos[0],
-            y: startingPos[1]
-        };
-        let endingPos = [startingPos[0] + camera.width, startingPos[1] + camera.height];
-        let dx = 0;
-        let dy = 0;
-        let actors = [];
-        for (let x = startingPos[0]; x < endingPos[0]; x++) {
-            for (let y = startingPos[1]; y < endingPos[1]; y++) {
-                let tile = this.map.data[y][x];
-                if (tile.x + "," + tile.y in this.map.visible_tiles) actors = actors.concat(tile.actors);
+	getNearbyEnemies() {
+		let camera = {
+			// camera x,y resides in the upper left corner
+			x: this.player.x - ~~(Game.width / 2),
+			y: this.player.y - ~~(Game.height / 2),
+			width: Math.ceil(Game.width),
+			height: Game.height
+		};
+		let startingPos = [camera.x, camera.y];
+		if (camera.x < 0) {
+			// far left
+			startingPos[0] = 0;
+		}
+		if (camera.x + camera.width > Game.map.width) {
+			// far right
+			startingPos[0] = Game.map.width - camera.width;
+		}
+		if (camera.y <= 0) {
+			// at the top of the map
+			startingPos[1] = 0;
+		}
+		if (camera.y + camera.height > Game.map.height) {
+			// at the bottom of the map
+			startingPos[1] = Game.map.height - camera.height;
+		}
+		this.camera = {
+			x: startingPos[0],
+			y: startingPos[1]
+		};
+		let endingPos = [startingPos[0] + camera.width, startingPos[1] + camera.height];
+		let dx = 0;
+		let dy = 0;
+		let actors = [];
+		for (let x = startingPos[0]; x < endingPos[0]; x++) {
+			for (let y = startingPos[1]; y < endingPos[1]; y++) {
+				let tile = this.map.data[y][x];
+				if (tile.x + ',' + tile.y in this.map.visible_tiles) {
+					actors = actors.concat(tile.actors);
+				}
 
-                // if (this.map.revealed) {
-                //     actors = actors.concat(tile.actors);
-                // } else {
-                //     if (tile.x + "," + tile.y in this.map.visible_tiles)
-                //         actors = actors.concat(tile.actors);
-                // }
-            }
-            dx++;
-            dy = 0;
-        }
-        let enemies = actors.filter(actor => {
-            return actor.cb !== undefined && actor.cb.hostile;
-        });
+				// if (this.map.revealed) {
+				//     actors = actors.concat(tile.actors);
+				// } else {
+				//     if (tile.x + "," + tile.y in this.map.visible_tiles)
+				//         actors = actors.concat(tile.actors);
+				// }
+			}
+			dx++;
+			dy = 0;
+		}
+		let enemies = actors.filter(actor => {
+			return actor.cb !== undefined && actor.cb.hostile;
+		});
 
-        // we sort the enemies closest to farthest away
-        return enemies.sort((a1, a2) => {
-            if (a1.distanceTo(this.player) < a2.distanceTo(this.player)) return -1;else if (a2.distanceTo(this.player) < a1.distanceTo(this.player)) return 1;else return 0;
-        });
-    },
+		// we sort the enemies closest to farthest away
+		return enemies.sort((a1, a2) => {
+			if (a1.distanceTo(this.player) < a2.distanceTo(this.player)) {
+				return -1;
+			} else if (a2.distanceTo(this.player) < a1.distanceTo(this.player)) {
+				return 1;
+			} else {
+				return 0;
+			}
+		});
+	},
 
-    getClosestEnemyToPlayer() {
-        return this.getNearbyEnemies()[0];
-    },
+	getClosestEnemyToPlayer() {
+		return this.getNearbyEnemies()[0];
+	},
 
-    clearSelectedTile() {
-        const targetingBorders = {
-            id: 7418
-        };
-        const untargetableBorders = {
-            id: 7419
-        };
-        if (this.selectedTile !== null) {
-            let actors = Game.map.data[this.selectedTile.y][this.selectedTile.x].actors.filter(obs => {
-                return obs.id !== targetingBorders.id && obs.id !== untargetableBorders.id;
-            });
-            Game.map.data[this.selectedTile.y][this.selectedTile.x].actors = actors;
-            this.selectedTile = null;
-            this.pathToTarget = {};
-        }
-        this.clearTempLog(); // clear the temporary log which describes the tile we're on
-        this.updateDisplay();
-    },
+	clearSelectedTile() {
+		const targetingBorders = {
+			id: 7418
+		};
+		const untargetableBorders = {
+			id: 7419
+		};
+		if (this.selectedTile !== null) {
+			let actors = Game.map.data[this.selectedTile.y][this.selectedTile.x].actors.filter(obs => {
+				return obs.id !== targetingBorders.id && obs.id !== untargetableBorders.id;
+			});
+			Game.map.data[this.selectedTile.y][this.selectedTile.x].actors = actors;
+			this.selectedTile = null;
+			this.pathToTarget = {};
+		}
+		this.clearTempLog(); // clear the temporary log which describes the tile we're on
+		this.updateDisplay();
+	},
 
-    changeSelectedTile(diff) {
-        const targetingBorders = {
-            id: 7418,
-            visible: true
-        };
-        const untargetableBorders = {
-            id: 7419,
-            visible: true
-        };
-        let tile;
-        if (this.selectedTile === null) {
-            tile = {
-                x: this.player.x,
-                y: this.player.y
-            }; // haven't selected a tile before or it was cleared
-            let x = tile.x + diff[0];
-            let y = tile.y + diff[1];
-            if (!this.inbounds(x, y)) /* || ! x+','+y in this.map.visible_tiles )*/
-                return;
-        } else {
-            // we have had a previously selected tile and need to pop the targeting reticle before pushing it onto the new tile
-            tile = this.selectedTile;
-            let x = tile.x + diff[0];
-            let y = tile.y + diff[1];
-            if (!this.inbounds(x, y)) /* || ! x+','+y in this.map.visible_tiles) */
-                return;
-            let actors = Game.map.data[tile.y][tile.x].actors.filter(obs => {
-                return obs.id !== targetingBorders.id && obs.id !== untargetableBorders.id;
-            });
-            Game.map.data[tile.y][tile.x].actors = actors;
-        }
-        // changed the selected tile to the new tile position selected by movement keys
-        this.selectedTile = {
-            x: tile.x + diff[0],
-            y: tile.y + diff[1]
-        };
-        let {
-            x,
-            y
-        } = this.selectedTile;
-        let mapTile = Game.map.data[this.selectedTile.y][this.selectedTile.x];
-        let properBorder = mapTile.blocked() || this.map.visible_tiles[x + ',' + y] === undefined ? untargetableBorders : targetingBorders;
-        this.map.data[this.selectedTile.y][this.selectedTile.x].actors.push(properBorder);
-        // highlighting the path from the player to the target reticle using bresenham line algorithm
-        /* https://rosettacode.org/wiki/Bitmap/Bresenham%27s_line_algorithm#JavaScript */
-        this.pathToTarget = {};
-        if (properBorder === targetingBorders) {
-            let x0 = this.player.x;
-            let x1 = this.selectedTile.x;
-            let y0 = this.player.y;
-            let y1 = this.selectedTile.y;
-            let dx = Math.abs(x1 - x0),
-                sx = x0 < x1 ? 1 : -1;
-            let dy = Math.abs(y1 - y0),
-                sy = y0 < y1 ? 1 : -1;
-            let err = (dx > dy ? dx : -dy) / 2;
-            while (!(x0 === x1 && y0 === y1)) {
-                this.pathToTarget[x0 + ',' + y0] = true;
-                let e2 = err;
-                if (e2 > -dx) {
-                    err -= dy;
-                    x0 += sx;
-                }
-                if (e2 < dy) {
-                    err += dx;
-                    y0 += sy;
-                }
-            }
-            this.pathToTarget[x0 + ',' + y0] = true;
-            this.pathToTarget[this.player.x + ',' + this.player.y] = false;
-        }
-        this.describeSelectedTile();
-        this.updateDisplay();
-        return properBorder === targetingBorders;
-    },
+	changeSelectedTile(diff) {
+		const targetingBorders = {
+			id: 7418,
+			visible: true
+		};
+		const untargetableBorders = {
+			id: 7419,
+			visible: true
+		};
+		let tile;
+		if (this.selectedTile === null) {
+			tile = {
+				x: this.player.x,
+				y: this.player.y // haven't selected a tile before or it was cleared
+			};let x = tile.x + diff[0];
+			let y = tile.y + diff[1];
+			if (!this.inbounds(x, y)) {
+				/* || ! x+','+y in this.map.visible_tiles ) */
+				return;
+			}
+		} else {
+			// we have had a previously selected tile and need to pop the targeting reticle before pushing it onto the new tile
+			tile = this.selectedTile;
+			let x = tile.x + diff[0];
+			let y = tile.y + diff[1];
+			if (!this.inbounds(x, y)) {
+				/* || ! x+','+y in this.map.visible_tiles) */
+				return;
+			}
+			let actors = Game.map.data[tile.y][tile.x].actors.filter(obs => {
+				return obs.id !== targetingBorders.id && obs.id !== untargetableBorders.id;
+			});
+			Game.map.data[tile.y][tile.x].actors = actors;
+		}
+		// changed the selected tile to the new tile position selected by movement keys
+		this.selectedTile = {
+			x: tile.x + diff[0],
+			y: tile.y + diff[1]
+		};
+		let { x, y } = this.selectedTile;
+		let mapTile = Game.map.data[this.selectedTile.y][this.selectedTile.x];
+		let properBorder = mapTile.blocked() || this.map.visible_tiles[x + ',' + y] === undefined ? untargetableBorders : targetingBorders;
+		this.map.data[this.selectedTile.y][this.selectedTile.x].actors.push(properBorder);
+		// highlighting the path from the player to the target reticle using bresenham line algorithm
+		/* https://rosettacode.org/wiki/Bitmap/Bresenham%27s_line_algorithm#JavaScript */
+		this.pathToTarget = {};
+		if (properBorder === targetingBorders) {
+			let x0 = this.player.x;
+			let x1 = this.selectedTile.x;
+			let y0 = this.player.y;
+			let y1 = this.selectedTile.y;
+			let dx = Math.abs(x1 - x0),
+			    sx = x0 < x1 ? 1 : -1;
+			let dy = Math.abs(y1 - y0),
+			    sy = y0 < y1 ? 1 : -1;
+			let err = (dx > dy ? dx : -dy) / 2;
+			while (!(x0 === x1 && y0 === y1)) {
+				this.pathToTarget[x0 + ',' + y0] = true;
+				let e2 = err;
+				if (e2 > -dx) {
+					err -= dy;
+					x0 += sx;
+				}
+				if (e2 < dy) {
+					err += dx;
+					y0 += sy;
+				}
+			}
+			this.pathToTarget[x0 + ',' + y0] = true;
+			this.pathToTarget[this.player.x + ',' + this.player.y] = false;
+		}
+		this.describeSelectedTile();
+		this.updateDisplay();
+		return properBorder === targetingBorders;
+	},
 
-    selectNearestEnemyTile() {
-        this.clearSelectedTile();
-        let enemy = this.getClosestEnemyToPlayer();
-        if (enemy !== undefined) return this.changeToExactSelectedTile({
-            x: enemy.x,
-            y: enemy.y
-        });else return false;
-    },
+	selectNearestEnemyTile() {
+		this.clearSelectedTile();
+		let enemy = this.getClosestEnemyToPlayer();
+		if (enemy !== undefined) {
+			return this.changeToExactSelectedTile({
+				x: enemy.x,
+				y: enemy.y
+			});
+		} else {
+			return false;
+		}
+	},
 
-    cycleThroughSelectableEnemies() {
-        if (this.enemyCycle === null) {
-            this.enemyCycle = this.getNearbyEnemies();
-            this.enemyCycleIndex = 0;
-        }
-        // if there's more than one enemy, we can cycle to the next closest enemy
-        if (this.enemyCycle.length > 1) {
-            this.clearSelectedTile();
-            this.enemyCycleIndex += 1;
-            if (this.enemyCycleIndex === this.enemyCycle.length) this.enemyCycleIndex = 0;
+	cycleThroughSelectableEnemies() {
+		if (this.enemyCycle === null) {
+			this.enemyCycle = this.getNearbyEnemies();
+			this.enemyCycleIndex = 0;
+		}
+		// if there's more than one enemy, we can cycle to the next closest enemy
+		if (this.enemyCycle.length > 1) {
+			this.clearSelectedTile();
+			this.enemyCycleIndex += 1;
+			if (this.enemyCycleIndex === this.enemyCycle.length) {
+				this.enemyCycleIndex = 0;
+			}
 
-            let newTarget = this.enemyCycle[this.enemyCycleIndex];
-            return this.changeToExactSelectedTile({
-                x: newTarget.x,
-                y: newTarget.y
-            });
-        }
-    },
+			let newTarget = this.enemyCycle[this.enemyCycleIndex];
+			return this.changeToExactSelectedTile({
+				x: newTarget.x,
+				y: newTarget.y
+			});
+		}
+	},
 
-    changeToExactSelectedTile(loc) {
-        const targetingBorders = {
-            id: 7418,
-            visible: true
-        };
-        const untargetableBorders = {
-            id: 7419,
-            visible: true
-        };
-        this.selectedTile = loc;
-        let mapTile = Game.map.data[this.selectedTile.y][this.selectedTile.x];
-        let properBorder = mapTile.blocked() || this.map.visible_tiles[this.selectedTile.x + ',' + this.selectedTile.y] === undefined ? untargetableBorders : targetingBorders;
-        this.map.data[this.selectedTile.y][this.selectedTile.x].actors.push(properBorder);
-        this.pathToTarget = {};
-        if (properBorder === targetingBorders) {
-            let x0 = this.player.x,
-                x1 = this.selectedTile.x,
-                y0 = this.player.y,
-                y1 = this.selectedTile.y,
-                dx = Math.abs(x1 - x0),
-                sx = x0 < x1 ? 1 : -1,
-                dy = Math.abs(y1 - y0),
-                sy = y0 < y1 ? 1 : -1,
-                err = (dx > dy ? dx : -dy) / 2;
-            while (!(x0 === x1 && y0 === y1)) {
-                this.pathToTarget[x0 + ',' + y0] = true;
-                let e2 = err;
-                if (e2 > -dx) {
-                    err -= dy;
-                    x0 += sx;
-                }
-                if (e2 < dy) {
-                    err += dx;
-                    y0 += sy;
-                }
-            }
-            this.pathToTarget[x0 + ',' + y0] = true;
-            this.pathToTarget[this.player.x + ',' + this.player.y] = false;
-        }
-        this.updateDisplay();
-        this.describeSelectedTile();
-        return properBorder === targetingBorders;
-    },
+	changeToExactSelectedTile(loc) {
+		const targetingBorders = {
+			id: 7418,
+			visible: true
+		};
+		const untargetableBorders = {
+			id: 7419,
+			visible: true
+		};
+		this.selectedTile = loc;
+		let mapTile = Game.map.data[this.selectedTile.y][this.selectedTile.x];
+		let properBorder = mapTile.blocked() || this.map.visible_tiles[this.selectedTile.x + ',' + this.selectedTile.y] === undefined ? untargetableBorders : targetingBorders;
+		this.map.data[this.selectedTile.y][this.selectedTile.x].actors.push(properBorder);
+		this.pathToTarget = {};
+		if (properBorder === targetingBorders) {
+			let x0 = this.player.x,
+			    x1 = this.selectedTile.x,
+			    y0 = this.player.y,
+			    y1 = this.selectedTile.y,
+			    dx = Math.abs(x1 - x0),
+			    sx = x0 < x1 ? 1 : -1,
+			    dy = Math.abs(y1 - y0),
+			    sy = y0 < y1 ? 1 : -1,
+			    err = (dx > dy ? dx : -dy) / 2;
+			while (!(x0 === x1 && y0 === y1)) {
+				this.pathToTarget[x0 + ',' + y0] = true;
+				let e2 = err;
+				if (e2 > -dx) {
+					err -= dy;
+					x0 += sx;
+				}
+				if (e2 < dy) {
+					err += dx;
+					y0 += sy;
+				}
+			}
+			this.pathToTarget[x0 + ',' + y0] = true;
+			this.pathToTarget[this.player.x + ',' + this.player.y] = false;
+		}
+		this.updateDisplay();
+		this.describeSelectedTile();
+		return properBorder === targetingBorders;
+	},
 
-    logToTemp(msg) {
-        this.tempMessage = {
-            text: msg,
-            color: "gray"
-        };
-        this.player.tempMessage = this.tempMessage;
-        $('#fix_scroll').stop().animate({
-            scrollTop: $('#fix_scroll')[0].scrollHeight
-        }, 800);
-    },
+	logToTemp(msg) {
+		this.tempMessage = {
+			text: msg,
+			color: 'gray'
+		};
+		this.player.tempMessage = this.tempMessage;
+		$('#fix_scroll').stop().animate({
+			scrollTop: $('#fix_scroll')[0].scrollHeight
+		}, 800);
+	},
 
-    describeSelectedTile() {
-        /* Returns an array of strings describing what exists on the currently selected tile.
+	describeSelectedTile() {
+		/* Returns an array of strings describing what exists on the currently selected tile.
         this can be obstacles, items, traps, or enemies */
-        let tile = this.map.data[this.selectedTile.y][this.selectedTile.x];
-        let names = tile.actors.filter(a => {
-            return a instanceof __WEBPACK_IMPORTED_MODULE_4__entities_Entity_js__["b" /* Entity */] && a !== this.player;
-        }).map(a => {
-            return a instanceof __WEBPACK_IMPORTED_MODULE_6__entities_items_Item_js__["a" /* default */] ? a.type.toLowerCase() : a.name.toLowerCase();
-        });
-        let prettyNames = [];
-        prettyNames = names.slice(1, -1).reduce((buf, str) => {
-            return buf + ", a " + str;
-        }, "a  " + names.slice(0, 1));
+		let tile = this.map.data[this.selectedTile.y][this.selectedTile.x];
+		let names = tile.actors.filter(a => {
+			return a instanceof __WEBPACK_IMPORTED_MODULE_4__entities_Entity_js__["b" /* Entity */] && a !== this.player;
+		}).map(a => {
+			return a instanceof __WEBPACK_IMPORTED_MODULE_6__entities_items_Item_js__["a" /* default */] ? a.type.toLowerCase() : a.name.toLowerCase();
+		});
+		let prettyNames = [];
+		prettyNames = names.slice(1, -1).reduce((buf, str) => {
+			return buf + ', a ' + str;
+		}, 'a  ' + names.slice(0, 1));
 
-        if (names.length > 1) prettyNames = prettyNames + [` and a ${names.slice(-1)}`];else if (names.length == 0) prettyNames = "nothing";
+		if (names.length > 1) {
+			prettyNames = prettyNames + [` and a ${names.slice(-1)}`];
+		} else if (names.length == 0) {
+			prettyNames = 'nothing';
+		}
 
-        this.logToTemp(`[You see ${prettyNames} here.]`);
-    },
+		this.logToTemp(`[You see ${prettyNames} here.]`);
+	},
 
-    printPlayerTile() {
-        console.log(Game.map.data[this.player.y][this.player.x]);
-    },
+	getTile(x, y) {
+		return this.map.data[y][x];
+	},
 
-    eventToTile(evt) {
-        let t = Game.display.eventToPosition(evt);
-        let x = t[0] + this.camera.x;
-        let y = t[1] + this.camera.y;
-        return this.map.data[y][x];
-    },
+	printPlayerTile() {
+		console.log(Game.map.data[this.player.y][this.player.x]);
+	},
 
-    hoverTile(evt) {
-        let t = Game.display.eventToPosition(evt);
-        let x = t[0] + this.camera.x;
-        let y = t[1] + this.camera.y;
-        this.hoveredTile = t[0] + ',' + t[1];
-    },
+	eventToTile(evt) {
+		let t = Game.display.eventToPosition(evt);
+		let x = t[0] + this.camera.x;
+		let y = t[1] + this.camera.y;
+		return this.map.data[y][x];
+	},
 
-    log(message, type) {
-        let message_color = {
-            'defend': 'lightblue',
-            'magic': '#3C1CFD',
-            'attack': 'red',
-            'death': 'crimson',
-            'information': 'yellow',
-            'player_move': 'grey',
-            'level_up': 'green',
-            'alert': 'orange'
-        };
-        let color = type in message_color ? message_color[type] : type;
-        this.message_history.push([message, color]);
-        $('#fix_scroll').stop().animate({
-            scrollTop: $('#fix_scroll')[0].scrollHeight
-        }, 800);
-    }
+	hoverTile(evt) {
+		let t = Game.display.eventToPosition(evt);
+		let x = t[0] + this.camera.x;
+		let y = t[1] + this.camera.y;
+		this.hoveredTile = t[0] + ',' + t[1];
+	},
 
+	log(message, type) {
+		let message_color = {
+			defend: 'lightblue',
+			magic: '#3C1CFD',
+			attack: 'red',
+			death: 'crimson',
+			information: 'yellow',
+			player_move: 'grey',
+			level_up: 'green',
+			alert: 'orange'
+		};
+		let color = type in message_color ? message_color[type] : type;
+		this.message_history.push([message, color]);
+		$('#fix_scroll').stop().animate({
+			scrollTop: $('#fix_scroll')[0].scrollHeight
+		}, 800);
+	}
 };
 /* WEBPACK VAR INJECTION */}.call(__webpack_exports__, __webpack_require__("7t+N")))
 
@@ -4551,7 +4632,7 @@ var esExports = { render: render, staticRenderFns: staticRenderFns }
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_rot_js__ = __webpack_require__("cVUK");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_rot_js___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_rot_js__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__entities_actors_enemies_SimpleEnemy_js__ = __webpack_require__("iDcW");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__entities_actors_enemies_StatelessAI_js__ = __webpack_require__("auh+");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__utils_HelperFunctions_js__ = __webpack_require__("qJpE");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__entities_items_weapons_Sword_js__ = __webpack_require__("KMXB");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__entities_items_potions_HealthPotion_js__ = __webpack_require__("n7eq");
@@ -4572,52 +4653,60 @@ var esExports = { render: render, staticRenderFns: staticRenderFns }
 
 
 
-class Goblin extends __WEBPACK_IMPORTED_MODULE_1__entities_actors_enemies_SimpleEnemy_js__["a" /* default */] {
-    constructor(x, y, id) {
-        let randomHP = __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_2__utils_HelperFunctions_js__["b" /* getRandomInt */])(10, 15);
-        let randomStr = __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_2__utils_HelperFunctions_js__["b" /* getRandomInt */])(5, 9);
-        super(x, y, {
-            id: id,
-            name: "goblin",
-            description: "A mean, green goblin!",
-            visible: true,
-            blocked: true,
-            chasing: false,
-            combat: {
-                /* options.combat, dedicated to all things related to combat */
-                description: [" attacked "],
-                /* max stats */
-                maxhp: randomHP,
-                maxmana: 5,
-                /* current stats */
-                hp: randomHP,
-                mana: 5,
-                str: randomStr,
-                def: 1,
-                /* misc */
-                hostile: true,
-                range: 9,
-                invulnerable: false
-            }
-        });
+class Goblin extends __WEBPACK_IMPORTED_MODULE_1__entities_actors_enemies_StatelessAI_js__["a" /* StatelessAI */] {
+	constructor(x, y, id) {
+		let randomHP = __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_2__utils_HelperFunctions_js__["b" /* getRandomInt */])(10, 15);
+		let randomStr = __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_2__utils_HelperFunctions_js__["b" /* getRandomInt */])(5, 9);
+		super(x, y, {
+			id: id,
+			name: 'goblin',
+			description: 'A mean, green goblin!',
+			visible: true,
+			blocked: true,
+			chasing: false,
+			combat: {
+				/* options.combat, dedicated to all things related to combat */
+				description: [' attacked '],
+				/* max stats */
+				maxhp: randomHP,
+				maxmana: 5,
+				/* current stats */
+				hp: randomHP,
+				mana: 5,
+				str: randomStr,
+				def: 1,
+				/* misc */
+				hostile: true,
+				range: 9,
+				invulnerable: false
+			}
+		}, {
+			/* AI parameters */
+			morale: 0.2,
+			minPlayerDist: 0,
+			maxPlayerDist: 0,
+			ranged: false,
+			melee: true,
+			magic: false
+		});
 
-        if (__webpack_require__.i(__WEBPACK_IMPORTED_MODULE_2__utils_HelperFunctions_js__["b" /* getRandomInt */])(1, 10) < 2) {
-            let items = __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_2__utils_HelperFunctions_js__["a" /* getItemsFromDropTable */])({
-                minItems: 0,
-                maxItems: 1,
-                dropTable: {
-                    "STRENGTH_POTION": 3,
-                    "HEALTH_POTION": 2,
-                    "MANA_POTION": 2,
-                    "STEEL_ARROW": 2,
-                    "SWORD": 0
-                },
-                x: this.x,
-                y: this.y
-            });
-            items.forEach(item => this.addToInventory(item));
-        }
-    }
+		if (__webpack_require__.i(__WEBPACK_IMPORTED_MODULE_2__utils_HelperFunctions_js__["b" /* getRandomInt */])(1, 10) < 2) {
+			let items = __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_2__utils_HelperFunctions_js__["a" /* getItemsFromDropTable */])({
+				minItems: 0,
+				maxItems: 1,
+				dropTable: {
+					STRENGTH_POTION: 3,
+					HEALTH_POTION: 2,
+					MANA_POTION: 2,
+					STEEL_ARROW: 2,
+					SWORD: 0
+				},
+				x: this.x,
+				y: this.y
+			});
+			items.forEach(item => this.addToInventory(item));
+		}
+	}
 }
 /* harmony export (immutable) */ __webpack_exports__["a"] = Goblin;
 
@@ -4672,51 +4761,50 @@ let xp_levels = [50];
 for (let i = 1; i < 100; i++) xp_levels.push(1.5 * xp_levels[i - 1]);
 
 const EntityTypes = {
-    PLAYER: 0,
-    GOBLIN: 1,
-    RAT: 2,
-    LADDER_DOWN: 3,
-    LADDER_UP: 4,
-    SWORD: 5,
-    NPC: 6,
-    ORC: 7,
-    EMPOWERED_ORC: 8,
-    DOOR: 9,
-    CHEST: 10,
-    HEALTH_POTION: 11,
-    STRENGTH_POTION: 12
+	PLAYER: 0,
+	GOBLIN: 1,
+	RAT: 2,
+	LADDER_DOWN: 3,
+	LADDER_UP: 4,
+	SWORD: 5,
+	NPC: 6,
+	ORC: 7,
+	EMPOWERED_ORC: 8,
+	DOOR: 9,
+	CHEST: 10,
+	HEALTH_POTION: 11,
+	STRENGTH_POTION: 12
 
-    /* Entities are in-game objects that exist in the map. They have symbols,
-     * foregrounds, backgrounds, descriptions, names, visibility, and blocked properties. */
+	/* Entities are in-game objects that exist in the map. They have symbols,
+  * foregrounds, backgrounds, descriptions, names, visibility, and blocked properties. */
 };
 /* unused harmony export EntityTypes */
 class Entity {
-    constructor(x, y, options) {
-        this.x = x;
-        this.y = y;
-        Object.assign(this, options);
-        if (options.id === undefined) throw "Error - entity created without valid id";
-    }
+	constructor(x, y, options) {
+		this.x = x;
+		this.y = y;
+		Object.assign(this, options);
+		if (options.id === undefined) throw 'Error - entity created without valid id';
+	}
 
-    move(nx, ny) {
-        let ntile = __WEBPACK_IMPORTED_MODULE_0__Game_js__["a" /* Game */].map.data[ny][nx]; // new tile to move to
-        let ctile = __WEBPACK_IMPORTED_MODULE_0__Game_js__["a" /* Game */].map.data[this.y][this.x]; // current tile
-        ctile.removeActor(this); // remove this actor from this tile
-        ntile.actors.push(this); // add this actor to the new tile
-        this.x = nx; // update x,y coords to new coords
-        this.y = ny;
-        // Game.drawActor(this); // draw the actor at the new spot
-        // Game.drawViewPort();
-        // Game.drawMiniMap();
-    }
+	move(nx, ny) {
+		let ntile = __WEBPACK_IMPORTED_MODULE_0__Game_js__["a" /* Game */].map.data[ny][nx]; // new tile to move to
+		let ctile = __WEBPACK_IMPORTED_MODULE_0__Game_js__["a" /* Game */].map.data[this.y][this.x]; // current tile
+		ctile.removeActor(this); // remove this actor from this tile
+		ntile.actors.push(this); // add this actor to the new tile
+		this.x = nx; // update x,y coords to new coords
+		this.y = ny;
+		// Game.drawActor(this); // draw the actor at the new spot
+		// Game.drawViewPort();
+		// Game.drawMiniMap();
+	}
 
-    placeAt(nx, ny) {
-        let ntile = __WEBPACK_IMPORTED_MODULE_0__Game_js__["a" /* Game */].map.data[ny][nx]; // new tile to move to
-        ntile.actors.push(this); // add this actor to the new tile
-        this.x = nx; // update x,y coords to new coords
-        this.y = ny;
-    }
-
+	placeAt(nx, ny) {
+		let ntile = __WEBPACK_IMPORTED_MODULE_0__Game_js__["a" /* Game */].map.data[ny][nx]; // new tile to move to
+		ntile.actors.push(this); // add this actor to the new tile
+		this.x = nx; // update x,y coords to new coords
+		this.y = ny;
+	}
 }
 /* harmony export (immutable) */ __webpack_exports__["b"] = Entity;
 
@@ -4755,6 +4843,167 @@ var Component = normalizeComponent(
 )
 
 /* harmony default export */ __webpack_exports__["a"] = (Component.exports);
+
+
+/***/ }),
+
+/***/ "auh+":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__entities_actors_Actor_js__ = __webpack_require__("FO7O");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__Game_js__ = __webpack_require__("TiVF");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__utils_HelperFunctions__ = __webpack_require__("qJpE");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_rot_js__ = __webpack_require__("cVUK");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_rot_js___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3_rot_js__);
+
+
+
+
+
+
+/* StatelessAI class to encapsulate all enemies with simple AI that will move towards the player,
+   run away from the player, attempt to stay within maximum range (if ranged) by using a limited set
+   of parameters:
+   - morale, distance to the player (how far, how close it should be), ranged?, magic caster?
+   * based on http://www.roguebasin.com/index.php?title=Roguelike_Intelligence_-_Stateless_AIs
+*/
+class StatelessAI extends __WEBPACK_IMPORTED_MODULE_0__entities_actors_Actor_js__["a" /* Actor */] {
+	constructor(x, y, options, config) {
+		super(x, y, options);
+		this.ai = config;
+	}
+
+	act() {
+		__WEBPACK_IMPORTED_MODULE_1__Game_js__["a" /* Game */].engine.lock();
+		const endTurn = () => {
+			__WEBPACK_IMPORTED_MODULE_1__Game_js__["a" /* Game */].engine.unlock();
+			super.act();
+		};
+		let dx = Math.abs(this.x - __WEBPACK_IMPORTED_MODULE_1__Game_js__["a" /* Game */].player.x);
+		let dy = Math.abs(this.y - __WEBPACK_IMPORTED_MODULE_1__Game_js__["a" /* Game */].player.y);
+		if (dx > __WEBPACK_IMPORTED_MODULE_1__Game_js__["a" /* Game */].width / 2 || dy > __WEBPACK_IMPORTED_MODULE_1__Game_js__["a" /* Game */].height / 2) {
+			endTurn();
+			return;
+		}
+
+		__WEBPACK_IMPORTED_MODULE_1__Game_js__["a" /* Game */].player.recalculatePath();
+		let visibleTiles = __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_2__utils_HelperFunctions__["g" /* getVisibleTiles */])(this);
+		let allVisibleActors = visibleTiles.reduce((actors, tile) => {
+			return actors.concat(tile.actors);
+		}, []);
+
+		let playerInView = allVisibleActors.some(a => {
+			return a === __WEBPACK_IMPORTED_MODULE_1__Game_js__["a" /* Game */].player;
+		});
+
+		if (playerInView) {
+			if (!this.chasing) {
+				__WEBPACK_IMPORTED_MODULE_1__Game_js__["a" /* Game */].log(`A ${this.name} sees you.`, 'alert');
+			}
+
+			this.chasing = true;
+			let pathToPlayer = [];
+			__WEBPACK_IMPORTED_MODULE_1__Game_js__["a" /* Game */].player.path.compute(this.x, this.y, (x, y) => {
+				pathToPlayer.push([x, y]);
+			});
+
+			let { morale, minPlayerDist, maxPlayerDist, ranged, melee, magic } = this.ai;
+			let healthRemainingPercentage = this.cb.hp / this.cb.maxhp;
+
+			const findNearbyTiles = () => {
+				let nearbyTiles = [];
+				for (let i = 0; i < 7; i++) {
+					let diff = __WEBPACK_IMPORTED_MODULE_3_rot_js___default.a.DIRS[8][i];
+					let x = this.x + diff[0];
+					let y = this.y + diff[1];
+					if (__WEBPACK_IMPORTED_MODULE_1__Game_js__["a" /* Game */].inbounds(x, y)) {
+						let ctile = __WEBPACK_IMPORTED_MODULE_1__Game_js__["a" /* Game */].getTile(x, y);
+						if (!ctile.blocked() && ctile.actors.length === 0) nearbyTiles.push(ctile);
+					}
+				}
+				return nearbyTiles;
+			};
+
+			const playerDistToTile = tile => {
+				return Math.sqrt(Math.pow(__WEBPACK_IMPORTED_MODULE_1__Game_js__["a" /* Game */].player.x - tile.x, 2) + Math.pow(__WEBPACK_IMPORTED_MODULE_1__Game_js__["a" /* Game */].player.y - tile.y, 2));
+			};
+
+			const getFarthestAwayTile = () => {
+				let nearbyTiles = findNearbyTiles();
+				if (nearbyTiles.length > 0) return nearbyTiles.reduce((farthest, tile) => {
+					return playerDistToTile(farthest) >= playerDistToTile(tile) ? farthest : tile;
+				}); // by default, just stay where we are
+				else return null;
+			};
+
+			// if morale is greater than the health remaining, we need to flee!
+			if (morale >= healthRemainingPercentage) {
+				let tile = getFarthestAwayTile();
+				if (tile !== null) {
+					if (!this.fleeing) __WEBPACK_IMPORTED_MODULE_1__Game_js__["a" /* Game */].log(`The ${this.name.toLowerCase()} trembles at your might and attempts to escape death.`, 'purple');
+					this.fleeing = true;
+					// if we can run away
+					this.tryMove(tile.x, tile.y);
+					endTurn();
+					return;
+				} else {
+					// we can't flee, so we might as well fight
+					if (pathToPlayer.length <= 2) {
+						let newPos = pathToPlayer[1];
+						this.tryMove(newPos[0], newPos[1]);
+					}
+				}
+			} else {
+				if (pathToPlayer.length >= 1) {
+					let newPos = pathToPlayer[1]; // 1 past the current position
+					this.tryMove(newPos[0], newPos[1]);
+				}
+			}
+
+			/*
+                              TYPICAL AI
+                     If damage > morale
+                        if can-run-away-from-player
+                           run-away-from-player
+                        else if can-attack-player
+                           attack-player
+                     else if too-far-from-player
+                        AND can-attack-player
+                        AND can-move-toward-player
+                            if  random < charge-probability
+                                move-toward-player
+                            else attack-player
+                     else if too-close-to-character
+                        AND can-attack-player
+                        AND can-move-away-from-player
+                            if random < retreat-probability
+                               move-away-from-player
+                            else attack-player
+                     else if can-attack-player
+                        attack-player
+                     else if too-far-from-player
+                        AND can-move-toward-player
+                  move-toward-player
+                     else if too-close-to-player
+                        AND can-move-away-from-player
+                            move-away-from-player
+                     else stand-still
+                  */
+		}
+
+		endTurn();
+	}
+
+	interact(actor) {
+		if (actor === __WEBPACK_IMPORTED_MODULE_1__Game_js__["a" /* Game */].player) {
+			this.attack(actor);
+		} else {
+			actor.react(this);
+		}
+	}
+}
+/* harmony export (immutable) */ __webpack_exports__["a"] = StatelessAI;
 
 
 /***/ }),
@@ -4880,7 +5129,7 @@ var Component = normalizeComponent(
 
 
 function getTileInfo(id) {
-    /*
+	/*
      "FOV": boolean,
      "FOV_id": int,
      "animated": boolean,
@@ -4890,110 +5139,110 @@ function getTileInfo(id) {
      "blocks_vision": boolean,
      "entity": boolean,
      */
-    // console.log(tileset.tileproperties[id]);
-    return __WEBPACK_IMPORTED_MODULE_0__Game_js__["b" /* tileset */].tileproperties[id + ""];
+	// console.log(tileset.tileproperties[id]);
+	return __WEBPACK_IMPORTED_MODULE_0__Game_js__["b" /* tileset */].tileproperties[id + ''];
 }
 
 class Tile {
-    constructor(x, y) {
-        this.x = x;
-        this.y = y;
-        this.actors = [];
-        this.obstacles = [];
-    }
+	constructor(x, y) {
+		this.x = x;
+		this.y = y;
+		this.actors = [];
+		this.obstacles = [];
+	}
 
-    updateTileInfo(id) {
-        let obst = {};
-        if (id in __WEBPACK_IMPORTED_MODULE_0__Game_js__["b" /* tileset */].tileproperties) {
-            // just means there are no tile properties for this guy
-            obst = getTileInfo(id);
-        }
-        obst.id = id;
-        this.obstacles.push(obst); // add to the end of the obstacles to be drawn on top
-    }
+	updateTileInfo(id) {
+		let obst = {};
+		if (id in __WEBPACK_IMPORTED_MODULE_0__Game_js__["b" /* tileset */].tileproperties) {
+			// just means there are no tile properties for this guy
+			obst = getTileInfo(id);
+		}
+		obst.id = id;
+		this.obstacles.push(obst); // add to the end of the obstacles to be drawn on top
+	}
 
-    /* Indicates whether or not a tile is blocked; however, this excludes the player
+	/* Indicates whether or not a tile is blocked; however, this excludes the player
      * for AI purposes. */
-    blocked() {
+	blocked() {
 
-        // TODO: fix it so that this actually fires off properly without blocking enemies from moving
-        /*
+		// TODO: fix it so that this actually fires off properly without blocking enemies from moving
+		/*
         for (let actor of this.actors) {
             if (actor.blocked)
                 return true;
         }
         */
 
-        if (this.obstacles.length > 0) return this.obstacles[this.obstacles.length - 1].blocked;
+		if (this.obstacles.length > 0) return this.obstacles[this.obstacles.length - 1].blocked;
 
-        return false;
-    }
+		return false;
+	}
 
-    visible() {
-        return !(this.obstacles.some(el => {
-            return el.blocks_vision;
-        }) || this.actors.some(el => {
-            return !el.visible;
-        }));
-    }
+	visible() {
+		return !(this.obstacles.some(el => {
+			return el.blocks_vision;
+		}) || this.actors.some(el => {
+			return !el.visible;
+		}));
+	}
 
-    removeActor(a) {
-        let idx = this.actors.findIndex(actor => {
-            return Object.is(a, actor);
-        });
-        this.actors.splice(idx, 1);
-    }
+	removeActor(a) {
+		let idx = this.actors.findIndex(actor => {
+			return Object.is(a, actor);
+		});
+		this.actors.splice(idx, 1);
+	}
 
-    bg() {
-        if (!this.obstacles.some(e => {
-            return "bg" in e;
-        })) {
-            return "black";
-        } else {
-            for (let i = this.obstacles.length - 1; i >= 0; i--) {
-                let obs = this.obstacles[i];
-                if ("bg" in obs) return obs.bg;
-            }
-        }
-    }
+	bg() {
+		if (!this.obstacles.some(e => {
+			return 'bg' in e;
+		})) {
+			return 'black';
+		} else {
+			for (let i = this.obstacles.length - 1; i >= 0; i--) {
+				let obs = this.obstacles[i];
+				if ('bg' in obs) return obs.bg;
+			}
+		}
+	}
 
-    getSpriteIDS(animate, fov) {
-        let symbols = [];
-        /* Obstacles */
-        for (let obs of this.obstacles) {
-            // If there's a dark variant of this texture
-            if (fov && obs.FOV) {
-                if (obs.FOV_id === undefined) throw `Error - invalid FOV tile specified for tileset ID : ${obs.id} `;
-                //  If there happens to be a dark, animated variant...
-                if (animate && obs.animated) {
-                    if (obs.animated_fov_id === undefined) throw `Error - invalid animated tile specified for tileset ID : ${obs.id} `;
-                    symbols.push(obs.animated_fov_id);
-                } else {
-                    symbols.push(obs.FOV_id);
-                }
-            } else {
-                if (animate && obs.animated) {
-                    if (obs.animated_id === undefined) throw `Error - invalid animated and darkened tile specified for tileset ID : ${obs.id} `;
-                    symbols.push(obs.animated_id);
-                } else {
-                    symbols.push(obs.id);
-                }
-            }
-        }
-        /* Actors / Entities */
-        for (let actor of this.actors) {
-            let obs = getTileInfo(actor.id);
-            if (obs !== undefined && animate && obs.animated) {
-                if (obs.animated_id === null) throw `Error - invalid animate tile specified for tileset ID : ${obs.id} with animated tile id ${obs.animated_id} `;
-                symbols.push(obs.animated_id);
-            } else {
-                symbols.push(actor.id);
-            }
-        }
-        return symbols.map(e => {
-            return e.toString();
-        });
-    }
+	getSpriteIDS(animate, fov) {
+		let symbols = [];
+		/* Obstacles */
+		for (let obs of this.obstacles) {
+			// If there's a dark variant of this texture
+			if (fov && obs.FOV) {
+				if (obs.FOV_id === undefined) throw `Error - invalid FOV tile specified for tileset ID : ${obs.id} `;
+				//  If there happens to be a dark, animated variant...
+				if (animate && obs.animated) {
+					if (obs.animated_fov_id === undefined) throw `Error - invalid animated tile specified for tileset ID : ${obs.id} `;
+					symbols.push(obs.animated_fov_id);
+				} else {
+					symbols.push(obs.FOV_id);
+				}
+			} else {
+				if (animate && obs.animated) {
+					if (obs.animated_id === undefined) throw `Error - invalid animated and darkened tile specified for tileset ID : ${obs.id} `;
+					symbols.push(obs.animated_id);
+				} else {
+					symbols.push(obs.id);
+				}
+			}
+		}
+		/* Actors / Entities */
+		for (let actor of this.actors) {
+			let obs = getTileInfo(actor.id);
+			if (obs !== undefined && animate && obs.animated) {
+				if (obs.animated_id === null) throw `Error - invalid animate tile specified for tileset ID : ${obs.id} with animated tile id ${obs.animated_id} `;
+				symbols.push(obs.animated_id);
+			} else {
+				symbols.push(actor.id);
+			}
+		}
+		return symbols.map(e => {
+			return e.toString();
+		});
+	}
 }
 /* harmony export (immutable) */ __webpack_exports__["a"] = Tile;
 
@@ -5198,48 +5447,48 @@ class Tile {
  it once during the initial proc of the effect, then it will remove the effect after the buff wears off. It will
  still be added as an effect under the Actor effects array */
 class Buff extends __WEBPACK_IMPORTED_MODULE_1__modifiers_Effect_js__["b" /* Effect */] {
-    constructor(options) {
-        // buffs must specify a way to 'undo' the temporary effect it has on the entity
-        if (options.undoAction === undefined) throw "Buffs must declare a way to undo temporary effects";
+	constructor(options) {
+		// buffs must specify a way to 'undo' the temporary effect it has on the entity
+		if (options.undoAction === undefined) throw 'Buffs must declare a way to undo temporary effects';
 
-        super(options);
-        this.initialDuration = this.duration; // 'remember' the initial duration
-    }
+		super(options);
+		this.initialDuration = this.duration; // 'remember' the initial duration
+	}
 
-    // overriding super method
-    applyEffect(entity) {
-        if (this.duration === this.initialDuration) {
-            this.action(entity);
-            this.duration--;
-        } else if (this.duration === 1) {
-            __WEBPACK_IMPORTED_MODULE_0__Game_js__["a" /* Game */].log(`Your ${this.name} has expired.`, "alert");
-            this.undoAction(entity);
-            this.duration--;
-        } else {
-            this.duration--;
-        }
-    }
+	// overriding super method
+	applyEffect(entity) {
+		if (this.duration === this.initialDuration) {
+			this.action(entity);
+			this.duration--;
+		} else if (this.duration === 1) {
+			__WEBPACK_IMPORTED_MODULE_0__Game_js__["a" /* Game */].log(`Your ${this.name} has expired.`, 'alert');
+			this.undoAction(entity);
+			this.duration--;
+		} else {
+			this.duration--;
+		}
+	}
 }
 /* harmony export (immutable) */ __webpack_exports__["b"] = Buff;
 
 
 class StrengthBuff extends Buff {
-    constructor(amt) {
-        super({
-            name: "Strength Buff",
-            action: entity => {
-                entity.cb.str += amt;
-            },
-            undoAction: entity => {
-                entity.cb.str -= amt;
-            },
-            description: entity => {
-                return `${entity.name} has +${amt} Strength for ${this.duration} turns`;
-            },
-            duration: 5,
-            amount: amt
-        });
-    }
+	constructor(amt) {
+		super({
+			name: 'Strength Buff',
+			action: entity => {
+				entity.cb.str += amt;
+			},
+			undoAction: entity => {
+				entity.cb.str -= amt;
+			},
+			description: entity => {
+				return `${entity.name} has +${amt} Strength for ${this.duration} turns`;
+			},
+			duration: 5,
+			amount: amt
+		});
+	}
 }
 /* harmony export (immutable) */ __webpack_exports__["a"] = StrengthBuff;
 
@@ -5259,47 +5508,47 @@ class StrengthBuff extends Buff {
 
 
 class Ladder extends __WEBPACK_IMPORTED_MODULE_1__entities_Entity_js__["b" /* Entity */] {
-    constructor(x, y, id, dir) {
-        super(x, y, {
-            id: id,
-            name: "ladder",
-            direction: dir,
-            description: "A ladder leading " + dir,
-            fg: "brown",
-            bg: "orange",
-            blocked: false,
-            visible: true
-        });
-        this.portal = null;
-    }
+	constructor(x, y, id, dir) {
+		super(x, y, {
+			id: id,
+			name: 'ladder',
+			direction: dir,
+			description: 'A ladder leading ' + dir,
+			fg: 'brown',
+			bg: 'orange',
+			blocked: false,
+			visible: true
+		});
+		this.portal = null;
+	}
 
-    act() {}
+	act() {}
 
-    react(actor) {
-        let levelName = __WEBPACK_IMPORTED_MODULE_0__Game_js__["a" /* Game */].currentLevel.replace(/[0-9]/g, "");
-        let levelNumber = parseInt(__WEBPACK_IMPORTED_MODULE_0__Game_js__["a" /* Game */].currentLevel.replace(/[^0-9]/g, ""));
-        if (this.direction === "down") {
-            __WEBPACK_IMPORTED_MODULE_0__Game_js__["a" /* Game */].log("You climb down the ladder...", "player_move");
-            if (this.portal !== null) {
-                __WEBPACK_IMPORTED_MODULE_0__Game_js__["a" /* Game */].changeLevels(this.portal, this.direction == "down" ? "up" : "down");
-                return;
-            } else {
-                __WEBPACK_IMPORTED_MODULE_0__Game_js__["a" /* Game */].changeLevels(levelName + (levelNumber + 1), this.direction == "down" ? "up" : "down", levelNumber);
-                return;
-            }
-        } else {
-            __WEBPACK_IMPORTED_MODULE_0__Game_js__["a" /* Game */].log("You climb up the ladder...", "player_move");
-            if (this.portal !== null) {
-                __WEBPACK_IMPORTED_MODULE_0__Game_js__["a" /* Game */].changeLevels(this.portal, this.direction == "down" ? "up" : "down");
-                return;
-            }
-            if (levelNumber === 1) {
-                __WEBPACK_IMPORTED_MODULE_0__Game_js__["a" /* Game */].changeLevels("overworld");
-                return;
-            }
-            __WEBPACK_IMPORTED_MODULE_0__Game_js__["a" /* Game */].changeLevels(levelName + (levelNumber - 1), this.direction == "down" ? "up" : "down", levelNumber);
-        }
-    }
+	react(actor) {
+		let levelName = __WEBPACK_IMPORTED_MODULE_0__Game_js__["a" /* Game */].currentLevel.replace(/[0-9]/g, '');
+		let levelNumber = parseInt(__WEBPACK_IMPORTED_MODULE_0__Game_js__["a" /* Game */].currentLevel.replace(/[^0-9]/g, ''));
+		if (this.direction === 'down') {
+			__WEBPACK_IMPORTED_MODULE_0__Game_js__["a" /* Game */].log('You climb down the ladder...', 'player_move');
+			if (this.portal !== null) {
+				__WEBPACK_IMPORTED_MODULE_0__Game_js__["a" /* Game */].changeLevels(this.portal, this.direction == 'down' ? 'up' : 'down');
+				return;
+			} else {
+				__WEBPACK_IMPORTED_MODULE_0__Game_js__["a" /* Game */].changeLevels(levelName + (levelNumber + 1), this.direction == 'down' ? 'up' : 'down', levelNumber);
+				return;
+			}
+		} else {
+			__WEBPACK_IMPORTED_MODULE_0__Game_js__["a" /* Game */].log('You climb up the ladder...', 'player_move');
+			if (this.portal !== null) {
+				__WEBPACK_IMPORTED_MODULE_0__Game_js__["a" /* Game */].changeLevels(this.portal, this.direction == 'down' ? 'up' : 'down');
+				return;
+			}
+			if (levelNumber === 1) {
+				__WEBPACK_IMPORTED_MODULE_0__Game_js__["a" /* Game */].changeLevels('overworld');
+				return;
+			}
+			__WEBPACK_IMPORTED_MODULE_0__Game_js__["a" /* Game */].changeLevels(levelName + (levelNumber - 1), this.direction == 'down' ? 'up' : 'down', levelNumber);
+		}
+	}
 }
 /* harmony export (immutable) */ __webpack_exports__["a"] = Ladder;
 
@@ -5433,62 +5682,60 @@ var esExports = { render: render, staticRenderFns: staticRenderFns }
  Essentially, these enemies have a range that they can see the player from, and if the player
  enters within the distance between the enemy and player */
 class SimpleEnemy extends __WEBPACK_IMPORTED_MODULE_0__entities_actors_Actor_js__["a" /* Actor */] {
+	constructor(x, y, options, routine = null) {
+		super(x, y, options);
+	}
 
-    constructor(x, y, options, routine = null) {
-        super(x, y, options);
-    }
+	act() {
+		__WEBPACK_IMPORTED_MODULE_1__Game_js__["a" /* Game */].engine.lock();
+		// To make these computations more efficient, we can determine whether or not the SimpleEnemy
+		// is rendered on the current game screen. If not, we shouldn't really worry about what the enemy can see
+		// or its path to the player. So, we can essentially skip their turn.
+		let dx = Math.abs(this.x - __WEBPACK_IMPORTED_MODULE_1__Game_js__["a" /* Game */].player.x);
+		let dy = Math.abs(this.y - __WEBPACK_IMPORTED_MODULE_1__Game_js__["a" /* Game */].player.y);
+		if (dx > __WEBPACK_IMPORTED_MODULE_1__Game_js__["a" /* Game */].width / 2 || dy > __WEBPACK_IMPORTED_MODULE_1__Game_js__["a" /* Game */].height / 2) {
+			__WEBPACK_IMPORTED_MODULE_1__Game_js__["a" /* Game */].engine.unlock();
+			super.act();
+			return;
+		}
 
-    act() {
-        __WEBPACK_IMPORTED_MODULE_1__Game_js__["a" /* Game */].engine.lock();
-        // To make these computations more efficient, we can determine whether or not the SimpleEnemy
-        // is rendered on the current game screen. If not, we shouldn't really worry about what the enemy can see
-        // or its path to the player. So, we can essentially skip their turn.
-        let dx = Math.abs(this.x - __WEBPACK_IMPORTED_MODULE_1__Game_js__["a" /* Game */].player.x);
-        let dy = Math.abs(this.y - __WEBPACK_IMPORTED_MODULE_1__Game_js__["a" /* Game */].player.y);
-        if (dx > __WEBPACK_IMPORTED_MODULE_1__Game_js__["a" /* Game */].width / 2 || dy > __WEBPACK_IMPORTED_MODULE_1__Game_js__["a" /* Game */].height / 2) {
-            __WEBPACK_IMPORTED_MODULE_1__Game_js__["a" /* Game */].engine.unlock();
-            super.act();
-            return;
-        }
+		__WEBPACK_IMPORTED_MODULE_1__Game_js__["a" /* Game */].player.recalculatePath();
 
-        __WEBPACK_IMPORTED_MODULE_1__Game_js__["a" /* Game */].player.recalculatePath();
+		let fov = new __WEBPACK_IMPORTED_MODULE_2_rot_js___default.a.FOV.PreciseShadowcasting(function (x, y) {
+			return __WEBPACK_IMPORTED_MODULE_1__Game_js__["a" /* Game */].inbounds(x, y) && __WEBPACK_IMPORTED_MODULE_1__Game_js__["a" /* Game */].map.data[y][x].visible();
+		});
 
-        let fov = new __WEBPACK_IMPORTED_MODULE_2_rot_js___default.a.FOV.PreciseShadowcasting(function (x, y) {
-            return __WEBPACK_IMPORTED_MODULE_1__Game_js__["a" /* Game */].inbounds(x, y) && __WEBPACK_IMPORTED_MODULE_1__Game_js__["a" /* Game */].map.data[y][x].visible();
-        });
+		let visibleTiles = [];
+		fov.compute(this.x, this.y, this.cb.range, function (x, y, r, visibility) {
+			// console.log(x + ',' + y);
+			if (__WEBPACK_IMPORTED_MODULE_1__Game_js__["a" /* Game */].inbounds(x, y)) visibleTiles.push(__WEBPACK_IMPORTED_MODULE_1__Game_js__["a" /* Game */].map.data[y][x]);
+		});
 
-        let visibleTiles = [];
-        fov.compute(this.x, this.y, this.cb.range, function (x, y, r, visibility) {
-            // console.log(x + ',' + y);
-            if (__WEBPACK_IMPORTED_MODULE_1__Game_js__["a" /* Game */].inbounds(x, y)) visibleTiles.push(__WEBPACK_IMPORTED_MODULE_1__Game_js__["a" /* Game */].map.data[y][x]);
-        });
+		let allVisibleActors = visibleTiles.reduce((actors, tile) => {
+			return actors.concat(tile.actors);
+		}, []);
 
-        let allVisibleActors = visibleTiles.reduce((actors, tile) => {
-            return actors.concat(tile.actors);
-        }, []);
+		if (allVisibleActors.some(a => {
+			return a === __WEBPACK_IMPORTED_MODULE_1__Game_js__["a" /* Game */].player;
+		})) {
+			if (!this.chasing) __WEBPACK_IMPORTED_MODULE_1__Game_js__["a" /* Game */].log(`A ${this.name} sees you.`, 'alert');
+			this.chasing = true;
+			let pathToPlayer = [];
+			__WEBPACK_IMPORTED_MODULE_1__Game_js__["a" /* Game */].player.path.compute(this.x, this.y, function (x, y) {
+				pathToPlayer.push([x, y]);
+			});
+			if (pathToPlayer.length >= 1) {
+				let newPos = pathToPlayer[1]; // 1 past the current position
+				this.tryMove(newPos[0], newPos[1]);
+			}
+		}
+		__WEBPACK_IMPORTED_MODULE_1__Game_js__["a" /* Game */].engine.unlock();
+		super.act();
+	}
 
-        if (allVisibleActors.some(a => {
-            return a === __WEBPACK_IMPORTED_MODULE_1__Game_js__["a" /* Game */].player;
-        })) {
-            if (!this.chasing) __WEBPACK_IMPORTED_MODULE_1__Game_js__["a" /* Game */].log(`A ${this.name} sees you.`, 'alert');
-            this.chasing = true;
-            let pathToPlayer = [];
-            __WEBPACK_IMPORTED_MODULE_1__Game_js__["a" /* Game */].player.path.compute(this.x, this.y, function (x, y) {
-                pathToPlayer.push([x, y]);
-            });
-            if (pathToPlayer.length >= 1) {
-                let newPos = pathToPlayer[1]; // 1 past the current position
-                this.tryMove(newPos[0], newPos[1]);
-            }
-        }
-        __WEBPACK_IMPORTED_MODULE_1__Game_js__["a" /* Game */].engine.unlock();
-        super.act();
-    }
-
-    interact(actor) {
-        if (actor === __WEBPACK_IMPORTED_MODULE_1__Game_js__["a" /* Game */].player) this.attack(actor);else actor.react(this);
-    }
-
+	interact(actor) {
+		if (actor === __WEBPACK_IMPORTED_MODULE_1__Game_js__["a" /* Game */].player) this.attack(actor);else actor.react(this);
+	}
 }
 /* harmony export (immutable) */ __webpack_exports__["a"] = SimpleEnemy;
 
@@ -5507,17 +5754,17 @@ class SimpleEnemy extends __WEBPACK_IMPORTED_MODULE_0__entities_actors_Actor_js_
 
 
 class NPC extends __WEBPACK_IMPORTED_MODULE_0__entities_actors_Actor_js__["a" /* Actor */] {
-    constructor(x, y, id) {
-        super(x, y, {
-            id: id,
-            name: "non-player character",
-            visible: true,
-            blocked: true,
-            combat: {
-                hostile: false
-            }
-        });
-    }
+	constructor(x, y, id) {
+		super(x, y, {
+			id: id,
+			name: 'non-player character',
+			visible: true,
+			blocked: true,
+			combat: {
+				hostile: false
+			}
+		});
+	}
 }
 /* harmony export (immutable) */ __webpack_exports__["a"] = NPC;
 
@@ -5587,25 +5834,25 @@ var Component = normalizeComponent(
 
 class Enchantment {
 
-    constructor(options) {
-        Object.assign(this, options);
-        if (this.name === undefined || this.description === undefined || this.getEffect === undefined) throw "Enchantment missing critical fields";
-    }
+	constructor(options) {
+		Object.assign(this, options);
+		if (this.name === undefined || this.description === undefined || this.getEffect === undefined) throw 'Enchantment missing critical fields';
+	}
 
 }
 /* unused harmony export Enchantment */
 
 
 class BleedEnchantment extends Enchantment {
-    constructor() {
-        super({
-            name: "Bleed",
-            description: "Applies a bleed effect on-hit, dealing % max health damage.",
-            getEffect: () => {
-                return new __WEBPACK_IMPORTED_MODULE_0__modifiers_Effect_js__["a" /* BleedEffect */]();
-            }
-        });
-    }
+	constructor() {
+		super({
+			name: 'Bleed',
+			description: 'Applies a bleed effect on-hit, dealing % max health damage.',
+			getEffect: () => {
+				return new __WEBPACK_IMPORTED_MODULE_0__modifiers_Effect_js__["a" /* BleedEffect */]();
+			}
+		});
+	}
 
 }
 /* harmony export (immutable) */ __webpack_exports__["a"] = BleedEnchantment;
@@ -5635,22 +5882,22 @@ var esExports = { render: render, staticRenderFns: staticRenderFns }
 
 class HealthPotion extends __WEBPACK_IMPORTED_MODULE_0__entities_items_potions_Potion_js__["a" /* default */] {
 
-    constructor(x, y, id) {
-        super(x, y, {
-            id: id,
-            type: "Health Potion"
-        });
-    }
+	constructor(x, y, id) {
+		super(x, y, {
+			id: id,
+			type: 'Health Potion'
+		});
+	}
 
-    use() {
-        __WEBPACK_IMPORTED_MODULE_1__Game_js__["a" /* Game */].log("You drink a health potion. It restores a little HP.", "defend");
-        __WEBPACK_IMPORTED_MODULE_1__Game_js__["a" /* Game */].player.heal(25);
-        __WEBPACK_IMPORTED_MODULE_1__Game_js__["a" /* Game */].player.removeFromInventory(this);
-    }
+	use() {
+		__WEBPACK_IMPORTED_MODULE_1__Game_js__["a" /* Game */].log('You drink a health potion. It restores a little HP.', 'defend');
+		__WEBPACK_IMPORTED_MODULE_1__Game_js__["a" /* Game */].player.heal(25);
+		__WEBPACK_IMPORTED_MODULE_1__Game_js__["a" /* Game */].player.removeFromInventory(this);
+	}
 
-    hoverInfo() {
-        return "Effect: Heals for 25 HP";
-    }
+	hoverInfo() {
+		return 'Effect: Heals for 25 HP';
+	}
 }
 /* harmony export (immutable) */ __webpack_exports__["a"] = HealthPotion;
 
@@ -5692,44 +5939,44 @@ class HealthPotion extends __WEBPACK_IMPORTED_MODULE_0__entities_items_potions_P
 
 
 class Bat extends __WEBPACK_IMPORTED_MODULE_1__entities_actors_enemies_SimpleEnemy_js__["a" /* default */] {
-    constructor(x, y, id) {
-        let randomHP = __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_2__utils_HelperFunctions_js__["b" /* getRandomInt */])(4, 8);
-        let randomStr = __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_2__utils_HelperFunctions_js__["b" /* getRandomInt */])(3, 5);
-        super(x, y, {
-            id: id,
-            name: "bat",
-            description: "A creature of the night!",
-            visible: true,
-            blocked: true,
-            chasing: false,
-            combat: {
-                /* options.combat, dedicated to all things related to combat */
-                description: [" attacked "],
-                /* max stats */
-                maxhp: randomHP,
-                maxmana: 5,
-                /* current stats */
-                hp: randomHP,
-                mana: 5,
-                str: randomStr,
-                def: 1,
-                /* misc */
-                hostile: true,
-                range: 9,
-                invulnerable: false
-            }
-        });
-        // let items = getItemsFromDropTable({
-        //     minItems : 0,
-        //     maxItems : 1,
-        //     dropTable : {
-        //
-        //     },
-        //     x : this.x,
-        //     y : this.y
-        // });
-        // items.forEach(item => this.addToInventory(item));
-    }
+	constructor(x, y, id) {
+		let randomHP = __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_2__utils_HelperFunctions_js__["b" /* getRandomInt */])(4, 8);
+		let randomStr = __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_2__utils_HelperFunctions_js__["b" /* getRandomInt */])(3, 5);
+		super(x, y, {
+			id: id,
+			name: 'bat',
+			description: 'A creature of the night!',
+			visible: true,
+			blocked: true,
+			chasing: false,
+			combat: {
+				/* options.combat, dedicated to all things related to combat */
+				description: [' attacked '],
+				/* max stats */
+				maxhp: randomHP,
+				maxmana: 5,
+				/* current stats */
+				hp: randomHP,
+				mana: 5,
+				str: randomStr,
+				def: 1,
+				/* misc */
+				hostile: true,
+				range: 9,
+				invulnerable: false
+			}
+		});
+		// let items = getItemsFromDropTable({
+		//     minItems : 0,
+		//     maxItems : 1,
+		//     dropTable : {
+		//
+		//     },
+		//     x : this.x,
+		//     y : this.y
+		// });
+		// items.forEach(item => this.addToInventory(item));
+	}
 
 }
 /* harmony export (immutable) */ __webpack_exports__["a"] = Bat;
@@ -5751,41 +5998,41 @@ class Bat extends __WEBPACK_IMPORTED_MODULE_1__entities_actors_enemies_SimpleEne
 
 
 class Chest extends __WEBPACK_IMPORTED_MODULE_1__entities_Entity_js__["b" /* Entity */] {
-    constructor(x, y, id) {
-        super(x, y, {
-            name: "chest",
-            id: id,
-            visible: true,
-            blocked: true
-        });
-        this.closed = true;
-        this.items = [];
-    }
+	constructor(x, y, id) {
+		super(x, y, {
+			name: 'chest',
+			id: id,
+			visible: true,
+			blocked: true
+		});
+		this.closed = true;
+		this.items = [];
+	}
 
-    react(actor) {
-        if (this.closed) {
-            this.open();
-        } else {
-            // open up an inventory screen of items in the chest?
-            if (this.items.length === 0) {
-                __WEBPACK_IMPORTED_MODULE_0__Game_js__["a" /* Game */].log("There's nothing left in this chest!", "information");
-            } else {
-                __WEBPACK_IMPORTED_MODULE_0__Game_js__["a" /* Game */].log("You collect everything from the chest.", "information");
-                for (let item of this.items) actor.addToInventory(item);
+	react(actor) {
+		if (this.closed) {
+			this.open();
+		} else {
+			// open up an inventory screen of items in the chest?
+			if (this.items.length === 0) {
+				__WEBPACK_IMPORTED_MODULE_0__Game_js__["a" /* Game */].log('There\'s nothing left in this chest!', 'information');
+			} else {
+				__WEBPACK_IMPORTED_MODULE_0__Game_js__["a" /* Game */].log('You collect everything from the chest.', 'information');
+				for (let item of this.items) actor.addToInventory(item);
 
-                this.items = [];
-            }
-        }
-    }
+				this.items = [];
+			}
+		}
+	}
 
-    addToInventory(item) {
-        this.items.push(item);
-    }
+	addToInventory(item) {
+		this.items.push(item);
+	}
 
-    open() {
-        this.closed = false;
-        this.id = __WEBPACK_IMPORTED_MODULE_0__Game_js__["b" /* tileset */].tileproperties[this.id].activated_id;
-    }
+	open() {
+		this.closed = false;
+		this.id = __WEBPACK_IMPORTED_MODULE_0__Game_js__["b" /* tileset */].tileproperties[this.id].activated_id;
+	}
 
 }
 /* harmony export (immutable) */ __webpack_exports__["a"] = Chest;
@@ -5887,13 +6134,16 @@ var esExports = { render: render, staticRenderFns: staticRenderFns }
 /* unused harmony export itemTypes */
 /* harmony export (immutable) */ __webpack_exports__["f"] = getDiceRoll;
 /* harmony export (immutable) */ __webpack_exports__["a"] = getItemsFromDropTable;
+/* harmony export (immutable) */ __webpack_exports__["g"] = getVisibleTiles;
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_rot_js__ = __webpack_require__("cVUK");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_rot_js___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_rot_js__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__entities_items_potions_HealthPotion_js__ = __webpack_require__("n7eq");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__entities_items_potions_StrengthPotion_js__ = __webpack_require__("CHD1");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__entities_items_potions_ManaPotion_js__ = __webpack_require__("A0xc");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__entities_items_weapons_Sword_js__ = __webpack_require__("KMXB");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__entities_items_weapons_ranged_ammo_Arrow_js__ = __webpack_require__("RdiN");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__Game_js__ = __webpack_require__("TiVF");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__entities_items_potions_HealthPotion_js__ = __webpack_require__("n7eq");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__entities_items_potions_StrengthPotion_js__ = __webpack_require__("CHD1");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__entities_items_potions_ManaPotion_js__ = __webpack_require__("A0xc");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__entities_items_weapons_Sword_js__ = __webpack_require__("KMXB");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__entities_items_weapons_ranged_ammo_Arrow_js__ = __webpack_require__("RdiN");
+
 
 
 
@@ -5903,82 +6153,94 @@ var esExports = { render: render, staticRenderFns: staticRenderFns }
 
 
 function getRandomInt(min, max) {
-    min = Math.ceil(min);
-    max = Math.floor(max);
-    return Math.floor(Math.random() * (max - min + 1)) + min; //The maximum is exclusive and the minimum is inclusive
+	min = Math.ceil(min);
+	max = Math.floor(max);
+	return Math.floor(Math.random() * (max - min + 1)) + min; //The maximum is exclusive and the minimum is inclusive
 }
 
 function getNormalRandomInt(min, max) {
-    let gaussianRand = () => {
-        let rand = 0;
-        for (let i = 0; i < 6; i++) rand += Math.random();
+	let gaussianRand = () => {
+		let rand = 0;
+		for (let i = 0; i < 6; i++) rand += Math.random();
 
-        return rand / 6;
-    };
-    return Math.floor(min + gaussianRand() * (max - min + 1));
+		return rand / 6;
+	};
+	return Math.floor(min + gaussianRand() * (max - min + 1));
 }
 
 function randomProperty(object) {
-    let keys = Object.keys(object);
-    return keys[Math.floor(keys.length * Math.random())];
+	let keys = Object.keys(object);
+	return keys[Math.floor(keys.length * Math.random())];
 }
 
 function addPrefix(name) {
-    const vowels = ['a', 'e', 'i', 'o', 'u'];
-    if (name !== "you") {
-        if (name[0] in vowels) return "an " + name;else return "a " + name;
-    } else {
-        return name;
-    }
+	const vowels = ['a', 'e', 'i', 'o', 'u'];
+	if (name !== 'you') {
+		if (name[0] in vowels) return 'an ' + name;else return 'a ' + name;
+	} else {
+		return name;
+	}
 }
 
 let itemTypes = {
-    STRENGTH_POTION: "STRENGTH_POTION",
-    MANA_POTION: "MANA_POTION",
-    HEALTH_POTION: "HEALTH_POTION",
-    SWORD: "SWORD",
-    STEEL_ARROW: "STEEL_ARROW"
+	STRENGTH_POTION: 'STRENGTH_POTION',
+	MANA_POTION: 'MANA_POTION',
+	HEALTH_POTION: 'HEALTH_POTION',
+	SWORD: 'SWORD',
+	STEEL_ARROW: 'STEEL_ARROW'
 };
 
 function getDiceRoll(rolls, sides) {
-    let n = 0;
-    for (let i = 0; i < rolls; i++) {
-        n += getRandomInt(1, sides);
-    }
-    return n;
+	let n = 0;
+	for (let i = 0; i < rolls; i++) {
+		n += getRandomInt(1, sides);
+	}
+	return n;
 }
 
 function getItemsFromDropTable(options) {
-    if (options.dropTable == undefined || options.minItems == undefined || options.maxItems == undefined || options.x == undefined || options.y == undefined) throw "Not enough arguments given. Expected drop table object, min and max number of items to produce, and x,y location";
+	if (options.dropTable == undefined || options.minItems == undefined || options.maxItems == undefined || options.x == undefined || options.y == undefined) throw 'Not enough arguments given. Expected drop table object, min and max number of items to produce, and x,y location';
 
-    let { dropTable, minItems, maxItems, x, y } = options;
-    let items = [];
-    let roll = getRandomInt(minItems, maxItems);
-    for (let i = 0; i < roll; i++) {
-        let chosenItem = __WEBPACK_IMPORTED_MODULE_0_rot_js___default.a.RNG.getWeightedValue(dropTable);
-        switch (chosenItem) {
-            case itemTypes.STRENGTH_POTION:
-                items.push(new __WEBPACK_IMPORTED_MODULE_2__entities_items_potions_StrengthPotion_js__["a" /* default */](x, y, 969));
-                break;
-            case itemTypes.HEALTH_POTION:
-                items.push(new __WEBPACK_IMPORTED_MODULE_1__entities_items_potions_HealthPotion_js__["a" /* default */](x, y, 488));
-                break;
-            case itemTypes.MANA_POTION:
-                items.push(new __WEBPACK_IMPORTED_MODULE_3__entities_items_potions_ManaPotion_js__["a" /* default */](x, y, 608));
-                break;
-            case itemTypes.SWORD:
-                items.push(__webpack_require__.i(__WEBPACK_IMPORTED_MODULE_4__entities_items_weapons_Sword_js__["a" /* createSword */])(x, y, 35));
-                break;
-            case itemTypes.STEEL_ARROW:
-                items.push(new __WEBPACK_IMPORTED_MODULE_5__entities_items_weapons_ranged_ammo_Arrow_js__["a" /* SteelArrow */](x, y, 784, 5));
-                break;
-            default:
-                console.log("tried to add some item that doesn't exist to an inventroy from drop table");
-                console.log(chosenItem);
-        }
-    }
-    // console.log("Generated drop table", items)
-    return items;
+	let { dropTable, minItems, maxItems, x, y } = options;
+	let items = [];
+	let roll = getRandomInt(minItems, maxItems);
+	for (let i = 0; i < roll; i++) {
+		let chosenItem = __WEBPACK_IMPORTED_MODULE_0_rot_js___default.a.RNG.getWeightedValue(dropTable);
+		switch (chosenItem) {
+			case itemTypes.STRENGTH_POTION:
+				items.push(new __WEBPACK_IMPORTED_MODULE_3__entities_items_potions_StrengthPotion_js__["a" /* default */](x, y, 969));
+				break;
+			case itemTypes.HEALTH_POTION:
+				items.push(new __WEBPACK_IMPORTED_MODULE_2__entities_items_potions_HealthPotion_js__["a" /* default */](x, y, 488));
+				break;
+			case itemTypes.MANA_POTION:
+				items.push(new __WEBPACK_IMPORTED_MODULE_4__entities_items_potions_ManaPotion_js__["a" /* default */](x, y, 608));
+				break;
+			case itemTypes.SWORD:
+				items.push(__webpack_require__.i(__WEBPACK_IMPORTED_MODULE_5__entities_items_weapons_Sword_js__["a" /* createSword */])(x, y, 35));
+				break;
+			case itemTypes.STEEL_ARROW:
+				items.push(new __WEBPACK_IMPORTED_MODULE_6__entities_items_weapons_ranged_ammo_Arrow_js__["a" /* SteelArrow */](x, y, 784, 5));
+				break;
+			default:
+				console.log("tried to add some item that doesn't exist to an inventroy from drop table");
+				console.log(chosenItem);
+		}
+	}
+	// console.log("Generated drop table", items)
+	return items;
+}
+
+function getVisibleTiles(actor) {
+	let fov = new __WEBPACK_IMPORTED_MODULE_0_rot_js___default.a.FOV.PreciseShadowcasting(function (x, y) {
+		return __WEBPACK_IMPORTED_MODULE_1__Game_js__["a" /* Game */].inbounds(x, y) && __WEBPACK_IMPORTED_MODULE_1__Game_js__["a" /* Game */].map.data[y][x].visible();
+	});
+
+	let visibleTiles = [];
+	fov.compute(actor.x, actor.y, actor.cb.range, (x, y, r, visibility) => {
+		if (__WEBPACK_IMPORTED_MODULE_1__Game_js__["a" /* Game */].inbounds(x, y)) visibleTiles.push(__WEBPACK_IMPORTED_MODULE_1__Game_js__["a" /* Game */].map.data[y][x]);
+	});
+	return visibleTiles;
 }
 
 /***/ }),
@@ -6032,35 +6294,35 @@ var Component = normalizeComponent(
 
 
 class Rat extends __WEBPACK_IMPORTED_MODULE_1__entities_actors_enemies_SimpleEnemy_js__["a" /* default */] {
-    constructor(x, y, id) {
-        super(x, y, {
-            id: id,
-            name: "rat",
-            description: "A fat rat!",
-            symbol: "r",
-            fg: "grey",
-            bg: "seagreen",
-            visible: true,
-            blocked: true,
-            chasing: false,
-            combat: {
-                /* options.combat, dedicated to all things related to combat */
-                description: [" attacked "],
-                /* max stats */
-                maxhp: 3,
-                maxmana: 0,
-                /* current stats */
-                hp: 3,
-                mana: 0,
-                str: 6,
-                def: 0,
-                /* misc */
-                hostile: true,
-                range: 4,
-                invulnerable: false
-            }
-        });
-    }
+	constructor(x, y, id) {
+		super(x, y, {
+			id: id,
+			name: 'rat',
+			description: 'A fat rat!',
+			symbol: 'r',
+			fg: 'grey',
+			bg: 'seagreen',
+			visible: true,
+			blocked: true,
+			chasing: false,
+			combat: {
+				/* options.combat, dedicated to all things related to combat */
+				description: [' attacked '],
+				/* max stats */
+				maxhp: 3,
+				maxmana: 0,
+				/* current stats */
+				hp: 3,
+				mana: 0,
+				str: 6,
+				def: 0,
+				/* misc */
+				hostile: true,
+				range: 4,
+				invulnerable: false
+			}
+		});
+	}
 }
 /* harmony export (immutable) */ __webpack_exports__["a"] = Rat;
 
@@ -6104,53 +6366,53 @@ class Rat extends __WEBPACK_IMPORTED_MODULE_1__entities_actors_enemies_SimpleEne
 
 
 class Effect {
-    constructor(options) {
-        Object.assign(this, options);
-        if (this.name === undefined || this.description === undefined || this.action === undefined || this.duration === undefined) throw "Effect missing critical fields";
-    }
+	constructor(options) {
+		Object.assign(this, options);
+		if (this.name === undefined || this.description === undefined || this.action === undefined || this.duration === undefined) throw 'Effect missing critical fields';
+	}
 
-    applyEffect(entity) {
-        if (this.duration == 0) {
-            return;
-        }
-        this.action(entity);
-        this.duration--;
-    }
+	applyEffect(entity) {
+		if (this.duration == 0) {
+			return;
+		}
+		this.action(entity);
+		this.duration--;
+	}
 }
 /* harmony export (immutable) */ __webpack_exports__["b"] = Effect;
 
 
 class BleedEffect extends Effect {
-    constructor() {
-        super({
-            name: "Bleed",
-            action: entity => {
-                entity.damage(~~(entity.cb.maxhp * .10));
-            },
-            description: entity => {
-                let dmg = ~~(entity.cb.maxhp * .10);
-                if (entity === __WEBPACK_IMPORTED_MODULE_0__Game_js__["a" /* Game */].player) return `You bleed for ${dmg} damage.`;else return `${entity.name.capitalize()} took ${dmg} bleed damage.`;
-            },
-            duration: 3
-        });
-    }
+	constructor() {
+		super({
+			name: 'Bleed',
+			action: entity => {
+				entity.damage(~~(entity.cb.maxhp * .10));
+			},
+			description: entity => {
+				let dmg = ~~(entity.cb.maxhp * .10);
+				if (entity === __WEBPACK_IMPORTED_MODULE_0__Game_js__["a" /* Game */].player) return `You bleed for ${dmg} damage.`;else return `${entity.name.capitalize()} took ${dmg} bleed damage.`;
+			},
+			duration: 3
+		});
+	}
 }
 /* harmony export (immutable) */ __webpack_exports__["a"] = BleedEffect;
 
 
 class RegenerationEffect extends Effect {
-    constructor() {
-        super({
-            name: 'Regeneration',
-            action: entity => {
-                entity.heal(10);
-            },
-            description: entity => {
-                if (entity === __WEBPACK_IMPORTED_MODULE_0__Game_js__["a" /* Game */].player) return `You regenerate 10 health.`;else return `${entity.name.capitalize()} regenerated 10 health.`;
-            },
-            duration: 5
-        });
-    }
+	constructor() {
+		super({
+			name: 'Regeneration',
+			action: entity => {
+				entity.heal(10);
+			},
+			description: entity => {
+				if (entity === __WEBPACK_IMPORTED_MODULE_0__Game_js__["a" /* Game */].player) return 'You regenerate 10 health.';else return `${entity.name.capitalize()} regenerated 10 health.`;
+			},
+			duration: 5
+		});
+	}
 }
 /* harmony export (immutable) */ __webpack_exports__["c"] = RegenerationEffect;
 
@@ -6246,30 +6508,30 @@ class RegenerationEffect extends Effect {
 
 
 const AMMO_TYPES = {
-    ARROW: "Arrow"
+	ARROW: 'Arrow'
 };
 /* harmony export (immutable) */ __webpack_exports__["b"] = AMMO_TYPES;
 
 
 class Ammo extends __WEBPACK_IMPORTED_MODULE_0__entities_items_Item_js__["a" /* default */] {
 
-    constructor(x, y, options) {
-        options.visible = true;
-        options.blocked = false;
-        options.combat.equippable = true;
-        options.combat.equipped = false;
-        super(x, y, options);
-        Object.assign(this, options);
-        this.cb = this.combat;
-    }
+	constructor(x, y, options) {
+		options.visible = true;
+		options.blocked = false;
+		options.combat.equippable = true;
+		options.combat.equipped = false;
+		super(x, y, options);
+		Object.assign(this, options);
+		this.cb = this.combat;
+	}
 
-    use() {
-        __WEBPACK_IMPORTED_MODULE_1__Game_js__["a" /* Game */].player.equipAmmo(this);
-    }
+	use() {
+		__WEBPACK_IMPORTED_MODULE_1__Game_js__["a" /* Game */].player.equipAmmo(this);
+	}
 
-    hoverInfo() {
-        return `Quantity: ${this.quantity}`;
-    }
+	hoverInfo() {
+		return `Quantity: ${this.quantity}`;
+	}
 }
 /* harmony export (immutable) */ __webpack_exports__["a"] = Ammo;
 
@@ -6286,26 +6548,26 @@ class Ammo extends __WEBPACK_IMPORTED_MODULE_0__entities_items_Item_js__["a" /* 
 
 
 class LevelTransition extends __WEBPACK_IMPORTED_MODULE_1__entities_Entity_js__["b" /* Entity */] {
-    constructor(x, y, id, dir) {
-        super(x, y, {
-            id: id,
-            name: "path",
-            direction: dir,
-            description: "A path leading to a new area!",
-            fg: "brown",
-            bg: "orange",
-            blocked: true,
-            visible: true
-        });
-        this.portal = null;
-    }
+	constructor(x, y, id, dir) {
+		super(x, y, {
+			id: id,
+			name: 'path',
+			direction: dir,
+			description: 'A path leading to a new area!',
+			fg: 'brown',
+			bg: 'orange',
+			blocked: true,
+			visible: true
+		});
+		this.portal = null;
+	}
 
-    act() {}
+	act() {}
 
-    react(actor) {
-        __WEBPACK_IMPORTED_MODULE_0__Game_js__["a" /* Game */].log(`You leave the ${__WEBPACK_IMPORTED_MODULE_0__Game_js__["a" /* Game */].currentLevel} and go to the ${this.portal}.`, 'information');
-        __WEBPACK_IMPORTED_MODULE_0__Game_js__["a" /* Game */].changeLevels(this.portal);
-    }
+	react(actor) {
+		__WEBPACK_IMPORTED_MODULE_0__Game_js__["a" /* Game */].log(`You leave the ${__WEBPACK_IMPORTED_MODULE_0__Game_js__["a" /* Game */].currentLevel} and go to the ${this.portal}.`, 'information');
+		__WEBPACK_IMPORTED_MODULE_0__Game_js__["a" /* Game */].changeLevels(this.portal);
+	}
 }
 /* harmony export (immutable) */ __webpack_exports__["a"] = LevelTransition;
 
@@ -6332,37 +6594,37 @@ class LevelTransition extends __WEBPACK_IMPORTED_MODULE_1__entities_Entity_js__[
 
 
 class Door extends __WEBPACK_IMPORTED_MODULE_1__entities_Entity_js__["b" /* Entity */] {
-    constructor(x, y, id) {
-        super(x, y, {
-            name: "door",
-            id: id,
-            bg: "rgb(140, 80, 0)",
-            fg: "red",
-            visible: false,
-            blocked: true
-        });
-        this.closed = true;
-    }
+	constructor(x, y, id) {
+		super(x, y, {
+			name: 'door',
+			id: id,
+			bg: 'rgb(140, 80, 0)',
+			fg: 'red',
+			visible: false,
+			blocked: true
+		});
+		this.closed = true;
+	}
 
-    react() {
-        if (this.closed) {
-            this.openDoor();
-        }
-    }
+	react() {
+		if (this.closed) {
+			this.openDoor();
+		}
+	}
 
-    openDoor() {
-        this.closed = false;
-        this.blocked = false;
-        this.visible = true;
-        this.id = __WEBPACK_IMPORTED_MODULE_0__Game_js__["b" /* tileset */].tileproperties[this.id].activated_id;
-    }
+	openDoor() {
+		this.closed = false;
+		this.blocked = false;
+		this.visible = true;
+		this.id = __WEBPACK_IMPORTED_MODULE_0__Game_js__["b" /* tileset */].tileproperties[this.id].activated_id;
+	}
 
-    closeDoor() {
-        this.closed = false;
-        this.blocked = false;
-        this.visible = true;
-        this.id = this.id;
-    }
+	closeDoor() {
+		this.closed = false;
+		this.blocked = false;
+		this.visible = true;
+		this.id = this.id;
+	}
 
 }
 /* harmony export (immutable) */ __webpack_exports__["a"] = Door;
@@ -6555,64 +6817,64 @@ Window.Game = __WEBPACK_IMPORTED_MODULE_0__assets_js_game_Game_js__["a" /* Game 
 
 
 class Orc extends __WEBPACK_IMPORTED_MODULE_0__entities_actors_enemies_SimpleEnemy_js__["a" /* default */] {
-    constructor(x, y, id, empowered = false) {
-        let randomHP = __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_4__utils_HelperFunctions_js__["b" /* getRandomInt */])(25, 35);
-        let randomStr = __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_4__utils_HelperFunctions_js__["b" /* getRandomInt */])(17, 23);
-        super(x, y, {
-            id: id,
-            name: empowered ? "Empowered Orc" : "orc",
-            description: "All bronze and no brains!",
-            visible: true,
-            blocked: true,
-            chasing: false,
-            combat: {
-                /* options.combat, dedicated to all things related to combat */
-                description: [" attacked "],
-                /* max stats */
-                maxhp: randomHP,
-                maxmana: 5,
-                /* current stats */
-                hp: randomHP,
-                mana: 5,
-                str: randomStr,
-                def: 1,
-                /* misc */
-                hostile: true,
-                range: 5,
-                invulnerable: false,
-                empowered: empowered
-            }
-        });
-        if (__webpack_require__.i(__WEBPACK_IMPORTED_MODULE_4__utils_HelperFunctions_js__["b" /* getRandomInt */])(1, 10) < 5) {
-            let items = __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_4__utils_HelperFunctions_js__["a" /* getItemsFromDropTable */])({
-                minItems: 0,
-                maxItems: 2,
-                dropTable: {
-                    "STRENGTH_POTION": 1,
-                    "HEALTH_POTION": 1,
-                    "STEEL_ARROW": 1,
-                    "MANA_POTION": 1,
-                    "SWORD": 1
-                },
-                x: this.x,
-                y: this.y
-            });
-            items.forEach(item => this.addToInventory(item));
-        }
-    }
+	constructor(x, y, id, empowered = false) {
+		let randomHP = __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_4__utils_HelperFunctions_js__["b" /* getRandomInt */])(25, 35);
+		let randomStr = __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_4__utils_HelperFunctions_js__["b" /* getRandomInt */])(17, 23);
+		super(x, y, {
+			id: id,
+			name: empowered ? 'Empowered Orc' : 'orc',
+			description: 'All bronze and no brains!',
+			visible: true,
+			blocked: true,
+			chasing: false,
+			combat: {
+				/* options.combat, dedicated to all things related to combat */
+				description: [' attacked '],
+				/* max stats */
+				maxhp: randomHP,
+				maxmana: 5,
+				/* current stats */
+				hp: randomHP,
+				mana: 5,
+				str: randomStr,
+				def: 1,
+				/* misc */
+				hostile: true,
+				range: 5,
+				invulnerable: false,
+				empowered: empowered
+			}
+		});
+		if (__webpack_require__.i(__WEBPACK_IMPORTED_MODULE_4__utils_HelperFunctions_js__["b" /* getRandomInt */])(1, 10) < 5) {
+			let items = __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_4__utils_HelperFunctions_js__["a" /* getItemsFromDropTable */])({
+				minItems: 0,
+				maxItems: 2,
+				dropTable: {
+					'STRENGTH_POTION': 1,
+					'HEALTH_POTION': 1,
+					'STEEL_ARROW': 1,
+					'MANA_POTION': 1,
+					'SWORD': 1
+				},
+				x: this.x,
+				y: this.y
+			});
+			items.forEach(item => this.addToInventory(item));
+		}
+	}
 
-    interact(actor) {
-        if (actor === __WEBPACK_IMPORTED_MODULE_6__Game_js__["a" /* Game */].player) {
-            let dmg = this.attack(actor);
-            if (this.cb.empowered) {
-                let amtHealed = Math.floor(dmg / 2);
-                __WEBPACK_IMPORTED_MODULE_6__Game_js__["a" /* Game */].log(`The empowered orc steals your health and regenerates ${amtHealed} health!`, "alert");
-                this.heal(amtHealed);
-            }
-        } else {
-            actor.react(this);
-        }
-    }
+	interact(actor) {
+		if (actor === __WEBPACK_IMPORTED_MODULE_6__Game_js__["a" /* Game */].player) {
+			let dmg = this.attack(actor);
+			if (this.cb.empowered) {
+				let amtHealed = Math.floor(dmg / 2);
+				__WEBPACK_IMPORTED_MODULE_6__Game_js__["a" /* Game */].log(`The empowered orc steals your health and regenerates ${amtHealed} health!`, 'alert');
+				this.heal(amtHealed);
+			}
+		} else {
+			actor.react(this);
+		}
+	}
 
 }
 /* harmony export (immutable) */ __webpack_exports__["a"] = Orc;
@@ -6639,4 +6901,4 @@ var esExports = { render: render, staticRenderFns: staticRenderFns }
 /***/ })
 
 },["NHnr"]);
-//# sourceMappingURL=app.69cf4455591b92b422dc.js.map
+//# sourceMappingURL=app.3905fd72cca4f77545bc.js.map

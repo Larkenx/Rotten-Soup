@@ -1,25 +1,13 @@
 import ROT from 'rot-js'
-import {
-	GameMap,
-	getTilesetCoords
-} from '#/map/GameMap.js'
+import { GameMap, getTilesetCoords } from '#/map/GameMap.js'
 import GameDisplay from '#/GameDisplay.js'
-import {
-	Actor
-} from '#/entities/actors/Actor.js'
-import {
-	Entity
-} from '#/entities/Entity.js'
-import {
-	getItemsFromDropTable
-} from '#/utils/HelperFunctions.js'
+import { Actor } from '#/entities/actors/Actor.js'
+import { Entity } from '#/entities/Entity.js'
+import { getItemsFromDropTable } from '#/utils/HelperFunctions.js'
 
 import Item from '#/entities/items/Item.js'
 import Player from '#/entities/actors/Player.js'
-import {
-	randomDungeon,
-	randomCave
-} from '#/map/randomMap.js'
+import { randomDungeon, randomCave } from '#/map/randomMap.js'
 import Door from '#/entities/misc/Door.js'
 import Ladder from '#/entities/misc/Ladder.js'
 import Chest from '#/entities/misc/Chest.js'
@@ -30,7 +18,7 @@ export const orcCastle = require('@/assets/maps/map_file/orcCastle.json')
 export const graveyard = require('@/assets/maps/map_file/graveyard.json')
 
 if (!ROT.isSupported()) {
-	alert('The rot.js library isn\'t supported by your browser.')
+	alert("The rot.js library isn't supported by your browser.")
 }
 
 export let Game = {
@@ -60,7 +48,7 @@ export let Game = {
 	enemyCycle: null,
 	enemyCycleIndex: 0,
 
-	init (dev = false) {
+	init(dev = false) {
 		this.dev = dev
 		this.currentLevel = 'overworld'
 		this.levels['graveyard'] = new GameMap(graveyard)
@@ -83,10 +71,18 @@ export let Game = {
 			tileMap[id.toString()] = getTilesetCoords(id)
 			if (id in tileset.tileproperties) {
 				let properties = tileset.tileproperties[id]
-				if (properties.FOV) { tileMap[properties.FOV_id] = getTilesetCoords(properties.FOV_id) }
-				if (properties.animated) { tileMap[properties.animated_id] = getTilesetCoords(properties.animated_id) }
-				if (properties.animated && properties.FOV) { tileMap[properties.animated_fov_id] = getTilesetCoords(properties.animated_fov_id) }
-				if (properties.activated_id) { tileMap[properties.activated_id] = getTilesetCoords(properties.activated_id) }
+				if (properties.FOV) {
+					tileMap[properties.FOV_id] = getTilesetCoords(properties.FOV_id)
+				}
+				if (properties.animated) {
+					tileMap[properties.animated_id] = getTilesetCoords(properties.animated_id)
+				}
+				if (properties.animated && properties.FOV) {
+					tileMap[properties.animated_fov_id] = getTilesetCoords(properties.animated_fov_id)
+				}
+				if (properties.activated_id) {
+					tileMap[properties.activated_id] = getTilesetCoords(properties.activated_id)
+				}
 			}
 		}
 		this.displayOptions = {
@@ -118,11 +114,11 @@ export let Game = {
 		}
 	},
 
-	refreshDisplay () {
+	refreshDisplay() {
 		Game.display.setOptions(this.displayOptions)
 	},
 
-	scheduleAllActors () {
+	scheduleAllActors() {
 		// Set up the ROT engine and scheduler
 		this.scheduler = new ROT.Scheduler.Simple()
 		this.scheduler.add(new GameDisplay(), true)
@@ -136,7 +132,7 @@ export let Game = {
 		this.engine = new ROT.Engine(this.scheduler) // Create new engine with the newly created scheduler
 	},
 
-	initializeMinimap () {
+	initializeMinimap() {
 		/* Create a ROT.JS display for the minimap! */
 		this.minimap = new ROT.Display({
 			width: this.map.width,
@@ -148,7 +144,7 @@ export let Game = {
 		this.drawMiniMap()
 	},
 
-	clearTempLog () {
+	clearTempLog() {
 		this.tempMessage = {
 			color: 'gray',
 			text: ''
@@ -156,13 +152,18 @@ export let Game = {
 		this.player.tempMessage = this.tempMessage
 	},
 
-	inbounds (x, y) {
+	inbounds(x, y) {
 		return !(x < 0 || x >= this.map.width || y < 0 || y >= this.map.height)
 	},
 
-	changeLevels (newLevel, dir, level) {
-		if (this.levels[newLevel] === undefined) { // generating a new random room
-			if (newLevel.toLowerCase().includes('cave')) { this.levels[newLevel] = new GameMap(randomCave(80, 40, dir, level)) } else { this.levels[newLevel] = new GameMap(randomDungeon(40, 40, dir, level)) }
+	changeLevels(newLevel, dir, level) {
+		if (this.levels[newLevel] === undefined) {
+			// generating a new random room
+			if (newLevel.toLowerCase().includes('cave')) {
+				this.levels[newLevel] = new GameMap(randomCave(80, 40, dir, level))
+			} else {
+				this.levels[newLevel] = new GameMap(randomDungeon(40, 40, dir, level))
+			}
 			this.levels[newLevel].revealed = false
 			for (let actor of this.levels[newLevel].actors) {
 				if (actor instanceof Chest) {
@@ -172,11 +173,11 @@ export let Game = {
 						minItems: 1,
 						maxItems: 4,
 						dropTable: {
-							'STRENGTH_POTION': 1,
-							'HEALTH_POTION': 1,
-							'STEEL_ARROW': 1,
-							'MANA_POTION': 1,
-							'SWORD': 3
+							STRENGTH_POTION: 1,
+							HEALTH_POTION: 1,
+							STEEL_ARROW: 1,
+							MANA_POTION: 1,
+							SWORD: 3
 						},
 						x: actor.x,
 						y: actor.y
@@ -199,14 +200,18 @@ export let Game = {
 		this.player.placeAt(this.playerLocation[0], this.playerLocation[1])
 		// before drawing the viewport, we need to clear the screen of whatever was here last
 		for (let y = 0; y < this.height; y++) {
-			for (let x = 0; x < this.width; x++) { this.display.draw(x, y, '', 'black', 'black') }
+			for (let x = 0; x < this.width; x++) {
+				this.display.draw(x, y, '', 'black', 'black')
+			}
 		}
 
 		this.width = this.map.width < this.displayOptions.width ? this.map.width : this.displayOptions.width
 		this.height = this.map.height < this.displayOptions.height ? this.map.height : this.displayOptions.height
 		// before drawing the viewport, we need to clear the screen of whatever was here last
 		for (let y = 0; y < this.height; y++) {
-			for (let x = 0; x < this.width; x++) { this.display.draw(x, y, '', 'black', 'black') }
+			for (let x = 0; x < this.width; x++) {
+				this.display.draw(x, y, '', 'black', 'black')
+			}
 		}
 
 		this.scheduleAllActors()
@@ -215,22 +220,30 @@ export let Game = {
 		$('#minimap_container').html(this.minimap.getContainer()) // resetting the canvas / minimap display fixes ghosting
 	},
 
-	drawViewPort () {
+	drawViewPort() {
 		// Camera positions
-		let camera = { // camera x,y resides in the upper left corner
+		let camera = {
+			// camera x,y resides in the upper left corner
 			x: this.player.x - ~~(Game.width / 2),
 			y: this.player.y - ~~(Game.height / 2),
 			width: Math.ceil(Game.width),
 			height: Game.height
 		}
 		let startingPos = [camera.x, camera.y]
-		if (camera.x < 0) // far left
-		{ startingPos[0] = 0 }
-		if (camera.x + camera.width > Game.map.width) // far right
-		{ startingPos[0] = Game.map.width - camera.width }
-		if (camera.y <= 0) // at the top of the map
-		{ startingPos[1] = 0 }
-		if (camera.y + camera.height > Game.map.height) { // at the bottom of the map
+		if (camera.x < 0) {
+			// far left
+			startingPos[0] = 0
+		}
+		if (camera.x + camera.width > Game.map.width) {
+			// far right
+			startingPos[0] = Game.map.width - camera.width
+		}
+		if (camera.y <= 0) {
+			// at the top of the map
+			startingPos[1] = 0
+		}
+		if (camera.y + camera.height > Game.map.height) {
+			// at the bottom of the map
 			startingPos[1] = Game.map.height - camera.height
 		}
 		this.camera = {
@@ -245,11 +258,11 @@ export let Game = {
 		this.map.visible_tiles = {}
 
 		// FOV calculations
-		let fov = new ROT.FOV.PreciseShadowcasting(function (x, y) {
-			return (Game.inbounds(x, y) && Game.map.data[y][x].visible())
+		let fov = new ROT.FOV.PreciseShadowcasting(function(x, y) {
+			return Game.inbounds(x, y) && Game.map.data[y][x].visible()
 		})
 
-		fov.compute(this.player.x, this.player.y, this.player.cb.range, function (x, y, r, visibility) {
+		fov.compute(this.player.x, this.player.y, this.player.cb.range, function(x, y, r, visibility) {
 			Game.map.visible_tiles[x + ',' + y] = true
 		})
 
@@ -273,7 +286,7 @@ export let Game = {
 		}
 	},
 
-	drawTile (x, y, tile, fov) {
+	drawTile(x, y, tile, fov) {
 		let symbols = tile.getSpriteIDS(this.turn % 2 === 0, fov)
 		// if (symbols.some((e) => {return e === "0"})) throw "A tile is empty!"
 		// console.log(this.pathToTarget[x+','+y]);
@@ -284,15 +297,19 @@ export let Game = {
 		}
 	},
 
-	drawMiniMap () {
-		let otherActors = this.map.actors.filter((a) => {
-			return (a instanceof Ladder || a instanceof Door)
+	drawMiniMap() {
+		let otherActors = this.map.actors.filter(a => {
+			return a instanceof Ladder || a instanceof Door
 		})
 		if (this.map.revealed) {
 			for (let y = 0; y < this.map.height; y++) {
 				for (let x = 0; x < this.map.width; x++) {
 					let tile = this.map.data[y][x]
-					if (tile.x + ',' + tile.y in this.map.visible_tiles) { this.minimap.draw(x, y, ' ', tile.bg(), this.brightenColor(tile.bg())) } else { this.minimap.draw(x, y, ' ', tile.bg(), tile.bg()) }
+					if (tile.x + ',' + tile.y in this.map.visible_tiles) {
+						this.minimap.draw(x, y, ' ', tile.bg(), this.brightenColor(tile.bg()))
+					} else {
+						this.minimap.draw(x, y, ' ', tile.bg(), tile.bg())
+					}
 				}
 			}
 
@@ -311,40 +328,50 @@ export let Game = {
 				}
 			}
 			for (let a of otherActors) {
-				if (a.x + ',' + a.y in this.map.seen_tiles) { this.minimap.draw(a.x, a.y, ' ', a.fg, a.bg) }
+				if (a.x + ',' + a.y in this.map.seen_tiles) {
+					this.minimap.draw(a.x, a.y, ' ', a.fg, a.bg)
+				}
 			}
 		}
 		// Draw the actor in the mini-map
 		this.minimap.draw(this.player.x, this.player.y, ' ', 'yellow', 'yellow')
 	},
 
-	brightenColor (color) {
+	brightenColor(color) {
 		// console.log(color);
 		let hsl_color = ROT.Color.rgb2hsl(ROT.Color.fromString(color))
 		hsl_color[2] *= 1.25
 		return ROT.Color.toRGB(ROT.Color.hsl2rgb(hsl_color))
 	},
 
-	updateDisplay () {
+	updateDisplay() {
 		this.drawViewPort()
 		this.drawMiniMap()
 	},
 
-	getNearbyEnemies () {
-		let camera = { // camera x,y resides in the upper left corner
+	getNearbyEnemies() {
+		let camera = {
+			// camera x,y resides in the upper left corner
 			x: this.player.x - ~~(Game.width / 2),
 			y: this.player.y - ~~(Game.height / 2),
 			width: Math.ceil(Game.width),
 			height: Game.height
 		}
 		let startingPos = [camera.x, camera.y]
-		if (camera.x < 0) // far left
-		{ startingPos[0] = 0 }
-		if (camera.x + camera.width > Game.map.width) // far right
-		{ startingPos[0] = Game.map.width - camera.width }
-		if (camera.y <= 0) // at the top of the map
-		{ startingPos[1] = 0 }
-		if (camera.y + camera.height > Game.map.height) { // at the bottom of the map
+		if (camera.x < 0) {
+			// far left
+			startingPos[0] = 0
+		}
+		if (camera.x + camera.width > Game.map.width) {
+			// far right
+			startingPos[0] = Game.map.width - camera.width
+		}
+		if (camera.y <= 0) {
+			// at the top of the map
+			startingPos[1] = 0
+		}
+		if (camera.y + camera.height > Game.map.height) {
+			// at the bottom of the map
 			startingPos[1] = Game.map.height - camera.height
 		}
 		this.camera = {
@@ -358,7 +385,9 @@ export let Game = {
 		for (let x = startingPos[0]; x < endingPos[0]; x++) {
 			for (let y = startingPos[1]; y < endingPos[1]; y++) {
 				let tile = this.map.data[y][x]
-				if (tile.x + ',' + tile.y in this.map.visible_tiles) { actors = actors.concat(tile.actors) }
+				if (tile.x + ',' + tile.y in this.map.visible_tiles) {
+					actors = actors.concat(tile.actors)
+				}
 
 				// if (this.map.revealed) {
 				//     actors = actors.concat(tile.actors);
@@ -370,21 +399,27 @@ export let Game = {
 			dx++
 			dy = 0
 		}
-		let enemies = actors.filter((actor) => {
+		let enemies = actors.filter(actor => {
 			return actor.cb !== undefined && actor.cb.hostile
 		})
 
 		// we sort the enemies closest to farthest away
 		return enemies.sort((a1, a2) => {
-			if (a1.distanceTo(this.player) < a2.distanceTo(this.player)) { return -1 } else if (a2.distanceTo(this.player) < a1.distanceTo(this.player)) { return 1 } else { return 0 }
+			if (a1.distanceTo(this.player) < a2.distanceTo(this.player)) {
+				return -1
+			} else if (a2.distanceTo(this.player) < a1.distanceTo(this.player)) {
+				return 1
+			} else {
+				return 0
+			}
 		})
 	},
 
-	getClosestEnemyToPlayer () {
+	getClosestEnemyToPlayer() {
 		return this.getNearbyEnemies()[0]
 	},
 
-	clearSelectedTile () {
+	clearSelectedTile() {
 		const targetingBorders = {
 			id: 7418
 		}
@@ -392,7 +427,7 @@ export let Game = {
 			id: 7419
 		}
 		if (this.selectedTile !== null) {
-			let actors = Game.map.data[this.selectedTile.y][this.selectedTile.x].actors.filter((obs) => {
+			let actors = Game.map.data[this.selectedTile.y][this.selectedTile.x].actors.filter(obs => {
 				return obs.id !== targetingBorders.id && obs.id !== untargetableBorders.id
 			})
 			Game.map.data[this.selectedTile.y][this.selectedTile.x].actors = actors
@@ -403,7 +438,7 @@ export let Game = {
 		this.updateDisplay()
 	},
 
-	changeSelectedTile (diff) {
+	changeSelectedTile(diff) {
 		const targetingBorders = {
 			id: 7418,
 			visible: true
@@ -420,16 +455,20 @@ export let Game = {
 			} // haven't selected a tile before or it was cleared
 			let x = tile.x + diff[0]
 			let y = tile.y + diff[1]
-			if (!this.inbounds(x, y)) /* || ! x+','+y in this.map.visible_tiles ) */
-			{ return }
+			if (!this.inbounds(x, y)) {
+				/* || ! x+','+y in this.map.visible_tiles ) */
+				return
+			}
 		} else {
 			// we have had a previously selected tile and need to pop the targeting reticle before pushing it onto the new tile
 			tile = this.selectedTile
 			let x = tile.x + diff[0]
 			let y = tile.y + diff[1]
-			if (!this.inbounds(x, y)) /* || ! x+','+y in this.map.visible_tiles) */
-			{ return }
-			let actors = Game.map.data[tile.y][tile.x].actors.filter((obs) => {
+			if (!this.inbounds(x, y)) {
+				/* || ! x+','+y in this.map.visible_tiles) */
+				return
+			}
+			let actors = Game.map.data[tile.y][tile.x].actors.filter(obs => {
 				return obs.id !== targetingBorders.id && obs.id !== untargetableBorders.id
 			})
 			Game.map.data[tile.y][tile.x].actors = actors
@@ -439,14 +478,10 @@ export let Game = {
 			x: tile.x + diff[0],
 			y: tile.y + diff[1]
 		}
-		let {
-			x,
-			y
-		} = this.selectedTile
+		let { x, y } = this.selectedTile
 		let mapTile = Game.map.data[this.selectedTile.y][this.selectedTile.x]
-		let properBorder = mapTile.blocked() || this.map.visible_tiles[x + ',' + y] === undefined
-			? untargetableBorders
-			: targetingBorders
+		let properBorder =
+			mapTile.blocked() || this.map.visible_tiles[x + ',' + y] === undefined ? untargetableBorders : targetingBorders
 		this.map.data[this.selectedTile.y][this.selectedTile.x].actors.push(properBorder)
 		// highlighting the path from the player to the target reticle using bresenham line algorithm
 		/* https://rosettacode.org/wiki/Bitmap/Bresenham%27s_line_algorithm#JavaScript */
@@ -481,7 +516,7 @@ export let Game = {
 		return properBorder === targetingBorders
 	},
 
-	selectNearestEnemyTile () {
+	selectNearestEnemyTile() {
 		this.clearSelectedTile()
 		let enemy = this.getClosestEnemyToPlayer()
 		if (enemy !== undefined) {
@@ -489,10 +524,12 @@ export let Game = {
 				x: enemy.x,
 				y: enemy.y
 			})
-		} else { return false }
+		} else {
+			return false
+		}
 	},
 
-	cycleThroughSelectableEnemies () {
+	cycleThroughSelectableEnemies() {
 		if (this.enemyCycle === null) {
 			this.enemyCycle = this.getNearbyEnemies()
 			this.enemyCycleIndex = 0
@@ -501,7 +538,9 @@ export let Game = {
 		if (this.enemyCycle.length > 1) {
 			this.clearSelectedTile()
 			this.enemyCycleIndex += 1
-			if (this.enemyCycleIndex === this.enemyCycle.length) { this.enemyCycleIndex = 0 }
+			if (this.enemyCycleIndex === this.enemyCycle.length) {
+				this.enemyCycleIndex = 0
+			}
 
 			let newTarget = this.enemyCycle[this.enemyCycleIndex]
 			return this.changeToExactSelectedTile({
@@ -511,7 +550,7 @@ export let Game = {
 		}
 	},
 
-	changeToExactSelectedTile (loc) {
+	changeToExactSelectedTile(loc) {
 		const targetingBorders = {
 			id: 7418,
 			visible: true
@@ -522,9 +561,10 @@ export let Game = {
 		}
 		this.selectedTile = loc
 		let mapTile = Game.map.data[this.selectedTile.y][this.selectedTile.x]
-		let properBorder = mapTile.blocked() || this.map.visible_tiles[this.selectedTile.x + ',' + this.selectedTile.y] === undefined
-			? untargetableBorders
-			: targetingBorders
+		let properBorder =
+			mapTile.blocked() || this.map.visible_tiles[this.selectedTile.x + ',' + this.selectedTile.y] === undefined
+				? untargetableBorders
+				: targetingBorders
 		this.map.data[this.selectedTile.y][this.selectedTile.x].actors.push(properBorder)
 		this.pathToTarget = {}
 		if (properBorder === targetingBorders) {
@@ -557,74 +597,89 @@ export let Game = {
 		return properBorder === targetingBorders
 	},
 
-	logToTemp (msg) {
+	logToTemp(msg) {
 		this.tempMessage = {
 			text: msg,
 			color: 'gray'
 		}
 		this.player.tempMessage = this.tempMessage
-		$('#fix_scroll').stop().animate({
-			scrollTop: $('#fix_scroll')[0].scrollHeight
-		}, 800)
+		$('#fix_scroll')
+			.stop()
+			.animate(
+				{
+					scrollTop: $('#fix_scroll')[0].scrollHeight
+				},
+				800
+			)
 	},
 
-	describeSelectedTile () {
+	describeSelectedTile() {
 		/* Returns an array of strings describing what exists on the currently selected tile.
         this can be obstacles, items, traps, or enemies */
 		let tile = this.map.data[this.selectedTile.y][this.selectedTile.x]
-		let names = tile.actors.filter(a => {
-			return a instanceof Entity && a !== this.player
-		}).map(a => {
-			return a instanceof Item ? a.type.toLowerCase() : a.name.toLowerCase()
-		})
+		let names = tile.actors
+			.filter(a => {
+				return a instanceof Entity && a !== this.player
+			})
+			.map(a => {
+				return a instanceof Item ? a.type.toLowerCase() : a.name.toLowerCase()
+			})
 		let prettyNames = []
 		prettyNames = names.slice(1, -1).reduce((buf, str) => {
 			return buf + ', a ' + str
 		}, 'a  ' + names.slice(0, 1))
 
-		if (names.length > 1) { prettyNames = prettyNames + [` and a ${names.slice(-1)}`] } else if (names.length == 0) { prettyNames = 'nothing' }
+		if (names.length > 1) {
+			prettyNames = prettyNames + [` and a ${names.slice(-1)}`]
+		} else if (names.length == 0) {
+			prettyNames = 'nothing'
+		}
 
 		this.logToTemp(`[You see ${prettyNames} here.]`)
 	},
 
-	getTile (x, y) {
+	getTile(x, y) {
 		return this.map.data[y][x]
 	},
 
-	printPlayerTile () {
+	printPlayerTile() {
 		console.log(Game.map.data[this.player.y][this.player.x])
 	},
 
-	eventToTile (evt) {
+	eventToTile(evt) {
 		let t = Game.display.eventToPosition(evt)
 		let x = t[0] + this.camera.x
 		let y = t[1] + this.camera.y
 		return this.map.data[y][x]
 	},
 
-	hoverTile (evt) {
+	hoverTile(evt) {
 		let t = Game.display.eventToPosition(evt)
 		let x = t[0] + this.camera.x
 		let y = t[1] + this.camera.y
 		this.hoveredTile = t[0] + ',' + t[1]
 	},
 
-	log (message, type) {
+	log(message, type) {
 		let message_color = {
-			'defend': 'lightblue',
-			'magic': '#3C1CFD',
-			'attack': 'red',
-			'death': 'crimson',
-			'information': 'yellow',
-			'player_move': 'grey',
-			'level_up': 'green',
-			'alert': 'orange'
+			defend: 'lightblue',
+			magic: '#3C1CFD',
+			attack: 'red',
+			death: 'crimson',
+			information: 'yellow',
+			player_move: 'grey',
+			level_up: 'green',
+			alert: 'orange'
 		}
 		let color = type in message_color ? message_color[type] : type
 		this.message_history.push([message, color])
-		$('#fix_scroll').stop().animate({
-			scrollTop: $('#fix_scroll')[0].scrollHeight
-		}, 800)
+		$('#fix_scroll')
+			.stop()
+			.animate(
+				{
+					scrollTop: $('#fix_scroll')[0].scrollHeight
+				},
+				800
+			)
 	}
-
 }

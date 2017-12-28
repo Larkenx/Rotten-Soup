@@ -50,14 +50,7 @@ export class StatelessAI extends Actor {
 				pathToPlayer.push([x, y])
 			})
 
-			let {
-				morale,
-				minPlayerDist,
-				maxPlayerDist,
-				ranged,
-				melee,
-				magic
-			} = this.ai
+			let { morale, minPlayerDist, maxPlayerDist, ranged, melee, magic } = this.ai
 			let healthRemainingPercentage = this.cb.hp / this.cb.maxhp
 
 			const findNearbyTiles = () => {
@@ -68,39 +61,37 @@ export class StatelessAI extends Actor {
 					let y = this.y + diff[1]
 					if (Game.inbounds(x, y)) {
 						let ctile = Game.getTile(x, y)
-						if (!ctile.blocked() && ctile.actors.length === 0)
-							nearbyTiles.push(ctile)
+						if (!ctile.blocked() && ctile.actors.length === 0) nearbyTiles.push(ctile)
 					}
 				}
+				nearbyTiles.push(Game.getTile(this.x, this.y))
 				return nearbyTiles
 			}
+
 			const playerDistToTile = tile => {
-				let { x1, y1 } = tile
-				let { x2, y2 } = Game.player
-				return Math.sqrt(Math.pow(x2 - x1, 2) + Math.pow(y2 - y1), 2)
+				return Math.sqrt(Math.pow(Game.player.x - tile.x, 2) + Math.pow(Game.player.y - tile.y, 2))
 			}
 
 			const getFarthestAwayTile = () => {
 				let nearbyTiles = findNearbyTiles()
-				if (nearbyTiles.length > 0)
-					return nearbyTiles.reduce((farthest, tile) => {
-						return playerDistToTile(farthest) >=
-							playerDistToTile(tile)
-							? farthest
-							: tile
-					}) // by default, just stay where we are
-				else return null
+				let maxDist = playerDistToTile(nearbyTiles[0])
+				let farthestTile = nearbyTiles[0]
+				for (let tile of nearbyTiles) {
+					let currentDist = playerDistToTile(tile)
+					if (currentDist >= maxDist) {
+						maxDist = currentDist
+						farthestTile = tile
+					}
+				}
+				return farthestTile
 			}
 
 			// if morale is greater than the health remaining, we need to flee!
 			if (morale >= healthRemainingPercentage) {
 				let tile = getFarthestAwayTile()
-				if (tile !== null) {
+				if (tile.x !== this.x || tile.y !== this.y) {
 					if (!this.fleeing)
-						Game.log(
-							`The ${this.name.toLowerCase()} trembles at your might and attempts to escape death.`,
-							'purple'
-						)
+						Game.log(`The ${this.name.toLowerCase()} trembles at your might and attempts to escape death.`, 'purple')
 					this.fleeing = true
 					// if we can run away
 					this.tryMove(tile.x, tile.y)
@@ -114,7 +105,7 @@ export class StatelessAI extends Actor {
 					}
 				}
 			} else {
-				if (pathToPlayer.length >= 1) {
+				if (pathToPlayer.length >= 2) {
 					let newPos = pathToPlayer[1] // 1 past the current position
 					this.tryMove(newPos[0], newPos[1])
 				}
