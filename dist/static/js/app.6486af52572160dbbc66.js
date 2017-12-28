@@ -4922,6 +4922,7 @@ class StatelessAI extends __WEBPACK_IMPORTED_MODULE_0__entities_actors_Actor_js_
 						if (!ctile.blocked() && ctile.actors.length === 0) nearbyTiles.push(ctile);
 					}
 				}
+				nearbyTiles.push(__WEBPACK_IMPORTED_MODULE_1__Game_js__["a" /* Game */].getTile(this.x, this.y));
 				return nearbyTiles;
 			};
 
@@ -4931,16 +4932,22 @@ class StatelessAI extends __WEBPACK_IMPORTED_MODULE_0__entities_actors_Actor_js_
 
 			const getFarthestAwayTile = () => {
 				let nearbyTiles = findNearbyTiles();
-				if (nearbyTiles.length > 0) return nearbyTiles.reduce((farthest, tile) => {
-					return playerDistToTile(farthest) >= playerDistToTile(tile) ? farthest : tile;
-				}); // by default, just stay where we are
-				else return null;
+				let maxDist = playerDistToTile(nearbyTiles[0]);
+				let farthestTile = nearbyTiles[0];
+				for (let tile of nearbyTiles) {
+					let currentDist = playerDistToTile(tile);
+					if (currentDist >= maxDist) {
+						maxDist = currentDist;
+						farthestTile = tile;
+					}
+				}
+				return farthestTile;
 			};
 
 			// if morale is greater than the health remaining, we need to flee!
 			if (morale >= healthRemainingPercentage) {
 				let tile = getFarthestAwayTile();
-				if (tile !== null) {
+				if (tile.x !== this.x || tile.y !== this.y) {
 					if (!this.fleeing) __WEBPACK_IMPORTED_MODULE_1__Game_js__["a" /* Game */].log(`The ${this.name.toLowerCase()} trembles at your might and attempts to escape death.`, 'purple');
 					this.fleeing = true;
 					// if we can run away
@@ -4955,7 +4962,7 @@ class StatelessAI extends __WEBPACK_IMPORTED_MODULE_0__entities_actors_Actor_js_
 					}
 				}
 			} else {
-				if (pathToPlayer.length >= 1) {
+				if (pathToPlayer.length >= 2) {
 					let newPos = pathToPlayer[1]; // 1 past the current position
 					this.tryMove(newPos[0], newPos[1]);
 				}
@@ -6901,4 +6908,4 @@ var esExports = { render: render, staticRenderFns: staticRenderFns }
 /***/ })
 
 },["NHnr"]);
-//# sourceMappingURL=app.3905fd72cca4f77545bc.js.map
+//# sourceMappingURL=app.6486af52572160dbbc66.js.map
