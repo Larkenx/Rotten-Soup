@@ -19,8 +19,8 @@ export class StatelessAI extends Actor {
 	act() {
 		Game.engine.lock()
 		const endTurn = () => {
-			Game.engine.unlock()
 			super.act()
+			Game.engine.unlock()
 		}
 		let dx = Math.abs(this.x - Game.player.x)
 		let dy = Math.abs(this.y - Game.player.y)

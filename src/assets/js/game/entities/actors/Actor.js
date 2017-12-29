@@ -2,22 +2,21 @@
  * Created by larken on 7/12/17.
  */
 import ROT from 'rot-js'
-import {Game} from '#/Game.js'
-import {Entity} from '#/entities/Entity.js'
-import {getRandomInt, addPrefix} from '#/utils/HelperFunctions.js'
+import { Game } from '#/Game.js'
+import { Entity } from '#/entities/Entity.js'
+import { getRandomInt, addPrefix } from '#/utils/HelperFunctions.js'
 import Door from '#/entities/misc/Door.js'
 import Weapon from '#/entities/items/weapons/Weapon.js'
-import {Ammo} from '#/entities/items/weapons/ranged/ammo/Ammo.js'
-import {Buff} from '#/modifiers/Buff.js'
-import {Corpse, corpseTypes} from '#/entities/items/misc/Corpse.js'
+import { Ammo } from '#/entities/items/weapons/ranged/ammo/Ammo.js'
+import { Buff } from '#/modifiers/Buff.js'
+import { Corpse, corpseTypes } from '#/entities/items/misc/Corpse.js'
 
 export class Actor extends Entity {
 	constructor(x, y, options, routine = null) {
 		super(x, y, options)
 		this.cb = this.combat
-		if (this.corpseType === undefined)
-			this.corpseType = corpseTypes.HUMANOID
-            
+		if (this.corpseType === undefined) this.corpseType = corpseTypes.HUMANOID
+
 		this.cb.effects = []
 		this.cb.equipment = {
 			head: null,
@@ -29,20 +28,19 @@ export class Actor extends Entity {
 		this.inventory = []
 		for (let i = 0; i < 28; i++) {
 			this.inventory.push({
-				item: null,
+				item: null
 			})
 		}
 	}
 
 	/* Called by the ROT.js game scheduler to indicate a turn */
 	act() {
-		this.cb.effects = this.cb.effects.filter((e) => {
+		this.cb.effects = this.cb.effects.filter(e => {
 			return e.duration > 0
 		})
 		// apply all of the effects on this Actor at the beginning of their turn
 		for (let effect of this.cb.effects) {
-			if (! (effect instanceof Buff))
-				Game.log(effect.description(this), 'alert')
+			if (!(effect instanceof Buff)) Game.log(effect.description(this), 'alert')
 
 			effect.applyEffect(this)
 		}
@@ -59,9 +57,12 @@ export class Actor extends Entity {
 	}
 
 	memberOfInventory(item) {
-		return -1 < this.inventory.findIndex((cell) => {
-			return Object.is(item, cell.item)
-		})
+		return (
+			-1 <
+			this.inventory.findIndex(cell => {
+				return Object.is(item, cell.item)
+			})
+		)
 	}
 
 	addToInventory(newItem) {
@@ -72,7 +73,6 @@ export class Actor extends Entity {
 					item.quantity += newItem.quantity
 					return item
 				}
-
 			}
 		}
 
@@ -94,9 +94,7 @@ export class Actor extends Entity {
 		this.inventory[nextFreeIndex].item = newItem
 		// this.inventory[nextFreeIndex].action = newItem.use;
 		return this.inventory[nextFreeIndex].item
-
 	}
-
 
 	placeEntityBelow(entity) {
 		Game.map.data[this.y][this.x].actors.push(entity)
@@ -105,7 +103,7 @@ export class Actor extends Entity {
 	// expressly want to just remove the item from the inventory.
 	// no actions are taken to mutate the item (like unequipping it from the player - this is done in those classes)
 	removeFromInventory(removeItem) {
-		let idx = this.inventory.findIndex((cell) => {
+		let idx = this.inventory.findIndex(cell => {
 			return Object.is(removeItem, cell.item)
 		})
 		if (idx != -1) {
@@ -116,14 +114,12 @@ export class Actor extends Entity {
 	}
 
 	dropItem(item) {
-		if (!this.memberOfInventory(item))
-			throw 'Error - trying to drop an item you don\'t have in your inventory'
+		if (!this.memberOfInventory(item)) throw "Error - trying to drop an item you don't have in your inventory"
 
 		this.removeFromInventory(item)
 		if (item !== null && 'cb' in item) {
 			item.cb.equipped = false
-			if (this.cb.equipment.weapon == item)
-				this.cb.equipment.weapon = null
+			if (this.cb.equipment.weapon == item) this.cb.equipment.weapon = null
 		}
 		let ctile = Game.map.data[this.y][this.x]
 		ctile.actors.unshift(item)
@@ -132,10 +128,11 @@ export class Actor extends Entity {
 	/* The inventory property of actors is an array of object 'slots'. This function
      * returns the actual items that are held at any given time */
 	items() {
-		return this.inventory.filter((e) => e.item !== null).map((e) => e.item)
+		return this.inventory.filter(e => e.item !== null).map(e => e.item)
 	}
 
-	distanceTo(actor) { // linear distance, no obstacles factored in
+	distanceTo(actor) {
+		// linear distance, no obstacles factored in
 		return Math.sqrt(Math.pow(this.x - actor.x, 2) + Math.pow(this.y - actor.y, 2))
 	}
 
@@ -149,7 +146,8 @@ export class Actor extends Entity {
 		return null
 	}
 
-	tryMove(nx, ny) { // returns true if the turn should end here
+	tryMove(nx, ny) {
+		// returns true if the turn should end here
 		if (nx < 0 || nx === Game.map.width || ny < 0 || ny === Game.map.height) return false
 		let ntile = Game.map.data[ny][nx] // new tile to move to
 		if (ntile.actors.length === 0 && !ntile.blocked()) {
@@ -160,8 +158,7 @@ export class Actor extends Entity {
 				let actor = ntile.actors[i]
 				// this actor has stumbled upon another actor
 				if (actor instanceof Actor && actor.blocked && actor.visible) {
-					if (!actor.isDead())
-						this.interact(actor)
+					if (!actor.isDead()) this.interact(actor)
 					return true
 				}
 				// actor has stumbled upon a non-Actor entity (an item or miscellaneous entity like a door)
@@ -184,25 +181,25 @@ export class Actor extends Entity {
 	attack(actor) {
 		let weapon = this.cb.equipment.weapon
 		let dmg = weapon !== null ? this.cb.str + weapon.roll() : this.cb.str
-		if (weapon && weapon.cb.ranged)
-			dmg = this.cb.str
+		if (weapon && weapon.cb.ranged) dmg = this.cb.str
 
 		let len = this.cb.description.length
-		let evtdamage = `${addPrefix(this.name).capitalize()}${this.cb.description[Math.floor(Math.random() * len)]}${addPrefix(actor.name)} and dealt ${dmg} damage.`
-		if (Game.player === this)
-			Game.log(evtdamage, 'player_move')
-		else
-			Game.log(evtdamage, 'attack')
+		let evtdamage = `${addPrefix(this.name).capitalize()}${this.cb.description[Math.floor(Math.random() * len)]}${addPrefix(
+			actor.name
+		)} and dealt ${dmg} damage.`
+		if (Game.player === this) Game.log(evtdamage, 'player_move')
+		else Game.log(evtdamage, 'attack')
 
-		if (dmg > 0)
-			actor.damage(dmg)
+		if (dmg > 0) actor.damage(dmg)
 
 		if (weapon && weapon.cb.enchantments.length > 0) {
 			for (let enchantment of weapon.cb.enchantments) {
 				let effect = enchantment.getEffect()
-				if (!actor.cb.effects.some((e) => {
-					e.name === effect.name
-				})) {
+				if (
+					!actor.cb.effects.some(e => {
+						e.name === effect.name
+					})
+				) {
 					actor.addNewEffect(effect)
 				}
 			}
@@ -212,8 +209,7 @@ export class Actor extends Entity {
 	}
 
 	equipWeapon(item) {
-		if (!(item instanceof Weapon) || !('cb' in item))
-			throw 'Error - equipped invalid item - ' + this.item.type
+		if (!(item instanceof Weapon) || !('cb' in item)) throw 'Error - equipped invalid item - ' + this.item.type
 
 		// already wielding a weapon
 		if (this.cb.equipment.weapon !== null) {
@@ -224,8 +220,7 @@ export class Actor extends Entity {
 	}
 
 	equipAmmo(item) {
-		if (!(item instanceof Ammo) || !('cb' in item))
-			throw 'Error - equipped invalid item - ' + this.item.type
+		if (!(item instanceof Ammo) || !('cb' in item)) throw 'Error - equipped invalid item - ' + this.item.type
 
 		// already wielding a weapon
 		if (this.cb.equipment.ammo !== null) {
@@ -235,35 +230,27 @@ export class Actor extends Entity {
 		this.cb.equipment.ammo.cb.equipped = true
 	}
 
-
 	/* Reduce hp. If less than 0, causes death */
 	damage(hp) {
 		if (this.cb.invulnerable) return
 		this.cb.hp -= hp
 		if (this.isDead()) {
-			if (this !== Game.player)
-				Game.player.gain_xp(Math.floor(this.cb.maxhp * .75))
+			if (this !== Game.player) Game.player.gain_xp(Math.floor(this.cb.maxhp * 0.75))
 
 			this.death()
-
 		}
-
 	}
 
 	/* Restore HP up to maxhp */
 	heal(hp) {
-		if (this.cb.hp + hp > this.cb.maxhp)
-			this.cb.hp = this.cb.maxhp
-		else
-			this.cb.hp += hp
+		if (this.cb.hp + hp > this.cb.maxhp) this.cb.hp = this.cb.maxhp
+		else this.cb.hp += hp
 	}
 
 	/* Restores mana up to max */
 	restore(mana) {
-		if (this.cb.mana + mana > this.cb.maxmana)
-			this.cb.mana = this.cb.maxmana
-		else
-			this.cb.mana += mana
+		if (this.cb.mana + mana > this.cb.maxmana) this.cb.mana = this.cb.maxmana
+		else this.cb.mana += mana
 	}
 
 	/* Starting out with basic 8 dir firing */
@@ -283,24 +270,22 @@ export class Actor extends Entity {
 			// attribute to determine if a projectile can pass through
 			// (e.g if light can pass through, so can an arrow or crossbow bolt)
 			if (!tile.visible()) {
-				if (Game.player === this)
-					Game.log(`Your ${ammo.type.toLowerCase()} hit an obstacle!`, 'alert')
+				if (Game.player === this) Game.log(`Your ${ammo.type.toLowerCase()} hit an obstacle!`, 'alert')
 				console.log('Projectile collided with an obstacle!')
 				return
 			}
 			// if we find an enemy on the tile, we damage it and the projectile stops moving
-			let enemies = tile.actors.filter(function (e) {
+			let enemies = tile.actors.filter(function(e) {
 				return e.combat && e.cb.hostile
 			})
 			if (enemies.length > 0) {
-
 				console.log('The project collided with an enemy')
 				let enemy = enemies[0]
-				let evtdamage = `${addPrefix(this.name).capitalize()} hit ${addPrefix(enemy.name)} with ${addPrefix(ammo.type.toLowerCase())} and dealt ${dmg} damage.`
-				if (Game.player === this)
-					Game.log(evtdamage, 'player_move')
-				else
-					Game.log(evtdamage, 'attack')
+				let evtdamage = `${addPrefix(this.name).capitalize()} hit ${addPrefix(enemy.name)} with ${addPrefix(
+					ammo.type.toLowerCase()
+				)} and dealt ${dmg} damage.`
+				if (Game.player === this) Game.log(evtdamage, 'player_move')
+				else Game.log(evtdamage, 'attack')
 				enemy.damage(dmg)
 				return
 			}
@@ -337,12 +322,17 @@ export class Actor extends Entity {
 		/* On death, we want to spray some blood on the tile.
          * We also want to place a corpse corresponding to the actor as well
         */
-		let blood = 2644 - getRandomInt(0, 1)
-		if (this.corpseType !== corpseTypes.SKELETON) // specifically don't want to add blood if it's a skeleton...
-			ctile.obstacles.push({id: blood})
+		if (getRandomInt(0, 1) === 0) {
+			let blood = 2644 - getRandomInt(0, 1)
+			if (this.corpseType !== corpseTypes.SKELETON)
+				// specifically don't want to add blood if it's a skeleton...
+				ctile.obstacles.push({ id: blood })
 
-		if (this.corpseType !== undefined) {
-			ctile.actors.push(new Corpse(this.x, this.y, this.name, this.corpseType))
+			if (this.corpseType !== undefined) {
+				let corpse = new Corpse(this.x, this.y, this.name, this.corpseType)
+				ctile.actors.push(corpse)
+				Game.scheduler.add(corpse, true)
+			}
 		}
 
 		if (this === Game.player) {

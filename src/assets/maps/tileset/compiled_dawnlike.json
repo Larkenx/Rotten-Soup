@@ -2140,8 +2140,6 @@
         },
      "2280":
         {
-         "animated":true,
-         "animated_id":2760,
          "entity":true,
          "entity_id":"25"
         },
@@ -2233,6 +2231,11 @@
          "animated_id":2566,
          "entity":true,
          "entity_id":"21"
+        },
+     "2647":
+        {
+         "entity":true,
+         "entity_id":"25"
         },
      "2736":
         {
@@ -34355,8 +34358,6 @@
         },
      "2280":
         {
-         "animated":"bool",
-         "animated_id":"int",
          "entity":"bool",
          "entity_id":"string"
         },
@@ -34446,6 +34447,11 @@
         {
          "animated":"bool",
          "animated_id":"int",
+         "entity":"bool",
+         "entity_id":"string"
+        },
+     "2647":
+        {
          "entity":"bool",
          "entity_id":"string"
         },
