@@ -2,38 +2,38 @@
  * Created by Larken on 6/22/2017.
  */
 import ROT from 'rot-js'
-import {Game} from '#/Game.js'
-import {Actor} from '#/entities/actors/Actor.js'
-import {addPrefix} from '#/utils/HelperFunctions.js'
+import { Game } from '#/Game.js'
+import { Actor } from '#/entities/actors/Actor.js'
+import { addPrefix } from '#/utils/HelperFunctions.js'
 import Item from '#/entities/items/Item.js'
 // Weapons
-import {Sword} from '#/entities/items/weapons/Sword.js'
+import { Sword } from '#/entities/items/weapons/Sword.js'
 
-import {createBow} from '#/entities/items/weapons/ranged/Bow.js'
-import {SteelArrow} from '#/entities/items/weapons/ranged/ammo/Arrow.js'
+import { createBow } from '#/entities/items/weapons/ranged/Bow.js'
+import { SteelArrow } from '#/entities/items/weapons/ranged/ammo/Arrow.js'
 // Potions
 import HealthPotion from '#/entities/items/potions/HealthPotion.js'
 import StrengthPotion from '#/entities/items/potions/StrengthPotion.js'
 import ManaPotion from '#/entities/items/potions/ManaPotion.js'
 // Spells
-import {targetTypes, MagicDart, Regeneration, Pain, VampiricDraining, AnimateDead } from '#/magic/Spell.js'
+import { targetTypes, MagicDart, Regeneration, Pain, VampiricDraining, AnimateDead } from '#/magic/Spell.js'
 // effects
-import {BleedEnchantment} from '#/modifiers/Enchantment.js'
+import { BleedEnchantment } from '#/modifiers/Enchantment.js'
 // Misc
 import Ladder from '#/entities/misc/Ladder.js'
-import {xp_levels} from '#/entities/Entity.js'
+import { xp_levels } from '#/entities/Entity.js'
 
-function pathfinding (x, y) {
+function pathfinding(x, y) {
 	if (x <= 0 || x >= Game.map.width || y <= 0 || y >= Game.map.height) return false
 	return !Game.map.data[y][x].blocked()
 }
 
 export default class Player extends Actor {
-	constructor (x, y, id) {
+	constructor(x, y, id) {
 		super(x, y, {
 			id: id,
 			name: 'you',
-			description: 'It\'s you!',
+			description: "It's you!",
 			fg: 'yellow',
 			bg: 'black',
 			visible: true,
@@ -85,25 +85,26 @@ export default class Player extends Actor {
 
 		// this.addToInventory(new ManaPotion(this.x,this.y, 495));
 		this.cb.spells.push(new MagicDart())
-		this.cb.spells.push(new Pain())
+		// this.cb.spells.push(new Pain())
 		this.cb.spells.push(new Regeneration())
-		this.cb.spells.push(new VampiricDraining())
-		this.cb.spells.push(new AnimateDead())
+		// this.cb.spells.push(new VampiricDraining())
+		// this.cb.spells.push(new AnimateDead())
 
 		this.selectSpell(this.cb.spells[0])
 	}
 
-	selectSpell (spell) {
+	selectSpell(spell) {
 		if (this.cb.spells.includes(spell)) {
 			this.cb.currentSpell = spell
 		}
 	}
 
-	recalculatePath () {
+	recalculatePath() {
 		this.path = new ROT.Path.AStar(this.x, this.y, pathfinding)
 	}
 
-	interact (actor) { // returns true if we can continue to move to the tile
+	interact(actor) {
+		// returns true if we can continue to move to the tile
 		if ('cb' in actor && actor.cb.hostile) {
 			this.attack(actor)
 			if (!actor.isDead()) actor.react(this)
@@ -117,16 +118,18 @@ export default class Player extends Actor {
 		}
 	}
 
-	gain_xp (xp) {
+	gain_xp(xp) {
 		this.cb.xp += xp
-		if (xp_levels[this.cb.level + 1] <= this.cb.xp) { this.level_up() }
+		if (xp_levels[this.cb.level + 1] <= this.cb.xp) {
+			this.level_up()
+		}
 	}
 
-	remainingXP () {
+	remainingXP() {
 		return xp_levels[this.cb.level + 1] - this.cb.xp
 	}
 
-	level_up () {
+	level_up() {
 		this.cb.level += 1
 		this.cb.maxhp += 5
 		this.cb.str += 1
@@ -136,7 +139,7 @@ export default class Player extends Actor {
 		Game.log('Your strength and health have improved.', 'level_up')
 	}
 
-	act () {
+	act() {
 		super.act()
 		this.path = new ROT.Path.AStar(this.x, this.y, pathfinding)
 		this.nearbyEnemies = Game.getNearbyEnemies()
@@ -146,7 +149,7 @@ export default class Player extends Actor {
 		// window.addEventListener("click", this);
 	}
 
-	handleEvent (evt) {
+	handleEvent(evt) {
 		/* Mouse controls to hover over tiles for info (describe) */
 		if (evt.type === 'click') {
 			console.log(Game.eventToTile(evt))
@@ -163,14 +166,16 @@ export default class Player extends Actor {
 		let movementKeys = [0, 1, 2, 3, 4, 5, 6, 7]
 		let cycleKeys = [9, 61, 187, 191]
 		let confirmKeys = [101, 13, 190]
-		if (cycleKeys.includes(code)) { evt.preventDefault() }
+		if (cycleKeys.includes(code)) {
+			evt.preventDefault()
+		}
 
-		let endTurn = function () {
+		let endTurn = function() {
 			window.removeEventListener('keydown', this)
 			Game.engine.unlock()
 		}
 
-		let restartTurn = function () {
+		let restartTurn = function() {
 			window.removeEventListener('keydown', this)
 			window.addEventListener('keydown', this)
 		}
@@ -255,7 +260,7 @@ export default class Player extends Actor {
 			} else {
 				if (confirmKeys.includes(code)) {
 					if (this.validTarget) {
-						let {x, y} = Game.selectedTile
+						let { x, y } = Game.selectedTile
 						let tile = Game.map.data[y][x]
 						let ammo = this.cb.equipment.ammo
 						let weapon = this.cb.equipment.weapon
@@ -271,7 +276,9 @@ export default class Player extends Actor {
 						if (enemies.length > 0) {
 							let enemy = enemies[0]
 							this.targeting = false
-							let evtdamage = `${addPrefix(this.name).capitalize()} hit ${addPrefix(enemy.name)} with ${addPrefix(ammo.type.toLowerCase())} and dealt ${dmg} damage.`
+							let evtdamage = `${addPrefix(this.name).capitalize()} hit ${addPrefix(enemy.name)} with ${addPrefix(
+								ammo.type.toLowerCase()
+							)} and dealt ${dmg} damage.`
 							Game.log(evtdamage, 'player_move')
 							enemy.damage(dmg)
 						} else {
@@ -288,7 +295,7 @@ export default class Player extends Actor {
 						endTurn()
 						return
 					} else {
-						Game.log('You cannot shoot this tile because it\'s blocked or out of range!', 'alert')
+						Game.log("You cannot shoot this tile because it's blocked or out of range!", 'alert')
 					}
 				}
 			}
@@ -313,7 +320,7 @@ export default class Player extends Actor {
 			} else {
 				if (this.validTarget) {
 					if (confirmKeys.includes(code)) {
-						let {x, y} = Game.selectedTile
+						let { x, y } = Game.selectedTile
 						let tile = Game.map.data[y][x]
 						// find actors on this tile
 						let enemies = tile.actors.filter(e => {
@@ -335,7 +342,10 @@ export default class Player extends Actor {
 						return
 					}
 				} else {
-					Game.log(`You cannot cast ${this.cb.currentSpell.name} at this tile because it's blocked or too far away.`, 'alert')
+					Game.log(
+						`You cannot cast ${this.cb.currentSpell.name} at this tile because it's blocked or too far away.`,
+						'alert'
+					)
 				}
 			}
 			restartTurn()
@@ -358,36 +368,51 @@ export default class Player extends Actor {
 			return
 		}
 
-		if (!(code in keyMap)) { // invalid key press, retry turn
+		if (!(code in keyMap)) {
+			// invalid key press, retry turn
 			restartTurn()
 			return
 		}
 
-		if (keyMap[code] === 'rest' && !shift_pressed) { // Rest
+		if (keyMap[code] === 'rest' && !shift_pressed) {
+			// Rest
 			// this.heal(this.cb.hpRecovery);
 			// this.restore(this.cb.manaRecovery);
 			Game.log('You rest for a turn.', 'player_move')
 		} else if (keyMap[code] === 'pickup' && !shift_pressed) {
 			this.pickup()
-		} else if (keyMap[code] === 'rest' && shift_pressed) { // climb down
+		} else if (keyMap[code] === 'rest' && shift_pressed) {
+			// climb down
 			this.climb('down')
 		} else if (keyMap[code] === 'pickup' && shift_pressed) {
 			this.climb('up')
 		} else if (keyMap[code] === 'fire' && !shift_pressed) {
 			let weapon = this.cb.equipment.weapon
 			let ammo = this.cb.equipment.ammo
-			if (weapon !== null && ammo !== null &&
-                weapon.cb.ranged &&
-                ammo.cb.ammoType === weapon.cb.ammoType &&
-                ammo.quantity > 0) {
+			if (
+				weapon !== null &&
+				ammo !== null &&
+				weapon.cb.ranged &&
+				ammo.cb.ammoType === weapon.cb.ammoType &&
+				ammo.quantity > 0
+			) {
 				Game.log(`You take aim with your ${weapon.type.toLowerCase()}.`, 'information')
-				Game.log(`Select a target with the movement keys and press [enter] to fire your ${weapon.type.toLowerCase()}.`, 'player_move')
+				Game.log(
+					`Select a target with the movement keys and press [enter] to fire your ${weapon.type.toLowerCase()}.`,
+					'player_move'
+				)
 				this.validTarget = Game.selectNearestEnemyTile()
 				this.targeting = true
 				restartTurn()
 				return
 			} else {
-				if (weapon === null || !weapon.cb.ranged) { Game.log('You don\'t have a ranged weapon equipped!', 'information') } else if (ammo === null) { Game.log('You don\'t have any ammunition equipped.', 'information') } else if (ammo.cb.ammoType !== weapon.cb.ammoType) { Game.log('You don\'t have the right ammunition equipped for this weapon.', 'information') }
+				if (weapon === null || !weapon.cb.ranged) {
+					Game.log("You don't have a ranged weapon equipped!", 'information')
+				} else if (ammo === null) {
+					Game.log("You don't have any ammunition equipped.", 'information')
+				} else if (ammo.cb.ammoType !== weapon.cb.ammoType) {
+					Game.log("You don't have the right ammunition equipped for this weapon.", 'information')
+				}
 
 				restartTurn()
 				return
@@ -437,9 +462,9 @@ export default class Player extends Actor {
 		endTurn()
 	}
 
-	pickup () {
+	pickup() {
 		let ctile = Game.map.data[this.y][this.x]
-		let tileItems = ctile.actors.filter(function (el) {
+		let tileItems = ctile.actors.filter(function(el) {
 			return el instanceof Item
 		})
 		if (tileItems.length === 1) {
@@ -461,17 +486,17 @@ export default class Player extends Actor {
 			let buffer = `You picked up ${prettyItemTypes + lastItem}`
 			Game.log(buffer, 'information')
 		} else {
-			Game.log('There\'s nothing to pick up.', 'information')
+			Game.log("There's nothing to pick up.", 'information')
 		}
 	}
 
 	// Overriding the actor
-	equipWeapon (item) {
+	equipWeapon(item) {
 		super.equipWeapon(item)
 		Game.log(`You wield the ${item.type.toLowerCase()}.`, 'information')
 	}
 
-	unequipWeapon () {
+	unequipWeapon() {
 		if (this.cb.equipment.weapon !== null) {
 			this.cb.equipment.weapon.cb.equipped = false
 			this.cb.equipment.weapon = null
@@ -480,7 +505,7 @@ export default class Player extends Actor {
 		}
 	}
 
-	unequipAmmo () {
+	unequipAmmo() {
 		if (this.cb.equipment.ammo !== null) {
 			this.cb.equipment.ammo.cb.equipped = false
 			this.cb.equipment.ammo = null
@@ -489,9 +514,9 @@ export default class Player extends Actor {
 		}
 	}
 
-	climb (dir) {
+	climb(dir) {
 		let ctile = Game.map.data[this.y][this.x]
-		let ladder = ctile.actors.filter((a) => {
+		let ladder = ctile.actors.filter(a => {
 			return a instanceof Ladder
 		})[0]
 		if (ladder === undefined || ladder.direction !== dir) {
@@ -501,7 +526,8 @@ export default class Player extends Actor {
 		}
 	}
 
-	tryMove (nx, ny) { // returns true if the turn should end here
+	tryMove(nx, ny) {
+		// returns true if the turn should end here
 		if (nx < 0 || nx === Game.map.width || ny < 0 || ny === Game.map.height) return
 		let ntile = Game.map.data[ny][nx] // new tile to move to
 		if (ntile.actors.length === 0 && !ntile.blocked()) {
@@ -525,11 +551,11 @@ export default class Player extends Actor {
 		return false
 	}
 
-	attack (actor) {
+	attack(actor) {
 		let dmg = super.attack(actor)
 	}
 
-	death () {
+	death() {
 		super.death()
 		window.removeEventListener('keydown', this)
 		this.cb.hp = 0

@@ -1,14 +1,14 @@
 /**
  * Created by Larken on 6/22/2017.
  */
-import {Game} from '#/Game.js'
-import {getRandomInt, getItemsFromDropTable} from '#/utils/HelperFunctions.js'
+import { Game } from '#/Game.js'
+import { getRandomInt, getItemsFromDropTable } from '#/utils/HelperFunctions.js'
 import SimpleEnemy from '#/entities/actors/enemies/SimpleEnemy.js'
 
 export default class Skeleton extends SimpleEnemy {
 	constructor(x, y, id) {
-		let randomHP = getRandomInt(15, 20)
-		let randomStr = getRandomInt(3, 7)
+		let randomHP = getRandomInt(10, 15)
+		let randomStr = getRandomInt(1, 3)
 		super(x, y, {
 			id: id,
 			name: 'zombie',
@@ -30,7 +30,7 @@ export default class Skeleton extends SimpleEnemy {
 				/* misc */
 				hostile: true,
 				range: 7,
-				invulnerable: false,
+				invulnerable: false
 			}
 		})
 	}

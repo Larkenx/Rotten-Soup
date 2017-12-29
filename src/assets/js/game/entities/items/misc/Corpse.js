@@ -23,8 +23,8 @@ export class Corpse extends Entity {
 	act() {
 		Game.engine.lock()
 		this.turns++
-		// corpse has rotted after 20 turns
-		if (this.turns >= 20) {
+		// corpse has rotted after 40 turns
+		if (this.turns >= 40) {
 			let idx = Game.engine._scheduler.remove(this)
 			let ctile = Game.map.data[this.y][this.x]
 			// remove this actor from the global actors list and the occupied tile
