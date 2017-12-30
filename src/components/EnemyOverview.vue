@@ -19,7 +19,7 @@
                             </v-layout>
                             <v-layout row style="margin: 0px;">
                                 <v-flex xs12>
-                                    <v-progress-linear :value="(enemy.cb.hp / enemy.cb.maxhp()) * 100"
+                                    <v-progress-linear :value="(enemy.cb.hp / enemy.cb.maxhp) * 100"
                                                        height="4"
                                                        color="error"
                                     ></v-progress-linear>
@@ -46,18 +46,15 @@ export default {
 	data() {
 		return {
 			player: Game.player,
-			actors: Game.actors,
 			enemies: Game.player.nearbyEnemies
 		}
 	},
 	methods: {
 		getNearbyEnemies() {
-			return Game.player.nearbyEnemies
+			return this.player.nearbyEnemies
 		}
 	},
-	created() {
-		this.actors = Game.actors
-	}
+	created() {}
 }
 </script>
 <style>

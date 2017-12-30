@@ -7,7 +7,7 @@ import { getItemsFromDropTable } from '#/utils/HelperFunctions.js'
 
 import Item from '#/entities/items/Item.js'
 import Player from '#/entities/actors/Player.js'
-import { randomDungeon, randomCave } from '#/map/randomMap.js'
+import { randomDungeon, randomCave } from '#/map/RandomMap.js'
 import Door from '#/entities/misc/Door.js'
 import Ladder from '#/entities/misc/Ladder.js'
 import Chest from '#/entities/misc/Chest.js'
@@ -194,21 +194,10 @@ export let Game = {
 		this.playerLocation = this.map.playerLocation
 		this.player.placeAt(this.playerLocation[0], this.playerLocation[1])
 		// before drawing the viewport, we need to clear the screen of whatever was here last
-		for (let y = 0; y < this.height; y++) {
-			for (let x = 0; x < this.width; x++) {
-				this.display.draw(x, y, '', 'black', 'black')
-			}
-		}
+		this.display.clear()
 
 		this.width = this.map.width < this.displayOptions.width ? this.map.width : this.displayOptions.width
 		this.height = this.map.height < this.displayOptions.height ? this.map.height : this.displayOptions.height
-		// before drawing the viewport, we need to clear the screen of whatever was here last
-		for (let y = 0; y < this.height; y++) {
-			for (let x = 0; x < this.width; x++) {
-				this.display.draw(x, y, '', 'black', 'black')
-			}
-		}
-
 		this.scheduleAllActors()
 		this.drawViewPort()
 		this.minimap.setOptions({
@@ -218,6 +207,7 @@ export let Game = {
 			spacing: 2,
 			forceSquareRatio: true
 		})
+		this.minimap.clear()
 		this.drawMiniMap()
 	},
 

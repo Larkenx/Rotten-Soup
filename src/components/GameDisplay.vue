@@ -11,13 +11,11 @@
 
 <script>
 import { Game } from '@/assets/js/game/Game.js'
-import itemTransferModal from './itemTransferModal.vue'
 import messageLog from './MessageLog.vue'
 /* import other components here */
 export default {
 	components: {
-		'message-log': messageLog,
-		'item-transfer-modal': itemTransferModal
+		'message-log': messageLog
 	},
 	data() {
 		return {

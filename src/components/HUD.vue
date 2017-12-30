@@ -47,7 +47,7 @@
                             Stats
                         </v-tabs-item>
                         <v-tabs-item key="enemyOverview" href="#enemyOverview" ripple >
-                            Enemy Overview
+                            Enemies
                         </v-tabs-item>
                         <v-tabs-item key="spellBook" href="#spellBook" ripple >
                             Spellbook
@@ -80,55 +80,55 @@
 </template>
 
 <script>
-    import {Game} from '@/assets/js/game/Game.js'
-    import inventory from './Inventory.vue';
-    import enemyOverview from './EnemyOverview.vue';
-    import minimap from './Minimap.vue';
-    import statsTabContent from './HUD/StatsTabContent.vue'
-    import spellBook from './HUD/Spellbook.vue'
-    export default {
-        data() {
-            return {
-                activeTab: null,
-                currentLevel : Game.currentLevel,
-                player: Game.player,
-                x : Game.player.x,
-                y : Game.player.y,
-                rows: [1, 2, 3, 4],
-            };
-        },
-        methods: {
-            getHP () {
-                return Game.player.cb.hp;
-            },
-            getMaxHP() {
-                return Game.player.cb.maxhp;
-            },
-            getMana() {
-                return Game.player.cb.mana;
-            },
-            getMaxMana() {
-                return Game.player.cb.maxmana;
-            },
-            getCurrentLevel() {
-                let levelName = Game.player.currentLevel.replace(/[0-9]/g, "");
-                return levelName;
-            },
-            getCurrentLevelDepth() {
-                return parseInt(Game.player.currentLevel.replace(/[^0-9]/g, ""));
-            }
-        },
-        components: {
-            'inventory': inventory,
-            'enemy-overview': enemyOverview,
-            'mini-map': minimap,
-            'stats-tab-content' : statsTabContent,
-            'spellbook' : spellBook
-        },
-        created() {
-            this.player = Game.player;
-        }
-    }
+import { Game } from '@/assets/js/game/Game.js'
+import inventory from './Inventory.vue'
+import enemyOverview from './EnemyOverview.vue'
+import minimap from './Minimap.vue'
+import statsTabContent from './HUD/StatsTabContent.vue'
+import spellBook from './HUD/Spellbook.vue'
+export default {
+	data() {
+		return {
+			activeTab: null,
+			currentLevel: Game.currentLevel,
+			player: Game.player,
+			x: Game.player.x,
+			y: Game.player.y,
+			rows: [1, 2, 3, 4]
+		}
+	},
+	methods: {
+		getHP() {
+			return Game.player.cb.hp
+		},
+		getMaxHP() {
+			return Game.player.cb.maxhp
+		},
+		getMana() {
+			return Game.player.cb.mana
+		},
+		getMaxMana() {
+			return Game.player.cb.maxmana
+		},
+		getCurrentLevel() {
+			let levelName = Game.player.currentLevel.replace(/[0-9]/g, '')
+			return levelName
+		},
+		getCurrentLevelDepth() {
+			return parseInt(Game.player.currentLevel.replace(/[^0-9]/g, ''))
+		}
+	},
+	components: {
+		inventory: inventory,
+		'enemy-overview': enemyOverview,
+		'mini-map': minimap,
+		'stats-tab-content': statsTabContent,
+		spellbook: spellBook
+	},
+	created() {
+		this.player = Game.player
+	}
+}
 </script>
 <style>
     .hud {

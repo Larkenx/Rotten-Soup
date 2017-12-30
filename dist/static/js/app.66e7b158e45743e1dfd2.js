@@ -63,6 +63,17 @@ class Key extends __WEBPACK_IMPORTED_MODULE_0__entities_items_Item_js__["a" /* d
 
 /***/ }),
 
+/***/ "19w9":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('v-app',{attrs:{"dark":""}},[_c('v-container',{attrs:{"fluid":"","id":"main_container"}},[_c('v-layout',{attrs:{"row":""}},[_c('game-display'),_vm._v(" "),_c('hud')],1),_vm._v(" "),_c('item-transfer-modal'),_vm._v(" "),_c('death-modal'),_vm._v(" "),_c('help-dialog'),_vm._v(" "),_c('a',{staticStyle:{"text-decoration":"none"},attrs:{"id":"git_logo","target":"_blank","href":"https://github.com/Larkenx/Rotten-Soup"}},[_c('v-btn',{attrs:{"icon":"","ripple":""}},[_c('i',{staticClass:"fa fa-3x fa-github",staticStyle:{"color":"white","margin":"auto"},attrs:{"i":"","aria-hidden":"true"}})])],1)],1)],1)}
+var staticRenderFns = []
+var esExports = { render: render, staticRenderFns: staticRenderFns }
+/* harmony default export */ __webpack_exports__["a"] = (esExports);
+
+/***/ }),
+
 /***/ "1LjL":
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -354,9 +365,9 @@ var Component = normalizeComponent(
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_lib_selector_type_script_index_0_EnemyOverview_vue__ = __webpack_require__("u4fz");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__node_modules_vue_loader_lib_template_compiler_index_id_data_v_3f413386_hasScoped_false_transformToRequire_video_src_source_src_img_src_image_xlink_href_buble_transforms_node_modules_vue_loader_lib_selector_type_template_index_0_EnemyOverview_vue__ = __webpack_require__("sow4");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__node_modules_vue_loader_lib_template_compiler_index_id_data_v_7294b982_hasScoped_false_transformToRequire_video_src_source_src_img_src_image_xlink_href_buble_transforms_node_modules_vue_loader_lib_selector_type_template_index_0_EnemyOverview_vue__ = __webpack_require__("f58f");
 function injectStyle (ssrContext) {
-  __webpack_require__("GbDg")
+  __webpack_require__("ehCE")
 }
 var normalizeComponent = __webpack_require__("VU/8")
 /* script */
@@ -373,7 +384,7 @@ var __vue_scopeId__ = null
 var __vue_module_identifier__ = null
 var Component = normalizeComponent(
   __WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_lib_selector_type_script_index_0_EnemyOverview_vue__["a" /* default */],
-  __WEBPACK_IMPORTED_MODULE_1__node_modules_vue_loader_lib_template_compiler_index_id_data_v_3f413386_hasScoped_false_transformToRequire_video_src_source_src_img_src_image_xlink_href_buble_transforms_node_modules_vue_loader_lib_selector_type_template_index_0_EnemyOverview_vue__["a" /* default */],
+  __WEBPACK_IMPORTED_MODULE_1__node_modules_vue_loader_lib_template_compiler_index_id_data_v_7294b982_hasScoped_false_transformToRequire_video_src_source_src_img_src_image_xlink_href_buble_transforms_node_modules_vue_loader_lib_selector_type_template_index_0_EnemyOverview_vue__["a" /* default */],
   __vue_template_functional__,
   __vue_styles__,
   __vue_scopeId__,
@@ -385,11 +396,11 @@ var Component = normalizeComponent(
 
 /***/ }),
 
-/***/ "5nNH":
+/***/ "2zgK":
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return (_vm.inventoryModalOpened)?_c('v-container',{staticClass:"modal elevation-24"},[_c('v-layout',{attrs:{"row":""}},[_c('v-flex',{attrs:{"xs5":"","col":""}},[_c('h3',[_vm._v("Bob the NPC")]),_vm._v(" "),_c('inventory')],1),_vm._v(" "),_c('v-flex',{attrs:{"xs2":"","col":""}}),_vm._v(" "),_c('v-flex',{attrs:{"xs5":"","col":""}},[_c('h3',[_vm._v("Your Items")]),_vm._v(" "),_c('inventory')],1)],1)],1):_vm._e()}
+var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('v-flex',{staticStyle:{"max-width":"1120px"},attrs:{"column":""}},[_c('v-layout',{staticStyle:{"padding":"0px"},attrs:{"row":""}},[_c('div',{staticStyle:{"margin":"0","padding":"0"},attrs:{"id":"game_container"}})]),_vm._v(" "),_c('message-log')],1)}
 var staticRenderFns = []
 var esExports = { render: render, staticRenderFns: staticRenderFns }
 /* harmony default export */ __webpack_exports__["a"] = (esExports);
@@ -589,8 +600,7 @@ class Corpse extends __WEBPACK_IMPORTED_MODULE_0__entities_Entity_js__["b" /* En
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__assets_js_game_Game_js__ = __webpack_require__("TiVF");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__itemTransferModal_vue__ = __webpack_require__("rhiZ");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__MessageLog_vue__ = __webpack_require__("2khc");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__MessageLog_vue__ = __webpack_require__("2khc");
 //
 //
 //
@@ -602,15 +612,13 @@ class Corpse extends __WEBPACK_IMPORTED_MODULE_0__entities_Entity_js__["b" /* En
 //
 //
 //
-
 
 
 
 /* import other components here */
 /* harmony default export */ __webpack_exports__["a"] = ({
 	components: {
-		'message-log': __WEBPACK_IMPORTED_MODULE_2__MessageLog_vue__["a" /* default */],
-		'item-transfer-modal': __WEBPACK_IMPORTED_MODULE_1__itemTransferModal_vue__["a" /* default */]
+		'message-log': __WEBPACK_IMPORTED_MODULE_1__MessageLog_vue__["a" /* default */]
 	},
 	data() {
 		return {
@@ -810,14 +818,10 @@ class ManaPotion extends __WEBPACK_IMPORTED_MODULE_0__entities_items_potions_Pot
 
 /***/ }),
 
-/***/ "Aa2h":
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
+/***/ "Awg1":
+/***/ (function(module, exports) {
 
-"use strict";
-var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('v-flex',{staticStyle:{"max-width":"1120px"},attrs:{"column":""}},[_c('v-layout',{staticStyle:{"padding":"0px"},attrs:{"row":""}},[_c('div',{staticStyle:{"margin":"0","padding":"0"},attrs:{"id":"game_container"}})]),_vm._v(" "),_c('message-log')],1)}
-var staticRenderFns = []
-var esExports = { render: render, staticRenderFns: staticRenderFns }
-/* harmony default export */ __webpack_exports__["a"] = (esExports);
+// removed by extract-text-webpack-plugin
 
 /***/ }),
 
@@ -1775,7 +1779,14 @@ class Actor extends __WEBPACK_IMPORTED_MODULE_2__entities_Entity_js__["b" /* Ent
 
 /***/ }),
 
-/***/ "FunK":
+/***/ "GYYd":
+/***/ (function(module, exports) {
+
+// removed by extract-text-webpack-plugin
+
+/***/ }),
+
+/***/ "H5+s":
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -2801,13 +2812,6 @@ function randomCave(width, height, dir, level = 1) {
 
 /***/ }),
 
-/***/ "GbDg":
-/***/ (function(module, exports) {
-
-// removed by extract-text-webpack-plugin
-
-/***/ }),
-
 /***/ "Jmtc":
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -2909,9 +2913,9 @@ function createSword(x, y, id) {
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_lib_selector_type_script_index_0_App_vue__ = __webpack_require__("xJD8");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__node_modules_vue_loader_lib_template_compiler_index_id_data_v_5ad1e693_hasScoped_false_transformToRequire_video_src_source_src_img_src_image_xlink_href_buble_transforms_node_modules_vue_loader_lib_selector_type_template_index_0_App_vue__ = __webpack_require__("klWE");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__node_modules_vue_loader_lib_template_compiler_index_id_data_v_0a2d2673_hasScoped_false_transformToRequire_video_src_source_src_img_src_image_xlink_href_buble_transforms_node_modules_vue_loader_lib_selector_type_template_index_0_App_vue__ = __webpack_require__("19w9");
 function injectStyle (ssrContext) {
-  __webpack_require__("vyYF")
+  __webpack_require__("Awg1")
 }
 var normalizeComponent = __webpack_require__("VU/8")
 /* script */
@@ -2928,7 +2932,7 @@ var __vue_scopeId__ = null
 var __vue_module_identifier__ = null
 var Component = normalizeComponent(
   __WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_lib_selector_type_script_index_0_App_vue__["a" /* default */],
-  __WEBPACK_IMPORTED_MODULE_1__node_modules_vue_loader_lib_template_compiler_index_id_data_v_5ad1e693_hasScoped_false_transformToRequire_video_src_source_src_img_src_image_xlink_href_buble_transforms_node_modules_vue_loader_lib_selector_type_template_index_0_App_vue__["a" /* default */],
+  __WEBPACK_IMPORTED_MODULE_1__node_modules_vue_loader_lib_template_compiler_index_id_data_v_0a2d2673_hasScoped_false_transformToRequire_video_src_source_src_img_src_image_xlink_href_buble_transforms_node_modules_vue_loader_lib_selector_type_template_index_0_App_vue__["a" /* default */],
   __vue_template_functional__,
   __vue_styles__,
   __vue_scopeId__,
@@ -3625,13 +3629,6 @@ class Player extends __WEBPACK_IMPORTED_MODULE_2__entities_actors_Actor_js__["a"
 
 /***/ }),
 
-/***/ "OhdC":
-/***/ (function(module, exports) {
-
-// removed by extract-text-webpack-plugin
-
-/***/ }),
-
 /***/ "OoFV":
 /***/ (function(module, exports) {
 
@@ -4014,7 +4011,7 @@ class Kobold extends __WEBPACK_IMPORTED_MODULE_0__entities_actors_enemies_Simple
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__utils_HelperFunctions_js__ = __webpack_require__("qJpE");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__entities_items_Item_js__ = __webpack_require__("DC1T");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__entities_actors_Player_js__ = __webpack_require__("OS/i");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__map_randomMap_js__ = __webpack_require__("FunK");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__map_RandomMap_js__ = __webpack_require__("H5+s");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__entities_misc_Door_js__ = __webpack_require__("vUzl");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__entities_misc_Ladder_js__ = __webpack_require__("fnfY");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__entities_misc_Chest_js__ = __webpack_require__("o9En");
@@ -4183,9 +4180,9 @@ let Game = {
 		if (this.levels[newLevel] === undefined) {
 			// generating a new random room
 			if (newLevel.toLowerCase().includes('cave')) {
-				this.levels[newLevel] = new __WEBPACK_IMPORTED_MODULE_1__map_GameMap_js__["a" /* GameMap */](__webpack_require__.i(__WEBPACK_IMPORTED_MODULE_8__map_randomMap_js__["a" /* randomCave */])(80, 40, dir, level));
+				this.levels[newLevel] = new __WEBPACK_IMPORTED_MODULE_1__map_GameMap_js__["a" /* GameMap */](__webpack_require__.i(__WEBPACK_IMPORTED_MODULE_8__map_RandomMap_js__["a" /* randomCave */])(80, 40, dir, level));
 			} else {
-				this.levels[newLevel] = new __WEBPACK_IMPORTED_MODULE_1__map_GameMap_js__["a" /* GameMap */](__webpack_require__.i(__WEBPACK_IMPORTED_MODULE_8__map_randomMap_js__["b" /* randomDungeon */])(40, 40, dir, level));
+				this.levels[newLevel] = new __WEBPACK_IMPORTED_MODULE_1__map_GameMap_js__["a" /* GameMap */](__webpack_require__.i(__WEBPACK_IMPORTED_MODULE_8__map_RandomMap_js__["b" /* randomDungeon */])(40, 40, dir, level));
 			}
 			this.levels[newLevel].revealed = false;
 			for (let actor of this.levels[newLevel].actors) {
@@ -4787,9 +4784,9 @@ class Goblin extends __WEBPACK_IMPORTED_MODULE_1__entities_actors_enemies_Statel
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_lib_selector_type_script_index_0_GameDisplay_vue__ = __webpack_require__("9kQd");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__node_modules_vue_loader_lib_template_compiler_index_id_data_v_4fdd0ca4_hasScoped_false_transformToRequire_video_src_source_src_img_src_image_xlink_href_buble_transforms_node_modules_vue_loader_lib_selector_type_template_index_0_GameDisplay_vue__ = __webpack_require__("Aa2h");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__node_modules_vue_loader_lib_template_compiler_index_id_data_v_516442fa_hasScoped_false_transformToRequire_video_src_source_src_img_src_image_xlink_href_buble_transforms_node_modules_vue_loader_lib_selector_type_template_index_0_GameDisplay_vue__ = __webpack_require__("2zgK");
 function injectStyle (ssrContext) {
-  __webpack_require__("qwoE")
+  __webpack_require__("GYYd")
 }
 var normalizeComponent = __webpack_require__("VU/8")
 /* script */
@@ -4806,7 +4803,43 @@ var __vue_scopeId__ = null
 var __vue_module_identifier__ = null
 var Component = normalizeComponent(
   __WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_lib_selector_type_script_index_0_GameDisplay_vue__["a" /* default */],
-  __WEBPACK_IMPORTED_MODULE_1__node_modules_vue_loader_lib_template_compiler_index_id_data_v_4fdd0ca4_hasScoped_false_transformToRequire_video_src_source_src_img_src_image_xlink_href_buble_transforms_node_modules_vue_loader_lib_selector_type_template_index_0_GameDisplay_vue__["a" /* default */],
+  __WEBPACK_IMPORTED_MODULE_1__node_modules_vue_loader_lib_template_compiler_index_id_data_v_516442fa_hasScoped_false_transformToRequire_video_src_source_src_img_src_image_xlink_href_buble_transforms_node_modules_vue_loader_lib_selector_type_template_index_0_GameDisplay_vue__["a" /* default */],
+  __vue_template_functional__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+
+/* harmony default export */ __webpack_exports__["a"] = (Component.exports);
+
+
+/***/ }),
+
+/***/ "XqUh":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_lib_selector_type_script_index_0_ItemTransferModal_vue__ = __webpack_require__("bGfy");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__node_modules_vue_loader_lib_template_compiler_index_id_data_v_168593d0_hasScoped_false_transformToRequire_video_src_source_src_img_src_image_xlink_href_buble_transforms_node_modules_vue_loader_lib_selector_type_template_index_0_ItemTransferModal_vue__ = __webpack_require__("vLiS");
+function injectStyle (ssrContext) {
+  __webpack_require__("yYhc")
+}
+var normalizeComponent = __webpack_require__("VU/8")
+/* script */
+
+/* template */
+
+/* template functional */
+var __vue_template_functional__ = false
+/* styles */
+var __vue_styles__ = injectStyle
+/* scopeId */
+var __vue_scopeId__ = null
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_lib_selector_type_script_index_0_ItemTransferModal_vue__["a" /* default */],
+  __WEBPACK_IMPORTED_MODULE_1__node_modules_vue_loader_lib_template_compiler_index_id_data_v_168593d0_hasScoped_false_transformToRequire_video_src_source_src_img_src_image_xlink_href_buble_transforms_node_modules_vue_loader_lib_selector_type_template_index_0_ItemTransferModal_vue__["a" /* default */],
   __vue_template_functional__,
   __vue_styles__,
   __vue_scopeId__,
@@ -5067,6 +5100,48 @@ class StatelessAI extends __WEBPACK_IMPORTED_MODULE_0__entities_actors_Actor_js_
 
 /***/ }),
 
+/***/ "bGfy":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__Inventory_vue__ = __webpack_require__("+FJC");
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+/* import other components here */
+
+/* harmony default export */ __webpack_exports__["a"] = ({
+    components: {
+        'inventory': __WEBPACK_IMPORTED_MODULE_0__Inventory_vue__["a" /* default */]
+    },
+    data() {
+        return {
+            inventoryModalOpened: false
+        };
+    },
+    methods: {}
+});
+
+/***/ }),
+
 /***/ "bdia":
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -5294,45 +5369,10 @@ class Tile {
 
 /***/ }),
 
-/***/ "ehyu":
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
+/***/ "ehCE":
+/***/ (function(module, exports) {
 
-"use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__Inventory_vue__ = __webpack_require__("+FJC");
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-
-/* import other components here */
-
-/* harmony default export */ __webpack_exports__["a"] = ({
-    components: {
-        'inventory': __WEBPACK_IMPORTED_MODULE_0__Inventory_vue__["a" /* default */]
-    },
-    data() {
-        return {
-            inventoryModalOpened: false
-        };
-    },
-    methods: {}
-});
+// removed by extract-text-webpack-plugin
 
 /***/ }),
 
@@ -5477,6 +5517,17 @@ class Tile {
         this.player = __WEBPACK_IMPORTED_MODULE_0__assets_js_game_Game_js__["a" /* Game */].player;
     }
 });
+
+/***/ }),
+
+/***/ "f58f":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('v-container',{staticStyle:{"min-height":"50px"},attrs:{"fluid":""}},[(_vm.getNearbyEnemies().length > 0)?_c('v-layout',{attrs:{"row":"","wrap":""}},_vm._l((_vm.getNearbyEnemies()),function(enemy,index){return _c('v-flex',{key:index,attrs:{"xs3":"","col":""}},[_c('v-tooltip',{attrs:{"bottom":""}},[_c('span',{attrs:{"align-center":""}},[_vm._v("\n                    HP : "+_vm._s(enemy.cb.hp)+" / "+_vm._s(enemy.cb.maxhp)),_c('br'),_vm._v("\n                    \""+_vm._s(enemy.description)+"\""),_c('br')]),_vm._v(" "),_c('div',{staticClass:"enemy_col",attrs:{"slot":"activator","fluid":""},slot:"activator"},[_c('v-layout',{staticClass:"text-xs-center",staticStyle:{"font-size":"10px","margin":"0px auto -10px 0px"},attrs:{"align-center":"","row":""}},[_c('v-flex',{attrs:{"xs12":""}},[_vm._v(_vm._s(enemy.name.capitalize()))])],1),_vm._v(" "),_c('v-layout',{staticStyle:{"margin":"0px"},attrs:{"row":""}},[_c('v-flex',{attrs:{"xs12":""}},[_c('v-progress-linear',{attrs:{"value":(enemy.cb.hp / enemy.cb.maxhp) * 100,"height":"4","color":"error"}})],1)],1)],1)])],1)})):_c('v-layout',{attrs:{"row":""}},[_c('v-container',{attrs:{"fluid":""}},[_vm._v("\n            No enemies in view\n        ")])],1)],1)}
+var staticRenderFns = []
+var esExports = { render: render, staticRenderFns: staticRenderFns }
+/* harmony default export */ __webpack_exports__["a"] = (esExports);
 
 /***/ }),
 
@@ -5767,17 +5818,6 @@ class NPC extends __WEBPACK_IMPORTED_MODULE_0__entities_actors_Actor_js__["a" /*
 
 "use strict";
 var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('v-layout',{staticStyle:{"padding":"5px 0 0 0","margin":"0px"},attrs:{"row":""}},[_c('v-list',{staticClass:"console",staticStyle:{"overflow":"hidden","padding-top":"8px","position":"relative"}},[_vm._l((_vm.getMessages()),function(message,index){return _c('li',{key:index},[_c('p',[_c('b',{style:({color : message[1]})},[_vm._v(_vm._s(message[0]))])])])}),_vm._v(" "),_vm._l((_vm.getTempMessages()),function(message,index){return _c('li',[_c('p',[_c('b',{style:({color : message[1]})},[_vm._v(_vm._s(message[0]))])])])})],2)],1)}
-var staticRenderFns = []
-var esExports = { render: render, staticRenderFns: staticRenderFns }
-/* harmony default export */ __webpack_exports__["a"] = (esExports);
-
-/***/ }),
-
-/***/ "klWE":
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('v-app',{attrs:{"dark":""}},[_c('v-container',{attrs:{"fluid":"","id":"main_container"}},[_c('v-layout',{attrs:{"row":""}},[_c('game-display'),_vm._v(" "),_c('hud')],1),_vm._v(" "),_c('item-transfer-modal'),_vm._v(" "),_c('death-modal'),_vm._v(" "),_c('help-dialog'),_vm._v(" "),_c('a',{staticStyle:{"text-decoration":"none"},attrs:{"id":"git_logo","target":"_blank","href":"https://github.com/Larkenx/Rotten-Soup"}},[_c('v-btn',{attrs:{"icon":"","ripple":""}},[_c('i',{staticClass:"fa fa-3x fa-github",staticStyle:{"color":"white","margin":"auto"},attrs:{"i":"","aria-hidden":"true"}})])],1)],1)],1)}
 var staticRenderFns = []
 var esExports = { render: render, staticRenderFns: staticRenderFns }
 /* harmony default export */ __webpack_exports__["a"] = (esExports);
@@ -6226,49 +6266,6 @@ function getVisibleTiles(actor) {
 
 /***/ }),
 
-/***/ "qwoE":
-/***/ (function(module, exports) {
-
-// removed by extract-text-webpack-plugin
-
-/***/ }),
-
-/***/ "rhiZ":
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_lib_selector_type_script_index_0_itemTransferModal_vue__ = __webpack_require__("ehyu");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__node_modules_vue_loader_lib_template_compiler_index_id_data_v_168593d0_hasScoped_false_transformToRequire_video_src_source_src_img_src_image_xlink_href_buble_transforms_node_modules_vue_loader_lib_selector_type_template_index_0_itemTransferModal_vue__ = __webpack_require__("5nNH");
-function injectStyle (ssrContext) {
-  __webpack_require__("OhdC")
-}
-var normalizeComponent = __webpack_require__("VU/8")
-/* script */
-
-/* template */
-
-/* template functional */
-var __vue_template_functional__ = false
-/* styles */
-var __vue_styles__ = injectStyle
-/* scopeId */
-var __vue_scopeId__ = null
-/* moduleIdentifier (server only) */
-var __vue_module_identifier__ = null
-var Component = normalizeComponent(
-  __WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_lib_selector_type_script_index_0_itemTransferModal_vue__["a" /* default */],
-  __WEBPACK_IMPORTED_MODULE_1__node_modules_vue_loader_lib_template_compiler_index_id_data_v_168593d0_hasScoped_false_transformToRequire_video_src_source_src_img_src_image_xlink_href_buble_transforms_node_modules_vue_loader_lib_selector_type_template_index_0_itemTransferModal_vue__["a" /* default */],
-  __vue_template_functional__,
-  __vue_styles__,
-  __vue_scopeId__,
-  __vue_module_identifier__
-)
-
-/* harmony default export */ __webpack_exports__["a"] = (Component.exports);
-
-
-/***/ }),
-
 /***/ "s04i":
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -6335,17 +6332,6 @@ class Rat extends __WEBPACK_IMPORTED_MODULE_1__entities_actors_enemies_SimpleEne
 	},
 	methods: {}
 });
-
-/***/ }),
-
-/***/ "sow4":
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('v-container',{staticStyle:{"min-height":"50px"},attrs:{"fluid":""}},[(_vm.getNearbyEnemies().length > 0)?_c('v-layout',{attrs:{"row":"","wrap":""}},_vm._l((_vm.getNearbyEnemies()),function(enemy,index){return _c('v-flex',{key:index,attrs:{"xs3":"","col":""}},[_c('v-tooltip',{attrs:{"bottom":""}},[_c('span',{attrs:{"align-center":""}},[_vm._v("\n                    HP : "+_vm._s(enemy.cb.hp)+" / "+_vm._s(enemy.cb.maxhp)),_c('br'),_vm._v("\n                    \""+_vm._s(enemy.description)+"\""),_c('br')]),_vm._v(" "),_c('div',{staticClass:"enemy_col",attrs:{"slot":"activator","fluid":""},slot:"activator"},[_c('v-layout',{staticClass:"text-xs-center",staticStyle:{"font-size":"10px","margin":"0px auto -10px 0px"},attrs:{"align-center":"","row":""}},[_c('v-flex',{attrs:{"xs12":""}},[_vm._v(_vm._s(enemy.name.capitalize()))])],1),_vm._v(" "),_c('v-layout',{staticStyle:{"margin":"0px"},attrs:{"row":""}},[_c('v-flex',{attrs:{"xs12":""}},[_c('v-progress-linear',{attrs:{"value":(enemy.cb.hp / enemy.cb.maxhp()) * 100,"height":"4","color":"error"}})],1)],1)],1)])],1)})):_c('v-layout',{attrs:{"row":""}},[_c('v-container',{attrs:{"fluid":""}},[_vm._v("\n            No enemies in view\n        ")])],1)],1)}
-var staticRenderFns = []
-var esExports = { render: render, staticRenderFns: staticRenderFns }
-/* harmony default export */ __webpack_exports__["a"] = (esExports);
 
 /***/ }),
 
@@ -6478,18 +6464,15 @@ class RegenerationEffect extends Effect {
 	data() {
 		return {
 			player: __WEBPACK_IMPORTED_MODULE_0__assets_js_game_Game_js__["a" /* Game */].player,
-			actors: __WEBPACK_IMPORTED_MODULE_0__assets_js_game_Game_js__["a" /* Game */].actors,
 			enemies: __WEBPACK_IMPORTED_MODULE_0__assets_js_game_Game_js__["a" /* Game */].player.nearbyEnemies
 		};
 	},
 	methods: {
 		getNearbyEnemies() {
-			return __WEBPACK_IMPORTED_MODULE_0__assets_js_game_Game_js__["a" /* Game */].player.nearbyEnemies;
+			return this.player.nearbyEnemies;
 		}
 	},
-	created() {
-		this.actors = __WEBPACK_IMPORTED_MODULE_0__assets_js_game_Game_js__["a" /* Game */].actors;
-	}
+	created() {}
 });
 
 /***/ }),
@@ -6577,6 +6560,17 @@ class LevelTransition extends __WEBPACK_IMPORTED_MODULE_1__entities_Entity_js__[
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin
+
+/***/ }),
+
+/***/ "vLiS":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return (_vm.inventoryModalOpened)?_c('v-container',{staticClass:"modal elevation-24"},[_c('v-layout',{attrs:{"row":""}},[_c('v-flex',{attrs:{"xs5":"","col":""}},[_c('h3',[_vm._v("Bob the NPC")]),_vm._v(" "),_c('inventory')],1),_vm._v(" "),_c('v-flex',{attrs:{"xs2":"","col":""}}),_vm._v(" "),_c('v-flex',{attrs:{"xs5":"","col":""}},[_c('h3',[_vm._v("Your Items")]),_vm._v(" "),_c('inventory')],1)],1)],1):_vm._e()}
+var staticRenderFns = []
+var esExports = { render: render, staticRenderFns: staticRenderFns }
+/* harmony default export */ __webpack_exports__["a"] = (esExports);
 
 /***/ }),
 
@@ -6674,13 +6668,6 @@ var Component = normalizeComponent(
 
 /***/ }),
 
-/***/ "vyYF":
-/***/ (function(module, exports) {
-
-// removed by extract-text-webpack-plugin
-
-/***/ }),
-
 /***/ "x/l/":
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -6723,7 +6710,7 @@ var Component = normalizeComponent(
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__assets_js_game_Game_js__ = __webpack_require__("TiVF");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__components_GameDisplay_vue__ = __webpack_require__("XSzI");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__components_itemTransferModal_vue__ = __webpack_require__("rhiZ");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__components_ItemTransferModal_vue__ = __webpack_require__("XqUh");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__components_HUD_vue__ = __webpack_require__("bdia");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__components_DeathModal_vue__ = __webpack_require__("kuN2");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__components_HelpDialog_vue__ = __webpack_require__("ZHys");
@@ -6775,7 +6762,7 @@ Window.Game = __WEBPACK_IMPORTED_MODULE_0__assets_js_game_Game_js__["a" /* Game 
 	components: {
 		'game-display': __WEBPACK_IMPORTED_MODULE_1__components_GameDisplay_vue__["a" /* default */],
 		hud: __WEBPACK_IMPORTED_MODULE_3__components_HUD_vue__["a" /* default */],
-		'item-transfer-modal': __WEBPACK_IMPORTED_MODULE_2__components_itemTransferModal_vue__["a" /* default */],
+		'item-transfer-modal': __WEBPACK_IMPORTED_MODULE_2__components_ItemTransferModal_vue__["a" /* default */],
 		'death-modal': __WEBPACK_IMPORTED_MODULE_4__components_DeathModal_vue__["a" /* default */],
 		'help-dialog': __WEBPACK_IMPORTED_MODULE_5__components_HelpDialog_vue__["a" /* default */]
 	},
@@ -6896,6 +6883,13 @@ class Orc extends __WEBPACK_IMPORTED_MODULE_0__entities_actors_enemies_SimpleEne
 
 /***/ }),
 
+/***/ "yYhc":
+/***/ (function(module, exports) {
+
+// removed by extract-text-webpack-plugin
+
+/***/ }),
+
 /***/ "zX5/":
 /***/ (function(module, exports) {
 
@@ -6915,4 +6909,4 @@ var esExports = { render: render, staticRenderFns: staticRenderFns }
 /***/ })
 
 },["NHnr"]);
-//# sourceMappingURL=app.7e41aa3ce5368a890c47.js.map
+//# sourceMappingURL=app.66e7b158e45743e1dfd2.js.map

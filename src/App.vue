@@ -30,7 +30,7 @@
 import { Game } from '@/assets/js/game/Game.js'
 // components
 import gameDisplay from './components/GameDisplay.vue'
-import itemTransferModal from './components/itemTransferModal.vue'
+import itemTransferModal from './components/ItemTransferModal.vue'
 import hud from './components/HUD.vue'
 import deathModal from './components/DeathModal.vue'
 import helpDialog from './components/HelpDialog.vue'

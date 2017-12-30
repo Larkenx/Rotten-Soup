@@ -46,15 +46,15 @@ export default class Player extends Actor {
 				/* options.combat, dedicated to all things related to combat */
 				description: [' attacked ', ' stabbed ', ' jabbed ', ' smashed '],
 				/* stat caps */
-				maxhp: 100,
+				maxhp: 35,
 				maxmana: 15,
 				/* current stats */
-				xp: 0,
+				xp: 50,
 				level: 1,
-				hp: 100,
+				hp: 35,
 				mana: 15,
-				str: 6,
-				def: 3,
+				str: 1,
+				def: 1,
 				/* Per-turn effects */
 				hpRecovery: 5,
 				manaRecovery: 2.5,
@@ -119,13 +119,13 @@ export default class Player extends Actor {
 
 	gain_xp(xp) {
 		this.cb.xp += xp
-		if (xp_levels[this.cb.level + 1] <= this.cb.xp) {
+		if (xp_levels[this.cb.level] <= this.cb.xp) {
 			this.level_up()
 		}
 	}
 
 	remainingXP() {
-		return xp_levels[this.cb.level + 1] - this.cb.xp
+		return xp_levels[this.cb.level] - this.cb.xp
 	}
 
 	level_up() {
