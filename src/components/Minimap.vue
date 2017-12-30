@@ -5,14 +5,13 @@
 </template>
 
 <script>
-    /* import other components here */
-    export default {
-        data() {
-            return {};
-        },
-        methods: {},
-    }
-
+/* import other components here */
+export default {
+	data() {
+		return {}
+	},
+	methods: {}
+}
 </script>
 <style>
 </style>

@@ -12,7 +12,7 @@ export class Corpse extends Entity {
 	constructor(x, y, name, id) {
 		super(x, y, {
 			id,
-			name: `${name.capitalize()} Corpse`,
+			name: name.toLowerCase() === 'skeleton' ? 'pile of bones' : `${name.capitalize()} Corpse`,
 			blocked: false,
 			visible: true
 		})

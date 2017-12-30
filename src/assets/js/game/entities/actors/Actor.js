@@ -346,16 +346,8 @@ export class Actor extends Entity {
 		return this.cb.hp <= 0
 	}
 
-	getHP() {
-		return this.cb.hp
-	}
-
-	getMaxHP() {
-		return this.cb.maxhp
-	}
-
 	getHoverInfo() {
-		return `HP: ${this.getHP()} / ${this.getMaxHP()}<br />\"${this.description}\"`
+		return `HP: ${this.cb.hp} / ${this.cb.maxhp}<br />\"${this.description}\"`
 	}
 
 	getMinDmg() {

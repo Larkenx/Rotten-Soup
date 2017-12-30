@@ -12,9 +12,7 @@
 		"test": "npm run unit"
 	},
 	"dependencies": {
-		"eslint": "^4.14.0",
 		"express": "^4.16.2",
-		"jquery": "^3.2.1",
 		"rot-js": "^0.6.4",
 		"vue": "^2.4.2",
 		"vuetify": "^0.16.9"

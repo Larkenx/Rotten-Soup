@@ -37,11 +37,8 @@ export let Game = {
 	levels: {},
 	currentLevel: 'overworld',
 	map: null,
-	message_history: [],
-	tempMessage: {
-		text: '',
-		color: ''
-	},
+	messageHistory: [],
+	tempMessages: [],
 	minimap: null,
 	selectedTile: null,
 	pathToTarget: {},
@@ -135,7 +132,8 @@ export let Game = {
 
 	initializeMinimap() {
 		/* Create a ROT.JS display for the minimap! */
-		this.minimap = new ROT.Display({
+		this.minimap = new ROT.Display()
+		this.minimap.setOptions({
 			width: this.map.width,
 			height: this.map.height,
 			fontSize: 2,
@@ -146,11 +144,7 @@ export let Game = {
 	},
 
 	clearTempLog() {
-		this.tempMessage = {
-			color: 'gray',
-			text: ''
-		}
-		this.player.tempMessage = this.tempMessage
+		this.tempMessages.splice(0, this.tempMessages.length)
 	},
 
 	inbounds(x, y) {
@@ -217,8 +211,14 @@ export let Game = {
 
 		this.scheduleAllActors()
 		this.drawViewPort()
-		this.initializeMinimap()
-		$('#minimap_container').html(this.minimap.getContainer()) // resetting the canvas / minimap display fixes ghosting
+		this.minimap.setOptions({
+			width: this.map.width,
+			height: this.map.height,
+			fontSize: 2,
+			spacing: 2,
+			forceSquareRatio: true
+		})
+		this.drawMiniMap()
 	},
 
 	drawViewPort() {
@@ -598,22 +598,6 @@ export let Game = {
 		return properBorder === targetingBorders
 	},
 
-	logToTemp(msg) {
-		this.tempMessage = {
-			text: msg,
-			color: 'gray'
-		}
-		this.player.tempMessage = this.tempMessage
-		$('#fix_scroll')
-			.stop()
-			.animate(
-				{
-					scrollTop: $('#fix_scroll')[0].scrollHeight
-				},
-				800
-			)
-	},
-
 	describeSelectedTile() {
 		/* Returns an array of strings describing what exists on the currently selected tile.
         this can be obstacles, items, traps, or enemies */
@@ -636,7 +620,7 @@ export let Game = {
 			prettyNames = 'nothing'
 		}
 
-		this.logToTemp(`[You see ${prettyNames} here.]`)
+		this.log(`[You see ${prettyNames} here.]`, 'player_move', true)
 	},
 
 	getTile(x, y) {
@@ -661,7 +645,7 @@ export let Game = {
 		this.hoveredTile = t[0] + ',' + t[1]
 	},
 
-	log(message, type) {
+	log(message, type, tmp = false) {
 		let message_color = {
 			defend: 'lightblue',
 			magic: '#3C1CFD',
@@ -673,14 +657,7 @@ export let Game = {
 			alert: 'orange'
 		}
 		let color = type in message_color ? message_color[type] : type
-		this.message_history.push([message, color])
-		$('#fix_scroll')
-			.stop()
-			.animate(
-				{
-					scrollTop: $('#fix_scroll')[0].scrollHeight
-				},
-				800
-			)
+		if (tmp) this.tempMessages.splice(0, 1, [message, color])
+		else this.messageHistory.push([message, color])
 	}
 }

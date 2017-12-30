@@ -27,48 +27,50 @@
 </template>
 
 <script>
-    import {Game} from '@/assets/js/game/Game.js'
-    // components
-    import gameDisplay from './components/GameDisplay.vue';
-    import itemTransferModal from './components/itemTransferModal.vue';
-    import hud from './components/HUD.vue';
-    import deathModal from './components/DeathModal.vue';
-    import helpDialog from './components/HelpDialog.vue'
-    Window.Game = Game;
-    export default {
-        name: 'app',
-        data () {
-            return {
-                player: null,
-                actors: null,
-            };
-        },
-        components: {
-            'game-display': gameDisplay,
-            'hud': hud,
-            'item-transfer-modal': itemTransferModal,
-            'death-modal': deathModal,
-            'help-dialog': helpDialog
-        },
-        created () {
-            Game.init();
-            this.player = Game.player;
-        },
-        mounted () {
-            $('#game_container').html(Game.display.getContainer());
-            $('#minimap_container').html(Game.minimap.getContainer());
-            Game.log("Welcome to Rotten Soup!", "information");
-            Game.log("Press ? to view the controls.", "player_move");
-            Game.drawViewPort();
-            Game.drawMiniMap();
-            Game.refreshDisplay();
-            setInterval(() => {
-                Game.turn++;
-                Game.updateDisplay();
-            }, 500)
-            this.player = Game.player;
-        },
-    }
+import { Game } from '@/assets/js/game/Game.js'
+// components
+import gameDisplay from './components/GameDisplay.vue'
+import itemTransferModal from './components/itemTransferModal.vue'
+import hud from './components/HUD.vue'
+import deathModal from './components/DeathModal.vue'
+import helpDialog from './components/HelpDialog.vue'
+Window.Game = Game
+export default {
+	name: 'app',
+	data() {
+		return {
+			player: null,
+			actors: null
+		}
+	},
+	components: {
+		'game-display': gameDisplay,
+		hud: hud,
+		'item-transfer-modal': itemTransferModal,
+		'death-modal': deathModal,
+		'help-dialog': helpDialog
+	},
+	created() {
+		Game.init()
+		this.player = Game.player
+	},
+	mounted() {
+		// $('#game_container').html(Game.display.getContainer());
+		// $('#minimap_container').html(Game.minimap.getContainer());
+		document.getElementById('game_container').appendChild(Game.display.getContainer())
+		document.getElementById('minimap_container').appendChild(Game.minimap.getContainer())
+		Game.log('Welcome to Rotten Soup!', 'information')
+		Game.log('Press ? to view the controls.', 'player_move')
+		Game.drawViewPort()
+		Game.drawMiniMap()
+		Game.refreshDisplay()
+		setInterval(() => {
+			Game.turn++
+			Game.updateDisplay()
+		}, 500)
+		this.player = Game.player
+	}
+}
 </script>
 <style>
     @import url('https://fonts.googleapis.com/css?family=Droid+Sans+Mono|PT+Mono');

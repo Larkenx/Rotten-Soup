@@ -42,7 +42,6 @@ export default class Player extends Actor {
 			examining: false,
 			blocked: true,
 			leveled_up: true,
-			tempMessage: {},
 			combat: {
 				/* options.combat, dedicated to all things related to combat */
 				description: [' attacked ', ' stabbed ', ' jabbed ', ' smashed '],
@@ -173,6 +172,7 @@ export default class Player extends Actor {
 		let endTurn = function() {
 			window.removeEventListener('keydown', this)
 			Game.engine.unlock()
+			Game.clearTempLog()
 		}
 
 		let restartTurn = function() {
@@ -251,6 +251,7 @@ export default class Player extends Actor {
 					this.targeting = false
 					Game.enemyCycle = null
 					Game.clearSelectedTile()
+					Game.clearTempLog()
 				} else if (cycleKeys.includes(code)) {
 					this.validTarget = Game.cycleThroughSelectableEnemies()
 				}
@@ -311,6 +312,7 @@ export default class Player extends Actor {
 					this.casting = false
 					Game.enemyCycle = null
 					Game.clearSelectedTile()
+					Game.clearTempLog()
 				} else if (cycleKeys.includes(code)) {
 					this.validTarget = Game.cycleThroughSelectableEnemies()
 				}
@@ -358,6 +360,7 @@ export default class Player extends Actor {
 					Game.log('You quit examining the area.', 'information')
 					this.examining = false
 					Game.clearSelectedTile()
+					Game.clearTempLog()
 				}
 			} else if (movementKeys.includes(keyMap[code])) {
 				let diff = ROT.DIRS[8][keyMap[code]]

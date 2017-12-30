@@ -10,7 +10,7 @@
             >
                 <v-tooltip bottom>
                     <span align-center>
-                        HP : {{enemy.getHP()}} / {{enemy.getMaxHP()}}<br />
+                        HP : {{enemy.cb.hp}} / {{enemy.cb.maxhp}}<br />
                         "{{enemy.description}}"<br />
                     </span>
                     <div class="enemy_col" fluid slot="activator">
@@ -19,7 +19,7 @@
                             </v-layout>
                             <v-layout row style="margin: 0px;">
                                 <v-flex xs12>
-                                    <v-progress-linear :value="(enemy.getHP() / enemy.getMaxHP()) * 100"
+                                    <v-progress-linear :value="(enemy.cb.hp / enemy.cb.maxhp()) * 100"
                                                        height="4"
                                                        color="error"
                                     ></v-progress-linear>
@@ -39,26 +39,26 @@
 </template>
 
 <script>
-    import {Game} from '@/assets/js/game/Game.js'
+import { Game } from '@/assets/js/game/Game.js'
 
-    /* import other components here */
-    export default {
-        data ()  {
-            return {
-                player: Game.player,
-                actors: Game.actors,
-                enemies: Game.player.nearbyEnemies,
-            }
-        },
-        methods: {
-            getNearbyEnemies() {
-                return Game.player.nearbyEnemies;
-            },
-        },
-        created () {
-            this.actors = Game.actors
-        }
-    }
+/* import other components here */
+export default {
+	data() {
+		return {
+			player: Game.player,
+			actors: Game.actors,
+			enemies: Game.player.nearbyEnemies
+		}
+	},
+	methods: {
+		getNearbyEnemies() {
+			return Game.player.nearbyEnemies
+		}
+	},
+	created() {
+		this.actors = Game.actors
+	}
+}
 </script>
 <style>
     .enemy_col {

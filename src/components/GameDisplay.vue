@@ -10,15 +10,21 @@
 </template>
 
 <script>
-    import itemTransferModal from './itemTransferModal.vue'
-    import messageLog from './MessageLog.vue';
-    /* import other components here */
-    export default {
-        components: {
-            'message-log': messageLog,
-            'item-transfer-modal': itemTransferModal
-        },
-    }
+import { Game } from '@/assets/js/game/Game.js'
+import itemTransferModal from './itemTransferModal.vue'
+import messageLog from './MessageLog.vue'
+/* import other components here */
+export default {
+	components: {
+		'message-log': messageLog,
+		'item-transfer-modal': itemTransferModal
+	},
+	data() {
+		return {
+			// gameContainer: Game.dispay.getContainer()
+		}
+	}
+}
 </script>
 <style>
 </style>
