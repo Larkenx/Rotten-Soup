@@ -13,8 +13,8 @@ import { SteelArrow } from '#/entities/items/weapons/ranged/ammo/Arrow.js'
 
 export default class Goblin extends StatelessAI {
 	constructor(x, y, id) {
-		let randomHP = getRandomInt(10, 15)
-		let randomStr = getRandomInt(5, 9)
+		let randomHP = getRandomInt(6, 9)
+		let randomStr = getRandomInt(1, 3)
 		super(
 			x,
 			y,

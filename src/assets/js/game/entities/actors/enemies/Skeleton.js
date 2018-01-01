@@ -8,7 +8,7 @@ import { corpseTypes } from '#/entities/items/misc/Corpse.js'
 
 export default class Skeleton extends SimpleEnemy {
 	constructor(x, y, id) {
-		let randomHP = getRandomInt(5, 15)
+		let randomHP = getRandomInt(10, 17)
 		let randomStr = getRandomInt(3, 6)
 		super(x, y, {
 			id: id,

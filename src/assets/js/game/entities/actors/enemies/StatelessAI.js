@@ -1,6 +1,6 @@
 import { Actor } from '#/entities/actors/Actor.js'
 import { Game } from '#/Game.js'
-import { getVisibleTiles } from '#/utils/HelperFunctions'
+import { getVisibleTiles, getDiceRoll, addPrefix } from '#/utils/HelperFunctions'
 
 import ROT from 'rot-js'
 
@@ -151,5 +151,20 @@ export class StatelessAI extends Actor {
 		} else {
 			actor.react(this)
 		}
+	}
+
+	attack(actor) {
+		let dmg = getDiceRoll(2, this.cb.str)
+
+		let len = this.cb.description.length
+		let evtdamage = `${addPrefix(this.name).capitalize()}${this.cb.description[Math.floor(Math.random() * len)]}${addPrefix(
+			actor.name
+		)} and dealt ${dmg} damage.`
+
+		if (Game.player === this) Game.log(evtdamage, 'player_move')
+		else Game.log(evtdamage, 'attack')
+
+		if (dmg > 0) actor.damage(dmg)
+		return dmg
 	}
 }

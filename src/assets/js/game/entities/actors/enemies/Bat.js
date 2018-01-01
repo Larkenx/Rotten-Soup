@@ -14,7 +14,7 @@ import { SteelArrow } from '#/entities/items/weapons/ranged/ammo/Arrow.js'
 export default class Bat extends StatelessAI {
 	constructor(x, y, id) {
 		let randomHP = getRandomInt(4, 8)
-		let randomStr = getRandomInt(3, 5)
+		let randomStr = getRandomInt(1, 2)
 		super(
 			x,
 			y,

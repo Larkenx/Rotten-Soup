@@ -1,7 +1,7 @@
 /**
  * Created by Larken on 6/22/2017.
  */
-import {Game} from '#/Game.js'
+import { Game } from '#/Game.js'
 import SimpleEnemy from '#/entities/actors/enemies/SimpleEnemy.js'
 
 export default class Rat extends SimpleEnemy {
@@ -25,12 +25,12 @@ export default class Rat extends SimpleEnemy {
 				/* current stats */
 				hp: 3,
 				mana: 0,
-				str: 6,
+				str: 1,
 				def: 0,
 				/* misc */
 				hostile: true,
 				range: 4,
-				invulnerable: false,
+				invulnerable: false
 			}
 		})
 	}

@@ -5,17 +5,16 @@ import SimpleEnemy from '#/entities/actors/enemies/SimpleEnemy.js'
 import HealthPotion from '#/entities/items/potions/HealthPotion.js'
 import StrengthPotion from '#/entities/items/potions/StrengthPotion.js'
 import ManaPotion from '#/entities/items/potions/ManaPotion.js'
-import {getRandomInt, getItemsFromDropTable} from '#/utils/HelperFunctions.js'
-import {Sword} from '#/entities/items/weapons/Sword.js'
-import {Game} from '#/Game.js'
+import { getRandomInt, getItemsFromDropTable } from '#/utils/HelperFunctions.js'
+import { Sword } from '#/entities/items/weapons/Sword.js'
+import { Game } from '#/Game.js'
 import ROT from 'rot-js'
-import {SteelArrow} from '#/entities/items/weapons/ranged/ammo/Arrow.js'
-
+import { SteelArrow } from '#/entities/items/weapons/ranged/ammo/Arrow.js'
 
 export default class Orc extends SimpleEnemy {
 	constructor(x, y, id, empowered = false) {
-		let randomHP = getRandomInt(25, 35)
-		let randomStr = getRandomInt(17, 23)
+		let randomHP = getRandomInt(30, 35)
+		let randomStr = getRandomInt(5, 10)
 		super(x, y, {
 			id: id,
 			name: empowered ? 'Empowered Orc' : 'orc',
@@ -38,22 +37,22 @@ export default class Orc extends SimpleEnemy {
 				hostile: true,
 				range: 5,
 				invulnerable: false,
-				empowered: empowered,
+				empowered: empowered
 			}
 		})
-		if (getRandomInt(1,10) < 5) {
+		if (getRandomInt(1, 10) < 5) {
 			let items = getItemsFromDropTable({
-				minItems : 0,
-				maxItems : 2,
-				dropTable : {
-					'STRENGTH_POTION': 1,
-					'HEALTH_POTION': 1,
-					'STEEL_ARROW': 1,
-					'MANA_POTION': 1,
-					'SWORD' : 1
+				minItems: 0,
+				maxItems: 2,
+				dropTable: {
+					STRENGTH_POTION: 1,
+					HEALTH_POTION: 1,
+					STEEL_ARROW: 1,
+					MANA_POTION: 1,
+					SWORD: 1
 				},
-				x : this.x,
-				y : this.y
+				x: this.x,
+				y: this.y
 			})
 			items.forEach(item => this.addToInventory(item))
 		}
@@ -71,5 +70,4 @@ export default class Orc extends SimpleEnemy {
 			actor.react(this)
 		}
 	}
-
 }

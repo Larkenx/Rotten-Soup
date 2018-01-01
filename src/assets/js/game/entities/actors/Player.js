@@ -46,12 +46,12 @@ export default class Player extends Actor {
 				/* options.combat, dedicated to all things related to combat */
 				description: [' attacked ', ' stabbed ', ' jabbed ', ' smashed '],
 				/* stat caps */
-				maxhp: 35,
+				maxhp: 50,
 				maxmana: 15,
 				/* current stats */
 				xp: 50,
 				level: 1,
-				hp: 35,
+				hp: 50,
 				mana: 15,
 				str: 1,
 				def: 1,

@@ -47,7 +47,7 @@ export let Game = {
 
 	init(dev = false) {
 		this.dev = dev
-		this.currentLevel = 'graveyard'
+		this.currentLevel = 'overworld'
 		this.levels['graveyard'] = new GameMap(graveyard)
 		this.levels['graveyard'].revealed = true
 		this.levels['overworld'] = new GameMap(overworldMap)
