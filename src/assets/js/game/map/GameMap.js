@@ -1,5 +1,5 @@
-import {Game, tileset} from '#/Game.js'
-import Tile, {getTileInfo} from '#/map/Tile.js'
+import { Game, tileset } from '#/Game.js'
+import Tile, { getTileInfo } from '#/map/Tile.js'
 // Entities
 import Player from '#/entities/actors/Player.js'
 import NPC from '#/entities/actors/NPC.js'
@@ -11,14 +11,14 @@ import Rat from '#/entities/actors/enemies/Rat.js'
 import Bat from '#/entities/actors/enemies/Bat.js'
 import Skeleton from '#/entities/actors/enemies/Skeleton.js'
 import Zombie from '#/entities/actors/enemies/Zombie.js'
-import {Corpse, corpseTypes} from '#/entities/items/misc/Corpse.js'
+import { Corpse, corpseTypes } from '#/entities/items/misc/Corpse.js'
 
 import Lich from '#/entities/actors/enemies/boss/Lich.js'
 // Items
 // Weapons
-import {createSword, Sword} from '#/entities/items/weapons/Sword.js'
-import {Bow, createBow} from '#/entities/items/weapons/ranged/Bow.js'
-import {SteelArrow} from '#/entities/items/weapons/ranged/ammo/Arrow.js'
+import { createSword, Sword } from '#/entities/items/weapons/Sword.js'
+import { Bow, createBow } from '#/entities/items/weapons/ranged/Bow.js'
+import { SteelArrow } from '#/entities/items/weapons/ranged/ammo/Arrow.js'
 // Potions
 import HealthPotion from '#/entities/items/potions/HealthPotion.js'
 import StrengthPotion from '#/entities/items/potions/StrengthPotion.js'
@@ -28,10 +28,9 @@ import Chest from '#/entities/misc/Chest.js'
 import Door from '#/entities/misc/Door.js'
 import LockedDoor from '#/entities/misc/LockedDoor.js'
 import Key from '#/entities/items/misc/Key.js'
+import { NecromancySpellBook } from '#/entities/items/misc/Spellbook.js'
 import Ladder from '#/entities/misc/Ladder.js'
 import LevelTransition from '#/entities/misc/LevelTransition.js'
-
-
 
 const entityShop = {
 	0: (x, y, id) => {
@@ -55,10 +54,12 @@ const entityShop = {
 	6: (x, y, id) => {
 		return new NPC(x, y, id)
 	},
-	7: (x, y, id) => { // normal Orc
+	7: (x, y, id) => {
+		// normal Orc
 		return new Orc(x, y, id)
 	},
-	8: (x, y, id) => { // empowered Orc
+	8: (x, y, id) => {
+		// empowered Orc
 		return new Orc(x, y, id, true)
 	},
 	9: (x, y, id) => {
@@ -94,26 +95,29 @@ const entityShop = {
 	19: (x, y, id) => {
 		return new Kobold(x, y, id)
 	},
-	20 : (x,y,id) => {
-		return new Bat(x,y,id)
+	20: (x, y, id) => {
+		return new Bat(x, y, id)
 	},
-	21 : (x,y,id) => {
-		return new Lich(x,y,id)
+	21: (x, y, id) => {
+		return new Lich(x, y, id)
 	},
-	22 : (x,y,id) => {
-		return new LevelTransition(x,y,id)
+	22: (x, y, id) => {
+		return new LevelTransition(x, y, id)
 	},
-	23 : (x,y,id) => {
-		return new Zombie(x,y,id)
+	23: (x, y, id) => {
+		return new Zombie(x, y, id)
 	},
-	24 : (x,y,id) => {
-		return new Skeleton(x,y,id)
+	24: (x, y, id) => {
+		return new Skeleton(x, y, id)
 	},
-	25 : (x,y,id) => {
+	25: (x, y, id) => {
 		return new Corpse(x, y, 'zombie', id)
 	},
-	26 : (x,y,id) => {
+	26: (x, y, id) => {
 		return new Corpse(x, y, 'skeleton', id)
+	},
+	27: (x, y, id) => {
+		return new NecromancySpellBook(x, y, id)
 	}
 }
 
@@ -130,10 +134,11 @@ export function createEntity(x, y, entity_id, frame_id) {
 	if (entity_id in entityShop) {
 		return entityShop[entity_id](x, y, frame_id)
 	} else {
-		throw `No entity assigned to ID ${entity_id} for frame ${frame_id} at ${x + ',' + y}`
+		throw `No entity assigned to ID ${entity_id} for frame ${
+			frame_id
+		} at ${x + ',' + y}`
 	}
 }
-
 
 /**
  * Created by Larken on 6/28/2017.
@@ -167,14 +172,11 @@ export class GameMap {
 			// Obstacle Layer
 			if (layer.properties.obstacles === true)
 				this.processObstacleLayer(layer)
-			else if (layer.properties.items === true)
-				itemLayers.push(layer)
+			else if (layer.properties.items === true) itemLayers.push(layer)
 			else if (layer.properties.actors === true)
 				this.processActorLayer(layer)
-			else if (layer.properties.portal === true)
-				portalLayers.push(layer)
-			else
-				throw 'A layer has been added to the map and is invalid'
+			else if (layer.properties.portal === true) portalLayers.push(layer)
+			else throw 'A layer has been added to the map and is invalid'
 		}
 		// if (this.playerLocation === null) throw "Error - no player starting position!";
 		// add chest items to chests where appropriate
@@ -205,15 +207,22 @@ export class GameMap {
 		for (let i = 0; i < this.height; i++) {
 			for (let j = 0; j < this.width; j++) {
 				let id = layer.data[i * this.width + j] - 1 // grab the id in the json data
-				if (id > 1) { // id of zero indicates no actor in this spot
+				if (id > 1) {
+					// id of zero indicates no actor in this spot
 					if (!this.loadedIDS.includes(id)) Game.loadedIDS.push(id)
 					let properties = getTileInfo(id)
-					if (properties.entity !== true) throw 'Bad entity creation for tile ' + id
+					if (properties.entity !== true)
+						throw 'Bad entity creation for tile ' + id
 					if (properties.entity_id === 0) {
 						this.playerLocation = [j, i]
 						this.playerID = id
 					} else {
-						let newActor = createEntity(j, i, properties.entity_id, id)
+						let newActor = createEntity(
+							j,
+							i,
+							properties.entity_id,
+							id
+						)
 						this.actors.push(newActor) // add to the list of all actors
 						this.data[i][j].actors.push(newActor) // also push to the tiles' actors
 					}
@@ -226,10 +235,12 @@ export class GameMap {
 		for (let i = 0; i < this.height; i++) {
 			for (let j = 0; j < this.width; j++) {
 				let id = layer.data[i * this.width + j] - 1 // grab the id in the json data
-				if (id > 1) { // id of zero indicates no actor in this spot
+				if (id > 1) {
+					// id of zero indicates no actor in this spot
 					if (!this.loadedIDS.includes(id)) Game.loadedIDS.push(id)
 					let properties = getTileInfo(id)
-					if (properties.entity !== true) throw 'Bad entity creation for tile ' + id
+					if (properties.entity !== true)
+						throw 'Bad entity creation for tile ' + id
 					let newActor = createEntity(j, i, properties.entity_id, id)
 					this.actors.push(newActor) // add to the list of all actors
 					this.findActor(j, i).addToInventory(newActor)
@@ -242,13 +253,16 @@ export class GameMap {
 		for (let i = 0; i < this.height; i++) {
 			for (let j = 0; j < this.width; j++) {
 				let id = layer.data[i * this.width + j] - 1 // grab the id in the json data
-				if (id > 1) { // id of zero indicates no actor in this spot
+				if (id > 1) {
+					// id of zero indicates no actor in this spot
 					if (!this.loadedIDS.includes(id)) Game.loadedIDS.push(id)
 					let properties = getTileInfo(id)
 					// now we've got a portal cell that tells us where a ladder should lead
 					// find the ladder at this location
-					let ladders = this.data[i][j].actors.filter((a) => {
-						return (a instanceof Ladder || a instanceof LevelTransition) // throwing in condition that it can also be level transition
+					let ladders = this.data[i][j].actors.filter(a => {
+						return (
+							a instanceof Ladder || a instanceof LevelTransition
+						) // throwing in condition that it can also be level transition
 					})
 					if (ladders.length === 0) {
 						throw 'tried to create a portal link for a ladder or level transition but neither was found'
@@ -260,13 +274,11 @@ export class GameMap {
 		}
 	}
 
-
 	print() {
 		let buf = ''
 		for (let i = 0; i < this.height; i++) {
 			let row = ''
-			for (let j = 0; j < this.width; j++)
-				row += this.data[i][j].symbol //+ " ";
+			for (let j = 0; j < this.width; j++) row += this.data[i][j].symbol //+ " ";
 			buf += row + '\n'
 		}
 
@@ -276,21 +288,22 @@ export class GameMap {
              the new line character in each line of the buffer, which is equal
              to the actor's y coord. */
 			let index = actor.y * this.width + actor.x + actor.y
-			buf = buf.substr(0, index)
-                + actor.symbol
-                + buf.substr(index + 1)
+			buf = buf.substr(0, index) + actor.symbol + buf.substr(index + 1)
 		}
 		console.log(buf)
 	}
 
 	findActor(x, y) {
-		let chests = this.data[y][x].actors.filter((a) => {
+		let chests = this.data[y][x].actors.filter(a => {
 			return a instanceof Chest
 		})
 		// if there are no chests, then that means we need to find an actor who should have all of the items added to
 		if (chests.length === 0) {
 			let possibleActors = this.data[y][x].actors
-			if (possibleActors.length === 0) throw `There's no actor in which an item can be placed at (${x},${y})`
+			if (possibleActors.length === 0)
+				throw `There's no actor in which an item can be placed at (${
+					x
+				},${y})`
 			return possibleActors[0]
 		} else {
 			return chests[0]

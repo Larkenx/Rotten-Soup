@@ -2428,6 +2428,11 @@
         {
          "blocked":true
         },
+     "3264":
+        {
+         "entity":true,
+         "entity_id":"27"
+        },
      "33":
         {
          "animated":false,
@@ -7538,10 +7543,14 @@
         },
      "4892":
         {
+         "animated":true,
+         "animated_id":4900,
          "blocked":true
         },
      "4893":
         {
+         "animated":true,
+         "animated_id":4901,
          "blocked":true
         },
      "4894":
@@ -34646,6 +34655,11 @@
         {
          "blocked":"bool"
         },
+     "3264":
+        {
+         "entity":"bool",
+         "entity_id":"string"
+        },
      "33":
         {
          "animated":"bool",
@@ -39756,10 +39770,14 @@
         },
      "4892":
         {
+         "animated":"bool",
+         "animated_id":"int",
          "blocked":"bool"
         },
      "4893":
         {
+         "animated":"bool",
+         "animated_id":"int",
          "blocked":"bool"
         },
      "4894":
