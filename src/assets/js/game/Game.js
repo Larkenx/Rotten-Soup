@@ -64,8 +64,7 @@ export let Game = {
 		this.playerID = this.map.playerID
 		// Set up the ROT.JS game display
 		let tileSet = document.createElement('img')
-		tileSet.src =
-			'static/images/DawnLike/Compiled/compiled_tileset_32x32.png'
+		tileSet.src = 'static/images/DawnLike/Compiled/compiled_tileset_32x32.png'
 		let tileSize = 32
 		let tileMap = {}
 		/* for (let id of this.loadedIDS) { */
@@ -74,24 +73,16 @@ export let Game = {
 			if (id in tileset.tileproperties) {
 				let properties = tileset.tileproperties[id]
 				if (properties.FOV) {
-					tileMap[properties.FOV_id] = getTilesetCoords(
-						properties.FOV_id
-					)
+					tileMap[properties.FOV_id] = getTilesetCoords(properties.FOV_id)
 				}
 				if (properties.animated) {
-					tileMap[properties.animated_id] = getTilesetCoords(
-						properties.animated_id
-					)
+					tileMap[properties.animated_id] = getTilesetCoords(properties.animated_id)
 				}
 				if (properties.animated && properties.FOV) {
-					tileMap[properties.animated_fov_id] = getTilesetCoords(
-						properties.animated_fov_id
-					)
+					tileMap[properties.animated_fov_id] = getTilesetCoords(properties.animated_fov_id)
 				}
 				if (properties.activated_id) {
-					tileMap[properties.activated_id] = getTilesetCoords(
-						properties.activated_id
-					)
+					tileMap[properties.activated_id] = getTilesetCoords(properties.activated_id)
 				}
 			}
 		}
@@ -108,24 +99,12 @@ export let Game = {
 			tileColorize: true
 		}
 
-		this.width =
-			this.map.width < this.displayOptions.width
-				? this.map.width
-				: this.displayOptions.width
-		this.height =
-			this.map.height < this.displayOptions.height
-				? this.map.height
-				: this.displayOptions.height
+		this.width = this.map.width < this.displayOptions.width ? this.map.width : this.displayOptions.width
+		this.height = this.map.height < this.displayOptions.height ? this.map.height : this.displayOptions.height
 		this.display = new ROT.Display(this.displayOptions)
-		this.player = new Player(
-			this.playerLocation[0],
-			this.playerLocation[1],
-			this.playerID
-		)
+		this.player = new Player(this.playerLocation[0], this.playerLocation[1], this.playerID)
 		this.map.actors.push(this.player) // add to the list of all actors
-		this.map.data[this.playerLocation[1]][
-			this.playerLocation[0]
-		].actors.push(this.player) // also push to the tiles' actors
+		this.map.data[this.playerLocation[1]][this.playerLocation[0]].actors.push(this.player) // also push to the tiles' actors
 		this.scheduleAllActors()
 		this.drawViewPort()
 		this.initializeMinimap()
@@ -147,10 +126,7 @@ export let Game = {
 		this.scheduler.add(this.player, true) // Add the player to the scheduler
 		for (let i = 0; i < this.map.actors.length; i++) {
 			// Some 'actor' objects do not take turns, such as ladders / items
-			if (
-				this.map.actors[i] !== this.player &&
-				this.map.actors[i] instanceof Actor
-			) {
+			if (this.map.actors[i] !== this.player && this.map.actors[i] instanceof Actor) {
 				this.scheduler.add(this.map.actors[i], true)
 			}
 		}
@@ -182,13 +158,9 @@ export let Game = {
 		if (this.levels[newLevel] === undefined) {
 			// generating a new random room
 			if (newLevel.toLowerCase().includes('cave')) {
-				this.levels[newLevel] = new GameMap(
-					randomCave(80, 40, dir, level)
-				)
+				this.levels[newLevel] = new GameMap(randomCave(80, 40, dir, level))
 			} else {
-				this.levels[newLevel] = new GameMap(
-					randomDungeon(40, 40, dir, level)
-				)
+				this.levels[newLevel] = new GameMap(randomDungeon(40, 40, dir, level))
 			}
 			this.levels[newLevel].revealed = false
 			for (let actor of this.levels[newLevel].actors) {
@@ -227,14 +199,8 @@ export let Game = {
 		// before drawing the viewport, we need to clear the screen of whatever was here last
 		this.display.clear()
 
-		this.width =
-			this.map.width < this.displayOptions.width
-				? this.map.width
-				: this.displayOptions.width
-		this.height =
-			this.map.height < this.displayOptions.height
-				? this.map.height
-				: this.displayOptions.height
+		this.width = this.map.width < this.displayOptions.width ? this.map.width : this.displayOptions.width
+		this.height = this.map.height < this.displayOptions.height ? this.map.height : this.displayOptions.height
 		this.scheduleAllActors()
 		this.drawViewPort()
 		this.minimap.setOptions({
@@ -278,10 +244,7 @@ export let Game = {
 			x: startingPos[0],
 			y: startingPos[1]
 		}
-		let endingPos = [
-			startingPos[0] + camera.width,
-			startingPos[1] + camera.height
-		]
+		let endingPos = [startingPos[0] + camera.width, startingPos[1] + camera.height]
 		let dx = 0
 		let dy = 0
 		// Clear the last visible tiles that were available to be seen
@@ -293,14 +256,9 @@ export let Game = {
 			return Game.inbounds(x, y) && Game.map.data[y][x].visible()
 		})
 
-		fov.compute(
-			this.player.x,
-			this.player.y,
-			this.player.cb.range,
-			function(x, y, r, visibility) {
-				Game.map.visible_tiles[x + ',' + y] = true
-			}
-		)
+		fov.compute(this.player.x, this.player.y, this.player.cb.range, function(x, y, r, visibility) {
+			Game.map.visible_tiles[x + ',' + y] = true
+		})
 
 		for (let x = startingPos[0]; x < endingPos[0]; x++) {
 			for (let y = startingPos[1]; y < endingPos[1]; y++) {
@@ -327,13 +285,7 @@ export let Game = {
 		// if (symbols.some((e) => {return e === "0"})) throw "A tile is empty!"
 		// console.log(this.pathToTarget[x+','+y]);
 		if (this.pathToTarget[tile.x + ',' + tile.y]) {
-			Game.display.draw(
-				x,
-				y,
-				symbols,
-				'rgba(250,250,0,0.2)',
-				'rgba(250,250,0,0.2)'
-			)
+			Game.display.draw(x, y, symbols, 'rgba(250,250,0,0.2)', 'rgba(250,250,0,0.2)')
 		} else {
 			Game.display.draw(x, y, symbols, 'transparent', 'transparent')
 		}
@@ -348,13 +300,7 @@ export let Game = {
 				for (let x = 0; x < this.map.width; x++) {
 					let tile = this.map.data[y][x]
 					if (tile.x + ',' + tile.y in this.map.visible_tiles) {
-						this.minimap.draw(
-							x,
-							y,
-							' ',
-							tile.bg(),
-							this.brightenColor(tile.bg())
-						)
+						this.minimap.draw(x, y, ' ', tile.bg(), this.brightenColor(tile.bg()))
 					} else {
 						this.minimap.draw(x, y, ' ', tile.bg(), tile.bg())
 					}
@@ -369,13 +315,7 @@ export let Game = {
 				for (let x = 0; x < this.map.width; x++) {
 					let tile = this.map.data[y][x]
 					if (tile.x + ',' + tile.y in this.map.visible_tiles) {
-						this.minimap.draw(
-							x,
-							y,
-							' ',
-							tile.bg(),
-							this.brightenColor(tile.bg())
-						)
+						this.minimap.draw(x, y, ' ', tile.bg(), this.brightenColor(tile.bg()))
 					} else if (tile.x + ',' + tile.y in this.map.seen_tiles) {
 						this.minimap.draw(x, y, ' ', tile.bg(), tile.bg())
 					}
@@ -432,10 +372,7 @@ export let Game = {
 			x: startingPos[0],
 			y: startingPos[1]
 		}
-		let endingPos = [
-			startingPos[0] + camera.width,
-			startingPos[1] + camera.height
-		]
+		let endingPos = [startingPos[0] + camera.width, startingPos[1] + camera.height]
 		let dx = 0
 		let dy = 0
 		let actors = []
@@ -464,9 +401,7 @@ export let Game = {
 		return enemies.sort((a1, a2) => {
 			if (a1.distanceTo(this.player) < a2.distanceTo(this.player)) {
 				return -1
-			} else if (
-				a2.distanceTo(this.player) < a1.distanceTo(this.player)
-			) {
+			} else if (a2.distanceTo(this.player) < a1.distanceTo(this.player)) {
 				return 1
 			} else {
 				return 0
@@ -486,17 +421,10 @@ export let Game = {
 			id: 7419
 		}
 		if (this.selectedTile !== null) {
-			let actors = Game.map.data[this.selectedTile.y][
-				this.selectedTile.x
-			].actors.filter(obs => {
-				return (
-					obs.id !== targetingBorders.id &&
-					obs.id !== untargetableBorders.id
-				)
+			let actors = Game.map.data[this.selectedTile.y][this.selectedTile.x].actors.filter(obs => {
+				return obs.id !== targetingBorders.id && obs.id !== untargetableBorders.id
 			})
-			Game.map.data[this.selectedTile.y][
-				this.selectedTile.x
-			].actors = actors
+			Game.map.data[this.selectedTile.y][this.selectedTile.x].actors = actors
 			this.selectedTile = null
 			this.pathToTarget = {}
 		}
@@ -535,10 +463,7 @@ export let Game = {
 				return
 			}
 			let actors = Game.map.data[tile.y][tile.x].actors.filter(obs => {
-				return (
-					obs.id !== targetingBorders.id &&
-					obs.id !== untargetableBorders.id
-				)
+				return obs.id !== targetingBorders.id && obs.id !== untargetableBorders.id
 			})
 			Game.map.data[tile.y][tile.x].actors = actors
 		}
@@ -550,13 +475,10 @@ export let Game = {
 		let { x, y } = this.selectedTile
 		let mapTile = Game.map.data[this.selectedTile.y][this.selectedTile.x]
 		let properBorder =
-			mapTile.blocked() ||
-			this.map.visible_tiles[x + ',' + y] === undefined
+			mapTile.blocked() || this.map.visible_tiles[x + ',' + y] === undefined
 				? untargetableBorders
 				: targetingBorders
-		this.map.data[this.selectedTile.y][this.selectedTile.x].actors.push(
-			properBorder
-		)
+		this.map.data[this.selectedTile.y][this.selectedTile.x].actors.push(properBorder)
 		// highlighting the path from the player to the target reticle using bresenham line algorithm
 		/* https://rosettacode.org/wiki/Bitmap/Bresenham%27s_line_algorithm#JavaScript */
 		this.pathToTarget = {}
@@ -636,15 +558,10 @@ export let Game = {
 		this.selectedTile = loc
 		let mapTile = Game.map.data[this.selectedTile.y][this.selectedTile.x]
 		let properBorder =
-			mapTile.blocked() ||
-			this.map.visible_tiles[
-				this.selectedTile.x + ',' + this.selectedTile.y
-			] === undefined
+			mapTile.blocked() || this.map.visible_tiles[this.selectedTile.x + ',' + this.selectedTile.y] === undefined
 				? untargetableBorders
 				: targetingBorders
-		this.map.data[this.selectedTile.y][this.selectedTile.x].actors.push(
-			properBorder
-		)
+		this.map.data[this.selectedTile.y][this.selectedTile.x].actors.push(properBorder)
 		this.pathToTarget = {}
 		if (properBorder === targetingBorders) {
 			let x0 = this.player.x,
@@ -685,9 +602,7 @@ export let Game = {
 				return a instanceof Entity && a !== this.player
 			})
 			.map(a => {
-				return a instanceof Item
-					? a.type.toLowerCase()
-					: a.name.toLowerCase()
+				return a instanceof Item ? a.type.toLowerCase() : a.name.toLowerCase()
 			})
 		let prettyNames = []
 		prettyNames = names.slice(1, -1).reduce((buf, str) => {
