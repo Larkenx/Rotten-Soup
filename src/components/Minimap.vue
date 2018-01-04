@@ -1,16 +1,17 @@
 <template>
-        <v-flex align-center id="minimap_container"style="text-xs-center"></v-flex>
+        <v-layout row class="text-xs-center">
+            <v-flex xs10 fluid id="minimap_container"></v-flex>
+        </v-layout>
 </template>
 
 <script>
-    /* import other components here */
-    export default {
-        data() {
-            return {};
-        },
-        methods: {},
-    }
-
+/* import other components here */
+export default {
+	data() {
+		return {}
+	},
+	methods: {}
+}
 </script>
 <style>
 </style>

@@ -35,58 +35,61 @@
             </v-layout>
         </v-flex>
         <!-- Defence -->
-        <v-flex class="stat-row">
+        <!-- <v-flex class="stat-row">
             <v-layout   row align-center>
                 <v-flex md1 style="min-width: 70px;" col><b>Defence</b></v-flex>
                 <v-flex md3 col style="padding-left: 5px;">{{getDefence()}}</v-flex>
             </v-layout>
-        </v-flex>
+        </v-flex> -->
     </v-container>
 </template>
 
 <script>
-import {Game} from '@/assets/js/game/Game.js'
-import {xp_levels} from '#/entities/Entity.js'
+import { Game } from '@/assets/js/game/Game.js'
+import { xp_levels } from '#/entities/Entity.js'
 
 export default {
-    data() {
-        return {
-            player: Game.player,
-        }
-    },
-    methods : {
-        getHP () {
-            return Game.player.cb.hp;
-        },
-        getMaxHP() {
-            return Game.player.cb.maxhp;
-        },
-        getMana() {
-            return Game.player.cb.mana;
-        },
-        getMaxMana() {
-            return Game.player.cb.maxmana;
-        },
-        getStrength() {
-            return Game.player.cb.str;
-        },
-        getDefence() {
-            return Game.player.cb.def;
-        },
-        getDamageRange() {
-            return Game.player.getMinDmg() + "-" + Game.player.getMaxDmg();
-        },
-        getLevel() {
-            return Game.player.cb.level;
-        },
-        getRemainingXP() {
-            return Game.player.remainingXP();
-        },
-        getPercentToLevel() {
-            let experienceTowardsNext = xp_levels[this.getLevel()+1] - this.getRemainingXP();
-            return experienceTowardsNext / xp_levels[this.getLevel()+1];
-        }
-    }
+	data() {
+		return {
+			player: Game.player
+		}
+	},
+	methods: {
+		getHP() {
+			return Game.player.cb.hp
+		},
+		getMaxHP() {
+			return Game.player.cb.maxhp
+		},
+		getMana() {
+			return Game.player.cb.mana
+		},
+		getMaxMana() {
+			return Game.player.cb.maxmana
+		},
+		getStrength() {
+			return Game.player.cb.str
+		},
+		getDefence() {
+			return Game.player.cb.def
+		},
+		getDamageRange() {
+			if (Game.player.getMinDmg() === Game.player.getMaxDmg()) return Game.player.getMinDmg()
+
+			return Game.player.getMinDmg() + '-' + Game.player.getMaxDmg()
+		},
+		getLevel() {
+			return Game.player.cb.level
+		},
+		getRemainingXP() {
+			return Game.player.remainingXP()
+		},
+		getPercentToLevel() {
+			let costOfLevel = xp_levels[this.getLevel()] - xp_levels[this.getLevel() - 1]
+			let expTowards = Game.player.cb.xp - xp_levels[this.getLevel() - 1]
+			return expTowards / costOfLevel
+		}
+	}
 }
 </script>
 <style>

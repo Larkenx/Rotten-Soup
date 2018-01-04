@@ -79,7 +79,7 @@
          "FOV_id":0,
          "animated":false,
          "animated_id":0,
-         "bg":"brown",
+         "bg":"#4D494D",
          "blocked":false,
          "blocks_vision":false,
          "entity":false
@@ -90,7 +90,7 @@
          "FOV_id":0,
          "animated":false,
          "animated_id":0,
-         "bg":"brown",
+         "bg":"#4D494D",
          "blocked":false,
          "blocks_vision":false,
          "entity":false
@@ -101,7 +101,7 @@
          "FOV_id":0,
          "animated":false,
          "animated_id":0,
-         "bg":"brown",
+         "bg":"#4D494D",
          "blocked":false,
          "blocks_vision":false,
          "entity":false
@@ -112,7 +112,7 @@
          "FOV_id":0,
          "animated":false,
          "animated_id":0,
-         "bg":"brown",
+         "bg":"#4D494D",
          "blocked":false,
          "blocks_vision":false,
          "entity":false
@@ -123,7 +123,7 @@
          "FOV_id":0,
          "animated":false,
          "animated_id":0,
-         "bg":"brown",
+         "bg":"#4D494D",
          "blocked":false,
          "blocks_vision":false,
          "entity":false
@@ -134,7 +134,7 @@
          "FOV_id":0,
          "animated":false,
          "animated_id":0,
-         "bg":"brown",
+         "bg":"#4D494D",
          "blocked":false,
          "blocks_vision":false,
          "entity":false
@@ -145,7 +145,7 @@
          "FOV_id":0,
          "animated":false,
          "animated_id":0,
-         "bg":"brown",
+         "bg":"#4D494D",
          "blocked":false,
          "blocks_vision":false,
          "entity":false
@@ -395,6 +395,10 @@
      "10056":
         {
          "bg":"#00cc33"
+        },
+     "10063":
+        {
+         "blocked":true
         },
      "10080":
         {
@@ -802,7 +806,7 @@
          "FOV_id":0,
          "animated":false,
          "animated_id":0,
-         "bg":"brown",
+         "bg":"#4D494D",
          "blocked":false,
          "blocks_vision":false,
          "entity":false
@@ -813,7 +817,7 @@
          "FOV_id":0,
          "animated":false,
          "animated_id":0,
-         "bg":"brown",
+         "bg":"#4D494D",
          "blocked":false,
          "blocks_vision":false,
          "entity":false
@@ -824,7 +828,7 @@
          "FOV_id":0,
          "animated":false,
          "animated_id":0,
-         "bg":"brown",
+         "bg":"#4D494D",
          "blocked":false,
          "blocks_vision":false,
          "entity":false
@@ -835,7 +839,7 @@
          "FOV_id":0,
          "animated":false,
          "animated_id":0,
-         "bg":"brown",
+         "bg":"#4D494D",
          "blocked":false,
          "blocks_vision":false,
          "entity":false
@@ -846,7 +850,7 @@
          "FOV_id":0,
          "animated":false,
          "animated_id":0,
-         "bg":"brown",
+         "bg":"#4D494D",
          "blocked":false,
          "blocks_vision":false,
          "entity":false
@@ -857,7 +861,7 @@
          "FOV_id":0,
          "animated":false,
          "animated_id":0,
-         "bg":"brown",
+         "bg":"#4D494D",
          "blocked":false,
          "blocks_vision":false,
          "entity":false
@@ -868,7 +872,7 @@
          "FOV_id":0,
          "animated":false,
          "animated_id":0,
-         "bg":"brown",
+         "bg":"#4D494D",
          "blocked":false,
          "blocks_vision":false,
          "entity":false
@@ -1118,6 +1122,39 @@
      "10176":
         {
          "bg":"#00cc33"
+        },
+     "10384":
+        {
+         "FOV":true,
+         "FOV_id":8224,
+         "animated":false,
+         "animated_id":0,
+         "bg":"green",
+         "blocked":false,
+         "blocks_vision":false,
+         "entity":false
+        },
+     "10744":
+        {
+         "FOV":true,
+         "FOV_id":0,
+         "animated":false,
+         "animated_id":0,
+         "bg":"green",
+         "blocked":false,
+         "blocks_vision":false,
+         "entity":false
+        },
+     "11104":
+        {
+         "FOV":true,
+         "FOV_id":0,
+         "animated":false,
+         "animated_id":0,
+         "bg":"#00cc33",
+         "blocked":false,
+         "blocks_vision":false,
+         "entity":false
         },
      "11880":
         {
@@ -1447,6 +1484,13 @@
         {
          "entity":true,
          "entity_id":5
+        },
+     "1475":
+        {
+         "animated":true,
+         "animated_id":1499,
+         "entity":true,
+         "entity_id":"6"
         },
      "1482":
         {
@@ -2094,6 +2138,25 @@
          "FOV":false,
          "bg":"darkgreen"
         },
+     "2280":
+        {
+         "entity":true,
+         "entity_id":"25"
+        },
+     "2314":
+        {
+         "animated":true,
+         "animated_id":2322,
+         "entity":true,
+         "entity_id":"23"
+        },
+     "2317":
+        {
+         "animated":true,
+         "animated_id":2325,
+         "entity":true,
+         "entity_id":"23"
+        },
      "232":
         {
          "entity":true,
@@ -2154,6 +2217,25 @@
          "animated_id":15,
          "entity":true,
          "entity_id":15
+        },
+     "2552":
+        {
+         "animated":true,
+         "animated_id":2560,
+         "entity":true,
+         "entity_id":"24"
+        },
+     "2558":
+        {
+         "animated":true,
+         "animated_id":2566,
+         "entity":true,
+         "entity_id":"21"
+        },
+     "2647":
+        {
+         "entity":true,
+         "entity_id":"25"
         },
      "2736":
         {
@@ -2345,6 +2427,11 @@
      "3221":
         {
          "blocked":true
+        },
+     "3264":
+        {
+         "entity":true,
+         "entity_id":"27"
         },
      "33":
         {
@@ -2590,56 +2677,56 @@
          "animated":true,
          "animated_id":0,
          "entity":true,
-         "entity_id":0
+         "entity_id":6
         },
      "3854":
         {
          "animated":true,
          "animated_id":0,
          "entity":true,
-         "entity_id":0
+         "entity_id":6
         },
      "3855":
         {
          "animated":true,
          "animated_id":0,
          "entity":true,
-         "entity_id":0
+         "entity_id":6
         },
      "3856":
         {
          "animated":true,
-         "animated_id":0,
+         "animated_id":3864,
          "entity":true,
-         "entity_id":0
+         "entity_id":6
         },
      "3857":
         {
          "animated":true,
          "animated_id":0,
          "entity":true,
-         "entity_id":0
+         "entity_id":6
         },
      "3858":
         {
          "animated":true,
          "animated_id":0,
          "entity":true,
-         "entity_id":0
+         "entity_id":6
         },
      "3859":
         {
          "animated":true,
          "animated_id":0,
          "entity":true,
-         "entity_id":0
+         "entity_id":6
         },
      "3860":
         {
          "animated":true,
          "animated_id":0,
          "entity":true,
-         "entity_id":0
+         "entity_id":6
         },
      "3861":
         {
@@ -3146,51 +3233,51 @@
      "3973":
         {
          "animated":true,
-         "animated_id":0,
+         "animated_id":3981,
          "entity":true,
-         "entity_id":0
+         "entity_id":6
         },
      "3974":
         {
          "animated":true,
-         "animated_id":0,
+         "animated_id":3982,
          "entity":true,
-         "entity_id":0
+         "entity_id":6
         },
      "3975":
         {
          "animated":true,
          "animated_id":0,
          "entity":true,
-         "entity_id":0
+         "entity_id":6
         },
      "3976":
         {
          "animated":true,
          "animated_id":0,
          "entity":true,
-         "entity_id":0
+         "entity_id":6
         },
      "3977":
         {
          "animated":true,
          "animated_id":0,
          "entity":true,
-         "entity_id":0
+         "entity_id":6
         },
      "3978":
         {
          "animated":true,
          "animated_id":0,
          "entity":true,
-         "entity_id":0
+         "entity_id":6
         },
      "3979":
         {
          "animated":true,
          "animated_id":0,
          "entity":true,
-         "entity_id":0
+         "entity_id":6
         },
      "3980":
         {
@@ -4831,9 +4918,9 @@
      "4335":
         {
          "animated":true,
-         "animated_id":0,
+         "animated_id":4343,
          "entity":true,
-         "entity_id":0
+         "entity_id":6
         },
      "4336":
         {
@@ -6899,7 +6986,7 @@
         },
      "4774":
         {
-         "blocked":true
+         "blocked":false
         },
      "4775":
         {
@@ -7450,18 +7537,26 @@
         },
      "4891":
         {
+         "animated":true,
+         "animated_id":4899,
          "blocked":true
         },
      "4892":
         {
+         "animated":true,
+         "animated_id":4900,
          "blocked":true
         },
      "4893":
         {
+         "animated":true,
+         "animated_id":4901,
          "blocked":true
         },
      "4894":
         {
+         "animated":true,
+         "animated_id":4902,
          "blocked":true
         },
      "4895":
@@ -9610,61 +9705,61 @@
         },
      "5368":
         {
-         "blocked":"true"
+         "blocked":true
         },
      "5369":
         {
-         "blocked":"true"
+         "blocked":true
         },
      "5370":
         {
-         "blocked":"true"
+         "blocked":true
         },
      "5371":
         {
-         "blocked":"true"
+         "blocked":true
         },
      "5372":
         {
          "animated":true,
          "animated_id":5380,
-         "blocked":"true"
+         "blocked":true
         },
      "5373":
         {
-         "blocked":"true"
+         "blocked":true
         },
      "5374":
         {
-         "blocked":"true"
+         "blocked":true
         },
      "5375":
         {
-         "blocked":"true"
+         "blocked":true
         },
      "5376":
         {
-         "blocked":"true"
+         "blocked":true
         },
      "5377":
         {
-         "blocked":"true"
+         "blocked":true
         },
      "5378":
         {
-         "blocked":"true"
+         "blocked":true
         },
      "5379":
         {
-         "blocked":"true"
+         "blocked":true
         },
      "5380":
         {
-         "blocked":"true"
+         "blocked":true
         },
      "5381":
         {
-         "blocked":"true"
+         "blocked":true
         },
      "5382":
         {
@@ -10138,61 +10233,65 @@
         },
      "5488":
         {
-         "blocked":"true"
+         "blocked":true
         },
      "5489":
         {
-         "blocked":"true"
+         "animated":true,
+         "animated_id":5497,
+         "blocked":false,
+         "entity":true,
+         "entity_id":"26"
         },
      "5490":
         {
-         "blocked":"true"
+         "blocked":true
         },
      "5491":
         {
-         "blocked":"true"
+         "blocked":true
         },
      "5492":
         {
          "animated":true,
          "animated_id":5500,
-         "blocked":"true"
+         "blocked":true
         },
      "5493":
         {
-         "blocked":"true"
+         "blocked":true
         },
      "5494":
         {
-         "blocked":"true"
+         "blocked":true
         },
      "5495":
         {
-         "blocked":"true"
+         "blocked":true
         },
      "5496":
         {
-         "blocked":"true"
+         "blocked":true
         },
      "5497":
         {
-         "blocked":"true"
+         "blocked":true
         },
      "5498":
         {
-         "blocked":"true"
+         "blocked":true
         },
      "5499":
         {
-         "blocked":"true"
+         "blocked":true
         },
      "5500":
         {
-         "blocked":"true"
+         "blocked":true
         },
      "5501":
         {
-         "blocked":"true"
+         "blocked":true
         },
      "5502":
         {
@@ -12120,9 +12219,66 @@
          "animated_id":0,
          "entity":false
         },
-     "60":
+     "5968":
         {
          "blocked":true
+        },
+     "5969":
+        {
+         "blocked":true
+        },
+     "5970":
+        {
+         "blocked":true
+        },
+     "5971":
+        {
+         "blocked":true
+        },
+     "5972":
+        {
+         "blocked":true
+        },
+     "5973":
+        {
+         "blocked":true
+        },
+     "5974":
+        {
+         "blocked":true
+        },
+     "5975":
+        {
+         "blocked":true
+        },
+     "5976":
+        {
+         "blocked":true
+        },
+     "5977":
+        {
+         "blocked":true
+        },
+     "5978":
+        {
+         "blocked":true
+        },
+     "5979":
+        {
+         "blocked":true
+        },
+     "5980":
+        {
+         "blocked":true
+        },
+     "60":
+        {
+         "activated_id":68,
+         "animated":false,
+         "animated_id":0,
+         "blocked":true,
+         "entity":true,
+         "entity_id":10
         },
      "608":
         {
@@ -12131,7 +12287,59 @@
          "entity":true,
          "entity_id":13
         },
+     "6088":
+        {
+         "blocked":true
+        },
+     "6089":
+        {
+         "blocked":true
+        },
+     "6090":
+        {
+         "blocked":true
+        },
+     "6091":
+        {
+         "blocked":true
+        },
+     "6092":
+        {
+         "blocked":true
+        },
+     "6093":
+        {
+         "blocked":true
+        },
+     "6094":
+        {
+         "blocked":true
+        },
+     "6095":
+        {
+         "blocked":true
+        },
+     "6096":
+        {
+         "blocked":true
+        },
+     "6097":
+        {
+         "blocked":true
+        },
+     "6098":
+        {
+         "blocked":true
+        },
+     "6099":
+        {
+         "blocked":true
+        },
      "61":
+        {
+         "blocked":true
+        },
+     "6100":
         {
          "blocked":true
         },
@@ -12151,11 +12359,19 @@
         {
          "blocked":true
         },
+     "6330":
+        {
+         "blocked":true
+        },
      "6336":
         {
          "blocked":true
         },
      "6337":
+        {
+         "blocked":true
+        },
+     "6338":
         {
          "blocked":true
         },
@@ -12168,6 +12384,14 @@
          "animated":true,
          "animated_id":6457,
          "blocked":true
+        },
+     "6464":
+        {
+         "animated":true,
+         "animated_id":6472,
+         "bg":"red",
+         "blocked":true,
+         "blocks_vision":false
         },
      "65":
         {
@@ -14188,7 +14412,7 @@
          "FOV_id":0,
          "animated":false,
          "animated_id":0,
-         "bg":"#00cc33",
+         "bg":"black",
          "blocked":false,
          "blocks_vision":false,
          "entity":false
@@ -14919,7 +15143,7 @@
          "FOV_id":0,
          "animated":false,
          "animated_id":0,
-         "bg":"darkgreen",
+         "bg":"#383538",
          "blocked":true,
          "blocks_vision":true,
          "entity":false
@@ -14930,7 +15154,7 @@
          "FOV_id":0,
          "animated":false,
          "animated_id":0,
-         "bg":"darkgreen",
+         "bg":"#383538",
          "blocked":true,
          "blocks_vision":true,
          "entity":false
@@ -14941,7 +15165,7 @@
          "FOV_id":0,
          "animated":false,
          "animated_id":0,
-         "bg":"darkgreen",
+         "bg":"#383538",
          "blocked":true,
          "blocks_vision":true,
          "entity":false
@@ -14952,7 +15176,7 @@
          "FOV_id":0,
          "animated":false,
          "animated_id":0,
-         "bg":"darkgreen",
+         "bg":"#383538",
          "blocked":true,
          "blocks_vision":true,
          "entity":false
@@ -14963,7 +15187,7 @@
          "FOV_id":0,
          "animated":false,
          "animated_id":0,
-         "bg":"darkgreen",
+         "bg":"#383538",
          "blocked":true,
          "blocks_vision":true,
          "entity":false
@@ -14974,7 +15198,7 @@
          "FOV_id":0,
          "animated":false,
          "animated_id":0,
-         "bg":"darkgreen",
+         "bg":"#383538",
          "blocked":true,
          "blocks_vision":true,
          "entity":false
@@ -15821,7 +16045,7 @@
          "FOV_id":0,
          "animated":false,
          "animated_id":0,
-         "bg":"darkgreen",
+         "bg":"#383538",
          "blocked":true,
          "blocks_vision":true,
          "entity":false
@@ -15832,7 +16056,7 @@
          "FOV_id":0,
          "animated":false,
          "animated_id":0,
-         "bg":"darkgreen",
+         "bg":"#383538",
          "blocked":true,
          "blocks_vision":true,
          "entity":false
@@ -15843,7 +16067,7 @@
          "FOV_id":0,
          "animated":false,
          "animated_id":0,
-         "bg":"darkgreen",
+         "bg":"#383538",
          "blocked":true,
          "blocks_vision":true,
          "entity":false
@@ -15854,7 +16078,7 @@
          "FOV_id":0,
          "animated":false,
          "animated_id":0,
-         "bg":"darkgreen",
+         "bg":"#383538",
          "blocked":true,
          "blocks_vision":true,
          "entity":false
@@ -15865,7 +16089,7 @@
          "FOV_id":0,
          "animated":false,
          "animated_id":0,
-         "bg":"darkgreen",
+         "bg":"#383538",
          "blocked":true,
          "blocks_vision":true,
          "entity":false
@@ -15876,7 +16100,7 @@
          "FOV_id":0,
          "animated":false,
          "animated_id":0,
-         "bg":"darkgreen",
+         "bg":"#383538",
          "blocked":true,
          "blocks_vision":true,
          "entity":false
@@ -16712,7 +16936,7 @@
          "FOV_id":0,
          "animated":false,
          "animated_id":0,
-         "bg":"darkgreen",
+         "bg":"#383538",
          "blocked":true,
          "blocks_vision":true,
          "entity":false
@@ -16723,7 +16947,7 @@
          "FOV_id":0,
          "animated":false,
          "animated_id":0,
-         "bg":"darkgreen",
+         "bg":"#383538",
          "blocked":true,
          "blocks_vision":true,
          "entity":false
@@ -16734,7 +16958,7 @@
          "FOV_id":0,
          "animated":false,
          "animated_id":0,
-         "bg":"darkgreen",
+         "bg":"#383538",
          "blocked":true,
          "blocks_vision":true,
          "entity":false
@@ -16745,7 +16969,7 @@
          "FOV_id":0,
          "animated":false,
          "animated_id":0,
-         "bg":"darkgreen",
+         "bg":"#383538",
          "blocked":true,
          "blocks_vision":true,
          "entity":false
@@ -16756,7 +16980,7 @@
          "FOV_id":0,
          "animated":false,
          "animated_id":0,
-         "bg":"darkgreen",
+         "bg":"#383538",
          "blocked":true,
          "blocks_vision":true,
          "entity":false
@@ -16767,7 +16991,7 @@
          "FOV_id":0,
          "animated":false,
          "animated_id":0,
-         "bg":"darkgreen",
+         "bg":"#383538",
          "blocked":true,
          "blocks_vision":true,
          "entity":false
@@ -17537,7 +17761,7 @@
          "FOV_id":0,
          "animated":false,
          "animated_id":0,
-         "bg":"#014a01",
+         "bg":"#304927",
          "blocked":true,
          "blocks_vision":true,
          "entity":false
@@ -17548,7 +17772,7 @@
          "FOV_id":0,
          "animated":false,
          "animated_id":0,
-         "bg":"#014a01",
+         "bg":"#304927",
          "blocked":true,
          "blocks_vision":true,
          "entity":false
@@ -17559,7 +17783,7 @@
          "FOV_id":0,
          "animated":false,
          "animated_id":0,
-         "bg":"#014a01",
+         "bg":"#304927",
          "blocked":true,
          "blocks_vision":true,
          "entity":false
@@ -17570,7 +17794,7 @@
          "FOV_id":0,
          "animated":false,
          "animated_id":0,
-         "bg":"#014a01",
+         "bg":"#304927",
          "blocked":true,
          "blocks_vision":true,
          "entity":false
@@ -17581,7 +17805,7 @@
          "FOV_id":0,
          "animated":false,
          "animated_id":0,
-         "bg":"#014a01",
+         "bg":"#304927",
          "blocked":true,
          "blocks_vision":true,
          "entity":false
@@ -17592,7 +17816,7 @@
          "FOV_id":0,
          "animated":false,
          "animated_id":0,
-         "bg":"#014a01",
+         "bg":"#304927",
          "blocked":true,
          "blocks_vision":true,
          "entity":false
@@ -18428,7 +18652,7 @@
          "FOV_id":0,
          "animated":false,
          "animated_id":0,
-         "bg":"#014a01",
+         "bg":"#304927",
          "blocked":true,
          "blocks_vision":true,
          "entity":false
@@ -18439,7 +18663,7 @@
          "FOV_id":0,
          "animated":false,
          "animated_id":0,
-         "bg":"#014a01",
+         "bg":"#304927",
          "blocked":true,
          "blocks_vision":true,
          "entity":false
@@ -18450,7 +18674,7 @@
          "FOV_id":0,
          "animated":false,
          "animated_id":0,
-         "bg":"#014a01",
+         "bg":"#304927",
          "blocked":true,
          "blocks_vision":true,
          "entity":false
@@ -18461,7 +18685,7 @@
          "FOV_id":0,
          "animated":false,
          "animated_id":0,
-         "bg":"#014a01",
+         "bg":"#304927",
          "blocked":true,
          "blocks_vision":true,
          "entity":false
@@ -18472,7 +18696,7 @@
          "FOV_id":0,
          "animated":false,
          "animated_id":0,
-         "bg":"#014a01",
+         "bg":"#304927",
          "blocked":true,
          "blocks_vision":true,
          "entity":false
@@ -18483,7 +18707,7 @@
          "FOV_id":0,
          "animated":false,
          "animated_id":0,
-         "bg":"#014a01",
+         "bg":"#304927",
          "blocked":true,
          "blocks_vision":true,
          "entity":false
@@ -19028,6 +19252,10 @@
         {
          "bg":"#00cc33"
         },
+     "7900":
+        {
+         "level":"graveyard"
+        },
      "7920":
         {
          "animated":true,
@@ -19338,7 +19566,7 @@
          "FOV_id":0,
          "animated":false,
          "animated_id":0,
-         "bg":"#014a01",
+         "bg":"#304927",
          "blocked":true,
          "blocks_vision":true,
          "entity":false
@@ -19349,7 +19577,7 @@
          "FOV_id":0,
          "animated":false,
          "animated_id":0,
-         "bg":"#014a01",
+         "bg":"#304927",
          "blocked":true,
          "blocks_vision":true,
          "entity":false
@@ -19360,7 +19588,7 @@
          "FOV_id":0,
          "animated":false,
          "animated_id":0,
-         "bg":"#014a01",
+         "bg":"#304927",
          "blocked":true,
          "blocks_vision":true,
          "entity":false
@@ -19371,7 +19599,7 @@
          "FOV_id":0,
          "animated":false,
          "animated_id":0,
-         "bg":"#014a01",
+         "bg":"#304927",
          "blocked":true,
          "blocks_vision":true,
          "entity":false
@@ -19382,7 +19610,7 @@
          "FOV_id":0,
          "animated":false,
          "animated_id":0,
-         "bg":"#014a01",
+         "bg":"#304927",
          "blocked":true,
          "blocks_vision":true,
          "entity":false
@@ -19393,7 +19621,7 @@
          "FOV_id":0,
          "animated":false,
          "animated_id":0,
-         "bg":"#014a01",
+         "bg":"#304927",
          "blocked":true,
          "blocks_vision":true,
          "entity":false
@@ -20422,7 +20650,7 @@
          "FOV_id":0,
          "animated":false,
          "animated_id":0,
-         "bg":"green",
+         "bg":"#446638",
          "blocked":false,
          "blocks_vision":false,
          "entity":false
@@ -20433,7 +20661,7 @@
          "FOV_id":0,
          "animated":false,
          "animated_id":0,
-         "bg":"green",
+         "bg":"#446638",
          "blocked":false,
          "blocks_vision":false,
          "entity":false
@@ -20444,7 +20672,7 @@
          "FOV_id":0,
          "animated":false,
          "animated_id":0,
-         "bg":"green",
+         "bg":"#446638",
          "blocked":false,
          "blocks_vision":false,
          "entity":false
@@ -20455,7 +20683,7 @@
          "FOV_id":0,
          "animated":false,
          "animated_id":0,
-         "bg":"green",
+         "bg":"#446638",
          "blocked":false,
          "blocks_vision":false,
          "entity":false
@@ -20466,7 +20694,7 @@
          "FOV_id":0,
          "animated":false,
          "animated_id":0,
-         "bg":"green",
+         "bg":"#446638",
          "blocked":false,
          "blocks_vision":false,
          "entity":false
@@ -20477,7 +20705,7 @@
          "FOV_id":0,
          "animated":false,
          "animated_id":0,
-         "bg":"green",
+         "bg":"#446638",
          "blocked":false,
          "blocks_vision":false,
          "entity":false
@@ -20488,7 +20716,7 @@
          "FOV_id":0,
          "animated":false,
          "animated_id":0,
-         "bg":"green",
+         "bg":"#446638",
          "blocked":false,
          "blocks_vision":false,
          "entity":false
@@ -21169,7 +21397,7 @@
          "FOV_id":0,
          "animated":false,
          "animated_id":0,
-         "bg":"green",
+         "bg":"#446638",
          "blocked":false,
          "blocks_vision":false,
          "entity":false
@@ -21180,7 +21408,7 @@
          "FOV_id":0,
          "animated":false,
          "animated_id":0,
-         "bg":"green",
+         "bg":"#446638",
          "blocked":false,
          "blocks_vision":false,
          "entity":false
@@ -21191,7 +21419,7 @@
          "FOV_id":0,
          "animated":false,
          "animated_id":0,
-         "bg":"green",
+         "bg":"#446638",
          "blocked":false,
          "blocks_vision":false,
          "entity":false
@@ -21202,7 +21430,7 @@
          "FOV_id":0,
          "animated":false,
          "animated_id":0,
-         "bg":"green",
+         "bg":"#446638",
          "blocked":false,
          "blocks_vision":false,
          "entity":false
@@ -21213,7 +21441,7 @@
          "FOV_id":0,
          "animated":false,
          "animated_id":0,
-         "bg":"green",
+         "bg":"#446638",
          "blocked":false,
          "blocks_vision":false,
          "entity":false
@@ -21224,7 +21452,7 @@
          "FOV_id":0,
          "animated":false,
          "animated_id":0,
-         "bg":"green",
+         "bg":"#446638",
          "blocked":false,
          "blocks_vision":false,
          "entity":false
@@ -21235,7 +21463,7 @@
          "FOV_id":0,
          "animated":false,
          "animated_id":0,
-         "bg":"green",
+         "bg":"#446638",
          "blocked":false,
          "blocks_vision":false,
          "entity":false
@@ -21916,7 +22144,7 @@
          "FOV_id":0,
          "animated":false,
          "animated_id":0,
-         "bg":"green",
+         "bg":"#446638",
          "blocked":false,
          "blocks_vision":false,
          "entity":false
@@ -21927,7 +22155,7 @@
          "FOV_id":0,
          "animated":false,
          "animated_id":0,
-         "bg":"green",
+         "bg":"#446638",
          "blocked":false,
          "blocks_vision":false,
          "entity":false
@@ -21938,7 +22166,7 @@
          "FOV_id":0,
          "animated":false,
          "animated_id":0,
-         "bg":"green",
+         "bg":"#446638",
          "blocked":false,
          "blocks_vision":false,
          "entity":false
@@ -21949,7 +22177,7 @@
          "FOV_id":0,
          "animated":false,
          "animated_id":0,
-         "bg":"green",
+         "bg":"#446638",
          "blocked":false,
          "blocks_vision":false,
          "entity":false
@@ -21960,7 +22188,7 @@
          "FOV_id":0,
          "animated":false,
          "animated_id":0,
-         "bg":"green",
+         "bg":"#446638",
          "blocked":false,
          "blocks_vision":false,
          "entity":false
@@ -21971,7 +22199,7 @@
          "FOV_id":0,
          "animated":false,
          "animated_id":0,
-         "bg":"green",
+         "bg":"#446638",
          "blocked":false,
          "blocks_vision":false,
          "entity":false
@@ -21982,7 +22210,7 @@
          "FOV_id":0,
          "animated":false,
          "animated_id":0,
-         "bg":"green",
+         "bg":"#446638",
          "blocked":false,
          "blocks_vision":false,
          "entity":false
@@ -22586,7 +22814,7 @@
          "FOV_id":0,
          "animated":false,
          "animated_id":0,
-         "bg":"gray",
+         "bg":"#4B4047",
          "blocked":false,
          "blocks_vision":false,
          "entity":false
@@ -22597,7 +22825,7 @@
          "FOV_id":0,
          "animated":false,
          "animated_id":0,
-         "bg":"gray",
+         "bg":"#4B4047",
          "blocked":false,
          "blocks_vision":false,
          "entity":false
@@ -22608,7 +22836,7 @@
          "FOV_id":0,
          "animated":false,
          "animated_id":0,
-         "bg":"gray",
+         "bg":"#4B4047",
          "blocked":false,
          "blocks_vision":false,
          "entity":false
@@ -22619,7 +22847,7 @@
          "FOV_id":0,
          "animated":false,
          "animated_id":0,
-         "bg":"gray",
+         "bg":"#4B4047",
          "blocked":false,
          "blocks_vision":false,
          "entity":false
@@ -22630,7 +22858,7 @@
          "FOV_id":0,
          "animated":false,
          "animated_id":0,
-         "bg":"gray",
+         "bg":"#4B4047",
          "blocked":false,
          "blocks_vision":false,
          "entity":false
@@ -22641,7 +22869,7 @@
          "FOV_id":0,
          "animated":false,
          "animated_id":0,
-         "bg":"gray",
+         "bg":"#4B4047",
          "blocked":false,
          "blocks_vision":false,
          "entity":false
@@ -22652,7 +22880,7 @@
          "FOV_id":0,
          "animated":false,
          "animated_id":0,
-         "bg":"gray",
+         "bg":"#4B4047",
          "blocked":false,
          "blocks_vision":false,
          "entity":false
@@ -22663,7 +22891,7 @@
          "FOV_id":0,
          "animated":false,
          "animated_id":0,
-         "bg":"#00cc33",
+         "bg":"#462E3A",
          "blocked":false,
          "blocks_vision":false,
          "entity":false
@@ -22674,7 +22902,7 @@
          "FOV_id":0,
          "animated":false,
          "animated_id":0,
-         "bg":"#00cc33",
+         "bg":"#462E3A",
          "blocked":false,
          "blocks_vision":false,
          "entity":false
@@ -22685,7 +22913,7 @@
          "FOV_id":0,
          "animated":false,
          "animated_id":0,
-         "bg":"#00cc33",
+         "bg":"#462E3A",
          "blocked":false,
          "blocks_vision":false,
          "entity":false
@@ -22696,7 +22924,7 @@
          "FOV_id":0,
          "animated":false,
          "animated_id":0,
-         "bg":"#00cc33",
+         "bg":"#462E3A",
          "blocked":false,
          "blocks_vision":false,
          "entity":false
@@ -22707,7 +22935,7 @@
          "FOV_id":0,
          "animated":false,
          "animated_id":0,
-         "bg":"#00cc33",
+         "bg":"#462E3A",
          "blocked":false,
          "blocks_vision":false,
          "entity":false
@@ -22718,7 +22946,7 @@
          "FOV_id":0,
          "animated":false,
          "animated_id":0,
-         "bg":"#00cc33",
+         "bg":"#462E3A",
          "blocked":false,
          "blocks_vision":false,
          "entity":false
@@ -22729,7 +22957,7 @@
          "FOV_id":0,
          "animated":false,
          "animated_id":0,
-         "bg":"#00cc33",
+         "bg":"#462E3A",
          "blocked":false,
          "blocks_vision":false,
          "entity":false
@@ -22813,37 +23041,37 @@
         },
      "8477":
         {
-         "bg":"black",
+         "bg":"#442534",
          "blocked":"true",
          "blocks_vision":"true"
         },
      "8478":
         {
-         "bg":"black",
+         "bg":"#442534",
          "blocked":"true",
          "blocks_vision":"true"
         },
      "8479":
         {
-         "bg":"black",
+         "bg":"#442534",
          "blocked":"true",
          "blocks_vision":"true"
         },
      "8480":
         {
-         "bg":"black",
+         "bg":"#442534",
          "blocked":"true",
          "blocks_vision":"true"
         },
      "8481":
         {
-         "bg":"black",
+         "bg":"#442534",
          "blocked":"true",
          "blocks_vision":"true"
         },
      "8482":
         {
-         "bg":"black",
+         "bg":"#442534",
          "blocked":"true",
          "blocks_vision":"true"
         },
@@ -23321,7 +23549,7 @@
          "FOV_id":0,
          "animated":false,
          "animated_id":0,
-         "bg":"gray",
+         "bg":"#4B4047",
          "blocked":false,
          "blocks_vision":false,
          "entity":false
@@ -23332,7 +23560,7 @@
          "FOV_id":0,
          "animated":false,
          "animated_id":0,
-         "bg":"gray",
+         "bg":"#4B4047",
          "blocked":false,
          "blocks_vision":false,
          "entity":false
@@ -23343,7 +23571,7 @@
          "FOV_id":0,
          "animated":false,
          "animated_id":0,
-         "bg":"gray",
+         "bg":"#4B4047",
          "blocked":false,
          "blocks_vision":false,
          "entity":false
@@ -23354,7 +23582,7 @@
          "FOV_id":0,
          "animated":false,
          "animated_id":0,
-         "bg":"gray",
+         "bg":"#4B4047",
          "blocked":false,
          "blocks_vision":false,
          "entity":false
@@ -23365,7 +23593,7 @@
          "FOV_id":0,
          "animated":false,
          "animated_id":0,
-         "bg":"gray",
+         "bg":"#4B4047",
          "blocked":false,
          "blocks_vision":false,
          "entity":false
@@ -23376,7 +23604,7 @@
          "FOV_id":0,
          "animated":false,
          "animated_id":0,
-         "bg":"gray",
+         "bg":"#4B4047",
          "blocked":false,
          "blocks_vision":false,
          "entity":false
@@ -23387,7 +23615,7 @@
          "FOV_id":0,
          "animated":false,
          "animated_id":0,
-         "bg":"gray",
+         "bg":"#4B4047",
          "blocked":false,
          "blocks_vision":false,
          "entity":false
@@ -23398,7 +23626,7 @@
          "FOV_id":0,
          "animated":false,
          "animated_id":0,
-         "bg":"#00cc33",
+         "bg":"#462E3A",
          "blocked":false,
          "blocks_vision":false,
          "entity":false
@@ -23409,7 +23637,7 @@
          "FOV_id":0,
          "animated":false,
          "animated_id":0,
-         "bg":"#00cc33",
+         "bg":"#462E3A",
          "blocked":false,
          "blocks_vision":false,
          "entity":false
@@ -23420,7 +23648,7 @@
          "FOV_id":0,
          "animated":false,
          "animated_id":0,
-         "bg":"#00cc33",
+         "bg":"#462E3A",
          "blocked":false,
          "blocks_vision":false,
          "entity":false
@@ -23431,7 +23659,7 @@
          "FOV_id":0,
          "animated":false,
          "animated_id":0,
-         "bg":"#00cc33",
+         "bg":"#462E3A",
          "blocked":false,
          "blocks_vision":false,
          "entity":false
@@ -23442,7 +23670,7 @@
          "FOV_id":0,
          "animated":false,
          "animated_id":0,
-         "bg":"#00cc33",
+         "bg":"#462E3A",
          "blocked":false,
          "blocks_vision":false,
          "entity":false
@@ -23453,7 +23681,7 @@
          "FOV_id":0,
          "animated":false,
          "animated_id":0,
-         "bg":"#00cc33",
+         "bg":"#462E3A",
          "blocked":false,
          "blocks_vision":false,
          "entity":false
@@ -23464,7 +23692,7 @@
          "FOV_id":0,
          "animated":false,
          "animated_id":0,
-         "bg":"#00cc33",
+         "bg":"#462E3A",
          "blocked":false,
          "blocks_vision":false,
          "entity":false
@@ -23548,37 +23776,37 @@
         },
      "8597":
         {
-         "bg":"black",
+         "bg":"#442534",
          "blocked":"true",
          "blocks_vision":"true"
         },
      "8598":
         {
-         "bg":"black",
+         "bg":"#442534",
          "blocked":"true",
          "blocks_vision":"true"
         },
      "8599":
         {
-         "bg":"black",
+         "bg":"#442534",
          "blocked":"true",
          "blocks_vision":"true"
         },
      "8600":
         {
-         "bg":"black",
+         "bg":"#442534",
          "blocked":"true",
          "blocks_vision":"true"
         },
      "8601":
         {
-         "bg":"black",
+         "bg":"#442534",
          "blocked":"true",
          "blocks_vision":"true"
         },
      "8602":
         {
-         "bg":"black",
+         "bg":"#442534",
          "blocked":"true",
          "blocks_vision":"true"
         },
@@ -24056,7 +24284,7 @@
          "FOV_id":0,
          "animated":false,
          "animated_id":0,
-         "bg":"gray",
+         "bg":"#4B4047",
          "blocked":false,
          "blocks_vision":false,
          "entity":false
@@ -24067,7 +24295,7 @@
          "FOV_id":0,
          "animated":false,
          "animated_id":0,
-         "bg":"gray",
+         "bg":"#4B4047",
          "blocked":false,
          "blocks_vision":false,
          "entity":false
@@ -24078,7 +24306,7 @@
          "FOV_id":0,
          "animated":false,
          "animated_id":0,
-         "bg":"gray",
+         "bg":"#4B4047",
          "blocked":false,
          "blocks_vision":false,
          "entity":false
@@ -24089,7 +24317,7 @@
          "FOV_id":0,
          "animated":false,
          "animated_id":0,
-         "bg":"gray",
+         "bg":"#4B4047",
          "blocked":false,
          "blocks_vision":false,
          "entity":false
@@ -24100,7 +24328,7 @@
          "FOV_id":0,
          "animated":false,
          "animated_id":0,
-         "bg":"gray",
+         "bg":"#4B4047",
          "blocked":false,
          "blocks_vision":false,
          "entity":false
@@ -24111,7 +24339,7 @@
          "FOV_id":0,
          "animated":false,
          "animated_id":0,
-         "bg":"gray",
+         "bg":"#4B4047",
          "blocked":false,
          "blocks_vision":false,
          "entity":false
@@ -24122,7 +24350,7 @@
          "FOV_id":0,
          "animated":false,
          "animated_id":0,
-         "bg":"gray",
+         "bg":"#4B4047",
          "blocked":false,
          "blocks_vision":false,
          "entity":false
@@ -24133,7 +24361,7 @@
          "FOV_id":0,
          "animated":false,
          "animated_id":0,
-         "bg":"#00cc33",
+         "bg":"#462E3A",
          "blocked":false,
          "blocks_vision":false,
          "entity":false
@@ -24144,7 +24372,7 @@
          "FOV_id":0,
          "animated":false,
          "animated_id":0,
-         "bg":"#00cc33",
+         "bg":"#462E3A",
          "blocked":false,
          "blocks_vision":false,
          "entity":false
@@ -24155,7 +24383,7 @@
          "FOV_id":0,
          "animated":false,
          "animated_id":0,
-         "bg":"#00cc33",
+         "bg":"#462E3A",
          "blocked":false,
          "blocks_vision":false,
          "entity":false
@@ -24166,7 +24394,7 @@
          "FOV_id":0,
          "animated":false,
          "animated_id":0,
-         "bg":"#00cc33",
+         "bg":"#462E3A",
          "blocked":false,
          "blocks_vision":false,
          "entity":false
@@ -24177,7 +24405,7 @@
          "FOV_id":0,
          "animated":false,
          "animated_id":0,
-         "bg":"#00cc33",
+         "bg":"#462E3A",
          "blocked":false,
          "blocks_vision":false,
          "entity":false
@@ -24188,7 +24416,7 @@
          "FOV_id":0,
          "animated":false,
          "animated_id":0,
-         "bg":"#00cc33",
+         "bg":"#462E3A",
          "blocked":false,
          "blocks_vision":false,
          "entity":false
@@ -24199,7 +24427,7 @@
          "FOV_id":0,
          "animated":false,
          "animated_id":0,
-         "bg":"#00cc33",
+         "bg":"#462E3A",
          "blocked":false,
          "blocks_vision":false,
          "entity":false
@@ -24283,37 +24511,37 @@
         },
      "8717":
         {
-         "bg":"black",
+         "bg":"#442534",
          "blocked":"true",
          "blocks_vision":"true"
         },
      "8718":
         {
-         "bg":"black",
+         "bg":"#442534",
          "blocked":"true",
          "blocks_vision":"true"
         },
      "8719":
         {
-         "bg":"black",
+         "bg":"#442534",
          "blocked":"true",
          "blocks_vision":"true"
         },
      "8720":
         {
-         "bg":"black",
+         "bg":"#442534",
          "blocked":"true",
          "blocks_vision":"true"
         },
      "8721":
         {
-         "bg":"black",
+         "bg":"#442534",
          "blocked":"true",
          "blocks_vision":"true"
         },
      "8722":
         {
-         "bg":"black",
+         "bg":"#442534",
          "blocked":"true",
          "blocks_vision":"true"
         },
@@ -24384,6 +24612,14 @@
      "8736":
         {
          "bg":"#00cc33"
+        },
+     "8743":
+        {
+         "animated":true,
+         "animated_id":9583,
+         "blocked":true,
+         "entity":true,
+         "entity_id":22
         },
      "8760":
         {
@@ -25108,6 +25344,14 @@
         {
          "bg":"#00cc33"
         },
+     "8863":
+        {
+         "animated":true,
+         "animated_id":4896,
+         "blocked":true,
+         "entity":true,
+         "entity_id":22
+        },
      "8880":
         {
          "animated":true,
@@ -25830,6 +26074,14 @@
      "8976":
         {
          "bg":"#00cc33"
+        },
+     "8983":
+        {
+         "animated":true,
+         "animated_id":9823,
+         "blocked":true,
+         "entity":true,
+         "entity_id":22
         },
      "9000":
         {
@@ -26554,6 +26806,20 @@
         {
          "bg":"#00cc33"
         },
+     "9103":
+        {
+         "animated":true,
+         "animated_id":4896,
+         "blocked":true,
+         "entity":true,
+         "entity_id":22
+        },
+     "9111":
+        {
+         "animated":true,
+         "animated_id":9951,
+         "blocked":false
+        },
      "9120":
         {
          "animated":true,
@@ -27265,6 +27531,10 @@
      "9216":
         {
          "bg":"#00cc33"
+        },
+     "9223":
+        {
+         "blocked":true
         },
      "9240":
         {
@@ -31310,7 +31580,7 @@
          "FOV_id":0,
          "animated":false,
          "animated_id":0,
-         "bg":"brown",
+         "bg":"#4D494D",
          "blocked":false,
          "blocks_vision":false,
          "entity":false
@@ -31321,7 +31591,7 @@
          "FOV_id":0,
          "animated":false,
          "animated_id":0,
-         "bg":"brown",
+         "bg":"#4D494D",
          "blocked":false,
          "blocks_vision":false,
          "entity":false
@@ -31332,7 +31602,7 @@
          "FOV_id":0,
          "animated":false,
          "animated_id":0,
-         "bg":"brown",
+         "bg":"#4D494D",
          "blocked":false,
          "blocks_vision":false,
          "entity":false
@@ -31343,7 +31613,7 @@
          "FOV_id":0,
          "animated":false,
          "animated_id":0,
-         "bg":"brown",
+         "bg":"#4D494D",
          "blocked":false,
          "blocks_vision":false,
          "entity":false
@@ -31354,7 +31624,7 @@
          "FOV_id":0,
          "animated":false,
          "animated_id":0,
-         "bg":"brown",
+         "bg":"#4D494D",
          "blocked":false,
          "blocks_vision":false,
          "entity":false
@@ -31365,7 +31635,7 @@
          "FOV_id":0,
          "animated":false,
          "animated_id":0,
-         "bg":"brown",
+         "bg":"#4D494D",
          "blocked":false,
          "blocks_vision":false,
          "entity":false
@@ -31376,7 +31646,7 @@
          "FOV_id":0,
          "animated":false,
          "animated_id":0,
-         "bg":"brown",
+         "bg":"#4D494D",
          "blocked":false,
          "blocks_vision":false,
          "entity":false
@@ -32353,6 +32623,10 @@
         {
          "bg":"string"
         },
+     "10063":
+        {
+         "blocked":"bool"
+        },
      "10080":
         {
          "animated":"bool",
@@ -33076,6 +33350,39 @@
         {
          "bg":"string"
         },
+     "10384":
+        {
+         "FOV":"bool",
+         "FOV_id":"int",
+         "animated":"bool",
+         "animated_id":"int",
+         "bg":"string",
+         "blocked":"bool",
+         "blocks_vision":"bool",
+         "entity":"bool"
+        },
+     "10744":
+        {
+         "FOV":"bool",
+         "FOV_id":"int",
+         "animated":"bool",
+         "animated_id":"int",
+         "bg":"string",
+         "blocked":"bool",
+         "blocks_vision":"bool",
+         "entity":"bool"
+        },
+     "11104":
+        {
+         "FOV":"bool",
+         "FOV_id":"int",
+         "animated":"bool",
+         "animated_id":"int",
+         "bg":"string",
+         "blocked":"bool",
+         "blocks_vision":"bool",
+         "entity":"bool"
+        },
      "11880":
         {
          "bg":"string"
@@ -33404,6 +33711,13 @@
         {
          "entity":"bool",
          "entity_id":"int"
+        },
+     "1475":
+        {
+         "animated":"bool",
+         "animated_id":"int",
+         "entity":"bool",
+         "entity_id":"string"
         },
      "1482":
         {
@@ -34051,6 +34365,25 @@
          "FOV":"bool",
          "bg":"string"
         },
+     "2280":
+        {
+         "entity":"bool",
+         "entity_id":"string"
+        },
+     "2314":
+        {
+         "animated":"bool",
+         "animated_id":"int",
+         "entity":"bool",
+         "entity_id":"string"
+        },
+     "2317":
+        {
+         "animated":"bool",
+         "animated_id":"int",
+         "entity":"bool",
+         "entity_id":"string"
+        },
      "232":
         {
          "entity":"bool",
@@ -34111,6 +34444,25 @@
          "animated_id":"int",
          "entity":"bool",
          "entity_id":"int"
+        },
+     "2552":
+        {
+         "animated":"bool",
+         "animated_id":"int",
+         "entity":"bool",
+         "entity_id":"string"
+        },
+     "2558":
+        {
+         "animated":"bool",
+         "animated_id":"int",
+         "entity":"bool",
+         "entity_id":"string"
+        },
+     "2647":
+        {
+         "entity":"bool",
+         "entity_id":"string"
         },
      "2736":
         {
@@ -34302,6 +34654,11 @@
      "3221":
         {
          "blocked":"bool"
+        },
+     "3264":
+        {
+         "entity":"bool",
+         "entity_id":"string"
         },
      "33":
         {
@@ -39407,18 +39764,26 @@
         },
      "4891":
         {
+         "animated":"bool",
+         "animated_id":"int",
          "blocked":"bool"
         },
      "4892":
         {
+         "animated":"bool",
+         "animated_id":"int",
          "blocked":"bool"
         },
      "4893":
         {
+         "animated":"bool",
+         "animated_id":"int",
          "blocked":"bool"
         },
      "4894":
         {
+         "animated":"bool",
+         "animated_id":"int",
          "blocked":"bool"
         },
      "4895":
@@ -41567,61 +41932,61 @@
         },
      "5368":
         {
-         "blocked":"string"
+         "blocked":"bool"
         },
      "5369":
         {
-         "blocked":"string"
+         "blocked":"bool"
         },
      "5370":
         {
-         "blocked":"string"
+         "blocked":"bool"
         },
      "5371":
         {
-         "blocked":"string"
+         "blocked":"bool"
         },
      "5372":
         {
          "animated":"bool",
          "animated_id":"int",
-         "blocked":"string"
+         "blocked":"bool"
         },
      "5373":
         {
-         "blocked":"string"
+         "blocked":"bool"
         },
      "5374":
         {
-         "blocked":"string"
+         "blocked":"bool"
         },
      "5375":
         {
-         "blocked":"string"
+         "blocked":"bool"
         },
      "5376":
         {
-         "blocked":"string"
+         "blocked":"bool"
         },
      "5377":
         {
-         "blocked":"string"
+         "blocked":"bool"
         },
      "5378":
         {
-         "blocked":"string"
+         "blocked":"bool"
         },
      "5379":
         {
-         "blocked":"string"
+         "blocked":"bool"
         },
      "5380":
         {
-         "blocked":"string"
+         "blocked":"bool"
         },
      "5381":
         {
-         "blocked":"string"
+         "blocked":"bool"
         },
      "5382":
         {
@@ -42095,61 +42460,65 @@
         },
      "5488":
         {
-         "blocked":"string"
+         "blocked":"bool"
         },
      "5489":
         {
-         "blocked":"string"
+         "animated":"bool",
+         "animated_id":"int",
+         "blocked":"bool",
+         "entity":"bool",
+         "entity_id":"string"
         },
      "5490":
         {
-         "blocked":"string"
+         "blocked":"bool"
         },
      "5491":
         {
-         "blocked":"string"
+         "blocked":"bool"
         },
      "5492":
         {
          "animated":"bool",
          "animated_id":"int",
-         "blocked":"string"
+         "blocked":"bool"
         },
      "5493":
         {
-         "blocked":"string"
+         "blocked":"bool"
         },
      "5494":
         {
-         "blocked":"string"
+         "blocked":"bool"
         },
      "5495":
         {
-         "blocked":"string"
+         "blocked":"bool"
         },
      "5496":
         {
-         "blocked":"string"
+         "blocked":"bool"
         },
      "5497":
         {
-         "blocked":"string"
+         "blocked":"bool"
         },
      "5498":
         {
-         "blocked":"string"
+         "blocked":"bool"
         },
      "5499":
         {
-         "blocked":"string"
+         "blocked":"bool"
         },
      "5500":
         {
-         "blocked":"string"
+         "blocked":"bool"
         },
      "5501":
         {
-         "blocked":"string"
+         "blocked":"bool"
         },
      "5502":
         {
@@ -44077,9 +44446,66 @@
          "animated_id":"int",
          "entity":"bool"
         },
-     "60":
+     "5968":
         {
          "blocked":"bool"
+        },
+     "5969":
+        {
+         "blocked":"bool"
+        },
+     "5970":
+        {
+         "blocked":"bool"
+        },
+     "5971":
+        {
+         "blocked":"bool"
+        },
+     "5972":
+        {
+         "blocked":"bool"
+        },
+     "5973":
+        {
+         "blocked":"bool"
+        },
+     "5974":
+        {
+         "blocked":"bool"
+        },
+     "5975":
+        {
+         "blocked":"bool"
+        },
+     "5976":
+        {
+         "blocked":"bool"
+        },
+     "5977":
+        {
+         "blocked":"bool"
+        },
+     "5978":
+        {
+         "blocked":"bool"
+        },
+     "5979":
+        {
+         "blocked":"bool"
+        },
+     "5980":
+        {
+         "blocked":"bool"
+        },
+     "60":
+        {
+         "activated_id":"int",
+         "animated":"bool",
+         "animated_id":"int",
+         "blocked":"bool",
+         "entity":"bool",
+         "entity_id":"int"
         },
      "608":
         {
@@ -44088,7 +44514,59 @@
          "entity":"bool",
          "entity_id":"int"
         },
+     "6088":
+        {
+         "blocked":"bool"
+        },
+     "6089":
+        {
+         "blocked":"bool"
+        },
+     "6090":
+        {
+         "blocked":"bool"
+        },
+     "6091":
+        {
+         "blocked":"bool"
+        },
+     "6092":
+        {
+         "blocked":"bool"
+        },
+     "6093":
+        {
+         "blocked":"bool"
+        },
+     "6094":
+        {
+         "blocked":"bool"
+        },
+     "6095":
+        {
+         "blocked":"bool"
+        },
+     "6096":
+        {
+         "blocked":"bool"
+        },
+     "6097":
+        {
+         "blocked":"bool"
+        },
+     "6098":
+        {
+         "blocked":"bool"
+        },
+     "6099":
+        {
+         "blocked":"bool"
+        },
      "61":
+        {
+         "blocked":"bool"
+        },
+     "6100":
         {
          "blocked":"bool"
         },
@@ -44108,11 +44586,19 @@
         {
          "blocked":"bool"
         },
+     "6330":
+        {
+         "blocked":"bool"
+        },
      "6336":
         {
          "blocked":"bool"
         },
      "6337":
+        {
+         "blocked":"bool"
+        },
+     "6338":
         {
          "blocked":"bool"
         },
@@ -44125,6 +44611,14 @@
          "animated":"bool",
          "animated_id":"int",
          "blocked":"bool"
+        },
+     "6464":
+        {
+         "animated":"bool",
+         "animated_id":"int",
+         "bg":"string",
+         "blocked":"bool",
+         "blocks_vision":"bool"
         },
      "65":
         {
@@ -50985,6 +51479,10 @@
         {
          "bg":"string"
         },
+     "7900":
+        {
+         "level":"string"
+        },
      "7920":
         {
          "animated":"bool",
@@ -56342,6 +56840,14 @@
         {
          "bg":"string"
         },
+     "8743":
+        {
+         "animated":"bool",
+         "animated_id":"int",
+         "blocked":"bool",
+         "entity":"bool",
+         "entity_id":"int"
+        },
      "8760":
         {
          "animated":"bool",
@@ -57064,6 +57570,14 @@
      "8856":
         {
          "bg":"string"
+        },
+     "8863":
+        {
+         "animated":"bool",
+         "animated_id":"int",
+         "blocked":"bool",
+         "entity":"bool",
+         "entity_id":"int"
         },
      "8880":
         {
@@ -57788,6 +58302,14 @@
         {
          "bg":"string"
         },
+     "8983":
+        {
+         "animated":"bool",
+         "animated_id":"int",
+         "blocked":"bool",
+         "entity":"bool",
+         "entity_id":"int"
+        },
      "9000":
         {
          "animated":"bool",
@@ -58511,6 +59033,20 @@
         {
          "bg":"string"
         },
+     "9103":
+        {
+         "animated":"bool",
+         "animated_id":"int",
+         "blocked":"bool",
+         "entity":"bool",
+         "entity_id":"int"
+        },
+     "9111":
+        {
+         "animated":"bool",
+         "animated_id":"int",
+         "blocked":"bool"
+        },
      "9120":
         {
          "animated":"bool",
@@ -59222,6 +59758,10 @@
      "9216":
         {
          "bg":"string"
+        },
+     "9223":
+        {
+         "blocked":"bool"
         },
      "9240":
         {
