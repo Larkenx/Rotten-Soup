@@ -39,42 +39,45 @@
 </template>
 
 <script>
-import {Game} from '@/assets/js/game/Game.js'
+import { Game } from '@/assets/js/game/Game.js'
 
 /* import other components here */
 export default {
-    data() {
-        return {
-            inventory: null,
-            rows: [1, 2, 3, 4],
-        };
-    },
-    methods: {
-        getInventorySprite(id) {
-            return `../static/images/inventory_sprites/${id}.png`;
-        },
-        colorSlot(cell) {
-            if (cell.item !== null && "cb" in cell.item) {
-                return cell.item.cb.equipped;
-            } else {
-                return false;
-            }
-        },
-        getInventoryRow(n) {
-            let inventory = Game.player.inventory;
-            let offset = n * (inventory.length / this.rows.length);
-            return inventory.slice(offset, offset + (inventory.length / this.rows.length));
-
-        },
-        useItem(item, evt) {
-            // drop item
-            if (evt.shiftKey) {
-                item.drop();
-            } else { // use item
-                item.use();
-            }
-        }
-    },
+	data() {
+		return {
+			inventory: null,
+			rows: [1, 2, 3, 4]
+		}
+	},
+	methods: {
+		getInventorySprite(id) {
+			return `../static/images/inventory_sprites/${id}.png`
+		},
+		colorSlot(cell) {
+			if (cell.item !== null && 'cb' in cell.item) {
+				return cell.item.cb.equipped
+			} else {
+				return false
+			}
+		},
+		getInventoryRow(n) {
+			let inventory = Game.player.inventory
+			let offset = n * (inventory.length / this.rows.length)
+			return inventory.slice(
+				offset,
+				offset + inventory.length / this.rows.length
+			)
+		},
+		useItem(item, evt) {
+			// drop item
+			if (evt.shiftKey) {
+				item.drop()
+			} else {
+				// use item
+				item.use()
+			}
+		}
+	}
 }
 </script>
 <style>
