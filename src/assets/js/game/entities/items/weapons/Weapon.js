@@ -1,14 +1,14 @@
 /**
  * Created by Larken on 6/22/2017.
  */
-import {Game} from '#/Game.js'
+import { Game } from '#/Game.js'
 import Item from '#/entities/items/Item.js'
-import {getRandomInt} from '#/utils/HelperFunctions.js'
+import { getRandomInt } from '#/utils/HelperFunctions.js'
 
 export default class Weapon extends Item {
-
 	constructor(x, y, options) {
-		if (options.combat === null) throw `Error - no options.combat property defined. Bad weapon creation for ${options.name}`
+		if (options.combat === null)
+			throw `Error - no options.combat property defined. Bad weapon creation for ${options.name}`
 		options.visible = true
 		options.blocked = false
 		options.combat.equippable = true
@@ -20,7 +20,11 @@ export default class Weapon extends Item {
 	}
 
 	use() {
-		Game.player.equipWeapon(this)
+		if (Game.player.cb.equipment.weapon === this) {
+			Game.player.unequipWeapon()
+		} else {
+			Game.player.equipWeapon(this)
+		}
 	}
 
 	roll() {
@@ -29,6 +33,11 @@ export default class Weapon extends Item {
 			dmg += getRandomInt(1, this.cb.sides)
 		}
 		return dmg
+	}
+
+	getAction() {
+		if (this.cb.equipped) return 'Unequip'
+		return this.action
 	}
 
 	/* Effects are equivalent to enchantments, in a way...

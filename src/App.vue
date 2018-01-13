@@ -55,8 +55,6 @@ export default {
 		this.player = Game.player
 	},
 	mounted() {
-		// $('#game_container').html(Game.display.getContainer());
-		// $('#minimap_container').html(Game.minimap.getContainer());
 		document.getElementById('game_container').appendChild(Game.display.getContainer())
 		document.getElementById('minimap_container').appendChild(Game.minimap.getContainer())
 		Game.log('Welcome to Rotten Soup!', 'information')

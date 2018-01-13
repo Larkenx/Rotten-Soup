@@ -2,9 +2,8 @@
  * Created by larken on 7/12/17.
  */
 
-import {Game} from '#/Game.js'
-import {Entity} from '#/entities/Entity.js'
-
+import { Game } from '#/Game.js'
+import { Entity } from '#/entities/Entity.js'
 
 export default class Item extends Entity {
 	constructor(x, y, options) {
@@ -28,10 +27,13 @@ export default class Item extends Entity {
 		// to be overwritten
 	}
 
+	getAction() {
+		return this.action
+	}
+
 	// making a major assumption that the player is the only thing that drops things.
 	// might change if some enemy type needs to do so
 	drop() {
 		Game.player.dropItem(this)
-
 	}
 }

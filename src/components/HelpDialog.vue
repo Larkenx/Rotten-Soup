@@ -103,9 +103,14 @@
                         <v-card flat>
                             <v-card-text class="pt-0">
                                 <v-container fluid>
-                                    <p>To equip a weapon or drink a potion, <code>click</code> the item in your inventory.<p>
-                                    <p>To drop an item, <code>shift+click</code> the item in your inventory.</p>
-                                    <p>To view details about items, simply <code>hover</code> over the item in your inventory and view the tooltip.
+                                    <p>
+                                        To equip a weapon or drink a potion, <code>click</code> the item in your inventory. To drop an item, <code>shift+click</code> the item in your inventory. Alternatively, you can either equip or drop items by right-clicking an item to bring up its context menu and selecting one of the actions from there.
+                                    </p>
+                                    <p>
+                                        You can rearrange inventory items by dragging and dropping items where you want them to be.
+                                    </p>
+                                    <p>
+                                        To view details about items, simply <code>hover</code> over the item in your inventory and view the tooltip.
                                     </p>
                                 </v-container>
                             </v-card-text>
@@ -124,28 +129,28 @@
 </template>
 <script>
 export default {
-    name : 'help-dialog',
-    data () {
-        return {
-            helpDialog : false,
-            cheatSheet : [
-                {code : ". | 5", description : "Rest for a turn"},
-                {code : ", | g", description : "Pick up an item"},
-                {code : "<", description : "Climb up a ladder"},
-                {code : ">", description : "Climb down a ladder"},
-                {code : "f", description : "Fire a ranged weapon"},
-                {code : "z", description : "Cast a spell"},
-                {code : "x", description : "Examine the area"},
-            ]
-        }
-    },
-    mounted () {
-        window.addEventListener("keydown", (evt) => {
-            if (evt.getModifierState("Shift") && evt.keyCode === 191 || (evt.keyCode === 27 && this.helpDialog)) {
-                this.helpDialog = !this.helpDialog
-            }
-        });
-    }
+	name: 'help-dialog',
+	data() {
+		return {
+			helpDialog: false,
+			cheatSheet: [
+				{ code: '. | 5', description: 'Rest for a turn' },
+				{ code: ', | g', description: 'Pick up an item' },
+				{ code: '<', description: 'Climb up a ladder' },
+				{ code: '>', description: 'Climb down a ladder' },
+				{ code: 'f', description: 'Fire a ranged weapon' },
+				{ code: 'z', description: 'Cast a spell' },
+				{ code: 'x', description: 'Examine the area' }
+			]
+		}
+	},
+	mounted() {
+		window.addEventListener('keydown', evt => {
+			if ((evt.getModifierState('Shift') && evt.keyCode === 191) || (evt.keyCode === 27 && this.helpDialog)) {
+				this.helpDialog = !this.helpDialog
+			}
+		})
+	}
 }
 </script>
 <style>

@@ -28,7 +28,8 @@ export class Actor extends Entity {
 		this.inventory = []
 		for (let i = 0; i < 28; i++) {
 			this.inventory.push({
-				item: null
+				item: null,
+				menu: false
 			})
 		}
 	}
@@ -184,9 +185,9 @@ export class Actor extends Entity {
 		if (weapon && weapon.cb.ranged) dmg = this.cb.str
 
 		let len = this.cb.description.length
-		let evtdamage = `${addPrefix(this.name).capitalize()}${this.cb.description[Math.floor(Math.random() * len)]}${addPrefix(
-			actor.name
-		)} and dealt ${dmg} damage.`
+		let evtdamage = `${addPrefix(this.name).capitalize()}${
+			this.cb.description[Math.floor(Math.random() * len)]
+		}${addPrefix(actor.name)} and dealt ${dmg} damage.`
 		if (Game.player === this) Game.log(evtdamage, 'player_move')
 		else Game.log(evtdamage, 'attack')
 

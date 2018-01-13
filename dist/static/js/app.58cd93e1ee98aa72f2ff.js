@@ -5,9 +5,9 @@ webpackJsonp([0],{
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_lib_selector_type_script_index_0_Inventory_vue__ = __webpack_require__("RJ5z");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__node_modules_vue_loader_lib_template_compiler_index_id_data_v_44afa804_hasScoped_false_transformToRequire_video_src_source_src_img_src_image_xlink_href_buble_transforms_node_modules_vue_loader_lib_selector_type_template_index_0_Inventory_vue__ = __webpack_require__("YJpe");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__node_modules_vue_loader_lib_template_compiler_index_id_data_v_8d7454ca_hasScoped_false_transformToRequire_video_src_source_src_img_src_image_xlink_href_buble_transforms_node_modules_vue_loader_lib_selector_type_template_index_0_Inventory_vue__ = __webpack_require__("z0Tf");
 function injectStyle (ssrContext) {
-  __webpack_require__("wuU2")
+  __webpack_require__("mCxU")
 }
 var normalizeComponent = __webpack_require__("VU/8")
 /* script */
@@ -24,7 +24,7 @@ var __vue_scopeId__ = null
 var __vue_module_identifier__ = null
 var Component = normalizeComponent(
   __WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_lib_selector_type_script_index_0_Inventory_vue__["a" /* default */],
-  __WEBPACK_IMPORTED_MODULE_1__node_modules_vue_loader_lib_template_compiler_index_id_data_v_44afa804_hasScoped_false_transformToRequire_video_src_source_src_img_src_image_xlink_href_buble_transforms_node_modules_vue_loader_lib_selector_type_template_index_0_Inventory_vue__["a" /* default */],
+  __WEBPACK_IMPORTED_MODULE_1__node_modules_vue_loader_lib_template_compiler_index_id_data_v_8d7454ca_hasScoped_false_transformToRequire_video_src_source_src_img_src_image_xlink_href_buble_transforms_node_modules_vue_loader_lib_selector_type_template_index_0_Inventory_vue__["a" /* default */],
   __vue_template_functional__,
   __vue_styles__,
   __vue_scopeId__,
@@ -367,6 +367,17 @@ var Component = normalizeComponent(
 
 /***/ }),
 
+/***/ "2qri":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('v-app',{attrs:{"dark":""}},[_c('v-container',{attrs:{"fluid":"","id":"main_container"}},[_c('v-layout',{attrs:{"row":""}},[_c('game-display'),_vm._v(" "),_c('hud')],1),_vm._v(" "),_c('item-transfer-modal'),_vm._v(" "),_c('death-modal'),_vm._v(" "),_c('help-dialog'),_vm._v(" "),_c('a',{staticStyle:{"text-decoration":"none"},attrs:{"id":"git_logo","target":"_blank","href":"https://github.com/Larkenx/Rotten-Soup"}},[_c('v-btn',{attrs:{"icon":"","ripple":""}},[_c('i',{staticClass:"fa fa-3x fa-github",staticStyle:{"color":"white","margin":"auto"},attrs:{"i":"","aria-hidden":"true"}})])],1)],1)],1)}
+var staticRenderFns = []
+var esExports = { render: render, staticRenderFns: staticRenderFns }
+/* harmony default export */ __webpack_exports__["a"] = (esExports);
+
+/***/ }),
+
 /***/ "2yNx":
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -580,6 +591,17 @@ class Corpse extends __WEBPACK_IMPORTED_MODULE_0__entities_Entity_js__["b" /* En
 
 /***/ }),
 
+/***/ "8v0R":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{attrs:{"id":"help"}},[_c('v-tooltip',{attrs:{"left":"","align-center":""}},[_c('span',[_vm._v("Controls")]),_vm._v(" "),_c('v-btn',{attrs:{"slot":"activator","flat":"","icon":"","color":"yellow darken-4"},on:{"click":function($event){$event.stopPropagation();_vm.helpDialog=true}},slot:"activator"},[_c('v-icon',[_vm._v("help")])],1)],1),_vm._v(" "),_c('v-dialog',{attrs:{"max-width":"600px"},model:{value:(_vm.helpDialog),callback:function ($$v) {_vm.helpDialog=$$v},expression:"helpDialog"}},[_c('v-card',[_c('v-card-text',[_c('h5',[_vm._v("Controls")]),_vm._v(" "),_c('v-expansion-panel',[_c('v-expansion-panel-content',[_c('div',{attrs:{"slot":"header"},slot:"header"},[_vm._v("All Keybinds")]),_vm._v(" "),_c('v-card',{attrs:{"flat":""}},[_c('v-card-text',{staticClass:"pb-0 pt-0"},[_c('v-container',[_c('v-layout',{staticClass:"pb-2",attrs:{"row":""}},[_c('v-flex',{attrs:{"xs6":""}},[_c('b',[_vm._v("Keys")])]),_vm._v(" "),_c('v-flex',{attrs:{"xs6":""}},[_c('b',[_vm._v("Description")])])],1),_vm._v(" "),_vm._l((_vm.cheatSheet),function(cheat,index){return _c('v-layout',{key:index,attrs:{"row":"","wrap":""}},[_c('v-flex',{attrs:{"xs6":""}},[_c('code',[_vm._v(_vm._s(cheat.code))])]),_vm._v(" "),_c('v-flex',{attrs:{"xs6":""}},[_c('p',[_vm._v(_vm._s(cheat.description))])])],1)})],2)],1)],1)],1),_vm._v(" "),_c('v-expansion-panel-content',[_c('div',{attrs:{"slot":"header"},slot:"header"},[_vm._v("Magic and Ranged Combat")]),_vm._v(" "),_c('v-card',{attrs:{"flat":""}},[_c('v-card-text',{staticClass:"pt-0"},[_c('v-container',{attrs:{"fluid":""}},[_c('p',[_c('b',[_vm._v("Magic")])]),_vm._v(" "),_c('p',[_vm._v("To cast a spell, first select a spell from your spellbook by "),_c('code',[_vm._v("clicking")]),_vm._v(" on it. Then, you can press "),_c('code',[_vm._v("z")]),_vm._v(" to cast the selected spell. If your spell is targeted, you will enter targeting mode.\n\n                                ")]),_c('p',[_c('b',[_vm._v("Ranged")])]),_vm._v(" "),_c('p',[_vm._v("If you have a ranged weapon and proper ammunition equipped, press "),_c('code',[_vm._v("f")]),_vm._v(" to enter targeting mode to fire your ranged weapon.\n                                ")]),_vm._v(" "),_c('p',[_c('b',[_vm._v("Targeting")])]),_vm._v("\n                                In targeting mode, you can select a tile to cast a spell or shoot a projectile so long as it's within range. By default, targeting will select the nearest enemy. You can change the selected tile with the standard "),_c('code',[_vm._v("movement")]),_vm._v(" keys. You can also cycle through enemies in view with "),_c('code',[_vm._v("tab")]),_vm._v(", "),_c('code',[_vm._v("=")]),_vm._v(", and "),_c('code',[_vm._v("/")]),_vm._v(". You cannot select a tile that is blocked or out of your line of sight. Pressing "),_c('code',[_vm._v("escape")]),_vm._v(" will cancel your spell or ranged attack. You can also press "),_c('code',[_vm._v("f")]),_vm._v(" or "),_c('code',[_vm._v("z")]),_vm._v(" for ranged or magic respectively.\n                                ")])],1)],1)],1),_vm._v(" "),_c('v-expansion-panel-content',[_c('div',{attrs:{"slot":"header"},slot:"header"},[_vm._v("Movement and Examining")]),_vm._v(" "),_c('v-card',{attrs:{"flat":""}},[_c('v-card-text',{staticClass:"pb-0 pt-0"},[_c('v-container',[_c('p',[_vm._v("You can move with arrow keys, the numpad, or vi keys. You can move in all 8 directions. ")]),_vm._v(" "),_c('v-container',{staticClass:"text-xs-center"},[_c('pre',[_vm._v("y  k  u      7  8  9  ")]),_vm._v(" "),_c('pre',[_vm._v(" \\ | /        \\ | /   ")]),_vm._v(" "),_c('pre',[_vm._v(" h-+-l        4-5-6   ")]),_vm._v(" "),_c('pre',[_vm._v(" / | \\        / | \\   ")]),_vm._v(" "),_c('pre',[_vm._v("b  j  n      1  2  3  ")]),_vm._v(" "),_c('pre',[_vm._v("vi-keys     numberpad ")])]),_vm._v(" "),_c('p',[_vm._v("\n                                    When in targeting mode, you can use these keys to switch to different tiles. Press "),_c('code',[_vm._v("x")]),_vm._v(" to examine your surroundings. Press "),_c('code',[_vm._v("x")]),_vm._v(" or "),_c('code',[_vm._v("escape")]),_vm._v(" to leave the examine mode.\n                                ")])],1)],1)],1)],1),_vm._v(" "),_c('v-expansion-panel-content',[_c('div',{attrs:{"slot":"header"},slot:"header"},[_vm._v("Melee Combat")]),_vm._v(" "),_c('v-card',{attrs:{"flat":""}},[_c('v-card-text',{staticClass:"pt-0"},[_c('v-container',{attrs:{"fluid":""}},[_c('p',[_vm._v("To fight an enemy with your fists or melee weapon, simply "),_c('code',[_vm._v("move")]),_vm._v(" into a tile where they are standing.")])])],1)],1)],1),_vm._v(" "),_c('v-expansion-panel-content',[_c('v-card',{attrs:{"flat":""}},[_c('div',{attrs:{"slot":"header"},slot:"header"},[_vm._v("Ladders, Resting, and Picking up Items")]),_vm._v(" "),_c('v-card-text',{staticClass:"pt-0"},[_c('v-container',{attrs:{"fluid":""}},[_c('p',[_vm._v("To pick up items off the ground, press "),_c('code',[_vm._v(",")]),_vm._v(" or "),_c('code',[_vm._v("g")]),_vm._v(".")]),_vm._v(" "),_c('p',[_vm._v("To rest for a turn and restore a little health, press "),_c('code',[_vm._v(".")]),_vm._v(" or "),_c('code',[_vm._v("5")]),_vm._v(" on the numpad.")]),_vm._v(" "),_c('p',[_vm._v("To climb ladders, press "),_c('code',[_vm._v("<")]),_vm._v(" to go up and press "),_c('code',[_vm._v(">")]),_vm._v(" to go down.")])])],1)],1)],1),_vm._v(" "),_c('v-expansion-panel-content',[_c('div',{attrs:{"slot":"header"},slot:"header"},[_vm._v("Inventory Management")]),_vm._v(" "),_c('v-card',{attrs:{"flat":""}},[_c('v-card-text',{staticClass:"pt-0"},[_c('v-container',{attrs:{"fluid":""}},[_c('p',[_vm._v("\n                                    To equip a weapon or drink a potion, "),_c('code',[_vm._v("click")]),_vm._v(" the item in your inventory. To drop an item, "),_c('code',[_vm._v("shift+click")]),_vm._v(" the item in your inventory. Alternatively, you can either equip or drop items by right-clicking an item to bring up its context menu and selecting one of the actions from there.\n                                ")]),_vm._v(" "),_c('p',[_vm._v("\n                                    You can rearrange inventory items by dragging and dropping items where you want them to be.\n                                ")]),_vm._v(" "),_c('p',[_vm._v("\n                                    To view details about items, simply "),_c('code',[_vm._v("hover")]),_vm._v(" over the item in your inventory and view the tooltip.\n                                ")])])],1)],1)],1)],1)],1),_vm._v(" "),_c('v-card-actions',[_c('v-spacer'),_vm._v(" "),_c('v-btn',{attrs:{"color":"yellow darken-4","flat":""},on:{"click":function($event){$event.stopPropagation();_vm.helpDialog=false}}},[_vm._v("Close")])],1)],1)],1)],1)}
+var staticRenderFns = []
+var esExports = { render: render, staticRenderFns: staticRenderFns }
+/* harmony default export */ __webpack_exports__["a"] = (esExports);
+
+/***/ }),
+
 /***/ "9kQd":
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -776,22 +798,27 @@ class ManaPotion extends __WEBPACK_IMPORTED_MODULE_0__entities_items_potions_Pot
 //
 //
 //
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["a"] = ({
-    name: 'help-dialog',
-    data() {
-        return {
-            helpDialog: false,
-            cheatSheet: [{ code: ". | 5", description: "Rest for a turn" }, { code: ", | g", description: "Pick up an item" }, { code: "<", description: "Climb up a ladder" }, { code: ">", description: "Climb down a ladder" }, { code: "f", description: "Fire a ranged weapon" }, { code: "z", description: "Cast a spell" }, { code: "x", description: "Examine the area" }]
-        };
-    },
-    mounted() {
-        window.addEventListener("keydown", evt => {
-            if (evt.getModifierState("Shift") && evt.keyCode === 191 || evt.keyCode === 27 && this.helpDialog) {
-                this.helpDialog = !this.helpDialog;
-            }
-        });
-    }
+	name: 'help-dialog',
+	data() {
+		return {
+			helpDialog: false,
+			cheatSheet: [{ code: '. | 5', description: 'Rest for a turn' }, { code: ', | g', description: 'Pick up an item' }, { code: '<', description: 'Climb up a ladder' }, { code: '>', description: 'Climb down a ladder' }, { code: 'f', description: 'Fire a ranged weapon' }, { code: 'z', description: 'Cast a spell' }, { code: 'x', description: 'Examine the area' }]
+		};
+	},
+	mounted() {
+		window.addEventListener('keydown', evt => {
+			if (evt.getModifierState('Shift') && evt.keyCode === 191 || evt.keyCode === 27 && this.helpDialog) {
+				this.helpDialog = !this.helpDialog;
+			}
+		});
+	}
 });
 
 /***/ }),
@@ -887,7 +914,6 @@ class StrengthPotion extends __WEBPACK_IMPORTED_MODULE_0__entities_items_potions
 
 
 class Weapon extends __WEBPACK_IMPORTED_MODULE_1__entities_items_Item_js__["a" /* default */] {
-
 	constructor(x, y, options) {
 		if (options.combat === null) throw `Error - no options.combat property defined. Bad weapon creation for ${options.name}`;
 		options.visible = true;
@@ -901,7 +927,11 @@ class Weapon extends __WEBPACK_IMPORTED_MODULE_1__entities_items_Item_js__["a" /
 	}
 
 	use() {
-		__WEBPACK_IMPORTED_MODULE_0__Game_js__["a" /* Game */].player.equipWeapon(this);
+		if (__WEBPACK_IMPORTED_MODULE_0__Game_js__["a" /* Game */].player.cb.equipment.weapon === this) {
+			__WEBPACK_IMPORTED_MODULE_0__Game_js__["a" /* Game */].player.unequipWeapon();
+		} else {
+			__WEBPACK_IMPORTED_MODULE_0__Game_js__["a" /* Game */].player.equipWeapon(this);
+		}
 	}
 
 	roll() {
@@ -910,6 +940,11 @@ class Weapon extends __WEBPACK_IMPORTED_MODULE_1__entities_items_Item_js__["a" /
 			dmg += __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_2__utils_HelperFunctions_js__["b" /* getRandomInt */])(1, this.cb.sides);
 		}
 		return dmg;
+	}
+
+	getAction() {
+		if (this.cb.equipped) return 'Unequip';
+		return this.action;
 	}
 
 	/* Effects are equivalent to enchantments, in a way...
@@ -1008,9 +1043,13 @@ class Item extends __WEBPACK_IMPORTED_MODULE_1__entities_Entity_js__["b" /* Enti
 		return css;
 	}
 
-	use() {}
-	// to be overwritten
+	use() {
+		// to be overwritten
+	}
 
+	getAction() {
+		return this.action;
+	}
 
 	// making a major assumption that the player is the only thing that drops things.
 	// might change if some enemy type needs to do so
@@ -1020,13 +1059,6 @@ class Item extends __WEBPACK_IMPORTED_MODULE_1__entities_Entity_js__["b" /* Enti
 }
 /* harmony export (immutable) */ __webpack_exports__["a"] = Item;
 
-
-/***/ }),
-
-/***/ "DIPc":
-/***/ (function(module, exports) {
-
-// removed by extract-text-webpack-plugin
 
 /***/ }),
 
@@ -1370,13 +1402,6 @@ class GameMap {
 
 /***/ }),
 
-/***/ "Dbja":
-/***/ (function(module, exports) {
-
-// removed by extract-text-webpack-plugin
-
-/***/ }),
-
 /***/ "FO7O":
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -1421,7 +1446,8 @@ class Actor extends __WEBPACK_IMPORTED_MODULE_2__entities_Entity_js__["b" /* Ent
 		this.inventory = [];
 		for (let i = 0; i < 28; i++) {
 			this.inventory.push({
-				item: null
+				item: null,
+				menu: false
 			});
 		}
 	}
@@ -2894,25 +2920,14 @@ function createSword(x, y, id) {
 
 /***/ }),
 
-/***/ "KoXl":
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('v-app',{attrs:{"dark":""}},[_c('v-container',{attrs:{"fluid":"","id":"main_container"}},[_c('v-layout',{attrs:{"row":""}},[_c('game-display'),_vm._v(" "),_c('hud')],1),_vm._v(" "),_c('item-transfer-modal'),_vm._v(" "),_c('death-modal'),_vm._v(" "),_c('help-dialog'),_vm._v(" "),_c('a',{staticStyle:{"text-decoration":"none"},attrs:{"id":"git_logo","target":"_blank","href":"https://github.com/Larkenx/Rotten-Soup"}},[_c('v-btn',{attrs:{"icon":"","ripple":""}},[_c('i',{staticClass:"fa fa-3x fa-github",staticStyle:{"color":"white","margin":"auto"},attrs:{"i":"","aria-hidden":"true"}})])],1)],1)],1)}
-var staticRenderFns = []
-var esExports = { render: render, staticRenderFns: staticRenderFns }
-/* harmony default export */ __webpack_exports__["a"] = (esExports);
-
-/***/ }),
-
 /***/ "M93x":
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_lib_selector_type_script_index_0_App_vue__ = __webpack_require__("xJD8");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__node_modules_vue_loader_lib_template_compiler_index_id_data_v_40540608_hasScoped_false_transformToRequire_video_src_source_src_img_src_image_xlink_href_buble_transforms_node_modules_vue_loader_lib_selector_type_template_index_0_App_vue__ = __webpack_require__("KoXl");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__node_modules_vue_loader_lib_template_compiler_index_id_data_v_549713a4_hasScoped_false_transformToRequire_video_src_source_src_img_src_image_xlink_href_buble_transforms_node_modules_vue_loader_lib_selector_type_template_index_0_App_vue__ = __webpack_require__("2qri");
 function injectStyle (ssrContext) {
-  __webpack_require__("DIPc")
+  __webpack_require__("Uvze")
 }
 var normalizeComponent = __webpack_require__("VU/8")
 /* script */
@@ -2929,7 +2944,7 @@ var __vue_scopeId__ = null
 var __vue_module_identifier__ = null
 var Component = normalizeComponent(
   __WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_lib_selector_type_script_index_0_App_vue__["a" /* default */],
-  __WEBPACK_IMPORTED_MODULE_1__node_modules_vue_loader_lib_template_compiler_index_id_data_v_40540608_hasScoped_false_transformToRequire_video_src_source_src_img_src_image_xlink_href_buble_transforms_node_modules_vue_loader_lib_selector_type_template_index_0_App_vue__["a" /* default */],
+  __WEBPACK_IMPORTED_MODULE_1__node_modules_vue_loader_lib_template_compiler_index_id_data_v_549713a4_hasScoped_false_transformToRequire_video_src_source_src_img_src_image_xlink_href_buble_transforms_node_modules_vue_loader_lib_selector_type_template_index_0_App_vue__["a" /* default */],
   __vue_template_functional__,
   __vue_styles__,
   __vue_scopeId__,
@@ -3638,6 +3653,8 @@ module.exports = {"height":60,"layers":[{"data":[7865,7865,7865,7865,7865,7865,7
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__assets_js_game_Game_js__ = __webpack_require__("TiVF");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_vuedraggable__ = __webpack_require__("DAYN");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_vuedraggable___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_vuedraggable__);
 //
 //
 //
@@ -3678,17 +3695,54 @@ module.exports = {"height":60,"layers":[{"data":[7865,7865,7865,7865,7865,7865,7
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
 
 
 
 /* import other components here */
 /* harmony default export */ __webpack_exports__["a"] = ({
+	components: {
+		draggable: __WEBPACK_IMPORTED_MODULE_1_vuedraggable___default.a
+	},
 	data() {
 		return {
-			inventory: null,
-			rows: [1, 2, 3, 4]
+			inventory: __WEBPACK_IMPORTED_MODULE_0__assets_js_game_Game_js__["a" /* Game */].player.inventory,
+			rows: [1, 2, 3, 4],
+			x: 0,
+			y: 0
 		};
 	},
+	created() {},
 	methods: {
 		getInventorySprite(id) {
 			return `../static/images/inventory_sprites/${id}.png`;
@@ -3701,18 +3755,33 @@ module.exports = {"height":60,"layers":[{"data":[7865,7865,7865,7865,7865,7865,7
 			}
 		},
 		getInventoryRow(n) {
-			let inventory = __WEBPACK_IMPORTED_MODULE_0__assets_js_game_Game_js__["a" /* Game */].player.inventory;
-			let offset = n * (inventory.length / this.rows.length);
-			return inventory.slice(offset, offset + inventory.length / this.rows.length);
+			// let inventory = Game.player.inventory
+			let offset = n * (this.inventory.length / this.rows.length);
+			return this.inventory.slice(offset, offset + this.inventory.length / this.rows.length);
 		},
-		useItem(item, evt) {
-			// drop item
+		useItem(cell, evt) {
+			// drop cell.item
 			if (evt.shiftKey) {
-				item.drop();
+				cell.item.drop();
 			} else {
-				// use item
-				item.use();
+				// use cell.item
+				cell.item.use();
 			}
+		},
+		dropItem(cell, evt) {
+			// drop cell.item
+			cell.item.drop();
+		},
+		show(cell, e) {
+			e.preventDefault();
+			this.inventory.forEach(slot => {
+				slot.menu = false;
+			});
+			this.x = e.clientX;
+			this.y = e.clientY;
+			this.$nextTick(() => {
+				cell.menu = true;
+			});
 		}
 	}
 });
@@ -3902,7 +3971,7 @@ class SteelArrow extends Arrow {
 	constructor(x, y, id, quantity) {
 		super(x, y, {
 			id: id,
-			type: 'Steel Arrow',
+			type: 'Steel Arrows',
 			combat: {
 				damage: 0
 			},
@@ -4679,6 +4748,13 @@ let Game = {
 
 /***/ }),
 
+/***/ "Uvze":
+/***/ (function(module, exports) {
+
+// removed by extract-text-webpack-plugin
+
+/***/ }),
+
 /***/ "VP7Z":
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -4763,17 +4839,6 @@ class Goblin extends __WEBPACK_IMPORTED_MODULE_1__entities_actors_enemies_Statel
 }
 /* harmony export (immutable) */ __webpack_exports__["a"] = Goblin;
 
-
-/***/ }),
-
-/***/ "Vapo":
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{attrs:{"id":"help"}},[_c('v-tooltip',{attrs:{"left":"","align-center":""}},[_c('span',[_vm._v("Controls")]),_vm._v(" "),_c('v-btn',{attrs:{"slot":"activator","flat":"","icon":"","color":"yellow darken-4"},on:{"click":function($event){$event.stopPropagation();_vm.helpDialog=true}},slot:"activator"},[_c('v-icon',[_vm._v("help")])],1)],1),_vm._v(" "),_c('v-dialog',{attrs:{"max-width":"600px"},model:{value:(_vm.helpDialog),callback:function ($$v) {_vm.helpDialog=$$v},expression:"helpDialog"}},[_c('v-card',[_c('v-card-text',[_c('h5',[_vm._v("Controls")]),_vm._v(" "),_c('v-expansion-panel',[_c('v-expansion-panel-content',[_c('div',{attrs:{"slot":"header"},slot:"header"},[_vm._v("All Keybinds")]),_vm._v(" "),_c('v-card',{attrs:{"flat":""}},[_c('v-card-text',{staticClass:"pb-0 pt-0"},[_c('v-container',[_c('v-layout',{staticClass:"pb-2",attrs:{"row":""}},[_c('v-flex',{attrs:{"xs6":""}},[_c('b',[_vm._v("Keys")])]),_vm._v(" "),_c('v-flex',{attrs:{"xs6":""}},[_c('b',[_vm._v("Description")])])],1),_vm._v(" "),_vm._l((_vm.cheatSheet),function(cheat,index){return _c('v-layout',{key:index,attrs:{"row":"","wrap":""}},[_c('v-flex',{attrs:{"xs6":""}},[_c('code',[_vm._v(_vm._s(cheat.code))])]),_vm._v(" "),_c('v-flex',{attrs:{"xs6":""}},[_c('p',[_vm._v(_vm._s(cheat.description))])])],1)})],2)],1)],1)],1),_vm._v(" "),_c('v-expansion-panel-content',[_c('div',{attrs:{"slot":"header"},slot:"header"},[_vm._v("Magic and Ranged Combat")]),_vm._v(" "),_c('v-card',{attrs:{"flat":""}},[_c('v-card-text',{staticClass:"pt-0"},[_c('v-container',{attrs:{"fluid":""}},[_c('p',[_c('b',[_vm._v("Magic")])]),_vm._v(" "),_c('p',[_vm._v("To cast a spell, first select a spell from your spellbook by "),_c('code',[_vm._v("clicking")]),_vm._v(" on it. Then, you can press "),_c('code',[_vm._v("z")]),_vm._v(" to cast the selected spell. If your spell is targeted, you will enter targeting mode.\n\n                                ")]),_c('p',[_c('b',[_vm._v("Ranged")])]),_vm._v(" "),_c('p',[_vm._v("If you have a ranged weapon and proper ammunition equipped, press "),_c('code',[_vm._v("f")]),_vm._v(" to enter targeting mode to fire your ranged weapon.\n                                ")]),_vm._v(" "),_c('p',[_c('b',[_vm._v("Targeting")])]),_vm._v("\n                                In targeting mode, you can select a tile to cast a spell or shoot a projectile so long as it's within range. By default, targeting will select the nearest enemy. You can change the selected tile with the standard "),_c('code',[_vm._v("movement")]),_vm._v(" keys. You can also cycle through enemies in view with "),_c('code',[_vm._v("tab")]),_vm._v(", "),_c('code',[_vm._v("=")]),_vm._v(", and "),_c('code',[_vm._v("/")]),_vm._v(". You cannot select a tile that is blocked or out of your line of sight. Pressing "),_c('code',[_vm._v("escape")]),_vm._v(" will cancel your spell or ranged attack. You can also press "),_c('code',[_vm._v("f")]),_vm._v(" or "),_c('code',[_vm._v("z")]),_vm._v(" for ranged or magic respectively.\n                                ")])],1)],1)],1),_vm._v(" "),_c('v-expansion-panel-content',[_c('div',{attrs:{"slot":"header"},slot:"header"},[_vm._v("Movement and Examining")]),_vm._v(" "),_c('v-card',{attrs:{"flat":""}},[_c('v-card-text',{staticClass:"pb-0 pt-0"},[_c('v-container',[_c('p',[_vm._v("You can move with arrow keys, the numpad, or vi keys. You can move in all 8 directions. ")]),_vm._v(" "),_c('v-container',{staticClass:"text-xs-center"},[_c('pre',[_vm._v("y  k  u      7  8  9  ")]),_vm._v(" "),_c('pre',[_vm._v(" \\ | /        \\ | /   ")]),_vm._v(" "),_c('pre',[_vm._v(" h-+-l        4-5-6   ")]),_vm._v(" "),_c('pre',[_vm._v(" / | \\        / | \\   ")]),_vm._v(" "),_c('pre',[_vm._v("b  j  n      1  2  3  ")]),_vm._v(" "),_c('pre',[_vm._v("vi-keys     numberpad ")])]),_vm._v(" "),_c('p',[_vm._v("\n                                    When in targeting mode, you can use these keys to switch to different tiles. Press "),_c('code',[_vm._v("x")]),_vm._v(" to examine your surroundings. Press "),_c('code',[_vm._v("x")]),_vm._v(" or "),_c('code',[_vm._v("escape")]),_vm._v(" to leave the examine mode.\n                                ")])],1)],1)],1)],1),_vm._v(" "),_c('v-expansion-panel-content',[_c('div',{attrs:{"slot":"header"},slot:"header"},[_vm._v("Melee Combat")]),_vm._v(" "),_c('v-card',{attrs:{"flat":""}},[_c('v-card-text',{staticClass:"pt-0"},[_c('v-container',{attrs:{"fluid":""}},[_c('p',[_vm._v("To fight an enemy with your fists or melee weapon, simply "),_c('code',[_vm._v("move")]),_vm._v(" into a tile where they are standing.")])])],1)],1)],1),_vm._v(" "),_c('v-expansion-panel-content',[_c('v-card',{attrs:{"flat":""}},[_c('div',{attrs:{"slot":"header"},slot:"header"},[_vm._v("Ladders, Resting, and Picking up Items")]),_vm._v(" "),_c('v-card-text',{staticClass:"pt-0"},[_c('v-container',{attrs:{"fluid":""}},[_c('p',[_vm._v("To pick up items off the ground, press "),_c('code',[_vm._v(",")]),_vm._v(" or "),_c('code',[_vm._v("g")]),_vm._v(".")]),_vm._v(" "),_c('p',[_vm._v("To rest for a turn and restore a little health, press "),_c('code',[_vm._v(".")]),_vm._v(" or "),_c('code',[_vm._v("5")]),_vm._v(" on the numpad.")]),_vm._v(" "),_c('p',[_vm._v("To climb ladders, press "),_c('code',[_vm._v("<")]),_vm._v(" to go up and press "),_c('code',[_vm._v(">")]),_vm._v(" to go down.")])])],1)],1)],1),_vm._v(" "),_c('v-expansion-panel-content',[_c('div',{attrs:{"slot":"header"},slot:"header"},[_vm._v("Inventory Management")]),_vm._v(" "),_c('v-card',{attrs:{"flat":""}},[_c('v-card-text',{staticClass:"pt-0"},[_c('v-container',{attrs:{"fluid":""}},[_c('p',[_vm._v("To equip a weapon or drink a potion, "),_c('code',[_vm._v("click")]),_vm._v(" the item in your inventory.")]),_c('p'),_c('p',[_vm._v("To drop an item, "),_c('code',[_vm._v("shift+click")]),_vm._v(" the item in your inventory.")]),_vm._v(" "),_c('p',[_vm._v("To view details about items, simply "),_c('code',[_vm._v("hover")]),_vm._v(" over the item in your inventory and view the tooltip.\n                                ")])])],1)],1)],1)],1)],1),_vm._v(" "),_c('v-card-actions',[_c('v-spacer'),_vm._v(" "),_c('v-btn',{attrs:{"color":"yellow darken-4","flat":""},on:{"click":function($event){$event.stopPropagation();_vm.helpDialog=false}}},[_vm._v("Close")])],1)],1)],1)],1)}
-var staticRenderFns = []
-var esExports = { render: render, staticRenderFns: staticRenderFns }
-/* harmony default export */ __webpack_exports__["a"] = (esExports);
 
 /***/ }),
 
@@ -4894,25 +4959,14 @@ class Entity {
 
 /***/ }),
 
-/***/ "YJpe":
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('v-layout',{attrs:{"row":""}},[_c('v-container',{attrs:{"fluid":""}},_vm._l((4),function(row,index){return _c('v-layout',{key:index,staticClass:"inventory_row",attrs:{"row":""}},_vm._l((_vm.getInventoryRow(index)),function(cell,i){return _c('v-flex',{key:i,class:{selectedItem : _vm.colorSlot(cell), inventory_cell : ! _vm.colorSlot(cell)},staticStyle:{"max-width":"32px","margin":"2px"},attrs:{"xs1":"","col":"","align-center":""}},[(cell.item !== null)?_c('v-tooltip',{attrs:{"bottom":"","align-center":""}},[_c('p',{staticClass:"text-xs-center ma-0"},[_vm._v("\n                        "+_vm._s(cell.item.action)+" "+_vm._s(cell.item.type)),_c('br'),_vm._v(" "),('name' in cell.item)?_c('span',[_vm._v(_vm._s("Name: " + cell.item.name)),_c('br')]):_vm._e(),_vm._v("\n                        "+_vm._s(cell.item.hoverInfo())+"\n                    ")]),_vm._v(" "),(cell.item !== null)?_c('v-layout',{attrs:{"slot":"activator","ripple":"","row":""},on:{"click":function($event){_vm.useItem(cell.item, $event)}},slot:"activator"},[_c('v-badge',{attrs:{"overlay":"","bottom":"","color":"grey","overlap":""}},[(cell.item.quantity !== undefined)?_c('span',{attrs:{"slot":"badge","dark":""},slot:"badge"},[_c('b',[_vm._v(_vm._s(cell.item.quantity))])]):_vm._e(),_vm._v(" "),_c('img',{attrs:{"src":_vm.getInventorySprite(cell.item.id)}})])],1):_vm._e()],1):_vm._e()],1)}))}))],1)}
-var staticRenderFns = []
-var esExports = { render: render, staticRenderFns: staticRenderFns }
-/* harmony default export */ __webpack_exports__["a"] = (esExports);
-
-/***/ }),
-
 /***/ "ZHys":
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_lib_selector_type_script_index_0_HelpDialog_vue__ = __webpack_require__("AGrj");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__node_modules_vue_loader_lib_template_compiler_index_id_data_v_e3a370e0_hasScoped_false_transformToRequire_video_src_source_src_img_src_image_xlink_href_buble_transforms_node_modules_vue_loader_lib_selector_type_template_index_0_HelpDialog_vue__ = __webpack_require__("Vapo");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__node_modules_vue_loader_lib_template_compiler_index_id_data_v_3cfb7a9b_hasScoped_false_transformToRequire_video_src_source_src_img_src_image_xlink_href_buble_transforms_node_modules_vue_loader_lib_selector_type_template_index_0_HelpDialog_vue__ = __webpack_require__("8v0R");
 function injectStyle (ssrContext) {
-  __webpack_require__("Dbja")
+  __webpack_require__("jJbX")
 }
 var normalizeComponent = __webpack_require__("VU/8")
 /* script */
@@ -4929,7 +4983,7 @@ var __vue_scopeId__ = null
 var __vue_module_identifier__ = null
 var Component = normalizeComponent(
   __WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_lib_selector_type_script_index_0_HelpDialog_vue__["a" /* default */],
-  __WEBPACK_IMPORTED_MODULE_1__node_modules_vue_loader_lib_template_compiler_index_id_data_v_e3a370e0_hasScoped_false_transformToRequire_video_src_source_src_img_src_image_xlink_href_buble_transforms_node_modules_vue_loader_lib_selector_type_template_index_0_HelpDialog_vue__["a" /* default */],
+  __WEBPACK_IMPORTED_MODULE_1__node_modules_vue_loader_lib_template_compiler_index_id_data_v_3cfb7a9b_hasScoped_false_transformToRequire_video_src_source_src_img_src_image_xlink_href_buble_transforms_node_modules_vue_loader_lib_selector_type_template_index_0_HelpDialog_vue__["a" /* default */],
   __vue_template_functional__,
   __vue_styles__,
   __vue_scopeId__,
@@ -5893,6 +5947,13 @@ class NPC extends __WEBPACK_IMPORTED_MODULE_0__entities_actors_Actor_js__["a" /*
 
 /***/ }),
 
+/***/ "jJbX":
+/***/ (function(module, exports) {
+
+// removed by extract-text-webpack-plugin
+
+/***/ }),
+
 /***/ "kuN2":
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -5961,6 +6022,13 @@ class BleedEnchantment extends Enchantment {
 }
 /* harmony export (immutable) */ __webpack_exports__["a"] = BleedEnchantment;
 
+
+/***/ }),
+
+/***/ "mCxU":
+/***/ (function(module, exports) {
+
+// removed by extract-text-webpack-plugin
 
 /***/ }),
 
@@ -6565,19 +6633,23 @@ const AMMO_TYPES = {
 
 
 class Ammo extends __WEBPACK_IMPORTED_MODULE_0__entities_items_Item_js__["a" /* default */] {
-
 	constructor(x, y, options) {
 		options.visible = true;
 		options.blocked = false;
 		options.combat.equippable = true;
 		options.combat.equipped = false;
+		options.action = 'Equip';
 		super(x, y, options);
 		Object.assign(this, options);
 		this.cb = this.combat;
 	}
 
 	use() {
-		__WEBPACK_IMPORTED_MODULE_1__Game_js__["a" /* Game */].player.equipAmmo(this);
+		if (__WEBPACK_IMPORTED_MODULE_1__Game_js__["a" /* Game */].player.cb.equipment.ammo === this) {
+			__WEBPACK_IMPORTED_MODULE_1__Game_js__["a" /* Game */].player.unequipAmmo();
+		} else {
+			__WEBPACK_IMPORTED_MODULE_1__Game_js__["a" /* Game */].player.equipAmmo(this);
+		}
 	}
 
 	hoverInfo() {
@@ -6737,13 +6809,6 @@ var Component = normalizeComponent(
 
 /***/ }),
 
-/***/ "wuU2":
-/***/ (function(module, exports) {
-
-// removed by extract-text-webpack-plugin
-
-/***/ }),
-
 /***/ "x/l/":
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -6847,8 +6912,6 @@ Window.Game = __WEBPACK_IMPORTED_MODULE_0__assets_js_game_Game_js__["a" /* Game 
 		this.player = __WEBPACK_IMPORTED_MODULE_0__assets_js_game_Game_js__["a" /* Game */].player;
 	},
 	mounted() {
-		// $('#game_container').html(Game.display.getContainer());
-		// $('#minimap_container').html(Game.minimap.getContainer());
 		document.getElementById('game_container').appendChild(__WEBPACK_IMPORTED_MODULE_0__assets_js_game_Game_js__["a" /* Game */].display.getContainer());
 		document.getElementById('minimap_container').appendChild(__WEBPACK_IMPORTED_MODULE_0__assets_js_game_Game_js__["a" /* Game */].minimap.getContainer());
 		__WEBPACK_IMPORTED_MODULE_0__assets_js_game_Game_js__["a" /* Game */].log('Welcome to Rotten Soup!', 'information');
@@ -6965,6 +7028,17 @@ class Orc extends __WEBPACK_IMPORTED_MODULE_0__entities_actors_enemies_SimpleEne
 
 /***/ }),
 
+/***/ "z0Tf":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('v-layout',{attrs:{"row":""}},[_c('v-container',{attrs:{"fluid":""}},_vm._l((4),function(row,index){return _c('v-layout',{key:index,staticClass:"inventory_row",attrs:{"row":""}},[_c('draggable',{staticClass:"layout inventory_row row"},_vm._l((_vm.getInventoryRow(index)),function(cell,i){return _c('v-flex',{key:i*index,class:{selectedItem : _vm.colorSlot(cell), inventory_cell : ! _vm.colorSlot(cell)},staticStyle:{"max-width":"32px","margin":"4px"},attrs:{"xs1":"","col":"","align-center":""}},[(cell.item !== null)?_c('v-tooltip',{attrs:{"open-delay":"200","bottom":"","align-center":""}},[_c('p',{staticClass:"text-xs-center ma-0"},[_vm._v("\n                                "+_vm._s(cell.item.getAction())+" "+_vm._s(cell.item.type)),_c('br'),_vm._v(" "),('name' in cell.item)?_c('span',[_vm._v(_vm._s("Name: " + cell.item.name)),_c('br')]):_vm._e(),_vm._v("\n                                "+_vm._s(cell.item.hoverInfo())+"\n                            ")]),_vm._v(" "),(cell.item !== null)?_c('v-layout',{attrs:{"slot":"activator","ripple":"","row":""},on:{"click":function($event){_vm.useItem(cell, $event)},"contextmenu":function($event){_vm.show(cell, $event)}},slot:"activator"},[_c('v-menu',{attrs:{"offset-x":"","nudge-width":200,"close-on-click":true,"absolute":"","position-x":_vm.x,"position-y":_vm.y},model:{value:(cell.menu),callback:function ($$v) {_vm.$set(cell, "menu", $$v)},expression:"cell.menu"}},[_c('v-card',[_c('v-list',[_c('v-list-tile',{attrs:{"avatar":""}},[_c('v-list-tile-avatar',[_c('img',{attrs:{"src":_vm.getInventorySprite(cell.item.id)}})]),_vm._v(" "),_c('v-list-tile-content',[_c('v-list-tile-title',[_vm._v(_vm._s(cell.item.type))]),_vm._v(" "),_c('v-list-tile-sub-title',[_vm._v(_vm._s(cell.item.hoverInfo()))])],1)],1)],1),_vm._v(" "),_c('v-divider'),_vm._v(" "),_c('v-card-actions',[_c('v-btn',{attrs:{"flat":"","color":"blue"},on:{"click":function($event){_vm.useItem(cell, $event)}}},[_vm._v(_vm._s(cell.item.getAction()))]),_vm._v(" "),_c('v-btn',{attrs:{"flat":"","color":"red"},on:{"click":function($event){_vm.dropItem(cell, $event)}}},[_vm._v("Drop")])],1)],1)],1),_vm._v(" "),_c('v-badge',{attrs:{"overlay":"","bottom":"","color":"grey","overlap":""}},[(cell.item.quantity !== undefined)?_c('span',{attrs:{"slot":"badge","dark":""},slot:"badge"},[_c('b',[_vm._v(_vm._s(cell.item.quantity))])]):_vm._e(),_vm._v(" "),_c('img',{attrs:{"src":_vm.getInventorySprite(cell.item.id)}})])],1):_vm._e()],1):_vm._e()],1)}))],1)}))],1)}
+var staticRenderFns = []
+var esExports = { render: render, staticRenderFns: staticRenderFns }
+/* harmony default export */ __webpack_exports__["a"] = (esExports);
+
+/***/ }),
+
 /***/ "zFv3":
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -6984,4 +7058,4 @@ module.exports = {"height":50,"layers":[{"data":[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
 /***/ })
 
 },["NHnr"]);
-//# sourceMappingURL=app.e8cb679ae805bf86b2b1.js.map
+//# sourceMappingURL=app.58cd93e1ee98aa72f2ff.js.map
