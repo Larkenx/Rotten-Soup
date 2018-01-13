@@ -1,4 +1,4 @@
-<template>
+<template v-if="playerSelected">
     <v-app dark>
         <v-container fluid id="main_container">
             <!-- Game Display and HUD-->
@@ -46,27 +46,35 @@
         </v-container>
     </v-app>
 </template>
+<template v-else>
+    <start-menu v-bind="{Game, playerSelected}"></start-menu>
+</template>
 
 <script>
 import { Game } from '@/assets/js/game/Game.js'
 // components
+import startMenu from './components/StartMenu.vue'
 import gameDisplay from './components/GameDisplay.vue'
 import itemTransferModal from './components/ItemTransferModal.vue'
 import hud from './components/HUD.vue'
 import deathModal from './components/DeathModal.vue'
 import helpDialog from './components/HelpDialog.vue'
 Window.Game = Game
+
 export default {
 	name: 'app',
 	data() {
 		return {
+			Game,
 			mouseControls: false,
 			loading: true,
+			playerSelected: false,
 			player: null,
 			actors: null
 		}
 	},
 	components: {
+		'start-menu': startMenu,
 		'game-display': gameDisplay,
 		hud: hud,
 		'item-transfer-modal': itemTransferModal,
@@ -74,26 +82,11 @@ export default {
 		'help-dialog': helpDialog
 	},
 	created() {
-		Game.init()
-		this.player = Game.player
+		// Game.init()
+		// this.player = Game.player
 	},
-	mounted() {
-		this.player = Game.player
-		document.getElementById('game_container').appendChild(Game.display.getContainer())
-		document.getElementById('minimap_container').appendChild(Game.minimap.getContainer())
-		Game.log('Welcome to Rotten Soup!', 'information')
-		Game.log('Press ? to view the controls.', 'player_move')
-		Game.drawViewPort()
-		Game.drawMiniMap()
-		Game.refreshDisplay()
-		setInterval(() => {
-			Game.turn++
-			Game.updateDisplay()
-		}, 500)
-		setTimeout(() => {
-			this.loading = false
-		}, 1000)
-	}
+	mounted() {},
+	methods: {}
 }
 </script>
 <style>
