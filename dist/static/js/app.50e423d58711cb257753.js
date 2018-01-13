@@ -367,17 +367,6 @@ var Component = normalizeComponent(
 
 /***/ }),
 
-/***/ "2qri":
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('v-app',{attrs:{"dark":""}},[_c('v-container',{attrs:{"fluid":"","id":"main_container"}},[_c('v-layout',{attrs:{"row":""}},[_c('game-display'),_vm._v(" "),_c('hud')],1),_vm._v(" "),_c('item-transfer-modal'),_vm._v(" "),_c('death-modal'),_vm._v(" "),_c('help-dialog'),_vm._v(" "),_c('a',{staticStyle:{"text-decoration":"none"},attrs:{"id":"git_logo","target":"_blank","href":"https://github.com/Larkenx/Rotten-Soup"}},[_c('v-btn',{attrs:{"icon":"","ripple":""}},[_c('i',{staticClass:"fa fa-3x fa-github",staticStyle:{"color":"white","margin":"auto"},attrs:{"i":"","aria-hidden":"true"}})])],1)],1)],1)}
-var staticRenderFns = []
-var esExports = { render: render, staticRenderFns: staticRenderFns }
-/* harmony default export */ __webpack_exports__["a"] = (esExports);
-
-/***/ }),
-
 /***/ "2yNx":
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -534,6 +523,17 @@ class Skeleton extends __WEBPACK_IMPORTED_MODULE_2__entities_actors_enemies_Simp
 }
 /* harmony export (immutable) */ __webpack_exports__["a"] = Skeleton;
 
+
+/***/ }),
+
+/***/ "7GmA":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('v-app',{attrs:{"dark":""}},[_c('v-container',{attrs:{"fluid":"","id":"main_container"}},[_c('v-layout',{attrs:{"row":""}},[_c('game-display'),_vm._v(" "),_c('hud')],1),_vm._v(" "),_c('item-transfer-modal'),_vm._v(" "),_c('death-modal'),_vm._v(" "),_c('help-dialog'),_vm._v(" "),_c('div',{staticClass:"mouse_controls"},[_c('v-layout',{attrs:{"row":"","align-justify-center":""}},[_c('v-flex',{attrs:{"xs4":""}},[_c('v-switch',{attrs:{"color":"yellow darken-4"},model:{value:(_vm.player.mouseEnabled),callback:function ($$v) {_vm.$set(_vm.player, "mouseEnabled", $$v)},expression:"player.mouseEnabled"}})],1),_vm._v(" "),_c('v-flex',{staticStyle:{"padding-left":"20px"},attrs:{"xs6":""}},[_c('v-icon',[_vm._v("mouse")])],1)],1)],1),_vm._v(" "),_c('a',{staticStyle:{"text-decoration":"none"},attrs:{"id":"git_logo","target":"_blank","href":"https://github.com/Larkenx/Rotten-Soup"}},[_c('v-btn',{attrs:{"icon":"","ripple":""}},[_c('i',{staticClass:"fa fa-3x fa-github",staticStyle:{"color":"white","margin":"auto"},attrs:{"i":"","aria-hidden":"true"}})])],1)],1)],1)}
+var staticRenderFns = []
+var esExports = { render: render, staticRenderFns: staticRenderFns }
+/* harmony default export */ __webpack_exports__["a"] = (esExports);
 
 /***/ }),
 
@@ -2925,9 +2925,9 @@ function createSword(x, y, id) {
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_lib_selector_type_script_index_0_App_vue__ = __webpack_require__("xJD8");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__node_modules_vue_loader_lib_template_compiler_index_id_data_v_549713a4_hasScoped_false_transformToRequire_video_src_source_src_img_src_image_xlink_href_buble_transforms_node_modules_vue_loader_lib_selector_type_template_index_0_App_vue__ = __webpack_require__("2qri");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__node_modules_vue_loader_lib_template_compiler_index_id_data_v_6514c80a_hasScoped_false_transformToRequire_video_src_source_src_img_src_image_xlink_href_buble_transforms_node_modules_vue_loader_lib_selector_type_template_index_0_App_vue__ = __webpack_require__("7GmA");
 function injectStyle (ssrContext) {
-  __webpack_require__("Uvze")
+  __webpack_require__("c7pj")
 }
 var normalizeComponent = __webpack_require__("VU/8")
 /* script */
@@ -2944,7 +2944,7 @@ var __vue_scopeId__ = null
 var __vue_module_identifier__ = null
 var Component = normalizeComponent(
   __WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_lib_selector_type_script_index_0_App_vue__["a" /* default */],
-  __WEBPACK_IMPORTED_MODULE_1__node_modules_vue_loader_lib_template_compiler_index_id_data_v_549713a4_hasScoped_false_transformToRequire_video_src_source_src_img_src_image_xlink_href_buble_transforms_node_modules_vue_loader_lib_selector_type_template_index_0_App_vue__["a" /* default */],
+  __WEBPACK_IMPORTED_MODULE_1__node_modules_vue_loader_lib_template_compiler_index_id_data_v_6514c80a_hasScoped_false_transformToRequire_video_src_source_src_img_src_image_xlink_href_buble_transforms_node_modules_vue_loader_lib_selector_type_template_index_0_App_vue__["a" /* default */],
   __vue_template_functional__,
   __vue_styles__,
   __vue_scopeId__,
@@ -3128,6 +3128,7 @@ class Player extends __WEBPACK_IMPORTED_MODULE_2__entities_actors_Actor_js__["a"
 			examining: false,
 			blocked: true,
 			leveled_up: true,
+			mouseEnabled: false,
 			combat: {
 				/* options.combat, dedicated to all things related to combat */
 				description: [' attacked ', ' stabbed ', ' jabbed ', ' smashed '],
@@ -3230,18 +3231,123 @@ class Player extends __WEBPACK_IMPORTED_MODULE_2__entities_actors_Actor_js__["a"
 		this.currentLevel = __WEBPACK_IMPORTED_MODULE_1__Game_js__["a" /* Game */].currentLevel;
 		__WEBPACK_IMPORTED_MODULE_1__Game_js__["a" /* Game */].engine.lock();
 		window.addEventListener('keydown', this);
-		// window.addEventListener("click", this);
+		if (this.mouseEnabled) {
+			window.addEventListener('mousemove', this);
+			window.addEventListener('click', this);
+		}
 	}
 
 	handleEvent(evt) {
+		let endTurn = () => {
+			window.removeEventListener('keydown', this);
+			window.removeEventListener('mousemove', this);
+			window.removeEventListener('click', this);
+			__WEBPACK_IMPORTED_MODULE_1__Game_js__["a" /* Game */].engine.unlock();
+			__WEBPACK_IMPORTED_MODULE_1__Game_js__["a" /* Game */].clearTempLog();
+		};
+
+		let restartTurn = () => {
+			window.removeEventListener('keydown', this);
+			window.removeEventListener('mousemove', this);
+			window.removeEventListener('click', this);
+			window.addEventListener('keydown', this);
+			if (this.mouseEnabled) {
+				console.log('Adding event listener for mousemove and click');
+				window.addEventListener('mousemove', this);
+				window.addEventListener('click', this);
+			}
+		};
+
+		const confirmTargeting = () => {
+			let { x, y } = __WEBPACK_IMPORTED_MODULE_1__Game_js__["a" /* Game */].selectedTile;
+			let tile = __WEBPACK_IMPORTED_MODULE_1__Game_js__["a" /* Game */].map.data[y][x];
+			let ammo = this.cb.equipment.ammo;
+			let weapon = this.cb.equipment.weapon;
+			let dmg = weapon.roll() + ammo.cb.damage + this.cb.str;
+			ammo.quantity--;
+			if (ammo.quantity === 0) {
+				__WEBPACK_IMPORTED_MODULE_1__Game_js__["a" /* Game */].log(`You fire your last ${ammo.type.toLowerCase()}!`, 'alert');
+			}
+			// find actors on this tile
+			let enemies = tile.actors.filter(e => {
+				return e.cb !== undefined && e.cb.hostile;
+			});
+			if (enemies.length > 0) {
+				let enemy = enemies[0];
+				this.targeting = false;
+				let evtdamage = `${__webpack_require__.i(__WEBPACK_IMPORTED_MODULE_3__utils_HelperFunctions_js__["e" /* addPrefix */])(this.name).capitalize()} hit ${__webpack_require__.i(__WEBPACK_IMPORTED_MODULE_3__utils_HelperFunctions_js__["e" /* addPrefix */])(enemy.name)} with ${__webpack_require__.i(__WEBPACK_IMPORTED_MODULE_3__utils_HelperFunctions_js__["e" /* addPrefix */])(ammo.type.toLowerCase())} and dealt ${dmg} damage.`;
+				__WEBPACK_IMPORTED_MODULE_1__Game_js__["a" /* Game */].log(evtdamage, 'player_move');
+				enemy.damage(dmg);
+			} else {
+				__WEBPACK_IMPORTED_MODULE_1__Game_js__["a" /* Game */].log(`Your ${ammo.type.toLowerCase()} didn't hit anything!`, 'alert');
+			}
+			if (ammo.quantity == 0) {
+				this.unequipAmmo();
+				this.removeFromInventory(ammo);
+			}
+			this.targeting = false;
+			__WEBPACK_IMPORTED_MODULE_1__Game_js__["a" /* Game */].enemyCycle = null;
+			this.validTarget = null;
+			__WEBPACK_IMPORTED_MODULE_1__Game_js__["a" /* Game */].pathToTarget = {};
+			if (this.mouseEnabled) __WEBPACK_IMPORTED_MODULE_1__Game_js__["a" /* Game */].redrawSelectedTile(false);
+
+			endTurn();
+		};
+
+		const confirmCasting = () => {
+			let { x, y } = __WEBPACK_IMPORTED_MODULE_1__Game_js__["a" /* Game */].selectedTile;
+			let tile = __WEBPACK_IMPORTED_MODULE_1__Game_js__["a" /* Game */].map.data[y][x];
+			// find actors on this tile
+			let enemies = tile.actors.filter(e => {
+				return e.cb !== undefined && e.cb.hostile;
+			});
+			if (enemies.length > 0) {
+				let enemy = enemies[0];
+				__WEBPACK_IMPORTED_MODULE_1__Game_js__["a" /* Game */].log(`You cast ${this.cb.currentSpell.name} at the ${enemies[0].name}.`, 'magic');
+				this.cb.currentSpell.cast(enemies[0], this);
+			} else {
+				__WEBPACK_IMPORTED_MODULE_1__Game_js__["a" /* Game */].log(`You cast ${this.cb.currentSpell.name} but it hits nothing!`, 'magic');
+			}
+			this.cb.mana -= this.cb.currentSpell.manaCost;
+			this.casting = false;
+			__WEBPACK_IMPORTED_MODULE_1__Game_js__["a" /* Game */].enemyCycle = null;
+			__WEBPACK_IMPORTED_MODULE_1__Game_js__["a" /* Game */].pathToTarget = {};
+			if (this.mouseEnabled) __WEBPACK_IMPORTED_MODULE_1__Game_js__["a" /* Game */].redrawSelectedTile(false);
+
+			this.validTarget = null;
+			endTurn();
+		};
+
 		/* Mouse controls to hover over tiles for info (describe) */
 		if (evt.type === 'click') {
-			console.log(__WEBPACK_IMPORTED_MODULE_1__Game_js__["a" /* Game */].eventToTile(evt));
+			let loc = __WEBPACK_IMPORTED_MODULE_1__Game_js__["a" /* Game */].eventToTile(evt);
+			if (this.targeting) {
+				if (this.validTarget) {
+					confirmTargeting();
+				} else {
+					__WEBPACK_IMPORTED_MODULE_1__Game_js__["a" /* Game */].log("You cannot shoot this tile because it's blocked or out of range!", 'alert');
+				}
+			} else if (this.casting) {
+				if (this.validTarget) {
+					confirmCasting();
+				} else {
+					__WEBPACK_IMPORTED_MODULE_1__Game_js__["a" /* Game */].log(`You cannot cast ${this.cb.currentSpell.name} at this tile because it's blocked or too far away.`, 'alert');
+				}
+			}
 			return;
 		}
 
 		if (evt.type === 'mousemove') {
-			__WEBPACK_IMPORTED_MODULE_1__Game_js__["a" /* Game */].hoverTile(evt);
+			let loc = __WEBPACK_IMPORTED_MODULE_1__Game_js__["a" /* Game */].eventToTile(evt);
+			__WEBPACK_IMPORTED_MODULE_1__Game_js__["a" /* Game */].clearSelectedTile();
+			this.validTarget = __WEBPACK_IMPORTED_MODULE_1__Game_js__["a" /* Game */].changeToExactSelectedTile(loc, this.targeting || this.casting);
+			setTimeout(() => {
+				this.mouseMoved = true;
+			}, 18);
+			if (this.mouseMoved) {
+				__WEBPACK_IMPORTED_MODULE_1__Game_js__["a" /* Game */].drawViewPort();
+				this.mouseMoved = false;
+			}
 			return;
 		}
 
@@ -3253,17 +3359,6 @@ class Player extends __WEBPACK_IMPORTED_MODULE_2__entities_actors_Actor_js__["a"
 		if (cycleKeys.includes(code)) {
 			evt.preventDefault();
 		}
-
-		let endTurn = function () {
-			window.removeEventListener('keydown', this);
-			__WEBPACK_IMPORTED_MODULE_1__Game_js__["a" /* Game */].engine.unlock();
-			__WEBPACK_IMPORTED_MODULE_1__Game_js__["a" /* Game */].clearTempLog();
-		};
-
-		let restartTurn = function () {
-			window.removeEventListener('keydown', this);
-			window.addEventListener('keydown', this);
-		};
 
 		let keyMap = {
 			/* Arrow Key movement */
@@ -3300,41 +3395,16 @@ class Player extends __WEBPACK_IMPORTED_MODULE_2__entities_actors_Actor_js__["a"
 			71: 'pickup',
 			190: 'rest',
 			88: 'examine'
+		};
 
-			// // currently firing a ranged weapon
-			// if (this.targeting) {
-			//     if (!(code in keyMap) || !movementKeys.includes(keyMap[code])) { // invalid key press, retry turn
-			//         if (code === 70 || code == 27) { //escape key
-			//             Game.log(`You put away your ${this.cb.equipment.weapon.type.toLowerCase()}.`, 'information');
-			//             this.targeting = false;
-			//         }
-			//         restartTurn();
-			//         return;
-			//     } else {
-			//         // valid target direction
-			//         let ammo = this.cb.equipment.ammo;
-			//         ammo.quantity--;
-			//         if (ammo.quantity === 0) {
-			//             Game.log(`You fire your last ${ammo.type.toLowerCase()}!`, "alert");
-			//         }
-			//         this.fireRangedWeapon(ammo, keyMap[code]);
-			//         this.targeting = false;
-			//         if (ammo.quantity === 0) { // used up all the ammo, need to remove it from the inventory
-			//             this.unequipAmmo();
-			//             this.removeFromInventory(ammo);
-			//         }
-			//         endTurn();
-			//         return;
-			//     }
-			// }
-
-		};if (this.targeting) {
+		if (this.targeting) {
 			if (!movementKeys.includes(keyMap[code]) && !confirmKeys.includes(code)) {
 				if (code === 70 || code == 27) {
 					__WEBPACK_IMPORTED_MODULE_1__Game_js__["a" /* Game */].log(`You put away your ${this.cb.equipment.weapon.type.toLowerCase()}.`, 'information');
 					this.targeting = false;
 					__WEBPACK_IMPORTED_MODULE_1__Game_js__["a" /* Game */].enemyCycle = null;
-					__WEBPACK_IMPORTED_MODULE_1__Game_js__["a" /* Game */].clearSelectedTile();
+					__WEBPACK_IMPORTED_MODULE_1__Game_js__["a" /* Game */].pathToTarget = {};
+					if (this.mouseEnabled) __WEBPACK_IMPORTED_MODULE_1__Game_js__["a" /* Game */].redrawSelectedTile(false);else __WEBPACK_IMPORTED_MODULE_1__Game_js__["a" /* Game */].clearSelectedTile();
 					__WEBPACK_IMPORTED_MODULE_1__Game_js__["a" /* Game */].clearTempLog();
 				} else if (cycleKeys.includes(code)) {
 					this.validTarget = __WEBPACK_IMPORTED_MODULE_1__Game_js__["a" /* Game */].cycleThroughSelectableEnemies();
@@ -3345,43 +3415,14 @@ class Player extends __WEBPACK_IMPORTED_MODULE_2__entities_actors_Actor_js__["a"
 			} else {
 				if (confirmKeys.includes(code)) {
 					if (this.validTarget) {
-						let { x, y } = __WEBPACK_IMPORTED_MODULE_1__Game_js__["a" /* Game */].selectedTile;
-						let tile = __WEBPACK_IMPORTED_MODULE_1__Game_js__["a" /* Game */].map.data[y][x];
-						let ammo = this.cb.equipment.ammo;
-						let weapon = this.cb.equipment.weapon;
-						let dmg = weapon.roll() + ammo.cb.damage + this.cb.str;
-						ammo.quantity--;
-						if (ammo.quantity === 0) {
-							__WEBPACK_IMPORTED_MODULE_1__Game_js__["a" /* Game */].log(`You fire your last ${ammo.type.toLowerCase()}!`, 'alert');
-						}
-						// find actors on this tile
-						let enemies = tile.actors.filter(e => {
-							return e.cb !== undefined && e.cb.hostile;
-						});
-						if (enemies.length > 0) {
-							let enemy = enemies[0];
-							this.targeting = false;
-							let evtdamage = `${__webpack_require__.i(__WEBPACK_IMPORTED_MODULE_3__utils_HelperFunctions_js__["e" /* addPrefix */])(this.name).capitalize()} hit ${__webpack_require__.i(__WEBPACK_IMPORTED_MODULE_3__utils_HelperFunctions_js__["e" /* addPrefix */])(enemy.name)} with ${__webpack_require__.i(__WEBPACK_IMPORTED_MODULE_3__utils_HelperFunctions_js__["e" /* addPrefix */])(ammo.type.toLowerCase())} and dealt ${dmg} damage.`;
-							__WEBPACK_IMPORTED_MODULE_1__Game_js__["a" /* Game */].log(evtdamage, 'player_move');
-							enemy.damage(dmg);
-						} else {
-							__WEBPACK_IMPORTED_MODULE_1__Game_js__["a" /* Game */].log(`Your ${ammo.type.toLowerCase()} didn't hit anything!`, 'alert');
-						}
-						if (ammo.quantity == 0) {
-							this.unequipAmmo();
-							this.removeFromInventory(ammo);
-						}
-						this.targeting = false;
-						__WEBPACK_IMPORTED_MODULE_1__Game_js__["a" /* Game */].enemyCycle = null;
-						this.validTarget = null;
-						__WEBPACK_IMPORTED_MODULE_1__Game_js__["a" /* Game */].clearSelectedTile();
-						endTurn();
+						confirmTargeting();
 						return;
 					} else {
 						__WEBPACK_IMPORTED_MODULE_1__Game_js__["a" /* Game */].log("You cannot shoot this tile because it's blocked or out of range!", 'alert');
 					}
 				}
 			}
+
 			restartTurn();
 			return;
 		}
@@ -3393,8 +3434,8 @@ class Player extends __WEBPACK_IMPORTED_MODULE_2__entities_actors_Actor_js__["a"
 					__WEBPACK_IMPORTED_MODULE_1__Game_js__["a" /* Game */].log('You stop casting the spell.', 'information');
 					this.casting = false;
 					__WEBPACK_IMPORTED_MODULE_1__Game_js__["a" /* Game */].enemyCycle = null;
-					__WEBPACK_IMPORTED_MODULE_1__Game_js__["a" /* Game */].clearSelectedTile();
-					__WEBPACK_IMPORTED_MODULE_1__Game_js__["a" /* Game */].clearTempLog();
+					__WEBPACK_IMPORTED_MODULE_1__Game_js__["a" /* Game */].pathToTarget = {};
+					if (this.mouseEnabled) __WEBPACK_IMPORTED_MODULE_1__Game_js__["a" /* Game */].redrawSelectedTile(false);else __WEBPACK_IMPORTED_MODULE_1__Game_js__["a" /* Game */].clearSelectedTile();
 				} else if (cycleKeys.includes(code)) {
 					this.validTarget = __WEBPACK_IMPORTED_MODULE_1__Game_js__["a" /* Game */].cycleThroughSelectableEnemies();
 				}
@@ -3404,25 +3445,7 @@ class Player extends __WEBPACK_IMPORTED_MODULE_2__entities_actors_Actor_js__["a"
 			} else {
 				if (this.validTarget) {
 					if (confirmKeys.includes(code)) {
-						let { x, y } = __WEBPACK_IMPORTED_MODULE_1__Game_js__["a" /* Game */].selectedTile;
-						let tile = __WEBPACK_IMPORTED_MODULE_1__Game_js__["a" /* Game */].map.data[y][x];
-						// find actors on this tile
-						let enemies = tile.actors.filter(e => {
-							return e.cb !== undefined && e.cb.hostile;
-						});
-						if (enemies.length > 0) {
-							let enemy = enemies[0];
-							__WEBPACK_IMPORTED_MODULE_1__Game_js__["a" /* Game */].log(`You cast ${this.cb.currentSpell.name} at the ${enemies[0].name}.`, 'magic');
-							this.cb.currentSpell.cast(enemies[0], this);
-						} else {
-							__WEBPACK_IMPORTED_MODULE_1__Game_js__["a" /* Game */].log(`You cast ${this.cb.currentSpell.name} but it hits nothing!`, 'magic');
-						}
-						this.cb.mana -= this.cb.currentSpell.manaCost;
-						this.casting = false;
-						__WEBPACK_IMPORTED_MODULE_1__Game_js__["a" /* Game */].enemyCycle = null;
-						__WEBPACK_IMPORTED_MODULE_1__Game_js__["a" /* Game */].clearSelectedTile();
-						this.validTarget = null;
-						endTurn();
+						confirmCasting();
 						return;
 					}
 				} else {
@@ -3474,7 +3497,7 @@ class Player extends __WEBPACK_IMPORTED_MODULE_2__entities_actors_Actor_js__["a"
 			if (weapon !== null && ammo !== null && weapon.cb.ranged && ammo.cb.ammoType === weapon.cb.ammoType && ammo.quantity > 0) {
 				__WEBPACK_IMPORTED_MODULE_1__Game_js__["a" /* Game */].log(`You take aim with your ${weapon.type.toLowerCase()}.`, 'information');
 				__WEBPACK_IMPORTED_MODULE_1__Game_js__["a" /* Game */].log(`Select a target with the movement keys and press [enter] to fire your ${weapon.type.toLowerCase()}.`, 'player_move');
-				this.validTarget = __WEBPACK_IMPORTED_MODULE_1__Game_js__["a" /* Game */].selectNearestEnemyTile();
+				this.validTarget = __WEBPACK_IMPORTED_MODULE_1__Game_js__["a" /* Game */].redrawSelectedTile(true);
 				this.targeting = true;
 				restartTurn();
 				return;
@@ -3486,7 +3509,6 @@ class Player extends __WEBPACK_IMPORTED_MODULE_2__entities_actors_Actor_js__["a"
 				} else if (ammo.cb.ammoType !== weapon.cb.ammoType) {
 					__WEBPACK_IMPORTED_MODULE_1__Game_js__["a" /* Game */].log("You don't have the right ammunition equipped for this weapon.", 'information');
 				}
-
 				restartTurn();
 				return;
 			}
@@ -3502,7 +3524,6 @@ class Player extends __WEBPACK_IMPORTED_MODULE_2__entities_actors_Actor_js__["a"
 				return;
 			}
 
-			/* TODO : check if the cast is targeted or self casted */
 			if (currentSpell.targetType === __WEBPACK_IMPORTED_MODULE_11__magic_Spell_js__["b" /* targetTypes */].SELF) {
 				__WEBPACK_IMPORTED_MODULE_1__Game_js__["a" /* Game */].log(`You cast ${currentSpell.name}.`, 'magic');
 				currentSpell.cast(this, this);
@@ -3512,7 +3533,7 @@ class Player extends __WEBPACK_IMPORTED_MODULE_2__entities_actors_Actor_js__["a"
 			} else if (currentSpell.targetType === __WEBPACK_IMPORTED_MODULE_11__magic_Spell_js__["b" /* targetTypes */].TARGET) {
 				__WEBPACK_IMPORTED_MODULE_1__Game_js__["a" /* Game */].log('You begin casting a spell.', 'defend');
 				__WEBPACK_IMPORTED_MODULE_1__Game_js__["a" /* Game */].log('Select a target with the movement keys and press [enter] to cast the spell.', 'player_move');
-				this.validTarget = __WEBPACK_IMPORTED_MODULE_1__Game_js__["a" /* Game */].selectNearestEnemyTile();
+				this.validTarget = __WEBPACK_IMPORTED_MODULE_1__Game_js__["a" /* Game */].redrawSelectedTile(true);
 				this.casting = true;
 				// our first selected tile can be the nearest enemy
 				restartTurn();
@@ -3520,7 +3541,7 @@ class Player extends __WEBPACK_IMPORTED_MODULE_2__entities_actors_Actor_js__["a"
 			}
 		} else if (keyMap[code] === 'examine') {
 			this.examining = true;
-			__WEBPACK_IMPORTED_MODULE_1__Game_js__["a" /* Game */].selectNearestEnemyTile();
+			// Game.selectNearestEnemyTile()
 			restartTurn();
 			return;
 		} else {
@@ -3605,6 +3626,7 @@ class Player extends __WEBPACK_IMPORTED_MODULE_2__entities_actors_Actor_js__["a"
 		let ntile = __WEBPACK_IMPORTED_MODULE_1__Game_js__["a" /* Game */].map.data[ny][nx]; // new tile to move to
 		if (ntile.actors.length === 0 && !ntile.blocked()) {
 			this.move(nx, ny);
+			__WEBPACK_IMPORTED_MODULE_1__Game_js__["a" /* Game */].clearSelectedTile();
 			return true;
 		} else if (ntile.actors.length > 0) {
 			for (let i = 0; i < ntile.actors.length; i++) {
@@ -3618,6 +3640,7 @@ class Player extends __WEBPACK_IMPORTED_MODULE_2__entities_actors_Actor_js__["a"
 
 		if (!ntile.blocked()) {
 			this.move(nx, ny);
+			__WEBPACK_IMPORTED_MODULE_1__Game_js__["a" /* Game */].clearSelectedTile();
 			return true;
 		}
 
@@ -4121,6 +4144,15 @@ if (!__WEBPACK_IMPORTED_MODULE_0_rot_js___default.a.isSupported()) {
 	alert("The rot.js library isn't supported by your browser.");
 }
 
+const targetingBorders = {
+	id: 7418,
+	visible: true
+};
+const untargetableBorders = {
+	id: 7419,
+	visible: true
+};
+
 let Game = {
 	overview: null,
 	dev: false,
@@ -4513,12 +4545,6 @@ let Game = {
 	},
 
 	clearSelectedTile() {
-		const targetingBorders = {
-			id: 7418
-		};
-		const untargetableBorders = {
-			id: 7419
-		};
 		if (this.selectedTile !== null) {
 			let actors = Game.map.data[this.selectedTile.y][this.selectedTile.x].actors.filter(obs => {
 				return obs.id !== targetingBorders.id && obs.id !== untargetableBorders.id;
@@ -4532,14 +4558,6 @@ let Game = {
 	},
 
 	changeSelectedTile(diff) {
-		const targetingBorders = {
-			id: 7418,
-			visible: true
-		};
-		const untargetableBorders = {
-			id: 7419,
-			visible: true
-		};
 		let tile;
 		if (this.selectedTile === null) {
 			tile = {
@@ -4641,21 +4659,15 @@ let Game = {
 		}
 	},
 
-	changeToExactSelectedTile(loc) {
-		const targetingBorders = {
-			id: 7418,
-			visible: true
-		};
-		const untargetableBorders = {
-			id: 7419,
-			visible: true
-		};
+	changeToExactSelectedTile(loc, highlight = true) {
 		this.selectedTile = loc;
 		let mapTile = Game.map.data[this.selectedTile.y][this.selectedTile.x];
 		let properBorder = mapTile.blocked() || this.map.visible_tiles[this.selectedTile.x + ',' + this.selectedTile.y] === undefined ? untargetableBorders : targetingBorders;
+
+		if (!highlight) properBorder = targetingBorders;
 		this.map.data[this.selectedTile.y][this.selectedTile.x].actors.push(properBorder);
 		this.pathToTarget = {};
-		if (properBorder === targetingBorders) {
+		if (properBorder === targetingBorders && highlight) {
 			let x0 = this.player.x,
 			    x1 = this.selectedTile.x,
 			    y0 = this.player.y,
@@ -4685,6 +4697,46 @@ let Game = {
 		return properBorder === targetingBorders;
 	},
 
+	redrawSelectedTile(highlight) {
+		if (this.selectedTile !== null) {
+			let mapTile = Game.map.data[this.selectedTile.y][this.selectedTile.x];
+			let properBorder = mapTile.blocked() || this.map.visible_tiles[this.selectedTile.x + ',' + this.selectedTile.y] === undefined ? untargetableBorders : targetingBorders;
+
+			if (!highlight) properBorder = targetingBorders;
+			this.map.data[this.selectedTile.y][this.selectedTile.x].actors.push(properBorder);
+			this.pathToTarget = {};
+			if (properBorder === targetingBorders && highlight) {
+				let x0 = this.player.x,
+				    x1 = this.selectedTile.x,
+				    y0 = this.player.y,
+				    y1 = this.selectedTile.y,
+				    dx = Math.abs(x1 - x0),
+				    sx = x0 < x1 ? 1 : -1,
+				    dy = Math.abs(y1 - y0),
+				    sy = y0 < y1 ? 1 : -1,
+				    err = (dx > dy ? dx : -dy) / 2;
+				while (!(x0 === x1 && y0 === y1)) {
+					this.pathToTarget[x0 + ',' + y0] = true;
+					let e2 = err;
+					if (e2 > -dx) {
+						err -= dy;
+						x0 += sx;
+					}
+					if (e2 < dy) {
+						err += dx;
+						y0 += sy;
+					}
+				}
+				this.pathToTarget[x0 + ',' + y0] = true;
+				this.pathToTarget[this.player.x + ',' + this.player.y] = false;
+			}
+			this.updateDisplay();
+			this.describeSelectedTile();
+			return properBorder === targetingBorders;
+		}
+		return false;
+	},
+
 	describeSelectedTile() {
 		/* Returns an array of strings describing what exists on the currently selected tile.
         this can be obstacles, items, traps, or enemies */
@@ -4705,7 +4757,14 @@ let Game = {
 			prettyNames = 'nothing';
 		}
 
-		this.log(`[You see ${prettyNames} here.]`, 'player_move', true);
+		if ((Game.player.targeting || Game.player.casting) && this.selectedTile !== null) {
+			let inView = Game.map.data[this.selectedTile.y][this.selectedTile.x].actors.some(obs => {
+				return obs.id === untargetableBorders.id;
+			}) ? ' This tile is out of range or blocked.' : '';
+			this.log(`[You see ${prettyNames} here.${inView}]`, 'player_move', true);
+		} else {
+			this.log(`[You see ${prettyNames} here.]`, 'player_move', true);
+		}
 	},
 
 	getTile(x, y) {
@@ -4745,13 +4804,6 @@ let Game = {
 		if (tmp) this.tempMessages.splice(0, 1, [message, color]);else this.messageHistory.push([message, color]);
 	}
 };
-
-/***/ }),
-
-/***/ "Uvze":
-/***/ (function(module, exports) {
-
-// removed by extract-text-webpack-plugin
 
 /***/ }),
 
@@ -5250,6 +5302,13 @@ var Component = normalizeComponent(
 
 /* harmony default export */ __webpack_exports__["a"] = (Component.exports);
 
+
+/***/ }),
+
+/***/ "c7pj":
+/***/ (function(module, exports) {
+
+// removed by extract-text-webpack-plugin
 
 /***/ }),
 
@@ -6652,6 +6711,11 @@ class Ammo extends __WEBPACK_IMPORTED_MODULE_0__entities_items_Item_js__["a" /* 
 		}
 	}
 
+	getAction() {
+		if (this.cb.equipped) return 'Unequip';
+		return this.action;
+	}
+
 	hoverInfo() {
 		return `Quantity: ${this.quantity}`;
 	}
@@ -6883,6 +6947,22 @@ var Component = normalizeComponent(
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 // components
@@ -6896,6 +6976,7 @@ Window.Game = __WEBPACK_IMPORTED_MODULE_0__assets_js_game_Game_js__["a" /* Game 
 	name: 'app',
 	data() {
 		return {
+			mouseControls: false,
 			player: null,
 			actors: null
 		};
@@ -7058,4 +7139,4 @@ module.exports = {"height":50,"layers":[{"data":[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
 /***/ })
 
 },["NHnr"]);
-//# sourceMappingURL=app.58cd93e1ee98aa72f2ff.js.map
+//# sourceMappingURL=app.50e423d58711cb257753.js.map

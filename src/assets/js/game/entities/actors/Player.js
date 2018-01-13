@@ -16,14 +16,7 @@ import HealthPotion from '#/entities/items/potions/HealthPotion.js'
 import StrengthPotion from '#/entities/items/potions/StrengthPotion.js'
 import ManaPotion from '#/entities/items/potions/ManaPotion.js'
 // Spells
-import {
-	targetTypes,
-	MagicDart,
-	Regeneration,
-	Pain,
-	VampiricDraining,
-	AnimateDead
-} from '#/magic/Spell.js'
+import { targetTypes, MagicDart, Regeneration, Pain, VampiricDraining, AnimateDead } from '#/magic/Spell.js'
 // effects
 import { BleedEnchantment } from '#/modifiers/Enchantment.js'
 // Misc
@@ -31,8 +24,7 @@ import Ladder from '#/entities/misc/Ladder.js'
 import { xp_levels } from '#/entities/Entity.js'
 
 function pathfinding(x, y) {
-	if (x <= 0 || x >= Game.map.width || y <= 0 || y >= Game.map.height)
-		return false
+	if (x <= 0 || x >= Game.map.width || y <= 0 || y >= Game.map.height) return false
 	return !Game.map.data[y][x].blocked()
 }
 
@@ -50,14 +42,10 @@ export default class Player extends Actor {
 			examining: false,
 			blocked: true,
 			leveled_up: true,
+			mouseEnabled: false,
 			combat: {
 				/* options.combat, dedicated to all things related to combat */
-				description: [
-					' attacked ',
-					' stabbed ',
-					' jabbed ',
-					' smashed '
-				],
+				description: [' attacked ', ' stabbed ', ' jabbed ', ' smashed '],
 				/* stat caps */
 				maxhp: 50,
 				maxmana: 15,
@@ -147,10 +135,7 @@ export default class Player extends Actor {
 		this.cb.str += 1
 		this.cb.hp = this.cb.maxhp
 		this.cb.mana = this.cb.maxmana
-		Game.log(
-			`You leveled up! You are now Level ${this.cb.level}.`,
-			'level_up'
-		)
+		Game.log(`You leveled up! You are now Level ${this.cb.level}.`, 'level_up')
 		Game.log('Your strength and health have improved.', 'level_up')
 	}
 
@@ -161,18 +146,130 @@ export default class Player extends Actor {
 		this.currentLevel = Game.currentLevel
 		Game.engine.lock()
 		window.addEventListener('keydown', this)
-		// window.addEventListener("click", this);
+		if (this.mouseEnabled) {
+			window.addEventListener('mousemove', this)
+			window.addEventListener('click', this)
+		}
 	}
 
 	handleEvent(evt) {
+		let endTurn = () => {
+			window.removeEventListener('keydown', this)
+			window.removeEventListener('mousemove', this)
+			window.removeEventListener('click', this)
+			Game.engine.unlock()
+			Game.clearTempLog()
+		}
+
+		let restartTurn = () => {
+			window.removeEventListener('keydown', this)
+			window.removeEventListener('mousemove', this)
+			window.removeEventListener('click', this)
+			window.addEventListener('keydown', this)
+			if (this.mouseEnabled) {
+				console.log('Adding event listener for mousemove and click')
+				window.addEventListener('mousemove', this)
+				window.addEventListener('click', this)
+			}
+		}
+
+		const confirmTargeting = () => {
+			let { x, y } = Game.selectedTile
+			let tile = Game.map.data[y][x]
+			let ammo = this.cb.equipment.ammo
+			let weapon = this.cb.equipment.weapon
+			let dmg = weapon.roll() + ammo.cb.damage + this.cb.str
+			ammo.quantity--
+			if (ammo.quantity === 0) {
+				Game.log(`You fire your last ${ammo.type.toLowerCase()}!`, 'alert')
+			}
+			// find actors on this tile
+			let enemies = tile.actors.filter(e => {
+				return e.cb !== undefined && e.cb.hostile
+			})
+			if (enemies.length > 0) {
+				let enemy = enemies[0]
+				this.targeting = false
+				let evtdamage = `${addPrefix(this.name).capitalize()} hit ${addPrefix(enemy.name)} with ${addPrefix(
+					ammo.type.toLowerCase()
+				)} and dealt ${dmg} damage.`
+				Game.log(evtdamage, 'player_move')
+				enemy.damage(dmg)
+			} else {
+				Game.log(`Your ${ammo.type.toLowerCase()} didn't hit anything!`, 'alert')
+			}
+			if (ammo.quantity == 0) {
+				this.unequipAmmo()
+				this.removeFromInventory(ammo)
+			}
+			this.targeting = false
+			Game.enemyCycle = null
+			this.validTarget = null
+			Game.pathToTarget = {}
+			if (this.mouseEnabled) Game.redrawSelectedTile(false)
+
+			endTurn()
+		}
+
+		const confirmCasting = () => {
+			let { x, y } = Game.selectedTile
+			let tile = Game.map.data[y][x]
+			// find actors on this tile
+			let enemies = tile.actors.filter(e => {
+				return e.cb !== undefined && e.cb.hostile
+			})
+			if (enemies.length > 0) {
+				let enemy = enemies[0]
+				Game.log(`You cast ${this.cb.currentSpell.name} at the ${enemies[0].name}.`, 'magic')
+				this.cb.currentSpell.cast(enemies[0], this)
+			} else {
+				Game.log(`You cast ${this.cb.currentSpell.name} but it hits nothing!`, 'magic')
+			}
+			this.cb.mana -= this.cb.currentSpell.manaCost
+			this.casting = false
+			Game.enemyCycle = null
+			Game.pathToTarget = {}
+			if (this.mouseEnabled) Game.redrawSelectedTile(false)
+
+			this.validTarget = null
+			endTurn()
+		}
+
 		/* Mouse controls to hover over tiles for info (describe) */
 		if (evt.type === 'click') {
-			console.log(Game.eventToTile(evt))
+			let loc = Game.eventToTile(evt)
+			if (this.targeting) {
+				if (this.validTarget) {
+					confirmTargeting()
+				} else {
+					Game.log("You cannot shoot this tile because it's blocked or out of range!", 'alert')
+				}
+			} else if (this.casting) {
+				if (this.validTarget) {
+					confirmCasting()
+				} else {
+					Game.log(
+						`You cannot cast ${
+							this.cb.currentSpell.name
+						} at this tile because it's blocked or too far away.`,
+						'alert'
+					)
+				}
+			}
 			return
 		}
 
 		if (evt.type === 'mousemove') {
-			Game.hoverTile(evt)
+			let loc = Game.eventToTile(evt)
+			Game.clearSelectedTile()
+			this.validTarget = Game.changeToExactSelectedTile(loc, this.targeting || this.casting)
+			setTimeout(() => {
+				this.mouseMoved = true
+			}, 18)
+			if (this.mouseMoved) {
+				Game.drawViewPort()
+				this.mouseMoved = false
+			}
 			return
 		}
 
@@ -183,17 +280,6 @@ export default class Player extends Actor {
 		let confirmKeys = [101, 13, 190]
 		if (cycleKeys.includes(code)) {
 			evt.preventDefault()
-		}
-
-		let endTurn = function() {
-			window.removeEventListener('keydown', this)
-			Game.engine.unlock()
-			Game.clearTempLog()
-		}
-
-		let restartTurn = function() {
-			window.removeEventListener('keydown', this)
-			window.addEventListener('keydown', this)
 		}
 
 		let keyMap = {
@@ -233,46 +319,15 @@ export default class Player extends Actor {
 			88: 'examine'
 		}
 
-		// // currently firing a ranged weapon
-		// if (this.targeting) {
-		//     if (!(code in keyMap) || !movementKeys.includes(keyMap[code])) { // invalid key press, retry turn
-		//         if (code === 70 || code == 27) { //escape key
-		//             Game.log(`You put away your ${this.cb.equipment.weapon.type.toLowerCase()}.`, 'information');
-		//             this.targeting = false;
-		//         }
-		//         restartTurn();
-		//         return;
-		//     } else {
-		//         // valid target direction
-		//         let ammo = this.cb.equipment.ammo;
-		//         ammo.quantity--;
-		//         if (ammo.quantity === 0) {
-		//             Game.log(`You fire your last ${ammo.type.toLowerCase()}!`, "alert");
-		//         }
-		//         this.fireRangedWeapon(ammo, keyMap[code]);
-		//         this.targeting = false;
-		//         if (ammo.quantity === 0) { // used up all the ammo, need to remove it from the inventory
-		//             this.unequipAmmo();
-		//             this.removeFromInventory(ammo);
-		//         }
-		//         endTurn();
-		//         return;
-		//     }
-		// }
-
 		if (this.targeting) {
-			if (
-				!movementKeys.includes(keyMap[code]) &&
-				!confirmKeys.includes(code)
-			) {
+			if (!movementKeys.includes(keyMap[code]) && !confirmKeys.includes(code)) {
 				if (code === 70 || code == 27) {
-					Game.log(
-						`You put away your ${this.cb.equipment.weapon.type.toLowerCase()}.`,
-						'information'
-					)
+					Game.log(`You put away your ${this.cb.equipment.weapon.type.toLowerCase()}.`, 'information')
 					this.targeting = false
 					Game.enemyCycle = null
-					Game.clearSelectedTile()
+					Game.pathToTarget = {}
+					if (this.mouseEnabled) Game.redrawSelectedTile(false)
+					else Game.clearSelectedTile()
 					Game.clearTempLog()
 				} else if (cycleKeys.includes(code)) {
 					this.validTarget = Game.cycleThroughSelectableEnemies()
@@ -283,74 +338,28 @@ export default class Player extends Actor {
 			} else {
 				if (confirmKeys.includes(code)) {
 					if (this.validTarget) {
-						let { x, y } = Game.selectedTile
-						let tile = Game.map.data[y][x]
-						let ammo = this.cb.equipment.ammo
-						let weapon = this.cb.equipment.weapon
-						let dmg = weapon.roll() + ammo.cb.damage + this.cb.str
-						ammo.quantity--
-						if (ammo.quantity === 0) {
-							Game.log(
-								`You fire your last ${ammo.type.toLowerCase()}!`,
-								'alert'
-							)
-						}
-						// find actors on this tile
-						let enemies = tile.actors.filter(e => {
-							return e.cb !== undefined && e.cb.hostile
-						})
-						if (enemies.length > 0) {
-							let enemy = enemies[0]
-							this.targeting = false
-							let evtdamage = `${addPrefix(
-								this.name
-							).capitalize()} hit ${addPrefix(
-								enemy.name
-							)} with ${addPrefix(
-								ammo.type.toLowerCase()
-							)} and dealt ${dmg} damage.`
-							Game.log(evtdamage, 'player_move')
-							enemy.damage(dmg)
-						} else {
-							Game.log(
-								`Your ${ammo.type.toLowerCase()} didn't hit anything!`,
-								'alert'
-							)
-						}
-						if (ammo.quantity == 0) {
-							this.unequipAmmo()
-							this.removeFromInventory(ammo)
-						}
-						this.targeting = false
-						Game.enemyCycle = null
-						this.validTarget = null
-						Game.clearSelectedTile()
-						endTurn()
+						confirmTargeting()
 						return
 					} else {
-						Game.log(
-							"You cannot shoot this tile because it's blocked or out of range!",
-							'alert'
-						)
+						Game.log("You cannot shoot this tile because it's blocked or out of range!", 'alert')
 					}
 				}
 			}
+
 			restartTurn()
 			return
 		}
 
 		// currently casting a spell
 		if (this.casting) {
-			if (
-				!movementKeys.includes(keyMap[code]) &&
-				!confirmKeys.includes(code)
-			) {
+			if (!movementKeys.includes(keyMap[code]) && !confirmKeys.includes(code)) {
 				if (code === 90 || code == 27) {
 					Game.log('You stop casting the spell.', 'information')
 					this.casting = false
 					Game.enemyCycle = null
-					Game.clearSelectedTile()
-					Game.clearTempLog()
+					Game.pathToTarget = {}
+					if (this.mouseEnabled) Game.redrawSelectedTile(false)
+					else Game.clearSelectedTile()
 				} else if (cycleKeys.includes(code)) {
 					this.validTarget = Game.cycleThroughSelectableEnemies()
 				}
@@ -360,35 +369,7 @@ export default class Player extends Actor {
 			} else {
 				if (this.validTarget) {
 					if (confirmKeys.includes(code)) {
-						let { x, y } = Game.selectedTile
-						let tile = Game.map.data[y][x]
-						// find actors on this tile
-						let enemies = tile.actors.filter(e => {
-							return e.cb !== undefined && e.cb.hostile
-						})
-						if (enemies.length > 0) {
-							let enemy = enemies[0]
-							Game.log(
-								`You cast ${this.cb.currentSpell.name} at the ${
-									enemies[0].name
-								}.`,
-								'magic'
-							)
-							this.cb.currentSpell.cast(enemies[0], this)
-						} else {
-							Game.log(
-								`You cast ${
-									this.cb.currentSpell.name
-								} but it hits nothing!`,
-								'magic'
-							)
-						}
-						this.cb.mana -= this.cb.currentSpell.manaCost
-						this.casting = false
-						Game.enemyCycle = null
-						Game.clearSelectedTile()
-						this.validTarget = null
-						endTurn()
+						confirmCasting()
 						return
 					}
 				} else {
@@ -449,58 +430,38 @@ export default class Player extends Actor {
 				ammo.cb.ammoType === weapon.cb.ammoType &&
 				ammo.quantity > 0
 			) {
-				Game.log(
-					`You take aim with your ${weapon.type.toLowerCase()}.`,
-					'information'
-				)
+				Game.log(`You take aim with your ${weapon.type.toLowerCase()}.`, 'information')
 				Game.log(
 					`Select a target with the movement keys and press [enter] to fire your ${weapon.type.toLowerCase()}.`,
 					'player_move'
 				)
-				this.validTarget = Game.selectNearestEnemyTile()
+				this.validTarget = Game.redrawSelectedTile(true)
 				this.targeting = true
 				restartTurn()
 				return
 			} else {
 				if (weapon === null || !weapon.cb.ranged) {
-					Game.log(
-						"You don't have a ranged weapon equipped!",
-						'information'
-					)
+					Game.log("You don't have a ranged weapon equipped!", 'information')
 				} else if (ammo === null) {
-					Game.log(
-						"You don't have any ammunition equipped.",
-						'information'
-					)
+					Game.log("You don't have any ammunition equipped.", 'information')
 				} else if (ammo.cb.ammoType !== weapon.cb.ammoType) {
-					Game.log(
-						"You don't have the right ammunition equipped for this weapon.",
-						'information'
-					)
+					Game.log("You don't have the right ammunition equipped for this weapon.", 'information')
 				}
-
 				restartTurn()
 				return
 			}
 		} else if (keyMap[code] === 'cast') {
 			let currentSpell = this.cb.currentSpell
 			if (currentSpell === null) {
-				Game.log(
-					'You must select a spell to cast. Select one from the spellbook!',
-					'information'
-				)
+				Game.log('You must select a spell to cast. Select one from the spellbook!', 'information')
 				restartTurn()
 				return
 			} else if (currentSpell.manaCost > this.cb.mana) {
-				Game.log(
-					`You don't have enough mana to cast ${currentSpell.name}!`,
-					'alert'
-				)
+				Game.log(`You don't have enough mana to cast ${currentSpell.name}!`, 'alert')
 				restartTurn()
 				return
 			}
 
-			/* TODO : check if the cast is targeted or self casted */
 			if (currentSpell.targetType === targetTypes.SELF) {
 				Game.log(`You cast ${currentSpell.name}.`, 'magic')
 				currentSpell.cast(this, this)
@@ -509,11 +470,8 @@ export default class Player extends Actor {
 				return
 			} else if (currentSpell.targetType === targetTypes.TARGET) {
 				Game.log('You begin casting a spell.', 'defend')
-				Game.log(
-					'Select a target with the movement keys and press [enter] to cast the spell.',
-					'player_move'
-				)
-				this.validTarget = Game.selectNearestEnemyTile()
+				Game.log('Select a target with the movement keys and press [enter] to cast the spell.', 'player_move')
+				this.validTarget = Game.redrawSelectedTile(true)
 				this.casting = true
 				// our first selected tile can be the nearest enemy
 				restartTurn()
@@ -521,7 +479,7 @@ export default class Player extends Actor {
 			}
 		} else if (keyMap[code] === 'examine') {
 			this.examining = true
-			Game.selectNearestEnemyTile()
+			// Game.selectNearestEnemyTile()
 			restartTurn()
 			return
 		} else {
@@ -542,10 +500,7 @@ export default class Player extends Actor {
 			return el instanceof Item
 		})
 		if (tileItems.length === 1) {
-			Game.log(
-				`You picked up a ${tileItems[0].type.toLowerCase()}.`,
-				'information'
-			)
+			Game.log(`You picked up a ${tileItems[0].type.toLowerCase()}.`, 'information')
 			this.addToInventory(tileItems[0])
 			ctile.removeActor(tileItems[0])
 		} else if (tileItems.length > 1) {
@@ -605,11 +560,11 @@ export default class Player extends Actor {
 
 	tryMove(nx, ny) {
 		// returns true if the turn should end here
-		if (nx < 0 || nx === Game.map.width || ny < 0 || ny === Game.map.height)
-			return
+		if (nx < 0 || nx === Game.map.width || ny < 0 || ny === Game.map.height) return
 		let ntile = Game.map.data[ny][nx] // new tile to move to
 		if (ntile.actors.length === 0 && !ntile.blocked()) {
 			this.move(nx, ny)
+			Game.clearSelectedTile()
 			return true
 		} else if (ntile.actors.length > 0) {
 			for (let i = 0; i < ntile.actors.length; i++) {
@@ -623,6 +578,7 @@ export default class Player extends Actor {
 
 		if (!ntile.blocked()) {
 			this.move(nx, ny)
+			Game.clearSelectedTile()
 			return true
 		}
 

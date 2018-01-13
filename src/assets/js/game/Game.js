@@ -22,6 +22,15 @@ if (!ROT.isSupported()) {
 	alert("The rot.js library isn't supported by your browser.")
 }
 
+const targetingBorders = {
+	id: 7418,
+	visible: true
+}
+const untargetableBorders = {
+	id: 7419,
+	visible: true
+}
+
 export let Game = {
 	overview: null,
 	dev: false,
@@ -414,12 +423,6 @@ export let Game = {
 	},
 
 	clearSelectedTile() {
-		const targetingBorders = {
-			id: 7418
-		}
-		const untargetableBorders = {
-			id: 7419
-		}
 		if (this.selectedTile !== null) {
 			let actors = Game.map.data[this.selectedTile.y][this.selectedTile.x].actors.filter(obs => {
 				return obs.id !== targetingBorders.id && obs.id !== untargetableBorders.id
@@ -433,14 +436,6 @@ export let Game = {
 	},
 
 	changeSelectedTile(diff) {
-		const targetingBorders = {
-			id: 7418,
-			visible: true
-		}
-		const untargetableBorders = {
-			id: 7419,
-			visible: true
-		}
 		let tile
 		if (this.selectedTile === null) {
 			tile = {
@@ -546,24 +541,18 @@ export let Game = {
 		}
 	},
 
-	changeToExactSelectedTile(loc) {
-		const targetingBorders = {
-			id: 7418,
-			visible: true
-		}
-		const untargetableBorders = {
-			id: 7419,
-			visible: true
-		}
+	changeToExactSelectedTile(loc, highlight = true) {
 		this.selectedTile = loc
 		let mapTile = Game.map.data[this.selectedTile.y][this.selectedTile.x]
 		let properBorder =
 			mapTile.blocked() || this.map.visible_tiles[this.selectedTile.x + ',' + this.selectedTile.y] === undefined
 				? untargetableBorders
 				: targetingBorders
+
+		if (!highlight) properBorder = targetingBorders
 		this.map.data[this.selectedTile.y][this.selectedTile.x].actors.push(properBorder)
 		this.pathToTarget = {}
-		if (properBorder === targetingBorders) {
+		if (properBorder === targetingBorders && highlight) {
 			let x0 = this.player.x,
 				x1 = this.selectedTile.x,
 				y0 = this.player.y,
@@ -593,6 +582,50 @@ export let Game = {
 		return properBorder === targetingBorders
 	},
 
+	redrawSelectedTile(highlight) {
+		if (this.selectedTile !== null) {
+			let mapTile = Game.map.data[this.selectedTile.y][this.selectedTile.x]
+			let properBorder =
+				mapTile.blocked() ||
+				this.map.visible_tiles[this.selectedTile.x + ',' + this.selectedTile.y] === undefined
+					? untargetableBorders
+					: targetingBorders
+
+			if (!highlight) properBorder = targetingBorders
+			this.map.data[this.selectedTile.y][this.selectedTile.x].actors.push(properBorder)
+			this.pathToTarget = {}
+			if (properBorder === targetingBorders && highlight) {
+				let x0 = this.player.x,
+					x1 = this.selectedTile.x,
+					y0 = this.player.y,
+					y1 = this.selectedTile.y,
+					dx = Math.abs(x1 - x0),
+					sx = x0 < x1 ? 1 : -1,
+					dy = Math.abs(y1 - y0),
+					sy = y0 < y1 ? 1 : -1,
+					err = (dx > dy ? dx : -dy) / 2
+				while (!(x0 === x1 && y0 === y1)) {
+					this.pathToTarget[x0 + ',' + y0] = true
+					let e2 = err
+					if (e2 > -dx) {
+						err -= dy
+						x0 += sx
+					}
+					if (e2 < dy) {
+						err += dx
+						y0 += sy
+					}
+				}
+				this.pathToTarget[x0 + ',' + y0] = true
+				this.pathToTarget[this.player.x + ',' + this.player.y] = false
+			}
+			this.updateDisplay()
+			this.describeSelectedTile()
+			return properBorder === targetingBorders
+		}
+		return false
+	},
+
 	describeSelectedTile() {
 		/* Returns an array of strings describing what exists on the currently selected tile.
         this can be obstacles, items, traps, or enemies */
@@ -615,7 +648,16 @@ export let Game = {
 			prettyNames = 'nothing'
 		}
 
-		this.log(`[You see ${prettyNames} here.]`, 'player_move', true)
+		if ((Game.player.targeting || Game.player.casting) && this.selectedTile !== null) {
+			let inView = Game.map.data[this.selectedTile.y][this.selectedTile.x].actors.some(obs => {
+				return obs.id === untargetableBorders.id
+			})
+				? ' This tile is out of range or blocked.'
+				: ''
+			this.log(`[You see ${prettyNames} here.${inView}]`, 'player_move', true)
+		} else {
+			this.log(`[You see ${prettyNames} here.]`, 'player_move', true)
+		}
 	},
 
 	getTile(x, y) {

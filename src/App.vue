@@ -14,6 +14,22 @@
             <!-- Help Dialog -->
             <help-dialog></help-dialog>
 
+            <!-- Mouse Controls Slider  -->
+            <div class="mouse_controls">
+                <v-layout row align-justify-center>
+                    <v-flex xs4>
+                        <v-switch
+                        color="yellow darken-4"
+                        v-model="player.mouseEnabled"
+                        ></v-switch>
+                    </v-flex>
+                    <v-flex xs6 style="padding-left: 20px">
+                        <v-icon>mouse</v-icon>
+                    </v-flex>
+                </v-layout>
+            </div>
+
+
             <!-- Github Logo -->
             <a id="git_logo" style="text-decoration: none;" target="_blank"
                href="https://github.com/Larkenx/Rotten-Soup">
@@ -39,6 +55,7 @@ export default {
 	name: 'app',
 	data() {
 		return {
+			mouseControls: false,
 			player: null,
 			actors: null
 		}
@@ -90,16 +107,23 @@ export default {
 
     #help {
         position: absolute;
-        left: 10;
-        right: 0;
-        top: 0;
+        /* left: 50; */
+        right:0px;
+        top: 0px;
     }
 
     #git_logo {
         position: absolute;
-        padding: 10px;
-        bottom: 0;
-        right: 0;
+        padding: 20px;
+        bottom: 0px;
+        right: 0px;
+    }
+
+    .mouse_controls {
+        position: absolute;
+        /* min-width: 200px; */
+        bottom: 0px;
+        left: 90%;
     }
 
     .test {
