@@ -28,6 +28,11 @@ export class Ammo extends Item {
 		}
 	}
 
+	getAction() {
+		if (this.cb.equipped) return 'Unequip'
+		return this.action
+	}
+
 	hoverInfo() {
 		return `Quantity: ${this.quantity}`
 	}
