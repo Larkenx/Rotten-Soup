@@ -41,7 +41,7 @@
             <!-- Tabbed Menu (Stats, Enemies, Spellbook) -->
             <v-layout row>
                 <v-tabs :scrollable="false" grow v-model="activeTab"
-                        style="max-width: 350px; margin-top: 10px; margin-bottom: 10px; font-size: 11px;">
+                        style="max-width: 400px; margin-top: 10px; margin-bottom: 10px; font-size: 11px;">
                     <v-tabs-bar class="cyan darken-4" dark>
                         <v-tabs-item key="stats" href="#stats" ripple>
                             Stats

@@ -207,6 +207,7 @@ export default class Player extends Actor {
 			this.validTarget = null
 			Game.pathToTarget = {}
 			if (this.mouseEnabled) Game.redrawSelectedTile(false)
+			else Game.clearSelectedTile()
 
 			endTurn()
 		}
@@ -230,6 +231,7 @@ export default class Player extends Actor {
 			Game.enemyCycle = null
 			Game.pathToTarget = {}
 			if (this.mouseEnabled) Game.redrawSelectedTile(false)
+			else Game.clearSelectedTile()
 
 			this.validTarget = null
 			endTurn()
@@ -249,9 +251,7 @@ export default class Player extends Actor {
 					confirmCasting()
 				} else {
 					Game.log(
-						`You cannot cast ${
-							this.cb.currentSpell.name
-						} at this tile because it's blocked or too far away.`,
+						`You cannot cast ${this.cb.currentSpell.name} at this tile because it's blocked or too far away.`,
 						'alert'
 					)
 				}
@@ -374,9 +374,7 @@ export default class Player extends Actor {
 					}
 				} else {
 					Game.log(
-						`You cannot cast ${
-							this.cb.currentSpell.name
-						} at this tile because it's blocked or too far away.`,
+						`You cannot cast ${this.cb.currentSpell.name} at this tile because it's blocked or too far away.`,
 						'alert'
 					)
 				}
@@ -435,7 +433,7 @@ export default class Player extends Actor {
 					`Select a target with the movement keys and press [enter] to fire your ${weapon.type.toLowerCase()}.`,
 					'player_move'
 				)
-				this.validTarget = Game.redrawSelectedTile(true)
+				this.validTarget = !this.mouseEnabled ? Game.redrawSelectedTile(false) : Game.selectNearestEnemyTile()
 				this.targeting = true
 				restartTurn()
 				return
@@ -471,7 +469,8 @@ export default class Player extends Actor {
 			} else if (currentSpell.targetType === targetTypes.TARGET) {
 				Game.log('You begin casting a spell.', 'defend')
 				Game.log('Select a target with the movement keys and press [enter] to cast the spell.', 'player_move')
-				this.validTarget = Game.redrawSelectedTile(true)
+
+				this.validTarget = !this.mouseEnabled ? Game.redrawSelectedTile(false) : Game.selectNearestEnemyTile()
 				this.casting = true
 				// our first selected tile can be the nearest enemy
 				restartTurn()

@@ -5,9 +5,9 @@ webpackJsonp([0],{
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_lib_selector_type_script_index_0_Inventory_vue__ = __webpack_require__("RJ5z");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__node_modules_vue_loader_lib_template_compiler_index_id_data_v_8d7454ca_hasScoped_false_transformToRequire_video_src_source_src_img_src_image_xlink_href_buble_transforms_node_modules_vue_loader_lib_selector_type_template_index_0_Inventory_vue__ = __webpack_require__("z0Tf");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__node_modules_vue_loader_lib_template_compiler_index_id_data_v_666ff10f_hasScoped_false_transformToRequire_video_src_source_src_img_src_image_xlink_href_buble_transforms_node_modules_vue_loader_lib_selector_type_template_index_0_Inventory_vue__ = __webpack_require__("Awnv");
 function injectStyle (ssrContext) {
-  __webpack_require__("mCxU")
+  __webpack_require__("8qZf")
 }
 var normalizeComponent = __webpack_require__("VU/8")
 /* script */
@@ -24,7 +24,7 @@ var __vue_scopeId__ = null
 var __vue_module_identifier__ = null
 var Component = normalizeComponent(
   __WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_lib_selector_type_script_index_0_Inventory_vue__["a" /* default */],
-  __WEBPACK_IMPORTED_MODULE_1__node_modules_vue_loader_lib_template_compiler_index_id_data_v_8d7454ca_hasScoped_false_transformToRequire_video_src_source_src_img_src_image_xlink_href_buble_transforms_node_modules_vue_loader_lib_selector_type_template_index_0_Inventory_vue__["a" /* default */],
+  __WEBPACK_IMPORTED_MODULE_1__node_modules_vue_loader_lib_template_compiler_index_id_data_v_666ff10f_hasScoped_false_transformToRequire_video_src_source_src_img_src_image_xlink_href_buble_transforms_node_modules_vue_loader_lib_selector_type_template_index_0_Inventory_vue__["a" /* default */],
   __vue_template_functional__,
   __vue_styles__,
   __vue_scopeId__,
@@ -63,7 +63,7 @@ class Key extends __WEBPACK_IMPORTED_MODULE_0__entities_items_Item_js__["a" /* d
 
 /***/ }),
 
-/***/ "0rPS":
+/***/ "0anL":
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin
@@ -320,25 +320,14 @@ class AnimateDead extends Spell {
 
 /***/ }),
 
-/***/ "1qnV":
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('v-layout',{staticClass:"text-xs-center",attrs:{"row":""}},[_c('v-flex',{attrs:{"xs10":"","fluid":"","id":"minimap_container"}})],1)}
-var staticRenderFns = []
-var esExports = { render: render, staticRenderFns: staticRenderFns }
-/* harmony default export */ __webpack_exports__["a"] = (esExports);
-
-/***/ }),
-
 /***/ "2khc":
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_lib_selector_type_script_index_0_MessageLog_vue__ = __webpack_require__("5rFl");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__node_modules_vue_loader_lib_template_compiler_index_id_data_v_15a69450_hasScoped_true_transformToRequire_video_src_source_src_img_src_image_xlink_href_buble_transforms_node_modules_vue_loader_lib_selector_type_template_index_0_MessageLog_vue__ = __webpack_require__("hNMG");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__node_modules_vue_loader_lib_template_compiler_index_id_data_v_3cbf97e4_hasScoped_true_transformToRequire_video_src_source_src_img_src_image_xlink_href_buble_transforms_node_modules_vue_loader_lib_selector_type_template_index_0_MessageLog_vue__ = __webpack_require__("jxzd");
 function injectStyle (ssrContext) {
-  __webpack_require__("I9Lp")
+  __webpack_require__("OoFV")
 }
 var normalizeComponent = __webpack_require__("VU/8")
 /* script */
@@ -350,12 +339,12 @@ var __vue_template_functional__ = false
 /* styles */
 var __vue_styles__ = injectStyle
 /* scopeId */
-var __vue_scopeId__ = "data-v-15a69450"
+var __vue_scopeId__ = "data-v-3cbf97e4"
 /* moduleIdentifier (server only) */
 var __vue_module_identifier__ = null
 var Component = normalizeComponent(
   __WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_lib_selector_type_script_index_0_MessageLog_vue__["a" /* default */],
-  __WEBPACK_IMPORTED_MODULE_1__node_modules_vue_loader_lib_template_compiler_index_id_data_v_15a69450_hasScoped_true_transformToRequire_video_src_source_src_img_src_image_xlink_href_buble_transforms_node_modules_vue_loader_lib_selector_type_template_index_0_MessageLog_vue__["a" /* default */],
+  __WEBPACK_IMPORTED_MODULE_1__node_modules_vue_loader_lib_template_compiler_index_id_data_v_3cbf97e4_hasScoped_true_transformToRequire_video_src_source_src_img_src_image_xlink_href_buble_transforms_node_modules_vue_loader_lib_selector_type_template_index_0_MessageLog_vue__["a" /* default */],
   __vue_template_functional__,
   __vue_styles__,
   __vue_scopeId__,
@@ -372,9 +361,9 @@ var Component = normalizeComponent(
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_lib_selector_type_script_index_0_EnemyOverview_vue__ = __webpack_require__("u4fz");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__node_modules_vue_loader_lib_template_compiler_index_id_data_v_65abfe22_hasScoped_false_transformToRequire_video_src_source_src_img_src_image_xlink_href_buble_transforms_node_modules_vue_loader_lib_selector_type_template_index_0_EnemyOverview_vue__ = __webpack_require__("HxZg");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__node_modules_vue_loader_lib_template_compiler_index_id_data_v_2f5f8967_hasScoped_false_transformToRequire_video_src_source_src_img_src_image_xlink_href_buble_transforms_node_modules_vue_loader_lib_selector_type_template_index_0_EnemyOverview_vue__ = __webpack_require__("gRfh");
 function injectStyle (ssrContext) {
-  __webpack_require__("TYjd")
+  __webpack_require__("TJ5l")
 }
 var normalizeComponent = __webpack_require__("VU/8")
 /* script */
@@ -391,7 +380,7 @@ var __vue_scopeId__ = null
 var __vue_module_identifier__ = null
 var Component = normalizeComponent(
   __WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_lib_selector_type_script_index_0_EnemyOverview_vue__["a" /* default */],
-  __WEBPACK_IMPORTED_MODULE_1__node_modules_vue_loader_lib_template_compiler_index_id_data_v_65abfe22_hasScoped_false_transformToRequire_video_src_source_src_img_src_image_xlink_href_buble_transforms_node_modules_vue_loader_lib_selector_type_template_index_0_EnemyOverview_vue__["a" /* default */],
+  __WEBPACK_IMPORTED_MODULE_1__node_modules_vue_loader_lib_template_compiler_index_id_data_v_2f5f8967_hasScoped_false_transformToRequire_video_src_source_src_img_src_image_xlink_href_buble_transforms_node_modules_vue_loader_lib_selector_type_template_index_0_EnemyOverview_vue__["a" /* default */],
   __vue_template_functional__,
   __vue_styles__,
   __vue_scopeId__,
@@ -400,6 +389,17 @@ var Component = normalizeComponent(
 
 /* harmony default export */ __webpack_exports__["a"] = (Component.exports);
 
+
+/***/ }),
+
+/***/ "2zgK":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('v-flex',{staticStyle:{"max-width":"1120px"},attrs:{"column":""}},[_c('v-layout',{staticStyle:{"padding":"0px"},attrs:{"row":""}},[_c('div',{staticStyle:{"margin":"0","padding":"0"},attrs:{"id":"game_container"}})]),_vm._v(" "),_c('message-log')],1)}
+var staticRenderFns = []
+var esExports = { render: render, staticRenderFns: staticRenderFns }
+/* harmony default export */ __webpack_exports__["a"] = (esExports);
 
 /***/ }),
 
@@ -526,17 +526,6 @@ class Skeleton extends __WEBPACK_IMPORTED_MODULE_2__entities_actors_enemies_Simp
 
 /***/ }),
 
-/***/ "7GmA":
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('v-app',{attrs:{"dark":""}},[_c('v-container',{attrs:{"fluid":"","id":"main_container"}},[_c('v-layout',{attrs:{"row":""}},[_c('game-display'),_vm._v(" "),_c('hud')],1),_vm._v(" "),_c('item-transfer-modal'),_vm._v(" "),_c('death-modal'),_vm._v(" "),_c('help-dialog'),_vm._v(" "),_c('div',{staticClass:"mouse_controls"},[_c('v-layout',{attrs:{"row":"","align-justify-center":""}},[_c('v-flex',{attrs:{"xs4":""}},[_c('v-switch',{attrs:{"color":"yellow darken-4"},model:{value:(_vm.player.mouseEnabled),callback:function ($$v) {_vm.$set(_vm.player, "mouseEnabled", $$v)},expression:"player.mouseEnabled"}})],1),_vm._v(" "),_c('v-flex',{staticStyle:{"padding-left":"20px"},attrs:{"xs6":""}},[_c('v-icon',[_vm._v("mouse")])],1)],1)],1),_vm._v(" "),_c('a',{staticStyle:{"text-decoration":"none"},attrs:{"id":"git_logo","target":"_blank","href":"https://github.com/Larkenx/Rotten-Soup"}},[_c('v-btn',{attrs:{"icon":"","ripple":""}},[_c('i',{staticClass:"fa fa-3x fa-github",staticStyle:{"color":"white","margin":"auto"},attrs:{"i":"","aria-hidden":"true"}})])],1)],1)],1)}
-var staticRenderFns = []
-var esExports = { render: render, staticRenderFns: staticRenderFns }
-/* harmony default export */ __webpack_exports__["a"] = (esExports);
-
-/***/ }),
-
 /***/ "7nyC":
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -591,14 +580,10 @@ class Corpse extends __WEBPACK_IMPORTED_MODULE_0__entities_Entity_js__["b" /* En
 
 /***/ }),
 
-/***/ "8v0R":
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
+/***/ "8qZf":
+/***/ (function(module, exports) {
 
-"use strict";
-var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{attrs:{"id":"help"}},[_c('v-tooltip',{attrs:{"left":"","align-center":""}},[_c('span',[_vm._v("Controls")]),_vm._v(" "),_c('v-btn',{attrs:{"slot":"activator","flat":"","icon":"","color":"yellow darken-4"},on:{"click":function($event){$event.stopPropagation();_vm.helpDialog=true}},slot:"activator"},[_c('v-icon',[_vm._v("help")])],1)],1),_vm._v(" "),_c('v-dialog',{attrs:{"max-width":"600px"},model:{value:(_vm.helpDialog),callback:function ($$v) {_vm.helpDialog=$$v},expression:"helpDialog"}},[_c('v-card',[_c('v-card-text',[_c('h5',[_vm._v("Controls")]),_vm._v(" "),_c('v-expansion-panel',[_c('v-expansion-panel-content',[_c('div',{attrs:{"slot":"header"},slot:"header"},[_vm._v("All Keybinds")]),_vm._v(" "),_c('v-card',{attrs:{"flat":""}},[_c('v-card-text',{staticClass:"pb-0 pt-0"},[_c('v-container',[_c('v-layout',{staticClass:"pb-2",attrs:{"row":""}},[_c('v-flex',{attrs:{"xs6":""}},[_c('b',[_vm._v("Keys")])]),_vm._v(" "),_c('v-flex',{attrs:{"xs6":""}},[_c('b',[_vm._v("Description")])])],1),_vm._v(" "),_vm._l((_vm.cheatSheet),function(cheat,index){return _c('v-layout',{key:index,attrs:{"row":"","wrap":""}},[_c('v-flex',{attrs:{"xs6":""}},[_c('code',[_vm._v(_vm._s(cheat.code))])]),_vm._v(" "),_c('v-flex',{attrs:{"xs6":""}},[_c('p',[_vm._v(_vm._s(cheat.description))])])],1)})],2)],1)],1)],1),_vm._v(" "),_c('v-expansion-panel-content',[_c('div',{attrs:{"slot":"header"},slot:"header"},[_vm._v("Magic and Ranged Combat")]),_vm._v(" "),_c('v-card',{attrs:{"flat":""}},[_c('v-card-text',{staticClass:"pt-0"},[_c('v-container',{attrs:{"fluid":""}},[_c('p',[_c('b',[_vm._v("Magic")])]),_vm._v(" "),_c('p',[_vm._v("To cast a spell, first select a spell from your spellbook by "),_c('code',[_vm._v("clicking")]),_vm._v(" on it. Then, you can press "),_c('code',[_vm._v("z")]),_vm._v(" to cast the selected spell. If your spell is targeted, you will enter targeting mode.\n\n                                ")]),_c('p',[_c('b',[_vm._v("Ranged")])]),_vm._v(" "),_c('p',[_vm._v("If you have a ranged weapon and proper ammunition equipped, press "),_c('code',[_vm._v("f")]),_vm._v(" to enter targeting mode to fire your ranged weapon.\n                                ")]),_vm._v(" "),_c('p',[_c('b',[_vm._v("Targeting")])]),_vm._v("\n                                In targeting mode, you can select a tile to cast a spell or shoot a projectile so long as it's within range. By default, targeting will select the nearest enemy. You can change the selected tile with the standard "),_c('code',[_vm._v("movement")]),_vm._v(" keys. You can also cycle through enemies in view with "),_c('code',[_vm._v("tab")]),_vm._v(", "),_c('code',[_vm._v("=")]),_vm._v(", and "),_c('code',[_vm._v("/")]),_vm._v(". You cannot select a tile that is blocked or out of your line of sight. Pressing "),_c('code',[_vm._v("escape")]),_vm._v(" will cancel your spell or ranged attack. You can also press "),_c('code',[_vm._v("f")]),_vm._v(" or "),_c('code',[_vm._v("z")]),_vm._v(" for ranged or magic respectively.\n                                ")])],1)],1)],1),_vm._v(" "),_c('v-expansion-panel-content',[_c('div',{attrs:{"slot":"header"},slot:"header"},[_vm._v("Movement and Examining")]),_vm._v(" "),_c('v-card',{attrs:{"flat":""}},[_c('v-card-text',{staticClass:"pb-0 pt-0"},[_c('v-container',[_c('p',[_vm._v("You can move with arrow keys, the numpad, or vi keys. You can move in all 8 directions. ")]),_vm._v(" "),_c('v-container',{staticClass:"text-xs-center"},[_c('pre',[_vm._v("y  k  u      7  8  9  ")]),_vm._v(" "),_c('pre',[_vm._v(" \\ | /        \\ | /   ")]),_vm._v(" "),_c('pre',[_vm._v(" h-+-l        4-5-6   ")]),_vm._v(" "),_c('pre',[_vm._v(" / | \\        / | \\   ")]),_vm._v(" "),_c('pre',[_vm._v("b  j  n      1  2  3  ")]),_vm._v(" "),_c('pre',[_vm._v("vi-keys     numberpad ")])]),_vm._v(" "),_c('p',[_vm._v("\n                                    When in targeting mode, you can use these keys to switch to different tiles. Press "),_c('code',[_vm._v("x")]),_vm._v(" to examine your surroundings. Press "),_c('code',[_vm._v("x")]),_vm._v(" or "),_c('code',[_vm._v("escape")]),_vm._v(" to leave the examine mode.\n                                ")])],1)],1)],1)],1),_vm._v(" "),_c('v-expansion-panel-content',[_c('div',{attrs:{"slot":"header"},slot:"header"},[_vm._v("Melee Combat")]),_vm._v(" "),_c('v-card',{attrs:{"flat":""}},[_c('v-card-text',{staticClass:"pt-0"},[_c('v-container',{attrs:{"fluid":""}},[_c('p',[_vm._v("To fight an enemy with your fists or melee weapon, simply "),_c('code',[_vm._v("move")]),_vm._v(" into a tile where they are standing.")])])],1)],1)],1),_vm._v(" "),_c('v-expansion-panel-content',[_c('v-card',{attrs:{"flat":""}},[_c('div',{attrs:{"slot":"header"},slot:"header"},[_vm._v("Ladders, Resting, and Picking up Items")]),_vm._v(" "),_c('v-card-text',{staticClass:"pt-0"},[_c('v-container',{attrs:{"fluid":""}},[_c('p',[_vm._v("To pick up items off the ground, press "),_c('code',[_vm._v(",")]),_vm._v(" or "),_c('code',[_vm._v("g")]),_vm._v(".")]),_vm._v(" "),_c('p',[_vm._v("To rest for a turn and restore a little health, press "),_c('code',[_vm._v(".")]),_vm._v(" or "),_c('code',[_vm._v("5")]),_vm._v(" on the numpad.")]),_vm._v(" "),_c('p',[_vm._v("To climb ladders, press "),_c('code',[_vm._v("<")]),_vm._v(" to go up and press "),_c('code',[_vm._v(">")]),_vm._v(" to go down.")])])],1)],1)],1),_vm._v(" "),_c('v-expansion-panel-content',[_c('div',{attrs:{"slot":"header"},slot:"header"},[_vm._v("Inventory Management")]),_vm._v(" "),_c('v-card',{attrs:{"flat":""}},[_c('v-card-text',{staticClass:"pt-0"},[_c('v-container',{attrs:{"fluid":""}},[_c('p',[_vm._v("\n                                    To equip a weapon or drink a potion, "),_c('code',[_vm._v("click")]),_vm._v(" the item in your inventory. To drop an item, "),_c('code',[_vm._v("shift+click")]),_vm._v(" the item in your inventory. Alternatively, you can either equip or drop items by right-clicking an item to bring up its context menu and selecting one of the actions from there.\n                                ")]),_vm._v(" "),_c('p',[_vm._v("\n                                    You can rearrange inventory items by dragging and dropping items where you want them to be.\n                                ")]),_vm._v(" "),_c('p',[_vm._v("\n                                    To view details about items, simply "),_c('code',[_vm._v("hover")]),_vm._v(" over the item in your inventory and view the tooltip.\n                                ")])])],1)],1)],1)],1)],1),_vm._v(" "),_c('v-card-actions',[_c('v-spacer'),_vm._v(" "),_c('v-btn',{attrs:{"color":"yellow darken-4","flat":""},on:{"click":function($event){$event.stopPropagation();_vm.helpDialog=false}}},[_vm._v("Close")])],1)],1)],1)],1)}
-var staticRenderFns = []
-var esExports = { render: render, staticRenderFns: staticRenderFns }
-/* harmony default export */ __webpack_exports__["a"] = (esExports);
+// removed by extract-text-webpack-plugin
 
 /***/ }),
 
@@ -820,6 +805,28 @@ class ManaPotion extends __WEBPACK_IMPORTED_MODULE_0__entities_items_potions_Pot
 		});
 	}
 });
+
+/***/ }),
+
+/***/ "Awnv":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('v-container',{staticStyle:{"padding-left":"0px"},attrs:{"fluid":""}},[_c('draggable',{staticClass:"layout inventory_row row",attrs:{"element":"v-layout","row":"","wrap":""},model:{value:(_vm.inventory),callback:function ($$v) {_vm.inventory=$$v},expression:"inventory"}},_vm._l((_vm.inventory),function(cell,i){return _c('v-flex',{key:i,class:{selectedItem : _vm.colorSlot(cell), inventory_cell : ! _vm.colorSlot(cell)},attrs:{"xs1":"","col":"","align-center":""}},[(cell.item !== null)?_c('v-tooltip',{attrs:{"open-delay":"200","bottom":"","align-center":""}},[_c('p',{staticClass:"text-xs-center ma-0"},[_vm._v("\n                        "+_vm._s(cell.item.getAction())+" "+_vm._s(cell.item.type)),_c('br'),_vm._v(" "),('name' in cell.item)?_c('span',[_vm._v(_vm._s("Name: " + cell.item.name)),_c('br')]):_vm._e(),_vm._v("\n                        "+_vm._s(cell.item.hoverInfo())+"\n                    ")]),_vm._v(" "),(cell.item !== null)?_c('v-layout',{attrs:{"slot":"activator","ripple":"","row":""},on:{"click":function($event){_vm.useItem(cell, $event)},"contextmenu":function($event){_vm.show(cell, $event)}},slot:"activator"},[_c('v-menu',{attrs:{"offset-x":"","nudge-width":200,"close-on-click":true,"absolute":"","position-x":_vm.x,"position-y":_vm.y},model:{value:(cell.menu),callback:function ($$v) {_vm.$set(cell, "menu", $$v)},expression:"cell.menu"}},[_c('v-card',[_c('v-list',[_c('v-list-tile',{attrs:{"avatar":""}},[_c('v-list-tile-avatar',[_c('img',{attrs:{"src":_vm.getInventorySprite(cell.item.id)}})]),_vm._v(" "),_c('v-list-tile-content',[_c('v-list-tile-title',[_vm._v(_vm._s(cell.item.type))]),_vm._v(" "),_c('v-list-tile-sub-title',[_vm._v(_vm._s(cell.item.hoverInfo()))])],1)],1)],1),_vm._v(" "),_c('v-divider'),_vm._v(" "),_c('v-card-actions',[_c('v-btn',{attrs:{"flat":"","color":"blue"},on:{"click":function($event){_vm.useItem(cell, $event)}}},[_vm._v(_vm._s(cell.item.getAction()))]),_vm._v(" "),_c('v-btn',{attrs:{"flat":"","color":"red"},on:{"click":function($event){_vm.dropItem(cell, $event)}}},[_vm._v("Drop")])],1)],1)],1),_vm._v(" "),_c('v-badge',{attrs:{"overlay":"","bottom":"","color":"grey","overlap":""}},[(cell.item.quantity !== undefined)?_c('span',{attrs:{"slot":"badge","dark":""},slot:"badge"},[_c('b',[_vm._v(_vm._s(cell.item.quantity))])]):_vm._e(),_vm._v(" "),_c('img',{attrs:{"src":_vm.getInventorySprite(cell.item.id)}})])],1):_vm._e()],1):_vm._e()],1)}))],1)}
+var staticRenderFns = []
+var esExports = { render: render, staticRenderFns: staticRenderFns }
+/* harmony default export */ __webpack_exports__["a"] = (esExports);
+
+/***/ }),
+
+/***/ "Bjca":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('v-layout',{staticClass:"text-xs-center",attrs:{"row":""}},[_c('v-flex',{attrs:{"xs10":"","fluid":"","id":"minimap_container"}})],1)}
+var staticRenderFns = []
+var esExports = { render: render, staticRenderFns: staticRenderFns }
+/* harmony default export */ __webpack_exports__["a"] = (esExports);
 
 /***/ }),
 
@@ -1444,7 +1451,7 @@ class Actor extends __WEBPACK_IMPORTED_MODULE_2__entities_Entity_js__["b" /* Ent
 			ammo: null
 		};
 		this.inventory = [];
-		for (let i = 0; i < 28; i++) {
+		for (let i = 0; i < 27; i++) {
 			this.inventory.push({
 				item: null,
 				menu: false
@@ -1770,6 +1777,13 @@ class Actor extends __WEBPACK_IMPORTED_MODULE_2__entities_Entity_js__["b" /* Ent
 }
 /* harmony export (immutable) */ __webpack_exports__["a"] = Actor;
 
+
+/***/ }),
+
+/***/ "GYYd":
+/***/ (function(module, exports) {
+
+// removed by extract-text-webpack-plugin
 
 /***/ }),
 
@@ -2799,17 +2813,6 @@ function randomCave(width, height, dir, level = 1) {
 
 /***/ }),
 
-/***/ "HxZg":
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('v-container',{staticStyle:{"min-height":"50px"},attrs:{"fluid":""}},[(_vm.getNearbyEnemies().length > 0)?_c('v-layout',{attrs:{"row":"","wrap":""}},_vm._l((_vm.getNearbyEnemies()),function(enemy,index){return _c('v-flex',{key:index,attrs:{"md4":"","col":""}},[_c('v-tooltip',{attrs:{"bottom":""}},[_c('span',{attrs:{"align-center":""}},[_vm._v("\n                    HP : "+_vm._s(enemy.cb.hp)+" / "+_vm._s(enemy.cb.maxhp)),_c('br'),_vm._v("\n                    \""+_vm._s(enemy.description)+"\""),_c('br')]),_vm._v(" "),_c('div',{staticClass:"enemy_col",attrs:{"slot":"activator","fluid":""},slot:"activator"},[_c('v-layout',{staticClass:"text-xs-center",staticStyle:{"font-size":"10px","margin":"0px auto -10px 0px"},attrs:{"align-center":"","row":""}},[_c('v-flex',{attrs:{"xs12":""}},[_vm._v(_vm._s(enemy.name.capitalize()))])],1),_vm._v(" "),_c('v-layout',{staticStyle:{"margin":"0px"},attrs:{"row":""}},[_c('v-flex',{attrs:{"xs12":""}},[_c('v-progress-linear',{attrs:{"value":(enemy.cb.hp / enemy.cb.maxhp) * 100,"height":"4","color":"error"}})],1)],1)],1)])],1)})):_c('v-layout',{attrs:{"row":""}},[_c('v-container',{attrs:{"fluid":""}},[_vm._v("\n            No enemies in view\n        ")])],1)],1)}
-var staticRenderFns = []
-var esExports = { render: render, staticRenderFns: staticRenderFns }
-/* harmony default export */ __webpack_exports__["a"] = (esExports);
-
-/***/ }),
-
 /***/ "HyOm":
 /***/ (function(module, exports) {
 
@@ -2817,7 +2820,7 @@ module.exports = {"height":12,"layers":[{"data":[8478,8479,8479,8479,8479,8479,8
 
 /***/ }),
 
-/***/ "I9Lp":
+/***/ "IMIm":
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin
@@ -2920,14 +2923,25 @@ function createSword(x, y, id) {
 
 /***/ }),
 
+/***/ "Lv9H":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('v-container',[_c('v-flex',{staticClass:"stat-row"},[_c('v-layout',{attrs:{"row":"","align-center":""}},[_c('v-flex',{staticStyle:{"min-width":"70px"},attrs:{"md1":"","col":""}},[_c('b',[_vm._v("Level")])]),_vm._v(" "),_c('v-flex',{staticStyle:{"padding-left":"5px"},attrs:{"md2":"","col":""}},[_vm._v(_vm._s(_vm.getLevel()))]),_vm._v(" "),_c('v-flex',{attrs:{"md6":"","col":""}},[_vm._v(_vm._s(Math.floor(_vm.getRemainingXP()))+"XP until level "+_vm._s(_vm.getLevel()+1))]),_vm._v(" "),_c('v-flex',{attrs:{"md2":"","col":""}},[_c('v-progress-circular',{staticStyle:{},attrs:{"rotate":270,"color":"success","fill":"success","size":"18","value":Math.floor(_vm.getPercentToLevel() * 100)}})],1)],1)],1),_vm._v(" "),_c('v-flex',{staticClass:"stat-row"},[_c('v-layout',{attrs:{"row":"","align-center":""}},[_c('v-flex',{staticStyle:{"min-width":"70px"},attrs:{"md1":"","col":""}},[_c('b',[_vm._v("Damage")])]),_vm._v(" "),_c('v-flex',{staticStyle:{"padding-left":"5px"},attrs:{"md3":"","col":""}},[_vm._v(_vm._s(_vm.getDamageRange()))])],1)],1),_vm._v(" "),_c('v-flex',{staticClass:"stat-row"},[_c('v-layout',{attrs:{"row":"","align-center":""}},[_c('v-flex',{staticStyle:{"min-width":"70px"},attrs:{"md1":"","col":""}},[_c('b',[_vm._v("Strength")])]),_vm._v(" "),_c('v-flex',{staticStyle:{"padding-left":"5px"},attrs:{"md3":"","col":""}},[_vm._v(_vm._s(_vm.getStrength()))])],1)],1)],1)}
+var staticRenderFns = []
+var esExports = { render: render, staticRenderFns: staticRenderFns }
+/* harmony default export */ __webpack_exports__["a"] = (esExports);
+
+/***/ }),
+
 /***/ "M93x":
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_lib_selector_type_script_index_0_App_vue__ = __webpack_require__("xJD8");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__node_modules_vue_loader_lib_template_compiler_index_id_data_v_6514c80a_hasScoped_false_transformToRequire_video_src_source_src_img_src_image_xlink_href_buble_transforms_node_modules_vue_loader_lib_selector_type_template_index_0_App_vue__ = __webpack_require__("7GmA");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__node_modules_vue_loader_lib_template_compiler_index_id_data_v_084ff502_hasScoped_false_transformToRequire_video_src_source_src_img_src_image_xlink_href_buble_transforms_node_modules_vue_loader_lib_selector_type_template_index_0_App_vue__ = __webpack_require__("kw3N");
 function injectStyle (ssrContext) {
-  __webpack_require__("c7pj")
+  __webpack_require__("fpa3")
 }
 var normalizeComponent = __webpack_require__("VU/8")
 /* script */
@@ -2944,7 +2958,7 @@ var __vue_scopeId__ = null
 var __vue_module_identifier__ = null
 var Component = normalizeComponent(
   __WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_lib_selector_type_script_index_0_App_vue__["a" /* default */],
-  __WEBPACK_IMPORTED_MODULE_1__node_modules_vue_loader_lib_template_compiler_index_id_data_v_6514c80a_hasScoped_false_transformToRequire_video_src_source_src_img_src_image_xlink_href_buble_transforms_node_modules_vue_loader_lib_selector_type_template_index_0_App_vue__["a" /* default */],
+  __WEBPACK_IMPORTED_MODULE_1__node_modules_vue_loader_lib_template_compiler_index_id_data_v_084ff502_hasScoped_false_transformToRequire_video_src_source_src_img_src_image_xlink_href_buble_transforms_node_modules_vue_loader_lib_selector_type_template_index_0_App_vue__["a" /* default */],
   __vue_template_functional__,
   __vue_styles__,
   __vue_scopeId__,
@@ -3002,6 +3016,13 @@ class LockedDoor extends __WEBPACK_IMPORTED_MODULE_1__entities_misc_Door_js__["a
 }
 /* harmony export (immutable) */ __webpack_exports__["a"] = LockedDoor;
 
+
+/***/ }),
+
+/***/ "MvmX":
+/***/ (function(module, exports) {
+
+// removed by extract-text-webpack-plugin
 
 /***/ }),
 
@@ -3289,7 +3310,7 @@ class Player extends __WEBPACK_IMPORTED_MODULE_2__entities_actors_Actor_js__["a"
 			__WEBPACK_IMPORTED_MODULE_1__Game_js__["a" /* Game */].enemyCycle = null;
 			this.validTarget = null;
 			__WEBPACK_IMPORTED_MODULE_1__Game_js__["a" /* Game */].pathToTarget = {};
-			if (this.mouseEnabled) __WEBPACK_IMPORTED_MODULE_1__Game_js__["a" /* Game */].redrawSelectedTile(false);
+			if (this.mouseEnabled) __WEBPACK_IMPORTED_MODULE_1__Game_js__["a" /* Game */].redrawSelectedTile(false);else __WEBPACK_IMPORTED_MODULE_1__Game_js__["a" /* Game */].clearSelectedTile();
 
 			endTurn();
 		};
@@ -3312,7 +3333,7 @@ class Player extends __WEBPACK_IMPORTED_MODULE_2__entities_actors_Actor_js__["a"
 			this.casting = false;
 			__WEBPACK_IMPORTED_MODULE_1__Game_js__["a" /* Game */].enemyCycle = null;
 			__WEBPACK_IMPORTED_MODULE_1__Game_js__["a" /* Game */].pathToTarget = {};
-			if (this.mouseEnabled) __WEBPACK_IMPORTED_MODULE_1__Game_js__["a" /* Game */].redrawSelectedTile(false);
+			if (this.mouseEnabled) __WEBPACK_IMPORTED_MODULE_1__Game_js__["a" /* Game */].redrawSelectedTile(false);else __WEBPACK_IMPORTED_MODULE_1__Game_js__["a" /* Game */].clearSelectedTile();
 
 			this.validTarget = null;
 			endTurn();
@@ -3497,7 +3518,7 @@ class Player extends __WEBPACK_IMPORTED_MODULE_2__entities_actors_Actor_js__["a"
 			if (weapon !== null && ammo !== null && weapon.cb.ranged && ammo.cb.ammoType === weapon.cb.ammoType && ammo.quantity > 0) {
 				__WEBPACK_IMPORTED_MODULE_1__Game_js__["a" /* Game */].log(`You take aim with your ${weapon.type.toLowerCase()}.`, 'information');
 				__WEBPACK_IMPORTED_MODULE_1__Game_js__["a" /* Game */].log(`Select a target with the movement keys and press [enter] to fire your ${weapon.type.toLowerCase()}.`, 'player_move');
-				this.validTarget = __WEBPACK_IMPORTED_MODULE_1__Game_js__["a" /* Game */].redrawSelectedTile(true);
+				this.validTarget = !this.mouseEnabled ? __WEBPACK_IMPORTED_MODULE_1__Game_js__["a" /* Game */].redrawSelectedTile(false) : __WEBPACK_IMPORTED_MODULE_1__Game_js__["a" /* Game */].selectNearestEnemyTile();
 				this.targeting = true;
 				restartTurn();
 				return;
@@ -3533,7 +3554,8 @@ class Player extends __WEBPACK_IMPORTED_MODULE_2__entities_actors_Actor_js__["a"
 			} else if (currentSpell.targetType === __WEBPACK_IMPORTED_MODULE_11__magic_Spell_js__["b" /* targetTypes */].TARGET) {
 				__WEBPACK_IMPORTED_MODULE_1__Game_js__["a" /* Game */].log('You begin casting a spell.', 'defend');
 				__WEBPACK_IMPORTED_MODULE_1__Game_js__["a" /* Game */].log('Select a target with the movement keys and press [enter] to cast the spell.', 'player_move');
-				this.validTarget = __WEBPACK_IMPORTED_MODULE_1__Game_js__["a" /* Game */].redrawSelectedTile(true);
+
+				this.validTarget = !this.mouseEnabled ? __WEBPACK_IMPORTED_MODULE_1__Game_js__["a" /* Game */].redrawSelectedTile(false) : __WEBPACK_IMPORTED_MODULE_1__Game_js__["a" /* Game */].selectNearestEnemyTile();
 				this.casting = true;
 				// our first selected tile can be the nearest enemy
 				restartTurn();
@@ -3664,6 +3686,13 @@ class Player extends __WEBPACK_IMPORTED_MODULE_2__entities_actors_Actor_js__["a"
 
 /***/ }),
 
+/***/ "OoFV":
+/***/ (function(module, exports) {
+
+// removed by extract-text-webpack-plugin
+
+/***/ }),
+
 /***/ "OyU/":
 /***/ (function(module, exports) {
 
@@ -3678,6 +3707,7 @@ module.exports = {"height":60,"layers":[{"data":[7865,7865,7865,7865,7865,7865,7
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__assets_js_game_Game_js__ = __webpack_require__("TiVF");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_vuedraggable__ = __webpack_require__("DAYN");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_vuedraggable___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_vuedraggable__);
+//
 //
 //
 //
@@ -4078,14 +4108,7 @@ class Kobold extends __WEBPACK_IMPORTED_MODULE_0__entities_actors_enemies_Simple
 
 /***/ }),
 
-/***/ "T0ax":
-/***/ (function(module, exports) {
-
-// removed by extract-text-webpack-plugin
-
-/***/ }),
-
-/***/ "TYjd":
+/***/ "TJ5l":
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin
@@ -4899,9 +4922,9 @@ class Goblin extends __WEBPACK_IMPORTED_MODULE_1__entities_actors_enemies_Statel
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_lib_selector_type_script_index_0_GameDisplay_vue__ = __webpack_require__("9kQd");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__node_modules_vue_loader_lib_template_compiler_index_id_data_v_4ab3447e_hasScoped_false_transformToRequire_video_src_source_src_img_src_image_xlink_href_buble_transforms_node_modules_vue_loader_lib_selector_type_template_index_0_GameDisplay_vue__ = __webpack_require__("gj1L");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__node_modules_vue_loader_lib_template_compiler_index_id_data_v_516442fa_hasScoped_false_transformToRequire_video_src_source_src_img_src_image_xlink_href_buble_transforms_node_modules_vue_loader_lib_selector_type_template_index_0_GameDisplay_vue__ = __webpack_require__("2zgK");
 function injectStyle (ssrContext) {
-  __webpack_require__("T0ax")
+  __webpack_require__("GYYd")
 }
 var normalizeComponent = __webpack_require__("VU/8")
 /* script */
@@ -4918,7 +4941,7 @@ var __vue_scopeId__ = null
 var __vue_module_identifier__ = null
 var Component = normalizeComponent(
   __WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_lib_selector_type_script_index_0_GameDisplay_vue__["a" /* default */],
-  __WEBPACK_IMPORTED_MODULE_1__node_modules_vue_loader_lib_template_compiler_index_id_data_v_4ab3447e_hasScoped_false_transformToRequire_video_src_source_src_img_src_image_xlink_href_buble_transforms_node_modules_vue_loader_lib_selector_type_template_index_0_GameDisplay_vue__["a" /* default */],
+  __WEBPACK_IMPORTED_MODULE_1__node_modules_vue_loader_lib_template_compiler_index_id_data_v_516442fa_hasScoped_false_transformToRequire_video_src_source_src_img_src_image_xlink_href_buble_transforms_node_modules_vue_loader_lib_selector_type_template_index_0_GameDisplay_vue__["a" /* default */],
   __vue_template_functional__,
   __vue_styles__,
   __vue_scopeId__,
@@ -4935,9 +4958,9 @@ var Component = normalizeComponent(
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_lib_selector_type_script_index_0_ItemTransferModal_vue__ = __webpack_require__("bGfy");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__node_modules_vue_loader_lib_template_compiler_index_id_data_v_00a9d926_hasScoped_false_transformToRequire_video_src_source_src_img_src_image_xlink_href_buble_transforms_node_modules_vue_loader_lib_selector_type_template_index_0_ItemTransferModal_vue__ = __webpack_require__("dhS7");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__node_modules_vue_loader_lib_template_compiler_index_id_data_v_168593d0_hasScoped_false_transformToRequire_video_src_source_src_img_src_image_xlink_href_buble_transforms_node_modules_vue_loader_lib_selector_type_template_index_0_ItemTransferModal_vue__ = __webpack_require__("vLiS");
 function injectStyle (ssrContext) {
-  __webpack_require__("inHb")
+  __webpack_require__("yYhc")
 }
 var normalizeComponent = __webpack_require__("VU/8")
 /* script */
@@ -4954,7 +4977,7 @@ var __vue_scopeId__ = null
 var __vue_module_identifier__ = null
 var Component = normalizeComponent(
   __WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_lib_selector_type_script_index_0_ItemTransferModal_vue__["a" /* default */],
-  __WEBPACK_IMPORTED_MODULE_1__node_modules_vue_loader_lib_template_compiler_index_id_data_v_00a9d926_hasScoped_false_transformToRequire_video_src_source_src_img_src_image_xlink_href_buble_transforms_node_modules_vue_loader_lib_selector_type_template_index_0_ItemTransferModal_vue__["a" /* default */],
+  __WEBPACK_IMPORTED_MODULE_1__node_modules_vue_loader_lib_template_compiler_index_id_data_v_168593d0_hasScoped_false_transformToRequire_video_src_source_src_img_src_image_xlink_href_buble_transforms_node_modules_vue_loader_lib_selector_type_template_index_0_ItemTransferModal_vue__["a" /* default */],
   __vue_template_functional__,
   __vue_styles__,
   __vue_scopeId__,
@@ -5016,9 +5039,9 @@ class Entity {
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_lib_selector_type_script_index_0_HelpDialog_vue__ = __webpack_require__("AGrj");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__node_modules_vue_loader_lib_template_compiler_index_id_data_v_3cfb7a9b_hasScoped_false_transformToRequire_video_src_source_src_img_src_image_xlink_href_buble_transforms_node_modules_vue_loader_lib_selector_type_template_index_0_HelpDialog_vue__ = __webpack_require__("8v0R");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__node_modules_vue_loader_lib_template_compiler_index_id_data_v_0c53cebc_hasScoped_false_transformToRequire_video_src_source_src_img_src_image_xlink_href_buble_transforms_node_modules_vue_loader_lib_selector_type_template_index_0_HelpDialog_vue__ = __webpack_require__("q1Mb");
 function injectStyle (ssrContext) {
-  __webpack_require__("jJbX")
+  __webpack_require__("IMIm")
 }
 var normalizeComponent = __webpack_require__("VU/8")
 /* script */
@@ -5035,7 +5058,7 @@ var __vue_scopeId__ = null
 var __vue_module_identifier__ = null
 var Component = normalizeComponent(
   __WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_lib_selector_type_script_index_0_HelpDialog_vue__["a" /* default */],
-  __WEBPACK_IMPORTED_MODULE_1__node_modules_vue_loader_lib_template_compiler_index_id_data_v_3cfb7a9b_hasScoped_false_transformToRequire_video_src_source_src_img_src_image_xlink_href_buble_transforms_node_modules_vue_loader_lib_selector_type_template_index_0_HelpDialog_vue__["a" /* default */],
+  __WEBPACK_IMPORTED_MODULE_1__node_modules_vue_loader_lib_template_compiler_index_id_data_v_0c53cebc_hasScoped_false_transformToRequire_video_src_source_src_img_src_image_xlink_href_buble_transforms_node_modules_vue_loader_lib_selector_type_template_index_0_HelpDialog_vue__["a" /* default */],
   __vue_template_functional__,
   __vue_styles__,
   __vue_scopeId__,
@@ -5274,9 +5297,9 @@ class StatelessAI extends __WEBPACK_IMPORTED_MODULE_0__entities_actors_Actor_js_
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_lib_selector_type_script_index_0_HUD_vue__ = __webpack_require__("esFw");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__node_modules_vue_loader_lib_template_compiler_index_id_data_v_3a7f33a7_hasScoped_false_transformToRequire_video_src_source_src_img_src_image_xlink_href_buble_transforms_node_modules_vue_loader_lib_selector_type_template_index_0_HUD_vue__ = __webpack_require__("uyhV");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__node_modules_vue_loader_lib_template_compiler_index_id_data_v_4c19e7e8_hasScoped_false_transformToRequire_video_src_source_src_img_src_image_xlink_href_buble_transforms_node_modules_vue_loader_lib_selector_type_template_index_0_HUD_vue__ = __webpack_require__("m43A");
 function injectStyle (ssrContext) {
-  __webpack_require__("up1S")
+  __webpack_require__("MvmX")
 }
 var normalizeComponent = __webpack_require__("VU/8")
 /* script */
@@ -5293,7 +5316,7 @@ var __vue_scopeId__ = null
 var __vue_module_identifier__ = null
 var Component = normalizeComponent(
   __WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_lib_selector_type_script_index_0_HUD_vue__["a" /* default */],
-  __WEBPACK_IMPORTED_MODULE_1__node_modules_vue_loader_lib_template_compiler_index_id_data_v_3a7f33a7_hasScoped_false_transformToRequire_video_src_source_src_img_src_image_xlink_href_buble_transforms_node_modules_vue_loader_lib_selector_type_template_index_0_HUD_vue__["a" /* default */],
+  __WEBPACK_IMPORTED_MODULE_1__node_modules_vue_loader_lib_template_compiler_index_id_data_v_4c19e7e8_hasScoped_false_transformToRequire_video_src_source_src_img_src_image_xlink_href_buble_transforms_node_modules_vue_loader_lib_selector_type_template_index_0_HUD_vue__["a" /* default */],
   __vue_template_functional__,
   __vue_styles__,
   __vue_scopeId__,
@@ -5305,10 +5328,14 @@ var Component = normalizeComponent(
 
 /***/ }),
 
-/***/ "c7pj":
-/***/ (function(module, exports) {
+/***/ "bekX":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
 
-// removed by extract-text-webpack-plugin
+"use strict";
+var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('v-container',[_c('v-layout',{attrs:{"row":""}},[_c('v-flex',{attrs:{"xs4":""}},[_c('b',[_vm._v("Learned Spells")])])],1),_vm._v(" "),_c('v-layout',{staticStyle:{"margin-top":"5px"},attrs:{"row":"","wrap":""}},_vm._l((_vm.getSpells()),function(spell,i){return _c('v-flex',{key:i,staticStyle:{"margin":"4px"},attrs:{"xs1":"","col":""},on:{"click":function($event){_vm.selectSpell(spell)}}},[_c('v-tooltip',{attrs:{"bottom":"","align-center":""}},[_c('p',{staticClass:"text-xs-center ma-0",staticStyle:{"max-width":"200px"}},[_vm._v("\n                    Cast "+_vm._s(spell.name)+" "),_c('br'),_vm._v("\n                    Costs "),_c('b',{staticStyle:{"color":"blue"}},[_vm._v(_vm._s(spell.manaCost)+" Mana")]),_c('br'),_vm._v("\n                    "+_vm._s(spell.hoverInfo)+"\n                ")]),_vm._v(" "),_c('img',{class:{selectedSpell : _vm.highlightSpell(spell), spell : ! _vm.highlightSpell(spell)},attrs:{"slot":"activator","src":_vm.getSpellSplashArt(spell.type.toLowerCase(), spell.splashArt)},slot:"activator"})])],1)}))],1)}
+var staticRenderFns = []
+var esExports = { render: render, staticRenderFns: staticRenderFns }
+/* harmony default export */ __webpack_exports__["a"] = (esExports);
 
 /***/ }),
 
@@ -5317,9 +5344,9 @@ var Component = normalizeComponent(
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_lib_selector_type_script_index_0_Minimap_vue__ = __webpack_require__("sYQL");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__node_modules_vue_loader_lib_template_compiler_index_id_data_v_3b2021d2_hasScoped_false_transformToRequire_video_src_source_src_img_src_image_xlink_href_buble_transforms_node_modules_vue_loader_lib_selector_type_template_index_0_Minimap_vue__ = __webpack_require__("1qnV");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__node_modules_vue_loader_lib_template_compiler_index_id_data_v_235f466a_hasScoped_false_transformToRequire_video_src_source_src_img_src_image_xlink_href_buble_transforms_node_modules_vue_loader_lib_selector_type_template_index_0_Minimap_vue__ = __webpack_require__("Bjca");
 function injectStyle (ssrContext) {
-  __webpack_require__("0rPS")
+  __webpack_require__("viMf")
 }
 var normalizeComponent = __webpack_require__("VU/8")
 /* script */
@@ -5336,7 +5363,7 @@ var __vue_scopeId__ = null
 var __vue_module_identifier__ = null
 var Component = normalizeComponent(
   __WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_lib_selector_type_script_index_0_Minimap_vue__["a" /* default */],
-  __WEBPACK_IMPORTED_MODULE_1__node_modules_vue_loader_lib_template_compiler_index_id_data_v_3b2021d2_hasScoped_false_transformToRequire_video_src_source_src_img_src_image_xlink_href_buble_transforms_node_modules_vue_loader_lib_selector_type_template_index_0_Minimap_vue__["a" /* default */],
+  __WEBPACK_IMPORTED_MODULE_1__node_modules_vue_loader_lib_template_compiler_index_id_data_v_235f466a_hasScoped_false_transformToRequire_video_src_source_src_img_src_image_xlink_href_buble_transforms_node_modules_vue_loader_lib_selector_type_template_index_0_Minimap_vue__["a" /* default */],
   __vue_template_functional__,
   __vue_styles__,
   __vue_scopeId__,
@@ -5348,14 +5375,10 @@ var Component = normalizeComponent(
 
 /***/ }),
 
-/***/ "dhS7":
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
+/***/ "ceht":
+/***/ (function(module, exports) {
 
-"use strict";
-var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return (_vm.inventoryModalOpened)?_c('v-container',{staticClass:"modal elevation-24"},[_c('v-layout',{attrs:{"row":""}},[_c('v-flex',{attrs:{"xs5":"","col":""}},[_c('h3',[_vm._v("Bob the NPC")]),_vm._v(" "),_c('inventory')],1),_vm._v(" "),_c('v-flex',{attrs:{"xs2":"","col":""}}),_vm._v(" "),_c('v-flex',{attrs:{"xs5":"","col":""}},[_c('h3',[_vm._v("Your Items")]),_vm._v(" "),_c('inventory')],1)],1)],1):_vm._e()}
-var staticRenderFns = []
-var esExports = { render: render, staticRenderFns: staticRenderFns }
-/* harmony default export */ __webpack_exports__["a"] = (esExports);
+// removed by extract-text-webpack-plugin
 
 /***/ }),
 
@@ -5813,22 +5836,18 @@ class Ladder extends __WEBPACK_IMPORTED_MODULE_1__entities_Entity_js__["b" /* En
 
 /***/ }),
 
-/***/ "gj1L":
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
+/***/ "fpa3":
+/***/ (function(module, exports) {
 
-"use strict";
-var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('v-flex',{staticStyle:{"max-width":"1120px"},attrs:{"column":""}},[_c('v-layout',{staticStyle:{"padding":"0px"},attrs:{"row":""}},[_c('div',{staticStyle:{"margin":"0","padding":"0"},attrs:{"id":"game_container"}})]),_vm._v(" "),_c('message-log')],1)}
-var staticRenderFns = []
-var esExports = { render: render, staticRenderFns: staticRenderFns }
-/* harmony default export */ __webpack_exports__["a"] = (esExports);
+// removed by extract-text-webpack-plugin
 
 /***/ }),
 
-/***/ "hNMG":
+/***/ "gRfh":
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('v-layout',{staticStyle:{"padding":"5px 0 0 0","margin":"0px"},attrs:{"row":""}},[_c('v-list',{staticClass:"console",staticStyle:{"overflow":"hidden","padding-top":"8px","position":"relative"}},[_vm._l((_vm.getMessages()),function(message,index){return _c('li',{key:index},[_c('p',[_c('b',{style:({color : message[1]})},[_vm._v(_vm._s(message[0]))])])])}),_vm._v(" "),_vm._l((_vm.getTempMessages()),function(message,index){return _c('li',[_c('p',[_c('b',{style:({color : message[1]})},[_vm._v(_vm._s(message[0]))])])])})],2)],1)}
+var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('v-container',{staticStyle:{"min-height":"50px"},attrs:{"fluid":""}},[(_vm.getNearbyEnemies().length > 0)?_c('v-layout',{attrs:{"row":"","wrap":""}},_vm._l((_vm.getNearbyEnemies()),function(enemy,index){return _c('v-flex',{key:index,attrs:{"md4":"","col":""}},[_c('v-tooltip',{attrs:{"bottom":""}},[_c('span',{attrs:{"align-center":""}},[_vm._v("\n                    HP : "+_vm._s(enemy.cb.hp)+" / "+_vm._s(enemy.cb.maxhp)),_c('br'),_vm._v("\n                    \""+_vm._s(enemy.description)+"\""),_c('br')]),_vm._v(" "),_c('div',{staticClass:"enemy_col",attrs:{"slot":"activator","fluid":""},slot:"activator"},[_c('v-layout',{staticClass:"text-xs-center",staticStyle:{"font-size":"10px","margin":"0px auto -10px 0px"},attrs:{"align-center":"","row":""}},[_c('v-flex',{attrs:{"xs12":""}},[_vm._v(_vm._s(enemy.name.capitalize()))])],1),_vm._v(" "),_c('v-layout',{staticStyle:{"margin":"0px"},attrs:{"row":""}},[_c('v-flex',{attrs:{"xs12":""}},[_c('v-progress-linear',{attrs:{"value":(enemy.cb.hp / enemy.cb.maxhp) * 100,"height":"4","color":"error"}})],1)],1)],1)])],1)})):_c('v-layout',{attrs:{"row":""}},[_c('v-container',{attrs:{"fluid":""}},[_vm._v("\n            No enemies in view\n        ")])],1)],1)}
 var staticRenderFns = []
 var esExports = { render: render, staticRenderFns: staticRenderFns }
 /* harmony default export */ __webpack_exports__["a"] = (esExports);
@@ -5970,13 +5989,6 @@ class SimpleEnemy extends __WEBPACK_IMPORTED_MODULE_0__entities_actors_enemies_S
 
 /***/ }),
 
-/***/ "inHb":
-/***/ (function(module, exports) {
-
-// removed by extract-text-webpack-plugin
-
-/***/ }),
-
 /***/ "j1fH":
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -6006,10 +6018,14 @@ class NPC extends __WEBPACK_IMPORTED_MODULE_0__entities_actors_Actor_js__["a" /*
 
 /***/ }),
 
-/***/ "jJbX":
-/***/ (function(module, exports) {
+/***/ "jxzd":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
 
-// removed by extract-text-webpack-plugin
+"use strict";
+var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('v-layout',{staticStyle:{"padding":"5px 0 0 0","margin":"0px"},attrs:{"row":""}},[_c('v-list',{staticClass:"console",staticStyle:{"overflow":"hidden","padding-top":"8px","position":"relative"}},[_vm._l((_vm.getMessages()),function(message,index){return _c('li',{key:index},[_c('p',[_c('b',{style:({color : message[1]})},[_vm._v(_vm._s(message[0]))])])])}),_vm._v(" "),_vm._l((_vm.getTempMessages()),function(message,index){return _c('li',[_c('p',[_c('b',{style:({color : message[1]})},[_vm._v(_vm._s(message[0]))])])])})],2)],1)}
+var staticRenderFns = []
+var esExports = { render: render, staticRenderFns: staticRenderFns }
+/* harmony default export */ __webpack_exports__["a"] = (esExports);
 
 /***/ }),
 
@@ -6018,9 +6034,9 @@ class NPC extends __WEBPACK_IMPORTED_MODULE_0__entities_actors_Actor_js__["a" /*
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_lib_selector_type_script_index_0_DeathModal_vue__ = __webpack_require__("Ciyi");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__node_modules_vue_loader_lib_template_compiler_index_id_data_v_32533ac1_hasScoped_false_transformToRequire_video_src_source_src_img_src_image_xlink_href_buble_transforms_node_modules_vue_loader_lib_selector_type_template_index_0_DeathModal_vue__ = __webpack_require__("tfQs");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__node_modules_vue_loader_lib_template_compiler_index_id_data_v_007d3c9a_hasScoped_false_transformToRequire_video_src_source_src_img_src_image_xlink_href_buble_transforms_node_modules_vue_loader_lib_selector_type_template_index_0_DeathModal_vue__ = __webpack_require__("zsVc");
 function injectStyle (ssrContext) {
-  __webpack_require__("uFBk")
+  __webpack_require__("ceht")
 }
 var normalizeComponent = __webpack_require__("VU/8")
 /* script */
@@ -6037,7 +6053,7 @@ var __vue_scopeId__ = null
 var __vue_module_identifier__ = null
 var Component = normalizeComponent(
   __WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_lib_selector_type_script_index_0_DeathModal_vue__["a" /* default */],
-  __WEBPACK_IMPORTED_MODULE_1__node_modules_vue_loader_lib_template_compiler_index_id_data_v_32533ac1_hasScoped_false_transformToRequire_video_src_source_src_img_src_image_xlink_href_buble_transforms_node_modules_vue_loader_lib_selector_type_template_index_0_DeathModal_vue__["a" /* default */],
+  __WEBPACK_IMPORTED_MODULE_1__node_modules_vue_loader_lib_template_compiler_index_id_data_v_007d3c9a_hasScoped_false_transformToRequire_video_src_source_src_img_src_image_xlink_href_buble_transforms_node_modules_vue_loader_lib_selector_type_template_index_0_DeathModal_vue__["a" /* default */],
   __vue_template_functional__,
   __vue_styles__,
   __vue_scopeId__,
@@ -6046,6 +6062,17 @@ var Component = normalizeComponent(
 
 /* harmony default export */ __webpack_exports__["a"] = (Component.exports);
 
+
+/***/ }),
+
+/***/ "kw3N":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('v-app',{attrs:{"dark":""}},[_c('v-container',{attrs:{"fluid":"","id":"main_container"}},[_c('v-layout',{attrs:{"row":""}},[_c('game-display'),_vm._v(" "),_c('hud')],1),_vm._v(" "),_c('item-transfer-modal'),_vm._v(" "),_c('death-modal'),_vm._v(" "),_c('help-dialog'),_vm._v(" "),_c('div',{staticClass:"mouse_controls"},[_c('v-layout',{attrs:{"row":"","align-justify-center":""}},[_c('v-flex',{attrs:{"xs4":""}},[_c('v-switch',{attrs:{"color":"yellow darken-4"},model:{value:(_vm.player.mouseEnabled),callback:function ($$v) {_vm.$set(_vm.player, "mouseEnabled", $$v)},expression:"player.mouseEnabled"}})],1),_vm._v(" "),_c('v-flex',{staticStyle:{"padding-left":"20px"},attrs:{"xs6":""}},[_c('v-icon',[_vm._v("mouse")])],1)],1)],1),_vm._v(" "),_c('a',{staticStyle:{"text-decoration":"none"},attrs:{"id":"git_logo","target":"_blank","href":"https://github.com/Larkenx/Rotten-Soup"}},[_c('v-btn',{attrs:{"icon":"","ripple":""}},[_c('i',{staticClass:"fa fa-3x fa-github",staticStyle:{"color":"white","margin":"auto"},attrs:{"i":"","aria-hidden":"true"}})])],1)],1)],1)}
+var staticRenderFns = []
+var esExports = { render: render, staticRenderFns: staticRenderFns }
+/* harmony default export */ __webpack_exports__["a"] = (esExports);
 
 /***/ }),
 
@@ -6084,18 +6111,11 @@ class BleedEnchantment extends Enchantment {
 
 /***/ }),
 
-/***/ "mCxU":
-/***/ (function(module, exports) {
-
-// removed by extract-text-webpack-plugin
-
-/***/ }),
-
-/***/ "mIfT":
+/***/ "m43A":
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('v-container',[_c('v-flex',{staticClass:"stat-row"},[_c('v-layout',{attrs:{"row":"","align-center":""}},[_c('v-flex',{staticStyle:{"min-width":"70px"},attrs:{"md1":"","col":""}},[_c('b',[_vm._v("Level")])]),_vm._v(" "),_c('v-flex',{staticStyle:{"padding-left":"5px"},attrs:{"md2":"","col":""}},[_vm._v(_vm._s(_vm.getLevel()))]),_vm._v(" "),_c('v-flex',{attrs:{"md6":"","col":""}},[_vm._v(_vm._s(Math.floor(_vm.getRemainingXP()))+"XP until level "+_vm._s(_vm.getLevel()+1))]),_vm._v(" "),_c('v-flex',{attrs:{"md2":"","col":""}},[_c('v-progress-circular',{staticStyle:{},attrs:{"rotate":270,"color":"success","fill":"success","size":"18","value":Math.floor(_vm.getPercentToLevel() * 100)}})],1)],1)],1),_vm._v(" "),_c('v-flex',{staticClass:"stat-row"},[_c('v-layout',{attrs:{"row":"","align-center":""}},[_c('v-flex',{staticStyle:{"min-width":"70px"},attrs:{"md1":"","col":""}},[_c('b',[_vm._v("Damage")])]),_vm._v(" "),_c('v-flex',{staticStyle:{"padding-left":"5px"},attrs:{"md3":"","col":""}},[_vm._v(_vm._s(_vm.getDamageRange()))])],1)],1),_vm._v(" "),_c('v-flex',{staticClass:"stat-row"},[_c('v-layout',{attrs:{"row":"","align-center":""}},[_c('v-flex',{staticStyle:{"min-width":"70px"},attrs:{"md1":"","col":""}},[_c('b',[_vm._v("Strength")])]),_vm._v(" "),_c('v-flex',{staticStyle:{"padding-left":"5px"},attrs:{"md3":"","col":""}},[_vm._v(_vm._s(_vm.getStrength()))])],1)],1)],1)}
+var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('v-layout',{staticClass:"hud elevation-0",staticStyle:{"max-width":"450px"},attrs:{"column":""}},[_c('v-container',{attrs:{"grid-list-sm":"","fluid":""}},[_c('v-layout',{staticStyle:{"margin-bottom":"-20px"},attrs:{"row":"","align-center":""}},[_c('v-flex',{staticStyle:{"min-width":"75px"},attrs:{"md1":"","col":""}},[_c('b',[_vm._v("Health ")])]),_vm._v(" "),_c('v-flex',{attrs:{"md4":"","col":""}},[_c('v-progress-linear',{attrs:{"id":"hpBar","color":"error","value":(_vm.getHP() / _vm.getMaxHP()) * 100,"height":"13"}})],1),_vm._v(" "),_c('v-flex',{staticStyle:{"padding-left":"5px"},attrs:{"md3":"","col":""}},[_vm._v(_vm._s(_vm.getHP())+" / "+_vm._s(_vm.getMaxHP()))])],1),_vm._v(" "),_c('v-layout',{attrs:{"row":"","align-center":""}},[_c('v-flex',{staticStyle:{"min-width":"75px"},attrs:{"md1":"","col":""}},[_c('b',[_vm._v("Magic")])]),_vm._v(" "),_c('v-flex',{attrs:{"md4":"","col":""}},[_c('v-progress-linear',{attrs:{"id":"manaBar","value":(_vm.getMana() / _vm.getMaxMana()) * 100,"height":"13","info":""}})],1),_vm._v(" "),_c('v-flex',{staticStyle:{"padding-left":"5px"},attrs:{"md3":"","col":""}},[_vm._v(_vm._s(_vm.getMana())+" / "+_vm._s(_vm.getMaxMana()))])],1),_vm._v(" "),_c('v-layout',{attrs:{"row":"","align-center":""}},[_c('v-flex',{attrs:{"xs5":"","col":""}},[_c('b',[_vm._v("Location: "+_vm._s(_vm.getCurrentLevel().capitalize()))])]),_vm._v(" "),(_vm.getCurrentLevelDepth() > 0)?_c('v-flex',{attrs:{"col":""}},[_c('b',[_vm._v("Level: "+_vm._s(_vm.getCurrentLevelDepth()))])]):_vm._e()],1),_vm._v(" "),_c('mini-map'),_vm._v(" "),_c('v-layout',{attrs:{"row":""}},[_c('v-tabs',{staticStyle:{"max-width":"400px","margin-top":"10px","margin-bottom":"10px","font-size":"11px"},attrs:{"scrollable":false,"grow":""},model:{value:(_vm.activeTab),callback:function ($$v) {_vm.activeTab=$$v},expression:"activeTab"}},[_c('v-tabs-bar',{staticClass:"cyan darken-4",attrs:{"dark":""}},[_c('v-tabs-item',{key:"stats",attrs:{"href":"#stats","ripple":""}},[_vm._v("\n                        Stats\n                    ")]),_vm._v(" "),_c('v-tabs-item',{key:"enemyOverview",attrs:{"href":"#enemyOverview","ripple":""}},[_vm._v("\n                        Enemies\n                    ")]),_vm._v(" "),_c('v-tabs-item',{key:"spellBook",attrs:{"href":"#spellBook","ripple":""}},[_vm._v("\n                        Spellbook\n                    ")]),_vm._v(" "),_c('v-tabs-slider',{attrs:{"color":"yellow"}})],1),_vm._v(" "),_c('v-tabs-items',[_c('v-tabs-content',{key:"stats",attrs:{"id":"stats"}},[_c('v-card',{staticClass:"v-tab-card",attrs:{"flat":""}},[_c('stats-tab-content')],1)],1),_vm._v(" "),_c('v-tabs-content',{key:"enemyOverview",attrs:{"id":"enemyOverview"}},[_c('v-card',{staticClass:"v-tab-card",attrs:{"flat":""}},[_c('enemy-overview')],1)],1),_vm._v(" "),_c('v-tabs-content',{key:"spellBook",attrs:{"id":"spellBook"}},[_c('v-card',{staticClass:"v-tab-card",attrs:{"flat":""}},[_c('spellbook')],1)],1)],1)],1)],1),_vm._v(" "),_c('inventory')],1)],1)}
 var staticRenderFns = []
 var esExports = { render: render, staticRenderFns: staticRenderFns }
 /* harmony default export */ __webpack_exports__["a"] = (esExports);
@@ -6319,6 +6339,17 @@ class Chest extends __WEBPACK_IMPORTED_MODULE_1__entities_Entity_js__["b" /* Ent
 		}
 	}
 });
+
+/***/ }),
+
+/***/ "q1Mb":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{attrs:{"id":"help"}},[_c('v-tooltip',{attrs:{"left":"","align-center":""}},[_c('span',[_vm._v("Controls")]),_vm._v(" "),_c('v-btn',{attrs:{"slot":"activator","flat":"","icon":"","color":"yellow darken-4"},on:{"click":function($event){$event.stopPropagation();_vm.helpDialog=true}},slot:"activator"},[_c('v-icon',[_vm._v("help")])],1)],1),_vm._v(" "),_c('v-dialog',{attrs:{"max-width":"600px"},model:{value:(_vm.helpDialog),callback:function ($$v) {_vm.helpDialog=$$v},expression:"helpDialog"}},[_c('v-card',[_c('v-card-text',[_c('h5',[_vm._v("Controls")]),_vm._v(" "),_c('v-expansion-panel',[_c('v-expansion-panel-content',[_c('div',{attrs:{"slot":"header"},slot:"header"},[_vm._v("All Keybinds")]),_vm._v(" "),_c('v-card',{attrs:{"flat":""}},[_c('v-card-text',{staticClass:"pb-0 pt-0"},[_c('v-container',[_c('v-layout',{staticClass:"pb-2",attrs:{"row":""}},[_c('v-flex',{attrs:{"xs6":""}},[_c('b',[_vm._v("Keys")])]),_vm._v(" "),_c('v-flex',{attrs:{"xs6":""}},[_c('b',[_vm._v("Description")])])],1),_vm._v(" "),_vm._l((_vm.cheatSheet),function(cheat,index){return _c('v-layout',{key:index,attrs:{"row":"","wrap":""}},[_c('v-flex',{attrs:{"xs6":""}},[_c('code',[_vm._v(_vm._s(cheat.code))])]),_vm._v(" "),_c('v-flex',{attrs:{"xs6":""}},[_c('p',[_vm._v(_vm._s(cheat.description))])])],1)})],2)],1)],1)],1),_vm._v(" "),_c('v-expansion-panel-content',[_c('div',{attrs:{"slot":"header"},slot:"header"},[_vm._v("Magic and Ranged Combat")]),_vm._v(" "),_c('v-card',{attrs:{"flat":""}},[_c('v-card-text',{staticClass:"pt-0"},[_c('v-container',{attrs:{"fluid":""}},[_c('p',[_c('b',[_vm._v("Magic")])]),_vm._v(" "),_c('p',[_vm._v("To cast a spell, first select a spell from your spellbook by "),_c('code',[_vm._v("clicking")]),_vm._v(" on it. Then, you can press "),_c('code',[_vm._v("z")]),_vm._v(" to cast the selected spell. If your spell is targeted, you will enter targeting mode.\n\n                                ")]),_c('p',[_c('b',[_vm._v("Ranged")])]),_vm._v(" "),_c('p',[_vm._v("If you have a ranged weapon and proper ammunition equipped, press "),_c('code',[_vm._v("f")]),_vm._v(" to enter targeting mode to fire your ranged weapon.\n                                ")]),_vm._v(" "),_c('p',[_c('b',[_vm._v("Targeting")])]),_vm._v("\n                                In targeting mode, you can select a tile to cast a spell or shoot a projectile so long as it's within range. By default, targeting will select the nearest enemy. You can change the selected tile with the standard "),_c('code',[_vm._v("movement")]),_vm._v(" keys. You can also cycle through enemies in view with "),_c('code',[_vm._v("tab")]),_vm._v(", "),_c('code',[_vm._v("=")]),_vm._v(", and "),_c('code',[_vm._v("/")]),_vm._v(". You cannot select a tile that is blocked or out of your line of sight. Pressing "),_c('code',[_vm._v("escape")]),_vm._v(" will cancel your spell or ranged attack. You can also press "),_c('code',[_vm._v("f")]),_vm._v(" or "),_c('code',[_vm._v("z")]),_vm._v(" for ranged or magic respectively.\n                                ")])],1)],1)],1),_vm._v(" "),_c('v-expansion-panel-content',[_c('div',{attrs:{"slot":"header"},slot:"header"},[_vm._v("Movement and Examining")]),_vm._v(" "),_c('v-card',{attrs:{"flat":""}},[_c('v-card-text',{staticClass:"pb-0 pt-0"},[_c('v-container',[_c('p',[_vm._v("You can move with arrow keys, the numpad, or vi keys. You can move in all 8 directions. ")]),_vm._v(" "),_c('v-container',{staticClass:"text-xs-center"},[_c('pre',[_vm._v("y  k  u      7  8  9  ")]),_vm._v(" "),_c('pre',[_vm._v(" \\ | /        \\ | /   ")]),_vm._v(" "),_c('pre',[_vm._v(" h-+-l        4-5-6   ")]),_vm._v(" "),_c('pre',[_vm._v(" / | \\        / | \\   ")]),_vm._v(" "),_c('pre',[_vm._v("b  j  n      1  2  3  ")]),_vm._v(" "),_c('pre',[_vm._v("vi-keys     numberpad ")])]),_vm._v(" "),_c('p',[_vm._v("\n                                    When in targeting mode, you can use these keys to switch to different tiles. Press "),_c('code',[_vm._v("x")]),_vm._v(" to examine your surroundings. Press "),_c('code',[_vm._v("x")]),_vm._v(" or "),_c('code',[_vm._v("escape")]),_vm._v(" to leave the examine mode.\n                                ")])],1)],1)],1)],1),_vm._v(" "),_c('v-expansion-panel-content',[_c('div',{attrs:{"slot":"header"},slot:"header"},[_vm._v("Melee Combat")]),_vm._v(" "),_c('v-card',{attrs:{"flat":""}},[_c('v-card-text',{staticClass:"pt-0"},[_c('v-container',{attrs:{"fluid":""}},[_c('p',[_vm._v("To fight an enemy with your fists or melee weapon, simply "),_c('code',[_vm._v("move")]),_vm._v(" into a tile where they are standing.")])])],1)],1)],1),_vm._v(" "),_c('v-expansion-panel-content',[_c('v-card',{attrs:{"flat":""}},[_c('div',{attrs:{"slot":"header"},slot:"header"},[_vm._v("Ladders, Resting, and Picking up Items")]),_vm._v(" "),_c('v-card-text',{staticClass:"pt-0"},[_c('v-container',{attrs:{"fluid":""}},[_c('p',[_vm._v("To pick up items off the ground, press "),_c('code',[_vm._v(",")]),_vm._v(" or "),_c('code',[_vm._v("g")]),_vm._v(".")]),_vm._v(" "),_c('p',[_vm._v("To rest for a turn and restore a little health, press "),_c('code',[_vm._v(".")]),_vm._v(" or "),_c('code',[_vm._v("5")]),_vm._v(" on the numpad.")]),_vm._v(" "),_c('p',[_vm._v("To climb ladders, press "),_c('code',[_vm._v("<")]),_vm._v(" to go up and press "),_c('code',[_vm._v(">")]),_vm._v(" to go down.")])])],1)],1)],1),_vm._v(" "),_c('v-expansion-panel-content',[_c('div',{attrs:{"slot":"header"},slot:"header"},[_vm._v("Inventory Management")]),_vm._v(" "),_c('v-card',{attrs:{"flat":""}},[_c('v-card-text',{staticClass:"pt-0"},[_c('v-container',{attrs:{"fluid":""}},[_c('p',[_vm._v("\n                                    To equip a weapon or drink a potion, "),_c('code',[_vm._v("click")]),_vm._v(" the item in your inventory. To drop an item, "),_c('code',[_vm._v("shift+click")]),_vm._v(" the item in your inventory. Alternatively, you can either equip or drop items by right-clicking an item to bring up its context menu and selecting one of the actions from there.\n                                ")]),_vm._v(" "),_c('p',[_vm._v("\n                                    You can rearrange inventory items by dragging and dropping items where you want them to be.\n                                ")]),_vm._v(" "),_c('p',[_vm._v("\n                                    To view details about items, simply "),_c('code',[_vm._v("hover")]),_vm._v(" over the item in your inventory and view the tooltip.\n                                ")])])],1)],1)],1)],1)],1),_vm._v(" "),_c('v-card-actions',[_c('v-spacer'),_vm._v(" "),_c('v-btn',{attrs:{"color":"yellow darken-4","flat":""},on:{"click":function($event){$event.stopPropagation();_vm.helpDialog=false}}},[_vm._v("Close")])],1)],1)],1)],1)}
+var staticRenderFns = []
+var esExports = { render: render, staticRenderFns: staticRenderFns }
+/* harmony default export */ __webpack_exports__["a"] = (esExports);
 
 /***/ }),
 
@@ -6589,17 +6620,6 @@ class RegenerationEffect extends Effect {
 
 /***/ }),
 
-/***/ "tfQs":
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return (_vm.playerIsDead())?_c('v-container',{staticClass:"modal elevation-24"},[_c('v-layout',{staticClass:"text-xs-center",attrs:{"row":""}},[_c('v-flex',{attrs:{"xs12":""}},[_c('h2',{staticClass:"red--text"},[_vm._v("You died")])])],1),_vm._v(" "),_c('v-layout',[_c('v-flex',{staticClass:"text-xs-center",attrs:{"xs12":""}},[_c('v-btn',{staticClass:"flat",staticStyle:{"margin":"0 auto"},attrs:{"raised":"","color":"success","dark":""},nativeOn:{"click":function($event){_vm.startNewGame()}}},[_vm._v("Play Again?")])],1)],1)],1):_vm._e()}
-var staticRenderFns = []
-var esExports = { render: render, staticRenderFns: staticRenderFns }
-/* harmony default export */ __webpack_exports__["a"] = (esExports);
-
-/***/ }),
-
 /***/ "u4fz":
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -6666,13 +6686,6 @@ var esExports = { render: render, staticRenderFns: staticRenderFns }
 
 /***/ }),
 
-/***/ "uFBk":
-/***/ (function(module, exports) {
-
-// removed by extract-text-webpack-plugin
-
-/***/ }),
-
 /***/ "ua7k":
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -6725,24 +6738,6 @@ class Ammo extends __WEBPACK_IMPORTED_MODULE_0__entities_items_Item_js__["a" /* 
 
 /***/ }),
 
-/***/ "up1S":
-/***/ (function(module, exports) {
-
-// removed by extract-text-webpack-plugin
-
-/***/ }),
-
-/***/ "uyhV":
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('v-layout',{staticClass:"hud elevation-0",staticStyle:{"max-width":"450px"},attrs:{"column":""}},[_c('v-container',{attrs:{"grid-list-sm":"","fluid":""}},[_c('v-layout',{staticStyle:{"margin-bottom":"-20px"},attrs:{"row":"","align-center":""}},[_c('v-flex',{staticStyle:{"min-width":"75px"},attrs:{"md1":"","col":""}},[_c('b',[_vm._v("Health ")])]),_vm._v(" "),_c('v-flex',{attrs:{"md4":"","col":""}},[_c('v-progress-linear',{attrs:{"id":"hpBar","color":"error","value":(_vm.getHP() / _vm.getMaxHP()) * 100,"height":"13"}})],1),_vm._v(" "),_c('v-flex',{staticStyle:{"padding-left":"5px"},attrs:{"md3":"","col":""}},[_vm._v(_vm._s(_vm.getHP())+" / "+_vm._s(_vm.getMaxHP()))])],1),_vm._v(" "),_c('v-layout',{attrs:{"row":"","align-center":""}},[_c('v-flex',{staticStyle:{"min-width":"75px"},attrs:{"md1":"","col":""}},[_c('b',[_vm._v("Magic")])]),_vm._v(" "),_c('v-flex',{attrs:{"md4":"","col":""}},[_c('v-progress-linear',{attrs:{"id":"manaBar","value":(_vm.getMana() / _vm.getMaxMana()) * 100,"height":"13","info":""}})],1),_vm._v(" "),_c('v-flex',{staticStyle:{"padding-left":"5px"},attrs:{"md3":"","col":""}},[_vm._v(_vm._s(_vm.getMana())+" / "+_vm._s(_vm.getMaxMana()))])],1),_vm._v(" "),_c('v-layout',{attrs:{"row":"","align-center":""}},[_c('v-flex',{attrs:{"xs5":"","col":""}},[_c('b',[_vm._v("Location: "+_vm._s(_vm.getCurrentLevel().capitalize()))])]),_vm._v(" "),(_vm.getCurrentLevelDepth() > 0)?_c('v-flex',{attrs:{"col":""}},[_c('b',[_vm._v("Level: "+_vm._s(_vm.getCurrentLevelDepth()))])]):_vm._e()],1),_vm._v(" "),_c('mini-map'),_vm._v(" "),_c('v-layout',{attrs:{"row":""}},[_c('v-tabs',{staticStyle:{"max-width":"350px","margin-top":"10px","margin-bottom":"10px","font-size":"11px"},attrs:{"scrollable":false,"grow":""},model:{value:(_vm.activeTab),callback:function ($$v) {_vm.activeTab=$$v},expression:"activeTab"}},[_c('v-tabs-bar',{staticClass:"cyan darken-4",attrs:{"dark":""}},[_c('v-tabs-item',{key:"stats",attrs:{"href":"#stats","ripple":""}},[_vm._v("\n                        Stats\n                    ")]),_vm._v(" "),_c('v-tabs-item',{key:"enemyOverview",attrs:{"href":"#enemyOverview","ripple":""}},[_vm._v("\n                        Enemies\n                    ")]),_vm._v(" "),_c('v-tabs-item',{key:"spellBook",attrs:{"href":"#spellBook","ripple":""}},[_vm._v("\n                        Spellbook\n                    ")]),_vm._v(" "),_c('v-tabs-slider',{attrs:{"color":"yellow"}})],1),_vm._v(" "),_c('v-tabs-items',[_c('v-tabs-content',{key:"stats",attrs:{"id":"stats"}},[_c('v-card',{staticClass:"v-tab-card",attrs:{"flat":""}},[_c('stats-tab-content')],1)],1),_vm._v(" "),_c('v-tabs-content',{key:"enemyOverview",attrs:{"id":"enemyOverview"}},[_c('v-card',{staticClass:"v-tab-card",attrs:{"flat":""}},[_c('enemy-overview')],1)],1),_vm._v(" "),_c('v-tabs-content',{key:"spellBook",attrs:{"id":"spellBook"}},[_c('v-card',{staticClass:"v-tab-card",attrs:{"flat":""}},[_c('spellbook')],1)],1)],1)],1)],1),_vm._v(" "),_c('inventory')],1)],1)}
-var staticRenderFns = []
-var esExports = { render: render, staticRenderFns: staticRenderFns }
-/* harmony default export */ __webpack_exports__["a"] = (esExports);
-
-/***/ }),
-
 /***/ "v5hr":
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -6779,10 +6774,14 @@ class LevelTransition extends __WEBPACK_IMPORTED_MODULE_1__entities_Entity_js__[
 
 /***/ }),
 
-/***/ "vNAd":
-/***/ (function(module, exports) {
+/***/ "vLiS":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
 
-// removed by extract-text-webpack-plugin
+"use strict";
+var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return (_vm.inventoryModalOpened)?_c('v-container',{staticClass:"modal elevation-24"},[_c('v-layout',{attrs:{"row":""}},[_c('v-flex',{attrs:{"xs5":"","col":""}},[_c('h3',[_vm._v("Bob the NPC")]),_vm._v(" "),_c('inventory')],1),_vm._v(" "),_c('v-flex',{attrs:{"xs2":"","col":""}}),_vm._v(" "),_c('v-flex',{attrs:{"xs5":"","col":""}},[_c('h3',[_vm._v("Your Items")]),_vm._v(" "),_c('inventory')],1)],1)],1):_vm._e()}
+var staticRenderFns = []
+var esExports = { render: render, staticRenderFns: staticRenderFns }
+/* harmony default export */ __webpack_exports__["a"] = (esExports);
 
 /***/ }),
 
@@ -6842,9 +6841,9 @@ class Door extends __WEBPACK_IMPORTED_MODULE_1__entities_Entity_js__["b" /* Enti
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_lib_selector_type_script_index_0_StatsTabContent_vue__ = __webpack_require__("hzql");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__node_modules_vue_loader_lib_template_compiler_index_id_data_v_510f7dea_hasScoped_false_transformToRequire_video_src_source_src_img_src_image_xlink_href_buble_transforms_node_modules_vue_loader_lib_selector_type_template_index_0_StatsTabContent_vue__ = __webpack_require__("mIfT");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__node_modules_vue_loader_lib_template_compiler_index_id_data_v_65a0df76_hasScoped_false_transformToRequire_video_src_source_src_img_src_image_xlink_href_buble_transforms_node_modules_vue_loader_lib_selector_type_template_index_0_StatsTabContent_vue__ = __webpack_require__("Lv9H");
 function injectStyle (ssrContext) {
-  __webpack_require__("vNAd")
+  __webpack_require__("zp8S")
 }
 var normalizeComponent = __webpack_require__("VU/8")
 /* script */
@@ -6861,7 +6860,7 @@ var __vue_scopeId__ = null
 var __vue_module_identifier__ = null
 var Component = normalizeComponent(
   __WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_lib_selector_type_script_index_0_StatsTabContent_vue__["a" /* default */],
-  __WEBPACK_IMPORTED_MODULE_1__node_modules_vue_loader_lib_template_compiler_index_id_data_v_510f7dea_hasScoped_false_transformToRequire_video_src_source_src_img_src_image_xlink_href_buble_transforms_node_modules_vue_loader_lib_selector_type_template_index_0_StatsTabContent_vue__["a" /* default */],
+  __WEBPACK_IMPORTED_MODULE_1__node_modules_vue_loader_lib_template_compiler_index_id_data_v_65a0df76_hasScoped_false_transformToRequire_video_src_source_src_img_src_image_xlink_href_buble_transforms_node_modules_vue_loader_lib_selector_type_template_index_0_StatsTabContent_vue__["a" /* default */],
   __vue_template_functional__,
   __vue_styles__,
   __vue_scopeId__,
@@ -6873,14 +6872,21 @@ var Component = normalizeComponent(
 
 /***/ }),
 
+/***/ "viMf":
+/***/ (function(module, exports) {
+
+// removed by extract-text-webpack-plugin
+
+/***/ }),
+
 /***/ "x/l/":
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_lib_selector_type_script_index_0_Spellbook_vue__ = __webpack_require__("phX2");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__node_modules_vue_loader_lib_template_compiler_index_id_data_v_5c744d02_hasScoped_false_transformToRequire_video_src_source_src_img_src_image_xlink_href_buble_transforms_node_modules_vue_loader_lib_selector_type_template_index_0_Spellbook_vue__ = __webpack_require__("zFv3");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__node_modules_vue_loader_lib_template_compiler_index_id_data_v_458882da_hasScoped_false_transformToRequire_video_src_source_src_img_src_image_xlink_href_buble_transforms_node_modules_vue_loader_lib_selector_type_template_index_0_Spellbook_vue__ = __webpack_require__("bekX");
 function injectStyle (ssrContext) {
-  __webpack_require__("yQZu")
+  __webpack_require__("0anL")
 }
 var normalizeComponent = __webpack_require__("VU/8")
 /* script */
@@ -6897,7 +6903,7 @@ var __vue_scopeId__ = null
 var __vue_module_identifier__ = null
 var Component = normalizeComponent(
   __WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_lib_selector_type_script_index_0_Spellbook_vue__["a" /* default */],
-  __WEBPACK_IMPORTED_MODULE_1__node_modules_vue_loader_lib_template_compiler_index_id_data_v_5c744d02_hasScoped_false_transformToRequire_video_src_source_src_img_src_image_xlink_href_buble_transforms_node_modules_vue_loader_lib_selector_type_template_index_0_Spellbook_vue__["a" /* default */],
+  __WEBPACK_IMPORTED_MODULE_1__node_modules_vue_loader_lib_template_compiler_index_id_data_v_458882da_hasScoped_false_transformToRequire_video_src_source_src_img_src_image_xlink_href_buble_transforms_node_modules_vue_loader_lib_selector_type_template_index_0_Spellbook_vue__["a" /* default */],
   __vue_template_functional__,
   __vue_styles__,
   __vue_scopeId__,
@@ -7102,32 +7108,10 @@ class Orc extends __WEBPACK_IMPORTED_MODULE_0__entities_actors_enemies_SimpleEne
 
 /***/ }),
 
-/***/ "yQZu":
+/***/ "yYhc":
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin
-
-/***/ }),
-
-/***/ "z0Tf":
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('v-layout',{attrs:{"row":""}},[_c('v-container',{attrs:{"fluid":""}},_vm._l((4),function(row,index){return _c('v-layout',{key:index,staticClass:"inventory_row",attrs:{"row":""}},[_c('draggable',{staticClass:"layout inventory_row row"},_vm._l((_vm.getInventoryRow(index)),function(cell,i){return _c('v-flex',{key:i*index,class:{selectedItem : _vm.colorSlot(cell), inventory_cell : ! _vm.colorSlot(cell)},staticStyle:{"max-width":"32px","margin":"4px"},attrs:{"xs1":"","col":"","align-center":""}},[(cell.item !== null)?_c('v-tooltip',{attrs:{"open-delay":"200","bottom":"","align-center":""}},[_c('p',{staticClass:"text-xs-center ma-0"},[_vm._v("\n                                "+_vm._s(cell.item.getAction())+" "+_vm._s(cell.item.type)),_c('br'),_vm._v(" "),('name' in cell.item)?_c('span',[_vm._v(_vm._s("Name: " + cell.item.name)),_c('br')]):_vm._e(),_vm._v("\n                                "+_vm._s(cell.item.hoverInfo())+"\n                            ")]),_vm._v(" "),(cell.item !== null)?_c('v-layout',{attrs:{"slot":"activator","ripple":"","row":""},on:{"click":function($event){_vm.useItem(cell, $event)},"contextmenu":function($event){_vm.show(cell, $event)}},slot:"activator"},[_c('v-menu',{attrs:{"offset-x":"","nudge-width":200,"close-on-click":true,"absolute":"","position-x":_vm.x,"position-y":_vm.y},model:{value:(cell.menu),callback:function ($$v) {_vm.$set(cell, "menu", $$v)},expression:"cell.menu"}},[_c('v-card',[_c('v-list',[_c('v-list-tile',{attrs:{"avatar":""}},[_c('v-list-tile-avatar',[_c('img',{attrs:{"src":_vm.getInventorySprite(cell.item.id)}})]),_vm._v(" "),_c('v-list-tile-content',[_c('v-list-tile-title',[_vm._v(_vm._s(cell.item.type))]),_vm._v(" "),_c('v-list-tile-sub-title',[_vm._v(_vm._s(cell.item.hoverInfo()))])],1)],1)],1),_vm._v(" "),_c('v-divider'),_vm._v(" "),_c('v-card-actions',[_c('v-btn',{attrs:{"flat":"","color":"blue"},on:{"click":function($event){_vm.useItem(cell, $event)}}},[_vm._v(_vm._s(cell.item.getAction()))]),_vm._v(" "),_c('v-btn',{attrs:{"flat":"","color":"red"},on:{"click":function($event){_vm.dropItem(cell, $event)}}},[_vm._v("Drop")])],1)],1)],1),_vm._v(" "),_c('v-badge',{attrs:{"overlay":"","bottom":"","color":"grey","overlap":""}},[(cell.item.quantity !== undefined)?_c('span',{attrs:{"slot":"badge","dark":""},slot:"badge"},[_c('b',[_vm._v(_vm._s(cell.item.quantity))])]):_vm._e(),_vm._v(" "),_c('img',{attrs:{"src":_vm.getInventorySprite(cell.item.id)}})])],1):_vm._e()],1):_vm._e()],1)}))],1)}))],1)}
-var staticRenderFns = []
-var esExports = { render: render, staticRenderFns: staticRenderFns }
-/* harmony default export */ __webpack_exports__["a"] = (esExports);
-
-/***/ }),
-
-/***/ "zFv3":
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('v-container',[_c('v-layout',{attrs:{"row":""}},[_c('v-flex',{attrs:{"xs4":""}},[_c('b',[_vm._v("Learned Spells")])])],1),_vm._v(" "),_c('v-layout',{staticStyle:{"margin-top":"5px"},attrs:{"row":"","wrap":""}},_vm._l((_vm.getSpells()),function(spell,i){return _c('v-flex',{key:i,staticStyle:{"margin":"4px"},attrs:{"xs1":"","col":""},on:{"click":function($event){_vm.selectSpell(spell)}}},[_c('v-tooltip',{attrs:{"bottom":"","align-center":""}},[_c('p',{staticClass:"text-xs-center ma-0",staticStyle:{"max-width":"200px"}},[_vm._v("\n                    Cast "+_vm._s(spell.name)+" "),_c('br'),_vm._v("\n                    Costs "),_c('b',{staticStyle:{"color":"blue"}},[_vm._v(_vm._s(spell.manaCost)+" Mana")]),_c('br'),_vm._v("\n                    "+_vm._s(spell.hoverInfo)+"\n                ")]),_vm._v(" "),_c('img',{class:{selectedSpell : _vm.highlightSpell(spell), spell : ! _vm.highlightSpell(spell)},attrs:{"slot":"activator","src":_vm.getSpellSplashArt(spell.type.toLowerCase(), spell.splashArt)},slot:"activator"})])],1)}))],1)}
-var staticRenderFns = []
-var esExports = { render: render, staticRenderFns: staticRenderFns }
-/* harmony default export */ __webpack_exports__["a"] = (esExports);
 
 /***/ }),
 
@@ -7136,7 +7120,25 @@ var esExports = { render: render, staticRenderFns: staticRenderFns }
 
 module.exports = {"height":50,"layers":[{"data":[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,7398,7399,7399,7399,7399,7399,7399,7399,7402,7399,7399,7399,7399,7399,7399,7399,7399,7399,7399,7400,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,7518,7737,7738,7738,7738,7738,7738,7738,7518,7738,7738,7738,7738,7738,7738,7738,7738,7738,7739,7518,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,7518,7857,7858,7858,7858,7858,7858,7858,7518,7858,7858,7858,7858,7858,7858,7858,7858,7858,7859,7518,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,7518,7857,7858,7858,7858,7858,7858,7858,7518,7858,7858,7858,7858,7858,7858,7858,7858,7858,7859,7518,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,7518,7857,7858,7858,7858,7858,7858,7858,7518,7858,7858,7858,7858,7858,7858,7858,7858,7858,7859,7518,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,7518,7857,7858,7858,7858,7858,7858,7858,7518,7858,7858,7858,7858,7858,7858,7858,7858,7858,7859,7518,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,7518,7857,7858,7858,7858,7858,7858,7858,7518,7858,7858,7858,7858,7858,7858,7858,7858,7858,7859,7518,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,7518,7857,7858,7858,7858,7858,7858,7858,7742,7858,7858,7858,7858,7858,7858,7858,7858,7858,7859,7518,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,7518,7857,7858,7858,7858,7858,7858,7858,7518,7858,7858,7858,7858,7858,7858,7858,7858,7858,7859,7518,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,7518,7977,7978,7978,7858,7858,7978,7978,7518,7978,7978,7978,7978,7978,7978,7978,7978,7978,7979,7518,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,7638,7399,7399,7399,7399,7399,7399,7399,7399,7399,7399,7399,7399,7399,7399,7399,7399,7399,7399,7640,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],"height":50,"name":"Tile Layer 1","opacity":1,"properties":{"obstacles":true},"propertytypes":{"obstacles":"bool"},"type":"tilelayer","visible":true,"width":50,"x":0,"y":0},{"data":[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,4890,0,0,0,4890,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,6218,0,0,0,0,0,6211,0,0,0,0,0,3457,3458,3458,3458,3458,3459,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,3577,5494,0,0,5369,3577,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,3577,0,0,0,5370,3577,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,3697,3458,0,3458,3458,3699,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,5609,5610,5610,5610,5610,5610,5610,5610,5611,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,5729,5730,5730,5730,5730,5730,5730,5730,5731,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,4772,4773,4773,4774,0,0,0,0,0,5729,5730,5730,5730,5730,5730,5730,5730,5731,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,5012,5012,0,0,5849,5850,5850,5850,5850,5850,5850,5850,5851,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],"height":50,"name":"Tile Layer 2","opacity":1,"properties":{"obstacles":true},"propertytypes":{"obstacles":"bool"},"type":"tilelayer","visible":true,"width":50,"x":0,"y":0},{"data":[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,785,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,25,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],"height":50,"name":"Item Layer 1","opacity":1,"properties":{"items":true},"propertytypes":{"items":"bool"},"type":"tilelayer","visible":true,"width":50,"x":0,"y":0},{"data":[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,480,4696,0,0,0,0,0,0,0,0,0,0,0,5173,58,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,811,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,5299,0,5299,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,5298,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,5535,690,0,0,0,0,0,0,0,5296,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,5298,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],"height":50,"name":"Actors","opacity":1,"properties":{"actors":true},"propertytypes":{"actors":"bool"},"type":"tilelayer","visible":true,"width":50,"x":0,"y":0},{"data":[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,7661,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],"height":50,"name":"Portal Layer","opacity":1,"properties":{"portal":true},"propertytypes":{"portal":"bool"},"type":"tilelayer","visible":true,"width":50,"x":0,"y":0}],"nextobjectid":1,"orientation":"orthogonal","renderorder":"right-down","tiledversion":"1.0.2","tileheight":32,"tilesets":[{"firstgid":1,"source":"../tileset/compiled_dawnlike.json"}],"tilewidth":32,"type":"map","version":1,"width":50}
 
+/***/ }),
+
+/***/ "zp8S":
+/***/ (function(module, exports) {
+
+// removed by extract-text-webpack-plugin
+
+/***/ }),
+
+/***/ "zsVc":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return (_vm.playerIsDead())?_c('v-container',{staticClass:"modal elevation-24"},[_c('v-layout',{staticClass:"text-xs-center",attrs:{"row":""}},[_c('v-flex',{attrs:{"xs12":""}},[_c('h2',{staticClass:"red--text"},[_vm._v("You died")])])],1),_vm._v(" "),_c('v-layout',[_c('v-flex',{staticClass:"text-xs-center",attrs:{"xs12":""}},[_c('v-btn',{staticClass:"flat",staticStyle:{"margin":"0 auto"},attrs:{"raised":"","color":"success","dark":""},nativeOn:{"click":function($event){_vm.startNewGame()}}},[_vm._v("Play Again?")])],1)],1)],1):_vm._e()}
+var staticRenderFns = []
+var esExports = { render: render, staticRenderFns: staticRenderFns }
+/* harmony default export */ __webpack_exports__["a"] = (esExports);
+
 /***/ })
 
 },["NHnr"]);
-//# sourceMappingURL=app.50e423d58711cb257753.js.map
+//# sourceMappingURL=app.0ff0dda7e1e42cd41260.js.map
