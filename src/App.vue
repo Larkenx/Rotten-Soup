@@ -29,7 +29,6 @@
                 </v-layout>
             </div>
 
-
             <!-- Github Logo -->
             <a id="git_logo" style="text-decoration: none;" target="_blank"
                href="https://github.com/Larkenx/Rotten-Soup">
@@ -38,6 +37,12 @@
                        aria-hidden="true"></i>
                 </v-btn>
             </a>
+
+            <!-- Loading Indicator  -->
+            <v-card v-if="loading" fluid class="loading">
+                <v-progress-circular indeterminate v-bind:size="140" v-bind:width="7" color="yellow darken-4">Loading...</v-progress-circular>
+            </v-card>
+
         </v-container>
     </v-app>
 </template>
@@ -56,6 +61,7 @@ export default {
 	data() {
 		return {
 			mouseControls: false,
+			loading: true,
 			player: null,
 			actors: null
 		}
@@ -72,6 +78,7 @@ export default {
 		this.player = Game.player
 	},
 	mounted() {
+		this.player = Game.player
 		document.getElementById('game_container').appendChild(Game.display.getContainer())
 		document.getElementById('minimap_container').appendChild(Game.minimap.getContainer())
 		Game.log('Welcome to Rotten Soup!', 'information')
@@ -83,7 +90,9 @@ export default {
 			Game.turn++
 			Game.updateDisplay()
 		}, 500)
-		this.player = Game.player
+		setTimeout(() => {
+			this.loading = false
+		}, 1000)
 	}
 }
 </script>
@@ -124,6 +133,14 @@ export default {
         /* min-width: 200px; */
         bottom: 0px;
         left: 90%;
+    }
+
+    .loading {
+        position: absolute;
+        padding: 20px;
+        /* min-width: 200px; */
+        bottom: 50%;
+        left: 45%;
     }
 
     .test {
