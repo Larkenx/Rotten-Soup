@@ -1,5 +1,5 @@
-<template v-if="playerSelected">
-    <v-app dark>
+<template>
+    <v-app v-if="playerSelected" dark>
         <v-container fluid id="main_container">
             <!-- Game Display and HUD-->
             <v-layout row>
@@ -39,15 +39,13 @@
             </a>
 
             <!-- Loading Indicator  -->
-            <v-card v-if="loading" fluid class="loading">
+            <div v-if="loading" fluid class="loading">
                 <v-progress-circular indeterminate v-bind:size="140" v-bind:width="7" color="yellow darken-4">Loading...</v-progress-circular>
-            </v-card>
+            </div>
 
         </v-container>
     </v-app>
-</template>
-<template v-else>
-    <start-menu v-bind="{Game, playerSelected}"></start-menu>
+    <start-menu v-else v-on:spriteSelected="loadGame" v-bind="{Game}"></start-menu>
 </template>
 
 <script>
@@ -86,7 +84,34 @@ export default {
 		// this.player = Game.player
 	},
 	mounted() {},
-	methods: {}
+	methods: {
+		readyToLoadGame() {
+			console.log(this.playerSelected)
+			return this.playerSelected
+		},
+		loadGame(id) {
+			console.log(id)
+			this.playerSelected = true
+			this.selectedSprite = id
+			this.Game.init(this.selectedSprite)
+			this.player = this.Game.player
+
+			this.Game.log('Welcome to Rotten Soup!', 'information')
+			this.Game.log('Press ? to view the controls.', 'player_move')
+			this.Game.drawViewPort()
+			this.Game.drawMiniMap()
+			this.Game.refreshDisplay()
+			setInterval(() => {
+				Game.turn++
+				Game.updateDisplay()
+			}, 500)
+			setTimeout(() => {
+				this.loading = false
+				document.getElementById('game_container').appendChild(this.Game.display.getContainer())
+				document.getElementById('minimap_container').appendChild(this.Game.minimap.getContainer())
+			}, 1000)
+		}
+	}
 }
 </script>
 <style>
