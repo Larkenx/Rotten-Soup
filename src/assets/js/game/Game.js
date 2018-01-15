@@ -95,7 +95,7 @@ export let Game = {
 		}
 		this.displayOptions = {
 			width: 35,
-			height: 22,
+			height: 21,
 			forceSquareRatio: true,
 			layout: 'tile',
 			// bg: "transparent",
@@ -468,7 +468,9 @@ export let Game = {
 		let { x, y } = this.selectedTile
 		let mapTile = Game.map.data[this.selectedTile.y][this.selectedTile.x]
 		let properBorder =
-			mapTile.blocked() || this.map.visible_tiles[x + ',' + y] === undefined ? untargetableBorders : targetingBorders
+			mapTile.blocked() || this.map.visible_tiles[x + ',' + y] === undefined
+				? untargetableBorders
+				: targetingBorders
 		this.map.data[this.selectedTile.y][this.selectedTile.x].actors.push(properBorder)
 		// highlighting the path from the player to the target reticle using bresenham line algorithm
 		/* https://rosettacode.org/wiki/Bitmap/Bresenham%27s_line_algorithm#JavaScript */
@@ -582,7 +584,8 @@ export let Game = {
 		if (this.selectedTile !== null) {
 			let mapTile = Game.map.data[this.selectedTile.y][this.selectedTile.x]
 			let properBorder =
-				mapTile.blocked() || this.map.visible_tiles[this.selectedTile.x + ',' + this.selectedTile.y] === undefined
+				mapTile.blocked() ||
+				this.map.visible_tiles[this.selectedTile.x + ',' + this.selectedTile.y] === undefined
 					? untargetableBorders
 					: targetingBorders
 

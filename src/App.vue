@@ -101,15 +101,16 @@ export default {
 			this.Game.drawViewPort()
 			this.Game.drawMiniMap()
 			this.Game.refreshDisplay()
+
 			setInterval(() => {
 				Game.turn++
 				Game.updateDisplay()
 			}, 500)
 			setTimeout(() => {
-				this.loading = false
 				document.getElementById('game_container').appendChild(this.Game.display.getContainer())
 				document.getElementById('minimap_container').appendChild(this.Game.minimap.getContainer())
-			}, 1000)
+				this.loading = false
+			}, 500)
 		}
 	}
 }
@@ -158,7 +159,7 @@ export default {
         padding: 20px;
         /* min-width: 200px; */
         bottom: 50%;
-        left: 45%;
+        left: 25%;
     }
 
     .test {

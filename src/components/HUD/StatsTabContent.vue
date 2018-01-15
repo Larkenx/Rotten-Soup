@@ -24,7 +24,14 @@
         <v-flex class="stat-row">
             <v-layout  row align-center>
                 <v-flex md1 style="min-width: 70px;" col><b>Damage</b></v-flex>
-                <v-flex md3 col style="padding-left: 5px;">{{getDamageRange()}}</v-flex>
+                <v-flex md2 col style="padding-left: 5px;">{{getDamageRange()}}</v-flex>
+                <v-flex
+                    v-if="getCurrentWeapon() !== null && getCurrentWeaponEnchantments() !== null"
+                    md6
+                    col
+                >
+                    Weapon Enchantments: {{getCurrentWeaponEnchantments()}}
+                </v-flex>
             </v-layout>
         </v-flex>
         <!-- Strength -->
@@ -88,6 +95,22 @@ export default {
 			let costOfLevel = xp_levels[this.getLevel()] - xp_levels[this.getLevel() - 1]
 			let expTowards = Game.player.cb.xp - xp_levels[this.getLevel() - 1]
 			return expTowards / costOfLevel
+		},
+		getCurrentWeapon() {
+			return Game.player.cb.equipment.weapon
+		},
+		getCurrentWeaponEnchantments() {
+			if (this.getCurrentWeapon() !== null) {
+				let enchantments = this.getCurrentWeapon().cb.enchantments
+				if (enchantments.length === 0) return null
+				else if (enchantments.length === 1) return enchantments[0].name
+				else
+					return enchantments.reduce((str, enchantment) => {
+						return str + ', ' + enchantment.name
+					}, '')
+			} else {
+				return null
+			}
 		}
 	}
 }
