@@ -55,8 +55,7 @@ export let Game = {
 	enemyCycle: null,
 	enemyCycleIndex: 0,
 
-	init(dev = false) {
-		this.dev = dev
+	init(playerSpriteID) {
 		this.currentLevel = 'overworld'
 		this.levels['graveyard'] = new GameMap(graveyard)
 		this.levels['graveyard'].revealed = true
@@ -65,12 +64,11 @@ export let Game = {
 		this.levels['overworld'] = new GameMap(overworldMap)
 		this.levels['overworld'].revealed = true
 		this.levels['Orc Castle'] = new GameMap(orcCastle)
-
 		this.map = this.levels[this.currentLevel]
 		this.map.revealed = true
 		this.playerLocation = this.map.playerLocation
 		/* !Important! - PlayerID must be allocated before other maps are drawn... */
-		this.playerID = this.map.playerID
+		this.playerID = playerSpriteID
 		// Set up the ROT.JS game display
 		let tileSet = document.createElement('img')
 		tileSet.src = 'static/images/DawnLike/Compiled/compiled_tileset_32x32.png'
@@ -97,7 +95,7 @@ export let Game = {
 		}
 		this.displayOptions = {
 			width: 35,
-			height: 22,
+			height: 21,
 			forceSquareRatio: true,
 			layout: 'tile',
 			// bg: "transparent",

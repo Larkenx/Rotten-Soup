@@ -6,12 +6,17 @@
  ~ examples include a health potion that restores HP immediately vs a strength potion which might increase str for 5 turns
  */
 
-import {Game} from '#/Game.js'
+import { Game } from '#/Game.js'
 
 export class Effect {
 	constructor(options) {
 		Object.assign(this, options)
-		if (this.name === undefined || this.description === undefined || this.action === undefined || this.duration === undefined)
+		if (
+			this.name === undefined ||
+			this.description === undefined ||
+			this.action === undefined ||
+			this.duration === undefined
+		)
 			throw 'Effect missing critical fields'
 	}
 
@@ -28,15 +33,16 @@ export class BleedEffect extends Effect {
 	constructor() {
 		super({
 			name: 'Bleed',
-			action: (entity) => {
-				entity.damage(~~(entity.cb.maxhp * .10))
+			action: entity => {
+				let dmg = ~~(entity.cb.maxhp * 0.1)
+				if (dmg === 0) dmg = 1
+				entity.damage(dmg)
 			},
-			description: (entity) => {
-				let dmg = ~~(entity.cb.maxhp * .10)
-				if (entity === Game.player)
-					return `You bleed for ${dmg} damage.`
-				else
-					return `${entity.name.capitalize()} took ${dmg} bleed damage.`
+			description: entity => {
+				let dmg = ~~(entity.cb.maxhp * 0.1)
+				if (dmg === 0) dmg = 1
+				if (entity === Game.player) return `You bleed for ${dmg} damage.`
+				else return `${entity.name.capitalize()} took ${dmg} bleed damage.`
 			},
 			duration: 3
 		})
@@ -47,16 +53,14 @@ export class RegenerationEffect extends Effect {
 	constructor() {
 		super({
 			name: 'Regeneration',
-			action : (entity) => {
+			action: entity => {
 				entity.heal(10)
 			},
-			description : (entity) => {
-				if (entity === Game.player)
-					return 'You regenerate 10 health.'
-				else
-					return `${entity.name.capitalize()} regenerated 10 health.`
+			description: entity => {
+				if (entity === Game.player) return 'You regenerate 10 health.'
+				else return `${entity.name.capitalize()} regenerated 10 health.`
 			},
-			duration : 5
+			duration: 5
 		})
 	}
 }

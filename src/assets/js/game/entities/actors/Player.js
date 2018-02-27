@@ -76,8 +76,9 @@ export default class Player extends Actor {
 		// - a health potion
 		// - a random sword (equip the sword)
 		let sword = new Sword(this.x, this.y, 2, 2, 'Training Sword', 35)
+		sword.addNewEnchantment(new BleedEnchantment())
 		this.addToInventory(sword)
-		// this.equipWeapon(this.inventory[0].item);
+		super.equipWeapon(this.inventory[0].item)
 		this.addToInventory(createBow(this.x, this.y, 664))
 		this.addToInventory(new SteelArrow(this.x, this.y, 784, 5))
 		this.addToInventory(new HealthPotion(this.x, this.y, 488))
@@ -251,7 +252,9 @@ export default class Player extends Actor {
 					confirmCasting()
 				} else {
 					Game.log(
-						`You cannot cast ${this.cb.currentSpell.name} at this tile because it's blocked or too far away.`,
+						`You cannot cast ${
+							this.cb.currentSpell.name
+						} at this tile because it's blocked or too far away.`,
 						'alert'
 					)
 				}
@@ -374,7 +377,9 @@ export default class Player extends Actor {
 					}
 				} else {
 					Game.log(
-						`You cannot cast ${this.cb.currentSpell.name} at this tile because it's blocked or too far away.`,
+						`You cannot cast ${
+							this.cb.currentSpell.name
+						} at this tile because it's blocked or too far away.`,
 						'alert'
 					)
 				}
@@ -433,7 +438,7 @@ export default class Player extends Actor {
 					`Select a target with the movement keys and press [enter] to fire your ${weapon.type.toLowerCase()}.`,
 					'player_move'
 				)
-				this.validTarget = !this.mouseEnabled ? Game.redrawSelectedTile(false) : Game.selectNearestEnemyTile()
+				this.validTarget = this.mouseEnabled ? Game.redrawSelectedTile(false) : Game.selectNearestEnemyTile()
 				this.targeting = true
 				restartTurn()
 				return
@@ -470,7 +475,7 @@ export default class Player extends Actor {
 				Game.log('You begin casting a spell.', 'defend')
 				Game.log('Select a target with the movement keys and press [enter] to cast the spell.', 'player_move')
 
-				this.validTarget = !this.mouseEnabled ? Game.redrawSelectedTile(false) : Game.selectNearestEnemyTile()
+				this.validTarget = this.mouseEnabled ? Game.redrawSelectedTile(false) : Game.selectNearestEnemyTile()
 				this.casting = true
 				// our first selected tile can be the nearest enemy
 				restartTurn()
