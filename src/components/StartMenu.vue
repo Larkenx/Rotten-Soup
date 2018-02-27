@@ -27,7 +27,7 @@
                                     </div>
                                 </v-layout>
                                 <!--  Class abilities and stats-->
-                                <v-layout row>
+                                <!-- <v-layout row>
                                     <div>
                                         <p>
                                             Abilities
@@ -47,13 +47,13 @@
                                             </v-layout>
                                         </v-flex>
                                     </div>
-                                </v-layout>
+                                </v-layout> -->
                                 <!-- Possible sprites player can choose to play  -->
                                 <v-layout row>
-                                    Sprites
+                                    Characters
                                 </v-layout>
                                 <v-layout row >
-                                        <v-flex style="margin: 5px" col xs1 v-for="id in sprite.sprites" :key="id">
+                                        <v-flex style="margin-right: 5px" col xs1 v-for="id in sprite.sprites" :key="id">
                                             <v-layout row align-center>
                                                 <v-flex>
                                                     <img
