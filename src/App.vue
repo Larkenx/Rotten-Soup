@@ -90,26 +90,17 @@ export default {
 			return this.playerSelected
 		},
 		loadGame(id) {
-			console.log(id)
 			this.playerSelected = true
 			this.selectedSprite = id
-			this.Game.init(this.selectedSprite)
+			this.Game.init(this.selectedSprite, this.$refs)
 			this.player = this.Game.player
 
 			this.Game.log('Welcome to Rotten Soup!', 'information')
 			this.Game.log('Press ? to view the controls.', 'player_move')
-			this.Game.drawViewPort()
-			this.Game.drawMiniMap()
-			this.Game.refreshDisplay()
-
-			setInterval(() => {
-				Game.turn++
-				Game.updateDisplay()
-			}, 500)
 			setTimeout(() => {
-				document.getElementById('game_container').appendChild(this.Game.display.getContainer())
-				document.getElementById('minimap_container').appendChild(this.Game.minimap.getContainer())
+        document.getElementById('minimap_container').appendChild(Game.minimap.getContainer())
 				this.loading = false
+
 			}, 500)
 		}
 	}

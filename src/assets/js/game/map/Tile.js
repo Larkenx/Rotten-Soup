@@ -1,8 +1,8 @@
 /**
  * Created by Larken on 6/28/2017.
  */
-
-import {tileset, Game} from '#/Game.js'
+import * as PIXI from 'pixi.js'
+import { tileset, Game } from '#/Game.js'
 import Player from '#/entities/actors/Player.js'
 export function getTileInfo(id) {
 	/*
@@ -25,11 +25,80 @@ export default class Tile {
 		this.y = y
 		this.actors = []
 		this.obstacles = []
+		this.sprite = new PIXI.Sprite()
+		this.textures = {}
+	}
+
+	createTexturesFromObstacles() {
+		let animateAndFOV = new PIXI.Container()
+		let animate = new PIXI.Container()
+		let fov = new PIXI.Container()
+		let none = new PIXI.Container()
+
+		const getTexture = id => {
+			return Game.display.tilesetMapping[id]
+		}
+
+		for (let obstacle of this.obstacles) {
+			let { id, FOV, animated, FOV_id, animated_fov_id, animated_id } = obstacle
+			let isAnimated = animated !== undefined
+			let isFOV = FOV !== undefined
+			let noneSprite = new PIXI.Sprite(getTexture(id))
+			let animateAndFOVSprite = isAnimated && isFOV ? new PIXI.Sprite(getTexture(FOV_id)) : noneSprite
+			let animateSprite = isAnimated ? new PIXI.Sprite(getTexture(animated_id)) : noneSprite
+			let fovSprite = isFOV ? new PIXI.Sprite(getTexture(FOV_id)) : noneSprite
+
+			noneSprite.position.set(0, 0)
+			animateAndFOVSprite.position.set(0, 0)
+			animateSprite.position.set(0, 0)
+			fovSprite.position.set(0, 0)
+			none.addChild(noneSprite)
+			animateAndFOV.addChild(animateAndFOVSprite)
+			animate.addChild(animateSprite)
+			fov.addChild(fovSprite)
+		}
+
+		let { renderer } = Game.display.app
+		let rt = PIXI.RenderTexture.create(32, 32)
+		renderer.render(animateAndFOV, rt)
+		this.textures.animateAndFOV = new PIXI.Texture(rt)
+		renderer.render(animate, rt)
+		this.textures.animate = new PIXI.Texture(rt)
+		renderer.render(fov, rt)
+		this.textures.fov = new PIXI.Texture(rt)
+		renderer.render(none, rt)
+		this.textures.none = new PIXI.Texture(rt)
+	}
+
+	setTexture(animate, fov) {
+		if (animate && fov) {
+			// console.log('Texture is set to ', this.textures.animateAndFOV)
+			this.sprite.texture = this.textures.animateAndFOV
+			return
+		}
+
+		if (fov) {
+			// console.log('Texture is set to ', this.textures.fov)
+
+			this.sprite.texture = this.textures.fov
+			return
+		}
+
+		if (animate) {
+			// console.log('Texture is set to ', this.textures.animate)
+
+			this.sprite.texture = this.textures.animate
+			return
+		}
+		// console.log('Texture is set to ', this.textures.none)
+
+		this.sprite.texture = this.textures.none
 	}
 
 	updateTileInfo(id) {
 		let obst = {}
-		if (id in tileset.tileproperties) { // just means there are no tile properties for this guy
+		if (id in tileset.tileproperties) {
+			// just means there are no tile properties for this guy
 			obst = getTileInfo(id)
 		}
 		obst.id = id
@@ -39,7 +108,6 @@ export default class Tile {
 	/* Indicates whether or not a tile is blocked; however, this excludes the player
      * for AI purposes. */
 	blocked() {
-
 		// TODO: fix it so that this actually fires off properly without blocking enemies from moving
 		/*
         for (let actor of this.actors) {
@@ -48,31 +116,35 @@ export default class Tile {
         }
         */
 
-		if (this.obstacles.length > 0)
-			return this.obstacles[this.obstacles.length - 1].blocked
+		if (this.obstacles.length > 0) return this.obstacles[this.obstacles.length - 1].blocked
 
 		return false
 	}
 
 	visible() {
-		return !(this.obstacles.some((el) => {
-			return el.blocks_vision
-		}) || this.actors.some((el) => {
+		return !(
+			this.obstacles.some(el => {
+				return el.blocks_vision
+			}) ||
+			this.actors.some(el => {
 				return !el.visible
-			}))
+			})
+		)
 	}
 
 	removeActor(a) {
-		let idx = this.actors.findIndex((actor) => {
+		let idx = this.actors.findIndex(actor => {
 			return Object.is(a, actor)
 		})
 		this.actors.splice(idx, 1)
 	}
 
 	bg() {
-		if (!this.obstacles.some((e) => {
-			return 'bg' in e
-		})) {
+		if (
+			!this.obstacles.some(e => {
+				return 'bg' in e
+			})
+		) {
 			return 'black'
 		} else {
 			for (let i = this.obstacles.length - 1; i >= 0; i--) {
@@ -88,18 +160,19 @@ export default class Tile {
 		for (let obs of this.obstacles) {
 			// If there's a dark variant of this texture
 			if (fov && obs.FOV) {
-				if (obs.FOV_id === undefined)
-					throw `Error - invalid FOV tile specified for tileset ID : ${obs.id} `
+				if (obs.FOV_id === undefined) throw `Error - invalid FOV tile specified for tileset ID : ${obs.id} `
 				//  If there happens to be a dark, animated variant...
 				if (animate && obs.animated) {
-					if (obs.animated_fov_id === undefined) throw `Error - invalid animated tile specified for tileset ID : ${obs.id} `
+					if (obs.animated_fov_id === undefined)
+						throw `Error - invalid animated tile specified for tileset ID : ${obs.id} `
 					symbols.push(obs.animated_fov_id)
 				} else {
 					symbols.push(obs.FOV_id)
 				}
 			} else {
 				if (animate && obs.animated) {
-					if (obs.animated_id === undefined) throw `Error - invalid animated and darkened tile specified for tileset ID : ${obs.id} `
+					if (obs.animated_id === undefined)
+						throw `Error - invalid animated and darkened tile specified for tileset ID : ${obs.id} `
 					symbols.push(obs.animated_id)
 				} else {
 					symbols.push(obs.id)
@@ -111,13 +184,15 @@ export default class Tile {
 			let obs = getTileInfo(actor.id)
 			if (obs !== undefined && animate && obs.animated) {
 				if (obs.animated_id === null)
-					throw `Error - invalid animate tile specified for tileset ID : ${obs.id} with animated tile id ${obs.animated_id} `
+					throw `Error - invalid animate tile specified for tileset ID : ${obs.id} with animated tile id ${
+						obs.animated_id
+					} `
 				symbols.push(obs.animated_id)
 			} else {
 				symbols.push(actor.id)
 			}
 		}
-		return symbols.map((e) => {
+		return symbols.map(e => {
 			return e.toString()
 		})
 	}

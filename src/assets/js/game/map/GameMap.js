@@ -121,22 +121,11 @@ const entityShop = {
 	}
 }
 
-export function getTilesetCoords(id) {
-	let tileWidth = tileset.tilewidth
-	let tileHeight = tileset.tileheight
-	let cols = tileset.columns
-	let rowNumber = Math.floor(id / cols) * tileHeight
-	let colNumber = (id % cols) * tileHeight
-	return [colNumber, rowNumber]
-}
-
 export function createEntity(x, y, entity_id, frame_id) {
 	if (entity_id in entityShop) {
 		return entityShop[entity_id](x, y, frame_id)
 	} else {
-		throw `No entity assigned to ID ${entity_id} for frame ${
-			frame_id
-		} at ${x + ',' + y}`
+		throw `No entity assigned to ID ${entity_id} for frame ${frame_id} at ${x + ',' + y}`
 	}
 }
 
@@ -170,11 +159,9 @@ export class GameMap {
 		let portalLayers = []
 		for (let layer of json.layers) {
 			// Obstacle Layer
-			if (layer.properties.obstacles === true)
-				this.processObstacleLayer(layer)
+			if (layer.properties.obstacles === true) this.processObstacleLayer(layer)
 			else if (layer.properties.items === true) itemLayers.push(layer)
-			else if (layer.properties.actors === true)
-				this.processActorLayer(layer)
+			else if (layer.properties.actors === true) this.processActorLayer(layer)
 			else if (layer.properties.portal === true) portalLayers.push(layer)
 			else throw 'A layer has been added to the map and is invalid'
 		}
@@ -211,18 +198,12 @@ export class GameMap {
 					// id of zero indicates no actor in this spot
 					if (!this.loadedIDS.includes(id)) Game.loadedIDS.push(id)
 					let properties = getTileInfo(id)
-					if (properties.entity !== true)
-						throw 'Bad entity creation for tile ' + id
+					if (properties.entity !== true) throw 'Bad entity creation for tile ' + id
 					if (properties.entity_id === 0) {
 						this.playerLocation = [j, i]
 						this.playerID = id
 					} else {
-						let newActor = createEntity(
-							j,
-							i,
-							properties.entity_id,
-							id
-						)
+						let newActor = createEntity(j, i, properties.entity_id, id)
 						this.actors.push(newActor) // add to the list of all actors
 						this.data[i][j].actors.push(newActor) // also push to the tiles' actors
 					}
@@ -239,8 +220,7 @@ export class GameMap {
 					// id of zero indicates no actor in this spot
 					if (!this.loadedIDS.includes(id)) Game.loadedIDS.push(id)
 					let properties = getTileInfo(id)
-					if (properties.entity !== true)
-						throw 'Bad entity creation for tile ' + id
+					if (properties.entity !== true) throw 'Bad entity creation for tile ' + id
 					let newActor = createEntity(j, i, properties.entity_id, id)
 					this.actors.push(newActor) // add to the list of all actors
 					this.findActor(j, i).addToInventory(newActor)
@@ -260,9 +240,7 @@ export class GameMap {
 					// now we've got a portal cell that tells us where a ladder should lead
 					// find the ladder at this location
 					let ladders = this.data[i][j].actors.filter(a => {
-						return (
-							a instanceof Ladder || a instanceof LevelTransition
-						) // throwing in condition that it can also be level transition
+						return a instanceof Ladder || a instanceof LevelTransition // throwing in condition that it can also be level transition
 					})
 					if (ladders.length === 0) {
 						throw 'tried to create a portal link for a ladder or level transition but neither was found'
@@ -300,10 +278,7 @@ export class GameMap {
 		// if there are no chests, then that means we need to find an actor who should have all of the items added to
 		if (chests.length === 0) {
 			let possibleActors = this.data[y][x].actors
-			if (possibleActors.length === 0)
-				throw `There's no actor in which an item can be placed at (${
-					x
-				},${y})`
+			if (possibleActors.length === 0) throw `There's no actor in which an item can be placed at (${x},${y})`
 			return possibleActors[0]
 		} else {
 			return chests[0]
@@ -316,8 +291,7 @@ export class GameMap {
 		for (let dist of ROT.DIRS[8]) {
 			let nx = tile.x + dist[0]
 			let ny = tile.y + dist[1]
-			if (!(nx < 0 || nx === this.width || ny < 0 || ny === this.height))
-				adjacentTiles.push(this.data[ny][nx])
+			if (!(nx < 0 || nx === this.width || ny < 0 || ny === this.height)) adjacentTiles.push(this.data[ny][nx])
 		}
 		return adjacentTiles
 	}
