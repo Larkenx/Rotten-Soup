@@ -95,6 +95,16 @@ export default class Tile {
 		this.sprite.texture = this.textures.none
 	}
 
+	getTexture(animate, fov) {
+		if (animate && fov) return this.textures.animateAndFOV
+
+		if (fov) return this.textures.fov
+
+		if (animate) return this.textures.animate
+
+		return this.textures.none
+	}
+
 	updateTileInfo(id) {
 		let obst = {}
 		if (id in tileset.tileproperties) {

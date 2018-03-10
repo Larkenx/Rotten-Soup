@@ -1,3 +1,5 @@
+import ROT from 'rot-js'
+
 import { Game, tileset } from '#/Game.js'
 import * as PIXI from 'pixi.js'
 
@@ -21,25 +23,71 @@ export default class GameDisplay {
 	renderMap(map) {
 		// first, we need to get every sprite for every tile,
 		// then add it to the stage at the right spot
-		for (let y = 0; y < map.height; y++) {
-			for (let x = 0; x < map.width; x++) {
-				let { sprite } = map.data[y][x]
+		this.spriteMap = []
+		for (let y = 0; y < Game.height; y++) {
+			this.spriteMap.push([])
+			for (let x = 0; x < Game.width; x++) {
+				let sprite = new PIXI.Sprite()
 				sprite.position.set(x * this.tileSize, y * this.tileSize)
-				map.data[y][x].setTexture(Game.turn % 2, !map.revealed && !(`${x},${y}` in map.visible_tiles))
+				this.spriteMap[y].push(sprite)
 				this.app.stage.addChild(sprite)
 			}
 		}
-		// this.app.renderer.render(this.app.stage)
 	}
 
 	updateMap(map, animate) {
-		for (let y = 0; y < map.height; y++) {
-			for (let x = 0; x < map.width; x++) {
-				map.data[y][x].setTexture(animate, map.revealed || `${x},${y}` in this.map.visible_tiles)
-			}
+		let camera = {
+			// camera x,y resides in the upper left corner
+			x: Game.player.x - ~~(Game.width / 2),
+			y: Game.player.y - ~~(Game.height / 2),
+			width: Math.ceil(Game.width),
+			height: Game.height
 		}
+		let startingPos = [camera.x, camera.y]
+		if (camera.x < 0) {
+			// far left
+			startingPos[0] = 0
+		}
+		if (camera.x + camera.width > Game.map.width) {
+			// far right
+			startingPos[0] = Game.map.width - camera.width
+		}
+		if (camera.y <= 0) {
+			// at the top of the map
+			startingPos[1] = 0
+		}
+		if (camera.y + camera.height > Game.map.height) {
+			// at the bottom of the map
+			startingPos[1] = Game.map.height - camera.height
+		}
+		Game.camera = {
+			x: startingPos[0],
+			y: startingPos[1]
+		}
+		let endingPos = [startingPos[0] + camera.width, startingPos[1] + camera.height]
+		let dx = 0
+		let dy = 0
+		// Clear the last visible tiles that were available to be seen
+		Object.assign(Game.map.seen_tiles, Game.map.visible_tiles)
+		Game.map.visible_tiles = {}
 
-		this.app.renderer.render(this.app.stage)
+		// FOV calculations
+		let fov = new ROT.FOV.PreciseShadowcasting(function(x, y) {
+			return Game.inbounds(x, y) && Game.map.data[y][x].visible()
+		})
+
+		fov.compute(Game.player.x, Game.player.y, Game.player.cb.range, function(x, y, r, visibility) {
+			Game.map.visible_tiles[x + ',' + y] = true
+		})
+		console.log(this.spriteMap)
+		for (let x = startingPos[0]; x < endingPos[0]; x++) {
+			for (let y = startingPos[1]; y < endingPos[1]; y++) {
+				let tile = Game.map.data[y][x]
+				this.spriteMap[dy++][dx].texture = tile.getTexture(false, false)
+			}
+			dx++
+			dy = 0
+		}
 	}
 
 	getContainer() {
@@ -75,6 +123,7 @@ export default class GameDisplay {
 				}
 				this.clear()
 				this.renderMap(Game.map)
+				this.updateMap(false, false)
 			})
 	}
 
@@ -119,7 +168,7 @@ export default class GameDisplay {
 
 	act() {
 		Game.engine.lock()
-		this.clear()
+		// this.clear()
 		// this.renderMap(Game.map)
 		this.updateMap(Game.map, Game.turn % 2)
 		Game.engine.unlock()
