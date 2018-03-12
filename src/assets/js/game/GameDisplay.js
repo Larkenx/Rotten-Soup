@@ -15,6 +15,8 @@ export function getTilesetCoords(id) {
 export default class GameDisplay {
 	constructor() {
 		this.app = new PIXI.Application({ forceCanvas: true, width: 1024, height: 640 })
+		this.animatedContainer = new PIXI.Container()
+		this.animatedContainer.position.set(0, 0)
 		this.tileSize = 32
 		this.tilesetMapping = {}
 		// this.loadAssets()
@@ -33,6 +35,7 @@ export default class GameDisplay {
 				this.app.stage.addChild(sprite)
 			}
 		}
+		this.app.stage.addChild(this.animatedContainer)
 	}
 
 	updateMap() {
@@ -79,12 +82,19 @@ export default class GameDisplay {
 		fov.compute(Game.player.x, Game.player.y, Game.player.cb.range, function(x, y, r, visibility) {
 			Game.map.visible_tiles[x + ',' + y] = true
 		})
+		while (this.animatedContainer.children.length > 0)
+			this.animatedContainer.removeChild(this.animatedContainer.children[0])
 
-		// console.log(this.spriteMap)
 		for (let x = startingPos[0]; x < endingPos[0]; x++) {
 			for (let y = startingPos[1]; y < endingPos[1]; y++) {
 				let tile = Game.map.data[y][x]
-				this.spriteMap[dy++][dx].texture = tile.getTexture(Game.turn % 2, !Game.map.revealed)
+				let { texture, animatedSprites } = tile
+				this.spriteMap[dy++][dx].texture = texture
+				for (let s of animatedSprites) {
+					s.position.set(dx * this.tileSize, dy * this.tileSize)
+					this.animatedContainer.addChild(s)
+					s.play()
+				}
 			}
 			dx++
 			dy = 0
@@ -124,12 +134,7 @@ export default class GameDisplay {
 				}
 				this.clear()
 				this.renderMap(Game.map)
-				setInterval(() => {
-					// console.log(Game.turn % 2 === 0)
-					this.updateMap()
-					Game.turn += 1
-					// console.log(Game.turn)
-				}, 500)
+				this.updateMap()
 			})
 	}
 
@@ -176,7 +181,8 @@ export default class GameDisplay {
 		Game.engine.lock()
 		// this.clear()
 		// this.renderMap(Game.map)
-		// this.updateMap(Game.map, Game.turn % 2)
+		this.updateMap()
+		Game.drawMiniMap()
 		Game.engine.unlock()
 	}
 }

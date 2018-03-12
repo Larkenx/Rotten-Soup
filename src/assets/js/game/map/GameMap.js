@@ -182,7 +182,7 @@ export class GameMap {
 				// Grabs the ID from the layer
 				let id = layer.data[i * this.width + j] - 1
 				if (id > 1) {
-					if (!this.loadedIDS.includes(id)) Game.loadedIDS.push(id)
+					Game.loadedIDS.push(id)
 					this.data[i][j].updateTileInfo(id)
 				}
 			}
@@ -196,7 +196,7 @@ export class GameMap {
 				let id = layer.data[i * this.width + j] - 1 // grab the id in the json data
 				if (id > 1) {
 					// id of zero indicates no actor in this spot
-					if (!this.loadedIDS.includes(id)) Game.loadedIDS.push(id)
+					Game.loadedIDS.push(id)
 					let properties = getTileInfo(id)
 					if (properties.entity !== true) throw 'Bad entity creation for tile ' + id
 					if (properties.entity_id === 0) {
@@ -218,7 +218,7 @@ export class GameMap {
 				let id = layer.data[i * this.width + j] - 1 // grab the id in the json data
 				if (id > 1) {
 					// id of zero indicates no actor in this spot
-					if (!this.loadedIDS.includes(id)) Game.loadedIDS.push(id)
+					Game.loadedIDS.push(id)
 					let properties = getTileInfo(id)
 					if (properties.entity !== true) throw 'Bad entity creation for tile ' + id
 					let newActor = createEntity(j, i, properties.entity_id, id)
@@ -235,7 +235,7 @@ export class GameMap {
 				let id = layer.data[i * this.width + j] - 1 // grab the id in the json data
 				if (id > 1) {
 					// id of zero indicates no actor in this spot
-					if (!this.loadedIDS.includes(id)) Game.loadedIDS.push(id)
+					Game.loadedIDS.push(id)
 					let properties = getTileInfo(id)
 					// now we've got a portal cell that tells us where a ladder should lead
 					// find the ladder at this location
