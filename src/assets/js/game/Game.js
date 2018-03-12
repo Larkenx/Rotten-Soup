@@ -46,6 +46,7 @@ export let Game = {
 	scheduler: null,
 	turn: 0,
 	engine: null,
+	loading: true,
 	levels: {},
 	currentLevel: 'overworld',
 	map: null,
@@ -57,7 +58,7 @@ export let Game = {
 	enemyCycle: null,
 	enemyCycleIndex: 0,
 
-	init(playerSpriteID, refs) {
+	init(playerSpriteID) {
 		this.currentLevel = 'overworld'
 		// this.levels['graveyard'] = new GameMap(graveyard)
 		// this.levels['graveyard'].revealed = true

@@ -77,9 +77,11 @@
 </template>
 
 <script>
+// import { Game } from '@/assets/js/game/Game.js'
+
 export default {
 	name: 'start-menu',
-	props: ['Game'],
+	// props: ['Game'],
 	data() {
 		return {
 			selectedSprite: null,

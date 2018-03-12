@@ -35,7 +35,7 @@ export default class GameDisplay {
 		}
 	}
 
-	updateMap(map, animate) {
+	updateMap() {
 		let camera = {
 			// camera x,y resides in the upper left corner
 			x: Game.player.x - ~~(Game.width / 2),
@@ -79,11 +79,12 @@ export default class GameDisplay {
 		fov.compute(Game.player.x, Game.player.y, Game.player.cb.range, function(x, y, r, visibility) {
 			Game.map.visible_tiles[x + ',' + y] = true
 		})
-		console.log(this.spriteMap)
+
+		// console.log(this.spriteMap)
 		for (let x = startingPos[0]; x < endingPos[0]; x++) {
 			for (let y = startingPos[1]; y < endingPos[1]; y++) {
 				let tile = Game.map.data[y][x]
-				this.spriteMap[dy++][dx].texture = tile.getTexture(false, false)
+				this.spriteMap[dy++][dx].texture = tile.getTexture(Game.turn % 2, !Game.map.revealed)
 			}
 			dx++
 			dy = 0
@@ -100,20 +101,20 @@ export default class GameDisplay {
 		// append the canvas to the game container
 		// prepare paths for the dungeon walls, floors, and shadows
 		const spritesheet = { url: 'static/images/DawnLike/Compiled/compiled_tileset_32x32.png', name: 'spritesheet' }
+		// gameContainer.appendChild(this.getContainer())
 
 		PIXI.loader
 			.add(spritesheet)
 			.on('progress', (l, r) => this.handleAssetLoad(l, r))
 			.load(() => {
-				document.getElementById('game_container').appendChild(this.getContainer())
 				let ids = new Set(Game.loadedIDS.concat(Object.keys(tileset.tileproperties)))
-				console.log(ids)
 				for (let id of ids) {
 					let coords = getTilesetCoords(id)
 					let frame = new PIXI.Rectangle(coords[0], coords[1], this.tileSize, this.tileSize)
 					let texture = new PIXI.Texture(PIXI.loader.resources['spritesheet'].texture, frame)
 					this.tilesetMapping[id] = texture
 				}
+
 				let { map } = Game
 				for (let y = 0; y < map.height; y++) {
 					for (let x = 0; x < map.width; x++) {
@@ -123,7 +124,12 @@ export default class GameDisplay {
 				}
 				this.clear()
 				this.renderMap(Game.map)
-				this.updateMap(false, false)
+				setInterval(() => {
+					// console.log(Game.turn % 2 === 0)
+					this.updateMap()
+					Game.turn += 1
+					// console.log(Game.turn)
+				}, 500)
 			})
 	}
 
@@ -170,7 +176,7 @@ export default class GameDisplay {
 		Game.engine.lock()
 		// this.clear()
 		// this.renderMap(Game.map)
-		this.updateMap(Game.map, Game.turn % 2)
+		// this.updateMap(Game.map, Game.turn % 2)
 		Game.engine.unlock()
 	}
 }

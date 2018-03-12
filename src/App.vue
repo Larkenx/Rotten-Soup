@@ -3,7 +3,14 @@
         <v-container fluid id="main_container">
             <!-- Game Display and HUD-->
             <v-layout row>
-                <game-display></game-display>
+                <v-flex column style="max-width: 1120px;">
+                    <v-layout row style="padding: 0px;">
+                        <!--<item-transfer-modal></item-transfer-modal>-->
+                        <div style="margin:0; padding:0;" id="game_container">
+                        </div>
+                    </v-layout>
+                    <message-log></message-log>
+                </v-flex>
                 <hud></hud>
             </v-layout>
             <!-- Inventory / Shop Modal -->
@@ -45,7 +52,7 @@
 
         </v-container>
     </v-app>
-    <start-menu v-else v-on:spriteSelected="loadGame" v-bind="{Game}"></start-menu>
+    <start-menu v-else v-on:spriteSelected="loadGame"></start-menu>
 </template>
 
 <script>
@@ -57,13 +64,14 @@ import itemTransferModal from './components/ItemTransferModal.vue'
 import hud from './components/HUD.vue'
 import deathModal from './components/DeathModal.vue'
 import helpDialog from './components/HelpDialog.vue'
-Window.Game = Game
+import messageLog from './components/MessageLog.vue'
+window.Game = Game
 
 export default {
 	name: 'app',
 	data() {
 		return {
-			Game,
+			// Game,
 			mouseControls: false,
 			loading: true,
 			playerSelected: false,
@@ -77,11 +85,12 @@ export default {
 		hud: hud,
 		'item-transfer-modal': itemTransferModal,
 		'death-modal': deathModal,
-		'help-dialog': helpDialog
+		'help-dialog': helpDialog,
+    'message-log': messageLog
+
 	},
 	created() {
-		// Game.init()
-		// this.player = Game.player
+		// this.loadGame(4693)
 	},
 	mounted() {},
 	methods: {
@@ -92,16 +101,18 @@ export default {
 		loadGame(id) {
 			this.playerSelected = true
 			this.selectedSprite = id
-			this.Game.init(this.selectedSprite, this.$refs)
-			this.player = this.Game.player
-
-			this.Game.log('Welcome to Rotten Soup!', 'information')
-			this.Game.log('Press ? to view the controls.', 'player_move')
+      // console.log(document.getElementById('game_container'))
+			Game.init(this.selectedSprite)
+			this.player = Game.player
+			Game.log('Welcome to Rotten Soup!', 'information')
+			Game.log('Press ? to view the controls.', 'player_move')
 			setTimeout(() => {
         document.getElementById('minimap_container').appendChild(Game.minimap.getContainer())
-				this.loading = false
-
-			}, 500)
+        document.getElementById('game_container').appendChild(Game.display.getContainer())
+			}, 200)
+      setTimeout(() => {
+        this.loading = false
+      }, 500)
 		}
 	}
 }

@@ -25,33 +25,39 @@ export default class Tile {
 		this.y = y
 		this.actors = []
 		this.obstacles = []
-		this.sprite = new PIXI.Sprite()
+		// this.sprite = new PIXI.Sprite()
 		this.textures = {}
 	}
 
 	createTexturesFromObstacles() {
+		let none = new PIXI.Container()
 		let animateAndFOV = new PIXI.Container()
 		let animate = new PIXI.Container()
 		let fov = new PIXI.Container()
-		let none = new PIXI.Container()
 
 		const getTexture = id => {
+			// if (Game.display.tilesetMapping[id] === undefined) console.log(Game.display.tilesetMapping[id], id)
 			return Game.display.tilesetMapping[id]
 		}
-
 		for (let obstacle of this.obstacles) {
+			// if (obstacle.id === undefined) console.log(obstacle)
 			let { id, FOV, animated, FOV_id, animated_fov_id, animated_id } = obstacle
-			let isAnimated = animated !== undefined
-			let isFOV = FOV !== undefined
-			let noneSprite = new PIXI.Sprite(getTexture(id))
-			let animateAndFOVSprite = isAnimated && isFOV ? new PIXI.Sprite(getTexture(FOV_id)) : noneSprite
-			let animateSprite = isAnimated ? new PIXI.Sprite(getTexture(animated_id)) : noneSprite
-			let fovSprite = isFOV ? new PIXI.Sprite(getTexture(FOV_id)) : noneSprite
+			let isAnimated = animated === true
+			let isFOV = FOV === true
+			let isAnimatedAndFov = isFOV && isAnimated && animated_fov_id !== undefined
 
-			noneSprite.position.set(0, 0)
-			animateAndFOVSprite.position.set(0, 0)
-			animateSprite.position.set(0, 0)
-			fovSprite.position.set(0, 0)
+			let noneSprite = new PIXI.Sprite(getTexture(id))
+			let animateAndFOVSprite = isAnimatedAndFov
+				? new PIXI.Sprite(getTexture(animated_fov_id))
+				: new PIXI.Sprite(getTexture(id))
+			let animateSprite = isAnimated ? new PIXI.Sprite(getTexture(animated_id)) : new PIXI.Sprite(getTexture(id))
+			let fovSprite = isFOV ? new PIXI.Sprite(getTexture(FOV_id)) : new PIXI.Sprite(getTexture(id))
+
+			// noneSprite.position.set(0, 0)
+			// animateAndFOVSprite.position.set(0, 0)
+			// animateSprite.position.set(0, 0)
+			// fovSprite.position.set(0, 0)
+			//
 			none.addChild(noneSprite)
 			animateAndFOV.addChild(animateAndFOVSprite)
 			animate.addChild(animateSprite)
@@ -59,40 +65,10 @@ export default class Tile {
 		}
 
 		let { renderer } = Game.display.app
-		let rt = PIXI.RenderTexture.create(32, 32)
-		renderer.render(animateAndFOV, rt)
-		this.textures.animateAndFOV = new PIXI.Texture(rt)
-		renderer.render(animate, rt)
-		this.textures.animate = new PIXI.Texture(rt)
-		renderer.render(fov, rt)
-		this.textures.fov = new PIXI.Texture(rt)
-		renderer.render(none, rt)
-		this.textures.none = new PIXI.Texture(rt)
-	}
-
-	setTexture(animate, fov) {
-		if (animate && fov) {
-			// console.log('Texture is set to ', this.textures.animateAndFOV)
-			this.sprite.texture = this.textures.animateAndFOV
-			return
-		}
-
-		if (fov) {
-			// console.log('Texture is set to ', this.textures.fov)
-
-			this.sprite.texture = this.textures.fov
-			return
-		}
-
-		if (animate) {
-			// console.log('Texture is set to ', this.textures.animate)
-
-			this.sprite.texture = this.textures.animate
-			return
-		}
-		// console.log('Texture is set to ', this.textures.none)
-
-		this.sprite.texture = this.textures.none
+		this.textures.none = renderer.generateTexture(none)
+		this.textures.animateAndFOV = renderer.generateTexture(animateAndFOV)
+		this.textures.animate = renderer.generateTexture(animate)
+		this.textures.fov = renderer.generateTexture(fov)
 	}
 
 	getTexture(animate, fov) {
