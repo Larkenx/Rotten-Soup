@@ -45,15 +45,20 @@ export default class Tile {
 		this.texture = renderer.generateTexture(texture)
 		this.animatedSprites = this.animatedObstacles.map(o => {
 			let { id, animated_id } = o
-			let sprite = new PIXI.extras.AnimatedSprite([getTexture(id), getTexture(animated_id)])
-			sprite.animationSpeed = 0.01
+			let frames = [getTexture(o.id)]
+			if (animated_id !== undefined && getTexture(animated_id) !== undefined) frames.push(getTexture(animated_id))
+			let sprite = new PIXI.extras.AnimatedSprite(frames)
+			sprite.animationSpeed = 0.025
 			return sprite
 		})
 
 		for (let a of this.actors) {
 			let { animated_id } = getTileInfo(a.id)
-			let sprite = new PIXI.extras.AnimatedSprite([getTexture(a.id), getTexture(animated_id)])
-			sprite.animationSpeed = 0.01
+			let frames = [getTexture(a.id)]
+			if (animated_id !== undefined && getTexture(animated_id) !== undefined) frames.push(getTexture(animated_id))
+			let sprite = new PIXI.extras.AnimatedSprite(frames)
+			a.setSprite(sprite)
+			sprite.animationSpeed = 0.05
 			this.animatedSprites.push(sprite)
 		}
 	}

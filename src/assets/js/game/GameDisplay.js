@@ -3,7 +3,7 @@ import ROT from 'rot-js'
 import { Game, tileset } from '#/Game.js'
 import * as PIXI from 'pixi.js'
 
-export function getTilesetCoords(id) {
+export let getTilesetCoords = id => {
 	let tileWidth = tileset.tilewidth
 	let tileHeight = tileset.tileheight
 	let cols = tileset.columns
@@ -16,7 +16,6 @@ export default class GameDisplay {
 	constructor() {
 		this.app = new PIXI.Application({ forceCanvas: true, width: 1024, height: 640 })
 		this.animatedContainer = new PIXI.Container()
-		this.animatedContainer.position.set(0, 0)
 		this.tileSize = 32
 		this.tilesetMapping = {}
 		// this.loadAssets()
@@ -36,6 +35,7 @@ export default class GameDisplay {
 			}
 		}
 		this.app.stage.addChild(this.animatedContainer)
+		this.animatedContainer.position.set(0, -32)
 	}
 
 	updateMap() {
@@ -82,9 +82,8 @@ export default class GameDisplay {
 		fov.compute(Game.player.x, Game.player.y, Game.player.cb.range, function(x, y, r, visibility) {
 			Game.map.visible_tiles[x + ',' + y] = true
 		})
-		while (this.animatedContainer.children.length > 0)
-			this.animatedContainer.removeChild(this.animatedContainer.children[0])
-
+		this.animatedContainer.removeChildren()
+		this.app.stage.removeChild(this.animatedContainer)
 		for (let x = startingPos[0]; x < endingPos[0]; x++) {
 			for (let y = startingPos[1]; y < endingPos[1]; y++) {
 				let tile = Game.map.data[y][x]
@@ -93,12 +92,14 @@ export default class GameDisplay {
 				for (let s of animatedSprites) {
 					s.position.set(dx * this.tileSize, dy * this.tileSize)
 					this.animatedContainer.addChild(s)
-					s.play()
+					if (s._textures !== undefined) s.play()
 				}
 			}
 			dx++
 			dy = 0
 		}
+		this.app.stage.addChild(this.animatedContainer)
+		this.app.renderer.render(this.app.stage)
 	}
 
 	getContainer() {

@@ -6,6 +6,7 @@
 	"private": true,
 	"scripts": {
 		"dev": "webpack-dev-server --inline --progress --config build/webpack.dev.conf.js",
+		"devRefresh": "REFRESH_BROWSER=true webpack-dev-server --inline --progress --config build/webpack.dev.conf.js",
 		"start": "npm run dev",
 		"unit": "jest --config test/unit/jest.conf.js --coverage",
 		"test": "npm run unit",

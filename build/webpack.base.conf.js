@@ -8,10 +8,12 @@ function resolve(dir) {
 	return path.join(__dirname, '..', dir)
 }
 
+let app = process.env.REFRESH_BROWSER ? ['refresh-browser-webpack-plugin/client', './src/main.js'] : './src/main.js'
+
 module.exports = {
 	context: path.resolve(__dirname, '../'),
 	entry: {
-		app: ['refresh-browser-webpack-plugin/client', './src/main.js']
+		app
 	},
 	output: {
 		path: config.build.assetsRoot,

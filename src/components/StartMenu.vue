@@ -1,79 +1,93 @@
-<template>
-    <v-app dark>
-        <v-container grid-list-xl>
-            <v-layout row>
-                <v-flex xs12>
-                    <h2>Welcome to Rotten Soup</h2>
-                </v-flex>
-            </v-layout>
-            <v-layout row>
-                <v-flex >
-                    <h5>Select your hero by clicking on the character you want to play</h5>
-                    <v-container fluid>
-                        <v-layout row>
-                            <v-flex
-                                style="padding: 10px"
-                                xs4
-                                v-for="(sprite, index) in playerSprites"
-                                :key="index"
-                            >
-                            <!-- Card representing player class -->
-                            <v-card style="padding: 25px">
-                                <!-- Class name and short description  -->
-                                <v-layout row>
-                                    <div>
-                                        <h5>{{sprite.name}}</h5>
-                                        <p>{{sprite.description}}</p>
-                                    </div>
-                                </v-layout>
-                                <!--  Class abilities and stats-->
-                                <!-- <v-layout row>
-                                    <div>
-                                        <p>
-                                            Abilities
-                                        </p>
-                                        <v-flex xs4 v-for="(ability, index) in sprite.abilities" key="index">
-                                            <v-layout row>
-                                                <v-tooltip bottom align-center>
-                                                    <p class="text-xs-center ma-0" style="max-width: 200px">
-                                                        {{ability.description}}
-                                                    </p>
-                                                    <img
-                                                        class="ability"
-                                                        v-bind:src="getSpellSplashArt(ability.school.toLowerCase(), ability.art)"
-                                                        slot="activator"
-                                                    />
-                                                </v-tooltip>
-                                            </v-layout>
-                                        </v-flex>
-                                    </div>
-                                </v-layout> -->
-                                <!-- Possible sprites player can choose to play  -->
-                                <v-layout row>
-                                    Characters
-                                </v-layout>
-                                <v-layout row >
-                                        <v-flex style="margin-right: 5px" col xs1 v-for="id in sprite.sprites" :key="id">
-                                            <v-layout row align-center>
-                                                <v-flex>
-                                                    <img
-                                                    v-on:click="selectSprite(id)"
-                                                    v-bind:class="{spriteIsSelected : (selectedSprite === id), sprite : (selectedSprite !== id)}"
-                                                    :src="getPlayerSpriteImage(id)"
-                                                    />
-                                                </v-flex>
-                                            </v-layout>
-                                        </v-flex>
-                                </v-layout>
+<style>
+.ability {
+	cursor: pointer;
+	border: 2px solid #4f4f4f;
+	border-radius: 4px;
+}
 
-                            </v-card>
+.sprite {
+	cursor: pointer;
+}
+
+.sprite:hover {
+	cursor: pointer;
+	background-color: #565656;
+	border-radius: 2px;
+}
+
+.spriteIsSelected {
+	cursor: pointer;
+	background-color: rgb(103, 141, 255);
+	border-radius: 2px;
+}
+</style>
+
+<template>
+
+<v-app dark>
+    <v-container grid-list-xl>
+        <v-layout row>
+            <v-flex xs12>
+                <h2>Welcome to Rotten Soup</h2>
+            </v-flex>
+        </v-layout>
+        <v-layout row>
+            <v-flex>
+                <h3>Select your hero by clicking on the character you want to play</h3>
+            </v-flex>
+        </v-layout>
+        <v-layout row wrap>
+            <v-flex style="padding: 10px" xs4 v-for="(sprite, index) in playerSprites" :key="index">
+                <!-- Card representing player class -->
+                <v-card style="padding: 25px">
+                    <!-- Class name and short description  -->
+                    <v-layout row>
+                        <div>
+                            <h5>{{sprite.name}}</h5>
+                            <p>{{sprite.description}}</p>
+                        </div>
+                    </v-layout>
+                    <!--  Class abilities and stats-->
+                    <!-- <v-layout row>
+                        <div>
+                            <p>
+                                Abilities
+                            </p>
+                            <v-flex xs4 v-for="(ability, index) in sprite.abilities" key="index">
+                                <v-layout row>
+                                    <v-tooltip bottom align-center>
+                                        <p class="text-xs-center ma-0" style="max-width: 200px">
+                                            {{ability.description}}
+                                        </p>
+                                        <img
+                                            class="ability"
+                                            v-bind:src="getSpellSplashArt(ability.school.toLowerCase(), ability.art)"
+                                            slot="activator"
+                                        />
+                                    </v-tooltip>
+                                </v-layout>
                             </v-flex>
-                        </v-layout>
-                    </v-container>
-                </v-flex >
-            </v-layout>
-        </v-container>
-    </v-app>
+                        </div>
+                    </v-layout> -->
+                    <!-- Possible sprites player can choose to play  -->
+                    <v-layout row>
+                        Characters
+                    </v-layout>
+                    <v-layout row>
+                        <v-flex style="margin-right: 5px" col xs1 v-for="id in sprite.sprites" :key="id">
+                            <v-layout row align-center>
+                                <v-flex>
+                                    <img v-on:click="selectSprite(id)" v-bind:class="{spriteIsSelected : (selectedSprite === id), sprite : (selectedSprite !== id)}" :src="getPlayerSpriteImage(id)" />
+                                </v-flex>
+                            </v-layout>
+                        </v-flex>
+                    </v-layout>
+                </v-card>
+            </v-flex>
+        </v-layout>
+    </v-container>
+</v-app>
+
 </template>
 
 <script>
@@ -200,26 +214,3 @@ export default {
 	}
 }
 </script>
-<style>
-    .ability {
-        cursor: pointer;
-        border: 2px solid #4f4f4f;
-        border-radius: 4px;
-    }
-
-    .sprite {
-        cursor: pointer
-    }
-
-    .sprite:hover {
-        cursor: pointer;
-        background-color: #565656;
-        border-radius: 2px;
-    }
-
-    .spriteIsSelected {
-        cursor: pointer;
-        background-color: rgb(103, 141, 255);
-        border-radius: 2px;
-    }
-</style>
