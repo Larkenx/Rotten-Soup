@@ -1,0 +1,55 @@
+html, body {
+    height: 100%;
+    margin: 0 -5%;
+}
+
+footer {
+    height: 5%;
+}
+
+@font-face {
+    font-family: Metrickal;
+    src: url(../fonts/Metrickal.otf);
+}
+@font-face {
+    font-family: VT323;
+    src: url(../fonts/VT323.ttf);
+}
+
+.w3-deathfont {
+    font-family: 'Creepster';
+}
+
+.w3-indieflower {
+    font-family: 'Indie Flower', cursive;
+}
+
+.w3-fredoka {
+    font-family: 'Fredoka One', cursive;
+}
+
+.w3-gamefont {
+    font-family: 'Press Start 2P';
+}
+
+.w3-menlo {
+    font-family: 'menlo', monospace;
+}
+
+html {
+    background-color : #494949;
+}
+
+#gameOverview {
+    padding-left: 5%;
+    padding-top: 1%;
+}
+
+#hud {
+    color: white;
+    width: 800px;
+}
+
+.w3-50 {
+    width: 200px;
+}

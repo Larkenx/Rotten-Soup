@@ -6,7 +6,7 @@
 	"private": true,
 	"scripts": {
 		"dev": "webpack-dev-server --inline --progress --config build/webpack.dev.conf.js",
-		"devRefresh": "REFRESH_BROWSER=true webpack-dev-server --inline --progress --config build/webpack.dev.conf.js",
+		"devRefresh": "cross-env REFRESH_BROWSER=true webpack-dev-server --inline --progress --config build/webpack.dev.conf.js",
 		"start": "npm run dev",
 		"unit": "jest --config test/unit/jest.conf.js --coverage",
 		"test": "npm run unit",
@@ -14,7 +14,10 @@
 		"deploy": "git push heroku master"
 	},
 	"dependencies": {
+		"cross-env": "^5.1.4",
+		"material-design-icons": "^3.0.1",
 		"pixi.js": "^4.7.0",
+		"roboto-fontface": "^0.9.0",
 		"rot-js": "^0.6.5",
 		"vue": "^2.5.2",
 		"vuedraggable": "^2.16.0",
@@ -68,5 +71,9 @@
 		"node": ">= 6.0.0",
 		"npm": ">= 3.0.0"
 	},
-	"browserslist": ["> 1%", "last 2 versions", "not ie <= 8"]
+	"browserslist": [
+		"> 1%",
+		"last 2 versions",
+		"not ie <= 8"
+	]
 }

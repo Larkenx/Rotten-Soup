@@ -122,16 +122,8 @@ export let Game = {
 		this.engine.start() // Start the engine
 	},
 
-	refreshDisplay() {
-		Game.display.setOptions(this.displayOptions)
-	},
-
 	renderMap() {
 		this.display.renderMap(this.map)
-	},
-
-	updateMap() {
-		this.display.updateMap(this.turn % 2)
 	},
 
 	scheduleAllActors() {
@@ -211,13 +203,12 @@ export let Game = {
 		this.currentLevel = newLevel
 		this.playerLocation = this.map.playerLocation
 		this.player.placeAt(this.playerLocation[0], this.playerLocation[1])
+		this.map.actors.push(this.player)
 		// before drawing the viewport, we need to clear the screen of whatever was here last
 		this.display.clear()
-
 		this.width = this.map.width < this.displayOptions.width ? this.map.width : this.displayOptions.width
 		this.height = this.map.height < this.displayOptions.height ? this.map.height : this.displayOptions.height
 		this.scheduleAllActors()
-		this.drawViewPort()
 		this.minimap.setOptions({
 			width: this.map.width,
 			height: this.map.height,
@@ -227,72 +218,7 @@ export let Game = {
 		})
 		this.minimap.clear()
 		this.drawMiniMap()
-	},
-
-	drawViewPort() {
-		// Camera positions
-		let camera = {
-			// camera x,y resides in the upper left corner
-			x: this.player.x - ~~(Game.width / 2),
-			y: this.player.y - ~~(Game.height / 2),
-			width: Math.ceil(Game.width),
-			height: Game.height
-		}
-		let startingPos = [camera.x, camera.y]
-		if (camera.x < 0) {
-			// far left
-			startingPos[0] = 0
-		}
-		if (camera.x + camera.width > Game.map.width) {
-			// far right
-			startingPos[0] = Game.map.width - camera.width
-		}
-		if (camera.y <= 0) {
-			// at the top of the map
-			startingPos[1] = 0
-		}
-		if (camera.y + camera.height > Game.map.height) {
-			// at the bottom of the map
-			startingPos[1] = Game.map.height - camera.height
-		}
-		this.camera = {
-			x: startingPos[0],
-			y: startingPos[1]
-		}
-		let endingPos = [startingPos[0] + camera.width, startingPos[1] + camera.height]
-		let dx = 0
-		let dy = 0
-		// Clear the last visible tiles that were available to be seen
-		Object.assign(this.map.seen_tiles, this.map.visible_tiles)
-		this.map.visible_tiles = {}
-
-		// FOV calculations
-		let fov = new ROT.FOV.PreciseShadowcasting(function(x, y) {
-			return Game.inbounds(x, y) && Game.map.data[y][x].visible()
-		})
-
-		fov.compute(this.player.x, this.player.y, this.player.cb.range, function(x, y, r, visibility) {
-			Game.map.visible_tiles[x + ',' + y] = true
-		})
-
-		for (let x = startingPos[0]; x < endingPos[0]; x++) {
-			for (let y = startingPos[1]; y < endingPos[1]; y++) {
-				let tile = this.map.data[y][x]
-				if (this.map.revealed) {
-					this.drawTile(dx, dy++, tile, false)
-				} else {
-					if (tile.x + ',' + tile.y in this.map.visible_tiles) {
-						this.drawTile(dx, dy++, tile, false)
-					} else if (tile.x + ',' + tile.y in this.map.seen_tiles) {
-						this.drawTile(dx, dy++, tile, true)
-					} else {
-						Game.display.draw(dx, dy++, '', 'black', 'black')
-					}
-				}
-			}
-			dx++
-			dy = 0
-		}
+		this.renderMap()
 	},
 
 	drawMiniMap() {
@@ -340,11 +266,6 @@ export let Game = {
 		let hsl_color = ROT.Color.rgb2hsl(ROT.Color.fromString(color))
 		hsl_color[2] *= 1.25
 		return ROT.Color.toRGB(ROT.Color.hsl2rgb(hsl_color))
-	},
-
-	updateDisplay() {
-		this.drawViewPort()
-		this.drawMiniMap()
 	},
 
 	getNearbyEnemies() {

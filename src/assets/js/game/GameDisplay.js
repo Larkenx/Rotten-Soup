@@ -29,6 +29,8 @@ export default class GameDisplay {
 	}
 
 	renderMap(map) {
+		let { renderer, stage } = this.app
+		stage.removeChildren()
 		/*
 	 	I want to iterate through every tile in the map that is an obstacle (animated or not).
 		For each obstacle:
@@ -63,7 +65,6 @@ export default class GameDisplay {
 			}
 		}
 
-		let { renderer, stage } = this.app
 		this.staticBackground = new PIXI.Sprite(renderer.generateTexture(staticBackground))
 		this.staticBackground.position.set(0, 0)
 		this.animatedBackground.position.set(0, 0)
@@ -77,6 +78,7 @@ export default class GameDisplay {
 		// draw the actors last because they should be on the top-most layer
 		for (let a of map.actors) {
 			let props = tileset.tileproperties[a.id + '']
+			// if (a.sprite === null || a.sprite === undefined) {
 			if (props.animated === true && props.animated_id !== undefined && getTexture(props.animated_id) !== undefined) {
 				let frames = [getTexture(a.id), getTexture(props.animated_id)]
 				let sprite = new PIXI.extras.AnimatedSprite(frames)
@@ -91,6 +93,10 @@ export default class GameDisplay {
 				this.background.addChild(sprite)
 				sprite.position.set(a.x * this.tileSize, a.y * this.tileSize)
 			}
+			// } else {
+			// 	this.background.addChild(a.sprite)
+			// 	a.sprite.position.set(a.x * this.tileSize, a.y * this.tileSize)
+			// }
 		}
 	}
 
@@ -231,14 +237,6 @@ export default class GameDisplay {
 		graphics.drawRoundedRect(cx - maxInteriorBarLength / 2, cy, currentBarLength, 4)
 		stage.addChild(graphics)
 		stage.addChild(text)
-	}
-
-	draw(x, y, sprites, fg, bg) {
-		// given an array of sprites to render
-		const renderSprite = sprite => {
-			sprite.position.set(x * this.tileSize, y * this.tileSize)
-		}
-		for (let s of sprites) renderSprite(s)
 	}
 
 	clear() {
