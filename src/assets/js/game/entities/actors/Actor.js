@@ -336,6 +336,8 @@ export class Actor extends Entity {
 			}
 		}
 
+		Game.display.background.removeChild(this.sprite)
+
 		if (this === Game.player) {
 			Game.log('You died!', 'death')
 		} else {

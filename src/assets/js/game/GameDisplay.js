@@ -71,6 +71,27 @@ export default class GameDisplay {
 		this.background.addChild(this.staticBackground)
 		this.background.addChild(this.animatedBackground)
 		stage.addChild(this.background)
+		let x = Game.player.x - ~~(Game.width / 2)
+		let y = Game.player.y - ~~(Game.height / 2)
+		this.background.position.set(-x * this.tileSize, -y * this.tileSize)
+		// draw the actors last because they should be on the top-most layer
+		for (let a of map.actors) {
+			let props = tileset.tileproperties[a.id + '']
+			if (props.animated === true && props.animated_id !== undefined && getTexture(props.animated_id) !== undefined) {
+				let frames = [getTexture(a.id), getTexture(props.animated_id)]
+				let sprite = new PIXI.extras.AnimatedSprite(frames)
+				a.setSprite(sprite)
+				sprite.animationSpeed = 0.05
+				sprite.play()
+				this.background.addChild(sprite)
+				sprite.position.set(a.x * this.tileSize, a.y * this.tileSize)
+			} else {
+				let sprite = new PIXI.Sprite(getTexture(a.id))
+				a.setSprite(sprite)
+				this.background.addChild(sprite)
+				sprite.position.set(a.x * this.tileSize, a.y * this.tileSize)
+			}
+		}
 	}
 
 	moveSprite(sprite, x, y) {
@@ -113,39 +134,8 @@ export default class GameDisplay {
 			x: startingPos[0],
 			y: startingPos[1]
 		}
-		let endingPos = [startingPos[0] + camera.width, startingPos[1] + camera.height]
-		let dx = 0
-		let dy = 0
-		// Clear the last visible tiles that were available to be seen
-		Object.assign(Game.map.seen_tiles, Game.map.visible_tiles)
-		Game.map.visible_tiles = {}
-
-		// FOV calculations
-		let fov = new ROT.FOV.PreciseShadowcasting(function(x, y) {
-			return Game.inbounds(x, y) && Game.map.data[y][x].visible()
-		})
-
-		fov.compute(Game.player.x, Game.player.y, Game.player.cb.range, function(x, y, r, visibility) {
-			Game.map.visible_tiles[x + ',' + y] = true
-		})
-		this.animatedContainer.removeChildren()
-		this.app.stage.removeChild(this.animatedContainer)
-		for (let x = startingPos[0]; x < endingPos[0]; x++) {
-			for (let y = startingPos[1]; y < endingPos[1]; y++) {
-				let tile = Game.map.data[y][x]
-				let { texture, animatedSprites } = tile
-				this.spriteMap[dy++][dx].texture = texture
-				for (let s of animatedSprites) {
-					s.position.set(dx * this.tileSize, dy * this.tileSize)
-					this.animatedContainer.addChild(s)
-					if (s._textures !== undefined) s.play()
-				}
-			}
-			dx++
-			dy = 0
-		}
-		this.app.stage.addChild(this.animatedContainer)
-		this.app.renderer.render(this.app.stage)
+		let { x, y } = Game.camera
+		this.moveSprite(this.background, -x, -y)
 	}
 
 	getContainer() {
@@ -164,7 +154,13 @@ export default class GameDisplay {
 			.add(spritesheet)
 			.on('progress', (l, r) => this.handleAssetLoad(l, r))
 			.load(() => {
-				let ids = new Set(Game.loadedIDS.concat(Object.keys(tileset.tileproperties)))
+				let ids = new Set(Game.loadedIDS)
+				for (let id of Object.keys(tileset.tileproperties)) {
+					ids.add(id)
+					let props = tileset.tileproperties[id]
+					if (props.animated_id !== undefined) ids.add(props.animated_id)
+					if (props.activated_id !== undefined) ids.add(props.activated_id)
+				}
 				for (let id of ids) {
 					let coords = getTilesetCoords(id)
 					let frame = new PIXI.Rectangle(coords[0], coords[1], this.tileSize, this.tileSize)
@@ -188,7 +184,7 @@ export default class GameDisplay {
 						let y = 0
 						let distX = Math.abs(sprite.x - target.x)
 						let distY = Math.abs(sprite.y - target.y)
-						let shouldSlowDown = (distX <= 50 && distX !== 0) || (distY <= 50 && distY !== 0)
+						let shouldSlowDown = (distX <= 12 && distX !== 0) || (distY <= 12 && distY !== 0)
 						let movementSpeed = shouldSlowDown ? 2.0 : 4.0
 						if (target.x > sprite.x) x = movementSpeed
 						if (target.x < sprite.x) x = -movementSpeed
@@ -198,15 +194,15 @@ export default class GameDisplay {
 					}
 				}
 				this.app.ticker.add(delta => renderLoop(delta))
-				let camera = {
-					// camera x,y resides in the upper left corner
-					x: Game.player.x - ~~(Game.width / 2),
-					y: Game.player.y - ~~(Game.height / 2),
-					width: Math.ceil(Game.width),
-					height: Game.height
-				}
-				let startingPos = [camera.x, camera.y]
-				this.moveSprite(this.background, ...startingPos.map(c => -c))
+				// let camera = {
+				// 	// camera x,y resides in the upper left corner
+				// 	x: Game.player.x - ~~(Game.width / 2),
+				// 	y: Game.player.y - ~~(Game.height / 2),
+				// 	width: Math.ceil(Game.width),
+				// 	height: Game.height
+				// }
+				// let startingPos = [camera.x, camera.y]
+				// this.moveSprite(this.background, ...startingPos.map(c => -c))
 			})
 	}
 
@@ -251,9 +247,7 @@ export default class GameDisplay {
 
 	act() {
 		Game.engine.lock()
-		// this.clear()
-		// this.renderMap(Game.map)
-		// this.updateMap()
+		this.updateMap()
 		Game.drawMiniMap()
 		Game.engine.unlock()
 	}
