@@ -60,14 +60,14 @@ export let Game = {
 
 	init(playerSpriteID) {
 		this.currentLevel = 'overworld'
-		// this.levels['graveyard'] = new GameMap(graveyard)
-		// this.levels['graveyard'].revealed = true
-		// this.levels['Lich Lair'] = new GameMap(lichLair)
-		// this.levels['Lich Lair'].revealed = true
+		this.levels['graveyard'] = new GameMap(graveyard)
+		this.levels['graveyard'].revealed = true
+		this.levels['Lich Lair'] = new GameMap(lichLair)
+		this.levels['Lich Lair'].revealed = true
 		this.levels['overworld'] = new GameMap(overworldMap)
 		this.levels['overworld'].revealed = true
-		// this.levels['Orc Castle'] = new GameMap(orcCastle)
-		// this.levels['Orc Castle'].revealed = true
+		this.levels['Orc Castle'] = new GameMap(orcCastle)
+		this.levels['Orc Castle'].revealed = true
 		this.map = this.levels[this.currentLevel]
 		this.map.revealed = true
 		this.playerLocation = this.map.playerLocation
@@ -199,6 +199,8 @@ export let Game = {
 		// Unshift player from ladder position (so that when resurfacing, no player is present)
 		this.map.data[this.player.y][this.player.x].removeActor(this.player)
 		// Add the new GameMap to the game
+		// TODO: remove the actor from the map
+		this.map.actors = this.map.actors.filter(a => a !== this.player)
 		this.map = this.levels[newLevel]
 		this.currentLevel = newLevel
 		this.playerLocation = this.map.playerLocation
