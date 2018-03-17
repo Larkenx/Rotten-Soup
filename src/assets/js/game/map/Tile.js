@@ -25,42 +25,7 @@ export default class Tile {
 		this.y = y
 		this.actors = []
 		this.obstacles = []
-		this.animatedObstacles = []
-		this.animatedSprites = []
 		this.textures = {}
-	}
-
-	createTexturesFromObstacles() {
-		let texture = new PIXI.Container()
-		const getTexture = id => {
-			return Game.display.tilesetMapping[id]
-		}
-
-		for (let obstacle of this.obstacles) {
-			let sprite = new PIXI.Sprite(getTexture(obstacle.id))
-			texture.addChild(sprite)
-		}
-
-		let { renderer } = Game.display.app
-		this.texture = renderer.generateTexture(texture)
-		this.animatedSprites = this.animatedObstacles.map(o => {
-			let { id, animated_id } = o
-			let frames = [getTexture(o.id)]
-			if (animated_id !== undefined && getTexture(animated_id) !== undefined) frames.push(getTexture(animated_id))
-			let sprite = new PIXI.extras.AnimatedSprite(frames)
-			sprite.animationSpeed = 0.025
-			return sprite
-		})
-
-		for (let a of this.actors) {
-			let { animated_id } = getTileInfo(a.id)
-			let frames = [getTexture(a.id)]
-			if (animated_id !== undefined && getTexture(animated_id) !== undefined) frames.push(getTexture(animated_id))
-			let sprite = new PIXI.extras.AnimatedSprite(frames)
-			a.setSprite(sprite)
-			sprite.animationSpeed = 0.05
-			this.animatedSprites.push(sprite)
-		}
 	}
 
 	updateTileInfo(id) {
@@ -70,8 +35,7 @@ export default class Tile {
 			obstacle = getTileInfo(id)
 		}
 		obstacle.id = id
-		if (obstacle.animated === true) this.animatedObstacles.push(obstacle)
-		else this.obstacles.push(obstacle) // add to the end of the obstacles to be drawn on top
+		this.obstacles.push(obstacle) // add to the end of the obstacles to be drawn on top
 	}
 
 	/* Indicates whether or not a tile is blocked; however, this excludes the player for AI purposes. */
@@ -83,14 +47,14 @@ export default class Tile {
                 return true;
         }
         */
-		let obstacles = [...this.obstacles, ...this.animatedObstacles]
-		if (obstacles.length > 0) return obstacles[obstacles.length - 1].blocked
+
+		if (this.obstacles.length > 0) return this.obstacles[this.obstacles.length - 1].blocked
 		return false
 	}
 
 	visible() {
 		return !(
-			[...this.obstacles, this.animatedObstacles].some(el => {
+			this.obstacles.some(el => {
 				return el.blocks_vision
 			}) ||
 			this.actors.some(el => {
@@ -107,7 +71,7 @@ export default class Tile {
 	}
 
 	bg() {
-		let obstacles = [...this.obstacles, this.animatedObstacles]
+		let obstacles = this.obstacles
 		if (
 			!obstacles.some(e => {
 				return 'bg' in e

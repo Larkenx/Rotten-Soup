@@ -25,8 +25,6 @@ export class Entity {
 		this.x = nx // update x,y coords to new coords
 		this.y = ny
 		// this.sprite.position.set(this.x * 32, this.y * 32)
-		ctile.createTexturesFromObstacles()
-		ntile.createTexturesFromObstacles()
 		// Game.drawActor(this); // draw the actor at the new spot
 		// Game.drawViewPort();
 		// Game.drawMiniMap();

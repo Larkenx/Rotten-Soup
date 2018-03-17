@@ -15,27 +15,73 @@ export let getTilesetCoords = id => {
 export default class GameDisplay {
 	constructor() {
 		this.app = new PIXI.Application({ forceCanvas: true, width: 1024, height: 640 })
-		this.animatedContainer = new PIXI.Container()
+		// this will be the texture we generate by creating a container, rendering it and generating it from
+		// the renderer
+		/*
+			this.staticBackground = renderer.generateTexture(theContainer)
+		*/
+		this.staticBackground = null
+		this.animatedBackground = null
+		this.movingSprites = []
+		this.viewPort = null
 		this.tileSize = 32
 		this.tilesetMapping = {}
-		// this.loadAssets()
 	}
 
 	renderMap(map) {
-		// first, we need to get every sprite for every tile,
-		// then add it to the stage at the right spot
-		this.spriteMap = []
-		for (let y = 0; y < Game.height; y++) {
-			this.spriteMap.push([])
-			for (let x = 0; x < Game.width; x++) {
-				let sprite = new PIXI.Sprite()
-				sprite.position.set(x * this.tileSize, y * this.tileSize)
-				this.spriteMap[y].push(sprite)
-				this.app.stage.addChild(sprite)
+		/*
+	 	I want to iterate through every tile in the map that is an obstacle (animated or not).
+		For each obstacle:
+			if it is animated, create a new PIXI.extras.AnimatedSprite for it with the proper frames and animation speed
+			if it is not animated, create a normal PIXI.Sprite
+			Once the obstacle sprite is created, add it to a container
+	 */
+		const getTexture = id => {
+			// if (!(id in this.tilesetMapping)) throw `Error - cannot get texture for texture with ID:${id}`
+			return this.tilesetMapping[id]
+		}
+
+		let staticBackground = new PIXI.Container()
+		this.animatedBackground = new PIXI.Container()
+		for (let y = 0; y < map.height; y++) {
+			for (let x = 0; x < map.width; x++) {
+				let tile = map.data[y][x]
+				for (let o of tile.obstacles) {
+					if (o.animated === true && o.animated_id !== undefined && getTexture(o.animated_id) !== undefined) {
+						let frames = [getTexture(o.id), getTexture(o.animated_id)]
+						let sprite = new PIXI.extras.AnimatedSprite(frames)
+						sprite.position.set(x * this.tileSize, y * this.tileSize)
+						sprite.animationSpeed = 0.025
+						sprite.play()
+						this.animatedBackground.addChild(sprite)
+					} else {
+						let sprite = new PIXI.Sprite(getTexture(o.id))
+						sprite.position.set(x * this.tileSize, y * this.tileSize)
+						staticBackground.addChild(sprite)
+					}
+				}
 			}
 		}
-		this.app.stage.addChild(this.animatedContainer)
-		this.animatedContainer.position.set(0, -32)
+
+		let { renderer, stage } = this.app
+		this.staticBackground = new PIXI.Sprite(renderer.generateTexture(staticBackground))
+		this.staticBackground.position.set(0, 0)
+		this.animatedBackground.position.set(0, 0)
+		this.background = new PIXI.Container()
+		this.background.addChild(this.staticBackground)
+		this.background.addChild(this.animatedBackground)
+		stage.addChild(this.background)
+	}
+
+	moveSprite(sprite, x, y) {
+		// used to smoothly pan the map from its curent location to a new one
+		// by adding it to the list of sprites who should smoothly progress towards some location
+		let nx = x * this.tileSize
+		let ny = y * this.tileSize
+		this.movingSprites = this.movingSprites.filter(o => {
+			return o.sprite !== sprite
+		})
+		this.movingSprites.push({ sprite, target: { x: nx, y: ny } })
 	}
 
 	updateMap() {
@@ -126,16 +172,41 @@ export default class GameDisplay {
 					this.tilesetMapping[id] = texture
 				}
 
-				let { map } = Game
-				for (let y = 0; y < map.height; y++) {
-					for (let x = 0; x < map.width; x++) {
-						this.handleAssetLoad({ progress: x * y / (map.height * map.width) * 100 }, { name: `${x},${y}` })
-						map.data[y][x].createTexturesFromObstacles()
-					}
-				}
 				this.clear()
 				this.renderMap(Game.map)
-				this.updateMap()
+				let renderLoop = delta => {
+					// maintain a track of all the sprites that should have updated movement on this tick
+					// if they are at their location, filter them from the record
+					for (let obj of this.movingSprites)
+						if (obj.sprite.x === obj.target.x && obj.sprite.y === obj.target.y)
+							this.movingSprites = this.movingSprites.filter(o => o.sprite !== obj.sprite)
+
+					// update the location of every sprite
+					for (let obj of this.movingSprites) {
+						let { sprite, target } = obj
+						let x = 0
+						let y = 0
+						let distX = Math.abs(sprite.x - target.x)
+						let distY = Math.abs(sprite.y - target.y)
+						let shouldSlowDown = (distX <= 50 && distX !== 0) || (distY <= 50 && distY !== 0)
+						let movementSpeed = shouldSlowDown ? 2.0 : 4.0
+						if (target.x > sprite.x) x = movementSpeed
+						if (target.x < sprite.x) x = -movementSpeed
+						if (target.y > sprite.y) y = movementSpeed
+						if (target.y < sprite.y) y = -movementSpeed
+						sprite.position.set(sprite.x + x, sprite.y + y)
+					}
+				}
+				this.app.ticker.add(delta => renderLoop(delta))
+				let camera = {
+					// camera x,y resides in the upper left corner
+					x: Game.player.x - ~~(Game.width / 2),
+					y: Game.player.y - ~~(Game.height / 2),
+					width: Math.ceil(Game.width),
+					height: Game.height
+				}
+				let startingPos = [camera.x, camera.y]
+				this.moveSprite(this.background, ...startingPos.map(c => -c))
 			})
 	}
 
@@ -182,7 +253,7 @@ export default class GameDisplay {
 		Game.engine.lock()
 		// this.clear()
 		// this.renderMap(Game.map)
-		this.updateMap()
+		// this.updateMap()
 		Game.drawMiniMap()
 		Game.engine.unlock()
 	}
