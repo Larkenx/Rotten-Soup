@@ -2,16 +2,16 @@
  * Created by Larken on 7/8/2017.
  */
 
-import {Game, tileset} from '#/Game.js'
-import {Entity} from '#/entities/Entity.js'
+import { Game, tileset } from '#/Game.js'
+import { Entity } from '#/entities/Entity.js'
 
 export default class Chest extends Entity {
 	constructor(x, y, id) {
 		super(x, y, {
-			name : 'chest',
+			name: 'chest',
 			id: id,
 			visible: true,
-			blocked: true,
+			blocked: true
 		})
 		this.closed = true
 		this.items = []
@@ -23,15 +23,13 @@ export default class Chest extends Entity {
 		} else {
 			// open up an inventory screen of items in the chest?
 			if (this.items.length === 0) {
-				Game.log('There\'s nothing left in this chest!', 'information')
+				Game.log("There's nothing left in this chest!", 'information')
 			} else {
 				Game.log('You collect everything from the chest.', 'information')
-				for (let item of this.items)
-					actor.addToInventory(item)
+				for (let item of this.items) actor.addToInventory(item)
 
 				this.items = []
 			}
-
 		}
 	}
 
@@ -42,7 +40,6 @@ export default class Chest extends Entity {
 	open() {
 		this.closed = false
 		this.id = tileset.tileproperties[this.id].activated_id
+		this.sprite.texture = Game.display.tilesetMapping[this.id]
 	}
-
-
 }

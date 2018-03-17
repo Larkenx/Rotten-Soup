@@ -1,4 +1,4 @@
-import { Game } from '#/Game.js'
+import { Game, tileset } from '#/Game.js'
 
 export let xp_levels = [50]
 for (let i = 1; i < 100; i++) xp_levels.push(1.5 * xp_levels[i - 1])
@@ -13,13 +13,19 @@ export class Entity {
 		if (options.id === undefined) throw 'Error - entity created without valid id'
 	}
 
+	setSprite(sprite) {
+		this.sprite = sprite
+	}
+
 	move(nx, ny) {
 		let ntile = Game.map.data[ny][nx] // new tile to move to
 		let ctile = Game.map.data[this.y][this.x] // current tile
 		ctile.removeActor(this) // remove this actor from this tile
 		ntile.actors.push(this) // add this actor to the new tile
+		Game.display.moveSprite(this.sprite, nx, ny)
 		this.x = nx // update x,y coords to new coords
 		this.y = ny
+		// this.sprite.position.set(this.x * 32, this.y * 32)
 		// Game.drawActor(this); // draw the actor at the new spot
 		// Game.drawViewPort();
 		// Game.drawMiniMap();

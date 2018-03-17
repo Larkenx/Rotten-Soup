@@ -1,0 +1,20 @@
+{
+  "name": "Text-Game",
+  "version": "1.0.0",
+  "description": "A text game ",
+  "main": "game.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "",
+  },
+  "keywords": [
+    "game",
+    "roguelike",
+    "rotjs"
+  ],
+  "author": "Steven Myers",
+  "license": "ISC"
+}

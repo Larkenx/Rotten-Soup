@@ -1,4 +1,5 @@
 import ROT from 'rot-js'
+
 import { GameMap, getTilesetCoords } from '#/map/GameMap.js'
 import GameDisplay from '#/GameDisplay.js'
 import { Actor } from '#/entities/actors/Actor.js'
@@ -32,6 +33,7 @@ const untargetableBorders = {
 }
 
 export let Game = {
+	app: null,
 	overview: null,
 	dev: false,
 	display: null,
@@ -44,6 +46,7 @@ export let Game = {
 	scheduler: null,
 	turn: 0,
 	engine: null,
+	loading: true,
 	levels: {},
 	currentLevel: 'overworld',
 	map: null,
@@ -64,73 +67,70 @@ export let Game = {
 		this.levels['overworld'] = new GameMap(overworldMap)
 		this.levels['overworld'].revealed = true
 		this.levels['Orc Castle'] = new GameMap(orcCastle)
+		this.levels['Orc Castle'].revealed = true
 		this.map = this.levels[this.currentLevel]
 		this.map.revealed = true
 		this.playerLocation = this.map.playerLocation
 		/* !Important! - PlayerID must be allocated before other maps are drawn... */
 		this.playerID = playerSpriteID
 		// Set up the ROT.JS game display
-		let tileSet = document.createElement('img')
-		tileSet.src = 'static/images/DawnLike/Compiled/compiled_tileset_32x32.png'
+		// let tileSet = document.createElement('img')
+		// tileSet.src = 'static/images/DawnLike/Compiled/compiled_tileset_32x32.png'
 		let tileSize = 32
-		let tileMap = {}
-		/* for (let id of this.loadedIDS) { */
-		for (let id in tileset.tileproperties + this.loadedIDS) {
-			tileMap[id.toString()] = getTilesetCoords(id)
-			if (id in tileset.tileproperties) {
-				let properties = tileset.tileproperties[id]
-				if (properties.FOV) {
-					tileMap[properties.FOV_id] = getTilesetCoords(properties.FOV_id)
-				}
-				if (properties.animated) {
-					tileMap[properties.animated_id] = getTilesetCoords(properties.animated_id)
-				}
-				if (properties.animated && properties.FOV) {
-					tileMap[properties.animated_fov_id] = getTilesetCoords(properties.animated_fov_id)
-				}
-				if (properties.activated_id) {
-					tileMap[properties.activated_id] = getTilesetCoords(properties.activated_id)
-				}
-			}
-		}
+		// let tileMap = {}
+		// /* for (let id of this.loadedIDS) { */
+		// for (let id in tileset.tileproperties + this.loadedIDS) {
+		// 	tileMap[id.toString()] = getTilesetCoords(id)
+		// 	if (id in tileset.tileproperties) {
+		// 		let properties = tileset.tileproperties[id]
+		// 		if (properties.FOV) {
+		// 			tileMap[properties.FOV_id] = getTilesetCoords(properties.FOV_id)
+		// 		}
+		// 		if (properties.animated) {
+		// 			tileMap[properties.animated_id] = getTilesetCoords(properties.animated_id)
+		// 		}
+		// 		if (properties.animated && properties.FOV) {
+		// 			tileMap[properties.animated_fov_id] = getTilesetCoords(properties.animated_fov_id)
+		// 		}
+		// 		if (properties.activated_id) {
+		// 			tileMap[properties.activated_id] = getTilesetCoords(properties.activated_id)
+		// 		}
+		// 	}
+		// }
+		//
 		this.displayOptions = {
-			width: 35,
-			height: 21,
+			width: 32,
+			height: 20,
 			forceSquareRatio: true,
 			layout: 'tile',
 			// bg: "transparent",
 			tileWidth: tileSize,
-			tileHeight: tileSize,
-			tileSet: tileSet,
-			tileMap: tileMap,
-			tileColorize: true
+			tileHeight: tileSize
 		}
 
 		this.width = this.map.width < this.displayOptions.width ? this.map.width : this.displayOptions.width
 		this.height = this.map.height < this.displayOptions.height ? this.map.height : this.displayOptions.height
-		this.display = new ROT.Display(this.displayOptions)
+		// this.display = new ROT.Display(this.displayOptions)
+		this.display = new GameDisplay()
+		this.display.loadAssets()
 		this.player = new Player(this.playerLocation[0], this.playerLocation[1], this.playerID)
 		this.map.actors.push(this.player) // add to the list of all actors
 		this.map.data[this.playerLocation[1]][this.playerLocation[0]].actors.push(this.player) // also push to the tiles' actors
 		this.scheduleAllActors()
-		this.drawViewPort()
 		this.initializeMinimap()
+		// this.drawViewPort()
 		this.engine.start() // Start the engine
-		tileSet.onload = () => {
-			Game.drawViewPort()
-			Game.drawMiniMap()
-		}
 	},
 
-	refreshDisplay() {
-		Game.display.setOptions(this.displayOptions)
+	renderMap() {
+		this.display.renderMap(this.map)
 	},
 
 	scheduleAllActors() {
 		// Set up the ROT engine and scheduler
 		this.scheduler = new ROT.Scheduler.Simple()
-		this.scheduler.add(new GameDisplay(), true)
 		this.scheduler.add(this.player, true) // Add the player to the scheduler
+		this.scheduler.add(this.display, true)
 		for (let i = 0; i < this.map.actors.length; i++) {
 			// Some 'actor' objects do not take turns, such as ladders / items
 			if (this.map.actors[i] !== this.player && this.map.actors[i] instanceof Actor) {
@@ -199,17 +199,18 @@ export let Game = {
 		// Unshift player from ladder position (so that when resurfacing, no player is present)
 		this.map.data[this.player.y][this.player.x].removeActor(this.player)
 		// Add the new GameMap to the game
+		// TODO: remove the actor from the map
+		this.map.actors = this.map.actors.filter(a => a !== this.player)
 		this.map = this.levels[newLevel]
 		this.currentLevel = newLevel
 		this.playerLocation = this.map.playerLocation
 		this.player.placeAt(this.playerLocation[0], this.playerLocation[1])
+		this.map.actors.push(this.player)
 		// before drawing the viewport, we need to clear the screen of whatever was here last
 		this.display.clear()
-
 		this.width = this.map.width < this.displayOptions.width ? this.map.width : this.displayOptions.width
 		this.height = this.map.height < this.displayOptions.height ? this.map.height : this.displayOptions.height
 		this.scheduleAllActors()
-		this.drawViewPort()
 		this.minimap.setOptions({
 			width: this.map.width,
 			height: this.map.height,
@@ -219,83 +220,7 @@ export let Game = {
 		})
 		this.minimap.clear()
 		this.drawMiniMap()
-	},
-
-	drawViewPort() {
-		// Camera positions
-		let camera = {
-			// camera x,y resides in the upper left corner
-			x: this.player.x - ~~(Game.width / 2),
-			y: this.player.y - ~~(Game.height / 2),
-			width: Math.ceil(Game.width),
-			height: Game.height
-		}
-		let startingPos = [camera.x, camera.y]
-		if (camera.x < 0) {
-			// far left
-			startingPos[0] = 0
-		}
-		if (camera.x + camera.width > Game.map.width) {
-			// far right
-			startingPos[0] = Game.map.width - camera.width
-		}
-		if (camera.y <= 0) {
-			// at the top of the map
-			startingPos[1] = 0
-		}
-		if (camera.y + camera.height > Game.map.height) {
-			// at the bottom of the map
-			startingPos[1] = Game.map.height - camera.height
-		}
-		this.camera = {
-			x: startingPos[0],
-			y: startingPos[1]
-		}
-		let endingPos = [startingPos[0] + camera.width, startingPos[1] + camera.height]
-		let dx = 0
-		let dy = 0
-		// Clear the last visible tiles that were available to be seen
-		Object.assign(this.map.seen_tiles, this.map.visible_tiles)
-		this.map.visible_tiles = {}
-
-		// FOV calculations
-		let fov = new ROT.FOV.PreciseShadowcasting(function(x, y) {
-			return Game.inbounds(x, y) && Game.map.data[y][x].visible()
-		})
-
-		fov.compute(this.player.x, this.player.y, this.player.cb.range, function(x, y, r, visibility) {
-			Game.map.visible_tiles[x + ',' + y] = true
-		})
-
-		for (let x = startingPos[0]; x < endingPos[0]; x++) {
-			for (let y = startingPos[1]; y < endingPos[1]; y++) {
-				let tile = this.map.data[y][x]
-				if (this.map.revealed) {
-					this.drawTile(dx, dy++, tile, false)
-				} else {
-					if (tile.x + ',' + tile.y in this.map.visible_tiles) {
-						this.drawTile(dx, dy++, tile, false)
-					} else if (tile.x + ',' + tile.y in this.map.seen_tiles) {
-						this.drawTile(dx, dy++, tile, true)
-					} else {
-						Game.display.draw(dx, dy++, '', 'black', 'black')
-					}
-				}
-			}
-			dx++
-			dy = 0
-		}
-	},
-
-	drawTile(x, y, tile, fov) {
-		let symbols = tile.getSpriteIDS(this.turn % 2 === 0, fov)
-		// if (symbols.some((e) => {return e === "0"})) throw "A tile is empty!"
-		// console.log(this.pathToTarget[x+','+y]);
-		if (this.pathToTarget[tile.x + ',' + tile.y]) {
-			Game.display.draw(x, y, symbols, 'rgba(250,250,0,0.2)', 'rgba(250,250,0,0.2)')
-		} else {
-			Game.display.draw(x, y, symbols, 'transparent', 'transparent')
-		}
+		this.renderMap()
 	},
 
 	drawMiniMap() {
@@ -343,11 +268,6 @@ export let Game = {
 		let hsl_color = ROT.Color.rgb2hsl(ROT.Color.fromString(color))
 		hsl_color[2] *= 1.25
 		return ROT.Color.toRGB(ROT.Color.hsl2rgb(hsl_color))
-	},
-
-	updateDisplay() {
-		this.drawViewPort()
-		this.drawMiniMap()
 	},
 
 	getNearbyEnemies() {
@@ -421,16 +341,16 @@ export let Game = {
 	},
 
 	clearSelectedTile() {
-		if (this.selectedTile !== null) {
-			let actors = Game.map.data[this.selectedTile.y][this.selectedTile.x].actors.filter(obs => {
-				return obs.id !== targetingBorders.id && obs.id !== untargetableBorders.id
-			})
-			Game.map.data[this.selectedTile.y][this.selectedTile.x].actors = actors
-			this.selectedTile = null
-			this.pathToTarget = {}
-		}
-		this.clearTempLog() // clear the temporary log which describes the tile we're on
-		this.updateDisplay()
+		// if (this.selectedTile !== null) {
+		// 	let actors = Game.map.data[this.selectedTile.y][this.selectedTile.x].actors.filter(obs => {
+		// 		return obs.id !== targetingBorders.id && obs.id !== untargetableBorders.id
+		// 	})
+		// 	Game.map.data[this.selectedTile.y][this.selectedTile.x].actors = actors
+		// 	this.selectedTile = null
+		// 	this.pathToTarget = {}
+		// }
+		// this.clearTempLog() // clear the temporary log which describes the tile we're on
+		// this.updateDisplay()
 	},
 
 	changeSelectedTile(diff) {
@@ -468,9 +388,7 @@ export let Game = {
 		let { x, y } = this.selectedTile
 		let mapTile = Game.map.data[this.selectedTile.y][this.selectedTile.x]
 		let properBorder =
-			mapTile.blocked() || this.map.visible_tiles[x + ',' + y] === undefined
-				? untargetableBorders
-				: targetingBorders
+			mapTile.blocked() || this.map.visible_tiles[x + ',' + y] === undefined ? untargetableBorders : targetingBorders
 		this.map.data[this.selectedTile.y][this.selectedTile.x].actors.push(properBorder)
 		// highlighting the path from the player to the target reticle using bresenham line algorithm
 		/* https://rosettacode.org/wiki/Bitmap/Bresenham%27s_line_algorithm#JavaScript */
@@ -584,8 +502,7 @@ export let Game = {
 		if (this.selectedTile !== null) {
 			let mapTile = Game.map.data[this.selectedTile.y][this.selectedTile.x]
 			let properBorder =
-				mapTile.blocked() ||
-				this.map.visible_tiles[this.selectedTile.x + ',' + this.selectedTile.y] === undefined
+				mapTile.blocked() || this.map.visible_tiles[this.selectedTile.x + ',' + this.selectedTile.y] === undefined
 					? untargetableBorders
 					: targetingBorders
 

@@ -1,34 +1,32 @@
-var path = require('path')
-var fs = require('fs')
-var utils = require('./utils')
-var config = require('../config')
-var vueLoaderConfig = require('./vue-loader.conf')
-var webpack = require('webpack')
+'use strict'
+const path = require('path')
+const utils = require('./utils')
+const config = require('../config')
+const vueLoaderConfig = require('./vue-loader.conf')
 
 function resolve(dir) {
 	return path.join(__dirname, '..', dir)
 }
 
+let app = process.env.REFRESH_BROWSER ? ['refresh-browser-webpack-plugin/client', './src/main.js'] : './src/main.js'
+
 module.exports = {
+	context: path.resolve(__dirname, '../'),
 	entry: {
-		app: './src/main.js'
+		app
 	},
 	output: {
 		path: config.build.assetsRoot,
 		filename: '[name].js',
-		publicPath:
-			process.env.NODE_ENV === 'production'
-				? config.build.assetsPublicPath
-				: config.dev.assetsPublicPath
+		publicPath: process.env.NODE_ENV === 'production' ? config.build.assetsPublicPath : config.dev.assetsPublicPath
 	},
 	resolve: {
 		extensions: ['.js', '.vue', '.json'],
 		alias: {
 			vue$: 'vue/dist/vue.esm.js',
 			'@': resolve('src'),
-			'#': resolve('src/assets/js/game/')
-		},
-		symlinks: false
+			'#': resolve('src/assets/js/game')
+		}
 	},
 	module: {
 		rules: [
@@ -40,14 +38,10 @@ module.exports = {
 			{
 				test: /\.js$/,
 				loader: 'babel-loader',
+				include: [resolve('src'), resolve('test'), resolve('node_modules/webpack-dev-server/client')],
 				query: {
-					presets: ['babel-preset-stage-0']
-				},
-				exclude: /node_modules/
-			},
-			{
-				test: /\.json$/,
-				loader: 'json-loader'
+					plugins: ['transform-object-rest-spread']
+				}
 			},
 			{
 				test: /\.(png|jpe?g|gif|svg)(\?.*)?$/,
@@ -75,5 +69,16 @@ module.exports = {
 			}
 		]
 	},
-	plugins: []
+	node: {
+		// prevent webpack from injecting useless setImmediate polyfill because Vue
+		// source contains it (although only uses it if it's native).
+		setImmediate: false,
+		// prevent webpack from injecting mocks to Node native modules
+		// that does not make sense for the client
+		dgram: 'empty',
+		fs: 'empty',
+		net: 'empty',
+		tls: 'empty',
+		child_process: 'empty'
+	}
 }
