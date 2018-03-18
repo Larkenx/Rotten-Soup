@@ -70,7 +70,7 @@ export default {
 	name: 'app',
 	data() {
 		return {
-			// Game,
+			Game: Game,
 			mouseControls: false,
 			loading: true,
 			playerSelected: false,
@@ -88,7 +88,7 @@ export default {
 		'message-log': messageLog
 	},
 	created() {
-		this.loadGame(4693)
+		// this.loadGame(4693)
 	},
 	mounted() {},
 	methods: {
