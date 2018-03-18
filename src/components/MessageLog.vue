@@ -1,6 +1,6 @@
 <template>
     <v-layout row style="padding: 5px 0 0 0; margin: 0px">
-        <v-list class="console"
+        <v-list id="console"
                 style="overflow:hidden; padding-top: 8px; position: relative;">
             <li v-for="(message, index) in getMessages()" v-bind:key="index">
                 <p><b v-bind:style="{color : message[1]}">{{message[0]}}</b></p>
@@ -36,13 +36,9 @@ export default {
 }
 </script>
 
-<style scoped>
+<style>
 
-    .list {
-        background-color: black;
-    }
-
-    .console {
+    #console {
         font-size: 14px;
         font-style: normal;
         font-weight: normal;
