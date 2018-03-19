@@ -4,6 +4,13 @@
 
 <v-app v-if="playerSelected" dark class="black">
     <v-container fluid id="main_container">
+      <v-layout row v-if="unstableBuildMessage">
+        <v-flex xs7>
+          <v-alert color="yellow darken-4" type="warning" dismissible v-model="unstableBuildMessage">
+            This build is unstable. A lot of working is going on under the hood! Expect lots of broken, weird things
+          </v-alert>
+        </v-flex>
+      </v-layout>
         <!-- Game Display and HUD-->
         <v-layout row>
             <v-flex column style="max-width: 1120px;">
@@ -22,7 +29,6 @@
         <death-modal></death-modal>
 
         <!-- Help Dialog -->
-        <help-dialog></help-dialog>
 
         <!-- Mouse Controls Slider  -->
         <div class="mouse_controls">
@@ -70,12 +76,13 @@ export default {
 	name: 'app',
 	data() {
 		return {
-			Game: Game,
+			// Game: Game,
 			mouseControls: false,
 			loading: true,
 			playerSelected: false,
 			player: null,
-			actors: null
+			actors: null,
+      unstableBuildMessage: true,
 		}
 	},
 	components: {
@@ -143,12 +150,7 @@ export default {
 	/*height: 100%;*/
 }
 
-#help {
-	position: absolute;
-	/* left: 50; */
-	right: 0px;
-	top: 0px;
-}
+
 
 #git_logo {
 	position: absolute;

@@ -48,6 +48,9 @@
                 <v-progress-linear id="hpBar" color="error" :value="(getHP() / getMaxHP()) * 100" height="13"></v-progress-linear>
             </v-flex>
             <v-flex md3 col style="padding-left: 5px;">{{getHP()}} / {{getMaxHP()}}</v-flex>
+						<v-flex md1 >
+							<help-dialog></help-dialog>
+						</v-flex>
         </v-layout>
 
         <!-- Magic Bar -->
@@ -111,6 +114,7 @@ import enemyOverview from './EnemyOverview.vue'
 import minimap from './Minimap.vue'
 import statsTabContent from './HUD/StatsTabContent.vue'
 import spellBook from './HUD/Spellbook.vue'
+import helpDialog from '@/components/HelpDialog.vue'
 export default {
 	data() {
 		return {
@@ -144,11 +148,12 @@ export default {
 		}
 	},
 	components: {
-		inventory: inventory,
+		'inventory': inventory,
 		'enemy-overview': enemyOverview,
 		'mini-map': minimap,
 		'stats-tab-content': statsTabContent,
-		spellbook: spellBook
+		'spellbook': spellBook,
+		'help-dialog': helpDialog
 	},
 	created() {
 		this.player = Game.player
