@@ -40,7 +40,7 @@
 
 <v-container fluid style="padding-left: 0px">
     <draggable element="v-layout" v-model="inventory" row wrap class="layout inventory_row row">
-        <v-flex xs1 col v-for="(cell, i) in inventory" v-bind:key="i" v-bind:class="{selectedItem : colorSlot(cell), inventory_cell : ! colorSlot(cell)}" align-center>
+        <v-flex xs1 col v-for="(cell, i) in getInventory()" v-bind:key="i" v-bind:class="{selectedItem : colorSlot(cell), inventory_cell : ! colorSlot(cell)}" align-center>
             <v-tooltip open-delay="200" bottom v-if="cell.item !== null" align-center>
                 <p class="text-xs-center ma-0">
                     {{cell.item.getAction()}} {{cell.item.type}}
@@ -93,7 +93,8 @@ export default {
 	},
 	data() {
 		return {
-			inventory: Game.player.inventory,
+			inventory: [],
+			length: Game.player.inventory.length,
 			rows: [1, 2, 3, 4],
 			x: 0,
 			y: 0
@@ -113,8 +114,8 @@ export default {
 		},
 		getInventoryRow(n) {
 			// let inventory = Game.player.inventory
-			let offset = n * (this.inventory.length / this.rows.length)
-			return this.inventory.slice(offset, offset + this.inventory.length / this.rows.length)
+			let offset = n * (Game.player.inventory.length / this.rows.length)
+			return Game.player.inventory.slice(offset, offset + Game.player.inventory.length / this.rows.length)
 		},
 		useItem(cell, evt) {
 			// drop cell.item
@@ -129,9 +130,12 @@ export default {
 			// drop cell.item
 			cell.item.drop()
 		},
+		getInventory() {
+			return Game.player.inventory
+		},
 		show(cell, e) {
 			e.preventDefault()
-			this.inventory.forEach(slot => {
+			Game.player.inventory.forEach(slot => {
 				slot.menu = false
 			})
 			this.x = e.clientX

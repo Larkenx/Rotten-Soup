@@ -18,7 +18,7 @@
     export default {
         data() {
             return {
-                player: Game.player,
+                // player: Game.player,
             };
         },
         methods: {
@@ -26,7 +26,7 @@
                 location.reload();
             },
             playerIsDead() {
-                return this.player.isDead();
+                return Game.player.isDead();
             }
         },
     }

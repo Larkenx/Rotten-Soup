@@ -58,7 +58,7 @@ import { xp_levels } from '#/entities/Entity.js'
 export default {
 	data() {
 		return {
-			player: Game.player
+			player: Game.player.cb
 		}
 	},
 	methods: {

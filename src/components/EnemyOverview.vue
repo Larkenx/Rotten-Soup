@@ -45,13 +45,13 @@ import { Game } from '@/assets/js/game/Game.js'
 export default {
 	data() {
 		return {
-			player: Game.player,
+			// player: Game.player,
 			enemies: Game.player.nearbyEnemies
 		}
 	},
 	methods: {
 		getNearbyEnemies() {
-			return this.player.nearbyEnemies
+			return Game.player.nearbyEnemies
 		}
 	},
 	created() {}

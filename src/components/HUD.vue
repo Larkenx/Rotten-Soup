@@ -120,7 +120,7 @@ export default {
 		return {
 			activeTab: null,
 			currentLevel: Game.currentLevel,
-			player: Game.player,
+			player: Game.player.inventory.length,
 			x: Game.player.x,
 			y: Game.player.y,
 			rows: [1, 2, 3, 4]

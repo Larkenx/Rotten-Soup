@@ -502,16 +502,17 @@ export default class Player extends Actor {
 		})
 		if (tileItems.length === 1) {
 			Game.log(`You picked up a ${tileItems[0].type.toLowerCase()}.`, 'information')
+			Game.display.clearSprite(tileItems[0])
 			this.addToInventory(tileItems[0])
 			ctile.removeActor(tileItems[0])
-			Game.display.background.removeChild(tileItems[0].sprite)
 		} else if (tileItems.length > 1) {
 			let itemTypes = []
 			for (let item of tileItems) {
 				itemTypes.push(item.type.toLowerCase())
+				Game.display.clearSprite(item)
 				this.addToInventory(item)
 				ctile.removeActor(item)
-				Game.display.background.removeChild(item.sprite)
+
 			}
 			let prettyItemTypes = itemTypes.slice(1, itemTypes.length - 1)
 			prettyItemTypes = prettyItemTypes.reduce((buf, str) => {

@@ -31,7 +31,7 @@
         <!-- Help Dialog -->
 
         <!-- Mouse Controls Slider  -->
-        <div class="mouse_controls">
+        <!-- <div class="mouse_controls">
             <v-layout row align-justify-center>
                 <v-flex xs4>
                     <v-switch color="yellow darken-4" v-model="player.mouseEnabled"></v-switch>
@@ -40,7 +40,7 @@
                     <v-icon>mouse</v-icon>
                 </v-flex>
             </v-layout>
-        </div>
+        </div> -->
 
         <!-- Github Logo -->
         <a id="git_logo" style="text-decoration: none;" target="_blank" href="https://github.com/Larkenx/Rotten-Soup">
@@ -88,7 +88,7 @@ export default {
 	components: {
 		'start-menu': startMenu,
 		'game-display': gameDisplay,
-		hud: hud,
+		'hud': hud,
 		'item-transfer-modal': itemTransferModal,
 		'death-modal': deathModal,
 		'help-dialog': helpDialog,
@@ -104,13 +104,13 @@ export default {
 			return this.playerSelected
 		},
 		loadGame(id) {
-			this.playerSelected = true
 			this.selectedSprite = id
 			// console.log(document.getElementById('game_container'))
 			Game.init(this.selectedSprite)
-			this.player = Game.player
+			// this.player = Game.player
 			Game.log('Welcome to Rotten Soup!', 'information')
 			Game.log('Press ? to view the controls.', 'player_move')
+      this.playerSelected = true
 			setTimeout(() => {
 				document.getElementById('minimap_container').appendChild(Game.minimap.getContainer())
 				document.getElementById('game_container').appendChild(Game.display.getContainer())

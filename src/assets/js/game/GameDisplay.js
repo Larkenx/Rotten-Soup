@@ -119,6 +119,11 @@ export default class GameDisplay {
 		}
 	}
 
+	clearSprite(actor) {
+		this.background.removeChild(actor.sprite)
+		actor.sprite = null
+	}
+
 	updateMap() {
 		let camera = {
 			// camera x,y resides in the upper left corner
