@@ -1,6 +1,7 @@
 import ROT from 'rot-js'
 
 import { Game, tileset } from '#/Game.js'
+import Item from '#/entities/items/Item.js'
 import * as PIXI from 'pixi.js'
 
 export let getTilesetCoords = id => {
@@ -38,10 +39,6 @@ export default class GameDisplay {
 			if it is not animated, create a normal PIXI.Sprite
 			Once the obstacle sprite is created, add it to a container
 	 */
-		const getTexture = id => {
-			// if (!(id in this.tilesetMapping)) throw `Error - cannot get texture for texture with ID:${id}`
-			return this.tilesetMapping[id]
-		}
 
 		let staticBackground = new PIXI.Container()
 		this.animatedBackground = new PIXI.Container()
@@ -49,15 +46,15 @@ export default class GameDisplay {
 			for (let x = 0; x < map.width; x++) {
 				let tile = map.data[y][x]
 				for (let o of tile.obstacles) {
-					if (o.animated === true && o.animated_id !== undefined && getTexture(o.animated_id) !== undefined) {
-						let frames = [getTexture(o.id), getTexture(o.animated_id)]
+					if (o.animated === true && o.animated_id !== undefined && this.getTexture(o.animated_id) !== undefined) {
+						let frames = [this.getTexture(o.id), this.getTexture(o.animated_id)]
 						let sprite = new PIXI.extras.AnimatedSprite(frames)
 						sprite.position.set(x * this.tileSize, y * this.tileSize)
 						sprite.animationSpeed = 0.025
 						sprite.play()
 						this.animatedBackground.addChild(sprite)
 					} else {
-						let sprite = new PIXI.Sprite(getTexture(o.id))
+						let sprite = new PIXI.Sprite(this.getTexture(o.id))
 						sprite.position.set(x * this.tileSize, y * this.tileSize)
 						staticBackground.addChild(sprite)
 					}
@@ -77,27 +74,14 @@ export default class GameDisplay {
 		this.background.position.set(-x * this.tileSize, -y * this.tileSize)
 		// draw the actors last because they should be on the top-most layer
 		for (let a of map.actors) {
-			let props = tileset.tileproperties[a.id + '']
-			// if (a.sprite === null || a.sprite === undefined) {
-			if (props.animated === true && props.animated_id !== undefined && getTexture(props.animated_id) !== undefined) {
-				let frames = [getTexture(a.id), getTexture(props.animated_id)]
-				let sprite = new PIXI.extras.AnimatedSprite(frames)
-				a.setSprite(sprite)
-				sprite.animationSpeed = 0.05
-				sprite.play()
-				this.background.addChild(sprite)
-				sprite.position.set(a.x * this.tileSize, a.y * this.tileSize)
-			} else {
-				let sprite = new PIXI.Sprite(getTexture(a.id))
-				a.setSprite(sprite)
-				this.background.addChild(sprite)
-				sprite.position.set(a.x * this.tileSize, a.y * this.tileSize)
+			if (!(a instanceof Item)) {
+				this.assignSprite(a)
 			}
-			// } else {
-			// 	this.background.addChild(a.sprite)
-			// 	a.sprite.position.set(a.x * this.tileSize, a.y * this.tileSize)
-			// }
 		}
+	}
+
+	getTexture(id) {
+		return this.tilesetMapping[id]
 	}
 
 	moveSprite(sprite, x, y) {
@@ -109,6 +93,30 @@ export default class GameDisplay {
 			return o.sprite !== sprite
 		})
 		this.movingSprites.push({ sprite, target: { x: nx, y: ny } })
+	}
+
+	assignSprite(actor) {
+		let { x, y, id } = actor
+		let props = tileset.tileproperties[actor.id + '']
+		// if (actor.sprite === null || actor.sprite === undefined) {
+		if (
+			props.animated === true &&
+			props.animated_id !== undefined &&
+			this.getTexture(props.animated_id) !== undefined
+		) {
+			let frames = [this.getTexture(actor.id), this.getTexture(props.animated_id)]
+			let sprite = new PIXI.extras.AnimatedSprite(frames)
+			actor.setSprite(sprite)
+			sprite.animationSpeed = 0.05
+			sprite.play()
+			this.background.addChild(sprite)
+			sprite.position.set(actor.x * this.tileSize, actor.y * this.tileSize)
+		} else {
+			let sprite = new PIXI.Sprite(this.getTexture(actor.id))
+			actor.setSprite(sprite)
+			this.background.addChild(sprite)
+			sprite.position.set(actor.x * this.tileSize, actor.y * this.tileSize)
+		}
 	}
 
 	updateMap() {

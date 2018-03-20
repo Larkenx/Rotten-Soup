@@ -10,6 +10,7 @@ import Weapon from '#/entities/items/weapons/Weapon.js'
 import { Ammo } from '#/entities/items/weapons/ranged/ammo/Ammo.js'
 import { Buff } from '#/modifiers/Buff.js'
 import { Corpse, corpseTypes } from '#/entities/items/misc/Corpse.js'
+import Item from '#/entities/items/Item.js'
 
 export class Actor extends Entity {
 	constructor(x, y, options, routine = null) {
@@ -98,7 +99,12 @@ export class Actor extends Entity {
 	}
 
 	placeEntityBelow(entity) {
-		Game.map.data[this.y][this.x].actors.push(entity)
+		if (entity instanceof Item) {
+			entity.placeAt(this.x, this.y)
+			Game.display.assignSprite(item)
+		} else {
+			Game.map.data[this.y][this.x].actors.push(entity)
+		}
 	}
 
 	// expressly want to just remove the item from the inventory.
@@ -116,14 +122,13 @@ export class Actor extends Entity {
 
 	dropItem(item) {
 		if (!this.memberOfInventory(item)) throw "Error - trying to drop an item you don't have in your inventory"
-
 		this.removeFromInventory(item)
 		if (item !== null && 'cb' in item) {
 			item.cb.equipped = false
 			if (this.cb.equipment.weapon == item) this.cb.equipment.weapon = null
 		}
-		let ctile = Game.map.data[this.y][this.x]
-		ctile.actors.unshift(item)
+		item.placeAt(this.x, this.y)
+		Game.display.assignSprite(item)
 	}
 
 	/* The inventory property of actors is an array of object 'slots'. This function
@@ -137,8 +142,16 @@ export class Actor extends Entity {
 		return Math.sqrt(Math.pow(this.x - actor.x, 2) + Math.pow(this.y - actor.y, 2))
 	}
 
-	/* Used to perform an action against another actor */
+	/* Used to perform an action against another actor. This always involves "bumper car interaction", so
+	it makes sense to have an animation following that concept */
 	interact(actor) {
+		let nx = actor.x - this.x
+		let ny = actor.y - this.y
+
+		Game.display.moveSprite(this.sprite, this.x + nx / 2, this.y + ny / 2)
+		setTimeout(() => {
+			Game.display.moveSprite(this.sprite, this.x, this.y)
+		}, 100)
 		return null
 	}
 
@@ -312,10 +325,7 @@ export class Actor extends Entity {
 			let items = this.items()
 			for (let item of items) {
 				// if the item was previously equipped, it needs to be 'unequipped'
-				if (item !== null && 'cb' in item) {
-					item.cb.equipped = false
-				}
-				ctile.actors.push(item)
+				this.dropItem(item)
 			}
 		}
 		// redraw the tile, either with an appropriate actor or the tile symbol

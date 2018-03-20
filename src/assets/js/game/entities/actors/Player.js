@@ -105,6 +105,7 @@ export default class Player extends Actor {
 	}
 
 	interact(actor) {
+		super.interact(actor)
 		// returns true if we can continue to move to the tile
 		if ('cb' in actor && actor.cb.hostile) {
 			this.attack(actor)
@@ -252,9 +253,7 @@ export default class Player extends Actor {
 					confirmCasting()
 				} else {
 					Game.log(
-						`You cannot cast ${
-							this.cb.currentSpell.name
-						} at this tile because it's blocked or too far away.`,
+						`You cannot cast ${this.cb.currentSpell.name} at this tile because it's blocked or too far away.`,
 						'alert'
 					)
 				}
@@ -377,9 +376,7 @@ export default class Player extends Actor {
 					}
 				} else {
 					Game.log(
-						`You cannot cast ${
-							this.cb.currentSpell.name
-						} at this tile because it's blocked or too far away.`,
+						`You cannot cast ${this.cb.currentSpell.name} at this tile because it's blocked or too far away.`,
 						'alert'
 					)
 				}
@@ -500,19 +497,21 @@ export default class Player extends Actor {
 
 	pickup() {
 		let ctile = Game.map.data[this.y][this.x]
-		let tileItems = ctile.actors.filter(function(el) {
+		let tileItems = ctile.actors.filter(el => {
 			return el instanceof Item
 		})
 		if (tileItems.length === 1) {
 			Game.log(`You picked up a ${tileItems[0].type.toLowerCase()}.`, 'information')
 			this.addToInventory(tileItems[0])
 			ctile.removeActor(tileItems[0])
+			Game.display.background.removeChild(tileItems[0].sprite)
 		} else if (tileItems.length > 1) {
 			let itemTypes = []
 			for (let item of tileItems) {
 				itemTypes.push(item.type.toLowerCase())
 				this.addToInventory(item)
 				ctile.removeActor(item)
+				Game.display.background.removeChild(item.sprite)
 			}
 			let prettyItemTypes = itemTypes.slice(1, itemTypes.length - 1)
 			prettyItemTypes = prettyItemTypes.reduce((buf, str) => {
