@@ -82,7 +82,7 @@ export default {
 			playerSelected: false,
 			player: null,
 			actors: null,
-			unstableBuildMessage: false
+			unstableBuildMessage: true
 		}
 	},
 	components: {
@@ -95,7 +95,7 @@ export default {
 		'message-log': messageLog
 	},
 	created() {
-		this.loadGame(4693)
+		// this.loadGame(4693)
 	},
 	mounted() {},
 	methods: {
