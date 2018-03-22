@@ -73,134 +73,134 @@ import messageLog from './components/MessageLog.vue'
 window.Game = Game
 
 export default {
-	name: 'app',
-	data() {
-		return {
-			// Game: Game,
-			mouseControls: false,
-			loading: true,
-			playerSelected: false,
-			player: null,
-			actors: null,
-			unstableBuildMessage: true
-		}
-	},
-	components: {
-		'start-menu': startMenu,
-		'game-display': gameDisplay,
-		'hud': hud,
-		'item-transfer-modal': itemTransferModal,
-		'death-modal': deathModal,
-		'help-dialog': helpDialog,
-		'message-log': messageLog
-	},
-	created() {
-		// this.loadGame(4693)
-	},
-	mounted() {},
-	methods: {
-		readyToLoadGame() {
-			console.log(this.playerSelected)
-			return this.playerSelected
-		},
-		loadGame(id) {
-			this.selectedSprite = id
-			// console.log(document.getElementById('game_container'))
-			Game.init(this.selectedSprite)
-			// this.player = Game.player
-			Game.log('Welcome to Rotten Soup!', 'information')
-			Game.log('Press ? to view the controls.', 'player_move')
-      this.playerSelected = true
-			setTimeout(() => {
-				document.getElementById('minimap_container').appendChild(Game.minimap.getContainer())
-				document.getElementById('game_container').appendChild(Game.display.getContainer())
-			}, 200)
-			setTimeout(() => {
-				this.loading = false
-			}, 500)
-		}
-	}
+    name: 'app',
+    data() {
+        return {
+            // Game: Game,
+            mouseControls: false,
+            loading: true,
+            playerSelected: false,
+            player: null,
+            actors: null,
+            unstableBuildMessage: false
+        }
+    },
+    components: {
+        'start-menu': startMenu,
+        'game-display': gameDisplay,
+        hud: hud,
+        'item-transfer-modal': itemTransferModal,
+        'death-modal': deathModal,
+        'help-dialog': helpDialog,
+        'message-log': messageLog
+    },
+    created() {
+        this.loadGame(8161)
+    },
+    mounted() {},
+    methods: {
+        readyToLoadGame() {
+            console.log(this.playerSelected)
+            return this.playerSelected
+        },
+        loadGame(id) {
+            this.selectedSprite = id
+            // console.log(document.getElementById('game_container'))
+            Game.init(this.selectedSprite)
+            // this.player = Game.player
+            Game.log('Welcome to Rotten Soup!', 'information')
+            Game.log('Press ? to view the controls.', 'player_move')
+            this.playerSelected = true
+            setTimeout(() => {
+                document.getElementById('minimap_container').appendChild(Game.minimap.getContainer())
+                document.getElementById('game_container').appendChild(Game.display.getContainer())
+            }, 200)
+            setTimeout(() => {
+                this.loading = false
+            }, 500)
+        }
+    }
 }
 </script>
 
 <style>
 @import url('https://fonts.googleapis.com/css?family=Droid+Sans+Mono|PT+Mono');
 .black {
-	background-color: black;
+    background-color: black;
 }
 
 * {
-	font-family: 'Droid Sans Mono', monospace;
-	-webkit-touch-callout: none;
-	/* iOS Safari */
-	-webkit-user-select: none;
-	/* Safari */
-	-khtml-user-select: none;
-	/* Konqueror HTML */
-	-moz-user-select: none;
-	/* Firefox */
-	-ms-user-select: none;
-	/* Internet Explorer/Edge */
-	user-select: none;
-	/* Non-prefixed version, currently
+    font-family: 'Droid Sans Mono', monospace;
+    -webkit-touch-callout: none;
+    /* iOS Safari */
+    -webkit-user-select: none;
+    /* Safari */
+    -khtml-user-select: none;
+    /* Konqueror HTML */
+    -moz-user-select: none;
+    /* Firefox */
+    -ms-user-select: none;
+    /* Internet Explorer/Edge */
+    user-select: none;
+    /* Non-prefixed version, currently
     }
 
     #main_container {
         /*padding: 10px;*/
-	/*height: 100%;*/
+    /*height: 100%;*/
 }
 
 #git_logo {
-	position: absolute;
-	padding: 20px;
-	bottom: 0px;
-	right: 0px;
+    position: absolute;
+    padding: 20px;
+    bottom: 0px;
+    right: 0px;
 }
 
 .mouse_controls {
-	position: absolute;
-	/* min-width: 200px; */
-	bottom: 0px;
-	left: 90%;
+    position: absolute;
+    /* min-width: 200px; */
+    bottom: 0px;
+    left: 90%;
 }
 
 .loading {
-	position: absolute;
-	padding: 20px;
-	/* min-width: 200px; */
-	bottom: 50%;
-	left: 25%;
+    position: absolute;
+    padding: 20px;
+    /* min-width: 200px; */
+    bottom: 50%;
+    left: 25%;
 }
 
 .test {
-	background-color: #824d03;
+    background-color: #824d03;
 }
 
 canvas {
-	padding: 0;
-	margin: 0;
+    padding: 0;
+    margin: 0;
 }
 
 /* Overriding Vuetify's tool tip so that it is centered :) */
 
 [data-tooltip] {
-	position: relative;
-	text-align: center;
+    position: relative;
+    text-align: center;
 }
 
 .modal {
-	border: 2px solid #3d3d3d;
-	border-radius: 4px;
-	background-color: black;
-	color: white;
-	width: 400px;
-	padding: 10px;
-	/*height: 600px;*/
-	position: absolute;
-	left: 20%;
-	top: 25%;
-	/*margin-left: -150px;*/
-	z-index: 2;
-	/*margin-top: -150px;*/
+    border: 2px solid #3d3d3d;
+    border-radius: 4px;
+    background-color: black;
+    color: white;
+    width: 400px;
+    padding: 10px;
+    /*height: 600px;*/
+    position: absolute;
+    left: 20%;
+    top: 25%;
+    /*margin-left: -150px;*/
+    z-index: 2;
+    /*margin-top: -150px;*/
 }
 </style>
