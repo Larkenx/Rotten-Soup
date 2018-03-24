@@ -53,7 +53,7 @@ export default class GameDisplay {
                         let frames = [this.getTexture(o.id), this.getTexture(o.animated_id)]
                         let sprite = new PIXI.extras.AnimatedSprite(frames)
                         sprite.position.set(x * this.tileSize, y * this.tileSize)
-                        sprite.animationSpeed = 0.025
+                        sprite.animationSpeed = 0.04
                         sprite.play()
                         this.animatedBackground.addChild(sprite)
                     } else {
@@ -113,7 +113,7 @@ export default class GameDisplay {
             let frames = [this.getTexture(actor.id), this.getTexture(props.animated_id)]
             let sprite = new PIXI.extras.AnimatedSprite(frames)
             actor.setSprite(sprite)
-            sprite.animationSpeed = 0.05
+            sprite.animationSpeed = 0.065
             sprite.play()
             this.background.addChild(sprite)
             sprite.position.set(actor.x * this.tileSize, actor.y * this.tileSize)

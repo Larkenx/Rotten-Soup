@@ -263,7 +263,7 @@ export default class Player extends Actor {
         }
 
         if (evt.type === 'mousemove') {
-            let loc = Game.eventToTile(evt)
+            let loc = Game.eventToTile()
             Game.clearSelectedTile()
             this.validTarget = Game.changeToExactSelectedTile(loc, this.targeting || this.casting)
             setTimeout(() => {
