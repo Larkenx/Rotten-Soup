@@ -80,8 +80,6 @@ export default {
             mouseControls: false,
             loading: true,
             playerSelected: false,
-            player: null,
-            actors: null,
             unstableBuildMessage: false
         }
     },
@@ -95,7 +93,7 @@ export default {
         'message-log': messageLog
     },
     created() {
-        this.loadGame(8161)
+        this.loadGame(4693)
     },
     mounted() {},
     methods: {
@@ -104,9 +102,8 @@ export default {
             return this.playerSelected
         },
         loadGame(id) {
-            this.selectedSprite = id
             // console.log(document.getElementById('game_container'))
-            Game.init(this.selectedSprite)
+            Game.init(id)
             // this.player = Game.player
             Game.log('Welcome to Rotten Soup!', 'information')
             Game.log('Press ? to view the controls.', 'player_move')

@@ -130,6 +130,10 @@ export default class GameDisplay {
         actor.sprite = null
     }
 
+    removeChild(sprite) {
+        this.background.removeChild(sprite)
+    }
+
     updateMap() {
         let camera = {
             // camera x,y resides in the upper left corner
@@ -197,7 +201,7 @@ export default class GameDisplay {
                 }
 
                 this.clear()
-                this.renderMap(Game.map)
+                Game.renderMap()
                 let renderLoop = delta => {
                     // maintain a track of all the sprites that should have updated movement on this tick
                     // if they are at their location, filter them from the record

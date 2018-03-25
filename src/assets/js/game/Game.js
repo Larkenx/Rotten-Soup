@@ -1,4 +1,5 @@
 import ROT from 'rot-js'
+import * as PIXI from 'pixi.js'
 
 import { GameMap, getTilesetCoords } from '#/map/GameMap.js'
 import GameDisplay from '#/GameDisplay.js'
@@ -55,10 +56,13 @@ export let Game = {
     minimap: null,
     selectedTile: null,
     pathToTarget: {},
+    targetReticle: null,
     enemyCycle: null,
     enemyCycleIndex: 0,
 
     init(playerSpriteID) {
+        /* !Important! - PlayerID must be allocated before other maps are drawn... */
+        this.playerID = playerSpriteID
         this.currentLevel = 'overworld'
         this.levels['graveyard'] = new GameMap(graveyard)
         this.levels['graveyard'].revealed = true
@@ -71,8 +75,7 @@ export let Game = {
         this.map = this.levels[this.currentLevel]
         this.map.revealed = true
         this.playerLocation = this.map.playerLocation
-        /* !Important! - PlayerID must be allocated before other maps are drawn... */
-        this.playerID = playerSpriteID
+
         // Set up the ROT.JS game display
         // let tileSet = document.createElement('img')
         // tileSet.src = 'static/images/DawnLike/Compiled/compiled_tileset_32x32.png'
@@ -113,9 +116,10 @@ export let Game = {
         // this.display = new ROT.Display(this.displayOptions)
         this.display = new GameDisplay()
         this.display.loadAssets()
+
         this.player = new Player(this.playerLocation[0], this.playerLocation[1], this.playerID)
         this.map.actors.push(this.player) // add to the list of all actors
-        this.map.data[this.playerLocation[1]][this.playerLocation[0]].actors.push(this.player) // also push to the tiles' actors
+        this.getTile(this.player.x, this.player.y).actors.push(this.player) // also push to the tiles' actors
         this.scheduleAllActors()
         this.initializeMinimap()
         // this.drawViewPort()
@@ -124,6 +128,10 @@ export let Game = {
 
     renderMap() {
         this.display.renderMap(this.map)
+        this.targetReticle = new PIXI.Sprite(this.display.tilesetMapping[7418])
+        console.log(this.targetReticle)
+        this.targetReticle.visible = false
+        this.display.background.addChild(this.targetReticle)
     },
 
     scheduleAllActors() {
@@ -159,6 +167,12 @@ export let Game = {
 
     inbounds(x, y) {
         return !(x < 0 || x >= this.map.width || y < 0 || y >= this.map.height)
+    },
+
+    inViewport(x, y) {
+        let cx = Game.player.x - ~~(Game.width / 2)
+        let cy = Game.player.y - ~~(Game.height / 2)
+        return cx <= x && x <= cx + Game.width && cy <= y && y <= cy + Game.height
     },
 
     changeLevels(newLevel, dir, level) {
@@ -197,14 +211,14 @@ export let Game = {
         // Save the old map
         this.levels[this.currentLevel] = this.map // add the old map to 'levels'
         // Unshift player from ladder position (so that when resurfacing, no player is present)
-        this.map.data[this.player.y][this.player.x].removeActor(this.player)
+        this.getTile(this.player.x, this.player.y).removeActor(this.player)
         // Add the new GameMap to the game
         // TODO: remove the actor from the map
         this.map.actors = this.map.actors.filter(a => a !== this.player)
         this.map = this.levels[newLevel]
         this.currentLevel = newLevel
         this.playerLocation = this.map.playerLocation
-        this.player.placeAt(this.playerLocation[0], this.playerLocation[1])
+        this.player.placeAt(this.map.playerLocation[0], this.map.playerLocation[1])
         this.map.actors.push(this.player)
         // before drawing the viewport, we need to clear the screen of whatever was here last
         this.display.clear()
@@ -230,7 +244,7 @@ export let Game = {
         if (this.map.revealed) {
             for (let y = 0; y < this.map.height; y++) {
                 for (let x = 0; x < this.map.width; x++) {
-                    let tile = this.map.data[y][x]
+                    let tile = this.getTile(x, y)
                     if (tile.x + ',' + tile.y in this.map.visible_tiles) {
                         this.minimap.draw(x, y, ' ', tile.bg(), this.brightenColor(tile.bg()))
                     } else {
@@ -245,7 +259,7 @@ export let Game = {
         } else {
             for (let y = 0; y < this.map.height; y++) {
                 for (let x = 0; x < this.map.width; x++) {
-                    let tile = this.map.data[y][x]
+                    let tile = this.getTile(x, y)
                     if (tile.x + ',' + tile.y in this.map.visible_tiles) {
                         this.minimap.draw(x, y, ' ', tile.bg(), this.brightenColor(tile.bg()))
                     } else if (tile.x + ',' + tile.y in this.map.seen_tiles) {
@@ -305,7 +319,7 @@ export let Game = {
         let actors = []
         for (let x = startingPos[0]; x < endingPos[0]; x++) {
             for (let y = startingPos[1]; y < endingPos[1]; y++) {
-                let tile = this.map.data[y][x]
+                let tile = this.getTile(x, y)
                 // if (tile.x + ',' + tile.y in this.map.visible_tiles) {
                 actors = actors.concat(tile.actors)
                 // }
@@ -341,133 +355,20 @@ export let Game = {
     },
 
     clearSelectedTile() {
-        // if (this.selectedTile !== null) {
-        // 	let actors = Game.map.data[this.selectedTile.y][this.selectedTile.x].actors.filter(obs => {
-        // 		return obs.id !== targetingBorders.id && obs.id !== untargetableBorders.id
-        // 	})
-        // 	Game.map.data[this.selectedTile.y][this.selectedTile.x].actors = actors
-        // 	this.selectedTile = null
-        // 	this.pathToTarget = {}
-        // }
-        // this.clearTempLog() // clear the temporary log which describes the tile we're on
-        // this.updateDisplay()
+        this.selectedTile = null
+        this.pathToTarget = {}
+        this.clearTempLog() // clear the temporary log which describes the tile we're on
+        this.targetReticle.visible = false
     },
 
-    changeSelectedTile(diff) {
-        let tile
-        if (this.selectedTile === null) {
-            tile = {
-                x: this.player.x,
-                y: this.player.y
-            } // haven't selected a tile before or it was cleared
-            let x = tile.x + diff[0]
-            let y = tile.y + diff[1]
-            if (!this.inbounds(x, y)) {
-                /* || ! x+','+y in this.map.visible_tiles ) */
-                return
-            }
-        } else {
-            // we have had a previously selected tile and need to pop the targeting reticle before pushing it onto the new tile
-            tile = this.selectedTile
-            let x = tile.x + diff[0]
-            let y = tile.y + diff[1]
-            if (!this.inbounds(x, y)) {
-                /* || ! x+','+y in this.map.visible_tiles) */
-                return
-            }
-            let actors = Game.map.data[tile.y][tile.x].actors.filter(obs => {
-                return obs.id !== targetingBorders.id && obs.id !== untargetableBorders.id
-            })
-            Game.map.data[tile.y][tile.x].actors = actors
-        }
-        // changed the selected tile to the new tile position selected by movement keys
-        this.selectedTile = {
-            x: tile.x + diff[0],
-            y: tile.y + diff[1]
-        }
-        let { x, y } = this.selectedTile
-        let mapTile = Game.map.data[this.selectedTile.y][this.selectedTile.x]
-        let properBorder = mapTile.blocked() || this.map.visible_tiles[x + ',' + y] === undefined ? untargetableBorders : targetingBorders
-        this.map.data[this.selectedTile.y][this.selectedTile.x].actors.push(properBorder)
+    changeSelectedTile(tile) {
+        this.selectedTile = tile
+        let { x, y } = tile
+        let blockedTile = this.selectedTile.blocked() || this.map.visible_tiles[x + ',' + y] === undefined
         // highlighting the path from the player to the target reticle using bresenham line algorithm
         /* https://rosettacode.org/wiki/Bitmap/Bresenham%27s_line_algorithm#JavaScript */
         this.pathToTarget = {}
-        if (properBorder === targetingBorders) {
-            let x0 = this.player.x
-            let x1 = this.selectedTile.x
-            let y0 = this.player.y
-            let y1 = this.selectedTile.y
-            let dx = Math.abs(x1 - x0),
-                sx = x0 < x1 ? 1 : -1
-            let dy = Math.abs(y1 - y0),
-                sy = y0 < y1 ? 1 : -1
-            let err = (dx > dy ? dx : -dy) / 2
-            while (!(x0 === x1 && y0 === y1)) {
-                this.pathToTarget[x0 + ',' + y0] = true
-                let e2 = err
-                if (e2 > -dx) {
-                    err -= dy
-                    x0 += sx
-                }
-                if (e2 < dy) {
-                    err += dx
-                    y0 += sy
-                }
-            }
-            this.pathToTarget[x0 + ',' + y0] = true
-            this.pathToTarget[this.player.x + ',' + this.player.y] = false
-        }
-        this.describeSelectedTile()
-        this.updateDisplay()
-        return properBorder === targetingBorders
-    },
-
-    selectNearestEnemyTile() {
-        this.clearSelectedTile()
-        let enemy = this.getClosestEnemyToPlayer()
-        if (enemy !== undefined) {
-            return this.changeToExactSelectedTile({
-                x: enemy.x,
-                y: enemy.y
-            })
-        } else {
-            return false
-        }
-    },
-
-    cycleThroughSelectableEnemies() {
-        if (this.enemyCycle === null) {
-            this.enemyCycle = this.getNearbyEnemies()
-            this.enemyCycleIndex = 0
-        }
-        // if there's more than one enemy, we can cycle to the next closest enemy
-        if (this.enemyCycle.length > 1) {
-            this.clearSelectedTile()
-            this.enemyCycleIndex += 1
-            if (this.enemyCycleIndex === this.enemyCycle.length) {
-                this.enemyCycleIndex = 0
-            }
-
-            let newTarget = this.enemyCycle[this.enemyCycleIndex]
-            return this.changeToExactSelectedTile({
-                x: newTarget.x,
-                y: newTarget.y
-            })
-        }
-    },
-
-    changeToExactSelectedTile(loc, highlight = true) {
-        this.selectedTile = loc
-        let mapTile = Game.map.data[this.selectedTile.y][this.selectedTile.x]
-        let properBorder =
-            mapTile.blocked() || this.map.visible_tiles[this.selectedTile.x + ',' + this.selectedTile.y] === undefined
-                ? untargetableBorders
-                : targetingBorders
-
-        if (!highlight) properBorder = targetingBorders
-        this.map.data[this.selectedTile.y][this.selectedTile.x].actors.push(properBorder)
-        this.pathToTarget = {}
-        if (properBorder === targetingBorders && highlight) {
+        if (!blockedTile) {
             let x0 = this.player.x,
                 x1 = this.selectedTile.x,
                 y0 = this.player.y,
@@ -492,59 +393,47 @@ export let Game = {
             this.pathToTarget[x0 + ',' + y0] = true
             this.pathToTarget[this.player.x + ',' + this.player.y] = false
         }
-        this.updateDisplay()
+        this.targetReticle.visible = true
+        this.targetReticle.position.set(tile.x * this.display.tileSize, tile.y * this.display.tileSize)
         this.describeSelectedTile()
-        return properBorder === targetingBorders
+
+        return !blockedTile
     },
 
-    redrawSelectedTile(highlight) {
-        if (this.selectedTile !== null) {
-            let mapTile = Game.map.data[this.selectedTile.y][this.selectedTile.x]
-            let properBorder =
-                mapTile.blocked() || this.map.visible_tiles[this.selectedTile.x + ',' + this.selectedTile.y] === undefined
-                    ? untargetableBorders
-                    : targetingBorders
-
-            if (!highlight) properBorder = targetingBorders
-            this.map.data[this.selectedTile.y][this.selectedTile.x].actors.push(properBorder)
-            this.pathToTarget = {}
-            if (properBorder === targetingBorders && highlight) {
-                let x0 = this.player.x,
-                    x1 = this.selectedTile.x,
-                    y0 = this.player.y,
-                    y1 = this.selectedTile.y,
-                    dx = Math.abs(x1 - x0),
-                    sx = x0 < x1 ? 1 : -1,
-                    dy = Math.abs(y1 - y0),
-                    sy = y0 < y1 ? 1 : -1,
-                    err = (dx > dy ? dx : -dy) / 2
-                while (!(x0 === x1 && y0 === y1)) {
-                    this.pathToTarget[x0 + ',' + y0] = true
-                    let e2 = err
-                    if (e2 > -dx) {
-                        err -= dy
-                        x0 += sx
-                    }
-                    if (e2 < dy) {
-                        err += dx
-                        y0 += sy
-                    }
-                }
-                this.pathToTarget[x0 + ',' + y0] = true
-                this.pathToTarget[this.player.x + ',' + this.player.y] = false
-            }
-            this.updateDisplay()
-            this.describeSelectedTile()
-            return properBorder === targetingBorders
+    selectNearestEnemyTile() {
+        this.clearSelectedTile()
+        let enemy = this.getClosestEnemyToPlayer()
+        if (enemy !== undefined) {
+            let { x, y } = enemy
+            return this.changeSelectedTile(this.getTile(x, y))
+        } else {
+            return false
         }
-        return false
+    },
+
+    cycleThroughSelectableEnemies() {
+        if (this.enemyCycle === null) {
+            this.enemyCycle = this.getNearbyEnemies()
+            this.enemyCycleIndex = 0
+        }
+        // if there's more than one enemy, we can cycle to the next closest enemy
+        if (this.enemyCycle.length > 1) {
+            this.clearSelectedTile()
+            this.enemyCycleIndex += 1
+            if (this.enemyCycleIndex === this.enemyCycle.length) {
+                this.enemyCycleIndex = 0
+            }
+
+            let newTarget = this.enemyCycle[this.enemyCycleIndex]
+            return this.changeSelectedTile(this.getTile(newTarget.x, newTarget.y))
+        }
     },
 
     describeSelectedTile() {
         /* Returns an array of strings describing what exists on the currently selected tile.
         this can be obstacles, items, traps, or enemies */
-        let tile = this.map.data[this.selectedTile.y][this.selectedTile.x]
-        let names = tile.actors
+        let { actors } = this.selectedTile
+        let names = actors
             .filter(a => {
                 return a instanceof Entity && a !== this.player
             })
@@ -591,14 +480,8 @@ export let Game = {
         }
         let dx = camera.x + ~~(x / this.display.tileSize)
         let dy = camera.y + ~~(y / this.display.tileSize)
-        return this.map.data[dy][dx]
-    },
-
-    hoverTile(evt) {
-        let t = Game.display.eventToPosition(evt)
-        let x = t[0] + this.camera.x
-        let y = t[1] + this.camera.y
-        this.hoveredTile = t[0] + ',' + t[1]
+        if (this.inbounds(dx, dy)) return this.getTile(dx, dy)
+        else return null
     },
 
     log(message, type, tmp = false) {
