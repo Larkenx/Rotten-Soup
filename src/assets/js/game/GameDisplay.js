@@ -105,7 +105,7 @@ export default class GameDisplay {
         this.movingSprites.push({ sprite, target: { x: nx, y: ny } })
     }
 
-    assignSprite(actor) {
+    assignSprite(actor, belowPlayer = false) {
         let { x, y, id } = actor
         let props = tileset.tileproperties[actor.id + '']
         // if (actor.sprite === null || actor.sprite === undefined) {
@@ -115,12 +115,14 @@ export default class GameDisplay {
             actor.setSprite(sprite)
             sprite.animationSpeed = 0.065
             sprite.play()
-            this.background.addChild(sprite)
+            if (belowPlayer) this.background.addChildAt(sprite, 1)
+            else this.background.addChild(sprite)
             sprite.position.set(actor.x * this.tileSize, actor.y * this.tileSize)
         } else {
             let sprite = new PIXI.Sprite(this.getTexture(actor.id))
             actor.setSprite(sprite)
-            this.background.addChild(sprite)
+            if (belowPlayer) this.background.addChildAt(sprite, 1)
+            else this.background.addChild(sprite)
             sprite.position.set(actor.x * this.tileSize, actor.y * this.tileSize)
         }
     }

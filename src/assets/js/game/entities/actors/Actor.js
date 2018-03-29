@@ -2,6 +2,8 @@
  * Created by larken on 7/12/17.
  */
 import ROT from 'rot-js'
+import * as PIXI from 'pixi.js'
+
 import { Game } from '#/Game.js'
 import { Entity } from '#/entities/Entity.js'
 import { getRandomInt, addPrefix } from '#/utils/HelperFunctions.js'
@@ -122,13 +124,15 @@ export class Actor extends Entity {
 
     dropItem(item) {
         if (!this.memberOfInventory(item)) throw "Error - trying to drop an item you don't have in your inventory"
-        this.removeFromInventory(item)
         if (item !== null && 'cb' in item) {
             item.cb.equipped = false
             if (this.cb.equipment.weapon == item) this.cb.equipment.weapon = null
         }
+        console.log('Dropping item at:', this.x, this.y)
         item.placeAt(this.x, this.y)
-        Game.display.assignSprite(item)
+        console.log('placed item: ', item)
+        Game.display.assignSprite(item, true)
+        this.removeFromInventory(item)
     }
 
     /* The inventory property of actors is an array of object 'slots'. This function
@@ -327,29 +331,36 @@ export class Actor extends Entity {
         // remove this actor from the global actors list and the occupied tile
         ctile.removeActor(this)
         idx = Game.map.actors.indexOf(this)
+        Game.map.actors.splice(idx, 1)
         // dump the contents of the actor's inventory (items) onto the ground.
         if (this.inventory.length > 0) {
+            console.log('Dropping enemy items!')
             let items = this.items()
+            console.log(items)
             for (let item of items) {
                 // if the item was previously equipped, it needs to be 'unequipped'
                 this.dropItem(item)
+                console.log(item)
             }
         }
         // redraw the tile, either with an appropriate actor or the tile symbol
-        Game.map.actors.splice(idx, 1)
         /* On death, we want to spray some blood on the tile.
          * We also want to place a corpse corresponding to the actor as well
         */
         if (getRandomInt(0, 1) === 0) {
             let blood = 2644 - getRandomInt(0, 1)
-            if (this.corpseType !== corpseTypes.SKELETON)
-                // specifically don't want to add blood if it's a skeleton...
-                ctile.obstacles.push({ id: blood })
+            // specifically don't want to add blood if it's a skeleton...
+            if (this.corpseType !== corpseTypes.SKELETON) {
+                let bloodSprite = new PIXI.Sprite(Game.display.tilesetMapping[blood])
+                bloodSprite.position.set(this.x * Game.display.tileSize, this.y * Game.display.tileSize)
+                Game.display.background.addChildAt(bloodSprite, 1)
+            }
 
             if (this.corpseType !== undefined) {
                 let corpse = new Corpse(this.x, this.y, this.name, this.corpseType)
                 ctile.actors.unshift(corpse)
                 Game.scheduler.add(corpse, true)
+                Game.display.assignSprite(corpse, true)
             }
         }
 

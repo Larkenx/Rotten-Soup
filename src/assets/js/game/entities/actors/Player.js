@@ -59,7 +59,7 @@ export default class Player extends Actor {
                 /* Per-turn effects */
                 hpRecovery: 5,
                 manaRecovery: 2.5,
-                invulnerable: false,
+                invulnerable: true,
                 /* Magic & Ranged */
                 validTarget: null,
                 currentSpell: null,
