@@ -1,35 +1,35 @@
 <style>
 .hud_tabs_card {
-	background-color: #4f4f4f;
+    background-color: #4f4f4f;
 }
 
 .hud_tab {
-	background-color: #294646;
+    background-color: #294646;
 }
 
 .hud {
-	color: white;
-	font-size: 13px;
-	/* margin-left: 20px; */
+    color: white;
+    font-size: 13px;
+    /* margin-left: 20px; */
 }
 
 #hpBar {
-	border: solid 2px hsl(0, 59%, 40%);
-	border-radius: 2px;
+    border: solid 2px hsl(0, 59%, 40%);
+    border-radius: 2px;
 }
 
 #manaBar {
-	border: solid 2px rgb(20, 99, 177);
-	border-radius: 2px;
+    border: solid 2px rgb(20, 99, 177);
+    border-radius: 2px;
 }
 
 .statsBar {
-	/*border : solid 2px goldenrod;*/
-	/*border-radius: 2px;*/
+    /*border : solid 2px goldenrod;*/
+    /*border-radius: 2px;*/
 }
 
 .xpCircleFont {
-	font-size: 5px;
+    font-size: 5px;
 }
 
 /* .v-tab-card {
@@ -77,9 +77,9 @@
                 <v-tab class="hud_tab" key="stats" href="#stats">
                     Stats
                 </v-tab>
-                <v-tab class="hud_tab" key="enemyOverview" href="#enemyOverview">
+                <!-- <v-tab class="hud_tab" key="enemyOverview" href="#enemyOverview">
                     Enemies
-                </v-tab>
+                </v-tab> -->
                 <v-tab class="hud_tab" key="spellBook" href="#spellBook">
                     Spellbook
                 </v-tab>
@@ -88,11 +88,11 @@
                         <stats-tab-content></stats-tab-content>
                     </v-card>
                 </v-tab-item>
-                <v-tab-item key="enemyOverview" id="enemyOverview">
+                <!-- <v-tab-item key="enemyOverview" id="enemyOverview">
                     <v-card class="hud_tabs_card" flat height="120px">
                         <enemy-overview></enemy-overview>
                     </v-card>
-                </v-tab-item>
+                </v-tab-item> -->
                 <v-tab-item key="spellBook" id="spellBook">
                     <v-card class="hud_tabs_card" flat height="120px">
                         <spellbook></spellbook>
@@ -116,47 +116,42 @@ import statsTabContent from './HUD/StatsTabContent.vue'
 import spellBook from './HUD/Spellbook.vue'
 import helpDialog from '@/components/HelpDialog.vue'
 export default {
-	data() {
-		return {
-			activeTab: null,
-			currentLevel: Game.currentLevel,
-			player: Game.player.inventory.length,
-			x: Game.player.x,
-			y: Game.player.y,
-			rows: [1, 2, 3, 4]
-		}
-	},
-	methods: {
-		getHP() {
-			return Game.player.cb.hp
-		},
-		getMaxHP() {
-			return Game.player.cb.maxhp
-		},
-		getMana() {
-			return Game.player.cb.mana
-		},
-		getMaxMana() {
-			return Game.player.cb.maxmana
-		},
-		getCurrentLevel() {
-			let levelName = Game.player.currentLevel.replace(/[0-9]/g, '')
-			return levelName
-		},
-		getCurrentLevelDepth() {
-			return parseInt(Game.player.currentLevel.replace(/[^0-9]/g, ''))
-		}
-	},
-	components: {
-		'inventory': inventory,
-		'enemy-overview': enemyOverview,
-		'mini-map': minimap,
-		'stats-tab-content': statsTabContent,
-		'spellbook': spellBook,
-		'help-dialog': helpDialog
-	},
-	created() {
-		this.player = Game.player
-	}
+    data() {
+        return {
+            activeTab: null,
+            currentLevel: Game.currentLevel,
+            cb: Game.player.cb
+        }
+    },
+    methods: {
+        getHP() {
+            return Game.player.cb.hp
+        },
+        getMaxHP() {
+            return Game.player.cb.maxhp
+        },
+        getMana() {
+            return Game.player.cb.mana
+        },
+        getMaxMana() {
+            return Game.player.cb.maxmana
+        },
+        getCurrentLevel() {
+            let levelName = Game.player.currentLevel.replace(/[0-9]/g, '')
+            return levelName
+        },
+        getCurrentLevelDepth() {
+            return parseInt(Game.player.currentLevel.replace(/[^0-9]/g, ''))
+        }
+    },
+    components: {
+        inventory: inventory,
+        'enemy-overview': enemyOverview,
+        'mini-map': minimap,
+        'stats-tab-content': statsTabContent,
+        spellbook: spellBook,
+        'help-dialog': helpDialog
+    },
+    created() {}
 }
 </script>

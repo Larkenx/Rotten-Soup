@@ -1,38 +1,38 @@
 <style>
 .inventory_row {
-	/*margin-left: 10px;*/
+    /*margin-left: 10px;*/
 }
 
 .inventory_cell {
-	margin: 2px;
-	border: 2px solid #4f4f4f;
-	background-color: #294646;
-	border-radius: 4px;
-	min-width: 40px;
-	min-height: 40px;
-	max-width: 40px !important;
-	max-height: 40px !important;
+    margin: 2px;
+    border: 2px solid #4f4f4f;
+    background-color: #294646;
+    border-radius: 4px;
+    min-width: 40px;
+    min-height: 40px;
+    max-width: 40px !important;
+    max-height: 40px !important;
 }
 
 .inventory_cell:hover {
-	background-color: #698394;
-	cursor: pointer;
+    background-color: #698394;
+    cursor: pointer;
 }
 
 .selectedItem {
-	background-color: green;
-	margin: 2px;
-	border: 2px solid #3d3d3d;
-	border-radius: 4px;
-	min-width: 40px;
-	min-height: 40px;
-	max-width: 40px !important;
-	max-height: 40px !important;
+    background-color: green;
+    margin: 2px;
+    border: 2px solid #3d3d3d;
+    border-radius: 4px;
+    min-width: 40px;
+    min-height: 40px;
+    max-width: 40px !important;
+    max-height: 40px !important;
 }
 
 .selectedItem:hover {
-	background-color: #009e00;
-	cursor: pointer;
+    background-color: #009e00;
+    cursor: pointer;
 }
 </style>
 
@@ -88,62 +88,62 @@ import draggable from 'vuedraggable'
 
 /* import other components here */
 export default {
-	components: {
-		draggable
-	},
-	data() {
-		return {
-			inventory: [],
-			length: Game.player.inventory.length,
-			rows: [1, 2, 3, 4],
-			x: 0,
-			y: 0
-		}
-	},
-	created() {},
-	methods: {
-		getInventorySprite(id) {
-			return `../static/images/inventory_sprites/${id}.png`
-		},
-		colorSlot(cell) {
-			if (cell.item !== null && 'cb' in cell.item) {
-				return cell.item.cb.equipped
-			} else {
-				return false
-			}
-		},
-		getInventoryRow(n) {
-			// let inventory = Game.player.inventory
-			let offset = n * (Game.player.inventory.length / this.rows.length)
-			return Game.player.inventory.slice(offset, offset + Game.player.inventory.length / this.rows.length)
-		},
-		useItem(cell, evt) {
-			// drop cell.item
-			if (evt.shiftKey) {
-				cell.item.drop()
-			} else {
-				// use cell.item
-				cell.item.use()
-			}
-		},
-		dropItem(cell, evt) {
-			// drop cell.item
-			cell.item.drop()
-		},
-		getInventory() {
-			return Game.player.inventory
-		},
-		show(cell, e) {
-			e.preventDefault()
-			Game.player.inventory.forEach(slot => {
-				slot.menu = false
-			})
-			this.x = e.clientX
-			this.y = e.clientY
-			this.$nextTick(() => {
-				cell.menu = true
-			})
-		}
-	}
+    components: {
+        draggable
+    },
+    data() {
+        return {
+            inventory: [],
+            length: Game.player.inventory,
+            rows: [1, 2, 3, 4],
+            x: 0,
+            y: 0
+        }
+    },
+    created() {},
+    methods: {
+        getInventorySprite(id) {
+            return `../static/images/inventory_sprites/${id}.png`
+        },
+        colorSlot(cell) {
+            if (cell.item !== null && 'cb' in cell.item) {
+                return cell.item.cb.equipped
+            } else {
+                return false
+            }
+        },
+        getInventoryRow(n) {
+            // let inventory = Game.player.inventory
+            let offset = n * (Game.player.inventory.length / this.rows.length)
+            return Game.player.inventory.slice(offset, offset + Game.player.inventory.length / this.rows.length)
+        },
+        useItem(cell, evt) {
+            // drop cell.item
+            if (evt.shiftKey) {
+                cell.item.drop()
+            } else {
+                // use cell.item
+                cell.item.use()
+            }
+        },
+        dropItem(cell, evt) {
+            // drop cell.item
+            cell.item.drop()
+        },
+        getInventory() {
+            return Game.player.inventory
+        },
+        show(cell, e) {
+            e.preventDefault()
+            Game.player.inventory.forEach(slot => {
+                slot.menu = false
+            })
+            this.x = e.clientX
+            this.y = e.clientY
+            this.$nextTick(() => {
+                cell.menu = true
+            })
+        }
+    }
 }
 </script>

@@ -56,63 +56,61 @@ import { Game } from '@/assets/js/game/Game.js'
 import { xp_levels } from '#/entities/Entity.js'
 
 export default {
-	data() {
-		return {
-			player: Game.player.cb
-		}
-	},
-	methods: {
-		getHP() {
-			return Game.player.cb.hp
-		},
-		getMaxHP() {
-			return Game.player.cb.maxhp
-		},
-		getMana() {
-			return Game.player.cb.mana
-		},
-		getMaxMana() {
-			return Game.player.cb.maxmana
-		},
-		getStrength() {
-			return Game.player.cb.str
-		},
-		getDefence() {
-			return Game.player.cb.def
-		},
-		getDamageRange() {
-			if (Game.player.getMinDmg() === Game.player.getMaxDmg()) return Game.player.getMinDmg()
+    data() {
+        return {}
+    },
+    methods: {
+        getHP() {
+            return Game.player.cb.hp
+        },
+        getMaxHP() {
+            return Game.player.cb.maxhp
+        },
+        getMana() {
+            return Game.player.cb.mana
+        },
+        getMaxMana() {
+            return Game.player.cb.maxmana
+        },
+        getStrength() {
+            return Game.player.cb.str
+        },
+        getDefence() {
+            return Game.player.cb.def
+        },
+        getDamageRange() {
+            if (Game.player.getMinDmg() === Game.player.getMaxDmg()) return Game.player.getMinDmg()
 
-			return Game.player.getMinDmg() + '-' + Game.player.getMaxDmg()
-		},
-		getLevel() {
-			return Game.player.cb.level
-		},
-		getRemainingXP() {
-			return Game.player.remainingXP()
-		},
-		getPercentToLevel() {
-			let costOfLevel = xp_levels[this.getLevel()] - xp_levels[this.getLevel() - 1]
-			let expTowards = Game.player.cb.xp - xp_levels[this.getLevel() - 1]
-			return expTowards / costOfLevel
-		},
-		getCurrentWeapon() {
-			return Game.player.cb.equipment.weapon
-		},
-		getCurrentWeaponEnchantments() {
-			if (this.getCurrentWeapon() !== null) {
-				let enchantments = this.getCurrentWeapon().cb.enchantments
-				if (enchantments.length === 0) return null
-				else if (enchantments.length === 1) return enchantments[0].name
-				else
-					return enchantments.reduce((str, enchantment) => {
-						return str + ', ' + enchantment.name
-					}, '')
-			} else {
-				return null
-			}
-		}
-	}
+            return Game.player.getMinDmg() + '-' + Game.player.getMaxDmg()
+        },
+        getLevel() {
+            return Game.player.cb.level
+        },
+        getRemainingXP() {
+            return Game.player.remainingXP()
+        },
+        getPercentToLevel() {
+            let costOfLevel = xp_levels[this.getLevel()] - xp_levels[this.getLevel() - 1]
+            let expTowards = Game.player.cb.xp - xp_levels[this.getLevel() - 1]
+            return expTowards / costOfLevel
+        },
+        getCurrentWeapon() {
+            return Game.player.cb.equipment.weapon
+        },
+        getCurrentWeaponEnchantments() {
+            if (this.getCurrentWeapon() !== null) {
+                let enchantments = this.getCurrentWeapon().cb.enchantments
+                if (enchantments.length === 0) return null
+                else if (enchantments.length === 1) return enchantments[0].name
+                else
+                    return enchantments.reduce((str, enchantment) => {
+                        return str + ', ' + enchantment.name
+                    }, '')
+            } else {
+                return null
+            }
+        }
+    }
 }
 </script>
 <style>

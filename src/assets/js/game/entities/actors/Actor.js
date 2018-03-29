@@ -193,17 +193,23 @@ export class Actor extends Entity {
 
     /* attacks another actor with a melee attack */
     attack(actor) {
-        let weapon = this.cb.equipment.weapon
+        let { weapon } = this.cb.equipment
         let dmg = weapon !== null ? this.cb.str + weapon.roll() : this.cb.str
         if (weapon && weapon.cb.ranged) dmg = this.cb.str
-        let { attackVerbs, type } = weapon
-        let len = attackVerbs.length
-        let verb = attackVerbs[~~(Math.random() * len)]
-        let evtdamage = `${addPrefix(this.name).capitalize()} ${verb} ${addPrefix(actor.name)} with a ${addPrefix(
-            type.toLowerCase()
-        )} and dealt ${dmg} damage.`
-        if (Game.player === this) Game.log(evtdamage, 'player_move')
-        else Game.log(evtdamage, 'attack')
+        let verb,
+            message = ''
+        if (weapon !== null) {
+            let { attackVerbs, type } = weapon
+            verb = attackVerbs[~~(Math.random() * attackVerbs.length)]
+            message = `${addPrefix(this.name).capitalize()} ${verb} ${addPrefix(actor.name)} with ${addPrefix(
+                type.toLowerCase()
+            )} and dealt ${dmg} damage.`
+        } else {
+            message = `${addPrefix(this.name).capitalize()} attacked ${addPrefix(actor.name)} and dealt ${dmg} damage.`
+        }
+
+        if (Game.player === this) Game.log(message, 'player_move')
+        else Game.log(message, 'attack')
 
         if (dmg > 0) actor.damage(dmg)
 
