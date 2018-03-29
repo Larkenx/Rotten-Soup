@@ -53,8 +53,10 @@ export default class GameDisplay {
                         let frames = [this.getTexture(o.id), this.getTexture(o.animated_id)]
                         let sprite = new PIXI.extras.AnimatedSprite(frames)
                         sprite.position.set(x * this.tileSize, y * this.tileSize)
-                        sprite.animationSpeed = 0.04
-                        sprite.play()
+                        sprite.animationSpeed = 0.03
+                        // pick a random interval for the animation to play at!
+                        let randomInterval = ~~(Math.random() * 200)
+                        setTimeout(() => sprite.play(), randomInterval)
                         this.animatedBackground.addChild(sprite)
                     } else {
                         let sprite = new PIXI.Sprite(this.getTexture(o.id))
@@ -114,7 +116,8 @@ export default class GameDisplay {
             let sprite = new PIXI.extras.AnimatedSprite(frames)
             actor.setSprite(sprite)
             sprite.animationSpeed = 0.065
-            sprite.play()
+            let randomInterval = ~~(Math.random() * 1000)
+            setTimeout(() => sprite.play(), randomInterval)
             if (belowPlayer) this.background.addChildAt(sprite, 1)
             else this.background.addChild(sprite)
             sprite.position.set(actor.x * this.tileSize, actor.y * this.tileSize)
