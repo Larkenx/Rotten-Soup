@@ -128,10 +128,8 @@ export class Actor extends Entity {
             item.cb.equipped = false
             if (this.cb.equipment.weapon == item) this.cb.equipment.weapon = null
         }
-        console.log('Dropping item at:', this.x, this.y)
         item.placeAt(this.x, this.y)
-        console.log('placed item: ', item)
-        Game.display.assignSprite(item, true)
+        Game.display.assignSprite(item, true, 2)
         this.removeFromInventory(item)
     }
 
@@ -151,11 +149,12 @@ export class Actor extends Entity {
     interact(actor) {
         let nx = actor.x - this.x
         let ny = actor.y - this.y
-
-        Game.display.moveSprite(this.sprite, this.x + nx / 2, this.y + ny / 2)
-        setTimeout(() => {
-            Game.display.moveSprite(this.sprite, this.x, this.y)
-        }, 100)
+        if (this === Game.player || actor === Game.player) {
+            Game.display.moveSprite(this.sprite, this.x + nx / 2, this.y + ny / 2)
+            setTimeout(() => {
+                Game.display.moveSprite(this.sprite, this.x, this.y)
+            }, 100)
+        }
         return null
     }
 
@@ -264,6 +263,10 @@ export class Actor extends Entity {
 
             this.death()
         }
+        if (this.sprite !== null) {
+            this.sprite.tint = '0xba1b21'
+            setTimeout(() => (this.sprite.tint = '0xFFFFFF'), 200)
+        }
     }
 
     /* Restore HP up to maxhp */
@@ -296,7 +299,6 @@ export class Actor extends Entity {
             // (e.g if light can pass through, so can an arrow or crossbow bolt)
             if (!tile.visible()) {
                 if (Game.player === this) Game.log(`Your ${ammo.type.toLowerCase()} hit an obstacle!`, 'alert')
-                console.log('Projectile collided with an obstacle!')
                 return
             }
             // if we find an enemy on the tile, we damage it and the projectile stops moving
@@ -304,7 +306,6 @@ export class Actor extends Entity {
                 return e.combat && e.cb.hostile
             })
             if (enemies.length > 0) {
-                console.log('The project collided with an enemy')
                 let enemy = enemies[0]
                 let evtdamage = `${addPrefix(this.name).capitalize()} hit ${addPrefix(enemy.name)} with ${addPrefix(
                     ammo.type.toLowerCase()
@@ -316,7 +317,6 @@ export class Actor extends Entity {
             }
         }
         Game.log(`Your ${ammo.type.toLowerCase()} didn't hit anything!`, 'alert')
-        console.log('The projectile did not hit anything')
         // place the ammo down at
         /*
          let tx = this.x + diff[0]*range;
@@ -333,20 +333,21 @@ export class Actor extends Entity {
         idx = Game.map.actors.indexOf(this)
         Game.map.actors.splice(idx, 1)
         // dump the contents of the actor's inventory (items) onto the ground.
-        if (this.inventory.length > 0) {
-            console.log('Dropping enemy items!')
-            let items = this.items()
-            console.log(items)
-            for (let item of items) {
-                // if the item was previously equipped, it needs to be 'unequipped'
-                this.dropItem(item)
-                console.log(item)
-            }
-        }
+        const numberOfEntities = Game.display.background.children.length
+
         // redraw the tile, either with an appropriate actor or the tile symbol
         /* On death, we want to spray some blood on the tile.
          * We also want to place a corpse corresponding to the actor as well
         */
+
+        if (this.inventory.length > 0) {
+            let items = this.items()
+            for (let item of items) {
+                // if the item was previously equipped, it needs to be 'unequipped'
+                this.dropItem(item)
+            }
+        }
+
         if (getRandomInt(0, 1) === 0) {
             let blood = 2644 - getRandomInt(0, 1)
             // specifically don't want to add blood if it's a skeleton...

@@ -330,7 +330,6 @@ export default class Player extends Actor {
                 Game.clearTempLog()
                 Game.clearSelectedTile()
             } else if (confirmKeys.includes(code)) {
-                console.log(this.validTarget)
                 if (this.validTarget) {
                     if (this.casting) confirmSpellcasting()
                     if (this.targeting) confirmRangedFire()

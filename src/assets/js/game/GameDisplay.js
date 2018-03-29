@@ -53,9 +53,9 @@ export default class GameDisplay {
                         let frames = [this.getTexture(o.id), this.getTexture(o.animated_id)]
                         let sprite = new PIXI.extras.AnimatedSprite(frames)
                         sprite.position.set(x * this.tileSize, y * this.tileSize)
-                        sprite.animationSpeed = 0.03
+                        sprite.animationSpeed = 0.025
                         // pick a random interval for the animation to play at!
-                        let randomInterval = ~~(Math.random() * 200)
+                        let randomInterval = ~~(Math.random() * 150)
                         setTimeout(() => sprite.play(), randomInterval)
                         this.animatedBackground.addChild(sprite)
                     } else {
@@ -107,7 +107,7 @@ export default class GameDisplay {
         this.movingSprites.push({ sprite, target: { x: nx, y: ny } })
     }
 
-    assignSprite(actor, belowPlayer = false) {
+    assignSprite(actor, belowPlayer = false, index = 1) {
         let { x, y, id } = actor
         let props = tileset.tileproperties[actor.id + '']
         // if (actor.sprite === null || actor.sprite === undefined) {
@@ -118,7 +118,7 @@ export default class GameDisplay {
             sprite.animationSpeed = 0.065
             let randomInterval = ~~(Math.random() * 1000)
             setTimeout(() => sprite.play(), randomInterval)
-            if (belowPlayer) this.background.addChildAt(sprite, 1)
+            if (belowPlayer) this.background.addChildAt(sprite, index)
             else this.background.addChild(sprite)
             sprite.position.set(actor.x * this.tileSize, actor.y * this.tileSize)
         } else {

@@ -476,7 +476,7 @@ export let Game = {
         let camera = {
             // camera x,y resides in the upper left corner
             x: Game.player.x - ~~(Game.width / 2),
-            y: Game.player.y - ~~(Game.height / 2)
+            y: Game.player.y - ~~(Game.height / 2) - 1
         }
         let dx = camera.x + ~~(x / this.display.tileSize)
         let dy = camera.y + ~~(y / this.display.tileSize)

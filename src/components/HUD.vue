@@ -48,9 +48,9 @@
                 <v-progress-linear id="hpBar" color="error" :value="(getHP() / getMaxHP()) * 100" height="13"></v-progress-linear>
             </v-flex>
             <v-flex md3 col style="padding-left: 5px;">{{getHP()}} / {{getMaxHP()}}</v-flex>
-						<v-flex md1 >
-							<help-dialog></help-dialog>
-						</v-flex>
+    		<v-flex md1 >
+    			<help-dialog></help-dialog>
+    		</v-flex>
         </v-layout>
 
         <!-- Magic Bar -->
@@ -60,6 +60,9 @@
                 <v-progress-linear id="manaBar" :value="(getMana() / getMaxMana()) * 100" height="13" info></v-progress-linear>
             </v-flex>
             <v-flex md3 col style="padding-left: 5px;">{{getMana()}} / {{getMaxMana()}}</v-flex>
+            <v-flex md1 >
+    			<tool-dialog></tool-dialog>
+    		</v-flex>
         </v-layout>
 
         <!-- Current World -->
@@ -115,6 +118,8 @@ import minimap from './Minimap.vue'
 import statsTabContent from './HUD/StatsTabContent.vue'
 import spellBook from './HUD/Spellbook.vue'
 import helpDialog from '@/components/HelpDialog.vue'
+import toolDialog from '@/components/ToolDialog.vue'
+
 export default {
     data() {
         return {
@@ -150,7 +155,8 @@ export default {
         'mini-map': minimap,
         'stats-tab-content': statsTabContent,
         spellbook: spellBook,
-        'help-dialog': helpDialog
+        'help-dialog': helpDialog,
+        'tool-dialog': toolDialog
     },
     created() {}
 }
