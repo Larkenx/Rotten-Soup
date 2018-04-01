@@ -65,7 +65,8 @@ export default class Player extends Actor {
                 currentSpell: null,
                 spells: [],
                 range: 7 // how far we can see
-            }
+            },
+            keyTimer: null
         })
         this.path = new ROT.Path.AStar(this.x, this.y, pathfinding)
         this.nearbyEnemies = []
@@ -157,6 +158,20 @@ export default class Player extends Actor {
     }
 
     handleEvent(evt) {
+        if (evt.type === 'keydown') {
+            if (this.keyTimer === null) {
+                this.keyTimer = new Date()
+            } else {
+                let start = this.keyTimer.getTime()
+                let now = new Date().getTime()
+                if (!(now - start >= 160)) {
+                    return
+                } else {
+                    // we've waited long enough, but add another timer just in case
+                    this.keyTimer = new Date()
+                }
+            }
+        }
         // updating our vision with the most up to date information
         Object.assign(Game.map.seen_tiles, Game.map.visible_tiles)
         Game.map.visible_tiles = {}
@@ -172,15 +187,17 @@ export default class Player extends Actor {
 
         let endTurn = () => {
             let waitUntilPlayerReleases = evt => {
-                // setTimeout(() => Game.engine.unlock(), 18)
-                window.removeEventListener('keyup', waitUntilPlayerReleases)
-                Game.engine.unlock()
+                this.keyTimer = null
             }
+            // setTimeout(() => Game.engine.unlock(), 18)
+            window.removeEventListener('keyup', waitUntilPlayerReleases)
+
             window.removeEventListener('keydown', this)
             window.removeEventListener('mousemove', this)
             window.removeEventListener('click', this)
             window.addEventListener('keyup', waitUntilPlayerReleases)
             Game.clearTempLog()
+            Game.engine.unlock()
         }
 
         const confirmRangedFire = () => {
