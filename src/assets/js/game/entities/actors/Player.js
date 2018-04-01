@@ -158,20 +158,6 @@ export default class Player extends Actor {
     }
 
     handleEvent(evt) {
-        if (evt.type === 'keydown') {
-            if (this.keyTimer === null) {
-                this.keyTimer = new Date()
-            } else {
-                let start = this.keyTimer.getTime()
-                let now = new Date().getTime()
-                if (!(now - start >= 160)) {
-                    return
-                } else {
-                    // we've waited long enough, but add another timer just in case
-                    this.keyTimer = new Date()
-                }
-            }
-        }
         // updating our vision with the most up to date information
         Object.assign(Game.map.seen_tiles, Game.map.visible_tiles)
         Game.map.visible_tiles = {}
@@ -335,6 +321,21 @@ export default class Player extends Actor {
             71: 'pickup',
             190: 'rest',
             88: 'examine'
+        }
+
+        if (evt.type === 'keydown' && movementKeys.includes(keyMap[code])) {
+            if (this.keyTimer === null) {
+                this.keyTimer = new Date()
+            } else {
+                let start = this.keyTimer.getTime()
+                let now = new Date().getTime()
+                if (!(now - start >= 160)) {
+                    return
+                } else {
+                    // we've waited long enough, but add another timer just in case
+                    this.keyTimer = new Date()
+                }
+            }
         }
 
         if (this.targeting || this.casting || this.examining) {
