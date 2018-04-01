@@ -49,7 +49,7 @@ export let Game = {
     engine: null,
     loading: true,
     levels: {},
-    currentLevel: 'overworld',
+    currentLevel: { name: 'overworld' },
     map: null,
     messageHistory: [],
     tempMessages: [],
@@ -63,7 +63,7 @@ export let Game = {
     init(playerSpriteID) {
         /* !Important! - PlayerID must be allocated before other maps are drawn... */
         this.playerID = playerSpriteID
-        this.currentLevel = 'overworld'
+        this.currentLevel.name = 'overworld'
         this.levels['graveyard'] = new GameMap(graveyard)
         this.levels['graveyard'].revealed = true
         this.levels['Lich Lair'] = new GameMap(lichLair)
@@ -72,7 +72,7 @@ export let Game = {
         this.levels['overworld'].revealed = true
         this.levels['Orc Castle'] = new GameMap(orcCastle)
         this.levels['Orc Castle'].revealed = true
-        this.map = this.levels[this.currentLevel]
+        this.map = this.levels[this.currentLevel.name]
         this.map.revealed = true
         this.playerLocation = this.map.playerLocation
 
@@ -129,7 +129,6 @@ export let Game = {
     renderMap() {
         this.display.renderMap(this.map)
         this.targetReticle = new PIXI.Sprite(this.display.tilesetMapping[7418])
-        console.log(this.targetReticle)
         this.targetReticle.visible = false
         this.display.background.addChild(this.targetReticle)
     },
@@ -209,14 +208,14 @@ export let Game = {
 
         this.map.playerLocation = [Game.player.x, Game.player.y]
         // Save the old map
-        this.levels[this.currentLevel] = this.map // add the old map to 'levels'
+        this.levels[this.currentLevel.name] = this.map // add the old map to 'levels'
         // Unshift player from ladder position (so that when resurfacing, no player is present)
         this.getTile(this.player.x, this.player.y).removeActor(this.player)
         // Add the new GameMap to the game
         // TODO: remove the actor from the map
         this.map.actors = this.map.actors.filter(a => a !== this.player)
         this.map = this.levels[newLevel]
-        this.currentLevel = newLevel
+        this.currentLevel.name = newLevel
         this.playerLocation = this.map.playerLocation
         this.player.placeAt(this.map.playerLocation[0], this.map.playerLocation[1])
         this.map.actors.push(this.player)
@@ -225,6 +224,18 @@ export let Game = {
         this.width = this.map.width < this.displayOptions.width ? this.map.width : this.displayOptions.width
         this.height = this.map.height < this.displayOptions.height ? this.map.height : this.displayOptions.height
         this.scheduleAllActors()
+        // Clear the last visible tiles that were available to be seen
+        Object.assign(this.map.seen_tiles, this.map.visible_tiles)
+        this.map.visible_tiles = {}
+
+        // FOV calculations
+        let fov = new ROT.FOV.PreciseShadowcasting((x, y) => {
+            return this.inbounds(x, y) && this.getTile(x, y).visible()
+        })
+
+        fov.compute(this.player.x, this.player.y, this.player.cb.range, (x, y, r, visibility) => {
+            this.map.visible_tiles[x + ',' + y] = true
+        })
         this.minimap.setOptions({
             width: this.map.width,
             height: this.map.height,

@@ -147,18 +147,6 @@ export default class Player extends Actor {
         this.path = new ROT.Path.AStar(this.x, this.y, pathfinding)
         this.nearbyEnemies = Game.getNearbyEnemies()
         this.currentLevel = Game.currentLevel
-        // Clear the last visible tiles that were available to be seen
-        Object.assign(Game.map.seen_tiles, Game.map.visible_tiles)
-        Game.map.visible_tiles = {}
-
-        // FOV calculations
-        let fov = new ROT.FOV.PreciseShadowcasting(function(x, y) {
-            return Game.inbounds(x, y) && Game.map.data[y][x].visible()
-        })
-
-        fov.compute(this.x, this.y, this.cb.range, function(x, y, r, visibility) {
-            Game.map.visible_tiles[x + ',' + y] = true
-        })
 
         Game.engine.lock()
         window.addEventListener('keydown', this)
@@ -169,6 +157,19 @@ export default class Player extends Actor {
     }
 
     handleEvent(evt) {
+        // updating our vision with the most up to date information
+        Object.assign(Game.map.seen_tiles, Game.map.visible_tiles)
+        Game.map.visible_tiles = {}
+
+        // FOV calculations
+        let fov = new ROT.FOV.PreciseShadowcasting((x, y) => {
+            return Game.inbounds(x, y) && Game.getTile(x, y).visible()
+        })
+
+        fov.compute(Game.player.x, Game.player.y, Game.player.cb.range, (x, y, r, visibility) => {
+            Game.map.visible_tiles[x + ',' + y] = true
+        })
+
         let endTurn = () => {
             let waitUntilPlayerReleases = evt => {
                 // setTimeout(() => Game.engine.unlock(), 18)

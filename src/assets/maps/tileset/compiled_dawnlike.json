@@ -2712,14 +2712,14 @@
          "animated":true,
          "animated_id":3866,
          "entity":true,
-         "entity_id":6
+         "entity_id":0
         },
      "3859":
         {
          "animated":true,
          "animated_id":3867,
          "entity":true,
-         "entity_id":6
+         "entity_id":0
         },
      "3860":
         {
@@ -20937,12 +20937,12 @@
          "animated":true,
          "animated_id":8170,
          "entity":true,
-         "entity_id":"6"
+         "entity_id":"0"
         },
      "8163":
         {
          "animated":true,
-         "animated_id":0,
+         "animated_id":8171,
          "entity":true,
          "entity_id":"6"
         },
@@ -20986,14 +20986,14 @@
          "animated":true,
          "animated_id":0,
          "entity":true,
-         "entity_id":"6"
+         "entity_id":"0"
         },
      "8170":
         {
          "animated":true,
          "animated_id":0,
          "entity":true,
-         "entity_id":"6"
+         "entity_id":"0"
         },
      "8171":
         {

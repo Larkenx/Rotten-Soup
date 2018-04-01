@@ -24,6 +24,9 @@ export class Corpse extends Entity {
         Game.engine.lock()
         this.turns++
         // corpse has rotted after 40 turns
+        if (this.turns === 30) this.sprite.tint = 0x31af48
+        if (this.turns === 35) this.sprite.tint = 0x267735
+
         if (this.turns >= 40) {
             let idx = Game.engine._scheduler.remove(this)
             let ctile = Game.map.data[this.y][this.x]

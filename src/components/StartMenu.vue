@@ -102,13 +102,11 @@ export default {
             playerSprites: [
                 {
                     name: 'Monk',
-                    description:
-                        'A master of martial arts with special healing abilities',
+                    description: 'A master of martial arts with special healing abilities',
                     abilities: [
                         {
                             name: 'Magic Dart',
-                            description:
-                                'A magical dart of energy that deals between 1-8 damage to a target',
+                            description: 'A magical dart of energy that deals between 1-8 damage to a target',
                             school: 'conjuration',
                             art: 'magic_dart'
                         }
@@ -123,13 +121,11 @@ export default {
                 },
                 {
                     name: 'Ninja',
-                    description:
-                        'A sneaky, hidden ninja of a secret order with the ability to stealth',
+                    description: 'A sneaky, hidden ninja of a secret order with the ability to stealth',
                     abilities: [
                         {
                             name: 'Magic Dart',
-                            description:
-                                'A magical dart of energy that deals between 1-8 damage to a target',
+                            description: 'A magical dart of energy that deals between 1-8 damage to a target',
                             school: 'conjuration',
                             art: 'magic_dart'
                         }
@@ -144,13 +140,11 @@ export default {
                 },
                 {
                     name: 'Knight',
-                    description:
-                        'A proud knight, sworn to uphold chivalric values',
+                    description: 'A proud knight, sworn to uphold chivalric values',
                     abilities: [
                         {
                             name: 'Magic Dart',
-                            description:
-                                'A magical dart of energy that deals between 1-8 damage to a target',
+                            description: 'A magical dart of energy that deals between 1-8 damage to a target',
                             school: 'conjuration',
                             art: 'magic_dart'
                         }
@@ -161,17 +155,15 @@ export default {
                         dexterity: 1,
                         wisdom: 1
                     },
-                    sprites: [4213, 4693, 3853]
+                    sprites: [4213, 4693]
                 },
                 {
                     name: 'Barbarian',
-                    description:
-                        'A wild and vicious savage with extreme strength and rage',
+                    description: 'A wild and vicious savage with extreme strength and rage',
                     abilities: [
                         {
                             name: 'Magic Dart',
-                            description:
-                                'A magical dart of energy that deals between 1-8 damage to a target',
+                            description: 'A magical dart of energy that deals between 1-8 damage to a target',
                             school: 'conjuration',
                             art: 'magic_dart'
                         }
@@ -186,13 +178,11 @@ export default {
                 },
                 {
                     name: 'Wizard',
-                    description:
-                        'A scholar of the arcane and all things magical',
+                    description: 'A scholar of the arcane and all things magical',
                     abilities: [
                         {
                             name: 'Magic Dart',
-                            description:
-                                'A magical dart of energy that deals between 1-8 damage to a target',
+                            description: 'A magical dart of energy that deals between 1-8 damage to a target',
                             school: 'conjuration',
                             art: 'magic_dart'
                         }
@@ -203,7 +193,7 @@ export default {
                         dexterity: 1,
                         wisdom: 1
                     },
-                    sprites: [8161, 3858, 4218, 4813]
+                    sprites: [3858, 4218, 4813]
                 }
             ]
         }

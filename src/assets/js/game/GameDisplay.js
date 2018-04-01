@@ -27,10 +27,12 @@ export default class GameDisplay {
 		*/
         this.staticBackground = null
         this.animatedBackground = null
+        this.FOVBackground = null
         this.movingSprites = []
         this.viewPort = null
         this.tileSize = 32
         this.tilesetMapping = {}
+        this.spriteBox = [] // Game.width * Game.height sprites to overlay screen for FOV
     }
     /*
 			I want to iterate through every tile in the map that is an obstacle (animated or not).
@@ -42,7 +44,6 @@ export default class GameDisplay {
     renderMap(map) {
         let { renderer, stage } = this.app
         stage.removeChildren()
-
         let staticBackground = new PIXI.Container()
         this.animatedBackground = new PIXI.Container()
         for (let y = 0; y < map.height; y++) {
@@ -74,15 +75,146 @@ export default class GameDisplay {
         this.background.addChild(this.staticBackground)
         this.background.addChild(this.animatedBackground)
         stage.addChild(this.background)
-        let x = Game.player.x - ~~(Game.width / 2)
-        let y = Game.player.y - ~~(Game.height / 2)
-        this.background.position.set(-x * this.tileSize, -y * this.tileSize)
+        let camera = {
+            // camera x,y resides in the upper left corner
+            x: Game.player.x - ~~(Game.width / 2),
+            y: Game.player.y - ~~(Game.height / 2),
+            width: Math.ceil(Game.width),
+            height: Game.height
+        }
+        let startingPos = [camera.x, camera.y]
+        if (camera.x < 0) {
+            // far left
+            startingPos[0] = 0
+        }
+        if (camera.x + camera.width > Game.map.width) {
+            // far right
+            startingPos[0] = Game.map.width - camera.width
+        }
+        if (camera.y <= 0) {
+            // at the top of the map
+            startingPos[1] = 0
+        }
+        if (camera.y + camera.height > Game.map.height) {
+            // at the bottom of the map
+            startingPos[1] = Game.map.height - camera.height
+        }
+        let endingPos = [startingPos[0] + camera.width, startingPos[1] + camera.height]
+        this.background.position.set(-startingPos[0] * this.tileSize, -startingPos[1] * this.tileSize)
         // draw the actors last because they should be on the top-most layer
         for (let a of map.actors) {
             if (!(a instanceof Item)) {
                 this.assignSprite(a)
             }
         }
+
+        // if the map isn't completely revealed, we need to generate some FOV shadowing hiding the
+        // unvisited parts of the map
+        if (!map.revealed) {
+            this.FOVBackground = new PIXI.Container()
+            this.spriteBox = [] // Game.width * Game.height sprites to overlay screen for FOV
+            for (let i = 0; i < Game.map.height; i++) {
+                this.spriteBox.push([])
+                for (let j = 0; j < Game.map.width; j++) {
+                    let sprite = new PIXI.Sprite(this.getTexture(7026))
+                    sprite.position.set(j * this.tileSize, i * this.tileSize)
+                    this.spriteBox[i].push(sprite)
+                    this.FOVBackground.addChild(sprite)
+                }
+            }
+
+            for (let y = 0; y < map.height; y++) {
+                for (let x = 0; x < map.width; x++) {
+                    if (!map.visible_tiles[x + ',' + y]) {
+                        if (x + ',' + y in map.seen_tiles) {
+                            this.spriteBox[y][x].alpha = 0.5
+                        } else {
+                            this.spriteBox[y][x].alpha = 1
+                        }
+                    } else {
+                        this.spriteBox[y][x].visible = false
+                    }
+                }
+            }
+
+            this.background.addChild(this.FOVBackground)
+        }
+    }
+
+    updateMap() {
+        let camera = {
+            // camera x,y resides in the upper left corner
+            x: Game.player.x - ~~(Game.width / 2),
+            y: Game.player.y - ~~(Game.height / 2),
+            width: Math.ceil(Game.width),
+            height: Game.height
+        }
+        let startingPos = [camera.x, camera.y]
+        if (camera.x < 0) {
+            startingPos[0] = 0
+        }
+        if (camera.x + camera.width > Game.map.width) {
+            startingPos[0] = Game.map.width - camera.width
+        }
+        if (camera.y <= 0) {
+            startingPos[1] = 0
+        }
+        if (camera.y + camera.height > Game.map.height) {
+            startingPos[1] = Game.map.height - camera.height
+        }
+        let endingPos = [startingPos[0] + camera.width, startingPos[1] + camera.height]
+        if (!Game.map.revealed) {
+            Object.assign(Game.map.seen_tiles, Game.map.visible_tiles)
+            Game.map.visible_tiles = {}
+
+            // FOV calculations
+            let fov = new ROT.FOV.PreciseShadowcasting((x, y) => {
+                return Game.inbounds(x, y) && Game.getTile(x, y).visible()
+            })
+
+            fov.compute(Game.player.x, Game.player.y, Game.player.cb.range, (x, y, r, visibility) => {
+                Game.map.visible_tiles[x + ',' + y] = true
+            })
+            for (let y = 0; y < Game.map.height; y++) {
+                for (let x = 0; x < Game.map.width; x++) {
+                    if (Game.map.visible_tiles[x + ',' + y]) {
+                        this.spriteBox[y][x].visible = false
+                    } else {
+                        // tile is not directly visible
+                        this.spriteBox[y][x].visible = true
+                        if (Game.map.seen_tiles[x + ',' + y]) {
+                            // we can do some special transparency to make tiles closest to visible tiles brighter, giving some illusion of
+                            // less & less vision as you go farther back
+                            let visible = (...s) => s.some(c => Game.map.visible_tiles[c])
+                            let lighter1 = visible(
+                                `${x - 1},${y}`,
+                                `${x + 1},${y}`,
+                                `${x},${y - 1}`,
+                                `${x},${y + 1}`,
+                                `${x - 1},${y - 1}`,
+                                `${x + 1},${y + 1}`,
+                                `${x - 1},${y + 1}`,
+                                `${x + 1},${y - 1}`
+                            )
+                            // let lighter2 = visible(
+                            //     `${x - 2},${y}`,
+                            //     `${x + 2},${y}`,
+                            //     `${x},${y - 2}`,
+                            //     `${x},${y + 2}`,
+                            //     `${x - 2},${y - 2}`,
+                            //     `${x + 2},${y + 2}`,
+                            //     `${x - 2},${y + 2}`,
+                            //     `${x + 2},${y - 2}`
+                            // )
+                            this.spriteBox[y][x].alpha = lighter1 ? 0.5 : 0.7
+                        } else {
+                            this.spriteBox[y][x].alpha = 1
+                        }
+                    }
+                }
+            }
+        }
+        this.moveSprite(this.background, -startingPos[0], -startingPos[1])
     }
 
     getTexture(id) {
@@ -137,39 +269,6 @@ export default class GameDisplay {
 
     removeChild(sprite) {
         this.background.removeChild(sprite)
-    }
-
-    updateMap() {
-        let camera = {
-            // camera x,y resides in the upper left corner
-            x: Game.player.x - ~~(Game.width / 2),
-            y: Game.player.y - ~~(Game.height / 2),
-            width: Math.ceil(Game.width),
-            height: Game.height
-        }
-        let startingPos = [camera.x, camera.y]
-        if (camera.x < 0) {
-            // far left
-            startingPos[0] = 0
-        }
-        if (camera.x + camera.width > Game.map.width) {
-            // far right
-            startingPos[0] = Game.map.width - camera.width
-        }
-        if (camera.y <= 0) {
-            // at the top of the map
-            startingPos[1] = 0
-        }
-        if (camera.y + camera.height > Game.map.height) {
-            // at the bottom of the map
-            startingPos[1] = Game.map.height - camera.height
-        }
-        Game.camera = {
-            x: startingPos[0],
-            y: startingPos[1]
-        }
-        let { x, y } = Game.camera
-        this.moveSprite(this.background, -x, -y)
     }
 
     getContainer() {
@@ -233,11 +332,6 @@ export default class GameDisplay {
                     }
                 }
                 this.app.ticker.add(delta => renderLoop(delta))
-                let x = Game.player.x - ~~(Game.width / 2)
-                let y = Game.player.y - ~~(Game.height / 2)
-                // this.moveSprite(this.background, ...startingPos.map(c => -c))
-                console.log(x, y)
-                this.background.position.set(-x * this.tileSize, -y * this.tileSize)
             })
     }
 
