@@ -1,24 +1,24 @@
 <style>
 .ability {
-	cursor: pointer;
-	border: 2px solid #4f4f4f;
-	border-radius: 4px;
+    cursor: pointer;
+    border: 2px solid #4f4f4f;
+    border-radius: 4px;
 }
 
 .sprite {
-	cursor: pointer;
+    cursor: pointer;
 }
 
 .sprite:hover {
-	cursor: pointer;
-	background-color: #565656;
-	border-radius: 2px;
+    cursor: pointer;
+    background-color: #565656;
+    border-radius: 2px;
 }
 
 .spriteIsSelected {
-	cursor: pointer;
-	background-color: rgb(103, 141, 255);
-	border-radius: 2px;
+    cursor: pointer;
+    background-color: rgb(103, 141, 255);
+    border-radius: 2px;
 }
 </style>
 
@@ -94,123 +94,123 @@
 // import { Game } from '@/assets/js/game/Game.js'
 
 export default {
-	name: 'start-menu',
-	// props: ['Game'],
-	data() {
-		return {
-			selectedSprite: null,
-			playerSprites: [
-				{
-					name: 'Monk',
-					description: 'A master of martial arts with special healing abilities',
-					abilities: [
-						{
-							name: 'Magic Dart',
-							description: 'A magical dart of energy that deals between 1-8 damage to a target',
-							school: 'conjuration',
-							art: 'magic_dart'
-						}
-					],
-					stats: {
-						hp: 50,
-						strength: 1,
-						dexterity: 1,
-						wisdom: 1
-					},
-					sprites: [4812, 4453, 3859, 4219]
-				},
-				{
-					name: 'Ninja',
-					description: 'A sneaky, hidden ninja of a secret order with the ability to stealth',
-					abilities: [
-						{
-							name: 'Magic Dart',
-							description: 'A magical dart of energy that deals between 1-8 damage to a target',
-							school: 'conjuration',
-							art: 'magic_dart'
-						}
-					],
-					stats: {
-						hp: 50,
-						strength: 1,
-						dexterity: 1,
-						wisdom: 1
-					},
-					sprites: [4334, 4814]
-				},
-				{
-					name: 'Knight',
-					description: 'A proud knight, sworn to uphold chivalric values',
-					abilities: [
-						{
-							name: 'Magic Dart',
-							description: 'A magical dart of energy that deals between 1-8 damage to a target',
-							school: 'conjuration',
-							art: 'magic_dart'
-						}
-					],
-					stats: {
-						hp: 50,
-						strength: 1,
-						dexterity: 1,
-						wisdom: 1
-					},
-					sprites: [4213, 4693, 3853]
-				},
-				{
-					name: 'Barbarian',
-					description: 'A wild and vicious savage with extreme strength and rage',
-					abilities: [
-						{
-							name: 'Magic Dart',
-							description: 'A magical dart of energy that deals between 1-8 damage to a target',
-							school: 'conjuration',
-							art: 'magic_dart'
-						}
-					],
-					stats: {
-						hp: 50,
-						strength: 1,
-						dexterity: 1,
-						wisdom: 1
-					},
-					sprites: [4337, 4336]
-				},
-				{
-					name: 'Wizard',
-					description: 'A scholar of the arcane and all things magical',
-					abilities: [
-						{
-							name: 'Magic Dart',
-							description: 'A magical dart of energy that deals between 1-8 damage to a target',
-							school: 'conjuration',
-							art: 'magic_dart'
-						}
-					],
-					stats: {
-						hp: 50,
-						strength: 1,
-						dexterity: 1,
-						wisdom: 1
-					},
-					sprites: [8161, 3858, 4218, 4813]
-				}
-			]
-		}
-	},
-	created() {},
-	methods: {
-		getPlayerSpriteImage(id) {
-			return `../static/images/player_sprites/${id}.png`
-		},
-		selectSprite(id) {
-			this.$emit('spriteSelected', id)
-			// this.selectedSprite = id
-			// this.loadGame()
-		},
-		getSpellSplashArt(school, name) {
-			return `../static/images/spells/${school}/${name}.png`
-		}
-	}
+    name: 'start-menu',
+    // props: ['Game'],
+    data() {
+        return {
+            selectedSprite: null,
+            playerSprites: [
+                {
+                    name: 'Monk',
+                    description: 'A master of martial arts with special healing abilities',
+                    abilities: [
+                        {
+                            name: 'Magic Dart',
+                            description: 'A magical dart of energy that deals between 1-8 damage to a target',
+                            school: 'conjuration',
+                            art: 'magic_dart'
+                        }
+                    ],
+                    stats: {
+                        hp: 50,
+                        strength: 1,
+                        dexterity: 1,
+                        wisdom: 1
+                    },
+                    sprites: [4812, 4453, 3859, 4219]
+                },
+                {
+                    name: 'Ninja',
+                    description: 'A sneaky, hidden ninja of a secret order with the ability to stealth',
+                    abilities: [
+                        {
+                            name: 'Magic Dart',
+                            description: 'A magical dart of energy that deals between 1-8 damage to a target',
+                            school: 'conjuration',
+                            art: 'magic_dart'
+                        }
+                    ],
+                    stats: {
+                        hp: 50,
+                        strength: 1,
+                        dexterity: 1,
+                        wisdom: 1
+                    },
+                    sprites: [4334, 4814]
+                },
+                {
+                    name: 'Knight',
+                    description: 'A proud knight, sworn to uphold chivalric values',
+                    abilities: [
+                        {
+                            name: 'Magic Dart',
+                            description: 'A magical dart of energy that deals between 1-8 damage to a target',
+                            school: 'conjuration',
+                            art: 'magic_dart'
+                        }
+                    ],
+                    stats: {
+                        hp: 50,
+                        strength: 1,
+                        dexterity: 1,
+                        wisdom: 1
+                    },
+                    sprites: [4213, 4693]
+                },
+                {
+                    name: 'Barbarian',
+                    description: 'A wild and vicious savage with extreme strength and rage',
+                    abilities: [
+                        {
+                            name: 'Magic Dart',
+                            description: 'A magical dart of energy that deals between 1-8 damage to a target',
+                            school: 'conjuration',
+                            art: 'magic_dart'
+                        }
+                    ],
+                    stats: {
+                        hp: 50,
+                        strength: 1,
+                        dexterity: 1,
+                        wisdom: 1
+                    },
+                    sprites: [4337, 4336]
+                },
+                {
+                    name: 'Wizard',
+                    description: 'A scholar of the arcane and all things magical',
+                    abilities: [
+                        {
+                            name: 'Magic Dart',
+                            description: 'A magical dart of energy that deals between 1-8 damage to a target',
+                            school: 'conjuration',
+                            art: 'magic_dart'
+                        }
+                    ],
+                    stats: {
+                        hp: 50,
+                        strength: 1,
+                        dexterity: 1,
+                        wisdom: 1
+                    },
+                    sprites: [3858, 4218, 4813]
+                }
+            ]
+        }
+    },
+    created() {},
+    methods: {
+        getPlayerSpriteImage(id) {
+            return `../static/images/player_sprites/${id}.png`
+        },
+        selectSprite(id) {
+            this.$emit('spriteSelected', id)
+            // this.selectedSprite = id
+            // this.loadGame()
+        },
+        getSpellSplashArt(school, name) {
+            return `../static/images/spells/${school}/${name}.png`
+        }
+    }
 }
 </script>

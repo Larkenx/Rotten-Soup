@@ -20,7 +20,6 @@ import { Game } from '#/Game.js'
 export default {
 	data() {
 		return {
-			player: Game.player,
 			messages: Game.messageHistory,
 			tempMessages: Game.tempMessages
 		}

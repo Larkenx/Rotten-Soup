@@ -43,36 +43,35 @@ import { Game } from '@/assets/js/game/Game.js'
 
 /* import other components here */
 export default {
-	data() {
-		return {
-			player: Game.player,
-			enemies: Game.player.nearbyEnemies
-		}
-	},
-	methods: {
-		getNearbyEnemies() {
-			return this.player.nearbyEnemies
-		}
-	},
-	created() {}
+    data() {
+        return {
+            enemies: Game.player.nearbyEnemies
+        }
+    },
+    methods: {
+        getNearbyEnemies() {
+            return Game.player.nearbyEnemies
+        }
+    },
+    created() {}
 }
 </script>
 <style>
-    .enemy_col {
-        cursor: pointer;
-        border: 2px solid #4f4f4f;
-        background-color: #142929;
-        border-radius: 4px;
-        /* margin: 2px; */
-        max-height: 35px;
-    }
+.enemy_col {
+    cursor: pointer;
+    border: 2px solid #4f4f4f;
+    background-color: #142929;
+    border-radius: 4px;
+    /* margin: 2px; */
+    max-height: 35px;
+}
 
-    .enemy_col:hover {
-        cursor: pointer;
-        border: 2px solid #4f4f4f;
-        background-color: #557081;
-        border-radius: 4px;
-        /* margin: 2px; */
-        max-height: 32px;
-    }
+.enemy_col:hover {
+    cursor: pointer;
+    border: 2px solid #4f4f4f;
+    background-color: #557081;
+    border-radius: 4px;
+    /* margin: 2px; */
+    max-height: 32px;
+}
 </style>

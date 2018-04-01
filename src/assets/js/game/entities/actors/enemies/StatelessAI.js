@@ -146,6 +146,7 @@ export class StatelessAI extends Actor {
 	}
 
 	interact(actor) {
+		super.interact(actor)
 		if (actor === Game.player) {
 			this.attack(actor)
 		} else {
@@ -157,9 +158,9 @@ export class StatelessAI extends Actor {
 		let dmg = getDiceRoll(2, this.cb.str)
 
 		let len = this.cb.description.length
-		let evtdamage = `${addPrefix(this.name).capitalize()}${this.cb.description[Math.floor(Math.random() * len)]}${addPrefix(
-			actor.name
-		)} and dealt ${dmg} damage.`
+		let evtdamage = `${addPrefix(this.name).capitalize()}${
+			this.cb.description[Math.floor(Math.random() * len)]
+		}${addPrefix(actor.name)} and dealt ${dmg} damage.`
 
 		if (Game.player === this) Game.log(evtdamage, 'player_move')
 		else Game.log(evtdamage, 'attack')
