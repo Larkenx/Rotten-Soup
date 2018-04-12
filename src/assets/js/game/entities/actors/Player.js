@@ -81,7 +81,7 @@ export default class Player extends Actor {
         this.addToInventory(sword)
         super.equipWeapon(this.inventory[0].item)
         this.addToInventory(createBow(this.x, this.y, 664))
-        this.addToInventory(new SteelArrow(this.x, this.y, 784, 5))
+        this.addToInventory(new SteelArrow(this.x, this.y, 784, 30))
         this.addToInventory(new HealthPotion(this.x, this.y, 488))
         this.addToInventory(new ManaPotion(this.x, this.y, 608))
 
@@ -215,6 +215,22 @@ export default class Player extends Actor {
             }
             this.targeting = false
             this.validTarget = null
+            // create an arrow sprite and move it to the fired location
+            // let ammoSprite = new PIXI.Sprite(Game.display.getTexture(ammo.id))
+            // Game.display.background.addChild(ammoSprite)
+            // ammoSprite.position.set(this.x * Game.display.tileSize, this.y * Game.display.tileSize)
+            // // ammoSprite.scale.y = -1
+            // ammoSprite.anchor.set(0.5)
+            // // Math.atan2(tile.x - this.x, tile.y - this.y)
+            // ammoSprite.rotation = 2.356
+            // let x = 0
+            // let y = 0
+            // if (tile.x < this.x) x = tile.x - this.x
+            // if (this.x < tile.x) x = this.x - tile.x
+            // if (tile.y > this.y) y = tile.y - this.y
+            // if (this.y < tile.y) y = this.y - tile.y
+            // ammoSprite.rotation += Math.atan2(x, y)
+            // Game.display.moveSprite(ammoSprite, tile.x, tile.y)
             Game.clearSelectedTile()
             endTurn()
         }
