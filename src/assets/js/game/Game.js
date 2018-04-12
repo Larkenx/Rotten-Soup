@@ -1,7 +1,7 @@
 import ROT from 'rot-js'
 import * as PIXI from 'pixi.js'
 
-import { GameMap, getTilesetCoords } from '#/map/GameMap.js'
+import { getTilesetCoords, createMapFromJSON } from '#/map/GameMap.js'
 import GameDisplay from '#/GameDisplay.js'
 import { Actor } from '#/entities/actors/Actor.js'
 import { Entity } from '#/entities/Entity.js'
@@ -64,13 +64,13 @@ export let Game = {
         /* !Important! - PlayerID must be allocated before other maps are drawn... */
         this.playerID = playerSpriteID
         this.currentLevel.name = 'overworld'
-        this.levels['graveyard'] = new GameMap(graveyard)
+        this.levels['graveyard'] = createMapFromJSON(graveyard)
         this.levels['graveyard'].revealed = true
-        this.levels['Lich Lair'] = new GameMap(lichLair)
+        this.levels['Lich Lair'] = createMapFromJSON(lichLair)
         this.levels['Lich Lair'].revealed = true
-        this.levels['overworld'] = new GameMap(overworldMap)
+        this.levels['overworld'] = createMapFromJSON(overworldMap)
         this.levels['overworld'].revealed = true
-        this.levels['Orc Castle'] = new GameMap(orcCastle)
+        this.levels['Orc Castle'] = createMapFromJSON(orcCastle)
         this.levels['Orc Castle'].revealed = true
         this.map = this.levels[this.currentLevel.name]
         this.map.revealed = true
@@ -178,9 +178,9 @@ export let Game = {
         if (this.levels[newLevel] === undefined) {
             // generating a new random room
             if (newLevel.toLowerCase().includes('cave')) {
-                this.levels[newLevel] = new GameMap(randomCave(80, 40, dir, level))
+                this.levels[newLevel] = createMapFromJSON(randomCave(80, 40, dir, level))
             } else {
-                this.levels[newLevel] = new GameMap(randomDungeon(40, 40, dir, level))
+                this.levels[newLevel] = createMapFromJSON(randomDungeon(40, 40, dir, level))
             }
             this.levels[newLevel].revealed = false
             for (let actor of this.levels[newLevel].actors) {
