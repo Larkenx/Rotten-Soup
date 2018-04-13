@@ -32,7 +32,7 @@ import { NecromancySpellBook } from '#/entities/items/misc/Spellbook.js'
 import Ladder from '#/entities/misc/Ladder.js'
 import LevelTransition from '#/entities/misc/LevelTransition.js'
 
-const entityShop = {
+export const entityShop = {
     0: (x, y, id) => {
         return new Player(x, y, id)
     },
@@ -158,6 +158,10 @@ export class GameMap {
         // Process all of the json layers
         // process the group layers last. this is specifically for placing static itemsets into treasure chests in the overworld.
         // process it last so that all of the chest entities have been created already
+    }
+
+    getTile(x, y) {
+        return this.data[y][x]
     }
 
     createFromJSON({ layers }) {

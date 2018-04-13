@@ -68,7 +68,7 @@ export let Game = {
         this.levels['graveyard'].revealed = true
         this.levels['Lich Lair'] = createMapFromJSON(lichLair)
         this.levels['Lich Lair'].revealed = true
-        this.levels['overworld'] = createMapFromJSON(overworldMap)
+        this.levels['overworld'] = randomDungeon(40, 40, 'down', 1) // createMapFromJSON(overworldMap)
         this.levels['overworld'].revealed = true
         this.levels['Orc Castle'] = createMapFromJSON(orcCastle)
         this.levels['Orc Castle'].revealed = true
@@ -178,9 +178,9 @@ export let Game = {
         if (this.levels[newLevel] === undefined) {
             // generating a new random room
             if (newLevel.toLowerCase().includes('cave')) {
-                this.levels[newLevel] = createMapFromJSON(randomCave(80, 40, dir, level))
+                this.levels[newLevel] = randomCave(80, 40, dir, level)
             } else {
-                this.levels[newLevel] = createMapFromJSON(randomDungeon(40, 40, dir, level))
+                this.levels[newLevel] = randomDungeon(40, 40, dir, level)
             }
             this.levels[newLevel].revealed = false
             for (let actor of this.levels[newLevel].actors) {

@@ -93,7 +93,7 @@ export default {
         'message-log': messageLog
     },
     created() {
-        // this.loadGame(4219)
+        this.loadGame(4219)
     },
     mounted() {},
     methods: {

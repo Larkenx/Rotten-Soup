@@ -3,9 +3,40 @@
  */
 import ROT from 'rot-js'
 import { Game } from '#/Game.js'
+import { GameMap } from '#/map/GameMap.js'
+import Player from '#/entities/actors/Player.js'
+import NPC from '#/entities/actors/NPC.js'
+// Enemies
+import Goblin from '#/entities/actors/enemies/Goblin.js'
+import Kobold from '#/entities/actors/enemies/Kobold.js'
+import Orc from '#/entities/actors/enemies/Orc.js'
+import Rat from '#/entities/actors/enemies/Rat.js'
+import Bat from '#/entities/actors/enemies/Bat.js'
+import Skeleton from '#/entities/actors/enemies/Skeleton.js'
+import Zombie from '#/entities/actors/enemies/Zombie.js'
+import { Corpse, corpseTypes } from '#/entities/items/misc/Corpse.js'
+
+import Lich from '#/entities/actors/enemies/boss/Lich.js'
+// Items
+// Weapons
+import { createSword, Sword } from '#/entities/items/weapons/Sword.js'
+import { Bow, createBow } from '#/entities/items/weapons/ranged/Bow.js'
+import { SteelArrow } from '#/entities/items/weapons/ranged/ammo/Arrow.js'
+// Potions
+import HealthPotion from '#/entities/items/potions/HealthPotion.js'
+import StrengthPotion from '#/entities/items/potions/StrengthPotion.js'
+import ManaPotion from '#/entities/items/potions/ManaPotion.js'
+// Misc
+import Chest from '#/entities/misc/Chest.js'
+import Door from '#/entities/misc/Door.js'
+import LockedDoor from '#/entities/misc/LockedDoor.js'
+import Key from '#/entities/items/misc/Key.js'
+import { NecromancySpellBook } from '#/entities/items/misc/Spellbook.js'
+import Ladder from '#/entities/misc/Ladder.js'
+import LevelTransition from '#/entities/misc/LevelTransition.js'
 import { getRandomInt, getNormalRandomInt, randomProperty } from '#/utils/HelperFunctions.js'
 
-const symbolToEntityShop = {
+const actorTextures = {
     ORC: [5292, 5293, 5294, 5295, 5296, 5297, 5299],
     EMPOWERED_ORC: [5298],
     GOBLIN: [7440, 7441, 7442, 7443, 7444, 7445, 7446],
@@ -27,32 +58,36 @@ const randomTile = validTiles => {
     }
 }
 
+/* Returns a randomly generated textured dungeon in GameMap form  */
 export function randomDungeon(width, height, dir, level = 1) {
-    let floor = {
-        upperLeft: 7736,
-        top: 7737,
-        upperRight: 7738,
+    let gameMap = new GameMap(width, height)
 
-        left: 7856,
-        center: 7857,
-        right: 7858,
+    /* Texture IDs */
+    const floor = {
+        upperLeft: 7735,
+        top: 7736,
+        upperRight: 7737,
 
-        lowerLeft: 7976,
-        bottom: 7977,
-        lowerRight: 7978,
+        left: 7855,
+        center: 7856,
+        right: 7857,
 
-        endLeft: 7860,
-        middleCorridorHorizontal: 7861,
-        endRight: 7862,
+        lowerLeft: 7975,
+        bottom: 7976,
+        lowerRight: 7977,
 
-        endTop: 7739,
-        middleCorridorVertical: 7859,
-        endBottom: 7979,
+        endLeft: 7859,
+        middleCorridorHorizontal: 7860,
+        endRight: 7861,
 
-        single: 7741
+        endTop: 7738,
+        middleCorridorVertical: 7858,
+        endBottom: 7978,
+
+        single: 7740
     }
 
-    let corridorFloor = {
+    const corridorFloor = {
         horizontal: {
             left: 7860,
             middle: 7861,
@@ -65,25 +100,35 @@ export function randomDungeon(width, height, dir, level = 1) {
         }
     }
 
-    let walls = {
-        upperLeft: 8117,
-        top: 8118,
-        upperRight: 8119,
-        left: 8237,
-        center: 8238,
-        right: 8237,
+    const walls = {
+        upperLeft: 8116,
+        top: 8117,
+        upperRight: 8118,
+        left: 8236,
+        center: 8237,
+        right: 8236,
         lowerLeft: 8357,
-        bottom: 8118,
-        lowerRight: 8359,
-        endBottom: 8238,
-        endTop: 8239,
-        island: 8120,
+        bottom: 8117,
+        lowerRight: 8360,
+        endBottom: 8239,
+        endTop: 8240,
+        island: 8121,
 
-        leftT: 8240,
-        middleT: 8241,
-        rightT: 8242,
-        topT: 8121,
-        bottomT: 8361
+        leftT: 8241,
+        middleT: 8240,
+        rightT: 8241,
+        topT: 8120,
+        bottomT: 8360
+    }
+
+    const doors = {
+        vertical: 570,
+        horizontal: 569
+    }
+
+    const ladders = {
+        up: 477,
+        down: 479
     }
 
     const mobDistribution = {
@@ -91,41 +136,32 @@ export function randomDungeon(width, height, dir, level = 1) {
         EMPOWERED_ORC: ~~(level / 4),
         KOBOLD: ~~(level / 3),
         GOBLIN: 10 - ~~(level / 2),
-        RAT: 8 - ~~(level / 4),
-        BAT: 6 - ~~(level / 4)
+        BAT: 8 - ~~(level / 4),
+        RAT: 8 - ~~(level / 4)
     }
 
-    let map = {}
-    let createdLadders = 0
-    map.revealed = true
-    map.width = width
-    map.height = height
-    map.layers = [
-        {
-            data: [],
-            properties: {
-                obstacles: true
-            }
-        },
-        {
-            data: [],
-            properties: {
-                obstacles: true
-            }
-        },
-        {
-            data: [],
-            properties: {
-                actors: true
-            }
-        },
-        {
-            data: [],
-            properties: {
-                actors: true
-            }
+    const chestTexture = 58
+
+    const createActor = (actorString, x, y, id) => {
+        switch (actorString) {
+            case 'ORC':
+                return new Orc(x, y, id)
+            case 'EMPOWERED_ORC':
+                return new Orc(x, y, id, true)
+            case 'KOBOLD':
+                return new Kobold(x, y, id)
+            case 'GOBLIN':
+                return new Goblin(x, y, id)
+            case 'BAT':
+                return new Bat(x, y, id)
+            case 'RAT':
+                return new Rat(x, y, id)
+            default:
+                throw 'Unidentified actor given to create actor'
         }
-    ]
+    }
+
+    let createdLadders = 0
     let freeCells = {}
     // ROT.RNG.setSeed(1513663807130)
     // console.log(ROT.RNG.getSeed());
@@ -138,20 +174,7 @@ export function randomDungeon(width, height, dir, level = 1) {
         roomDugPercentage: 0.4
     }).create(diggerCallback)
     // Initialize obstacles and actors
-    for (let j = 0; j < height; j++) {
-        for (let l = 0; l < map.layers.length; l++) map.layers[l].data.push([])
-
-        for (let i = 0; i < width; i++) {
-            if (i + ',' + j in freeCells) map.layers[0].data[j].push(7858)
-            else map.layers[0].data[j].push(7046)
-
-            map.layers[1].data[j].push(0)
-            map.layers[2].data[j].push(0)
-            map.layers[3].data[j].push(0)
-        }
-    }
-
-    let sortCorridors = function(a, b) {
+    let sortCorridors = (a, b) => {
         if (a._startX === a._endX && b._startX !== b._endX) {
             return -1
         } else if (b._startX === b._endX && a._startX !== a._endX) {
@@ -161,7 +184,6 @@ export function randomDungeon(width, height, dir, level = 1) {
         }
     }
 
-    /* TODO: Define bitmasking operators to create walls alone. Should be 4-bit bitmask */
     let computeBitmaskFloors = (x, y) => {
         let sum = 0
         let above = `${x},${y - 1}`
@@ -492,15 +514,16 @@ export function randomDungeon(width, height, dir, level = 1) {
     // we want to start +1 from the top and left, and bottom and right -1
     for (let y = 0; y < height; y++) {
         for (let x = 0; x < width; x++) {
+            let tile = gameMap.getTile(x, y)
             if (!(`${x},${y}` in freeCells)) {
                 // only want to place a wall somewhere if it's not a free cell
                 let sum = computeBitmaskWalls(x, y)
                 let sym = wallSums[sum] + 1
-                map.layers[0].data[y][x] = sym
+                tile.updateTileInfo(sym)
             } else {
                 let sum = computeBitmaskFloors(x, y)
                 let sym = floorSums[sum] + 1
-                map.layers[0].data[y][x] = sym
+                tile.updateTileInfo(sym)
             }
         }
     }
@@ -528,35 +551,37 @@ export function randomDungeon(width, height, dir, level = 1) {
                 Object.values(floor) +
                 Object.values(corridorFloor.horizontal) +
                 Object.values(floor) // doors?
-            let above = map.layers[0].data[dy - 1][dx]
-            let below = map.layers[0].data[dy + 1][dx]
+
+            let above = gameMap.getTile(dx, dy - 1).obstacles[0]
+            let below = gameMap.getTile(dx, dy + 1).obstacles[0]
             if (floor_ids.includes(above - 1) && floor_ids.includes(below - 1)) {
                 // horizontal door frame
-                map.layers[3].data[dy][dx] = 568 + 1
+                gameMap.getTile(dx, dy).actors.push(new Door(dx, dy, doors.horizontal))
             } else {
                 // vertical door frame
-                map.layers[3].data[dy][dx] = 569 + 1
+                gameMap.getTile(dx, dy).actors.push(new Door(dx, dy, doors.vertical))
             }
-            let sum = computeBitmaskFloors(dx, dy)
-            let sym = floorSums[sum] + 1
-            map.layers[0].data[dy][dx] = sym
+            // TODO: check if this code snippet is needed. shouldn't be required since it's done above
+            // let sum = computeBitmaskFloors(dx, dy)
+            // let sym = floorSums[sum] + 1
+            // map.layers[0].data[dy][dx] = sym
         })
 
         // Now, we can mess around with the centers of each room and place items in the dungeons
         // this places a ladder going further into the dungeon (either deeper or higher)
         let roll = getRandomInt(1, rogueMap.getRooms().length)
         if (roll == 1 || createdLadders == 0) {
-            map.layers[2].data[center.y][center.x] = dir === 'down' ? 478 : 480
+            let texture = dir === 'down' ? ladders.down : ladders.up
+            gameMap.getTile(center.x, center.y).actors.push(new Ladder(center.x, center.y, texture, dir))
             createdLadders++
         }
 
         // now I want to populate some random creatures in each room of the dungeon.
         let validTiles = [] // all the non-wall tiles in the room that don't already a ladder
         let possibleWalls = Object.values(walls)
-        for (let j = wtop; j < wbottom; j++) {
-            for (let i = wleft; i < wright; i++) {
-                if (map.layers[2].data[j][i] === 0 && !possibleWalls.includes(map.layers[0].data[j][i]))
-                    validTiles.push(i + ',' + j)
+        for (let y = wtop; y < wbottom; y++) {
+            for (let x = wleft; x < wright; x++) {
+                if (!gameMap.getTile(x, y).blocked()) validTiles.push(x + ',' + y)
             }
         }
 
@@ -564,31 +589,31 @@ export function randomDungeon(width, height, dir, level = 1) {
         for (let i = 0; i < roll; i++) {
             let coords = randomTile(validTiles)
             if (coords === null) break
-            let chosenMob = ROT.RNG.getWeightedValue(mobDistribution)
-            // console.log(chosenMob)
-            let mobArray = symbolToEntityShop[chosenMob]
-            let randomMob = mobArray[getRandomInt(0, mobArray.length - 1)] + 1
-            map.layers[2].data[coords[1]][coords[0]] = randomMob
+            let [x, y] = coords
+            let chosenActor = ROT.RNG.getWeightedValue(mobDistribution)
+            let possibleActorTextures = actorTextures[chosenActor]
+            let randomTexture = possibleActorTextures[getRandomInt(0, possibleActorTextures.length - 1)] + 1
+            let actor = createActor(chosenActor, x, y, randomTexture)
+            gameMap.getTile(x, y).actors.push(actor)
         }
         // if there atleast 4 enemies in the room, drop a chest in the room too!
         if (roll >= 4) {
             let coords = randomTile(validTiles)
             if (coords !== null) {
-                map.layers[2].data[coords[1]][coords[0]] = 58
+                let [x, y] = coords
+                gameMap.getTile(x, y).actors.push(new Chest(x, y, chestTexture))
             }
         }
     }
 
     // Randomly select starting position for player
     let start = randomProperty(freeCells).split(',')
-    // let start = [1, 44]
-    map.layers[2].data[start[1]][start[0]] = Game.playerID + 1 // set random spot to be the player
-    map.layers[3].data[start[1]][start[0]] = dir === 'down' ? 480 : 478 // place a ladder going back up a level underneath the player.
-
-    // Flatten the layers to mimic Tiled map data
-    for (let i = 0; i < map.layers.length; i++) map.layers[i].data = flatten(map.layers[i].data)
-
-    return map
+    gameMap.playerLocation = start
+    let [x, y] = start
+    gameMap.getTile(x, y).actors.push(new Player(x, y, Game.playerID + 1)) // set random spot to be the player
+    let texture = dir === 'down' ? ladders.down : ladders.up
+    gameMap.getTile(x, y).actors.push(new Ladder(x, y, texture, dir))
+    return gameMap
 }
 
 export function randomCave(width, height, dir, level = 1) {
@@ -1014,22 +1039,13 @@ export function randomCave(width, height, dir, level = 1) {
     ladderGoingDown = randomTile(validTiles)
     map.layers[2].data[ladderGoingDown[1]][ladderGoingDown[0]] = dir === 'down' ? 237 : 238
 
-    const mobDistribution = {
-        ORC: 1 * ~~(level / 4) + 1,
-        EMPOWERED_ORC: ~~(level / 4),
-        KOBOLD: ~~(level / 3),
-        GOBLIN: 10 - ~~(level / 2),
-        BAT: 8 - ~~(level / 4),
-        RAT: 8 - ~~(level / 4)
-    }
-
     let roll = getNormalRandomInt(7 + level, 25 + level)
     for (let i = 0; i < roll; i++) {
         let coords = randomTile(validTiles)
         if (coords === null) break
         let chosenMob = ROT.RNG.getWeightedValue(mobDistribution)
-        // console.log(chosenMob)
-        let mobArray = symbolToEntityShop[chosenMob]
+        let mobArray = actorTextures[chosenMob]
+        let actor = createActor(chosenMob)
         let randomMob = mobArray[getRandomInt(0, mobArray.length - 1)] + 1
         map.layers[2].data[coords[1]][coords[0]] = randomMob
     }
