@@ -161,7 +161,7 @@
  "tilesets":[
         {
          "firstgid":1,
-         "source":"..\/tileset\/compiled_dawnlike.json"
+         "source":"..\/..\/static\/compiled_dawnlike.json"
         }],
  "tilewidth":32,
  "type":"map",
