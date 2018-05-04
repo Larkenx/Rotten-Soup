@@ -211,7 +211,6 @@ export class GameMap {
                     if (properties.entity !== true) throw 'Bad entity creation for tile ' + id
                     if (properties.entity_id === 0) {
                         this.playerLocation = [j, i]
-                        console.log('setting this player location to', this.playerLocation)
                         this.playerID = id
                     } else {
                         let newActor = createEntity(j, i, properties.entity_id, id)

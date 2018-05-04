@@ -1,5 +1,7 @@
 import ROT from 'rot-js'
 
+import { createMapFromJSON } from '#/map/GameMap.js'
+import Player from '#/entities/actors/Player.js'
 import { Game } from '#/Game.js'
 import Item from '#/entities/items/Item.js'
 import * as PIXI from 'pixi.js'
@@ -7,7 +9,7 @@ import * as PIXI from 'pixi.js'
 export default class GameDisplay {
 	constructor() {
 		this.app = new PIXI.Application({
-			forceCanvas: true,
+			// forceCanvas: true,
 			width: 1024,
 			height: 640
 		})
@@ -25,6 +27,101 @@ export default class GameDisplay {
 		this.tileset = null
 		this.tilesetMapping = {}
 		this.spriteBox = [] // Game.width * Game.height sprites to overlay screen for FOV
+	}
+
+	loadAssets(currentLevelName) {
+		let { renderer, stage, view } = this.app
+		let { resources } = PIXI.loader
+		const spritesheet = {
+			url: 'static/images/compiled_tileset_32x32.png',
+			name: 'spritesheet'
+		}
+		const textureAtlas = {
+			url: 'static/compiled_dawnlike.json',
+			name: 'textureAtlas'
+		}
+		const overworldMap = {
+			url: 'static/maps/overworld.json',
+			name: 'overworld'
+		}
+		const graveyardMap = {
+			url: 'static/maps/graveyard.json',
+			name: 'graveyard'
+		}
+		const lichLairMap = {
+			url: 'static/maps/lichLair.json',
+			name: 'lichLair'
+		}
+		const orcCastleMap = {
+			url: 'static/maps/orcCastle.json',
+			name: 'orcCastle'
+		}
+
+		PIXI.loader
+			.add(textureAtlas)
+			.add(spritesheet)
+			.add(overworldMap)
+			.add(graveyardMap)
+			.add(lichLairMap)
+			.add(orcCastleMap)
+			.on('progress', (l, r) => this.handleAssetLoad(l, r))
+			.load(() => {
+				this.tileset = PIXI.loader.resources['textureAtlas'].data
+				// I want to load every 32x32 frame from the tileset image
+				for (let id = 0; id < this.tileset.tilecount; id++) {
+					let coords = this.getTilesetCoords(id)
+					let frame = new PIXI.Rectangle(coords[0], coords[1], this.tileSize, this.tileSize)
+					let texture = new PIXI.Texture(PIXI.loader.resources['spritesheet'].texture, frame)
+					this.tilesetMapping[id] = texture
+				}
+				Game.levels['graveyard'] = createMapFromJSON(PIXI.loader.resources['graveyard'].data)
+				Game.levels['Lich Lair'] = createMapFromJSON(PIXI.loader.resources['lichLair'].data)
+				Game.levels['overworld'] = createMapFromJSON(PIXI.loader.resources['overworld'].data)
+				Game.levels['Orc Castle'] = createMapFromJSON(PIXI.loader.resources['orcCastle'].data)
+				Game.map = Game.levels[currentLevelName]
+				Game.levels['graveyard'].revealed = true
+				Game.levels['Lich Lair'].revealed = true
+				Game.levels['overworld'].revealed = true
+				Game.levels['Orc Castle'].revealed = true
+				Game.width = Game.map.width < Game.displayOptions.width ? Game.map.width : Game.displayOptions.width
+				Game.height = Game.map.height < Game.displayOptions.height ? Game.map.height : Game.displayOptions.height
+				Game.map.actors.push(Game.player) // add to the list of all actors
+				let [px, py] = Game.map.playerLocation
+				Game.player.placeAt(px, py)
+				Game.scheduleAllActors()
+				Game.initializeMinimap()
+				document.getElementById('minimap_container').appendChild(Game.minimap.getContainer())
+				document.getElementById('game_container').appendChild(this.app.view)
+				Game.engine.start() // Start the engine
+				this.clear()
+				Game.renderMap()
+				let renderLoop = delta => {
+					// maintain a track of all the sprites that should have updated movement on this tick
+					// if they are at their location, filter them from the record
+					for (let obj of this.movingSprites)
+						if (obj.sprite.x === obj.target.x && obj.sprite.y === obj.target.y)
+							this.movingSprites = this.movingSprites.filter(o => o.sprite !== obj.sprite)
+
+					// update the location of every sprite
+					for (let obj of this.movingSprites) {
+						let { sprite, target } = obj
+						let x = 0
+						let y = 0
+						let distX = Math.abs(sprite.x - target.x)
+						let distY = Math.abs(sprite.y - target.y)
+						let shouldSlowDown = (distX <= 12 && distX !== 0) || (distY <= 12 && distY !== 0)
+						let movementSpeed = shouldSlowDown ? 2.0 : 4.0
+						if (target.x > sprite.x) x = movementSpeed
+						if (target.x < sprite.x) x = -movementSpeed
+						if (target.y > sprite.y) y = movementSpeed
+						if (target.y < sprite.y) y = -movementSpeed
+						if (Math.abs(x) > distX) x = distX
+						if (Math.abs(y) > distY) y = distY
+						sprite.position.set(sprite.x + x, sprite.y + y)
+					}
+				}
+				this.app.ticker.add(delta => renderLoop(delta))
+			})
 	}
 
 	getTilesetCoords(id) {
@@ -278,66 +375,6 @@ export default class GameDisplay {
 
 	getContainer() {
 		return this.app.view
-	}
-
-	loadAssets() {
-		// destructuring common aliases
-		let { renderer, stage, view } = this.app
-		// append the canvas to the game container
-		// prepare paths for the dungeon walls, floors, and shadows
-		const spritesheet = {
-			url: 'static/compiled_tileset_32x32.png',
-			name: 'spritesheet'
-		}
-		const textureAtlas = {
-			url: 'static/compiled_dawnlike.json',
-			name: 'textureAtlas'
-		}
-		// gameContainer.appendChild(this.getContainer())
-
-		PIXI.loader
-			.add(textureAtlas)
-			.add(spritesheet)
-			.on('progress', (l, r) => this.handleAssetLoad(l, r))
-			.load(() => {
-				this.tileset = PIXI.loader.resources['textureAtlas'].data
-				// I want to load every 32x32 frame from the tileset image
-				for (let id = 0; id < this.tileset.tilecount; id++) {
-					let coords = this.getTilesetCoords(id)
-					let frame = new PIXI.Rectangle(coords[0], coords[1], this.tileSize, this.tileSize)
-					let texture = new PIXI.Texture(PIXI.loader.resources['spritesheet'].texture, frame)
-					this.tilesetMapping[id] = texture
-				}
-
-				this.clear()
-				Game.renderMap()
-				let renderLoop = delta => {
-					// maintain a track of all the sprites that should have updated movement on this tick
-					// if they are at their location, filter them from the record
-					for (let obj of this.movingSprites)
-						if (obj.sprite.x === obj.target.x && obj.sprite.y === obj.target.y)
-							this.movingSprites = this.movingSprites.filter(o => o.sprite !== obj.sprite)
-
-					// update the location of every sprite
-					for (let obj of this.movingSprites) {
-						let { sprite, target } = obj
-						let x = 0
-						let y = 0
-						let distX = Math.abs(sprite.x - target.x)
-						let distY = Math.abs(sprite.y - target.y)
-						let shouldSlowDown = (distX <= 12 && distX !== 0) || (distY <= 12 && distY !== 0)
-						let movementSpeed = shouldSlowDown ? 2.0 : 4.0
-						if (target.x > sprite.x) x = movementSpeed
-						if (target.x < sprite.x) x = -movementSpeed
-						if (target.y > sprite.y) y = movementSpeed
-						if (target.y < sprite.y) y = -movementSpeed
-						if (Math.abs(x) > distX) x = distX
-						if (Math.abs(y) > distY) y = distY
-						sprite.position.set(sprite.x + x, sprite.y + y)
-					}
-				}
-				this.app.ticker.add(delta => renderLoop(delta))
-			})
 	}
 
 	handleAssetLoad(loader, resource) {
