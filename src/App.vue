@@ -1,9 +1,7 @@
-
-
 <template>
 
-<v-app v-if="playerSelected" dark class="black">
-    <v-container fluid id="main_container">
+<v-app dark class="black">
+    <v-container v-show="playerSelected" fluid id="main_container">
       <v-layout row v-if="unstableBuildMessage">
         <v-flex xs7>
           <v-alert color="yellow darken-4" type="warning" dismissible v-model="unstableBuildMessage">
@@ -21,43 +19,21 @@
                 </v-layout>
                 <message-log></message-log>
             </v-flex>
-            <hud></hud>
+            <hud v-if="playerSelected"></hud>
         </v-layout>
         <!-- Inventory / Shop Modal -->
         <item-transfer-modal></item-transfer-modal>
         <!-- Death Modal-->
         <death-modal></death-modal>
-
-        <!-- Help Dialog -->
-
-        <!-- Mouse Controls Slider  -->
-        <!-- <div class="mouse_controls">
-            <v-layout row align-justify-center>
-                <v-flex xs4>
-                    <v-switch color="yellow darken-4" v-model="player.mouseEnabled"></v-switch>
-                </v-flex>
-                <v-flex xs6 style="padding-left: 20px">
-                    <v-icon>mouse</v-icon>
-                </v-flex>
-            </v-layout>
-        </div> -->
-
         <!-- Github Logo -->
         <a id="git_logo" style="text-decoration: none;" target="_blank" href="https://github.com/Larkenx/Rotten-Soup">
             <v-btn icon ripple>
                 <i i style="color: white; margin: auto;" class="fa fa-3x fa-github" aria-hidden="true"></i>
             </v-btn>
         </a>
-
-        <!-- Loading Indicator  -->
-        <div v-if="loading" fluid class="loading">
-            <v-progress-circular indeterminate v-bind:size="140" v-bind:width="7" color="yellow darken-4">Loading...</v-progress-circular>
-        </div>
-
     </v-container>
+    <start-menu v-show="!playerSelected" v-on:spriteSelected="loadGame"></start-menu>
 </v-app>
-<start-menu v-else v-on:spriteSelected="loadGame"></start-menu>
-
 </template>
 
 <script>
@@ -73,131 +49,117 @@ import messageLog from './components/MessageLog.vue'
 window.Game = Game
 
 export default {
-    name: 'app',
-    data() {
-        return {
-            // Game: Game,
-            mouseControls: false,
-            loading: true,
-            playerSelected: false,
-            unstableBuildMessage: false
-        }
-    },
-    components: {
-        'start-menu': startMenu,
-        'game-display': gameDisplay,
-        hud: hud,
-        'item-transfer-modal': itemTransferModal,
-        'death-modal': deathModal,
-        'help-dialog': helpDialog,
-        'message-log': messageLog
-    },
-    created() {
-        // this.loadGame(4219)
-    },
-    mounted() {},
-    methods: {
-        readyToLoadGame() {
-            console.log(this.playerSelected)
-            return this.playerSelected
-        },
-        loadGame(id) {
-            // console.log(document.getElementById('game_container'))
-            Game.init(id)
-            // this.player = Game.player
-            Game.log('Welcome to Rotten Soup!', 'information')
-            Game.log('Press ? to view the controls.', 'player_move')
-            this.playerSelected = true
-            setTimeout(() => {
-                document.getElementById('minimap_container').appendChild(Game.minimap.getContainer())
-                document.getElementById('game_container').appendChild(Game.display.getContainer())
-            }, 200)
-            setTimeout(() => {
-                this.loading = false
-            }, 500)
-        }
-    }
+	name: 'app',
+	data() {
+		return {
+			mouseControls: false,
+			loading: true,
+			playerSelected: false,
+			unstableBuildMessage: false
+		}
+	},
+	components: {
+		'start-menu': startMenu,
+		'game-display': gameDisplay,
+		hud: hud,
+		'item-transfer-modal': itemTransferModal,
+		'death-modal': deathModal,
+		'help-dialog': helpDialog,
+		'message-log': messageLog
+	},
+	created() {
+		// this.loadGame(4219)
+	},
+	mounted() {},
+	methods: {
+		loadGame(id) {
+			this.playerSelected = true
+			Game.init(id)
+			Game.log('Welcome to Rotten Soup!', 'information')
+			Game.log('Press ? to view the controls.', 'player_move')
+		}
+	}
 }
 </script>
 
 <style>
 @import url('https://fonts.googleapis.com/css?family=Droid+Sans+Mono|PT+Mono');
 .black {
-    background-color: black;
+	background-color: black;
 }
 
 * {
-    font-family: 'Droid Sans Mono', monospace;
-    -webkit-touch-callout: none;
-    /* iOS Safari */
-    -webkit-user-select: none;
-    /* Safari */
-    -khtml-user-select: none;
-    /* Konqueror HTML */
-    -moz-user-select: none;
-    /* Firefox */
-    -ms-user-select: none;
-    /* Internet Explorer/Edge */
-    user-select: none;
-    /* Non-prefixed version, currently
+	font-family: 'Droid Sans Mono', monospace;
+	-webkit-touch-callout: none;
+	/* iOS Safari */
+	-webkit-user-select: none;
+	/* Safari */
+	-khtml-user-select: none;
+	/* Konqueror HTML */
+	-moz-user-select: none;
+	/* Firefox */
+	-ms-user-select: none;
+	/* Internet Explorer/Edge */
+	user-select: none;
+	/* Non-prefixed version, currently
     }
 
     #main_container {
         /*padding: 10px;*/
-    /*height: 100%;*/
+	/*height: 100%;*/
 }
 
 #git_logo {
-    position: absolute;
-    padding: 20px;
-    bottom: 0px;
-    right: 0px;
+	position: absolute;
+	padding: 20px;
+	bottom: 0px;
+	right: 0px;
 }
 
 .mouse_controls {
-    position: absolute;
-    /* min-width: 200px; */
-    bottom: 0px;
-    left: 90%;
+	position: absolute;
+	/* min-width: 200px; */
+	bottom: 0px;
+	left: 90%;
 }
 
 .loading {
-    position: absolute;
-    padding: 20px;
-    /* min-width: 200px; */
-    bottom: 50%;
-    left: 25%;
+	position: absolute;
+	padding: 20px;
+	/* min-width: 200px; */
+	bottom: 50%;
+	left: 25%;
 }
 
 .test {
-    background-color: #824d03;
+	background-color: #824d03;
 }
 
 canvas {
-    padding: 0;
-    margin: 0;
+	padding: 0;
+	margin: 0;
 }
 
 /* Overriding Vuetify's tool tip so that it is centered :) */
 
 [data-tooltip] {
-    position: relative;
-    text-align: center;
+	position: relative;
+	text-align: center;
 }
 
 .modal {
-    border: 2px solid #3d3d3d;
-    border-radius: 4px;
-    background-color: black;
-    color: white;
-    width: 400px;
-    padding: 10px;
-    /*height: 600px;*/
-    position: absolute;
-    left: 20%;
-    top: 25%;
-    /*margin-left: -150px;*/
-    z-index: 2;
-    /*margin-top: -150px;*/
+	border: 2px solid #3d3d3d;
+	border-radius: 4px;
+	background-color: black;
+	color: white;
+	width: 400px;
+	padding: 10px;
+	/*height: 600px;*/
+	position: absolute;
+	left: 20%;
+	top: 25%;
+	/*margin-left: -150px;*/
+	z-index: 2;
+	/*margin-top: -150px;*/
 }
 </style>

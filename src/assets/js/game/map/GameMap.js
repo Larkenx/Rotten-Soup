@@ -32,7 +32,7 @@ import { NecromancySpellBook } from '#/entities/items/misc/Spellbook.js'
 import Ladder from '#/entities/misc/Ladder.js'
 import LevelTransition from '#/entities/misc/LevelTransition.js'
 
-const entityShop = {
+export const entityShop = {
     0: (x, y, id) => {
         return new Player(x, y, id)
     },
@@ -129,22 +129,25 @@ export function createEntity(x, y, entity_id, frame_id) {
     }
 }
 
+export function createMapFromJSON(json) {
+    let { layers, width, height } = json
+    let gameMap = new GameMap(width, height)
+    gameMap.createFromJSON(json)
+    return gameMap
+}
 /**
  * Created by Larken on 6/28/2017.
  */
 export class GameMap {
-    constructor(json) {
-        console.log('Generating new map...')
-        if (!json) throw 'Bad map creation'
+    constructor(width, height) {
         this.loadedIDS = []
         this.playerLocation = null // this field is used exclusively for saving the player's last location before they change levels
-        this.width = json.width
-        this.height = json.height
+        this.width = width
+        this.height = height
         this.actors = [] // store all of the actors in array
         this.data = new Array(this.height) // stores all tiles in the game
         this.visible_tiles = {}
         this.seen_tiles = {}
-        console.log('Loading game map and actors...')
         // Intialize all of the tiles...
         for (let i = 0; i < this.height; i++) {
             this.data[i] = new Array(this.width)
@@ -155,9 +158,16 @@ export class GameMap {
         // Process all of the json layers
         // process the group layers last. this is specifically for placing static itemsets into treasure chests in the overworld.
         // process it last so that all of the chest entities have been created already
+    }
+
+    getTile(x, y) {
+        return this.data[y][x]
+    }
+
+    createFromJSON({ layers }) {
         let itemLayers = []
         let portalLayers = []
-        for (let layer of json.layers) {
+        for (let layer of layers) {
             // Obstacle Layer
             if (layer.properties.obstacles === true) this.processObstacleLayer(layer)
             else if (layer.properties.items === true) itemLayers.push(layer)
@@ -201,7 +211,6 @@ export class GameMap {
                     if (properties.entity !== true) throw 'Bad entity creation for tile ' + id
                     if (properties.entity_id === 0) {
                         this.playerLocation = [j, i]
-                        console.log('setting this player location to', this.playerLocation)
                         this.playerID = id
                     } else {
                         let newActor = createEntity(j, i, properties.entity_id, id)

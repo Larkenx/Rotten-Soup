@@ -1,7 +1,7 @@
 /**
  * Created by Larken on 7/8/2017.
  */
-import { Game, tileset } from '#/Game.js'
+import { Game } from '#/Game.js'
 import { Entity } from '#/entities/Entity.js'
 
 export default class Door extends Entity {
@@ -27,7 +27,7 @@ export default class Door extends Entity {
 		this.closed = false
 		this.blocked = false
 		this.visible = true
-		this.id = tileset.tileproperties[this.id].activated_id
+		this.id = Game.display.tileset.tileproperties[this.id].activated_id
 		this.sprite.texture = Game.display.tilesetMapping[this.id]
 	}
 

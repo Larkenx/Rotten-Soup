@@ -2,7 +2,7 @@
  * Created by Larken on 6/28/2017.
  */
 import * as PIXI from 'pixi.js'
-import { tileset, Game } from '#/Game.js'
+import { Game } from '#/Game.js'
 import Player from '#/entities/actors/Player.js'
 export function getTileInfo(id) {
 	/*
@@ -16,7 +16,7 @@ export function getTileInfo(id) {
      "entity": boolean,
      */
 	// console.log(tileset.tileproperties[id]);
-	return tileset.tileproperties[id + '']
+	return Game.display.tileset.tileproperties[id + '']
 }
 
 export default class Tile {
@@ -25,12 +25,11 @@ export default class Tile {
 		this.y = y
 		this.actors = []
 		this.obstacles = []
-		this.textures = {}
 	}
 
 	updateTileInfo(id) {
 		let obstacle = {}
-		if (id in tileset.tileproperties) {
+		if (id in Game.display.tileset.tileproperties) {
 			// just means there are no tile properties for this guy
 			obstacle = getTileInfo(id)
 		}
@@ -47,7 +46,6 @@ export default class Tile {
                 return true;
         }
         */
-
 		if (this.obstacles.length > 0) return this.obstacles[this.obstacles.length - 1].blocked
 		return false
 	}

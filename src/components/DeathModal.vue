@@ -13,23 +13,24 @@
     </v-container>
 </template>
 <script>
-    import {Game} from '@/assets/js/game/Game.js'
-    /* import other components here */
-    export default {
-        data() {
-            return {
-                // player: Game.player,
-            };
-        },
-        methods: {
-            startNewGame() {
-                location.reload();
-            },
-            playerIsDead() {
-                return Game.player.isDead();
-            }
-        },
-    }
+import { Game } from '@/assets/js/game/Game.js'
+/* import other components here */
+export default {
+	data() {
+		return {
+			// player: Game.player,
+		}
+	},
+	methods: {
+		startNewGame() {
+			location.reload()
+		},
+		playerIsDead() {
+			if (Game.player) return Game.player.isDead()
+			else return false
+		}
+	}
+}
 </script>
 <style>
 </style>
