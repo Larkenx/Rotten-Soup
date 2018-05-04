@@ -39,9 +39,11 @@ export class Entity {
     }
 
     placeAt(nx, ny) {
-        let ntile = Game.map.data[ny][nx] // new tile to move to
+        let ntile = Game.getTile(nx, ny) // new tile to move to
         ntile.actors.push(this) // add this actor to the new tile
         this.x = nx // update x,y coords to new coords
         this.y = ny
+        // Place the sprite directly at the new location
+        if (this.sprite !== undefined) Game.display.moveSprite(this.sprite, nx, ny, false)
     }
 }

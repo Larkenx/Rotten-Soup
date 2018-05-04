@@ -54,9 +54,6 @@ export let Game = {
 		this.playerID = playerSpriteID
 		this.player = new Player(0, 0, playerSpriteID)
 		this.currentLevel.name = 'overworld'
-		this.loaded = true
-		this.display = new GameDisplay()
-		this.display.loadAssets(this.currentLevel.name)
 		this.displayOptions = {
 			width: 32,
 			height: 20,
@@ -66,6 +63,31 @@ export let Game = {
 			tileWidth: 32,
 			tileHeight: 32
 		}
+		let onceLoaded = () => {
+			this.levels['graveyard'] = createMapFromJSON(PIXI.loader.resources['graveyard'].data)
+			this.levels['Lich Lair'] = createMapFromJSON(PIXI.loader.resources['lichLair'].data)
+			this.levels['overworld'] = createMapFromJSON(PIXI.loader.resources['overworld'].data)
+			this.levels['Orc Castle'] = createMapFromJSON(PIXI.loader.resources['orcCastle'].data)
+			this.map = this.levels[this.currentLevel.name]
+			this.levels['graveyard'].revealed = true
+			this.levels['Lich Lair'].revealed = true
+			this.levels['overworld'].revealed = true
+			this.levels['Orc Castle'].revealed = true
+			this.width = this.map.width < this.displayOptions.width ? this.map.width : this.displayOptions.width
+			this.height = this.map.height < this.displayOptions.height ? this.map.height : this.displayOptions.height
+			this.map.actors.push(this.player) // add to the list of all actors
+			let [px, py] = this.map.playerLocation
+			this.player.placeAt(px, py)
+			this.scheduleAllActors()
+			this.initializeMinimap()
+			document.getElementById('game_container').appendChild(this.display.getContainer())
+			document.getElementById('minimap_container').appendChild(this.minimap.getContainer())
+
+			this.engine.start() // Start the engine
+			this.renderMap()
+		}
+		this.display = new GameDisplay()
+		this.display.loadAssets(onceLoaded)
 	},
 
 	renderMap() {
@@ -147,14 +169,12 @@ export let Game = {
 			}
 			// console.log(newLevel + " does not exist, so a new random instance is being created.");
 		}
-
+		// save the player's location on this map
 		this.map.playerLocation = [Game.player.x, Game.player.y]
 		// Save the old map
 		this.levels[this.currentLevel.name] = this.map // add the old map to 'levels'
 		// Unshift player from ladder position (so that when resurfacing, no player is present)
 		this.getTile(this.player.x, this.player.y).removeActor(this.player)
-		// Add the new GameMap to the game
-		// TODO: remove the actor from the map
 		this.map.actors = this.map.actors.filter(a => a !== this.player)
 		this.map = this.levels[newLevel]
 		this.currentLevel.name = newLevel
@@ -163,6 +183,8 @@ export let Game = {
 		this.display.clear()
 		this.width = this.map.width < this.displayOptions.width ? this.map.width : this.displayOptions.width
 		this.height = this.map.height < this.displayOptions.height ? this.map.height : this.displayOptions.height
+		this.player.placeAt(this.playerLocation[0], this.playerLocation[1])
+		this.map.actors.push(this.player)
 		this.scheduleAllActors()
 		// Clear the last visible tiles that were available to be seen
 		Object.assign(this.map.seen_tiles, this.map.visible_tiles)

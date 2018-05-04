@@ -21,6 +21,7 @@ export default class GameDisplay {
 		this.staticBackground = null
 		this.animatedBackground = null
 		this.FOVBackground = null
+		this.HUDBackground = null
 		this.movingSprites = []
 		this.viewPort = null
 		this.tileSize = 32
@@ -29,7 +30,7 @@ export default class GameDisplay {
 		this.spriteBox = [] // Game.width * Game.height sprites to overlay screen for FOV
 	}
 
-	loadAssets(currentLevelName) {
+	loadAssets(cb) {
 		let { renderer, stage, view } = this.app
 		let { resources } = PIXI.loader
 		const spritesheet = {
@@ -74,27 +75,7 @@ export default class GameDisplay {
 					let texture = new PIXI.Texture(PIXI.loader.resources['spritesheet'].texture, frame)
 					this.tilesetMapping[id] = texture
 				}
-				Game.levels['graveyard'] = createMapFromJSON(PIXI.loader.resources['graveyard'].data)
-				Game.levels['Lich Lair'] = createMapFromJSON(PIXI.loader.resources['lichLair'].data)
-				Game.levels['overworld'] = createMapFromJSON(PIXI.loader.resources['overworld'].data)
-				Game.levels['Orc Castle'] = createMapFromJSON(PIXI.loader.resources['orcCastle'].data)
-				Game.map = Game.levels[currentLevelName]
-				Game.levels['graveyard'].revealed = true
-				Game.levels['Lich Lair'].revealed = true
-				Game.levels['overworld'].revealed = true
-				Game.levels['Orc Castle'].revealed = true
-				Game.width = Game.map.width < Game.displayOptions.width ? Game.map.width : Game.displayOptions.width
-				Game.height = Game.map.height < Game.displayOptions.height ? Game.map.height : Game.displayOptions.height
-				Game.map.actors.push(Game.player) // add to the list of all actors
-				let [px, py] = Game.map.playerLocation
-				Game.player.placeAt(px, py)
-				Game.scheduleAllActors()
-				Game.initializeMinimap()
-				document.getElementById('minimap_container').appendChild(Game.minimap.getContainer())
-				document.getElementById('game_container').appendChild(this.app.view)
-				Game.engine.start() // Start the engine
 				this.clear()
-				Game.renderMap()
 				let renderLoop = delta => {
 					// maintain a track of all the sprites that should have updated movement on this tick
 					// if they are at their location, filter them from the record
@@ -121,6 +102,7 @@ export default class GameDisplay {
 					}
 				}
 				this.app.ticker.add(delta => renderLoop(delta))
+				cb()
 			})
 	}
 
@@ -236,7 +218,9 @@ export default class GameDisplay {
 			}
 
 			this.background.addChild(this.FOVBackground)
+
 		}
+
 	}
 
 	updateMap() {
@@ -313,29 +297,35 @@ export default class GameDisplay {
 			}
 		}
 		this.moveSprite(this.background, -startingPos[0], -startingPos[1])
+
 	}
 
 	getTexture(id) {
 		return this.tilesetMapping[id]
 	}
 
-	moveSprite(sprite, x, y) {
+	moveSprite(sprite, x, y, animate=true) {
 		// used to smoothly pan the map from its curent location to a new one
 		// by adding it to the list of sprites who should smoothly progress towards some location
 		let nx = x * this.tileSize
 		let ny = y * this.tileSize
-		let existingMovementObject = this.movingSprites.filter(o => {
-			return o.sprite === sprite
-		})
-		if (existingMovementObject.length > 0) {
-			// sprite.position.set(nx, ny)
-			this.movingSprites = this.movingSprites.filter(o => {
-				return o.sprite !== sprite
+		if (animate) {
+			let existingMovementObject = this.movingSprites.filter(o => {
+				return o.sprite === sprite
 			})
-		}
+			if (existingMovementObject.length > 0) {
+				// sprite.position.set(nx, ny)
+				this.movingSprites = this.movingSprites.filter(o => {
+					return o.sprite !== sprite
+				})
+			}
 
-		this.movingSprites.push({ sprite, target: { x: nx, y: ny } })
+			this.movingSprites.push({ sprite, target: { x: nx, y: ny } })
+		} else {
+			sprite.position.set(nx, ny)
+		}
 	}
+
 
 	assignSprite(actor, belowPlayer = false, index = 1) {
 		let { x, y, id } = actor
