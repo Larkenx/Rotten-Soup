@@ -19,18 +19,13 @@
                         </v-flex>
                     </v-layout>
 
-                    <!-- <v-layout row>
+                    <v-layout row>
                         <v-flex xs6>Show HP Bars</v-flex>
                         <v-flex xs4 offset-xs2>
-                            <v-switch color="yellow darken-4" v-model="showHPBars"></v-switch>
+                            <v-switch color="yellow darken-4" @click.stop="toggleHPBars" v-model="userSettings.hpBars"></v-switch>
                         </v-flex>
                     </v-layout>
-                    <v-layout row>
-                        <v-flex xs6>Turn Off Animation</v-flex>
-                        <v-flex xs4 offset-xs2>
-                            <v-switch color="yellow darken-4" v-model="turnOffAnimation"></v-switch>
-                        </v-flex>
-                    </v-layout> -->
+                    
                 </v-card-text>
                 <v-card-actions>
                     <v-spacer></v-spacer>
@@ -45,19 +40,25 @@
 import { Game } from '@/assets/js/game/Game.js'
 
 export default {
-    name: 'help-dialog',
-    data() {
-        return {
-            toolDialog: false,
-            mouseEnabled: false,
-            showHPBars: true,
-            turnOffAnimation: false
-        }
-    },
-    watch: {
-        mouseEnabled(newState, oldState) {
-            Game.player.mouseEnabled = newState
-        }
-    }
+	name: 'help-dialog',
+	data() {
+		return {
+			userSettings: Game.userSettings,
+			toolDialog: false,
+			mouseEnabled: false,
+			showHPBars: Game.userSettings.hpBars,
+			turnOffAnimation: false
+		}
+	},
+	watch: {
+		mouseEnabled(newState, oldState) {
+			Game.player.mouseEnabled = newState
+		}
+	},
+	methods: {
+		toggleHPBars() {
+			Game.userSettings.hpBars = !Game.userSettings.hpBars
+		}
+	}
 }
 </script>

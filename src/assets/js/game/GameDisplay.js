@@ -297,36 +297,46 @@ export default class GameDisplay {
 				}
 			}
 		}
-
-		for (let x = camera.x; x < camera.x + camera.width - 1; x++) {
-			for (let y = camera.y; y < camera.y + camera.height - 1; y++) {
-				if (Game.inbounds(x, y)) {
-					if (Game.map.revealed || Game.map.visible_tiles[x + ',' + y]) {
-						let tile = Game.getTile(x, y)
-						let actors = tile.actors.filter(a => {
-							return a instanceof Actor && !(a instanceof Player) && !(a instanceof NPC)
-						})
-						if (actors.length >= 1) {
-							for (let a of actors) {
-								if (a.spriteHPBar !== undefined) {
-									this.background.removeChild(a.spriteHPBar)
+		if (!Game.userSettings.hpBars) {
+			for (let actor of Game.map.actors) {
+				if (actor.spriteHPBar !== undefined) {
+					this.background.removeChild(actor.spriteHPBar)
+					actor.spriteHPBar = undefined
+				}
+			}
+		} else {
+			for (let x = camera.x; x < camera.x + camera.width - 1; x++) {
+				for (let y = camera.y; y < camera.y + camera.height - 1; y++) {
+					if (Game.inbounds(x, y)) {
+						if (Game.map.revealed || Game.map.visible_tiles[x + ',' + y]) {
+							let tile = Game.getTile(x, y)
+							let actors = tile.actors.filter(a => {
+								return a instanceof Actor && !(a instanceof Player) && !(a instanceof NPC)
+							})
+							if (actors.length >= 1) {
+								for (let a of actors) {
+									if (a.spriteHPBar !== undefined) {
+										this.background.removeChild(a.spriteHPBar)
+									}
+									if (a.cb.hp < a.cb.maxhp) {
+										// create new PIXI Sprite to be the health bar
+										let g = new PIXI.Graphics()
+										let gx = a.x * this.tileSize
+										let gy = (a.y - 0.5) * this.tileSize
+										// background
+										g.beginFill(0xa22a2a)
+										g.drawRect(gx + 1, gy, this.tileSize - 2, 7)
+										// foreground
+										g.beginFill(0xff5252)
+										let width = a.cb.hp / a.cb.maxhp * (this.tileSize - 4)
+										g.drawRect(gx + 2, gy + 1, width, 5)
+										g.endFill()
+										let sprite = new PIXI.Sprite(this.app.renderer.generateTexture(g))
+										sprite.position.set(gx, gy)
+										a.setSpriteHPBar(sprite)
+										this.background.addChild(sprite)
+									}
 								}
-								// create new PIXI Sprite to be the health bar
-								let g = new PIXI.Graphics()
-								let gx = a.x * this.tileSize
-								let gy = (a.y - 0.5) * this.tileSize
-								// background
-								g.beginFill(0xa22a2a)
-								g.drawRect(gx, gy, this.tileSize, 7)
-								// foreground
-								g.beginFill(0xff5252)
-								let width = a.cb.hp / a.cb.maxhp * (this.tileSize - 2)
-								g.drawRect(gx + 1, gy + 1, width, 5)
-								g.endFill()
-								let sprite = new PIXI.Sprite(this.app.renderer.generateTexture(g))
-								sprite.position.set(gx, gy)
-								a.setSpriteHPBar(sprite)
-								this.background.addChild(sprite)
 							}
 						}
 					}
