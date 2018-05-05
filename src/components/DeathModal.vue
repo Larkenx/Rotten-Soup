@@ -18,7 +18,7 @@ import { Game } from '@/assets/js/game/Game.js'
 export default {
 	data() {
 		return {
-			// player: Game.player,
+			player: Game.player.cb
 		}
 	},
 	methods: {

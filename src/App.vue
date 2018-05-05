@@ -17,14 +17,14 @@
                     <div style="margin:0; padding:0;" id="game_container">
                     </div>
                 </v-layout>
-                <message-log></message-log>
+                <message-log v-if="playerSelected"></message-log>
             </v-flex>
             <hud v-if="playerSelected"></hud>
         </v-layout>
         <!-- Inventory / Shop Modal -->
         <item-transfer-modal></item-transfer-modal>
         <!-- Death Modal-->
-        <death-modal></death-modal>
+        <death-modal v-if="playerSelected"></death-modal>
         <!-- Github Logo -->
         <a id="git_logo" style="text-decoration: none;" target="_blank" href="https://github.com/Larkenx/Rotten-Soup">
             <v-btn icon ripple>
