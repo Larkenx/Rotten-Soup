@@ -366,6 +366,8 @@ export class Actor extends Entity {
         }
 
         Game.display.background.removeChild(this.sprite)
+        if (this.spriteHPBar !== undefined)
+          Game.display.background.removeChild(this.spriteHPBar)
 
         if (this === Game.player) {
             Game.log('You died!', 'death')
