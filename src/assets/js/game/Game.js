@@ -49,6 +49,7 @@ export let Game = {
 	targetReticle: null,
 	enemyCycle: null,
 	enemyCycleIndex: 0,
+	userSettings: { hpBars: true },
 
 	init(playerSpriteID) {
 		this.playerID = playerSpriteID

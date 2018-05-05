@@ -17,6 +17,10 @@ export class Entity {
         this.sprite = sprite
     }
 
+    setSpriteHPBar(sprite) {
+      this.spriteHPBar = sprite
+    }
+
     move(nx, ny) {
         let ntile = Game.map.data[ny][nx] // new tile to move to
         let ctile = Game.map.data[this.y][this.x] // current tile
@@ -32,6 +36,9 @@ export class Entity {
         }
         this.x = nx // update x,y coords to new coords
         this.y = ny
+        if (this.spriteHPBar !== undefined) {
+          Game.display.moveSprite(this.spriteHPBar, nx, ny - 0.5)
+        }
         // this.sprite.position.set(this.x * 32, this.y * 32)
         // Game.drawActor(this); // draw the actor at the new spot
         // Game.drawViewPort();

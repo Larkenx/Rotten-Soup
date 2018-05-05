@@ -1,7 +1,7 @@
 <template>
 
 <v-app dark class="black">
-    <v-container v-show="playerSelected" fluid id="main_container">
+    <v-container class="mx-auto" v-show="playerSelected" fluid id="main_container">
       <v-layout row v-if="unstableBuildMessage">
         <v-flex xs7>
           <v-alert color="yellow darken-4" type="warning" dismissible v-model="unstableBuildMessage">
@@ -11,7 +11,7 @@
       </v-layout>
         <!-- Game Display and HUD-->
         <v-layout row>
-            <v-flex column style="max-width: 1120px;">
+            <v-flex column style="max-width: 1050px;">
                 <v-layout row style="padding: 0px;">
                     <!--<item-transfer-modal></item-transfer-modal>-->
                     <div style="margin:0; padding:0;" id="game_container">
@@ -68,7 +68,7 @@ export default {
 		'message-log': messageLog
 	},
 	created() {
-		this.loadGame(4219)
+		// this.loadGame(4219)
 	},
 	mounted() {},
 	methods: {

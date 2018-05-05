@@ -39,14 +39,13 @@
 
 <template>
 
-<v-layout class="hud elevation-0" column style="max-width: 450px;">
+<v-flex class="hud elevation-0" column style="max-width: 450px;">
 
 
     <v-container fluid class="pa-0">
 
-        <span :v-if="cb !== undefined">
           <!-- Health Bar -->
-          <v-layout row align-center style="margin-bottom: -20px;">
+          <v-layout row align-center style="margin-bottom: -20px; margin-top: -10px">
               <v-flex style="min-width: 75px;" md1 col><b>Health </b></v-flex>
               <v-flex md4 col>
                   <v-progress-linear id="hpBar" color="error" :value="(getHP() / getMaxHP()) * 100" height="13"></v-progress-linear>
@@ -58,7 +57,7 @@
           </v-layout>
 
           <!-- Magic Bar -->
-          <v-layout row align-center>
+          <v-layout row align-center style="margin-bottom: -5px">
               <v-flex md1 style="min-width: 75px;" col><b>Magic</b></v-flex>
               <v-flex md4 col>
                   <v-progress-linear id="manaBar" :value="(getMana() / getMaxMana()) * 100" height="13" info></v-progress-linear>
@@ -68,7 +67,6 @@
       			<tool-dialog></tool-dialog>
       		</v-flex>
           </v-layout>
-        </span>
 
 
         <!-- Current World -->
@@ -78,11 +76,10 @@
         </v-layout>
 
         <!-- Mini-map -->
-        <v-layout row class="text-xs-center">
+        <v-layout row class="text-xs-center" style="pa-1">
             <v-flex xs10 fluid id="minimap_container"></v-flex>
         </v-layout>
 
-        <span :v-if="cb !== undefined">
         <!-- Tabbed Menu (Stats, Enemies, Spellbook) -->
         <v-layout row>
             <v-tabs slider-color="yellow" :scrollable="false" grow v-model="activeTab" style="min-width: 400px; font-size: 11px;">
@@ -114,10 +111,9 @@
         </v-layout>
         <!-- Inventory -->
         <inventory></inventory>
-      </span>
 
     </v-container>
-</v-layout>
+</v-flex>
 
 </template>
 
