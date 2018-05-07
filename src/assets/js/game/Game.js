@@ -9,7 +9,7 @@ import { getItemsFromDropTable } from '#/utils/HelperFunctions.js'
 
 import Item from '#/entities/items/Item.js'
 import Player from '#/entities/actors/Player.js'
-import { randomDungeon, randomCave } from '#/map/RandomMap.js'
+import { randomDungeon, randomCave, randomSimplexMap } from '#/map/RandomMap.js'
 import Door from '#/entities/misc/Door.js'
 import Ladder from '#/entities/misc/Ladder.js'
 import Chest from '#/entities/misc/Chest.js'
@@ -67,13 +67,13 @@ export let Game = {
 		let onceLoaded = () => {
 			this.levels['graveyard'] = createMapFromJSON(PIXI.loader.resources['graveyard'].data)
 			this.levels['Lich Lair'] = createMapFromJSON(PIXI.loader.resources['lichLair'].data)
-			this.levels['overworld'] = createMapFromJSON(PIXI.loader.resources['overworld'].data)
+			this.levels['overworld'] = randomSimplexMap(100, 100) // createMapFromJSON(PIXI.loader.resources['overworld'].data)
 			this.levels['Orc Castle'] = createMapFromJSON(PIXI.loader.resources['orcCastle'].data)
-			this.map = this.levels[this.currentLevel.name]
 			this.levels['graveyard'].revealed = true
 			this.levels['Lich Lair'].revealed = true
 			this.levels['overworld'].revealed = true
 			this.levels['Orc Castle'].revealed = true
+			this.map = this.levels[this.currentLevel.name]
 			this.width = this.map.width < this.displayOptions.width ? this.map.width : this.displayOptions.width
 			this.height = this.map.height < this.displayOptions.height ? this.map.height : this.displayOptions.height
 			this.map.actors.push(this.player) // add to the list of all actors
@@ -178,6 +178,7 @@ export let Game = {
 		this.getTile(this.player.x, this.player.y).removeActor(this.player)
 		this.map.actors = this.map.actors.filter(a => a !== this.player)
 		this.map = this.levels[newLevel]
+		this.map.revealed = true
 		this.currentLevel.name = newLevel
 		this.playerLocation = this.map.playerLocation
 		// before drawing the viewport, we need to clear the screen of whatever was here last

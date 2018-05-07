@@ -1,5 +1,5 @@
 { "columns":120,
- "image":"images/compiled_tileset_32x32.png",
+ "image":"images\/compiled_tileset_32x32.png",
  "imageheight":3488,
  "imagewidth":3840,
  "margin":0,
@@ -19497,7 +19497,7 @@
          "animated":true,
          "animated_id":8184,
          "bg":"#66d9ef",
-         "blocked":true,
+         "blocked":false,
          "blocks_vision":false,
          "entity":false
         },
@@ -19506,7 +19506,7 @@
          "animated":true,
          "animated_id":8185,
          "bg":"#66d9ef",
-         "blocked":true,
+         "blocked":false,
          "blocks_vision":false,
          "entity":false
         },
@@ -19515,7 +19515,7 @@
          "animated":true,
          "animated_id":8186,
          "bg":"#66d9ef",
-         "blocked":true,
+         "blocked":false,
          "blocks_vision":false,
          "entity":false
         },
@@ -20142,7 +20142,7 @@
          "animated":true,
          "animated_id":8304,
          "bg":"#66d9ef",
-         "blocked":true,
+         "blocked":false,
          "blocks_vision":false,
          "entity":false
         },
@@ -20151,7 +20151,7 @@
          "animated":true,
          "animated_id":8305,
          "bg":"#66d9ef",
-         "blocked":true,
+         "blocked":false,
          "blocks_vision":false,
          "entity":false
         },
@@ -20160,7 +20160,7 @@
          "animated":true,
          "animated_id":8306,
          "bg":"#66d9ef",
-         "blocked":true,
+         "blocked":false,
          "blocks_vision":false,
          "entity":false
         },
@@ -22737,9 +22737,9 @@
      "8777":
         {
          "animated":true,
-         "animated_id":0,
+         "animated_id":8785,
          "bg":"#66d9ef",
-         "blocked":true,
+         "blocked":false,
          "blocks_vision":false,
          "entity":false
         },
@@ -24019,8 +24019,8 @@
      "9017":
         {
          "animated":true,
-         "animated_id":0,
-         "bg":"#66d9ef",
+         "animated_id":9025,
+         "bg":"#136b7c",
          "blocked":true,
          "blocks_vision":false,
          "entity":false

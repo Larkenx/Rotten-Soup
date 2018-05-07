@@ -47,6 +47,9 @@ import deathModal from './components/DeathModal.vue'
 import helpDialog from './components/HelpDialog.vue'
 import messageLog from './components/MessageLog.vue'
 window.Game = Game
+// DEBUG: Imports to export to window
+import { randomSimplexMap } from '@/assets/js/game/map/RandomMap.js'
+window.simplex = randomSimplexMap
 
 export default {
 	name: 'app',
@@ -68,7 +71,7 @@ export default {
 		'message-log': messageLog
 	},
 	created() {
-		// this.loadGame(4219)
+		this.loadGame(4219)
 	},
 	mounted() {},
 	methods: {

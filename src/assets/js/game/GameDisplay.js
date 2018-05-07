@@ -131,7 +131,7 @@ export default class GameDisplay {
 		this.animatedBackground = new PIXI.Container()
 		for (let y = 0; y < map.height; y++) {
 			for (let x = 0; x < map.width; x++) {
-				let tile = map.data[y][x]
+				let tile = map.getTile(x, y)
 				for (let o of tile.obstacles) {
 					if (o.animated === true && o.animated_id !== undefined && this.getTexture(o.animated_id) !== undefined) {
 						let frames = [this.getTexture(o.id), this.getTexture(o.animated_id)]
