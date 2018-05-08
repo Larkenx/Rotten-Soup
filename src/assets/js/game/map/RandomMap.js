@@ -1150,7 +1150,6 @@ export function randomSimplexMap(width, height) {
 				single: 9017
 			}
 		},
-
 		COASTAL_WATER: {
 			type: 'COASTAL_WATER',
 			textures: {
@@ -1177,7 +1176,6 @@ export function randomSimplexMap(width, height) {
 				single: 8177
 			}
 		},
-
 		FOREST: {
 			type: 'FOREST',
 			textures: {
@@ -1193,23 +1191,21 @@ export function randomSimplexMap(width, height) {
 				bottom: 7984,
 				lowerRight: 7985,
 
-				endLeft: 7867,
+				endLeft: 7744,
 				middleCorridorHorizontal: 7868,
 				endRight: 7869,
 
 				endTop: 7746,
 				middleCorridorVertical: 7866,
-				endBottom: 9059,
+				endBottom: 7986,
 
 				single: 7748
 			}
 		},
-
 		TAIGA: {
 			type: 'TAIGA',
 			textures: {}
 		},
-
 		SNOW: {
 			type: 'SNOW',
 			textures: {}
@@ -1263,15 +1259,15 @@ export function randomSimplexMap(width, height) {
 	}
 
 	const biome = e => {
-		if (e < 0.03) {
+		if (e < 0.003) {
 			return textures.OCEAN_WATER
-		} else if (e < 0.1) {
+		} else if (e < 0.01) {
 			return textures.COASTAL_WATER
-		} else if (e < 0.2) {
+		} else if (e < 0.025) {
 			return textures.BEACH
-		} else if (e < 0.5) {
+		} else if (e < 0.125) {
 			return textures.FOREST
-		} else if (e < 0.7) {
+		} else if (e < 0.4) {
 			return textures.TAIGA
 		} else {
 			return textures.SNOW
