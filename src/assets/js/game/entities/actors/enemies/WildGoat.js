@@ -6,7 +6,7 @@ import { StatelessAI } from '#/entities/actors/enemies/StatelessAI.js'
 import { getRandomInt, getItemsFromDropTable } from '#/utils/HelperFunctions.js'
 import { Game } from '#/Game.js'
 
-export default class Bat extends StatelessAI {
+export default class WildGoat extends StatelessAI {
 	constructor(x, y, id) {
 		let randomHP = getRandomInt(4, 8)
 		let randomStr = getRandomInt(1, 2)
@@ -15,14 +15,14 @@ export default class Bat extends StatelessAI {
 			y,
 			{
 				id: id,
-				name: 'bat',
-				description: 'A creature of the night!',
+				name: 'wild goat',
+				description: 'A really pissed off goat!',
 				visible: true,
 				blocked: true,
 				chasing: false,
 				combat: {
 					/* options.combat, dedicated to all things related to combat */
-					description: [' attacked '],
+					description: [' headbutted ', ' rammed '],
 					/* max stats */
 					maxhp: randomHP,
 					maxmana: 5,

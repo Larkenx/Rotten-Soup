@@ -9,6 +9,7 @@ import Kobold from '#/entities/actors/enemies/Kobold.js'
 import Orc from '#/entities/actors/enemies/Orc.js'
 import Rat from '#/entities/actors/enemies/Rat.js'
 import Bat from '#/entities/actors/enemies/Bat.js'
+import WildGoat from '#/entities/actors/enemies/WildGoat.js'
 import Skeleton from '#/entities/actors/enemies/Skeleton.js'
 import Zombie from '#/entities/actors/enemies/Zombie.js'
 import { Corpse, corpseTypes } from '#/entities/items/misc/Corpse.js'
@@ -118,6 +119,9 @@ export const entityShop = {
 	},
 	27: (x, y, id) => {
 		return new NecromancySpellBook(x, y, id)
+	},
+	28: (x, y, id) => {
+		return new WildGoat(x, y, id)
 	}
 }
 

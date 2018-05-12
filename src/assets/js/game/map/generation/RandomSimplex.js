@@ -14,6 +14,7 @@ import Kobold from '#/entities/actors/enemies/Kobold.js'
 import Orc from '#/entities/actors/enemies/Orc.js'
 import Rat from '#/entities/actors/enemies/Rat.js'
 import Bat from '#/entities/actors/enemies/Bat.js'
+import WildGoat from '#/entities/actors/enemies/WildGoat.js'
 import Skeleton from '#/entities/actors/enemies/Skeleton.js'
 import Zombie from '#/entities/actors/enemies/Zombie.js'
 import { Corpse, corpseTypes } from '#/entities/items/misc/Corpse.js'
@@ -37,6 +38,7 @@ import { NecromancySpellBook } from '#/entities/items/misc/Spellbook.js'
 import Ladder from '#/entities/misc/Ladder.js'
 import LevelTransition from '#/entities/misc/LevelTransition.js'
 import { getRandomInt, getNormalRandomInt, randomProperty } from '#/utils/HelperFunctions.js'
+
 const textures = {
 	OLD_BEACH: {
 		type: 'OLD_BEACH',
@@ -207,9 +209,10 @@ const actorTextures = {
 	ORC: [5292, 5293, 5294, 5295, 5296, 5297, 5299],
 	EMPOWERED_ORC: [5298],
 	GOBLIN: [7440, 7441, 7442, 7443, 7444, 7445, 7446],
-	RAT: [2365],
+	RAT: [2362, 2363, 2365, 2366],
 	BAT: [3704, 3706],
-	KOBOLD: [5532, 5533, 5534, 5535, 5536, 5537, 5538, 5539]
+	KOBOLD: [5532, 5533, 5534, 5535, 5536, 5537, 5538, 5539],
+	WILD_GOAT: [2600, 2601, 2602, 2603, 2604, 2605]
 }
 
 const flatten = arr => arr.reduce((acc, val) => acc.concat(Array.isArray(val) ? flatten(val) : val), [])
@@ -240,12 +243,13 @@ export function randomSimplexMap(width, height) {
 	let frequency = 1.5
 
 	const mobDistribution = {
-		ORC: 1,
-		EMPOWERED_ORC: 1,
-		KOBOLD: 1,
-		GOBLIN: 1,
-		BAT: 1,
-		RAT: 1
+		// ORC: 1,
+		// EMPOWERED_ORC: 1,
+		// KOBOLD: 1,
+		// GOBLIN: 1,
+		// BAT: 1,
+		// RAT: 1,
+		WILD_GOAT: 2
 	}
 
 	const createActor = (actorString, x, y, id) => {
@@ -262,6 +266,8 @@ export function randomSimplexMap(width, height) {
 				return new Bat(x, y, id)
 			case 'RAT':
 				return new Rat(x, y, id)
+			case 'WILD_GOAT':
+				return new WildGoat(x, y, id)
 			default:
 				throw 'Unidentified actor given to create actor'
 		}

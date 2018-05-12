@@ -49,7 +49,8 @@ export default class Goblin extends StatelessAI {
 				maxPlayerDist: 0,
 				ranged: false,
 				melee: true,
-				magic: false
+				magic: false,
+				wanders: true
 			}
 		)
 

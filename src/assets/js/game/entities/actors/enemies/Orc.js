@@ -15,31 +15,36 @@ export default class Orc extends SimpleEnemy {
 	constructor(x, y, id, empowered = false) {
 		let randomHP = getRandomInt(30, 35)
 		let randomStr = getRandomInt(5, 10)
-		super(x, y, {
-			id: id,
-			name: empowered ? 'Empowered Orc' : 'orc',
-			description: 'All bronze and no brains!',
-			visible: true,
-			blocked: true,
-			chasing: false,
-			combat: {
-				/* options.combat, dedicated to all things related to combat */
-				description: [' attacked '],
-				/* max stats */
-				maxhp: randomHP,
-				maxmana: 5,
-				/* current stats */
-				hp: randomHP,
-				mana: 5,
-				str: randomStr,
-				def: 1,
-				/* misc */
-				hostile: true,
-				range: 5,
-				invulnerable: false,
-				empowered: empowered
-			}
-		})
+		super(
+			x,
+			y,
+			{
+				id: id,
+				name: empowered ? 'Empowered Orc' : 'orc',
+				description: 'All bronze and no brains!',
+				visible: true,
+				blocked: true,
+				chasing: false,
+				combat: {
+					/* options.combat, dedicated to all things related to combat */
+					description: [' attacked '],
+					/* max stats */
+					maxhp: randomHP,
+					maxmana: 5,
+					/* current stats */
+					hp: randomHP,
+					mana: 5,
+					str: randomStr,
+					def: 1,
+					/* misc */
+					hostile: true,
+					range: 5,
+					invulnerable: false,
+					empowered: empowered
+				}
+			},
+			false
+		)
 		if (getRandomInt(1, 10) < 5) {
 			let items = getItemsFromDropTable({
 				minItems: 0,
