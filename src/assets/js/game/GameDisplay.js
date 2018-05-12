@@ -133,11 +133,7 @@ export default class GameDisplay {
 			for (let x = 0; x < map.width; x++) {
 				let tile = map.getTile(x, y)
 				for (let o of tile.obstacles) {
-					if (
-						o.animated === true &&
-						o.animated_id !== undefined &&
-						this.getTexture(o.animated_id) !== undefined
-					) {
+					if (o.animated === true && o.animated_id !== undefined && this.getTexture(o.animated_id) !== undefined) {
 						let frames = [this.getTexture(o.id), this.getTexture(o.animated_id)]
 						let sprite = new PIXI.extras.AnimatedSprite(frames)
 						sprite.position.set(x * this.tileSize, y * this.tileSize)
@@ -385,11 +381,7 @@ export default class GameDisplay {
 		let { x, y, id } = actor
 		let props = this.tileset.tileproperties[actor.id + '']
 		// if (actor.sprite === null || actor.sprite === undefined) {
-		if (
-			props.animated === true &&
-			props.animated_id !== undefined &&
-			this.getTexture(props.animated_id) !== undefined
-		) {
+		if (props.animated === true && props.animated_id !== undefined && this.getTexture(props.animated_id) !== undefined) {
 			let frames = [this.getTexture(actor.id), this.getTexture(props.animated_id)]
 			let sprite = new PIXI.extras.AnimatedSprite(frames)
 			actor.setSprite(sprite)
