@@ -69,7 +69,7 @@ export let Game = {
 		let onceLoaded = () => {
 			this.levels['graveyard'] = createMapFromJSON(PIXI.loader.resources['graveyard'].data)
 			this.levels['Lich Lair'] = createMapFromJSON(PIXI.loader.resources['lichLair'].data)
-			this.levels['overworld'] = createMapFromJSON(PIXI.loader.resources['overworld'].data) // randomSimplexMap(80, 40) //
+			this.levels['overworld'] = randomSimplexMap(80, 40) //createMapFromJSON(PIXI.loader.resources['overworld'].data)
 			this.levels['Orc Castle'] = createMapFromJSON(PIXI.loader.resources['orcCastle'].data)
 			this.levels['graveyard'].revealed = true
 			this.levels['Lich Lair'].revealed = true
