@@ -1,11 +1,12 @@
 import ROT from 'rot-js'
 import * as PIXI from 'pixi.js'
+PIXI.utils.skipHello()
 
 import { getTilesetCoords, createMapFromJSON } from '#/map/GameMap.js'
 import GameDisplay from '#/GameDisplay.js'
 import { Actor } from '#/entities/actors/Actor.js'
 import { Entity } from '#/entities/Entity.js'
-import { getItemsFromDropTable } from '#/utils/HelperFunctions.js'
+import { getItemsFromDropTable, addPrefix } from '#/utils/HelperFunctions.js'
 
 import Item from '#/entities/items/Item.js'
 import Player from '#/entities/actors/Player.js'
@@ -69,7 +70,7 @@ export let Game = {
 		let onceLoaded = () => {
 			this.levels['graveyard'] = createMapFromJSON(PIXI.loader.resources['graveyard'].data)
 			this.levels['Lich Lair'] = createMapFromJSON(PIXI.loader.resources['lichLair'].data)
-			this.levels['overworld'] = randomSimplexMap(80, 40) //createMapFromJSON(PIXI.loader.resources['overworld'].data)
+			this.levels['overworld'] = randomSimplexMap(100 * 2, 40 * 2) //createMapFromJSON(PIXI.loader.resources['overworld'].data)
 			this.levels['Orc Castle'] = createMapFromJSON(PIXI.loader.resources['orcCastle'].data)
 			this.levels['graveyard'].revealed = true
 			this.levels['Lich Lair'].revealed = true
@@ -409,7 +410,7 @@ export let Game = {
 	describeSelectedTile() {
 		/* Returns an array of strings describing what exists on the currently selected tile.
         this can be obstacles, items, traps, or enemies */
-		let { actors } = this.selectedTile
+		let { actors, obstacles } = this.selectedTile
 		let names = actors
 			.filter(a => {
 				return a instanceof Entity && a !== this.player
@@ -417,13 +418,16 @@ export let Game = {
 			.map(a => {
 				return a instanceof Item ? a.type.toLowerCase() : a.name.toLowerCase()
 			})
+
+		let obstacleDescriptions = obstacles.map(o => o.description).filter(o => o !== undefined)
+		if (obstacleDescriptions.length > 0) names.push(obstacleDescriptions.slice(-1)[0])
 		let prettyNames = []
 		prettyNames = names.slice(1, -1).reduce((buf, str) => {
-			return buf + ', a ' + str
-		}, 'a  ' + names.slice(0, 1))
+			return buf + ', ' + addPrefix(str)
+		}, addPrefix(names.slice(0, 1)[0]))
 
 		if (names.length > 1) {
-			prettyNames = prettyNames + [` and a ${names.slice(-1)}`]
+			prettyNames = prettyNames + [` and ${addPrefix(names.slice(-1)[0])}`]
 		} else if (names.length == 0) {
 			prettyNames = 'nothing'
 		}

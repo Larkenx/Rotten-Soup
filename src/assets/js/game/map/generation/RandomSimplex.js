@@ -17,9 +17,6 @@ import Bat from '#/entities/actors/enemies/Bat.js'
 import WildGoat from '#/entities/actors/enemies/WildGoat.js'
 import Skeleton from '#/entities/actors/enemies/Skeleton.js'
 import Zombie from '#/entities/actors/enemies/Zombie.js'
-import { Corpse, corpseTypes } from '#/entities/items/misc/Corpse.js'
-
-import Lich from '#/entities/actors/enemies/boss/Lich.js'
 // Items
 // Weapons
 import { createSword, Sword } from '#/entities/items/weapons/Sword.js'
@@ -34,9 +31,7 @@ import Chest from '#/entities/misc/Chest.js'
 import Door from '#/entities/misc/Door.js'
 import LockedDoor from '#/entities/misc/LockedDoor.js'
 import Key from '#/entities/items/misc/Key.js'
-import { NecromancySpellBook } from '#/entities/items/misc/Spellbook.js'
 import Ladder from '#/entities/misc/Ladder.js'
-import LevelTransition from '#/entities/misc/LevelTransition.js'
 import { getRandomInt, getNormalRandomInt, randomProperty } from '#/utils/HelperFunctions.js'
 
 const textures = {
@@ -137,8 +132,9 @@ const textures = {
 			middleCorridorHorizontal: 8177,
 			endRight: 8178,
 
+			altUpperRight: 8181,
 			endTop: 8177,
-			middleCorridorVertical: 8297,
+			middleCorridorVertical: 8298,
 			endBottom: 8296,
 
 			single: 8178
@@ -215,6 +211,22 @@ const actorTextures = {
 	WILD_GOAT: [2600, 2601, 2602, 2603, 2604, 2605]
 }
 
+// textures for grass/flowers/trees
+const wildGrass1 = 1242,
+	wildGrass2 = 1243,
+	wildGrass3 = 1362,
+	wildGrass4 = 1363,
+	shrub1 = 1722,
+	shrub2 = 1723,
+	shrub3 = 1726,
+	mushroom1 = 1724,
+	mushroom2 = 1725,
+	tree = 7355,
+	flower1 = 1482,
+	flower2 = 1483,
+	flower3 = 1484,
+	flower4 = 1485
+
 const flatten = arr => arr.reduce((acc, val) => acc.concat(Array.isArray(val) ? flatten(val) : val), [])
 
 // function that will yield a random free space in the room
@@ -229,7 +241,11 @@ const randomTile = validTiles => {
 }
 
 export function randomSimplexMap(width, height) {
-	let gameMap = new GameMap(width, height)
+	// we want to zoom in a lot so that the land is larger, so the width & height will be half
+	let w = ~~(width / 2)
+	let h = ~~(height / 2)
+	let gameMap = new GameMap(w, h)
+	console.log(w, h)
 	// base textures
 	/* GOOD SEEDS
         - 908234
@@ -246,10 +262,10 @@ export function randomSimplexMap(width, height) {
 		// ORC: 1,
 		// EMPOWERED_ORC: 1,
 		// KOBOLD: 1,
-		// GOBLIN: 1,
+		GOBLIN: 1,
 		// BAT: 1,
-		// RAT: 1,
-		WILD_GOAT: 2
+		RAT: 3,
+		WILD_GOAT: 3
 	}
 
 	const createActor = (actorString, x, y, id) => {
@@ -325,7 +341,7 @@ export function randomSimplexMap(width, height) {
 			1: textures.endBottom,
 			2: hasCorridors ? textures.endLeft : textures.upperLeft,
 			3: textures.lowerLeft,
-			4: textures.endTop,
+			4: hasCorridors ? textures.endTop : textures.upperLeft,
 			5: textures.middleCorridorVertical,
 			6: textures.upperLeft,
 			7: textures.left,
@@ -339,7 +355,7 @@ export function randomSimplexMap(width, height) {
 			15: textures.center,
 			16: textures.lowerRight,
 			17: textures.lowerLeft,
-			18: textures.upperRight,
+			18: textures.altUpperRight,
 			19: textures.upperLeft,
 			20: textures.middleT,
 			21: textures.middleIntersection
@@ -380,13 +396,32 @@ export function randomSimplexMap(width, height) {
 		if (free(below)) sum += 4
 		if (free(left)) sum += 8
 
+		if (sum === 15 && !free(ul) && texture.type === 'COASTAL_WATER') {
+			sum = 18
+		}
+
 		return { texture: getTexture(texture.textures, sum), type: texture.type, elevation }
 	}
 
 	let possible_player_location = null
 
-	for (let y = 0; y < height; y++) {
-		for (let x = 0; x < width; x++) {
+	const floraFaunaProbability = {
+		[wildGrass1]: 25,
+		[wildGrass2]: 25,
+		[wildGrass3]: 25,
+		[wildGrass4]: 25,
+		[shrub1]: 1,
+		[shrub3]: 1,
+		[flower1]: 1,
+		[flower2]: 1,
+		[flower3]: 1,
+		[flower4]: 1,
+		[mushroom1]: 1,
+		[tree]: 25
+	}
+
+	for (let y = 0; y < h; y++) {
+		for (let x = 0; x < w; x++) {
 			let t = computeBitmask(x, y)
 			let tile = gameMap.getTile(x, y)
 			if (t.type === textures.OCEAN_WATER.type || t.type === textures.COASTAL_WATER.type) {
@@ -395,43 +430,13 @@ export function randomSimplexMap(width, height) {
 				tile.updateTileInfo(t.texture)
 			} else if (t.type === textures.FOREST.type) {
 				tile.updateTileInfo(t.texture)
-				if (t.elevation >= 0.04) {
-					if (getRandomInt(0, 4) > 0) {
-						const wildGrass1 = 1242,
-							wildGrass2 = 1243,
-							wildGrass3 = 1362,
-							wildGrass4 = 1363,
-							shrub1 = 1722,
-							shrub2 = 1723,
-							shrub3 = 1726,
-							mushroom1 = 1724,
-							mushroom2 = 1725,
-							tree = 7355,
-							flower1 = 1482,
-							flower2 = 1483,
-							flower3 = 1484,
-							flower4 = 1485
-
-						let obstacle = ROT.RNG.getWeightedValue({
-							[wildGrass1]: 25,
-							[wildGrass2]: 25,
-							[wildGrass3]: 25,
-							[wildGrass4]: 25,
-							[shrub1]: 1,
-							[shrub3]: 1,
-							[flower1]: 1,
-							[flower2]: 1,
-							[flower3]: 1,
-							[flower4]: 1,
-							[mushroom1]: 1,
-							[tree]: 25
-						})
-						tile.updateTileInfo(obstacle)
-					}
+				if (getRandomInt(0, 4) > 0) {
+					let obstacle = ROT.RNG.getWeightedValue(floraFaunaProbability)
+					tile.updateTileInfo(obstacle)
 				}
 				// chance of placing an enemy in the open tiles...
 				if (!tile.blocked()) {
-					if (getRandomInt(0, 100) === 1) {
+					if (getRandomInt(0, 500) === 1) {
 						// 1% chance
 						let chosenActor = ROT.RNG.getWeightedValue(mobDistribution)
 						let possibleActorTextures = actorTextures[chosenActor]
@@ -445,7 +450,7 @@ export function randomSimplexMap(width, height) {
 		}
 	}
 
-	gameMap.playerLocation = [width - 10, 20]
+	gameMap.playerLocation = [~~(w / 2), ~~(h / 2)]
 
 	return gameMap
 }
