@@ -318,10 +318,10 @@ export default class GameDisplay {
 							})
 							if (actors.length >= 1) {
 								for (let a of actors) {
-									// if (a.spriteHPBar !== undefined) {
-									//     this.background.removeChild(a.spriteHPBar)
-									// }
-									if (a.cb.hp < a.cb.maxhp && a.spriteHPBar === undefined) {
+									if (a.spriteHPBar !== undefined) {
+										this.background.removeChild(a.spriteHPBar)
+									}
+									if (a.cb.hp < a.cb.maxhp) {
 										// create new PIXI Sprite to be the health bar
 										let g = new PIXI.Graphics()
 										let gx = a.x * this.tileSize
