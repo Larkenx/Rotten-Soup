@@ -1,18 +1,21 @@
 import ROT from 'rot-js'
 import * as PIXI from 'pixi.js'
+PIXI.utils.skipHello()
 
 import { getTilesetCoords, createMapFromJSON } from '#/map/GameMap.js'
 import GameDisplay from '#/GameDisplay.js'
 import { Actor } from '#/entities/actors/Actor.js'
 import { Entity } from '#/entities/Entity.js'
-import { getItemsFromDropTable } from '#/utils/HelperFunctions.js'
+import { getItemsFromDropTable, addPrefix } from '#/utils/HelperFunctions.js'
 
 import Item from '#/entities/items/Item.js'
 import Player from '#/entities/actors/Player.js'
-import { randomDungeon, randomCave } from '#/map/RandomMap.js'
+import MapGen from '#/map/generation/index.js'
 import Door from '#/entities/misc/Door.js'
 import Ladder from '#/entities/misc/Ladder.js'
 import Chest from '#/entities/misc/Chest.js'
+
+const { randomSimplexMap, randomDungeon, randomCave } = MapGen
 
 const targetingBorders = {
 	id: 7418,
@@ -69,11 +72,11 @@ export let Game = {
 			this.levels['Lich Lair'] = createMapFromJSON(PIXI.loader.resources['lichLair'].data)
 			this.levels['overworld'] = createMapFromJSON(PIXI.loader.resources['overworld'].data)
 			this.levels['Orc Castle'] = createMapFromJSON(PIXI.loader.resources['orcCastle'].data)
-			this.map = this.levels[this.currentLevel.name]
 			this.levels['graveyard'].revealed = true
 			this.levels['Lich Lair'].revealed = true
 			this.levels['overworld'].revealed = true
 			this.levels['Orc Castle'].revealed = true
+			this.map = this.levels[this.currentLevel.name]
 			this.width = this.map.width < this.displayOptions.width ? this.map.width : this.displayOptions.width
 			this.height = this.map.height < this.displayOptions.height ? this.map.height : this.displayOptions.height
 			this.map.actors.push(this.player) // add to the list of all actors
@@ -406,7 +409,7 @@ export let Game = {
 	describeSelectedTile() {
 		/* Returns an array of strings describing what exists on the currently selected tile.
         this can be obstacles, items, traps, or enemies */
-		let { actors } = this.selectedTile
+		let { actors, obstacles } = this.selectedTile
 		let names = actors
 			.filter(a => {
 				return a instanceof Entity && a !== this.player
@@ -414,13 +417,16 @@ export let Game = {
 			.map(a => {
 				return a instanceof Item ? a.type.toLowerCase() : a.name.toLowerCase()
 			})
+
+		let obstacleDescriptions = obstacles.map(o => o.description).filter(o => o !== undefined)
+		if (obstacleDescriptions.length > 0) names.push(obstacleDescriptions.slice(-1)[0])
 		let prettyNames = []
 		prettyNames = names.slice(1, -1).reduce((buf, str) => {
-			return buf + ', a ' + str
-		}, 'a  ' + names.slice(0, 1))
+			return buf + ', ' + addPrefix(str)
+		}, addPrefix(names.slice(0, 1)[0]))
 
 		if (names.length > 1) {
-			prettyNames = prettyNames + [` and a ${names.slice(-1)}`]
+			prettyNames = prettyNames + [` and ${addPrefix(names.slice(-1)[0])}`]
 		} else if (names.length == 0) {
 			prettyNames = 'nothing'
 		}

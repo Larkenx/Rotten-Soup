@@ -18,8 +18,10 @@
 		"express": "^4.16.3",
 		"material-design-icons": "^3.0.1",
 		"pixi.js": "^4.7.0",
+		"prng-parkmiller-js": "^0.1.1",
 		"roboto-fontface": "^0.9.0",
 		"rot-js": "^0.6.5",
+		"simplex-noise": "^2.4.0",
 		"vue": "^2.5.2",
 		"vuedraggable": "^2.16.0",
 		"vuetify": "^1.0.0"

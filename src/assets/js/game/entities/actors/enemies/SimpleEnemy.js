@@ -6,7 +6,7 @@ import ROT from 'rot-js'
  Essentially, these enemies have a range that they can see the player from, and if the player
  enters within the distance between the enemy and player */
 export default class SimpleEnemy extends StatelessAI {
-	constructor(x, y, options) {
+	constructor(x, y, options, wanders = true) {
 		super(x, y, options, {
 			/* AI parameters */
 			morale: 0,
@@ -14,7 +14,8 @@ export default class SimpleEnemy extends StatelessAI {
 			maxPlayerDist: 0,
 			ranged: false,
 			melee: true,
-			magic: false
+			magic: false,
+			wanders
 		})
 	}
 }

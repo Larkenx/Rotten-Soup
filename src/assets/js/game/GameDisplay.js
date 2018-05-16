@@ -131,7 +131,7 @@ export default class GameDisplay {
 		this.animatedBackground = new PIXI.Container()
 		for (let y = 0; y < map.height; y++) {
 			for (let x = 0; x < map.width; x++) {
-				let tile = map.data[y][x]
+				let tile = map.getTile(x, y)
 				for (let o of tile.obstacles) {
 					if (o.animated === true && o.animated_id !== undefined && this.getTexture(o.animated_id) !== undefined) {
 						let frames = [this.getTexture(o.id), this.getTexture(o.animated_id)]
@@ -139,8 +139,10 @@ export default class GameDisplay {
 						sprite.position.set(x * this.tileSize, y * this.tileSize)
 						sprite.animationSpeed = 0.025
 						// pick a random interval for the animation to play at!
-						let randomInterval = ~~(Math.random() * 150)
-						setTimeout(() => sprite.play(), randomInterval)
+						let interval = ~~(Math.random() * 150)
+						// let interval = x * 5
+						setTimeout(() => sprite.play(), interval)
+						// sprite.play()
 						this.animatedBackground.addChild(sprite)
 					} else {
 						let sprite = new PIXI.Sprite(this.getTexture(o.id))
@@ -222,6 +224,7 @@ export default class GameDisplay {
 
 			this.background.addChild(this.FOVBackground)
 		}
+		Game.drawMiniMap()
 	}
 
 	updateMap() {
@@ -315,10 +318,10 @@ export default class GameDisplay {
 							})
 							if (actors.length >= 1) {
 								for (let a of actors) {
-									if (a.spriteHPBar !== undefined) {
-										this.background.removeChild(a.spriteHPBar)
-									}
-									if (a.cb.hp < a.cb.maxhp) {
+									// if (a.spriteHPBar !== undefined) {
+									//     this.background.removeChild(a.spriteHPBar)
+									// }
+									if (a.cb.hp < a.cb.maxhp && a.spriteHPBar === undefined) {
 										// create new PIXI Sprite to be the health bar
 										let g = new PIXI.Graphics()
 										let gx = a.x * this.tileSize
@@ -345,6 +348,7 @@ export default class GameDisplay {
 		}
 
 		this.moveSprite(this.background, -startingPos[0], -startingPos[1])
+		Game.drawMiniMap()
 	}
 
 	getTexture(id) {
@@ -377,11 +381,7 @@ export default class GameDisplay {
 		let { x, y, id } = actor
 		let props = this.tileset.tileproperties[actor.id + '']
 		// if (actor.sprite === null || actor.sprite === undefined) {
-		if (
-			props.animated === true &&
-			props.animated_id !== undefined &&
-			this.getTexture(props.animated_id) !== undefined
-		) {
+		if (props.animated === true && props.animated_id !== undefined && this.getTexture(props.animated_id) !== undefined) {
 			let frames = [this.getTexture(actor.id), this.getTexture(props.animated_id)]
 			let sprite = new PIXI.extras.AnimatedSprite(frames)
 			actor.setSprite(sprite)
@@ -447,7 +447,6 @@ export default class GameDisplay {
 	act() {
 		Game.engine.lock()
 		this.updateMap()
-		Game.drawMiniMap()
 		Game.engine.unlock()
 	}
 }

@@ -1,6 +1,6 @@
 import { Actor } from '#/entities/actors/Actor.js'
 import { Game } from '#/Game.js'
-import { getVisibleTiles, getDiceRoll, addPrefix } from '#/utils/HelperFunctions'
+import { getVisibleTiles, getDiceRoll, addPrefix, getRandomInt } from '#/utils/HelperFunctions'
 
 import ROT from 'rot-js'
 
@@ -39,6 +39,7 @@ export class StatelessAI extends Actor {
 			return a === Game.player
 		})
 
+		let { wanders, morale, minPlayerDist, maxPlayerDist, ranged, melee, magic } = this.ai
 		if (playerInView) {
 			if (!this.chasing) {
 				Game.log(`A ${this.name} sees you.`, 'alert')
@@ -50,7 +51,6 @@ export class StatelessAI extends Actor {
 				pathToPlayer.push([x, y])
 			})
 
-			let { morale, minPlayerDist, maxPlayerDist, ranged, melee, magic } = this.ai
 			let healthRemainingPercentage = this.cb.hp / this.cb.maxhp
 
 			const findNearbyTiles = () => {
@@ -140,6 +140,12 @@ export class StatelessAI extends Actor {
                             move-away-from-player
                      else stand-still
                   */
+		} else {
+			if (wanders) {
+				let dx = this.x + getRandomInt(-1, 1)
+				let dy = this.y + getRandomInt(-1, 1)
+				this.tryMove(dx, dy)
+			}
 		}
 
 		endTurn()
@@ -158,9 +164,9 @@ export class StatelessAI extends Actor {
 		let dmg = getDiceRoll(2, this.cb.str)
 
 		let len = this.cb.description.length
-		let evtdamage = `${addPrefix(this.name).capitalize()}${
-			this.cb.description[Math.floor(Math.random() * len)]
-		}${addPrefix(actor.name)} and dealt ${dmg} damage.`
+		let evtdamage = `${addPrefix(this.name).capitalize()}${this.cb.description[Math.floor(Math.random() * len)]}${addPrefix(
+			actor.name
+		)} and dealt ${dmg} damage.`
 
 		if (Game.player === this) Game.log(evtdamage, 'player_move')
 		else Game.log(evtdamage, 'attack')

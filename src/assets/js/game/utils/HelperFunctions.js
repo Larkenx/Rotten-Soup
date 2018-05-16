@@ -28,13 +28,24 @@ export function randomProperty(object) {
 	return keys[Math.floor(keys.length * Math.random())]
 }
 
-export function addPrefix(name) {
+export function between(a, n, b) {
+	// console.log(a, n, b)
+	// console.log(a <= n && n <= b)
+	return a <= n && n <= b
+}
+
+export function addPrefix(word) {
 	const vowels = ['a', 'e', 'i', 'o', 'u']
-	if (name !== 'you') {
-		if (name[0] in vowels) return 'an ' + name
-		else return 'a ' + name
+	if (word !== 'you') {
+		const someWords = ['trees', 'flowers', 'grass', 'wild grass', 'water', 'steel arrows']
+		console.log(word)
+		if (someWords.includes(word)) {
+			return 'some ' + word
+		}
+		if (word[0] in vowels) return 'an ' + word
+		else return 'a ' + word
 	} else {
-		return name
+		return word
 	}
 }
 

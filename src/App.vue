@@ -47,6 +47,7 @@ import deathModal from './components/DeathModal.vue'
 import helpDialog from './components/HelpDialog.vue'
 import messageLog from './components/MessageLog.vue'
 window.Game = Game
+// DEBUG: Imports to export to window
 
 export default {
 	name: 'app',
