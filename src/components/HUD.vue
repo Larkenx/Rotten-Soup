@@ -1,5 +1,5 @@
 <style>
-.hud_tabs_card {
+#hud_container .hud_tabs_card {
 	background-color: #2a2a2a;
 }
 
@@ -7,9 +7,13 @@
 	background-color: #294646;
 }
 
-.hud {
+.hud_container {
 	color: white;
 	font-size: 13px;
+	max-width: 450px;
+	border: 2px solid #4f4f4f;
+	background-color: #1e1f1f;
+	border-radius: 4px;
 	/* margin-left: 20px; */
 }
 
@@ -39,25 +43,25 @@
 
 <template>
 
-<v-flex class="hud elevation-0" column style="max-width: 450px;">
-    <v-container fluid class="pa-0">
+<v-flex class="hud_container elevation-0" column>
+    <v-container fluid class="pa-2">
           <!-- Health Bar -->
           <v-layout row align-center style="margin-bottom: -20px; margin-top: -10px">
               <v-flex style="min-width: 75px;" md1 col><b>Health </b></v-flex>
               <v-flex md4 col>
-                  <v-progress-linear id="hpBar" color="error" :value="(getHP() / getMaxHP()) * 100" height="13"></v-progress-linear>
+                  <v-progress-linear id="hpBar" color="error" :value="(getHP() / getMaxHP()) * 100" height="15"></v-progress-linear>
               </v-flex>
               <v-flex md3 col style="padding-left: 5px;">{{getHP()}} / {{getMaxHP()}}</v-flex>
-      		<v-flex md1 >
+      		<v-flex md1>
       			<help-dialog></help-dialog>
       		</v-flex>
           </v-layout>
 
           <!-- Magic Bar -->
-          <v-layout row align-center style="margin-bottom: -5px">
+          <v-layout row align-center>
               <v-flex md1 style="min-width: 75px;" col><b>Magic</b></v-flex>
               <v-flex md4 col>
-                  <v-progress-linear id="manaBar" :value="(getMana() / getMaxMana()) * 100" height="13" info></v-progress-linear>
+                  <v-progress-linear id="manaBar" :value="(getMana() / getMaxMana()) * 100" height="15" info></v-progress-linear>
               </v-flex>
               <v-flex md3 col style="padding-left: 5px;">{{getMana()}} / {{getMaxMana()}}</v-flex>
               <v-flex md1 >
@@ -65,10 +69,11 @@
       		</v-flex>
           </v-layout>
 
+					<stats-tab-content></stats-tab-content>
 
         <!-- Current World -->
-        <v-layout row align-center>
-            <v-flex xs5 col><b>Location: {{getCurrentLevel().capitalize()}}</b></v-flex>
+        <v-layout row align-center class="mt-4">
+            <v-flex xs5 col><b>Location:</b> {{getCurrentLevel().capitalize()}}</v-flex>
             <v-flex v-if="getCurrentLevelDepth() > 0" col><b>Level: {{getCurrentLevelDepth()}}</b></v-flex>
         </v-layout>
 
@@ -77,35 +82,8 @@
             <v-flex xs10 fluid id="minimap_container"></v-flex>
         </v-layout>
 
-        <!-- Tabbed Menu (Stats, Enemies, Spellbook) -->
-        <v-layout row>
-            <v-tabs slider-color="yellow darken-4" :scrollable="false" grow v-model="activeTab" style="min-width: 400px; font-size: 11px;">
-                <v-tab class="hud_tab" key="stats" href="#stats">
-                    Stats
-                </v-tab>
-                <!-- <v-tab class="hud_tab" key="enemyOverview" href="#enemyOverview">
-                    Enemies
-                </v-tab> -->
-                <v-tab class="hud_tab" key="spellBook" href="#spellBook">
-                    Spellbook
-                </v-tab>
-                <v-tab-item class="hud_tabs_card" key="stats" id="stats">
-                    <v-card style="background-color: inherit" flat height="120px">
-                        <stats-tab-content></stats-tab-content>
-                    </v-card>
-                </v-tab-item>
-                <!-- <v-tab-item key="enemyOverview" id="enemyOverview">
-                    <v-card class="hud_tabs_card" flat height="120px">
-                        <enemy-overview></enemy-overview>
-                    </v-card>
-                </v-tab-item> -->
-                <v-tab-item class="hud_tabs_card" key="spellBook" id="spellBook">
-                    <v-card style="background-color: inherit"  flat height="120px">
-                        <spellbook></spellbook>
-                    </v-card>
-                </v-tab-item>
-            </v-tabs>
-        </v-layout>
+				<spellbook></spellbook>
+
         <!-- Inventory -->
         <inventory></inventory>
 

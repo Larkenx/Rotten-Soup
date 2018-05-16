@@ -1,46 +1,46 @@
 <template>
-    <v-container>
+    <v-container fluid class="pa-0">
         <!-- Level -->
         <v-flex class="stat-row">
-            <v-layout  row align-center>
+            <v-layout row align-center>
                 <v-flex md1 style="min-width: 70px;" col><b>Level</b></v-flex>
-                <v-flex md2 col style="padding-left: 5px;">{{getLevel()}}</v-flex>
-                <v-flex md6 col>{{Math.floor(getRemainingXP())}}XP until level {{getLevel()+1}}</v-flex>
-                <v-flex md2 col>
+                <v-flex md2 col style="padding-left: 7px;">{{getLevel()}}</v-flex>
+                <v-flex md5 col>{{Math.floor(getRemainingXP())}}XP until level {{getLevel()+1}}</v-flex>
+                <!-- <v-flex md2 col>
                     <v-progress-circular
-                        :rotate="270"
                         style="xpCircleFont"
                         color="success"
+                        background-color="grey lighten-1"
                         fill="success"
-                        size="18"
+                        size="10"
+                        height
                         :value="Math.floor(getPercentToLevel() * 100)"
                     >
-                    <!-- {{Math.floor(getPercentToLevel() * 100)}}% -->
-                    </v-progress-circular>
-                </v-flex>
-            </v-layout>
-        </v-flex>
-        <!-- Damage -->
-        <v-flex class="stat-row">
-            <v-layout  row align-center>
-                <v-flex md1 style="min-width: 70px;" col><b>Damage</b></v-flex>
-                <v-flex md2 col style="padding-left: 5px;">{{getDamageRange()}}</v-flex>
-                <v-flex
-                    v-if="getCurrentWeapon() !== null && getCurrentWeaponEnchantments() !== null"
-                    md6
-                    col
-                >
-                    Weapon Enchantments: {{getCurrentWeaponEnchantments()}}
-                </v-flex>
+                  </v-progress-circular>
+                </v-flex> -->
             </v-layout>
         </v-flex>
         <!-- Strength -->
         <v-flex class="stat-row">
-            <v-layout  row align-center>
+            <v-layout row align-center>
                 <v-flex md1 style="min-width: 70px;" col><b>Strength</b></v-flex>
-                <v-flex md3 col style="padding-left: 5px;">{{getStrength()}}</v-flex>
+                <v-flex md3 col style="padding-left: 7px;">{{getStrength()}}</v-flex>
             </v-layout>
         </v-flex>
+        <!-- Damage -->
+        <v-flex class="stat-row">
+          <v-layout  row align-center>
+            <v-flex md1 style="min-width: 70px;" col><b>Damage</b></v-flex>
+            <v-flex md2 col style="padding-left: 7px;">{{getDamageRange()}}</v-flex>
+            <v-flex
+            v-if="getCurrentWeapon() !== null && getCurrentWeaponEnchantments() !== null"
+            md6
+            col
+            >
+            Weapon Enchantments: {{getCurrentWeaponEnchantments()}}
+          </v-flex>
+        </v-layout>
+      </v-flex>
         <!-- Defence -->
         <!-- <v-flex class="stat-row">
             <v-layout   row align-center>
@@ -56,69 +56,60 @@ import { Game } from '@/assets/js/game/Game.js'
 import { xp_levels } from '#/entities/Entity.js'
 
 export default {
-    data() {
-        return {}
-    },
-    methods: {
-        getHP() {
-            return Game.player.cb.hp
-        },
-        getMaxHP() {
-            return Game.player.cb.maxhp
-        },
-        getMana() {
-            return Game.player.cb.mana
-        },
-        getMaxMana() {
-            return Game.player.cb.maxmana
-        },
-        getStrength() {
-            return Game.player.cb.str
-        },
-        getDefence() {
-            return Game.player.cb.def
-        },
-        getDamageRange() {
-            if (Game.player.getMinDmg() === Game.player.getMaxDmg()) return Game.player.getMinDmg()
+	data() {
+		return {}
+	},
+	methods: {
+		getHP() {
+			return Game.player.cb.hp
+		},
+		getMaxHP() {
+			return Game.player.cb.maxhp
+		},
+		getMana() {
+			return Game.player.cb.mana
+		},
+		getMaxMana() {
+			return Game.player.cb.maxmana
+		},
+		getStrength() {
+			return Game.player.cb.str
+		},
+		getDefence() {
+			return Game.player.cb.def
+		},
+		getDamageRange() {
+			if (Game.player.getMinDmg() === Game.player.getMaxDmg()) return Game.player.getMinDmg()
 
-            return Game.player.getMinDmg() + '-' + Game.player.getMaxDmg()
-        },
-        getLevel() {
-            return Game.player.cb.level
-        },
-        getRemainingXP() {
-            return Game.player.remainingXP()
-        },
-        getPercentToLevel() {
-            let costOfLevel = xp_levels[this.getLevel()] - xp_levels[this.getLevel() - 1]
-            let expTowards = Game.player.cb.xp - xp_levels[this.getLevel() - 1]
-            return expTowards / costOfLevel
-        },
-        getCurrentWeapon() {
-            return Game.player.cb.equipment.weapon
-        },
-        getCurrentWeaponEnchantments() {
-            if (this.getCurrentWeapon() !== null) {
-                let enchantments = this.getCurrentWeapon().cb.enchantments
-                if (enchantments.length === 0) return null
-                else if (enchantments.length === 1) return enchantments[0].name
-                else
-                    return enchantments.reduce((str, enchantment) => {
-                        return str + ', ' + enchantment.name
-                    }, '')
-            } else {
-                return null
-            }
-        }
-    }
+			return Game.player.getMinDmg() + ' - ' + Game.player.getMaxDmg()
+		},
+		getLevel() {
+			return Game.player.cb.level
+		},
+		getRemainingXP() {
+			return Game.player.remainingXP()
+		},
+		getPercentToLevel() {
+			let costOfLevel = xp_levels[this.getLevel()] - xp_levels[this.getLevel() - 1]
+			let expTowards = Game.player.cb.xp - xp_levels[this.getLevel() - 1]
+			return expTowards / costOfLevel
+		},
+		getCurrentWeapon() {
+			return Game.player.cb.equipment.weapon
+		},
+		getCurrentWeaponEnchantments() {
+			if (this.getCurrentWeapon() !== null) {
+				let enchantments = this.getCurrentWeapon().cb.enchantments
+				if (enchantments.length === 0) return null
+				else if (enchantments.length === 1) return enchantments[0].name
+				else
+					return enchantments.reduce((str, enchantment) => {
+						return str + ', ' + enchantment.name
+					}, '')
+			} else {
+				return null
+			}
+		}
+	}
 }
 </script>
-<style>
-.stat-row {
-    cursor: pointer;
-}
-
-.stat-row:hover {
-    background-color: #4e4e4e;
-}
-</style>

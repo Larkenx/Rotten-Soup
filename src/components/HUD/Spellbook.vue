@@ -1,9 +1,9 @@
 <template>
-    <v-container>
+    <v-container fluid class="pa-0 mt-5">
         <v-layout row>
-            <v-flex xs4><b>Learned Spells</b></v-flex>
+            <v-flex xs4><b>Spells</b></v-flex>
         </v-layout>
-        <v-layout row wrap style="margin-top: 5px;">
+        <v-layout row wrap id="spell_bar">
             <v-flex
                 xs1
                 col
@@ -57,6 +57,10 @@ export default {
 	cursor: pointer;
 	border: 2px solid #4f4f4f;
 	border-radius: 4px;
+}
+
+#spell_bar {
+	margin: 2px;
 }
 
 .selectedSpell {
