@@ -28,6 +28,12 @@ export function randomProperty(object) {
 	return keys[Math.floor(keys.length * Math.random())]
 }
 
+export function between(a, n, b) {
+	// console.log(a, n, b)
+	// console.log(a <= n && n <= b)
+	return a <= n && n <= b
+}
+
 export function addPrefix(word) {
 	const vowels = ['a', 'e', 'i', 'o', 'u']
 	if (word !== 'you') {

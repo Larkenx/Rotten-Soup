@@ -70,7 +70,7 @@ export let Game = {
 		let onceLoaded = () => {
 			this.levels['graveyard'] = createMapFromJSON(PIXI.loader.resources['graveyard'].data)
 			this.levels['Lich Lair'] = createMapFromJSON(PIXI.loader.resources['lichLair'].data)
-			this.levels['overworld'] = randomSimplexMap(100 * 2, 40 * 2) //createMapFromJSON(PIXI.loader.resources['overworld'].data)
+			this.levels['overworld'] = createMapFromJSON(PIXI.loader.resources['overworld'].data)
 			this.levels['Orc Castle'] = createMapFromJSON(PIXI.loader.resources['orcCastle'].data)
 			this.levels['graveyard'].revealed = true
 			this.levels['Lich Lair'].revealed = true
@@ -181,7 +181,6 @@ export let Game = {
 		this.getTile(this.player.x, this.player.y).removeActor(this.player)
 		this.map.actors = this.map.actors.filter(a => a !== this.player)
 		this.map = this.levels[newLevel]
-		this.map.revealed = true
 		this.currentLevel.name = newLevel
 		this.playerLocation = this.map.playerLocation
 		// before drawing the viewport, we need to clear the screen of whatever was here last

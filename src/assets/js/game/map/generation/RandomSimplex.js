@@ -32,7 +32,7 @@ import Door from '#/entities/misc/Door.js'
 import LockedDoor from '#/entities/misc/LockedDoor.js'
 import Key from '#/entities/items/misc/Key.js'
 import Ladder from '#/entities/misc/Ladder.js'
-import { getRandomInt, getNormalRandomInt, randomProperty } from '#/utils/HelperFunctions.js'
+import { getRandomInt, getNormalRandomInt, randomProperty, between } from '#/utils/HelperFunctions.js'
 
 const textures = {
 	OLD_BEACH: {
@@ -240,10 +240,10 @@ const randomTile = validTiles => {
 	}
 }
 
-export function randomSimplexMap(width, height) {
+export function randomSimplexMap(width, height, zoom) {
 	// we want to zoom in a lot so that the land is larger, so the width & height will be half
-	let w = ~~(width / 2)
-	let h = ~~(height / 2)
+	let w = ~~(width / zoom)
+	let h = ~~(height / zoom)
 	let gameMap = new GameMap(w, h)
 	console.log(w, h)
 	// base textures
@@ -309,7 +309,7 @@ export function randomSimplexMap(width, height) {
 			0.03 * noise1(frequency * 32 * nx, frequency * 32 * ny)
 		e /= 1.0 + 0.5 + 0.25 + 0.13 + 0.06 + 0.03
 		e = Math.pow(e, 5.0)
-		return e
+		return e * 100
 	}
 
 	const getMoisture = (x, y) => {
@@ -327,7 +327,7 @@ export function randomSimplexMap(width, height) {
 	}
 
 	const biome = e => {
-		if (e < 0.02) {
+		if (e < 1.5) {
 			return textures.COASTAL_WATER
 		} else {
 			return textures.FOREST
@@ -416,8 +416,7 @@ export function randomSimplexMap(width, height) {
 		[flower2]: 1,
 		[flower3]: 1,
 		[flower4]: 1,
-		[mushroom1]: 1,
-		[tree]: 25
+		[mushroom1]: 1
 	}
 
 	for (let y = 0; y < h; y++) {
@@ -430,9 +429,13 @@ export function randomSimplexMap(width, height) {
 				tile.updateTileInfo(t.texture)
 			} else if (t.type === textures.FOREST.type) {
 				tile.updateTileInfo(t.texture)
-				if (getRandomInt(0, 4) > 0) {
-					let obstacle = ROT.RNG.getWeightedValue(floraFaunaProbability)
-					tile.updateTileInfo(obstacle)
+				if (between(5, t.elevation, 6) || between(10, t.elevation, 100)) {
+					tile.updateTileInfo(tree)
+				} else {
+					if (getRandomInt(0, 4) > 0) {
+						let obstacle = ROT.RNG.getWeightedValue(floraFaunaProbability)
+						tile.updateTileInfo(obstacle)
+					}
 				}
 				// chance of placing an enemy in the open tiles...
 				if (!tile.blocked()) {

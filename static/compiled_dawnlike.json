@@ -80,6 +80,7 @@
          "bg":"#4D494D",
          "blocked":false,
          "blocks_vision":false,
+         "description":"dirt",
          "entity":false
         },
      "10017":
@@ -89,6 +90,7 @@
          "bg":"#4D494D",
          "blocked":false,
          "blocks_vision":false,
+         "description":"dirt",
          "entity":false
         },
      "10018":
@@ -98,6 +100,7 @@
          "bg":"#4D494D",
          "blocked":false,
          "blocks_vision":false,
+         "description":"dirt",
          "entity":false
         },
      "10019":
@@ -107,6 +110,7 @@
          "bg":"#4D494D",
          "blocked":false,
          "blocks_vision":false,
+         "description":"dirt",
          "entity":false
         },
      "10020":
@@ -116,6 +120,7 @@
          "bg":"#4D494D",
          "blocked":false,
          "blocks_vision":false,
+         "description":"dirt",
          "entity":false
         },
      "10021":
@@ -125,6 +130,7 @@
          "bg":"#4D494D",
          "blocked":false,
          "blocks_vision":false,
+         "description":"dirt",
          "entity":false
         },
      "10022":
@@ -134,6 +140,7 @@
          "bg":"#4D494D",
          "blocked":false,
          "blocks_vision":false,
+         "description":"dirt",
          "entity":false
         },
      "10023":
@@ -143,6 +150,7 @@
          "bg":"#824d03",
          "blocked":false,
          "blocks_vision":false,
+         "description":"wooden floor",
          "entity":false
         },
      "10024":
@@ -152,6 +160,7 @@
          "bg":"#824d03",
          "blocked":false,
          "blocks_vision":false,
+         "description":"wooden floor",
          "entity":false
         },
      "10025":
@@ -161,6 +170,7 @@
          "bg":"#824d03",
          "blocked":false,
          "blocks_vision":false,
+         "description":"wooden floor",
          "entity":false
         },
      "10026":
@@ -170,6 +180,7 @@
          "bg":"#824d03",
          "blocked":false,
          "blocks_vision":false,
+         "description":"wooden floor",
          "entity":false
         },
      "10027":
@@ -179,6 +190,7 @@
          "bg":"#824d03",
          "blocked":false,
          "blocks_vision":false,
+         "description":"wooden floor",
          "entity":false
         },
      "10028":
@@ -188,6 +200,7 @@
          "bg":"#824d03",
          "blocked":false,
          "blocks_vision":false,
+         "description":"wooden floor",
          "entity":false
         },
      "10029":
@@ -197,6 +210,7 @@
          "bg":"#824d03",
          "blocked":false,
          "blocks_vision":false,
+         "description":"wooden floor",
          "entity":false
         },
      "10030":
@@ -723,6 +737,7 @@
          "bg":"#4D494D",
          "blocked":false,
          "blocks_vision":false,
+         "description":"dirt",
          "entity":false
         },
      "10137":
@@ -732,6 +747,7 @@
          "bg":"#4D494D",
          "blocked":false,
          "blocks_vision":false,
+         "description":"dirt",
          "entity":false
         },
      "10138":
@@ -741,6 +757,7 @@
          "bg":"#4D494D",
          "blocked":false,
          "blocks_vision":false,
+         "description":"dirt",
          "entity":false
         },
      "10139":
@@ -750,6 +767,7 @@
          "bg":"#4D494D",
          "blocked":false,
          "blocks_vision":false,
+         "description":"dirt",
          "entity":false
         },
      "10140":
@@ -759,6 +777,7 @@
          "bg":"#4D494D",
          "blocked":false,
          "blocks_vision":false,
+         "description":"dirt",
          "entity":false
         },
      "10141":
@@ -768,6 +787,7 @@
          "bg":"#4D494D",
          "blocked":false,
          "blocks_vision":false,
+         "description":"dirt",
          "entity":false
         },
      "10142":
@@ -777,6 +797,7 @@
          "bg":"#4D494D",
          "blocked":false,
          "blocks_vision":false,
+         "description":"dirt",
          "entity":false
         },
      "10143":
@@ -786,6 +807,7 @@
          "bg":"#824d03",
          "blocked":false,
          "blocks_vision":false,
+         "description":"wooden floor",
          "entity":false
         },
      "10144":
@@ -795,6 +817,7 @@
          "bg":"#824d03",
          "blocked":false,
          "blocks_vision":false,
+         "description":"wooden floor",
          "entity":false
         },
      "10145":
@@ -804,6 +827,7 @@
          "bg":"#824d03",
          "blocked":false,
          "blocks_vision":false,
+         "description":"wooden floor",
          "entity":false
         },
      "10146":
@@ -813,6 +837,7 @@
          "bg":"#824d03",
          "blocked":false,
          "blocks_vision":false,
+         "description":"wooden floor",
          "entity":false
         },
      "10147":
@@ -822,6 +847,7 @@
          "bg":"#824d03",
          "blocked":false,
          "blocks_vision":false,
+         "description":"wooden floor",
          "entity":false
         },
      "10148":
@@ -831,6 +857,7 @@
          "bg":"#824d03",
          "blocked":false,
          "blocks_vision":false,
+         "description":"wooden floor",
          "entity":false
         },
      "10149":
@@ -840,6 +867,7 @@
          "bg":"#824d03",
          "blocked":false,
          "blocks_vision":false,
+         "description":"wooden floor",
          "entity":false
         },
      "10150":
@@ -15080,6 +15108,7 @@
          "bg":"\"gray\"",
          "blocked":false,
          "blocks_vision":false,
+         "description":"stone floor",
          "entity":false
         },
      "7377":
@@ -15089,6 +15118,7 @@
          "bg":"\"gray\"",
          "blocked":false,
          "blocks_vision":false,
+         "description":"stone floor",
          "entity":false
         },
      "7378":
@@ -15098,6 +15128,7 @@
          "bg":"\"gray\"",
          "blocked":false,
          "blocks_vision":false,
+         "description":"stone floor",
          "entity":false
         },
      "7379":
@@ -15107,6 +15138,7 @@
          "bg":"\"gray\"",
          "blocked":false,
          "blocks_vision":false,
+         "description":"stone floor",
          "entity":false
         },
      "7380":
@@ -15116,6 +15148,7 @@
          "bg":"\"gray\"",
          "blocked":false,
          "blocks_vision":false,
+         "description":"stone floor",
          "entity":false
         },
      "7381":
@@ -15125,6 +15158,7 @@
          "bg":"\"gray\"",
          "blocked":false,
          "blocks_vision":false,
+         "description":"stone floor",
          "entity":false
         },
      "7382":
@@ -15134,6 +15168,7 @@
          "bg":"\"gray\"",
          "blocked":false,
          "blocks_vision":false,
+         "description":"stone floor",
          "entity":false
         },
      "7383":
@@ -15889,6 +15924,7 @@
          "bg":"\"gray\"",
          "blocked":false,
          "blocks_vision":false,
+         "description":"stone floor",
          "entity":false
         },
      "7497":
@@ -15898,6 +15934,7 @@
          "bg":"\"gray\"",
          "blocked":false,
          "blocks_vision":false,
+         "description":"stone floor",
          "entity":false
         },
      "7498":
@@ -15907,6 +15944,7 @@
          "bg":"\"gray\"",
          "blocked":false,
          "blocks_vision":false,
+         "description":"stone floor",
          "entity":false
         },
      "7499":
@@ -15916,6 +15954,7 @@
          "bg":"\"gray\"",
          "blocked":false,
          "blocks_vision":false,
+         "description":"stone floor",
          "entity":false
         },
      "7500":
@@ -15925,6 +15964,7 @@
          "bg":"\"gray\"",
          "blocked":false,
          "blocks_vision":false,
+         "description":"stone floor",
          "entity":false
         },
      "7501":
@@ -15934,6 +15974,7 @@
          "bg":"\"gray\"",
          "blocked":false,
          "blocks_vision":false,
+         "description":"stone floor",
          "entity":false
         },
      "7502":
@@ -15943,6 +15984,7 @@
          "bg":"\"gray\"",
          "blocked":false,
          "blocks_vision":false,
+         "description":"stone floor",
          "entity":false
         },
      "7503":
@@ -16689,6 +16731,7 @@
          "bg":"\"gray\"",
          "blocked":false,
          "blocks_vision":false,
+         "description":"stone floor",
          "entity":false
         },
      "7617":
@@ -16698,6 +16741,7 @@
          "bg":"\"gray\"",
          "blocked":false,
          "blocks_vision":false,
+         "description":"stone floor",
          "entity":false
         },
      "7618":
@@ -16707,6 +16751,7 @@
          "bg":"\"gray\"",
          "blocked":false,
          "blocks_vision":false,
+         "description":"stone floor",
          "entity":false
         },
      "7619":
@@ -16716,6 +16761,7 @@
          "bg":"\"gray\"",
          "blocked":false,
          "blocks_vision":false,
+         "description":"stone floor",
          "entity":false
         },
      "7620":
@@ -16725,6 +16771,7 @@
          "bg":"\"gray\"",
          "blocked":false,
          "blocks_vision":false,
+         "description":"stone floor",
          "entity":false
         },
      "7621":
@@ -16734,6 +16781,7 @@
          "bg":"\"gray\"",
          "blocked":false,
          "blocks_vision":false,
+         "description":"stone floor",
          "entity":false
         },
      "7622":
@@ -16743,6 +16791,7 @@
          "bg":"\"gray\"",
          "blocked":false,
          "blocks_vision":false,
+         "description":"stone floor",
          "entity":false
         },
      "7623":
@@ -17477,6 +17526,7 @@
          "bg":"gray",
          "blocked":false,
          "blocks_vision":false,
+         "description":"stone floor",
          "entity":false
         },
      "7737":
@@ -17486,6 +17536,7 @@
          "bg":"gray",
          "blocked":false,
          "blocks_vision":false,
+         "description":"stone floor",
          "entity":false
         },
      "7738":
@@ -17495,6 +17546,7 @@
          "bg":"gray",
          "blocked":false,
          "blocks_vision":false,
+         "description":"stone floor",
          "entity":false
         },
      "7739":
@@ -17504,6 +17556,7 @@
          "bg":"gray",
          "blocked":false,
          "blocks_vision":false,
+         "description":"stone floor",
          "entity":false
         },
      "7740":
@@ -17513,6 +17566,7 @@
          "bg":"gray",
          "blocked":false,
          "blocks_vision":false,
+         "description":"stone floor",
          "entity":false
         },
      "7741":
@@ -17522,6 +17576,7 @@
          "bg":"gray",
          "blocked":false,
          "blocks_vision":false,
+         "description":"stone floor",
          "entity":false
         },
      "7742":
@@ -17531,6 +17586,7 @@
          "bg":"gray",
          "blocked":false,
          "blocks_vision":false,
+         "description":"stone floor",
          "entity":false
         },
      "7743":
@@ -18272,6 +18328,7 @@
          "bg":"gray",
          "blocked":false,
          "blocks_vision":false,
+         "description":"stone floor",
          "entity":false
         },
      "7857":
@@ -18281,6 +18338,7 @@
          "bg":"gray",
          "blocked":false,
          "blocks_vision":false,
+         "description":"stone floor",
          "entity":false
         },
      "7858":
@@ -18290,6 +18348,7 @@
          "bg":"gray",
          "blocked":false,
          "blocks_vision":false,
+         "description":"stone floor",
          "entity":false
         },
      "7859":
@@ -18299,6 +18358,7 @@
          "bg":"gray",
          "blocked":false,
          "blocks_vision":false,
+         "description":"stone floor",
          "entity":false
         },
      "7860":
@@ -18308,6 +18368,7 @@
          "bg":"gray",
          "blocked":false,
          "blocks_vision":false,
+         "description":"stone floor",
          "entity":false
         },
      "7861":
@@ -18317,6 +18378,7 @@
          "bg":"gray",
          "blocked":false,
          "blocks_vision":false,
+         "description":"stone floor",
          "entity":false
         },
      "7862":
@@ -18326,6 +18388,7 @@
          "bg":"gray",
          "blocked":false,
          "blocks_vision":false,
+         "description":"stone floor",
          "entity":false
         },
      "7863":
@@ -19076,6 +19139,7 @@
          "bg":"gray",
          "blocked":false,
          "blocks_vision":false,
+         "description":"stone floor",
          "entity":false
         },
      "7977":
@@ -19085,6 +19149,7 @@
          "bg":"gray",
          "blocked":false,
          "blocks_vision":false,
+         "description":"stone floor",
          "entity":false
         },
      "7978":
@@ -19094,6 +19159,7 @@
          "bg":"gray",
          "blocked":false,
          "blocks_vision":false,
+         "description":"stone floor",
          "entity":false
         },
      "7979":
@@ -19103,6 +19169,7 @@
          "bg":"gray",
          "blocked":false,
          "blocks_vision":false,
+         "description":"stone floor",
          "entity":false
         },
      "7980":
@@ -19112,6 +19179,7 @@
          "bg":"gray",
          "blocked":false,
          "blocks_vision":false,
+         "description":"stone floor",
          "entity":false
         },
      "7981":
@@ -19121,6 +19189,7 @@
          "bg":"gray",
          "blocked":false,
          "blocks_vision":false,
+         "description":"stone floor",
          "entity":false
         },
      "7982":
@@ -19130,6 +19199,7 @@
          "bg":"gray",
          "blocked":false,
          "blocks_vision":false,
+         "description":"stone floor",
          "entity":false
         },
      "7983":
@@ -19760,6 +19830,7 @@
          "bg":"gray",
          "blocked":false,
          "blocks_vision":false,
+         "description":"stone floor",
          "entity":false
         },
      "8097":
@@ -19769,6 +19840,7 @@
          "bg":"gray",
          "blocked":false,
          "blocks_vision":false,
+         "description":"stone floor",
          "entity":false
         },
      "8098":
@@ -19778,6 +19850,7 @@
          "bg":"gray",
          "blocked":false,
          "blocks_vision":false,
+         "description":"stone floor",
          "entity":false
         },
      "8099":
@@ -19787,6 +19860,7 @@
          "bg":"gray",
          "blocked":false,
          "blocks_vision":false,
+         "description":"stone floor",
          "entity":false
         },
      "810":
@@ -19804,6 +19878,7 @@
          "bg":"gray",
          "blocked":false,
          "blocks_vision":false,
+         "description":"stone floor",
          "entity":false
         },
      "8101":
@@ -19813,6 +19888,7 @@
          "bg":"gray",
          "blocked":false,
          "blocks_vision":false,
+         "description":"stone floor",
          "entity":false
         },
      "8102":
@@ -19822,6 +19898,7 @@
          "bg":"gray",
          "blocked":false,
          "blocks_vision":false,
+         "description":"stone floor",
          "entity":false
         },
      "8103":
@@ -20190,7 +20267,7 @@
          "animated":true,
          "animated_id":8184,
          "bg":"#66d9ef",
-         "blocked":false,
+         "blocked":true,
          "blocks_vision":false,
          "description":"water",
          "entity":false
@@ -20200,7 +20277,7 @@
          "animated":true,
          "animated_id":8185,
          "bg":"#66d9ef",
-         "blocked":false,
+         "blocked":true,
          "blocks_vision":false,
          "description":"water",
          "entity":false
@@ -20210,7 +20287,7 @@
          "animated":true,
          "animated_id":8186,
          "bg":"#66d9ef",
-         "blocked":false,
+         "blocked":true,
          "blocks_vision":false,
          "description":"water",
          "entity":false
@@ -20448,6 +20525,7 @@
          "bg":"gray",
          "blocked":false,
          "blocks_vision":false,
+         "description":"stone floor",
          "entity":false
         },
      "8217":
@@ -20457,6 +20535,7 @@
          "bg":"gray",
          "blocked":false,
          "blocks_vision":false,
+         "description":"stone floor",
          "entity":false
         },
      "8218":
@@ -20466,6 +20545,7 @@
          "bg":"gray",
          "blocked":false,
          "blocks_vision":false,
+         "description":"stone floor",
          "entity":false
         },
      "8219":
@@ -20475,6 +20555,7 @@
          "bg":"gray",
          "blocked":false,
          "blocks_vision":false,
+         "description":"stone floor",
          "entity":false
         },
      "8220":
@@ -20484,6 +20565,7 @@
          "bg":"gray",
          "blocked":false,
          "blocks_vision":false,
+         "description":"stone floor",
          "entity":false
         },
      "8221":
@@ -20493,6 +20575,7 @@
          "bg":"gray",
          "blocked":false,
          "blocks_vision":false,
+         "description":"stone floor",
          "entity":false
         },
      "8222":
@@ -20502,6 +20585,7 @@
          "bg":"gray",
          "blocked":false,
          "blocks_vision":false,
+         "description":"stone floor",
          "entity":false
         },
      "8223":
@@ -20870,7 +20954,7 @@
          "animated":true,
          "animated_id":8304,
          "bg":"#66d9ef",
-         "blocked":false,
+         "blocked":true,
          "blocks_vision":false,
          "description":"water",
          "entity":false
@@ -20880,7 +20964,7 @@
          "animated":true,
          "animated_id":8305,
          "bg":"#66d9ef",
-         "blocked":false,
+         "blocked":true,
          "blocks_vision":false,
          "description":"water",
          "entity":false
@@ -20890,7 +20974,7 @@
          "animated":true,
          "animated_id":8306,
          "bg":"#66d9ef",
-         "blocked":false,
+         "blocked":true,
          "blocks_vision":false,
          "description":"water",
          "entity":false
@@ -21128,6 +21212,7 @@
          "bg":"gray",
          "blocked":false,
          "blocks_vision":false,
+         "description":"stone floor",
          "entity":false
         },
      "8337":
@@ -21137,6 +21222,7 @@
          "bg":"gray",
          "blocked":false,
          "blocks_vision":false,
+         "description":"stone floor",
          "entity":false
         },
      "8338":
@@ -21146,6 +21232,7 @@
          "bg":"gray",
          "blocked":false,
          "blocks_vision":false,
+         "description":"stone floor",
          "entity":false
         },
      "8339":
@@ -21155,6 +21242,7 @@
          "bg":"gray",
          "blocked":false,
          "blocks_vision":false,
+         "description":"stone floor",
          "entity":false
         },
      "8340":
@@ -21164,6 +21252,7 @@
          "bg":"gray",
          "blocked":false,
          "blocks_vision":false,
+         "description":"stone floor",
          "entity":false
         },
      "8341":
@@ -21173,6 +21262,7 @@
          "bg":"gray",
          "blocked":false,
          "blocks_vision":false,
+         "description":"stone floor",
          "entity":false
         },
      "8342":
@@ -21182,6 +21272,7 @@
          "bg":"gray",
          "blocked":false,
          "blocks_vision":false,
+         "description":"stone floor",
          "entity":false
         },
      "8343":
@@ -21808,6 +21899,7 @@
          "bg":"#4B4047",
          "blocked":false,
          "blocks_vision":false,
+         "description":"stone floor",
          "entity":false
         },
      "8457":
@@ -21817,6 +21909,7 @@
          "bg":"#4B4047",
          "blocked":false,
          "blocks_vision":false,
+         "description":"stone floor",
          "entity":false
         },
      "8458":
@@ -21826,6 +21919,7 @@
          "bg":"#4B4047",
          "blocked":false,
          "blocks_vision":false,
+         "description":"stone floor",
          "entity":false
         },
      "8459":
@@ -21835,6 +21929,7 @@
          "bg":"#4B4047",
          "blocked":false,
          "blocks_vision":false,
+         "description":"stone floor",
          "entity":false
         },
      "8460":
@@ -21844,6 +21939,7 @@
          "bg":"#4B4047",
          "blocked":false,
          "blocks_vision":false,
+         "description":"stone floor",
          "entity":false
         },
      "8461":
@@ -21853,6 +21949,7 @@
          "bg":"#4B4047",
          "blocked":false,
          "blocks_vision":false,
+         "description":"stone floor",
          "entity":false
         },
      "8462":
@@ -21862,6 +21959,7 @@
          "bg":"#4B4047",
          "blocked":false,
          "blocks_vision":false,
+         "description":"stone floor",
          "entity":false
         },
      "8463":
@@ -22481,6 +22579,7 @@
          "bg":"#4B4047",
          "blocked":false,
          "blocks_vision":false,
+         "description":"stone floor",
          "entity":false
         },
      "8577":
@@ -22490,6 +22589,7 @@
          "bg":"#4B4047",
          "blocked":false,
          "blocks_vision":false,
+         "description":"stone floor",
          "entity":false
         },
      "8578":
@@ -22499,6 +22599,7 @@
          "bg":"#4B4047",
          "blocked":false,
          "blocks_vision":false,
+         "description":"stone floor",
          "entity":false
         },
      "8579":
@@ -22508,6 +22609,7 @@
          "bg":"#4B4047",
          "blocked":false,
          "blocks_vision":false,
+         "description":"stone floor",
          "entity":false
         },
      "8580":
@@ -22517,6 +22619,7 @@
          "bg":"#4B4047",
          "blocked":false,
          "blocks_vision":false,
+         "description":"stone floor",
          "entity":false
         },
      "8581":
@@ -22526,6 +22629,7 @@
          "bg":"#4B4047",
          "blocked":false,
          "blocks_vision":false,
+         "description":"stone floor",
          "entity":false
         },
      "8582":
@@ -22535,6 +22639,7 @@
          "bg":"#4B4047",
          "blocked":false,
          "blocks_vision":false,
+         "description":"stone floor",
          "entity":false
         },
      "8583":
@@ -23138,6 +23243,7 @@
          "bg":"#4B4047",
          "blocked":false,
          "blocks_vision":false,
+         "description":"stone floor",
          "entity":false
         },
      "8697":
@@ -23147,6 +23253,7 @@
          "bg":"#4B4047",
          "blocked":false,
          "blocks_vision":false,
+         "description":"stone floor",
          "entity":false
         },
      "8698":
@@ -23156,6 +23263,7 @@
          "bg":"#4B4047",
          "blocked":false,
          "blocks_vision":false,
+         "description":"stone floor",
          "entity":false
         },
      "8699":
@@ -23165,6 +23273,7 @@
          "bg":"#4B4047",
          "blocked":false,
          "blocks_vision":false,
+         "description":"stone floor",
          "entity":false
         },
      "8700":
@@ -23174,6 +23283,7 @@
          "bg":"#4B4047",
          "blocked":false,
          "blocks_vision":false,
+         "description":"stone floor",
          "entity":false
         },
      "8701":
@@ -23183,6 +23293,7 @@
          "bg":"#4B4047",
          "blocked":false,
          "blocks_vision":false,
+         "description":"stone floor",
          "entity":false
         },
      "8702":
@@ -23192,6 +23303,7 @@
          "bg":"#4B4047",
          "blocked":false,
          "blocks_vision":false,
+         "description":"stone floor",
          "entity":false
         },
      "8703":
@@ -23803,6 +23915,7 @@
          "bg":"brown",
          "blocked":false,
          "blocks_vision":false,
+         "description":"dirt",
          "entity":false
         },
      "8817":
@@ -23812,6 +23925,7 @@
          "bg":"brown",
          "blocked":false,
          "blocks_vision":false,
+         "description":"dirt",
          "entity":false
         },
      "8818":
@@ -23821,6 +23935,7 @@
          "bg":"brown",
          "blocked":false,
          "blocks_vision":false,
+         "description":"dirt",
          "entity":false
         },
      "8819":
@@ -23830,6 +23945,7 @@
          "bg":"brown",
          "blocked":false,
          "blocks_vision":false,
+         "description":"dirt",
          "entity":false
         },
      "8820":
@@ -23839,6 +23955,7 @@
          "bg":"brown",
          "blocked":false,
          "blocks_vision":false,
+         "description":"dirt",
          "entity":false
         },
      "8821":
@@ -23848,6 +23965,7 @@
          "bg":"brown",
          "blocked":false,
          "blocks_vision":false,
+         "description":"dirt",
          "entity":false
         },
      "8822":
@@ -23857,6 +23975,7 @@
          "bg":"brown",
          "blocked":false,
          "blocks_vision":false,
+         "description":"dirt",
          "entity":false
         },
      "8823":
@@ -23866,6 +23985,7 @@
          "bg":"brown",
          "blocked":false,
          "blocks_vision":false,
+         "description":"wooden floor",
          "entity":false
         },
      "8824":
@@ -23875,6 +23995,7 @@
          "bg":"brown",
          "blocked":false,
          "blocks_vision":false,
+         "description":"wooden floor",
          "entity":false
         },
      "8825":
@@ -23884,6 +24005,7 @@
          "bg":"brown",
          "blocked":false,
          "blocks_vision":false,
+         "description":"wooden floor",
          "entity":false
         },
      "8826":
@@ -23893,6 +24015,7 @@
          "bg":"brown",
          "blocked":false,
          "blocks_vision":false,
+         "description":"wooden floor",
          "entity":false
         },
      "8827":
@@ -23902,6 +24025,7 @@
          "bg":"brown",
          "blocked":false,
          "blocks_vision":false,
+         "description":"wooden floor",
          "entity":false
         },
      "8828":
@@ -23911,6 +24035,7 @@
          "bg":"brown",
          "blocked":false,
          "blocks_vision":false,
+         "description":"wooden floor",
          "entity":false
         },
      "8829":
@@ -23920,6 +24045,7 @@
          "bg":"brown",
          "blocked":false,
          "blocks_vision":false,
+         "description":"wooden floor",
          "entity":false
         },
      "8830":
@@ -24450,6 +24576,7 @@
          "bg":"brown",
          "blocked":false,
          "blocks_vision":false,
+         "description":"dirt",
          "entity":false
         },
      "8937":
@@ -24459,6 +24586,7 @@
          "bg":"brown",
          "blocked":false,
          "blocks_vision":false,
+         "description":"dirt",
          "entity":false
         },
      "8938":
@@ -24468,6 +24596,7 @@
          "bg":"brown",
          "blocked":false,
          "blocks_vision":false,
+         "description":"dirt",
          "entity":false
         },
      "8939":
@@ -24477,6 +24606,7 @@
          "bg":"brown",
          "blocked":false,
          "blocks_vision":false,
+         "description":"dirt",
          "entity":false
         },
      "8940":
@@ -24486,6 +24616,7 @@
          "bg":"brown",
          "blocked":false,
          "blocks_vision":false,
+         "description":"dirt",
          "entity":false
         },
      "8941":
@@ -24495,6 +24626,7 @@
          "bg":"brown",
          "blocked":false,
          "blocks_vision":false,
+         "description":"dirt",
          "entity":false
         },
      "8942":
@@ -24504,6 +24636,7 @@
          "bg":"brown",
          "blocked":false,
          "blocks_vision":false,
+         "description":"dirt",
          "entity":false
         },
      "8943":
@@ -24513,6 +24646,7 @@
          "bg":"brown",
          "blocked":false,
          "blocks_vision":false,
+         "description":"wooden floor",
          "entity":false
         },
      "8944":
@@ -24522,6 +24656,7 @@
          "bg":"brown",
          "blocked":false,
          "blocks_vision":false,
+         "description":"wooden floor",
          "entity":false
         },
      "8945":
@@ -24531,6 +24666,7 @@
          "bg":"brown",
          "blocked":false,
          "blocks_vision":false,
+         "description":"wooden floor",
          "entity":false
         },
      "8946":
@@ -24540,6 +24676,7 @@
          "bg":"brown",
          "blocked":false,
          "blocks_vision":false,
+         "description":"wooden floor",
          "entity":false
         },
      "8947":
@@ -24549,6 +24686,7 @@
          "bg":"brown",
          "blocked":false,
          "blocks_vision":false,
+         "description":"wooden floor",
          "entity":false
         },
      "8948":
@@ -24558,6 +24696,7 @@
          "bg":"brown",
          "blocked":false,
          "blocks_vision":false,
+         "description":"wooden floor",
          "entity":false
         },
      "8949":
@@ -24567,6 +24706,7 @@
          "bg":"brown",
          "blocked":false,
          "blocks_vision":false,
+         "description":"wooden floor",
          "entity":false
         },
      "8950":
@@ -25097,6 +25237,7 @@
          "bg":"brown",
          "blocked":false,
          "blocks_vision":false,
+         "description":"dirt",
          "entity":false
         },
      "9057":
@@ -25106,6 +25247,7 @@
          "bg":"brown",
          "blocked":false,
          "blocks_vision":false,
+         "description":"dirt",
          "entity":false
         },
      "9058":
@@ -25115,6 +25257,7 @@
          "bg":"brown",
          "blocked":false,
          "blocks_vision":false,
+         "description":"dirt",
          "entity":false
         },
      "9059":
@@ -25124,6 +25267,7 @@
          "bg":"brown",
          "blocked":false,
          "blocks_vision":false,
+         "description":"dirt",
          "entity":false
         },
      "9060":
@@ -25133,6 +25277,7 @@
          "bg":"brown",
          "blocked":false,
          "blocks_vision":false,
+         "description":"dirt",
          "entity":false
         },
      "9061":
@@ -25142,6 +25287,7 @@
          "bg":"brown",
          "blocked":false,
          "blocks_vision":false,
+         "description":"dirt",
          "entity":false
         },
      "9062":
@@ -25151,6 +25297,7 @@
          "bg":"brown",
          "blocked":false,
          "blocks_vision":false,
+         "description":"dirt",
          "entity":false
         },
      "9063":
@@ -25160,6 +25307,7 @@
          "bg":"brown",
          "blocked":false,
          "blocks_vision":false,
+         "description":"wooden floor",
          "entity":false
         },
      "9064":
@@ -25169,6 +25317,7 @@
          "bg":"brown",
          "blocked":false,
          "blocks_vision":false,
+         "description":"wooden floor",
          "entity":false
         },
      "9065":
@@ -25178,6 +25327,7 @@
          "bg":"brown",
          "blocked":false,
          "blocks_vision":false,
+         "description":"wooden floor",
          "entity":false
         },
      "9066":
@@ -25187,6 +25337,7 @@
          "bg":"brown",
          "blocked":false,
          "blocks_vision":false,
+         "description":"wooden floor",
          "entity":false
         },
      "9067":
@@ -25196,6 +25347,7 @@
          "bg":"brown",
          "blocked":false,
          "blocks_vision":false,
+         "description":"wooden floor",
          "entity":false
         },
      "9068":
@@ -25205,6 +25357,7 @@
          "bg":"brown",
          "blocked":false,
          "blocks_vision":false,
+         "description":"wooden floor",
          "entity":false
         },
      "9069":
@@ -25214,6 +25367,7 @@
          "bg":"brown",
          "blocked":false,
          "blocks_vision":false,
+         "description":"wooden floor",
          "entity":false
         },
      "9070":
@@ -25747,43 +25901,50 @@
         {
          "bg":"#70570C",
          "blocked":false,
-         "blocks_vision":false
+         "blocks_vision":false,
+         "description":"dirt"
         },
      "9177":
         {
          "bg":"#70570C",
          "blocked":false,
-         "blocks_vision":false
+         "blocks_vision":false,
+         "description":"dirt"
         },
      "9178":
         {
          "bg":"#70570C",
          "blocked":false,
-         "blocks_vision":false
+         "blocks_vision":false,
+         "description":"dirt"
         },
      "9179":
         {
          "bg":"#70570C",
          "blocked":false,
-         "blocks_vision":false
+         "blocks_vision":false,
+         "description":"dirt"
         },
      "9180":
         {
          "bg":"#70570C",
          "blocked":false,
-         "blocks_vision":false
+         "blocks_vision":false,
+         "description":"dirt"
         },
      "9181":
         {
          "bg":"#70570C",
          "blocked":false,
-         "blocks_vision":false
+         "blocks_vision":false,
+         "description":"dirt"
         },
      "9182":
         {
          "bg":"#70570C",
          "blocked":false,
-         "blocks_vision":false
+         "blocks_vision":false,
+         "description":"dirt"
         },
      "9183":
         {
@@ -25792,6 +25953,7 @@
          "bg":"#824d03",
          "blocked":false,
          "blocks_vision":false,
+         "description":"wooden floor",
          "entity":false
         },
      "9184":
@@ -25801,6 +25963,7 @@
          "bg":"#824d03",
          "blocked":false,
          "blocks_vision":false,
+         "description":"wooden floor",
          "entity":false
         },
      "9185":
@@ -25810,6 +25973,7 @@
          "bg":"#824d03",
          "blocked":false,
          "blocks_vision":false,
+         "description":"wooden floor",
          "entity":false
         },
      "9186":
@@ -25819,6 +25983,7 @@
          "bg":"#824d03",
          "blocked":false,
          "blocks_vision":false,
+         "description":"wooden floor",
          "entity":false
         },
      "9187":
@@ -25828,6 +25993,7 @@
          "bg":"#824d03",
          "blocked":false,
          "blocks_vision":false,
+         "description":"wooden floor",
          "entity":false
         },
      "9188":
@@ -25837,6 +26003,7 @@
          "bg":"#824d03",
          "blocked":false,
          "blocks_vision":false,
+         "description":"wooden floor",
          "entity":false
         },
      "9189":
@@ -25846,6 +26013,7 @@
          "bg":"#824d03",
          "blocked":false,
          "blocks_vision":false,
+         "description":"wooden floor",
          "entity":false
         },
      "9190":
@@ -26369,43 +26537,50 @@
         {
          "bg":"#70570C",
          "blocked":false,
-         "blocks_vision":false
+         "blocks_vision":false,
+         "description":"dirt"
         },
      "9297":
         {
          "bg":"#70570C",
          "blocked":false,
-         "blocks_vision":false
+         "blocks_vision":false,
+         "description":"dirt"
         },
      "9298":
         {
          "bg":"#70570C",
          "blocked":false,
-         "blocks_vision":false
+         "blocks_vision":false,
+         "description":"dirt"
         },
      "9299":
         {
          "bg":"#70570C",
          "blocked":false,
-         "blocks_vision":false
+         "blocks_vision":false,
+         "description":"dirt"
         },
      "9300":
         {
          "bg":"#70570C",
          "blocked":false,
-         "blocks_vision":false
+         "blocks_vision":false,
+         "description":"dirt"
         },
      "9301":
         {
          "bg":"#70570C",
          "blocked":false,
-         "blocks_vision":false
+         "blocks_vision":false,
+         "description":"dirt"
         },
      "9302":
         {
          "bg":"#70570C",
          "blocked":false,
-         "blocks_vision":false
+         "blocks_vision":false,
+         "description":"dirt"
         },
      "9303":
         {
@@ -26414,6 +26589,7 @@
          "bg":"#824d03",
          "blocked":false,
          "blocks_vision":false,
+         "description":"wooden floor",
          "entity":false
         },
      "9304":
@@ -26423,6 +26599,7 @@
          "bg":"#824d03",
          "blocked":false,
          "blocks_vision":false,
+         "description":"wooden floor",
          "entity":false
         },
      "9305":
@@ -26432,6 +26609,7 @@
          "bg":"#824d03",
          "blocked":false,
          "blocks_vision":false,
+         "description":"wooden floor",
          "entity":false
         },
      "9306":
@@ -26441,6 +26619,7 @@
          "bg":"#824d03",
          "blocked":false,
          "blocks_vision":false,
+         "description":"wooden floor",
          "entity":false
         },
      "9307":
@@ -26450,6 +26629,7 @@
          "bg":"#824d03",
          "blocked":false,
          "blocks_vision":false,
+         "description":"wooden floor",
          "entity":false
         },
      "9308":
@@ -26459,6 +26639,7 @@
          "bg":"#824d03",
          "blocked":false,
          "blocks_vision":false,
+         "description":"wooden floor",
          "entity":false
         },
      "9309":
@@ -26468,6 +26649,7 @@
          "bg":"#824d03",
          "blocked":false,
          "blocks_vision":false,
+         "description":"wooden floor",
          "entity":false
         },
      "9310":
@@ -26987,43 +27169,50 @@
         {
          "bg":"#70570C",
          "blocked":false,
-         "blocks_vision":false
+         "blocks_vision":false,
+         "description":"dirt"
         },
      "9417":
         {
          "bg":"#70570C",
          "blocked":false,
-         "blocks_vision":false
+         "blocks_vision":false,
+         "description":"dirt"
         },
      "9418":
         {
          "bg":"#70570C",
          "blocked":false,
-         "blocks_vision":false
+         "blocks_vision":false,
+         "description":"dirt"
         },
      "9419":
         {
          "bg":"#70570C",
          "blocked":false,
-         "blocks_vision":false
+         "blocks_vision":false,
+         "description":"dirt"
         },
      "9420":
         {
          "bg":"#70570C",
          "blocked":false,
-         "blocks_vision":false
+         "blocks_vision":false,
+         "description":"dirt"
         },
      "9421":
         {
          "bg":"#70570C",
          "blocked":false,
-         "blocks_vision":false
+         "blocks_vision":false,
+         "description":"dirt"
         },
      "9422":
         {
          "bg":"#70570C",
          "blocked":false,
-         "blocks_vision":false
+         "blocks_vision":false,
+         "description":"dirt"
         },
      "9423":
         {
@@ -27032,6 +27221,7 @@
          "bg":"#824d03",
          "blocked":false,
          "blocks_vision":false,
+         "description":"wooden floor",
          "entity":false
         },
      "9424":
@@ -27041,6 +27231,7 @@
          "bg":"#824d03",
          "blocked":false,
          "blocks_vision":false,
+         "description":"wooden floor",
          "entity":false
         },
      "9425":
@@ -27050,6 +27241,7 @@
          "bg":"#824d03",
          "blocked":false,
          "blocks_vision":false,
+         "description":"wooden floor",
          "entity":false
         },
      "9426":
@@ -27059,6 +27251,7 @@
          "bg":"#824d03",
          "blocked":false,
          "blocks_vision":false,
+         "description":"wooden floor",
          "entity":false
         },
      "9427":
@@ -27068,6 +27261,7 @@
          "bg":"#824d03",
          "blocked":false,
          "blocks_vision":false,
+         "description":"wooden floor",
          "entity":false
         },
      "9428":
@@ -27077,6 +27271,7 @@
          "bg":"#824d03",
          "blocked":false,
          "blocks_vision":false,
+         "description":"wooden floor",
          "entity":false
         },
      "9429":
@@ -27086,6 +27281,7 @@
          "bg":"#824d03",
          "blocked":false,
          "blocks_vision":false,
+         "description":"wooden floor",
          "entity":false
         },
      "9430":
@@ -27608,6 +27804,7 @@
          "bg":"brown",
          "blocked":false,
          "blocks_vision":false,
+         "description":"dirt",
          "entity":false
         },
      "9537":
@@ -27617,6 +27814,7 @@
          "bg":"brown",
          "blocked":false,
          "blocks_vision":false,
+         "description":"dirt",
          "entity":false
         },
      "9538":
@@ -27626,6 +27824,7 @@
          "bg":"brown",
          "blocked":false,
          "blocks_vision":false,
+         "description":"dirt",
          "entity":false
         },
      "9539":
@@ -27635,6 +27834,7 @@
          "bg":"brown",
          "blocked":false,
          "blocks_vision":false,
+         "description":"dirt",
          "entity":false
         },
      "9540":
@@ -27644,6 +27844,7 @@
          "bg":"brown",
          "blocked":false,
          "blocks_vision":false,
+         "description":"dirt",
          "entity":false
         },
      "9541":
@@ -27653,6 +27854,7 @@
          "bg":"brown",
          "blocked":false,
          "blocks_vision":false,
+         "description":"dirt",
          "entity":false
         },
      "9542":
@@ -27662,6 +27864,7 @@
          "bg":"brown",
          "blocked":false,
          "blocks_vision":false,
+         "description":"dirt",
          "entity":false
         },
      "9543":
@@ -27671,6 +27874,7 @@
          "bg":"#824d03",
          "blocked":false,
          "blocks_vision":false,
+         "description":"wooden floor",
          "entity":false
         },
      "9544":
@@ -27680,6 +27884,7 @@
          "bg":"#824d03",
          "blocked":false,
          "blocks_vision":false,
+         "description":"wooden floor",
          "entity":false
         },
      "9545":
@@ -27689,6 +27894,7 @@
          "bg":"#824d03",
          "blocked":false,
          "blocks_vision":false,
+         "description":"wooden floor",
          "entity":false
         },
      "9546":
@@ -27698,6 +27904,7 @@
          "bg":"#824d03",
          "blocked":false,
          "blocks_vision":false,
+         "description":"wooden floor",
          "entity":false
         },
      "9547":
@@ -27707,6 +27914,7 @@
          "bg":"#824d03",
          "blocked":false,
          "blocks_vision":false,
+         "description":"wooden floor",
          "entity":false
         },
      "9548":
@@ -27716,6 +27924,7 @@
          "bg":"#824d03",
          "blocked":false,
          "blocks_vision":false,
+         "description":"wooden floor",
          "entity":false
         },
      "9549":
@@ -27725,6 +27934,7 @@
          "bg":"#824d03",
          "blocked":false,
          "blocks_vision":false,
+         "description":"wooden floor",
          "entity":false
         },
      "9550":
@@ -28247,6 +28457,7 @@
          "bg":"brown",
          "blocked":false,
          "blocks_vision":false,
+         "description":"dirt",
          "entity":false
         },
      "9657":
@@ -28256,6 +28467,7 @@
          "bg":"rgb(153, 90, 31)",
          "blocked":false,
          "blocks_vision":false,
+         "description":"dirt",
          "entity":false
         },
      "9658":
@@ -28265,6 +28477,7 @@
          "bg":"brown",
          "blocked":false,
          "blocks_vision":false,
+         "description":"dirt",
          "entity":false
         },
      "9659":
@@ -28274,6 +28487,7 @@
          "bg":"brown",
          "blocked":false,
          "blocks_vision":false,
+         "description":"dirt",
          "entity":false
         },
      "9660":
@@ -28283,6 +28497,7 @@
          "bg":"brown",
          "blocked":false,
          "blocks_vision":false,
+         "description":"dirt",
          "entity":false
         },
      "9661":
@@ -28292,6 +28507,7 @@
          "bg":"brown",
          "blocked":false,
          "blocks_vision":false,
+         "description":"dirt",
          "entity":false
         },
      "9662":
@@ -28301,6 +28517,7 @@
          "bg":"brown",
          "blocked":false,
          "blocks_vision":false,
+         "description":"dirt",
          "entity":false
         },
      "9663":
@@ -28310,6 +28527,7 @@
          "bg":"#824d03",
          "blocked":false,
          "blocks_vision":false,
+         "description":"wooden floor",
          "entity":false
         },
      "9664":
@@ -28319,6 +28537,7 @@
          "bg":"#824d03",
          "blocked":false,
          "blocks_vision":false,
+         "description":"wooden floor",
          "entity":false
         },
      "9665":
@@ -28328,6 +28547,7 @@
          "bg":"#824d03",
          "blocked":false,
          "blocks_vision":false,
+         "description":"wooden floor",
          "entity":false
         },
      "9666":
@@ -28337,6 +28557,7 @@
          "bg":"#824d03",
          "blocked":false,
          "blocks_vision":false,
+         "description":"wooden floor",
          "entity":false
         },
      "9667":
@@ -28346,6 +28567,7 @@
          "bg":"#824d03",
          "blocked":false,
          "blocks_vision":false,
+         "description":"wooden floor",
          "entity":false
         },
      "9668":
@@ -28355,6 +28577,7 @@
          "bg":"#824d03",
          "blocked":false,
          "blocks_vision":false,
+         "description":"wooden floor",
          "entity":false
         },
      "9669":
@@ -28364,6 +28587,7 @@
          "bg":"#824d03",
          "blocked":false,
          "blocks_vision":false,
+         "description":"wooden floor",
          "entity":false
         },
      "9670":
@@ -28893,6 +29117,7 @@
          "bg":"brown",
          "blocked":false,
          "blocks_vision":false,
+         "description":"dirt",
          "entity":false
         },
      "9777":
@@ -28902,6 +29127,7 @@
          "bg":"brown",
          "blocked":false,
          "blocks_vision":false,
+         "description":"dirt",
          "entity":false
         },
      "9778":
@@ -28911,6 +29137,7 @@
          "bg":"brown",
          "blocked":false,
          "blocks_vision":false,
+         "description":"dirt",
          "entity":false
         },
      "9779":
@@ -28920,6 +29147,7 @@
          "bg":"brown",
          "blocked":false,
          "blocks_vision":false,
+         "description":"dirt",
          "entity":false
         },
      "9780":
@@ -28929,6 +29157,7 @@
          "bg":"brown",
          "blocked":false,
          "blocks_vision":false,
+         "description":"dirt",
          "entity":false
         },
      "9781":
@@ -28938,6 +29167,7 @@
          "bg":"brown",
          "blocked":false,
          "blocks_vision":false,
+         "description":"dirt",
          "entity":false
         },
      "9782":
@@ -28947,6 +29177,7 @@
          "bg":"brown",
          "blocked":false,
          "blocks_vision":false,
+         "description":"dirt",
          "entity":false
         },
      "9783":
@@ -28956,6 +29187,7 @@
          "bg":"#824d03",
          "blocked":false,
          "blocks_vision":false,
+         "description":"wooden floor",
          "entity":false
         },
      "9784":
@@ -28965,6 +29197,7 @@
          "bg":"#824d03",
          "blocked":false,
          "blocks_vision":false,
+         "description":"wooden floor",
          "entity":false
         },
      "9785":
@@ -28974,6 +29207,7 @@
          "bg":"#824d03",
          "blocked":false,
          "blocks_vision":false,
+         "description":"wooden floor",
          "entity":false
         },
      "9786":
@@ -28983,6 +29217,7 @@
          "bg":"#824d03",
          "blocked":false,
          "blocks_vision":false,
+         "description":"wooden floor",
          "entity":false
         },
      "9787":
@@ -28992,6 +29227,7 @@
          "bg":"#824d03",
          "blocked":false,
          "blocks_vision":false,
+         "description":"wooden floor",
          "entity":false
         },
      "9788":
@@ -29001,6 +29237,7 @@
          "bg":"#824d03",
          "blocked":false,
          "blocks_vision":false,
+         "description":"wooden floor",
          "entity":false
         },
      "9789":
@@ -29010,6 +29247,7 @@
          "bg":"#824d03",
          "blocked":false,
          "blocks_vision":false,
+         "description":"wooden floor",
          "entity":false
         },
      "9790":
@@ -29532,6 +29770,7 @@
          "bg":"#4D494D",
          "blocked":false,
          "blocks_vision":false,
+         "description":"dirt",
          "entity":false
         },
      "9897":
@@ -29541,6 +29780,7 @@
          "bg":"#4D494D",
          "blocked":false,
          "blocks_vision":false,
+         "description":"dirt",
          "entity":false
         },
      "9898":
@@ -29550,6 +29790,7 @@
          "bg":"#4D494D",
          "blocked":false,
          "blocks_vision":false,
+         "description":"dirt",
          "entity":false
         },
      "9899":
@@ -29559,6 +29800,7 @@
          "bg":"#4D494D",
          "blocked":false,
          "blocks_vision":false,
+         "description":"dirt",
          "entity":false
         },
      "9900":
@@ -29568,6 +29810,7 @@
          "bg":"#4D494D",
          "blocked":false,
          "blocks_vision":false,
+         "description":"dirt",
          "entity":false
         },
      "9901":
@@ -29577,6 +29820,7 @@
          "bg":"#4D494D",
          "blocked":false,
          "blocks_vision":false,
+         "description":"dirt",
          "entity":false
         },
      "9902":
@@ -29586,6 +29830,7 @@
          "bg":"#4D494D",
          "blocked":false,
          "blocks_vision":false,
+         "description":"dirt",
          "entity":false
         },
      "9903":
@@ -29595,6 +29840,7 @@
          "bg":"#824d03",
          "blocked":false,
          "blocks_vision":false,
+         "description":"wooden floor",
          "entity":false
         },
      "9904":
@@ -29604,6 +29850,7 @@
          "bg":"#824d03",
          "blocked":false,
          "blocks_vision":false,
+         "description":"wooden floor",
          "entity":false
         },
      "9905":
@@ -29613,6 +29860,7 @@
          "bg":"#824d03",
          "blocked":false,
          "blocks_vision":false,
+         "description":"wooden floor",
          "entity":false
         },
      "9906":
@@ -29622,6 +29870,7 @@
          "bg":"#824d03",
          "blocked":false,
          "blocks_vision":false,
+         "description":"wooden floor",
          "entity":false
         },
      "9907":
@@ -29631,6 +29880,7 @@
          "bg":"#824d03",
          "blocked":false,
          "blocks_vision":false,
+         "description":"wooden floor",
          "entity":false
         },
      "9908":
@@ -29640,6 +29890,7 @@
          "bg":"#824d03",
          "blocked":false,
          "blocks_vision":false,
+         "description":"wooden floor",
          "entity":false
         },
      "9909":
@@ -29649,6 +29900,7 @@
          "bg":"#824d03",
          "blocked":false,
          "blocks_vision":false,
+         "description":"wooden floor",
          "entity":false
         },
      "9910":
@@ -30174,6 +30426,7 @@
          "bg":"string",
          "blocked":"bool",
          "blocks_vision":"bool",
+         "description":"string",
          "entity":"bool"
         },
      "10017":
@@ -30183,6 +30436,7 @@
          "bg":"string",
          "blocked":"bool",
          "blocks_vision":"bool",
+         "description":"string",
          "entity":"bool"
         },
      "10018":
@@ -30192,6 +30446,7 @@
          "bg":"string",
          "blocked":"bool",
          "blocks_vision":"bool",
+         "description":"string",
          "entity":"bool"
         },
      "10019":
@@ -30201,6 +30456,7 @@
          "bg":"string",
          "blocked":"bool",
          "blocks_vision":"bool",
+         "description":"string",
          "entity":"bool"
         },
      "10020":
@@ -30210,6 +30466,7 @@
          "bg":"string",
          "blocked":"bool",
          "blocks_vision":"bool",
+         "description":"string",
          "entity":"bool"
         },
      "10021":
@@ -30219,6 +30476,7 @@
          "bg":"string",
          "blocked":"bool",
          "blocks_vision":"bool",
+         "description":"string",
          "entity":"bool"
         },
      "10022":
@@ -30228,6 +30486,7 @@
          "bg":"string",
          "blocked":"bool",
          "blocks_vision":"bool",
+         "description":"string",
          "entity":"bool"
         },
      "10023":
@@ -30237,6 +30496,7 @@
          "bg":"string",
          "blocked":"bool",
          "blocks_vision":"bool",
+         "description":"string",
          "entity":"bool"
         },
      "10024":
@@ -30246,6 +30506,7 @@
          "bg":"string",
          "blocked":"bool",
          "blocks_vision":"bool",
+         "description":"string",
          "entity":"bool"
         },
      "10025":
@@ -30255,6 +30516,7 @@
          "bg":"string",
          "blocked":"bool",
          "blocks_vision":"bool",
+         "description":"string",
          "entity":"bool"
         },
      "10026":
@@ -30264,6 +30526,7 @@
          "bg":"string",
          "blocked":"bool",
          "blocks_vision":"bool",
+         "description":"string",
          "entity":"bool"
         },
      "10027":
@@ -30273,6 +30536,7 @@
          "bg":"string",
          "blocked":"bool",
          "blocks_vision":"bool",
+         "description":"string",
          "entity":"bool"
         },
      "10028":
@@ -30282,6 +30546,7 @@
          "bg":"string",
          "blocked":"bool",
          "blocks_vision":"bool",
+         "description":"string",
          "entity":"bool"
         },
      "10029":
@@ -30291,6 +30556,7 @@
          "bg":"string",
          "blocked":"bool",
          "blocks_vision":"bool",
+         "description":"string",
          "entity":"bool"
         },
      "10030":
@@ -30817,6 +31083,7 @@
          "bg":"string",
          "blocked":"bool",
          "blocks_vision":"bool",
+         "description":"string",
          "entity":"bool"
         },
      "10137":
@@ -30826,6 +31093,7 @@
          "bg":"string",
          "blocked":"bool",
          "blocks_vision":"bool",
+         "description":"string",
          "entity":"bool"
         },
      "10138":
@@ -30835,6 +31103,7 @@
          "bg":"string",
          "blocked":"bool",
          "blocks_vision":"bool",
+         "description":"string",
          "entity":"bool"
         },
      "10139":
@@ -30844,6 +31113,7 @@
          "bg":"string",
          "blocked":"bool",
          "blocks_vision":"bool",
+         "description":"string",
          "entity":"bool"
         },
      "10140":
@@ -30853,6 +31123,7 @@
          "bg":"string",
          "blocked":"bool",
          "blocks_vision":"bool",
+         "description":"string",
          "entity":"bool"
         },
      "10141":
@@ -30862,6 +31133,7 @@
          "bg":"string",
          "blocked":"bool",
          "blocks_vision":"bool",
+         "description":"string",
          "entity":"bool"
         },
      "10142":
@@ -30871,6 +31143,7 @@
          "bg":"string",
          "blocked":"bool",
          "blocks_vision":"bool",
+         "description":"string",
          "entity":"bool"
         },
      "10143":
@@ -30880,6 +31153,7 @@
          "bg":"string",
          "blocked":"bool",
          "blocks_vision":"bool",
+         "description":"string",
          "entity":"bool"
         },
      "10144":
@@ -30889,6 +31163,7 @@
          "bg":"string",
          "blocked":"bool",
          "blocks_vision":"bool",
+         "description":"string",
          "entity":"bool"
         },
      "10145":
@@ -30898,6 +31173,7 @@
          "bg":"string",
          "blocked":"bool",
          "blocks_vision":"bool",
+         "description":"string",
          "entity":"bool"
         },
      "10146":
@@ -30907,6 +31183,7 @@
          "bg":"string",
          "blocked":"bool",
          "blocks_vision":"bool",
+         "description":"string",
          "entity":"bool"
         },
      "10147":
@@ -30916,6 +31193,7 @@
          "bg":"string",
          "blocked":"bool",
          "blocks_vision":"bool",
+         "description":"string",
          "entity":"bool"
         },
      "10148":
@@ -30925,6 +31203,7 @@
          "bg":"string",
          "blocked":"bool",
          "blocks_vision":"bool",
+         "description":"string",
          "entity":"bool"
         },
      "10149":
@@ -30934,6 +31213,7 @@
          "bg":"string",
          "blocked":"bool",
          "blocks_vision":"bool",
+         "description":"string",
          "entity":"bool"
         },
      "10150":
@@ -45174,6 +45454,7 @@
          "bg":"string",
          "blocked":"bool",
          "blocks_vision":"bool",
+         "description":"string",
          "entity":"bool"
         },
      "7377":
@@ -45183,6 +45464,7 @@
          "bg":"string",
          "blocked":"bool",
          "blocks_vision":"bool",
+         "description":"string",
          "entity":"bool"
         },
      "7378":
@@ -45192,6 +45474,7 @@
          "bg":"string",
          "blocked":"bool",
          "blocks_vision":"bool",
+         "description":"string",
          "entity":"bool"
         },
      "7379":
@@ -45201,6 +45484,7 @@
          "bg":"string",
          "blocked":"bool",
          "blocks_vision":"bool",
+         "description":"string",
          "entity":"bool"
         },
      "7380":
@@ -45210,6 +45494,7 @@
          "bg":"string",
          "blocked":"bool",
          "blocks_vision":"bool",
+         "description":"string",
          "entity":"bool"
         },
      "7381":
@@ -45219,6 +45504,7 @@
          "bg":"string",
          "blocked":"bool",
          "blocks_vision":"bool",
+         "description":"string",
          "entity":"bool"
         },
      "7382":
@@ -45228,6 +45514,7 @@
          "bg":"string",
          "blocked":"bool",
          "blocks_vision":"bool",
+         "description":"string",
          "entity":"bool"
         },
      "7383":
@@ -45983,6 +46270,7 @@
          "bg":"string",
          "blocked":"bool",
          "blocks_vision":"bool",
+         "description":"string",
          "entity":"bool"
         },
      "7497":
@@ -45992,6 +46280,7 @@
          "bg":"string",
          "blocked":"bool",
          "blocks_vision":"bool",
+         "description":"string",
          "entity":"bool"
         },
      "7498":
@@ -46001,6 +46290,7 @@
          "bg":"string",
          "blocked":"bool",
          "blocks_vision":"bool",
+         "description":"string",
          "entity":"bool"
         },
      "7499":
@@ -46010,6 +46300,7 @@
          "bg":"string",
          "blocked":"bool",
          "blocks_vision":"bool",
+         "description":"string",
          "entity":"bool"
         },
      "7500":
@@ -46019,6 +46310,7 @@
          "bg":"string",
          "blocked":"bool",
          "blocks_vision":"bool",
+         "description":"string",
          "entity":"bool"
         },
      "7501":
@@ -46028,6 +46320,7 @@
          "bg":"string",
          "blocked":"bool",
          "blocks_vision":"bool",
+         "description":"string",
          "entity":"bool"
         },
      "7502":
@@ -46037,6 +46330,7 @@
          "bg":"string",
          "blocked":"bool",
          "blocks_vision":"bool",
+         "description":"string",
          "entity":"bool"
         },
      "7503":
@@ -46783,6 +47077,7 @@
          "bg":"string",
          "blocked":"bool",
          "blocks_vision":"bool",
+         "description":"string",
          "entity":"bool"
         },
      "7617":
@@ -46792,6 +47087,7 @@
          "bg":"string",
          "blocked":"bool",
          "blocks_vision":"bool",
+         "description":"string",
          "entity":"bool"
         },
      "7618":
@@ -46801,6 +47097,7 @@
          "bg":"string",
          "blocked":"bool",
          "blocks_vision":"bool",
+         "description":"string",
          "entity":"bool"
         },
      "7619":
@@ -46810,6 +47107,7 @@
          "bg":"string",
          "blocked":"bool",
          "blocks_vision":"bool",
+         "description":"string",
          "entity":"bool"
         },
      "7620":
@@ -46819,6 +47117,7 @@
          "bg":"string",
          "blocked":"bool",
          "blocks_vision":"bool",
+         "description":"string",
          "entity":"bool"
         },
      "7621":
@@ -46828,6 +47127,7 @@
          "bg":"string",
          "blocked":"bool",
          "blocks_vision":"bool",
+         "description":"string",
          "entity":"bool"
         },
      "7622":
@@ -46837,6 +47137,7 @@
          "bg":"string",
          "blocked":"bool",
          "blocks_vision":"bool",
+         "description":"string",
          "entity":"bool"
         },
      "7623":
@@ -47571,6 +47872,7 @@
          "bg":"string",
          "blocked":"bool",
          "blocks_vision":"bool",
+         "description":"string",
          "entity":"bool"
         },
      "7737":
@@ -47580,6 +47882,7 @@
          "bg":"string",
          "blocked":"bool",
          "blocks_vision":"bool",
+         "description":"string",
          "entity":"bool"
         },
      "7738":
@@ -47589,6 +47892,7 @@
          "bg":"string",
          "blocked":"bool",
          "blocks_vision":"bool",
+         "description":"string",
          "entity":"bool"
         },
      "7739":
@@ -47598,6 +47902,7 @@
          "bg":"string",
          "blocked":"bool",
          "blocks_vision":"bool",
+         "description":"string",
          "entity":"bool"
         },
      "7740":
@@ -47607,6 +47912,7 @@
          "bg":"string",
          "blocked":"bool",
          "blocks_vision":"bool",
+         "description":"string",
          "entity":"bool"
         },
      "7741":
@@ -47616,6 +47922,7 @@
          "bg":"string",
          "blocked":"bool",
          "blocks_vision":"bool",
+         "description":"string",
          "entity":"bool"
         },
      "7742":
@@ -47625,6 +47932,7 @@
          "bg":"string",
          "blocked":"bool",
          "blocks_vision":"bool",
+         "description":"string",
          "entity":"bool"
         },
      "7743":
@@ -48366,6 +48674,7 @@
          "bg":"string",
          "blocked":"bool",
          "blocks_vision":"bool",
+         "description":"string",
          "entity":"bool"
         },
      "7857":
@@ -48375,6 +48684,7 @@
          "bg":"string",
          "blocked":"bool",
          "blocks_vision":"bool",
+         "description":"string",
          "entity":"bool"
         },
      "7858":
@@ -48384,6 +48694,7 @@
          "bg":"string",
          "blocked":"bool",
          "blocks_vision":"bool",
+         "description":"string",
          "entity":"bool"
         },
      "7859":
@@ -48393,6 +48704,7 @@
          "bg":"string",
          "blocked":"bool",
          "blocks_vision":"bool",
+         "description":"string",
          "entity":"bool"
         },
      "7860":
@@ -48402,6 +48714,7 @@
          "bg":"string",
          "blocked":"bool",
          "blocks_vision":"bool",
+         "description":"string",
          "entity":"bool"
         },
      "7861":
@@ -48411,6 +48724,7 @@
          "bg":"string",
          "blocked":"bool",
          "blocks_vision":"bool",
+         "description":"string",
          "entity":"bool"
         },
      "7862":
@@ -48420,6 +48734,7 @@
          "bg":"string",
          "blocked":"bool",
          "blocks_vision":"bool",
+         "description":"string",
          "entity":"bool"
         },
      "7863":
@@ -49170,6 +49485,7 @@
          "bg":"string",
          "blocked":"bool",
          "blocks_vision":"bool",
+         "description":"string",
          "entity":"bool"
         },
      "7977":
@@ -49179,6 +49495,7 @@
          "bg":"string",
          "blocked":"bool",
          "blocks_vision":"bool",
+         "description":"string",
          "entity":"bool"
         },
      "7978":
@@ -49188,6 +49505,7 @@
          "bg":"string",
          "blocked":"bool",
          "blocks_vision":"bool",
+         "description":"string",
          "entity":"bool"
         },
      "7979":
@@ -49197,6 +49515,7 @@
          "bg":"string",
          "blocked":"bool",
          "blocks_vision":"bool",
+         "description":"string",
          "entity":"bool"
         },
      "7980":
@@ -49206,6 +49525,7 @@
          "bg":"string",
          "blocked":"bool",
          "blocks_vision":"bool",
+         "description":"string",
          "entity":"bool"
         },
      "7981":
@@ -49215,6 +49535,7 @@
          "bg":"string",
          "blocked":"bool",
          "blocks_vision":"bool",
+         "description":"string",
          "entity":"bool"
         },
      "7982":
@@ -49224,6 +49545,7 @@
          "bg":"string",
          "blocked":"bool",
          "blocks_vision":"bool",
+         "description":"string",
          "entity":"bool"
         },
      "7983":
@@ -49854,6 +50176,7 @@
          "bg":"string",
          "blocked":"bool",
          "blocks_vision":"bool",
+         "description":"string",
          "entity":"bool"
         },
      "8097":
@@ -49863,6 +50186,7 @@
          "bg":"string",
          "blocked":"bool",
          "blocks_vision":"bool",
+         "description":"string",
          "entity":"bool"
         },
      "8098":
@@ -49872,6 +50196,7 @@
          "bg":"string",
          "blocked":"bool",
          "blocks_vision":"bool",
+         "description":"string",
          "entity":"bool"
         },
      "8099":
@@ -49881,6 +50206,7 @@
          "bg":"string",
          "blocked":"bool",
          "blocks_vision":"bool",
+         "description":"string",
          "entity":"bool"
         },
      "810":
@@ -49898,6 +50224,7 @@
          "bg":"string",
          "blocked":"bool",
          "blocks_vision":"bool",
+         "description":"string",
          "entity":"bool"
         },
      "8101":
@@ -49907,6 +50234,7 @@
          "bg":"string",
          "blocked":"bool",
          "blocks_vision":"bool",
+         "description":"string",
          "entity":"bool"
         },
      "8102":
@@ -49916,6 +50244,7 @@
          "bg":"string",
          "blocked":"bool",
          "blocks_vision":"bool",
+         "description":"string",
          "entity":"bool"
         },
      "8103":
@@ -50542,6 +50871,7 @@
          "bg":"string",
          "blocked":"bool",
          "blocks_vision":"bool",
+         "description":"string",
          "entity":"bool"
         },
      "8217":
@@ -50551,6 +50881,7 @@
          "bg":"string",
          "blocked":"bool",
          "blocks_vision":"bool",
+         "description":"string",
          "entity":"bool"
         },
      "8218":
@@ -50560,6 +50891,7 @@
          "bg":"string",
          "blocked":"bool",
          "blocks_vision":"bool",
+         "description":"string",
          "entity":"bool"
         },
      "8219":
@@ -50569,6 +50901,7 @@
          "bg":"string",
          "blocked":"bool",
          "blocks_vision":"bool",
+         "description":"string",
          "entity":"bool"
         },
      "8220":
@@ -50578,6 +50911,7 @@
          "bg":"string",
          "blocked":"bool",
          "blocks_vision":"bool",
+         "description":"string",
          "entity":"bool"
         },
      "8221":
@@ -50587,6 +50921,7 @@
          "bg":"string",
          "blocked":"bool",
          "blocks_vision":"bool",
+         "description":"string",
          "entity":"bool"
         },
      "8222":
@@ -50596,6 +50931,7 @@
          "bg":"string",
          "blocked":"bool",
          "blocks_vision":"bool",
+         "description":"string",
          "entity":"bool"
         },
      "8223":
@@ -51222,6 +51558,7 @@
          "bg":"string",
          "blocked":"bool",
          "blocks_vision":"bool",
+         "description":"string",
          "entity":"bool"
         },
      "8337":
@@ -51231,6 +51568,7 @@
          "bg":"string",
          "blocked":"bool",
          "blocks_vision":"bool",
+         "description":"string",
          "entity":"bool"
         },
      "8338":
@@ -51240,6 +51578,7 @@
          "bg":"string",
          "blocked":"bool",
          "blocks_vision":"bool",
+         "description":"string",
          "entity":"bool"
         },
      "8339":
@@ -51249,6 +51588,7 @@
          "bg":"string",
          "blocked":"bool",
          "blocks_vision":"bool",
+         "description":"string",
          "entity":"bool"
         },
      "8340":
@@ -51258,6 +51598,7 @@
          "bg":"string",
          "blocked":"bool",
          "blocks_vision":"bool",
+         "description":"string",
          "entity":"bool"
         },
      "8341":
@@ -51267,6 +51608,7 @@
          "bg":"string",
          "blocked":"bool",
          "blocks_vision":"bool",
+         "description":"string",
          "entity":"bool"
         },
      "8342":
@@ -51276,6 +51618,7 @@
          "bg":"string",
          "blocked":"bool",
          "blocks_vision":"bool",
+         "description":"string",
          "entity":"bool"
         },
      "8343":
@@ -51902,6 +52245,7 @@
          "bg":"string",
          "blocked":"bool",
          "blocks_vision":"bool",
+         "description":"string",
          "entity":"bool"
         },
      "8457":
@@ -51911,6 +52255,7 @@
          "bg":"string",
          "blocked":"bool",
          "blocks_vision":"bool",
+         "description":"string",
          "entity":"bool"
         },
      "8458":
@@ -51920,6 +52265,7 @@
          "bg":"string",
          "blocked":"bool",
          "blocks_vision":"bool",
+         "description":"string",
          "entity":"bool"
         },
      "8459":
@@ -51929,6 +52275,7 @@
          "bg":"string",
          "blocked":"bool",
          "blocks_vision":"bool",
+         "description":"string",
          "entity":"bool"
         },
      "8460":
@@ -51938,6 +52285,7 @@
          "bg":"string",
          "blocked":"bool",
          "blocks_vision":"bool",
+         "description":"string",
          "entity":"bool"
         },
      "8461":
@@ -51947,6 +52295,7 @@
          "bg":"string",
          "blocked":"bool",
          "blocks_vision":"bool",
+         "description":"string",
          "entity":"bool"
         },
      "8462":
@@ -51956,6 +52305,7 @@
          "bg":"string",
          "blocked":"bool",
          "blocks_vision":"bool",
+         "description":"string",
          "entity":"bool"
         },
      "8463":
@@ -52575,6 +52925,7 @@
          "bg":"string",
          "blocked":"bool",
          "blocks_vision":"bool",
+         "description":"string",
          "entity":"bool"
         },
      "8577":
@@ -52584,6 +52935,7 @@
          "bg":"string",
          "blocked":"bool",
          "blocks_vision":"bool",
+         "description":"string",
          "entity":"bool"
         },
      "8578":
@@ -52593,6 +52945,7 @@
          "bg":"string",
          "blocked":"bool",
          "blocks_vision":"bool",
+         "description":"string",
          "entity":"bool"
         },
      "8579":
@@ -52602,6 +52955,7 @@
          "bg":"string",
          "blocked":"bool",
          "blocks_vision":"bool",
+         "description":"string",
          "entity":"bool"
         },
      "8580":
@@ -52611,6 +52965,7 @@
          "bg":"string",
          "blocked":"bool",
          "blocks_vision":"bool",
+         "description":"string",
          "entity":"bool"
         },
      "8581":
@@ -52620,6 +52975,7 @@
          "bg":"string",
          "blocked":"bool",
          "blocks_vision":"bool",
+         "description":"string",
          "entity":"bool"
         },
      "8582":
@@ -52629,6 +52985,7 @@
          "bg":"string",
          "blocked":"bool",
          "blocks_vision":"bool",
+         "description":"string",
          "entity":"bool"
         },
      "8583":
@@ -53232,6 +53589,7 @@
          "bg":"string",
          "blocked":"bool",
          "blocks_vision":"bool",
+         "description":"string",
          "entity":"bool"
         },
      "8697":
@@ -53241,6 +53599,7 @@
          "bg":"string",
          "blocked":"bool",
          "blocks_vision":"bool",
+         "description":"string",
          "entity":"bool"
         },
      "8698":
@@ -53250,6 +53609,7 @@
          "bg":"string",
          "blocked":"bool",
          "blocks_vision":"bool",
+         "description":"string",
          "entity":"bool"
         },
      "8699":
@@ -53259,6 +53619,7 @@
          "bg":"string",
          "blocked":"bool",
          "blocks_vision":"bool",
+         "description":"string",
          "entity":"bool"
         },
      "8700":
@@ -53268,6 +53629,7 @@
          "bg":"string",
          "blocked":"bool",
          "blocks_vision":"bool",
+         "description":"string",
          "entity":"bool"
         },
      "8701":
@@ -53277,6 +53639,7 @@
          "bg":"string",
          "blocked":"bool",
          "blocks_vision":"bool",
+         "description":"string",
          "entity":"bool"
         },
      "8702":
@@ -53286,6 +53649,7 @@
          "bg":"string",
          "blocked":"bool",
          "blocks_vision":"bool",
+         "description":"string",
          "entity":"bool"
         },
      "8703":
@@ -53897,6 +54261,7 @@
          "bg":"string",
          "blocked":"bool",
          "blocks_vision":"bool",
+         "description":"string",
          "entity":"bool"
         },
      "8817":
@@ -53906,6 +54271,7 @@
          "bg":"string",
          "blocked":"bool",
          "blocks_vision":"bool",
+         "description":"string",
          "entity":"bool"
         },
      "8818":
@@ -53915,6 +54281,7 @@
          "bg":"string",
          "blocked":"bool",
          "blocks_vision":"bool",
+         "description":"string",
          "entity":"bool"
         },
      "8819":
@@ -53924,6 +54291,7 @@
          "bg":"string",
          "blocked":"bool",
          "blocks_vision":"bool",
+         "description":"string",
          "entity":"bool"
         },
      "8820":
@@ -53933,6 +54301,7 @@
          "bg":"string",
          "blocked":"bool",
          "blocks_vision":"bool",
+         "description":"string",
          "entity":"bool"
         },
      "8821":
@@ -53942,6 +54311,7 @@
          "bg":"string",
          "blocked":"bool",
          "blocks_vision":"bool",
+         "description":"string",
          "entity":"bool"
         },
      "8822":
@@ -53951,6 +54321,7 @@
          "bg":"string",
          "blocked":"bool",
          "blocks_vision":"bool",
+         "description":"string",
          "entity":"bool"
         },
      "8823":
@@ -53960,6 +54331,7 @@
          "bg":"string",
          "blocked":"bool",
          "blocks_vision":"bool",
+         "description":"string",
          "entity":"bool"
         },
      "8824":
@@ -53969,6 +54341,7 @@
          "bg":"string",
          "blocked":"bool",
          "blocks_vision":"bool",
+         "description":"string",
          "entity":"bool"
         },
      "8825":
@@ -53978,6 +54351,7 @@
          "bg":"string",
          "blocked":"bool",
          "blocks_vision":"bool",
+         "description":"string",
          "entity":"bool"
         },
      "8826":
@@ -53987,6 +54361,7 @@
          "bg":"string",
          "blocked":"bool",
          "blocks_vision":"bool",
+         "description":"string",
          "entity":"bool"
         },
      "8827":
@@ -53996,6 +54371,7 @@
          "bg":"string",
          "blocked":"bool",
          "blocks_vision":"bool",
+         "description":"string",
          "entity":"bool"
         },
      "8828":
@@ -54005,6 +54381,7 @@
          "bg":"string",
          "blocked":"bool",
          "blocks_vision":"bool",
+         "description":"string",
          "entity":"bool"
         },
      "8829":
@@ -54014,6 +54391,7 @@
          "bg":"string",
          "blocked":"bool",
          "blocks_vision":"bool",
+         "description":"string",
          "entity":"bool"
         },
      "8830":
@@ -54544,6 +54922,7 @@
          "bg":"string",
          "blocked":"bool",
          "blocks_vision":"bool",
+         "description":"string",
          "entity":"bool"
         },
      "8937":
@@ -54553,6 +54932,7 @@
          "bg":"string",
          "blocked":"bool",
          "blocks_vision":"bool",
+         "description":"string",
          "entity":"bool"
         },
      "8938":
@@ -54562,6 +54942,7 @@
          "bg":"string",
          "blocked":"bool",
          "blocks_vision":"bool",
+         "description":"string",
          "entity":"bool"
         },
      "8939":
@@ -54571,6 +54952,7 @@
          "bg":"string",
          "blocked":"bool",
          "blocks_vision":"bool",
+         "description":"string",
          "entity":"bool"
         },
      "8940":
@@ -54580,6 +54962,7 @@
          "bg":"string",
          "blocked":"bool",
          "blocks_vision":"bool",
+         "description":"string",
          "entity":"bool"
         },
      "8941":
@@ -54589,6 +54972,7 @@
          "bg":"string",
          "blocked":"bool",
          "blocks_vision":"bool",
+         "description":"string",
          "entity":"bool"
         },
      "8942":
@@ -54598,6 +54982,7 @@
          "bg":"string",
          "blocked":"bool",
          "blocks_vision":"bool",
+         "description":"string",
          "entity":"bool"
         },
      "8943":
@@ -54607,6 +54992,7 @@
          "bg":"string",
          "blocked":"bool",
          "blocks_vision":"bool",
+         "description":"string",
          "entity":"bool"
         },
      "8944":
@@ -54616,6 +55002,7 @@
          "bg":"string",
          "blocked":"bool",
          "blocks_vision":"bool",
+         "description":"string",
          "entity":"bool"
         },
      "8945":
@@ -54625,6 +55012,7 @@
          "bg":"string",
          "blocked":"bool",
          "blocks_vision":"bool",
+         "description":"string",
          "entity":"bool"
         },
      "8946":
@@ -54634,6 +55022,7 @@
          "bg":"string",
          "blocked":"bool",
          "blocks_vision":"bool",
+         "description":"string",
          "entity":"bool"
         },
      "8947":
@@ -54643,6 +55032,7 @@
          "bg":"string",
          "blocked":"bool",
          "blocks_vision":"bool",
+         "description":"string",
          "entity":"bool"
         },
      "8948":
@@ -54652,6 +55042,7 @@
          "bg":"string",
          "blocked":"bool",
          "blocks_vision":"bool",
+         "description":"string",
          "entity":"bool"
         },
      "8949":
@@ -54661,6 +55052,7 @@
          "bg":"string",
          "blocked":"bool",
          "blocks_vision":"bool",
+         "description":"string",
          "entity":"bool"
         },
      "8950":
@@ -55191,6 +55583,7 @@
          "bg":"string",
          "blocked":"bool",
          "blocks_vision":"bool",
+         "description":"string",
          "entity":"bool"
         },
      "9057":
@@ -55200,6 +55593,7 @@
          "bg":"string",
          "blocked":"bool",
          "blocks_vision":"bool",
+         "description":"string",
          "entity":"bool"
         },
      "9058":
@@ -55209,6 +55603,7 @@
          "bg":"string",
          "blocked":"bool",
          "blocks_vision":"bool",
+         "description":"string",
          "entity":"bool"
         },
      "9059":
@@ -55218,6 +55613,7 @@
          "bg":"string",
          "blocked":"bool",
          "blocks_vision":"bool",
+         "description":"string",
          "entity":"bool"
         },
      "9060":
@@ -55227,6 +55623,7 @@
          "bg":"string",
          "blocked":"bool",
          "blocks_vision":"bool",
+         "description":"string",
          "entity":"bool"
         },
      "9061":
@@ -55236,6 +55633,7 @@
          "bg":"string",
          "blocked":"bool",
          "blocks_vision":"bool",
+         "description":"string",
          "entity":"bool"
         },
      "9062":
@@ -55245,6 +55643,7 @@
          "bg":"string",
          "blocked":"bool",
          "blocks_vision":"bool",
+         "description":"string",
          "entity":"bool"
         },
      "9063":
@@ -55254,6 +55653,7 @@
          "bg":"string",
          "blocked":"bool",
          "blocks_vision":"bool",
+         "description":"string",
          "entity":"bool"
         },
      "9064":
@@ -55263,6 +55663,7 @@
          "bg":"string",
          "blocked":"bool",
          "blocks_vision":"bool",
+         "description":"string",
          "entity":"bool"
         },
      "9065":
@@ -55272,6 +55673,7 @@
          "bg":"string",
          "blocked":"bool",
          "blocks_vision":"bool",
+         "description":"string",
          "entity":"bool"
         },
      "9066":
@@ -55281,6 +55683,7 @@
          "bg":"string",
          "blocked":"bool",
          "blocks_vision":"bool",
+         "description":"string",
          "entity":"bool"
         },
      "9067":
@@ -55290,6 +55693,7 @@
          "bg":"string",
          "blocked":"bool",
          "blocks_vision":"bool",
+         "description":"string",
          "entity":"bool"
         },
      "9068":
@@ -55299,6 +55703,7 @@
          "bg":"string",
          "blocked":"bool",
          "blocks_vision":"bool",
+         "description":"string",
          "entity":"bool"
         },
      "9069":
@@ -55308,6 +55713,7 @@
          "bg":"string",
          "blocked":"bool",
          "blocks_vision":"bool",
+         "description":"string",
          "entity":"bool"
         },
      "9070":
@@ -55841,43 +56247,50 @@
         {
          "bg":"string",
          "blocked":"bool",
-         "blocks_vision":"bool"
+         "blocks_vision":"bool",
+         "description":"string"
         },
      "9177":
         {
          "bg":"string",
          "blocked":"bool",
-         "blocks_vision":"bool"
+         "blocks_vision":"bool",
+         "description":"string"
         },
      "9178":
         {
          "bg":"string",
          "blocked":"bool",
-         "blocks_vision":"bool"
+         "blocks_vision":"bool",
+         "description":"string"
         },
      "9179":
         {
          "bg":"string",
          "blocked":"bool",
-         "blocks_vision":"bool"
+         "blocks_vision":"bool",
+         "description":"string"
         },
      "9180":
         {
          "bg":"string",
          "blocked":"bool",
-         "blocks_vision":"bool"
+         "blocks_vision":"bool",
+         "description":"string"
         },
      "9181":
         {
          "bg":"string",
          "blocked":"bool",
-         "blocks_vision":"bool"
+         "blocks_vision":"bool",
+         "description":"string"
         },
      "9182":
         {
          "bg":"string",
          "blocked":"bool",
-         "blocks_vision":"bool"
+         "blocks_vision":"bool",
+         "description":"string"
         },
      "9183":
         {
@@ -55886,6 +56299,7 @@
          "bg":"string",
          "blocked":"bool",
          "blocks_vision":"bool",
+         "description":"string",
          "entity":"bool"
         },
      "9184":
@@ -55895,6 +56309,7 @@
          "bg":"string",
          "blocked":"bool",
          "blocks_vision":"bool",
+         "description":"string",
          "entity":"bool"
         },
      "9185":
@@ -55904,6 +56319,7 @@
          "bg":"string",
          "blocked":"bool",
          "blocks_vision":"bool",
+         "description":"string",
          "entity":"bool"
         },
      "9186":
@@ -55913,6 +56329,7 @@
          "bg":"string",
          "blocked":"bool",
          "blocks_vision":"bool",
+         "description":"string",
          "entity":"bool"
         },
      "9187":
@@ -55922,6 +56339,7 @@
          "bg":"string",
          "blocked":"bool",
          "blocks_vision":"bool",
+         "description":"string",
          "entity":"bool"
         },
      "9188":
@@ -55931,6 +56349,7 @@
          "bg":"string",
          "blocked":"bool",
          "blocks_vision":"bool",
+         "description":"string",
          "entity":"bool"
         },
      "9189":
@@ -55940,6 +56359,7 @@
          "bg":"string",
          "blocked":"bool",
          "blocks_vision":"bool",
+         "description":"string",
          "entity":"bool"
         },
      "9190":
@@ -56463,43 +56883,50 @@
         {
          "bg":"string",
          "blocked":"bool",
-         "blocks_vision":"bool"
+         "blocks_vision":"bool",
+         "description":"string"
         },
      "9297":
         {
          "bg":"string",
          "blocked":"bool",
-         "blocks_vision":"bool"
+         "blocks_vision":"bool",
+         "description":"string"
         },
      "9298":
         {
          "bg":"string",
          "blocked":"bool",
-         "blocks_vision":"bool"
+         "blocks_vision":"bool",
+         "description":"string"
         },
      "9299":
         {
          "bg":"string",
          "blocked":"bool",
-         "blocks_vision":"bool"
+         "blocks_vision":"bool",
+         "description":"string"
         },
      "9300":
         {
          "bg":"string",
          "blocked":"bool",
-         "blocks_vision":"bool"
+         "blocks_vision":"bool",
+         "description":"string"
         },
      "9301":
         {
          "bg":"string",
          "blocked":"bool",
-         "blocks_vision":"bool"
+         "blocks_vision":"bool",
+         "description":"string"
         },
      "9302":
         {
          "bg":"string",
          "blocked":"bool",
-         "blocks_vision":"bool"
+         "blocks_vision":"bool",
+         "description":"string"
         },
      "9303":
         {
@@ -56508,6 +56935,7 @@
          "bg":"string",
          "blocked":"bool",
          "blocks_vision":"bool",
+         "description":"string",
          "entity":"bool"
         },
      "9304":
@@ -56517,6 +56945,7 @@
          "bg":"string",
          "blocked":"bool",
          "blocks_vision":"bool",
+         "description":"string",
          "entity":"bool"
         },
      "9305":
@@ -56526,6 +56955,7 @@
          "bg":"string",
          "blocked":"bool",
          "blocks_vision":"bool",
+         "description":"string",
          "entity":"bool"
         },
      "9306":
@@ -56535,6 +56965,7 @@
          "bg":"string",
          "blocked":"bool",
          "blocks_vision":"bool",
+         "description":"string",
          "entity":"bool"
         },
      "9307":
@@ -56544,6 +56975,7 @@
          "bg":"string",
          "blocked":"bool",
          "blocks_vision":"bool",
+         "description":"string",
          "entity":"bool"
         },
      "9308":
@@ -56553,6 +56985,7 @@
          "bg":"string",
          "blocked":"bool",
          "blocks_vision":"bool",
+         "description":"string",
          "entity":"bool"
         },
      "9309":
@@ -56562,6 +56995,7 @@
          "bg":"string",
          "blocked":"bool",
          "blocks_vision":"bool",
+         "description":"string",
          "entity":"bool"
         },
      "9310":
@@ -57081,43 +57515,50 @@
         {
          "bg":"string",
          "blocked":"bool",
-         "blocks_vision":"bool"
+         "blocks_vision":"bool",
+         "description":"string"
         },
      "9417":
         {
          "bg":"string",
          "blocked":"bool",
-         "blocks_vision":"bool"
+         "blocks_vision":"bool",
+         "description":"string"
         },
      "9418":
         {
          "bg":"string",
          "blocked":"bool",
-         "blocks_vision":"bool"
+         "blocks_vision":"bool",
+         "description":"string"
         },
      "9419":
         {
          "bg":"string",
          "blocked":"bool",
-         "blocks_vision":"bool"
+         "blocks_vision":"bool",
+         "description":"string"
         },
      "9420":
         {
          "bg":"string",
          "blocked":"bool",
-         "blocks_vision":"bool"
+         "blocks_vision":"bool",
+         "description":"string"
         },
      "9421":
         {
          "bg":"string",
          "blocked":"bool",
-         "blocks_vision":"bool"
+         "blocks_vision":"bool",
+         "description":"string"
         },
      "9422":
         {
          "bg":"string",
          "blocked":"bool",
-         "blocks_vision":"bool"
+         "blocks_vision":"bool",
+         "description":"string"
         },
      "9423":
         {
@@ -57126,6 +57567,7 @@
          "bg":"string",
          "blocked":"bool",
          "blocks_vision":"bool",
+         "description":"string",
          "entity":"bool"
         },
      "9424":
@@ -57135,6 +57577,7 @@
          "bg":"string",
          "blocked":"bool",
          "blocks_vision":"bool",
+         "description":"string",
          "entity":"bool"
         },
      "9425":
@@ -57144,6 +57587,7 @@
          "bg":"string",
          "blocked":"bool",
          "blocks_vision":"bool",
+         "description":"string",
          "entity":"bool"
         },
      "9426":
@@ -57153,6 +57597,7 @@
          "bg":"string",
          "blocked":"bool",
          "blocks_vision":"bool",
+         "description":"string",
          "entity":"bool"
         },
      "9427":
@@ -57162,6 +57607,7 @@
          "bg":"string",
          "blocked":"bool",
          "blocks_vision":"bool",
+         "description":"string",
          "entity":"bool"
         },
      "9428":
@@ -57171,6 +57617,7 @@
          "bg":"string",
          "blocked":"bool",
          "blocks_vision":"bool",
+         "description":"string",
          "entity":"bool"
         },
      "9429":
@@ -57180,6 +57627,7 @@
          "bg":"string",
          "blocked":"bool",
          "blocks_vision":"bool",
+         "description":"string",
          "entity":"bool"
         },
      "9430":
@@ -57702,6 +58150,7 @@
          "bg":"string",
          "blocked":"bool",
          "blocks_vision":"bool",
+         "description":"string",
          "entity":"bool"
         },
      "9537":
@@ -57711,6 +58160,7 @@
          "bg":"string",
          "blocked":"bool",
          "blocks_vision":"bool",
+         "description":"string",
          "entity":"bool"
         },
      "9538":
@@ -57720,6 +58170,7 @@
          "bg":"string",
          "blocked":"bool",
          "blocks_vision":"bool",
+         "description":"string",
          "entity":"bool"
         },
      "9539":
@@ -57729,6 +58180,7 @@
          "bg":"string",
          "blocked":"bool",
          "blocks_vision":"bool",
+         "description":"string",
          "entity":"bool"
         },
      "9540":
@@ -57738,6 +58190,7 @@
          "bg":"string",
          "blocked":"bool",
          "blocks_vision":"bool",
+         "description":"string",
          "entity":"bool"
         },
      "9541":
@@ -57747,6 +58200,7 @@
          "bg":"string",
          "blocked":"bool",
          "blocks_vision":"bool",
+         "description":"string",
          "entity":"bool"
         },
      "9542":
@@ -57756,6 +58210,7 @@
          "bg":"string",
          "blocked":"bool",
          "blocks_vision":"bool",
+         "description":"string",
          "entity":"bool"
         },
      "9543":
@@ -57765,6 +58220,7 @@
          "bg":"string",
          "blocked":"bool",
          "blocks_vision":"bool",
+         "description":"string",
          "entity":"bool"
         },
      "9544":
@@ -57774,6 +58230,7 @@
          "bg":"string",
          "blocked":"bool",
          "blocks_vision":"bool",
+         "description":"string",
          "entity":"bool"
         },
      "9545":
@@ -57783,6 +58240,7 @@
          "bg":"string",
          "blocked":"bool",
          "blocks_vision":"bool",
+         "description":"string",
          "entity":"bool"
         },
      "9546":
@@ -57792,6 +58250,7 @@
          "bg":"string",
          "blocked":"bool",
          "blocks_vision":"bool",
+         "description":"string",
          "entity":"bool"
         },
      "9547":
@@ -57801,6 +58260,7 @@
          "bg":"string",
          "blocked":"bool",
          "blocks_vision":"bool",
+         "description":"string",
          "entity":"bool"
         },
      "9548":
@@ -57810,6 +58270,7 @@
          "bg":"string",
          "blocked":"bool",
          "blocks_vision":"bool",
+         "description":"string",
          "entity":"bool"
         },
      "9549":
@@ -57819,6 +58280,7 @@
          "bg":"string",
          "blocked":"bool",
          "blocks_vision":"bool",
+         "description":"string",
          "entity":"bool"
         },
      "9550":
@@ -58341,6 +58803,7 @@
          "bg":"string",
          "blocked":"bool",
          "blocks_vision":"bool",
+         "description":"string",
          "entity":"bool"
         },
      "9657":
@@ -58350,6 +58813,7 @@
          "bg":"string",
          "blocked":"bool",
          "blocks_vision":"bool",
+         "description":"string",
          "entity":"bool"
         },
      "9658":
@@ -58359,6 +58823,7 @@
          "bg":"string",
          "blocked":"bool",
          "blocks_vision":"bool",
+         "description":"string",
          "entity":"bool"
         },
      "9659":
@@ -58368,6 +58833,7 @@
          "bg":"string",
          "blocked":"bool",
          "blocks_vision":"bool",
+         "description":"string",
          "entity":"bool"
         },
      "9660":
@@ -58377,6 +58843,7 @@
          "bg":"string",
          "blocked":"bool",
          "blocks_vision":"bool",
+         "description":"string",
          "entity":"bool"
         },
      "9661":
@@ -58386,6 +58853,7 @@
          "bg":"string",
          "blocked":"bool",
          "blocks_vision":"bool",
+         "description":"string",
          "entity":"bool"
         },
      "9662":
@@ -58395,6 +58863,7 @@
          "bg":"string",
          "blocked":"bool",
          "blocks_vision":"bool",
+         "description":"string",
          "entity":"bool"
         },
      "9663":
@@ -58404,6 +58873,7 @@
          "bg":"string",
          "blocked":"bool",
          "blocks_vision":"bool",
+         "description":"string",
          "entity":"bool"
         },
      "9664":
@@ -58413,6 +58883,7 @@
          "bg":"string",
          "blocked":"bool",
          "blocks_vision":"bool",
+         "description":"string",
          "entity":"bool"
         },
      "9665":
@@ -58422,6 +58893,7 @@
          "bg":"string",
          "blocked":"bool",
          "blocks_vision":"bool",
+         "description":"string",
          "entity":"bool"
         },
      "9666":
@@ -58431,6 +58903,7 @@
          "bg":"string",
          "blocked":"bool",
          "blocks_vision":"bool",
+         "description":"string",
          "entity":"bool"
         },
      "9667":
@@ -58440,6 +58913,7 @@
          "bg":"string",
          "blocked":"bool",
          "blocks_vision":"bool",
+         "description":"string",
          "entity":"bool"
         },
      "9668":
@@ -58449,6 +58923,7 @@
          "bg":"string",
          "blocked":"bool",
          "blocks_vision":"bool",
+         "description":"string",
          "entity":"bool"
         },
      "9669":
@@ -58458,6 +58933,7 @@
          "bg":"string",
          "blocked":"bool",
          "blocks_vision":"bool",
+         "description":"string",
          "entity":"bool"
         },
      "9670":
@@ -58987,6 +59463,7 @@
          "bg":"string",
          "blocked":"bool",
          "blocks_vision":"bool",
+         "description":"string",
          "entity":"bool"
         },
      "9777":
@@ -58996,6 +59473,7 @@
          "bg":"string",
          "blocked":"bool",
          "blocks_vision":"bool",
+         "description":"string",
          "entity":"bool"
         },
      "9778":
@@ -59005,6 +59483,7 @@
          "bg":"string",
          "blocked":"bool",
          "blocks_vision":"bool",
+         "description":"string",
          "entity":"bool"
         },
      "9779":
@@ -59014,6 +59493,7 @@
          "bg":"string",
          "blocked":"bool",
          "blocks_vision":"bool",
+         "description":"string",
          "entity":"bool"
         },
      "9780":
@@ -59023,6 +59503,7 @@
          "bg":"string",
          "blocked":"bool",
          "blocks_vision":"bool",
+         "description":"string",
          "entity":"bool"
         },
      "9781":
@@ -59032,6 +59513,7 @@
          "bg":"string",
          "blocked":"bool",
          "blocks_vision":"bool",
+         "description":"string",
          "entity":"bool"
         },
      "9782":
@@ -59041,6 +59523,7 @@
          "bg":"string",
          "blocked":"bool",
          "blocks_vision":"bool",
+         "description":"string",
          "entity":"bool"
         },
      "9783":
@@ -59050,6 +59533,7 @@
          "bg":"string",
          "blocked":"bool",
          "blocks_vision":"bool",
+         "description":"string",
          "entity":"bool"
         },
      "9784":
@@ -59059,6 +59543,7 @@
          "bg":"string",
          "blocked":"bool",
          "blocks_vision":"bool",
+         "description":"string",
          "entity":"bool"
         },
      "9785":
@@ -59068,6 +59553,7 @@
          "bg":"string",
          "blocked":"bool",
          "blocks_vision":"bool",
+         "description":"string",
          "entity":"bool"
         },
      "9786":
@@ -59077,6 +59563,7 @@
          "bg":"string",
          "blocked":"bool",
          "blocks_vision":"bool",
+         "description":"string",
          "entity":"bool"
         },
      "9787":
@@ -59086,6 +59573,7 @@
          "bg":"string",
          "blocked":"bool",
          "blocks_vision":"bool",
+         "description":"string",
          "entity":"bool"
         },
      "9788":
@@ -59095,6 +59583,7 @@
          "bg":"string",
          "blocked":"bool",
          "blocks_vision":"bool",
+         "description":"string",
          "entity":"bool"
         },
      "9789":
@@ -59104,6 +59593,7 @@
          "bg":"string",
          "blocked":"bool",
          "blocks_vision":"bool",
+         "description":"string",
          "entity":"bool"
         },
      "9790":
@@ -59626,6 +60116,7 @@
          "bg":"string",
          "blocked":"bool",
          "blocks_vision":"bool",
+         "description":"string",
          "entity":"bool"
         },
      "9897":
@@ -59635,6 +60126,7 @@
          "bg":"string",
          "blocked":"bool",
          "blocks_vision":"bool",
+         "description":"string",
          "entity":"bool"
         },
      "9898":
@@ -59644,6 +60136,7 @@
          "bg":"string",
          "blocked":"bool",
          "blocks_vision":"bool",
+         "description":"string",
          "entity":"bool"
         },
      "9899":
@@ -59653,6 +60146,7 @@
          "bg":"string",
          "blocked":"bool",
          "blocks_vision":"bool",
+         "description":"string",
          "entity":"bool"
         },
      "9900":
@@ -59662,6 +60156,7 @@
          "bg":"string",
          "blocked":"bool",
          "blocks_vision":"bool",
+         "description":"string",
          "entity":"bool"
         },
      "9901":
@@ -59671,6 +60166,7 @@
          "bg":"string",
          "blocked":"bool",
          "blocks_vision":"bool",
+         "description":"string",
          "entity":"bool"
         },
      "9902":
@@ -59680,6 +60176,7 @@
          "bg":"string",
          "blocked":"bool",
          "blocks_vision":"bool",
+         "description":"string",
          "entity":"bool"
         },
      "9903":
@@ -59689,6 +60186,7 @@
          "bg":"string",
          "blocked":"bool",
          "blocks_vision":"bool",
+         "description":"string",
          "entity":"bool"
         },
      "9904":
@@ -59698,6 +60196,7 @@
          "bg":"string",
          "blocked":"bool",
          "blocks_vision":"bool",
+         "description":"string",
          "entity":"bool"
         },
      "9905":
@@ -59707,6 +60206,7 @@
          "bg":"string",
          "blocked":"bool",
          "blocks_vision":"bool",
+         "description":"string",
          "entity":"bool"
         },
      "9906":
@@ -59716,6 +60216,7 @@
          "bg":"string",
          "blocked":"bool",
          "blocks_vision":"bool",
+         "description":"string",
          "entity":"bool"
         },
      "9907":
@@ -59725,6 +60226,7 @@
          "bg":"string",
          "blocked":"bool",
          "blocks_vision":"bool",
+         "description":"string",
          "entity":"bool"
         },
      "9908":
@@ -59734,6 +60236,7 @@
          "bg":"string",
          "blocked":"bool",
          "blocks_vision":"bool",
+         "description":"string",
          "entity":"bool"
         },
      "9909":
@@ -59743,6 +60246,7 @@
          "bg":"string",
          "blocked":"bool",
          "blocks_vision":"bool",
+         "description":"string",
          "entity":"bool"
         },
      "9910":
