@@ -1,39 +1,38 @@
 <template>
-
-<v-app dark class="black">
-    <v-container class="mx-auto" v-show="playerSelected" fluid id="main_container">
-      <v-layout row v-if="unstableBuildMessage">
-        <v-flex xs7>
-          <v-alert color="yellow darken-4" type="warning" dismissible v-model="unstableBuildMessage">
-            This build is unstable. A lot of working is going on under the hood! Expect lots of broken, weird things
-          </v-alert>
-        </v-flex>
-      </v-layout>
-        <!-- Game Display and HUD-->
-        <v-layout row>
-            <v-flex column style="max-width: 1050px;">
-                <v-layout row style="padding: 0px;">
-                    <!--<item-transfer-modal></item-transfer-modal>-->
-                    <div style="margin:0; padding:0;" id="game_container">
-                    </div>
-                </v-layout>
-                <message-log v-if="playerSelected"></message-log>
-            </v-flex>
-            <hud v-if="playerSelected"></hud>
+  <v-app dark class="black">
+      <v-container class="mx-auto" v-show="playerSelected" fluid id="main_container">
+        <v-layout row v-if="unstableBuildMessage">
+          <v-flex xs7>
+            <v-alert color="yellow darken-4" type="warning" dismissible v-model="unstableBuildMessage">
+              This build is unstable. A lot of working is going on under the hood! Expect lots of broken, weird things
+            </v-alert>
+          </v-flex>
         </v-layout>
-        <!-- Inventory / Shop Modal -->
-        <item-transfer-modal></item-transfer-modal>
-        <!-- Death Modal-->
-        <death-modal v-if="playerSelected"></death-modal>
-        <!-- Github Logo -->
-        <a id="git_logo" style="text-decoration: none;" target="_blank" href="https://github.com/Larkenx/Rotten-Soup">
-            <v-btn icon ripple>
-                <i i style="color: white; margin: auto;" class="fa fa-3x fa-github" aria-hidden="true"></i>
-            </v-btn>
-        </a>
-    </v-container>
-    <start-menu v-show="!playerSelected" v-on:spriteSelected="loadGame"></start-menu>
-</v-app>
+          <!-- Game Display and HUD-->
+          <v-layout row>
+              <v-flex class="mr-4" column style="max-width: 1024px;">
+                  <v-layout row class="mb-2">
+                      <!--<item-transfer-modal></item-transfer-modal>-->
+                      <div id="game_container">
+                      </div>
+                  </v-layout>
+                  <message-log v-if="playerSelected"></message-log>
+              </v-flex>
+              <hud v-if="playerSelected"></hud>
+          </v-layout>
+          <!-- Inventory / Shop Modal -->
+          <item-transfer-modal></item-transfer-modal>
+          <!-- Death Modal-->
+          <death-modal v-if="playerSelected"></death-modal>
+          <!-- Github Logo -->
+          <a id="git_logo" style="text-decoration: none;" target="_blank" href="https://github.com/Larkenx/Rotten-Soup">
+              <v-btn icon ripple>
+                  <i i style="color: white; margin: auto;" class="fa fa-3x fa-github" aria-hidden="true"></i>
+              </v-btn>
+          </a>
+      </v-container>
+      <start-menu v-show="!playerSelected" v-on:spriteSelected="loadGame"></start-menu>
+  </v-app>
 </template>
 
 <script>
@@ -69,7 +68,7 @@ export default {
 		'message-log': messageLog
 	},
 	created() {
-		// this.loadGame(4219)
+		this.loadGame(4219)
 	},
 	mounted() {},
 	methods: {

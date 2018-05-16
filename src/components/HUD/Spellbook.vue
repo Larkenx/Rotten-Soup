@@ -53,15 +53,15 @@ export default {
 }
 </script>
 <style>
-    .spell {
-        cursor: pointer;
-        border: 2px solid #4f4f4f;
-        border-radius: 4px;
-    }
+.spell {
+	cursor: pointer;
+	border: 2px solid #4f4f4f;
+	border-radius: 4px;
+}
 
-    .selectedSpell {
-        cursor: pointer;
-        border: 2px solid #113BA7;
-        border-radius: 4px;
-    }
+.selectedSpell {
+	cursor: pointer;
+	border: 2px solid #113ba7;
+	border-radius: 4px;
+}
 </style>

@@ -1,6 +1,6 @@
 <style>
 .hud_tabs_card {
-	background-color: #4f4f4f;
+	background-color: #2a2a2a;
 }
 
 .hud_tab {
@@ -40,10 +40,7 @@
 <template>
 
 <v-flex class="hud elevation-0" column style="max-width: 450px;">
-
-
     <v-container fluid class="pa-0">
-
           <!-- Health Bar -->
           <v-layout row align-center style="margin-bottom: -20px; margin-top: -10px">
               <v-flex style="min-width: 75px;" md1 col><b>Health </b></v-flex>
@@ -82,7 +79,7 @@
 
         <!-- Tabbed Menu (Stats, Enemies, Spellbook) -->
         <v-layout row>
-            <v-tabs slider-color="yellow" :scrollable="false" grow v-model="activeTab" style="min-width: 400px; font-size: 11px;">
+            <v-tabs slider-color="yellow darken-4" :scrollable="false" grow v-model="activeTab" style="min-width: 400px; font-size: 11px;">
                 <v-tab class="hud_tab" key="stats" href="#stats">
                     Stats
                 </v-tab>
@@ -92,8 +89,8 @@
                 <v-tab class="hud_tab" key="spellBook" href="#spellBook">
                     Spellbook
                 </v-tab>
-                <v-tab-item key="stats" id="stats">
-                    <v-card class="hud_tabs_card" style="" flat height="120px">
+                <v-tab-item class="hud_tabs_card" key="stats" id="stats">
+                    <v-card style="background-color: inherit" flat height="120px">
                         <stats-tab-content></stats-tab-content>
                     </v-card>
                 </v-tab-item>
@@ -102,8 +99,8 @@
                         <enemy-overview></enemy-overview>
                     </v-card>
                 </v-tab-item> -->
-                <v-tab-item key="spellBook" id="spellBook">
-                    <v-card class="hud_tabs_card" flat height="120px">
+                <v-tab-item class="hud_tabs_card" key="spellBook" id="spellBook">
+                    <v-card style="background-color: inherit"  flat height="120px">
                         <spellbook></spellbook>
                     </v-card>
                 </v-tab-item>
