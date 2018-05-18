@@ -1,15 +1,19 @@
 <style>
-.hud_tabs_card {
-	background-color: #4f4f4f;
+#hud_container .hud_tabs_card {
+	background-color: #2a2a2a;
 }
 
 .hud_tab {
 	background-color: #294646;
 }
 
-.hud {
+.hud_container {
 	color: white;
 	font-size: 13px;
+	max-width: 440px;
+	border-left: 4px solid #4f4f4f;
+	background-color: #1e1f1f;
+	padding: 0px;
 	/* margin-left: 20px; */
 }
 
@@ -38,83 +42,64 @@
 </style>
 
 <template>
+	<v-flex class="hud_container elevation-0" column>
+	    <v-container fluid class="pa-2">
+	      <!-- Health Bar -->
+	      <v-layout align-center style="margin-bottom: -20px; margin-top: -10px">
+          <v-flex style="min-width: 75px;" md1 ><b>Health </b></v-flex>
+          <v-flex md8>
+              <v-progress-linear id="hpBar" color="error" :value="(getHP() / getMaxHP()) * 100" height="15"></v-progress-linear>
+          </v-flex>
+          <v-flex md3 class="text-xs-center" style="padding-left: 5px;">{{getHP()}} / {{getMaxHP()}}</v-flex>
+		  		<v-flex>
+		  			<help-dialog></help-dialog>
+		  		</v-flex>
+	      </v-layout>
 
-<v-flex class="hud elevation-0" column style="max-width: 450px;">
+	      <!-- Magic Bar -->
+	      <v-layout align-center>
+	        <v-flex md1 style="min-width: 75px;" ><b>Magic</b></v-flex>
+	        <v-flex md8 >
+	            <v-progress-linear id="manaBar" :value="(getMana() / getMaxMana()) * 100" height="15" info></v-progress-linear>
+	        </v-flex>
+	        <v-flex md3 class="text-xs-center" style="padding-left: 5px;">{{getMana()}} / {{getMaxMana()}}</v-flex>
+	        <v-flex>
+						<tool-dialog></tool-dialog>
+					</v-flex>
+	      </v-layout>
+
+				<v-layout >
+					<stats></stats>
+				</v-layout>
+
+	      <!-- Current World -->
+	      <v-layout align-center class="mt-4">
+          <v-flex xs5><b>Location:</b> {{getCurrentLevel().capitalize()}}</v-flex>
+          <v-flex class="pl-3" v-if="getCurrentLevelDepth() > 0" ><b>Level:</b> {{getCurrentLevelDepth()}}</v-flex>
+	      </v-layout>
 
 
-    <v-container fluid class="pa-0">
+	      <!-- Mini-map -->
+	      <v-layout class="text-xs-center pt-1" >
+          <v-flex xs10 fluid id="minimap_container"></v-flex>
+	      </v-layout>
 
-          <!-- Health Bar -->
-          <v-layout row align-center style="margin-bottom: -20px; margin-top: -10px">
-              <v-flex style="min-width: 75px;" md1 col><b>Health </b></v-flex>
-              <v-flex md4 col>
-                  <v-progress-linear id="hpBar" color="error" :value="(getHP() / getMaxHP()) * 100" height="13"></v-progress-linear>
-              </v-flex>
-              <v-flex md3 col style="padding-left: 5px;">{{getHP()}} / {{getMaxHP()}}</v-flex>
-      		<v-flex md1 >
-      			<help-dialog></help-dialog>
-      		</v-flex>
-          </v-layout>
+				<!--  Placeholder Row for stuff -->
+				<v-layout class="pt-1" style="min-height: 145px;">
+					<equipment></equipment>
+				</v-layout>
 
-          <!-- Magic Bar -->
-          <v-layout row align-center style="margin-bottom: -5px">
-              <v-flex md1 style="min-width: 75px;" col><b>Magic</b></v-flex>
-              <v-flex md4 col>
-                  <v-progress-linear id="manaBar" :value="(getMana() / getMaxMana()) * 100" height="13" info></v-progress-linear>
-              </v-flex>
-              <v-flex md3 col style="padding-left: 5px;">{{getMana()}} / {{getMaxMana()}}</v-flex>
-              <v-flex md1 >
-      			<tool-dialog></tool-dialog>
-      		</v-flex>
-          </v-layout>
+				<!-- Spells  -->
+				<v-layout >
+					<spellbook></spellbook>
+				</v-layout>
 
-
-        <!-- Current World -->
-        <v-layout row align-center>
-            <v-flex xs5 col><b>Location: {{getCurrentLevel().capitalize()}}</b></v-flex>
-            <v-flex v-if="getCurrentLevelDepth() > 0" col><b>Level: {{getCurrentLevelDepth()}}</b></v-flex>
-        </v-layout>
-
-        <!-- Mini-map -->
-        <v-layout row class="text-xs-center" style="pa-1">
-            <v-flex xs10 fluid id="minimap_container"></v-flex>
-        </v-layout>
-
-        <!-- Tabbed Menu (Stats, Enemies, Spellbook) -->
-        <v-layout row>
-            <v-tabs slider-color="yellow" :scrollable="false" grow v-model="activeTab" style="min-width: 400px; font-size: 11px;">
-                <v-tab class="hud_tab" key="stats" href="#stats">
-                    Stats
-                </v-tab>
-                <!-- <v-tab class="hud_tab" key="enemyOverview" href="#enemyOverview">
-                    Enemies
-                </v-tab> -->
-                <v-tab class="hud_tab" key="spellBook" href="#spellBook">
-                    Spellbook
-                </v-tab>
-                <v-tab-item key="stats" id="stats">
-                    <v-card class="hud_tabs_card" style="" flat height="120px">
-                        <stats-tab-content></stats-tab-content>
-                    </v-card>
-                </v-tab-item>
-                <!-- <v-tab-item key="enemyOverview" id="enemyOverview">
-                    <v-card class="hud_tabs_card" flat height="120px">
-                        <enemy-overview></enemy-overview>
-                    </v-card>
-                </v-tab-item> -->
-                <v-tab-item key="spellBook" id="spellBook">
-                    <v-card class="hud_tabs_card" flat height="120px">
-                        <spellbook></spellbook>
-                    </v-card>
-                </v-tab-item>
-            </v-tabs>
-        </v-layout>
-        <!-- Inventory -->
-        <inventory></inventory>
-
-    </v-container>
-</v-flex>
-
+	      <!-- Inventory -->
+				<v-layout class="mt-1">
+					<inventory></inventory>
+				</v-layout>
+	    </v-container>
+	</v-flex>
 </template>
 
 <script>
@@ -122,8 +107,10 @@ import { Game } from '@/assets/js/game/Game.js'
 import inventory from './Inventory.vue'
 import enemyOverview from './EnemyOverview.vue'
 import minimap from './Minimap.vue'
-import statsTabContent from './HUD/StatsTabContent.vue'
+import stats from './HUD/Stats.vue'
 import spellBook from './HUD/Spellbook.vue'
+import equipment from './HUD/Equipment.vue'
+
 import helpDialog from '@/components/HelpDialog.vue'
 import toolDialog from '@/components/ToolDialog.vue'
 
@@ -132,7 +119,8 @@ export default {
 		return {
 			activeTab: null,
 			currentLevel: Game.currentLevel,
-			cb: Game.player.cb
+			cb: Game.player.cb,
+			equipment: Game.player.cb.equipment // head, torso, legs, weapon, ammo
 		}
 	},
 	methods: {
@@ -160,10 +148,11 @@ export default {
 		inventory: inventory,
 		'enemy-overview': enemyOverview,
 		'mini-map': minimap,
-		'stats-tab-content': statsTabContent,
+		stats: stats,
 		spellbook: spellBook,
 		'help-dialog': helpDialog,
-		'tool-dialog': toolDialog
+		'tool-dialog': toolDialog,
+		equipment: equipment
 	},
 	created() {}
 }

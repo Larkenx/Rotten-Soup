@@ -3,7 +3,7 @@
         <v-tooltip right align-center>
             <span>Controls</span>
             <v-btn flat icon color="yellow darken-4" slot="activator" @click.stop="helpDialog=true">
-              <v-icon>help</v-icon>
+              <v-icon>fa-question-circle</v-icon>
             </v-btn>
         </v-tooltip>
         <v-dialog v-model="helpDialog" max-width="600px" >
@@ -131,33 +131,33 @@
 </template>
 <script>
 export default {
-    name: 'help-dialog',
-    data() {
-        return {
-            helpDialog: false,
-            cheatSheet: [
-                { code: '. | 5', description: 'Rest for a turn' },
-                { code: ', | g', description: 'Pick up an item' },
-                { code: '<', description: 'Climb up a ladder' },
-                { code: '>', description: 'Climb down a ladder' },
-                { code: 'f', description: 'Fire a ranged weapon' },
-                { code: 'z', description: 'Cast a spell' },
-                { code: 'x', description: 'Examine the area' }
-            ]
-        }
-    },
-    mounted() {
-        window.addEventListener('keydown', evt => {
-            if ((evt.getModifierState('Shift') && evt.keyCode === 191) || (evt.keyCode === 27 && this.helpDialog)) {
-                this.helpDialog = !this.helpDialog
-            }
-        })
-    }
+	name: 'help-dialog',
+	data() {
+		return {
+			helpDialog: false,
+			cheatSheet: [
+				{ code: '. | 5', description: 'Rest for a turn' },
+				{ code: ', | g', description: 'Pick up an item' },
+				{ code: '<', description: 'Climb up a ladder' },
+				{ code: '>', description: 'Climb down a ladder' },
+				{ code: 'f', description: 'Fire a ranged weapon' },
+				{ code: 'z', description: 'Cast a spell' },
+				{ code: 'x', description: 'Examine the area' }
+			]
+		}
+	},
+	mounted() {
+		window.addEventListener('keydown', evt => {
+			if ((evt.getModifierState('Shift') && evt.keyCode === 191) || (evt.keyCode === 27 && this.helpDialog)) {
+				this.helpDialog = !this.helpDialog
+			}
+		})
+	}
 }
 </script>
 <style>
 code {
-    background-color: #2f3136;
-    color: white;
+	background-color: #2f3136;
+	color: white;
 }
 </style>

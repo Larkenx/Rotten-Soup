@@ -3,7 +3,7 @@
         <v-tooltip right align-center>
             <span>Settings</span>
             <v-btn flat icon color="yellow darken-4" slot="activator" @click.stop="toolDialog=true">
-                <v-icon>settings</v-icon>
+                <v-icon>fa-cog</v-icon>
             </v-btn>
         </v-tooltip>
         <v-dialog v-model="toolDialog" max-width="400px" >
@@ -25,7 +25,7 @@
                             <v-switch color="yellow darken-4" @click.stop="toggleHPBars" v-model="userSettings.hpBars"></v-switch>
                         </v-flex>
                     </v-layout>
-                    
+
                 </v-card-text>
                 <v-card-actions>
                     <v-spacer></v-spacer>

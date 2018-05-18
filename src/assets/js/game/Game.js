@@ -471,7 +471,7 @@ export let Game = {
 			attack: 'red',
 			death: 'crimson',
 			information: 'yellow',
-			player_move: 'grey',
+			player_move: '#878787',
 			level_up: 'green',
 			alert: 'orange'
 		}
