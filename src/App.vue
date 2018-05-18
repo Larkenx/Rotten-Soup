@@ -1,37 +1,35 @@
 <template>
   <v-app dark class="black">
-      <v-container class="mx-auto" v-show="playerSelected" fluid id="main_container">
-        <v-layout row v-if="unstableBuildMessage">
-          <v-flex xs7>
-            <v-alert color="yellow darken-4" type="warning" dismissible v-model="unstableBuildMessage">
-              This build is unstable. A lot of working is going on under the hood! Expect lots of broken, weird things
-            </v-alert>
-          </v-flex>
-        </v-layout>
-          <!-- Game Display and HUD-->
-          <v-layout row>
-              <v-flex class="mr-4" column style="max-width: 1024px;">
-                  <v-layout row class="mb-2">
-                      <!--<item-transfer-modal></item-transfer-modal>-->
-                      <div id="game_container">
-                      </div>
-                  </v-layout>
-                  <message-log v-if="playerSelected"></message-log>
-              </v-flex>
-              <hud v-if="playerSelected"></hud>
+    <v-content>
+      <v-container v-show="playerSelected" id="main_container">
+          <!--  Notifications -->
+          <v-layout row v-if="unstableBuildMessage">
+            <v-flex xs12>
+              <v-alert color="yellow darken-4" type="warning" dismissible v-model="unstableBuildMessage">
+                This build is unstable. A lot of working is going on under the hood. Expect lots of broken, weird things!
+              </v-alert>
+            </v-flex>
           </v-layout>
-          <!-- Inventory / Shop Modal -->
-          <item-transfer-modal></item-transfer-modal>
-          <!-- Death Modal-->
+          <!-- Game Display and HUD-->
+          <v-layout class="mt-3" row id="ui">
+            <v-flex column style="max-width: 1024px;">
+              <v-layout id="game_container_row" row>
+                <div id="game_container" />
+              </v-layout>
+              <message-log v-if="playerSelected"></message-log>
+            </v-flex>
+            <hud v-if="playerSelected"></hud>
+          </v-layout>
           <death-modal v-if="playerSelected"></death-modal>
-          <!-- Github Logo -->
-          <a id="git_logo" style="text-decoration: none;" target="_blank" href="https://github.com/Larkenx/Rotten-Soup">
-              <v-btn icon ripple>
-                  <i i style="color: white; margin: auto;" class="fa fa-3x fa-github" aria-hidden="true"></i>
-              </v-btn>
-          </a>
       </v-container>
       <start-menu v-show="!playerSelected" v-on:spriteSelected="loadGame"></start-menu>
+    </v-content>
+    <v-footer app>
+      <small class="pl-2">RottenSoup</small>
+      <v-btn target="_blank" href="https://github.com/Larkenx/Rotten-Soup" icon ripple>
+        <v-icon>fa-github</v-icon>
+      </v-btn>
+    </v-footer>
   </v-app>
 </template>
 
@@ -88,6 +86,10 @@ export default {
 	background-color: black;
 }
 
+html {
+	overflow: hidden;
+}
+
 * {
 	font-family: 'Droid Sans Mono', monospace;
 	-webkit-touch-callout: none;
@@ -101,43 +103,27 @@ export default {
 	-ms-user-select: none;
 	/* Internet Explorer/Edge */
 	user-select: none;
-	/* Non-prefixed version, currently
-    }
-
-    #main_container {
-        /*padding: 10px;*/
-	/*height: 100%;*/
 }
 
-#git_logo {
-	position: absolute;
-	padding: 20px;
-	bottom: 0px;
-	right: 0px;
+#main_container {
+	max-width: 1470px;
+	max-height: 823px;
+	padding: 0px;
 }
 
-.mouse_controls {
-	position: absolute;
-	/* min-width: 200px; */
-	bottom: 0px;
-	left: 90%;
+#ui {
+	max-width: 1470px;
+	border: 3px solid #4f4f4f;
+	background-color: #1e1f1f;
+	border-radius: 4px;
 }
 
-.loading {
-	position: absolute;
-	padding: 20px;
-	/* min-width: 200px; */
-	bottom: 50%;
-	left: 25%;
+#game_container_row {
+	max-height: 640px;
 }
 
 .test {
 	background-color: #824d03;
-}
-
-canvas {
-	padding: 0;
-	margin: 0;
 }
 
 /* Overriding Vuetify's tool tip so that it is centered :) */

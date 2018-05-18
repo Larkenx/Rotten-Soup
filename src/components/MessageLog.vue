@@ -1,7 +1,7 @@
 <template>
     <v-layout id="console_container">
       <v-flex column align-start>
-        <v-list id="console">
+        <v-list id="console" class="pt-3">
           <li class="ml-2" v-for="(message, index) in getMessages()" v-bind:key="index">
             <p><b v-bind:style="{color : message[1]}">{{message[0]}}</b></p>
           </li>
@@ -11,26 +11,26 @@
           </li>
         </v-list>
       </v-flex>
-      <v-flex id="scroll_controls" column>
+      <v-flex id="scroll_controls" column class="text-xs-center" style="max-width: 27px">
         <v-layout>
-          <v-flex xs12 class="text-xs-right">
+          <v-flex xs12 class="text-xs-center">
             <v-icon class="scroll_controls" v-on:click="up()" small>fa-angle-up</v-icon>
           </v-flex>
         </v-layout>
-        <v-layout style="height: 50%"></v-layout>
+        <v-layout style="height: 70px;" />
         <v-layout>
-          <v-flex xs12 class="text-xs-right">
+          <v-flex xs12 class="text-xs-center">
             <v-icon class="scroll_controls" v-on:click="down()" small>fa-angle-down</v-icon>
           </v-flex>
         </v-layout>
         <v-layout>
-          <v-flex xs12 class="text-xs-right">
+          <v-flex xs12 class="text-xs-center">
               <v-icon class="scroll_controls" v-on:click="resetOffset()" small>fa-angle-double-down</v-icon>
           </v-flex>
         </v-layout>
-        <!-- <v-layout fill-height>
-          <v-flex xs12 class="text-xs-right mr-2">
-            <v-icon small>description</v-icon>
+        <!-- <v-layout>
+          <v-flex xs12 class="text-xs-center">
+            <v-icon class="scroll_controls" v-on:click="" small>fa-sticky-note</v-icon>
           </v-flex>
         </v-layout> -->
       </v-flex>
@@ -71,11 +71,8 @@ export default {
 
 <style>
 #console_container {
-	border: 2px solid #4f4f4f;
+	border-top: 4px solid #4f4f4f;
 	background-color: #1e1f1f;
-	border-radius: 4px;
-	padding: 5px 0 0 0;
-	margin: 0px;
 }
 
 #console {
@@ -85,15 +82,13 @@ export default {
 	height: 175px;
 	line-height: 0;
 	overflow: hidden;
-	padding-top: 8px;
 	position: relative;
 	background-color: inherit;
 }
 
 .scroll_controls {
-	cursor: pointer;
 	padding: 3px;
-	margin-right: 5px;
+	cursor: pointer;
 }
 
 .scroll_controls:hover {

@@ -1,4 +1,4 @@
-<style>
+<style scoped>
 .inventory_row {
 	/*margin-left: 10px;*/
 }
@@ -38,7 +38,7 @@
 
 <template>
 
-<v-container fluid class="pa-0" style="margin-top: 90px;">
+<v-container fluid class="pa-0">
   <v-layout row>
     <v-flex xs4><b>Items</b></v-flex>
   </v-layout>

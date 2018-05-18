@@ -1,5 +1,5 @@
 <template>
-    <v-container fluid class="pa-0 mt-5">
+    <v-container fluid class="pa-0">
         <v-layout row>
             <v-flex xs4><b>Spells</b></v-flex>
         </v-layout>

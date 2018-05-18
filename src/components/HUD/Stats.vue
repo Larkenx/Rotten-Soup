@@ -32,13 +32,9 @@
           <v-layout  row align-center>
             <v-flex md1 style="min-width: 70px;" col><b>Damage</b></v-flex>
             <v-flex md2 col style="padding-left: 7px;">{{getDamageRange()}}</v-flex>
-            <v-flex
-            v-if="getCurrentWeapon() !== null && getCurrentWeaponEnchantments() !== null"
-            md6
-            col
-            >
-            Weapon Enchantments: {{getCurrentWeaponEnchantments()}}
-          </v-flex>
+            <v-flex v-if="getCurrentWeapon() !== null && getCurrentWeaponEnchantments() !== null" md6 col>
+              <b>Weapon Enchantments:</b> {{getCurrentWeaponEnchantments()}}
+            </v-flex>
         </v-layout>
       </v-flex>
         <!-- Defence -->
