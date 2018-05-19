@@ -15,7 +15,7 @@
               </v-badge>
           </v-layout>
       </v-tooltip>
-      <!-- <img v-else-if="altSprite !== null" v-bind:src="altSprite" /> -->
+      <img v-else-if="altSprite !== null" v-bind:src="altSprite" width="35" height="35" style="opacity: 0.5"/>
   </div>
 </template>
 
@@ -60,7 +60,7 @@ export default {
 	width: 40px;
 	height: 40px;
 }
-
+/* #172525 */
 .item_slot:hover {
 	background-color: #698394;
 	cursor: pointer;
