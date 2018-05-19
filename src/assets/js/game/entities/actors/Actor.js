@@ -26,7 +26,8 @@ export class Actor extends Entity {
 			torso: null,
 			legs: null,
 			weapon: null,
-			ammo: null
+			ammo: null,
+			ring: null
 		}
 		this.inventory = []
 		for (let i = 0; i < 27; i++) {
