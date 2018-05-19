@@ -13,7 +13,7 @@
           <!-- Game Display and HUD-->
           <v-layout class="mt-3" row id="ui">
             <v-flex column style="max-width: 1024px;">
-              <v-layout id="game_container_row" row>
+              <v-layout id="game_container_row">
                 <div id="game_container" />
               </v-layout>
               <message-log v-if="playerSelected"></message-log>
@@ -119,6 +119,7 @@ html {
 }
 
 #game_container_row {
+	height: 640px;
 	max-height: 640px;
 }
 

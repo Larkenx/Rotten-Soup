@@ -1,24 +1,43 @@
 <template>
-    <!-- Death Modal -->
-    <v-container class="modal elevation-24" v-if="playerIsDead()">
-        <v-layout class="text-xs-center" row>
-            <v-flex xs12><h2 class="red--text">You died</h2></v-flex>
-        </v-layout>
+  <v-dialog v-model="deathDialog" persistent max-width="400px">
+    <v-card>
+      <v-card-text class="text-xs-center">
+        <h1 class="red--text lighten-1">You have died!</h1>
+      </v-card-text>
+      <v-card-text>
         <v-layout>
-            <v-flex class="text-xs-center" xs12>
-                <v-btn raised color="success" dark class="flat" v-on:click.native="startNewGame()"
-                       style="margin: 0 auto;">Play Again?</v-btn>
-            </v-flex>
+          <v-flex>
+            <img src="static/images/tombstone.png" width="100px" height="100px" />
+          </v-flex>
+          <v-flex>
+            You were level {{cb.level}}.
+            Your strength was level {{cb.str}}.
+            You knew {{cb.spells.length}} {{cb.spells.length > 1 ? "spells" : "spell"}}.
+          </v-flex>
         </v-layout>
-    </v-container>
+      </v-card-text>
+      <v-card-text>
+
+      </v-card-text>
+      <v-card-actions>
+        <v-spacer />
+        <v-btn color="green darken-3" raised @click.stop="startNewGame()">Play Again</v-btn>
+        <v-spacer />
+
+      </v-card-actions>
+    </v-card>
+
+  </v-dialog>
 </template>
+
 <script>
 import { Game } from '@/assets/js/game/Game.js'
 /* import other components here */
 export default {
 	data() {
 		return {
-			player: Game.player.cb
+			cb: Game.player.cb,
+			deathDialog: true
 		}
 	},
 	methods: {

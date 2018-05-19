@@ -84,7 +84,7 @@ export default {
 	max-width: 30px;
 	height: 30px;
 	cursor: pointer;
-	border: 2px solid #4f4f4f;
+	border: 2px solid #142ee9;
 	border-radius: 4px;
 	background-color: #294646;
 }

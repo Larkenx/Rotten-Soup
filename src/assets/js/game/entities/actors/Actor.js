@@ -216,6 +216,7 @@ export class Actor extends Entity {
 		else Game.log(message, 'attack')
 
 		if (dmg > 0) actor.damage(dmg)
+		this.cb.damageDealt += dmg
 
 		if (weapon && weapon.cb.enchantments.length > 0) {
 			for (let enchantment of weapon.cb.enchantments) {
@@ -258,6 +259,7 @@ export class Actor extends Entity {
 	/* Reduce hp. If less than 0, causes death */
 	damage(hp) {
 		if (this.cb.invulnerable) return
+		this.cb.damageTaken += hp
 		this.cb.hp -= hp
 		if (this.isDead()) {
 			if (this !== Game.player) Game.player.gain_xp(Math.floor(this.cb.maxhp * 0.5))
@@ -272,6 +274,7 @@ export class Actor extends Entity {
 
 	/* Restore HP up to maxhp */
 	heal(hp) {
+		this.cb.healthRestored += hp
 		if (this.cb.hp + hp > this.cb.maxhp) this.cb.hp = this.cb.maxhp
 		else this.cb.hp += hp
 	}
