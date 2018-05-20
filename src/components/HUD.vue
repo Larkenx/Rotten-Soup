@@ -85,7 +85,7 @@
 	      </v-layout>
 
 				<!--  Placeholder Row for stuff -->
-				<v-layout class="pt-1" style="min-height: 145px;">
+				<v-layout class="pt-1" style="min-height: 145px;" v-if="showEquipment">
 					<equipment></equipment>
 				</v-layout>
 
@@ -114,9 +114,13 @@ import equipment from './HUD/Equipment.vue'
 import helpDialog from '@/components/HelpDialog.vue'
 import toolDialog from '@/components/ToolDialog.vue'
 
+let { innerWidth } = window
+let showEquipment = innerWidth > 1400
+
 export default {
 	data() {
 		return {
+			showEquipment,
 			activeTab: null,
 			currentLevel: Game.currentLevel,
 			cb: Game.player.cb,

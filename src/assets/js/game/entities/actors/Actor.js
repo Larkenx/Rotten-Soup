@@ -375,6 +375,7 @@ export class Actor extends Entity {
 			Game.log('You died!', 'death')
 		} else {
 			Game.log(`You killed the ${this.name}.`, 'death')
+			Game.player.cb.enemiesKilled++
 		}
 	}
 

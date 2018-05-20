@@ -71,7 +71,10 @@ export default class Player extends Actor {
 				damageTaken: 0,
 				spellsCast: 0,
 				potionsConsumed: 0,
-				healthRestored: 0
+				healthRestored: 0,
+				dungeonsExplored: 0,
+				chestsOpened: 0,
+				dead: false
 			},
 			keyTimer: null
 		})
@@ -275,10 +278,7 @@ export default class Player extends Actor {
 				if (this.validTarget) {
 					confirmSpellcasting()
 				} else {
-					Game.log(
-						`You cannot cast ${this.cb.currentSpell.name} at this tile because it's blocked or too far away.`,
-						'alert'
-					)
+					Game.log(`You cannot cast ${this.cb.currentSpell.name} at this tile because it's blocked or too far away.`, 'alert')
 				}
 			}
 			// else, if the tile is within one square of the player, they can move to that tile by clicking
@@ -418,13 +418,7 @@ export default class Player extends Actor {
 		} else if (keyMap[code] === 'fire' && !shift_pressed) {
 			let weapon = this.cb.equipment.weapon
 			let ammo = this.cb.equipment.ammo
-			if (
-				weapon !== null &&
-				ammo !== null &&
-				weapon.cb.ranged &&
-				ammo.cb.ammoType === weapon.cb.ammoType &&
-				ammo.quantity > 0
-			) {
+			if (weapon !== null && ammo !== null && weapon.cb.ranged && ammo.cb.ammoType === weapon.cb.ammoType && ammo.quantity > 0) {
 				Game.log(`You take aim with your ${weapon.type.toLowerCase()}.`, 'information')
 				Game.log(
 					`Select a target with the movement keys and press [enter] or [.] to fire your ${weapon.type.toLowerCase()}.`,
@@ -590,6 +584,7 @@ export default class Player extends Actor {
 		super.death()
 		window.removeEventListener('keydown', this)
 		this.cb.hp = 0
+		this.cb.dead = true
 		// Game.scheduler.remove(Game.player);
 		Game.scheduler.clear()
 	}

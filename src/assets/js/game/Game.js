@@ -144,6 +144,7 @@ export let Game = {
 
 	changeLevels(newLevel, dir, level) {
 		if (this.levels[newLevel] === undefined) {
+			this.player.cb.dungeonsExplored++
 			// generating a new random room
 			if (newLevel.toLowerCase().includes('cave')) {
 				this.levels[newLevel] = randomCave(80, 40, dir, level)

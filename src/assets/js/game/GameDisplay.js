@@ -11,10 +11,12 @@ import * as PIXI from 'pixi.js'
 
 export default class GameDisplay {
 	constructor() {
+		let width = window.innerWidth <= 1400 ? 800 : 1024
+		let height = window.innerHeight <= 800 ? 500 : 640
 		this.app = new PIXI.Application({
 			// forceCanvas: true,
-			width: 1024,
-			height: 640
+			width,
+			height
 		})
 		// this will be the texture we generate by creating a container, rendering it and generating it from
 		// the renderer

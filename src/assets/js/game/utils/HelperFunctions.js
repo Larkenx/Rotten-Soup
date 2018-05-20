@@ -38,7 +38,6 @@ export function addPrefix(word) {
 	const vowels = ['a', 'e', 'i', 'o', 'u']
 	if (word !== 'you') {
 		const someWords = ['trees', 'flowers', 'grass', 'wild grass', 'water', 'steel arrows']
-		console.log(word)
 		if (someWords.includes(word)) {
 			return 'some ' + word
 		}

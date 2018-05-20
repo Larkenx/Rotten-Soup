@@ -1,7 +1,7 @@
 <template>
   <v-app dark class="black">
     <v-content>
-      <v-container v-show="playerSelected" id="main_container">
+      <v-container v-show="playerSelected" id="main_container" :style="{'max-width': uiWidth, 'max-height': uiHeight}">
           <!--  Notifications -->
           <v-layout row v-if="unstableBuildMessage">
             <v-flex xs12>
@@ -11,9 +11,9 @@
             </v-flex>
           </v-layout>
           <!-- Game Display and HUD-->
-          <v-layout class="mt-3" row id="ui">
-            <v-flex column style="max-width: 1024px;">
-              <v-layout id="game_container_row">
+          <v-layout class="mt-3" row id="ui" :style="{'max-width': uiWidth, 'max-height': uiHeight}">
+            <v-flex column :style="{'max-width': gameDisplayWidth}">
+              <v-layout id="game_container_row" :style="{'max-height': gameDisplayHeight}">
                 <div id="game_container" />
               </v-layout>
               <message-log v-if="playerSelected"></message-log>
@@ -24,7 +24,7 @@
       </v-container>
       <start-menu v-show="!playerSelected" v-on:spriteSelected="loadGame"></start-menu>
     </v-content>
-    <v-footer app>
+    <v-footer app v-if="hideFooter">
       <small class="pl-2">RottenSoup</small>
       <v-btn target="_blank" href="https://github.com/Larkenx/Rotten-Soup" icon ripple>
         <v-icon>fa-github</v-icon>
@@ -43,8 +43,14 @@ import hud from './components/HUD.vue'
 import deathModal from './components/DeathModal.vue'
 import helpDialog from './components/HelpDialog.vue'
 import messageLog from './components/MessageLog.vue'
-window.Game = Game
 // DEBUG: Imports to export to window
+window.Game = Game
+let { innerWidth, innerHeight } = window
+let uiWidth = innerWidth <= 1400 ? '1240px' : '1470px'
+let uiHeight = innerHeight <= 800 ? '750px' : '823px'
+let hideFooter = innerWidth > 1400
+let gameDisplayWidth = innerWidth <= 1400 ? '800px' : '1024px'
+let gameDisplayHeight = innerHeight <= 800 ? '500px' : '640px'
 
 export default {
 	name: 'app',
@@ -53,7 +59,12 @@ export default {
 			mouseControls: false,
 			loading: true,
 			playerSelected: false,
-			unstableBuildMessage: false
+			unstableBuildMessage: false,
+			uiWidth,
+			uiHeight,
+			gameDisplayWidth,
+			gameDisplayHeight,
+			hideFooter
 		}
 	},
 	components: {
@@ -66,7 +77,7 @@ export default {
 		'message-log': messageLog
 	},
 	created() {
-		this.loadGame(4219)
+		// this.loadGame(4219)
 	},
 	mounted() {},
 	methods: {
@@ -106,8 +117,6 @@ html {
 }
 
 #main_container {
-	max-width: 1470px;
-	max-height: 823px;
 	padding: 0px;
 }
 
