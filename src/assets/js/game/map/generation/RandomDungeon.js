@@ -45,6 +45,86 @@ const actorTextures = {
 	KOBOLD: [5532, 5533, 5534, 5535, 5536, 5537, 5538, 5539]
 }
 
+const dungeonTypes = {
+	RUINS: 'RUINS',
+	CATACOMBS: 'CATACOMBS',
+	MINE: 'MINE',
+	ICE: 'ICE',
+	HELL: 'HELL'
+}
+
+const dungeonThemes = {
+	CATACOMBS
+}
+
+const floor = {
+	upperLeft: 7735,
+	top: 7736,
+	upperRight: 7737,
+
+	left: 7855,
+	center: 7856,
+	right: 7857,
+
+	lowerLeft: 7975,
+	bottom: 7976,
+	lowerRight: 7977,
+
+	endLeft: 7859,
+	middleCorridorHorizontal: 7860,
+	endRight: 7861,
+
+	endTop: 7738,
+	middleCorridorVertical: 7858,
+	endBottom: 7978,
+
+	single: 7740
+}
+
+const corridorFloor = {
+	horizontal: {
+		left: 7860,
+		middle: 7861,
+		right: 7862
+	},
+	vertical: {
+		top: 7739,
+		middle: 7859,
+		bottom: 7979
+	}
+}
+
+const walls = {
+	upperLeft: 8116,
+	top: 8117,
+	upperRight: 8118,
+	left: 8236,
+	center: 8237,
+	right: 8236,
+	lowerLeft: 8356,
+	bottom: 8117,
+	lowerRight: 8358,
+	endBottom: 8237,
+	endTop: 8238,
+	island: 8119,
+
+	leftT: 8241,
+	middleT: 8240,
+	rightT: 8239,
+	topT: 8120,
+	bottomT: 8360
+}
+
+const doors = {
+	vertical: 569,
+	horizontal: 568
+}
+
+const ladders = {
+	up: 477,
+	down: 479
+}
+
 const flatten = arr => arr.reduce((acc, val) => acc.concat(Array.isArray(val) ? flatten(val) : val), [])
 
 // function that will yield a random free space in the room
@@ -63,73 +143,6 @@ export function randomDungeon(width, height, dir, level = 1) {
 	let gameMap = new GameMap(width, height)
 
 	/* Texture IDs */
-	const floor = {
-		upperLeft: 7735,
-		top: 7736,
-		upperRight: 7737,
-
-		left: 7855,
-		center: 7856,
-		right: 7857,
-
-		lowerLeft: 7975,
-		bottom: 7976,
-		lowerRight: 7977,
-
-		endLeft: 7859,
-		middleCorridorHorizontal: 7860,
-		endRight: 7861,
-
-		endTop: 7738,
-		middleCorridorVertical: 7858,
-		endBottom: 7978,
-
-		single: 7740
-	}
-
-	const corridorFloor = {
-		horizontal: {
-			left: 7860,
-			middle: 7861,
-			right: 7862
-		},
-		vertical: {
-			top: 7739,
-			middle: 7859,
-			bottom: 7979
-		}
-	}
-
-	const walls = {
-		upperLeft: 8116,
-		top: 8117,
-		upperRight: 8118,
-		left: 8236,
-		center: 8237,
-		right: 8236,
-		lowerLeft: 8356,
-		bottom: 8117,
-		lowerRight: 8358,
-		endBottom: 8237,
-		endTop: 8238,
-		island: 8119,
-
-		leftT: 8241,
-		middleT: 8240,
-		rightT: 8239,
-		topT: 8120,
-		bottomT: 8360
-	}
-
-	const doors = {
-		vertical: 569,
-		horizontal: 568
-	}
-
-	const ladders = {
-		up: 477,
-		down: 479
-	}
 
 	const mobDistribution = {
 		ORC: 1 * ~~(level / 4) + 1,
