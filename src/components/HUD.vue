@@ -114,13 +114,10 @@ import equipment from './HUD/Equipment.vue'
 import helpDialog from '@/components/HelpDialog.vue'
 import toolDialog from '@/components/ToolDialog.vue'
 
-let { innerWidth } = window
-let showEquipment = innerWidth > 1400
-
 export default {
+	props: ['showEquipment'],
 	data() {
 		return {
-			showEquipment,
 			activeTab: null,
 			currentLevel: Game.currentLevel,
 			cb: Game.player.cb,

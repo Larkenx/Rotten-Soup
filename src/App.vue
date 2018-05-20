@@ -18,13 +18,13 @@
               </v-layout>
               <message-log v-if="playerSelected"></message-log>
             </v-flex>
-            <hud v-if="playerSelected"></hud>
+            <hud v-if="playerSelected" :showEquipment="showFooter"></hud>
           </v-layout>
           <death-modal v-if="playerSelected"></death-modal>
       </v-container>
       <start-menu v-show="!playerSelected" v-on:spriteSelected="loadGame"></start-menu>
     </v-content>
-    <v-footer app v-if="hideFooter">
+    <v-footer app v-if="showFooter">
       <small class="pl-2">RottenSoup</small>
       <v-btn target="_blank" href="https://github.com/Larkenx/Rotten-Soup" icon ripple>
         <v-icon>fa-github</v-icon>
@@ -46,11 +46,18 @@ import messageLog from './components/MessageLog.vue'
 // DEBUG: Imports to export to window
 window.Game = Game
 let { innerWidth, innerHeight } = window
-let uiWidth = innerWidth <= 1400 ? '1240px' : '1470px'
-let uiHeight = innerHeight <= 800 ? '750px' : '823px'
-let hideFooter = innerWidth > 1400
-let gameDisplayWidth = innerWidth <= 1400 ? '800px' : '1024px'
-let gameDisplayHeight = innerHeight <= 800 ? '500px' : '640px'
+let uiWidth = '1470px'
+let uiHeight = '823px'
+let showFooter = true
+let gameDisplayWidth = '1024px'
+let gameDisplayHeight = '640px'
+if (innerWidth <= 1400 || innerHeight <= 800) {
+	uiWidth = '1240px'
+	uiHeight = '750px'
+	showFooter = false
+	gameDisplayWidth = '800px'
+	gameDisplayHeight = '500px'
+}
 
 export default {
 	name: 'app',
@@ -64,8 +71,14 @@ export default {
 			uiHeight,
 			gameDisplayWidth,
 			gameDisplayHeight,
-			hideFooter
+			showFooter
 		}
+	},
+	mounted() {
+		window.addEventListener('resize', this.recomputeSize)
+	},
+	beforeDestroy() {
+		window.removeEventListener('resize', this.recomputeSize)
 	},
 	components: {
 		'start-menu': startMenu,
@@ -79,13 +92,28 @@ export default {
 	created() {
 		// this.loadGame(4219)
 	},
-	mounted() {},
 	methods: {
 		loadGame(id) {
 			this.playerSelected = true
 			Game.init(id)
 			Game.log('Welcome to Rotten Soup!', 'information')
 			Game.log('Press ? to view the controls.', 'player_move')
+		},
+		recomputeSize(evt) {
+			console.log('resizing!')
+			this.uiWidth = '1470px'
+			this.uiHeight = '823px'
+			this.showFooter = true
+			this.gameDisplayWidth = '1024px'
+			this.gameDisplayHeight = '640px'
+			if (window.innerWidth <= 1400 || window.innerHeight <= 800) {
+				this.uiWidth = '1240px'
+				this.uiHeight = '750px'
+				this.showFooter = false
+				this.gameDisplayWidth = '800px'
+				this.gameDisplayHeight = '500px'
+			}
+			Game.display.resize()
 		}
 	}
 }

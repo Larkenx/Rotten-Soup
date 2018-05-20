@@ -11,12 +11,14 @@ import * as PIXI from 'pixi.js'
 
 export default class GameDisplay {
 	constructor() {
-		let width = window.innerWidth <= 1400 ? 800 : 1024
-		let height = window.innerHeight <= 800 ? 500 : 640
+		let smallerScreen = window.innerHeight <= 800 || window.innerWidth <= 1400
+		this.width = smallerScreen ? 800 : 1024
+		this.height = smallerScreen ? 500 : 640
+		this.scale = 1.0
 		this.app = new PIXI.Application({
 			// forceCanvas: true,
-			width,
-			height
+			width: this.width,
+			height: this.height
 		})
 		// this will be the texture we generate by creating a container, rendering it and generating it from
 		// the renderer
@@ -33,6 +35,21 @@ export default class GameDisplay {
 		this.tileset = null
 		this.tilesetMapping = {}
 		this.spriteBox = [] // Game.width * Game.height sprites to overlay screen for FOV
+	}
+
+	resize(scaleRatio = null) {
+		let smallerScreen = window.innerHeight <= 800 || window.innerWidth <= 1400
+		let newWidth = smallerScreen ? 800 : 1024
+		let newHeight = smallerScreen ? 500 : 640
+		let scale = smallerScreen ? 0.72 : 1.0
+		if (scaleRatio !== null) scale = scaleRatio
+		if (this.width !== newWidth || this.height !== newHeight || this.scale !== scale) {
+			this.app.renderer.resize(newWidth, newHeight)
+			this.app.stage.scale.x = this.app.stage.scale.y = scale
+			this.scale = scale
+			this.width = newWidth
+			this.height = newHeight
+		}
 	}
 
 	loadAssets(cb) {
