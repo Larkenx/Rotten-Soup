@@ -57,7 +57,7 @@ export let Game = {
 	init(playerSpriteID) {
 		this.playerID = playerSpriteID
 		this.player = new Player(0, 0, playerSpriteID)
-		this.currentLevel.name = 'overworld'
+		this.currentLevel.name = 'City Dungeon 1'
 		this.displayOptions = {
 			width: 32,
 			height: 20,
@@ -72,6 +72,7 @@ export let Game = {
 			this.levels['Lich Lair'] = createMapFromJSON(PIXI.loader.resources['lichLair'].data)
 			this.levels['overworld'] = createMapFromJSON(PIXI.loader.resources['overworld'].data)
 			this.levels['Orc Castle'] = createMapFromJSON(PIXI.loader.resources['orcCastle'].data)
+			this.levels['City Dungeon 1'] = randomDungeon(40, 40, 'down', 1)
 			this.levels['graveyard'].revealed = true
 			this.levels['Lich Lair'].revealed = true
 			this.levels['overworld'].revealed = true
@@ -151,7 +152,7 @@ export let Game = {
 			} else {
 				this.levels[newLevel] = randomDungeon(40, 40, dir, level)
 			}
-			this.levels[newLevel].revealed = false
+
 			for (let actor of this.levels[newLevel].actors) {
 				if (actor instanceof Chest) {
 					// console.log("filling chest with goodies!");

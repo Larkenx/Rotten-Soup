@@ -588,7 +588,14 @@ export function dungeonFromTheme(width, height, dir, theme, level, mapGenerator)
 	let mapGeneratorCallback = (x, y, blocked) => {
 		if (!blocked) freeCells[x + ',' + y] = true
 	}
-	let rotMap = new mapGenerator(width, height).create(mapGeneratorCallback)
+	let rotMap = mapGenerator.create(mapGeneratorCallback)
+
+	for (let room of rotMap.getRooms()) {
+		room.getDoors((dx, dy) => {
+			freeCells[dx + ',' + dy] = true
+		})
+	}
+
 	// Place walls and floors
 	for (let y = 0; y < height; y++) {
 		for (let x = 0; x < width; x++) {
@@ -628,22 +635,20 @@ export function dungeonFromTheme(width, height, dir, theme, level, mapGenerator)
 				Object.values(corridorFloor.horizontal) +
 				Object.values(floor) // doors?
 
-			let above = gameMap.getTile(dx, dy - 1).obstacles[0].id
-			let below = gameMap.getTile(dx, dy + 1).obstacles[0].id
-			let door
-			if (floor_ids.includes(above) && floor_ids.includes(below)) {
-				// horizontal door frame
-				door = new Door(dx, dy, doors.horizontal)
-			} else {
-				// vertical door frame
-				door = new Door(dx, dy, doors.vertical)
+			if (getRandomInt(1, 2) === 1) {
+				let above = gameMap.getTile(dx, dy - 1).obstacles[0].id
+				let below = gameMap.getTile(dx, dy + 1).obstacles[0].id
+				let door
+				if (floor_ids.includes(above) && floor_ids.includes(below)) {
+					// horizontal door frame
+					door = new Door(dx, dy, doors.horizontal)
+				} else {
+					// vertical door frame
+					door = new Door(dx, dy, doors.vertical)
+				}
+				gameMap.getTile(dx, dy).actors.push(door)
+				gameMap.actors.push(door)
 			}
-			gameMap.getTile(dx, dy).actors.push(door)
-			gameMap.actors.push(door)
-			// since we want to put a door here, we need to make sure a wall wasn't put here before
-			let sym = getFloorTexture(floor, computeBitmaskFloors(dx, dy, freeCells))
-			gameMap.getTile(dx, dy).obstacles = []
-			gameMap.getTile(dx, dy).updateTileInfo(sym, tint)
 		})
 
 		// Now, we can mess around with the centers of each room and place items in the dungeons
@@ -698,27 +703,44 @@ export function dungeonFromTheme(width, height, dir, theme, level, mapGenerator)
 	let ladder = new Ladder(x, y, ladders.up, 'up')
 	gameMap.getTile(x, y).actors.push(ladder)
 	gameMap.actors.push(ladder)
+	gameMap.revealed = true
 	return gameMap
 }
 
 /* Returns a randomly generated textured dungeon in GameMap form  */
 export function randomDungeon(width, height, dir, level = 1) {
+	let dungeonConfig = {}
 	if (level <= 5) {
-		return dungeonFromTheme(width, height, dir, dungeonThemes.RUINS, level, ROT.Map.Uniform)
-	} else if (level === 5) {
-		// TODO: replace with prefab event
-		return dungeonFromTheme(width, height, dir, dungeonThemes.RUINS, level, ROT.Map.Uniform)
+		dungeonConfig = {
+			roomWidth: [3, 20],
+			roomHeight: [4, 10],
+			corridorLength: [4, 4],
+			roomDugPercentage: 0.4
+		}
+		return dungeonFromTheme(width, height, dir, dungeonThemes.RUINS, level, new ROT.Map.Uniform(width, height, dungeonConfig))
 	} else if (level <= 10) {
-		return dungeonFromTheme(width, height, dir, dungeonThemes.CATACOMBS, level, ROT.Map.Uniform)
-	} else if (level === 10) {
-		// TODO: replace with prefab event
-		return dungeonFromTheme(width, height, dir, dungeonThemes.RUINS, level, ROT.Map.Uniform)
+		dungeonConfig = {
+			roomWidth: [3, 6],
+			roomHeight: [4, 7],
+			corridorLength: [2, 4],
+			roomDugPercentage: 0.2
+		}
+		return dungeonFromTheme(width, height, dir, dungeonThemes.CATACOMBS, level, new ROT.Map.Digger(width, height, dungeonConfig))
 	} else if (level <= 15) {
-		return dungeonFromTheme(width, height, dir, dungeonThemes.MINE, level, ROT.Map.Uniform)
-	} else if (level === 15) {
-		// TODO: replace with prefab event
-		return dungeonFromTheme(width, height, dir, dungeonThemes.RUINS, level, ROT.Map.Uniform)
+		dungeonConfig = {
+			roomWidth: [3, 10],
+			roomHeight: [4, 10],
+			corridorLength: [1, 10],
+			roomDugPercentage: 0.4
+		}
+		return dungeonFromTheme(width, height, dir, dungeonThemes.MINE, level, new ROT.Map.Uniform(width, height, dungeonConfig))
 	} else {
-		return dungeonFromTheme(width, height, dir, dungeonThemes.ICE, level, ROT.Map.Uniform)
+		dungeonConfig = {
+			roomWidth: [3, 20],
+			roomHeight: [4, 10],
+			corridorLength: [4, 4],
+			roomDugPercentage: 0.4
+		}
+		return dungeonFromTheme(width, height, dir, dungeonThemes.ICE, level, new ROT.Map.Digger(width, height, dungeonConfig))
 	}
 }
