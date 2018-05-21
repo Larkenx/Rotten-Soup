@@ -155,6 +155,7 @@ export default class GameDisplay {
 					if (o.animated === true && o.animated_id !== undefined && this.getTexture(o.animated_id) !== undefined) {
 						let frames = [this.getTexture(o.id), this.getTexture(o.animated_id)]
 						let sprite = new PIXI.extras.AnimatedSprite(frames)
+						if (o.tint !== null) sprite.tint = o.tint
 						sprite.position.set(x * this.tileSize, y * this.tileSize)
 						sprite.animationSpeed = 0.025
 						// pick a random interval for the animation to play at!
@@ -165,6 +166,7 @@ export default class GameDisplay {
 						this.animatedBackground.addChild(sprite)
 					} else {
 						let sprite = new PIXI.Sprite(this.getTexture(o.id))
+						if (o.tint !== null) sprite.tint = o.tint
 						sprite.position.set(x * this.tileSize, y * this.tileSize)
 						staticBackground.addChild(sprite)
 					}

@@ -2093,6 +2093,27 @@
          "entity":true,
          "entity_id":"24"
         },
+     "2553":
+        {
+         "animated":true,
+         "animated_id":2561,
+         "entity":true,
+         "entity_id":"24"
+        },
+     "2554":
+        {
+         "animated":true,
+         "animated_id":2562,
+         "entity":true,
+         "entity_id":"24"
+        },
+     "2555":
+        {
+         "animated":true,
+         "animated_id":2563,
+         "entity":true,
+         "entity_id":"24"
+        },
      "2558":
         {
          "animated":true,
@@ -15105,7 +15126,7 @@
         {
          "animated":false,
          "animated_id":0,
-         "bg":"\"gray\"",
+         "bg":"skyblue",
          "blocked":false,
          "blocks_vision":false,
          "description":"stone floor",
@@ -15115,7 +15136,7 @@
         {
          "animated":false,
          "animated_id":0,
-         "bg":"\"gray\"",
+         "bg":"skyblue",
          "blocked":false,
          "blocks_vision":false,
          "description":"stone floor",
@@ -15125,7 +15146,7 @@
         {
          "animated":false,
          "animated_id":0,
-         "bg":"\"gray\"",
+         "bg":"skyblue",
          "blocked":false,
          "blocks_vision":false,
          "description":"stone floor",
@@ -15135,7 +15156,7 @@
         {
          "animated":false,
          "animated_id":0,
-         "bg":"\"gray\"",
+         "bg":"skyblue",
          "blocked":false,
          "blocks_vision":false,
          "description":"stone floor",
@@ -15145,7 +15166,7 @@
         {
          "animated":false,
          "animated_id":0,
-         "bg":"\"gray\"",
+         "bg":"skyblue",
          "blocked":false,
          "blocks_vision":false,
          "description":"stone floor",
@@ -15155,7 +15176,7 @@
         {
          "animated":false,
          "animated_id":0,
-         "bg":"\"gray\"",
+         "bg":"skyblue",
          "blocked":false,
          "blocks_vision":false,
          "description":"stone floor",
@@ -15165,7 +15186,7 @@
         {
          "animated":false,
          "animated_id":0,
-         "bg":"\"gray\"",
+         "bg":"skyblue",
          "blocked":false,
          "blocks_vision":false,
          "description":"stone floor",
@@ -15306,42 +15327,42 @@
         },
      "7397":
         {
-         "bg":"darkgray",
+         "bg":"navyblue",
          "blocked":"true",
          "blocks_vision":"true",
          "description":"stone wall"
         },
      "7398":
         {
-         "bg":"darkgray",
+         "bg":"navyblue",
          "blocked":"true",
          "blocks_vision":"true",
          "description":"stone wall"
         },
      "7399":
         {
-         "bg":"darkgray",
+         "bg":"navyblue",
          "blocked":"true",
          "blocks_vision":"true",
          "description":"stone wall"
         },
      "7400":
         {
-         "bg":"darkgray",
+         "bg":"navyblue",
          "blocked":"true",
          "blocks_vision":"true",
          "description":"stone wall"
         },
      "7401":
         {
-         "bg":"darkgray",
+         "bg":"navyblue",
          "blocked":"true",
          "blocks_vision":"true",
          "description":"stone wall"
         },
      "7402":
         {
-         "bg":"darkgray",
+         "bg":"navyblue",
          "blocked":"true",
          "blocks_vision":"true",
          "description":"stone wall"
@@ -15398,27 +15419,45 @@
         },
      "7411":
         {
-         "bg":"#00cc33"
+         "bg":"#824d03",
+         "blocked":true,
+         "blocks_vision":true,
+         "description":"mine wall"
         },
      "7412":
         {
-         "bg":"#00cc33"
+         "bg":"#824d03",
+         "blocked":true,
+         "blocks_vision":true,
+         "description":"mine wall"
         },
      "7413":
         {
-         "bg":"#00cc33"
+         "bg":"#824d03",
+         "blocked":true,
+         "blocks_vision":true,
+         "description":"mine wall"
         },
      "7414":
         {
-         "bg":"#00cc33"
+         "bg":"#824d03",
+         "blocked":true,
+         "blocks_vision":true,
+         "description":"mine wall"
         },
      "7415":
         {
-         "bg":"#00cc33"
+         "bg":"#824d03",
+         "blocked":true,
+         "blocks_vision":true,
+         "description":"mine wall"
         },
      "7416":
         {
-         "bg":"#00cc33"
+         "bg":"#824d03",
+         "blocked":true,
+         "blocks_vision":true,
+         "description":"mine wall"
         },
      "7418":
         {
@@ -15921,7 +15960,7 @@
         {
          "animated":false,
          "animated_id":0,
-         "bg":"\"gray\"",
+         "bg":"skyblue",
          "blocked":false,
          "blocks_vision":false,
          "description":"stone floor",
@@ -15931,7 +15970,7 @@
         {
          "animated":false,
          "animated_id":0,
-         "bg":"\"gray\"",
+         "bg":"skyblue",
          "blocked":false,
          "blocks_vision":false,
          "description":"stone floor",
@@ -15941,7 +15980,7 @@
         {
          "animated":false,
          "animated_id":0,
-         "bg":"\"gray\"",
+         "bg":"skyblue",
          "blocked":false,
          "blocks_vision":false,
          "description":"stone floor",
@@ -15951,7 +15990,7 @@
         {
          "animated":false,
          "animated_id":0,
-         "bg":"\"gray\"",
+         "bg":"skyblue",
          "blocked":false,
          "blocks_vision":false,
          "description":"stone floor",
@@ -15961,7 +16000,7 @@
         {
          "animated":false,
          "animated_id":0,
-         "bg":"\"gray\"",
+         "bg":"skyblue",
          "blocked":false,
          "blocks_vision":false,
          "description":"stone floor",
@@ -15971,7 +16010,7 @@
         {
          "animated":false,
          "animated_id":0,
-         "bg":"\"gray\"",
+         "bg":"skyblue",
          "blocked":false,
          "blocks_vision":false,
          "description":"stone floor",
@@ -15981,7 +16020,7 @@
         {
          "animated":false,
          "animated_id":0,
-         "bg":"\"gray\"",
+         "bg":"skyblue",
          "blocked":false,
          "blocks_vision":false,
          "description":"stone floor",
@@ -16122,42 +16161,42 @@
         },
      "7517":
         {
-         "bg":"darkgray",
+         "bg":"navyblue",
          "blocked":"true",
          "blocks_vision":"true",
          "description":"stone wall"
         },
      "7518":
         {
-         "bg":"darkgray",
+         "bg":"navyblue",
          "blocked":"true",
          "blocks_vision":"true",
          "description":"stone wall"
         },
      "7519":
         {
-         "bg":"darkgray",
+         "bg":"navyblue",
          "blocked":"true",
          "blocks_vision":"true",
          "description":"stone wall"
         },
      "7520":
         {
-         "bg":"darkgray",
+         "bg":"navyblue",
          "blocked":"true",
          "blocks_vision":"true",
          "description":"stone wall"
         },
      "7521":
         {
-         "bg":"darkgray",
+         "bg":"navyblue",
          "blocked":"true",
          "blocks_vision":"true",
          "description":"stone wall"
         },
      "7522":
         {
-         "bg":"darkgray",
+         "bg":"navyblue",
          "blocked":"true",
          "blocks_vision":"true",
          "description":"stone wall"
@@ -16214,27 +16253,45 @@
         },
      "7531":
         {
-         "bg":"#00cc33"
+         "bg":"#824d03",
+         "blocked":true,
+         "blocks_vision":true,
+         "description":"mine wall"
         },
      "7532":
         {
-         "bg":"#00cc33"
+         "bg":"#824d03",
+         "blocked":true,
+         "blocks_vision":true,
+         "description":"mine wall"
         },
      "7533":
         {
-         "bg":"#00cc33"
+         "bg":"#824d03",
+         "blocked":true,
+         "blocks_vision":true,
+         "description":"mine wall"
         },
      "7534":
         {
-         "bg":"#00cc33"
+         "bg":"#824d03",
+         "blocked":true,
+         "blocks_vision":true,
+         "description":"mine wall"
         },
      "7535":
         {
-         "bg":"#00cc33"
+         "bg":"#824d03",
+         "blocked":true,
+         "blocks_vision":true,
+         "description":"mine wall"
         },
      "7536":
         {
-         "bg":"#00cc33"
+         "bg":"#824d03",
+         "blocked":true,
+         "blocks_vision":true,
+         "description":"mine wall"
         },
      "7540":
         {
@@ -16728,7 +16785,7 @@
         {
          "animated":false,
          "animated_id":0,
-         "bg":"\"gray\"",
+         "bg":"skyblue",
          "blocked":false,
          "blocks_vision":false,
          "description":"stone floor",
@@ -16738,7 +16795,7 @@
         {
          "animated":false,
          "animated_id":0,
-         "bg":"\"gray\"",
+         "bg":"skyblue",
          "blocked":false,
          "blocks_vision":false,
          "description":"stone floor",
@@ -16748,7 +16805,7 @@
         {
          "animated":false,
          "animated_id":0,
-         "bg":"\"gray\"",
+         "bg":"skyblue",
          "blocked":false,
          "blocks_vision":false,
          "description":"stone floor",
@@ -16758,7 +16815,7 @@
         {
          "animated":false,
          "animated_id":0,
-         "bg":"\"gray\"",
+         "bg":"skyblue",
          "blocked":false,
          "blocks_vision":false,
          "description":"stone floor",
@@ -16768,7 +16825,7 @@
         {
          "animated":false,
          "animated_id":0,
-         "bg":"\"gray\"",
+         "bg":"skyblue",
          "blocked":false,
          "blocks_vision":false,
          "description":"stone floor",
@@ -16778,7 +16835,7 @@
         {
          "animated":false,
          "animated_id":0,
-         "bg":"\"gray\"",
+         "bg":"skyblue",
          "blocked":false,
          "blocks_vision":false,
          "description":"stone floor",
@@ -16788,7 +16845,7 @@
         {
          "animated":false,
          "animated_id":0,
-         "bg":"\"gray\"",
+         "bg":"skyblue",
          "blocked":false,
          "blocks_vision":false,
          "description":"stone floor",
@@ -16929,42 +16986,42 @@
         },
      "7637":
         {
-         "bg":"darkgray",
+         "bg":"navyblue",
          "blocked":"true",
          "blocks_vision":"true",
          "description":"stone wall"
         },
      "7638":
         {
-         "bg":"darkgray",
+         "bg":"navyblue",
          "blocked":"true",
          "blocks_vision":"true",
          "description":"stone wall"
         },
      "7639":
         {
-         "bg":"darkgray",
+         "bg":"navyblue",
          "blocked":"true",
          "blocks_vision":"true",
          "description":"stone wall"
         },
      "7640":
         {
-         "bg":"darkgray",
+         "bg":"navyblue",
          "blocked":"true",
          "blocks_vision":"true",
          "description":"stone wall"
         },
      "7641":
         {
-         "bg":"darkgray",
+         "bg":"navyblue",
          "blocked":"true",
          "blocks_vision":"true",
          "description":"stone wall"
         },
      "7642":
         {
-         "bg":"darkgray",
+         "bg":"navyblue",
          "blocked":"true",
          "blocks_vision":"true",
          "description":"stone wall"
@@ -17021,27 +17078,45 @@
         },
      "7651":
         {
-         "bg":"#00cc33"
+         "bg":"#824d03",
+         "blocked":true,
+         "blocks_vision":true,
+         "description":"mine wall"
         },
      "7652":
         {
-         "bg":"#00cc33"
+         "bg":"#824d03",
+         "blocked":true,
+         "blocks_vision":true,
+         "description":"mine wall"
         },
      "7653":
         {
-         "bg":"#00cc33"
+         "bg":"#824d03",
+         "blocked":true,
+         "blocks_vision":true,
+         "description":"mine wall"
         },
      "7654":
         {
-         "bg":"#00cc33"
+         "bg":"#824d03",
+         "blocked":true,
+         "blocks_vision":true,
+         "description":"mine wall"
         },
      "7655":
         {
-         "bg":"#00cc33"
+         "bg":"#824d03",
+         "blocked":true,
+         "blocks_vision":true,
+         "description":"mine wall"
         },
      "7656":
         {
-         "bg":"#00cc33"
+         "bg":"#824d03",
+         "blocked":true,
+         "blocks_vision":true,
+         "description":"mine wall"
         },
      "7660":
         {
@@ -17724,42 +17799,42 @@
         },
      "7757":
         {
-         "bg":"black",
+         "bg":"blue",
          "blocked":"true",
          "blocks_vision":"true",
          "description":"stone wall"
         },
      "7758":
         {
-         "bg":"black",
+         "bg":"blue",
          "blocked":"true",
          "blocks_vision":"true",
          "description":"stone wall"
         },
      "7759":
         {
-         "bg":"black",
+         "bg":"blue",
          "blocked":"true",
          "blocks_vision":"true",
          "description":"stone wall"
         },
      "7760":
         {
-         "bg":"black",
+         "bg":"blue",
          "blocked":"true",
          "blocks_vision":"true",
          "description":"stone wall"
         },
      "7761":
         {
-         "bg":"black",
+         "bg":"blue",
          "blocked":"true",
          "blocks_vision":"true",
          "description":"stone wall"
         },
      "7762":
         {
-         "bg":"black",
+         "bg":"blue",
          "blocked":"true",
          "blocks_vision":"true",
          "description":"stone wall"
@@ -17816,27 +17891,45 @@
         },
      "7771":
         {
-         "bg":"#00cc33"
+         "bg":"#824d03",
+         "blocked":true,
+         "blocks_vision":true,
+         "description":"mine wall"
         },
      "7772":
         {
-         "bg":"#00cc33"
+         "bg":"#824d03",
+         "blocked":true,
+         "blocks_vision":true,
+         "description":"mine wall"
         },
      "7773":
         {
-         "bg":"#00cc33"
+         "bg":"#824d03",
+         "blocked":true,
+         "blocks_vision":true,
+         "description":"mine wall"
         },
      "7774":
         {
-         "bg":"#00cc33"
+         "bg":"#824d03",
+         "blocked":true,
+         "blocks_vision":true,
+         "description":"mine wall"
         },
      "7775":
         {
-         "bg":"#00cc33"
+         "bg":"#824d03",
+         "blocked":true,
+         "blocks_vision":true,
+         "description":"mine wall"
         },
      "7776":
         {
-         "bg":"#00cc33"
+         "bg":"#824d03",
+         "blocked":true,
+         "blocks_vision":true,
+         "description":"mine wall"
         },
      "7780":
         {
@@ -18526,42 +18619,42 @@
         },
      "7877":
         {
-         "bg":"black",
+         "bg":"blue",
          "blocked":"true",
          "blocks_vision":"true",
          "description":"stone wall"
         },
      "7878":
         {
-         "bg":"black",
+         "bg":"blue",
          "blocked":"true",
          "blocks_vision":"true",
          "description":"stone wall"
         },
      "7879":
         {
-         "bg":"black",
+         "bg":"blue",
          "blocked":"true",
          "blocks_vision":"true",
          "description":"stone wall"
         },
      "7880":
         {
-         "bg":"black",
+         "bg":"blue",
          "blocked":"true",
          "blocks_vision":"true",
          "description":"stone wall"
         },
      "7881":
         {
-         "bg":"black",
+         "bg":"blue",
          "blocked":"true",
          "blocks_vision":"true",
          "description":"stone wall"
         },
      "7882":
         {
-         "bg":"black",
+         "bg":"blue",
          "blocked":"true",
          "blocks_vision":"true",
          "description":"stone wall"
@@ -18618,27 +18711,45 @@
         },
      "7891":
         {
-         "bg":"#00cc33"
+         "bg":"#824d03",
+         "blocked":true,
+         "blocks_vision":true,
+         "description":"mine wall"
         },
      "7892":
         {
-         "bg":"#00cc33"
+         "bg":"#824d03",
+         "blocked":true,
+         "blocks_vision":true,
+         "description":"mine wall"
         },
      "7893":
         {
-         "bg":"#00cc33"
+         "bg":"#824d03",
+         "blocked":true,
+         "blocks_vision":true,
+         "description":"mine wall"
         },
      "7894":
         {
-         "bg":"#00cc33"
+         "bg":"#824d03",
+         "blocked":true,
+         "blocks_vision":true,
+         "description":"mine wall"
         },
      "7895":
         {
-         "bg":"#00cc33"
+         "bg":"#824d03",
+         "blocked":true,
+         "blocks_vision":true,
+         "description":"mine wall"
         },
      "7896":
         {
-         "bg":"#00cc33"
+         "bg":"#824d03",
+         "blocked":true,
+         "blocks_vision":true,
+         "description":"mine wall"
         },
      "7900":
         {
@@ -19337,42 +19448,42 @@
         },
      "7997":
         {
-         "bg":"black",
+         "bg":"blue",
          "blocked":"true",
          "blocks_vision":"true",
          "description":"stone wall"
         },
      "7998":
         {
-         "bg":"black",
+         "bg":"blue",
          "blocked":"true",
          "blocks_vision":"true",
          "description":"stone wall"
         },
      "7999":
         {
-         "bg":"black",
+         "bg":"blue",
          "blocked":"true",
          "blocks_vision":"true",
          "description":"stone wall"
         },
      "8000":
         {
-         "bg":"black",
+         "bg":"blue",
          "blocked":"true",
          "blocks_vision":"true",
          "description":"stone wall"
         },
      "8001":
         {
-         "bg":"black",
+         "bg":"blue",
          "blocked":"true",
          "blocks_vision":"true",
          "description":"stone wall"
         },
      "8002":
         {
-         "bg":"black",
+         "bg":"blue",
          "blocked":"true",
          "blocks_vision":"true",
          "description":"stone wall"
@@ -19429,27 +19540,45 @@
         },
      "8011":
         {
-         "bg":"#00cc33"
+         "bg":"#824d03",
+         "blocked":true,
+         "blocks_vision":true,
+         "description":"mine wall"
         },
      "8012":
         {
-         "bg":"#00cc33"
+         "bg":"#824d03",
+         "blocked":true,
+         "blocks_vision":true,
+         "description":"mine wall"
         },
      "8013":
         {
-         "bg":"#00cc33"
+         "bg":"#824d03",
+         "blocked":true,
+         "blocks_vision":true,
+         "description":"mine wall"
         },
      "8014":
         {
-         "bg":"#00cc33"
+         "bg":"#824d03",
+         "blocked":true,
+         "blocks_vision":true,
+         "description":"mine wall"
         },
      "8015":
         {
-         "bg":"#00cc33"
+         "bg":"#824d03",
+         "blocked":true,
+         "blocks_vision":true,
+         "description":"mine wall"
         },
      "8016":
         {
-         "bg":"#00cc33"
+         "bg":"#824d03",
+         "blocked":true,
+         "blocks_vision":true,
+         "description":"mine wall"
         },
      "8020":
         {
@@ -20128,27 +20257,45 @@
         },
      "8131":
         {
-         "bg":"#00cc33"
+         "bg":"#824d03",
+         "blocked":true,
+         "blocks_vision":true,
+         "description":"mine wall"
         },
      "8132":
         {
-         "bg":"#00cc33"
+         "bg":"#824d03",
+         "blocked":true,
+         "blocks_vision":true,
+         "description":"mine wall"
         },
      "8133":
         {
-         "bg":"#00cc33"
+         "bg":"#824d03",
+         "blocked":true,
+         "blocks_vision":true,
+         "description":"mine wall"
         },
      "8134":
         {
-         "bg":"#00cc33"
+         "bg":"#824d03",
+         "blocked":true,
+         "blocks_vision":true,
+         "description":"mine wall"
         },
      "8135":
         {
-         "bg":"#00cc33"
+         "bg":"#824d03",
+         "blocked":true,
+         "blocks_vision":true,
+         "description":"mine wall"
         },
      "8136":
         {
-         "bg":"#00cc33"
+         "bg":"#824d03",
+         "blocked":true,
+         "blocks_vision":true,
+         "description":"mine wall"
         },
      "8160":
         {
@@ -20815,27 +20962,45 @@
         },
      "8251":
         {
-         "bg":"#00cc33"
+         "bg":"#824d03",
+         "blocked":true,
+         "blocks_vision":true,
+         "description":"mine wall"
         },
      "8252":
         {
-         "bg":"#00cc33"
+         "bg":"#824d03",
+         "blocked":true,
+         "blocks_vision":true,
+         "description":"mine wall"
         },
      "8253":
         {
-         "bg":"#00cc33"
+         "bg":"#824d03",
+         "blocked":true,
+         "blocks_vision":true,
+         "description":"mine wall"
         },
      "8254":
         {
-         "bg":"#00cc33"
+         "bg":"#824d03",
+         "blocked":true,
+         "blocks_vision":true,
+         "description":"mine wall"
         },
      "8255":
         {
-         "bg":"#00cc33"
+         "bg":"#824d03",
+         "blocked":true,
+         "blocks_vision":true,
+         "description":"mine wall"
         },
      "8256":
         {
-         "bg":"#00cc33"
+         "bg":"#824d03",
+         "blocked":true,
+         "blocks_vision":true,
+         "description":"mine wall"
         },
      "8280":
         {
@@ -21502,27 +21667,45 @@
         },
      "8371":
         {
-         "bg":"#00cc33"
+         "bg":"#824d03",
+         "blocked":true,
+         "blocks_vision":true,
+         "description":"mine wall"
         },
      "8372":
         {
-         "bg":"#00cc33"
+         "bg":"#824d03",
+         "blocked":true,
+         "blocks_vision":true,
+         "description":"mine wall"
         },
      "8373":
         {
-         "bg":"#00cc33"
+         "bg":"#824d03",
+         "blocked":true,
+         "blocks_vision":true,
+         "description":"mine wall"
         },
      "8374":
         {
-         "bg":"#00cc33"
+         "bg":"#824d03",
+         "blocked":true,
+         "blocks_vision":true,
+         "description":"mine wall"
         },
      "8375":
         {
-         "bg":"#00cc33"
+         "bg":"#824d03",
+         "blocked":true,
+         "blocks_vision":true,
+         "description":"mine wall"
         },
      "8376":
         {
-         "bg":"#00cc33"
+         "bg":"#824d03",
+         "blocked":true,
+         "blocks_vision":true,
+         "description":"mine wall"
         },
      "8400":
         {
@@ -22182,27 +22365,45 @@
         },
      "8491":
         {
-         "bg":"#00cc33"
+         "bg":"#824d03",
+         "blocked":true,
+         "blocks_vision":true,
+         "description":"mine wall"
         },
      "8492":
         {
-         "bg":"#00cc33"
+         "bg":"#824d03",
+         "blocked":true,
+         "blocks_vision":true,
+         "description":"mine wall"
         },
      "8493":
         {
-         "bg":"#00cc33"
+         "bg":"#824d03",
+         "blocked":true,
+         "blocks_vision":true,
+         "description":"mine wall"
         },
      "8494":
         {
-         "bg":"#00cc33"
+         "bg":"#824d03",
+         "blocked":true,
+         "blocks_vision":true,
+         "description":"mine wall"
         },
      "8495":
         {
-         "bg":"#00cc33"
+         "bg":"#824d03",
+         "blocked":true,
+         "blocks_vision":true,
+         "description":"mine wall"
         },
      "8496":
         {
-         "bg":"#00cc33"
+         "bg":"#824d03",
+         "blocked":true,
+         "blocks_vision":true,
+         "description":"mine wall"
         },
      "8520":
         {
@@ -22862,27 +23063,45 @@
         },
      "8611":
         {
-         "bg":"#00cc33"
+         "bg":"#824d03",
+         "blocked":true,
+         "blocks_vision":true,
+         "description":"mine wall"
         },
      "8612":
         {
-         "bg":"#00cc33"
+         "bg":"#824d03",
+         "blocked":true,
+         "blocks_vision":true,
+         "description":"mine wall"
         },
      "8613":
         {
-         "bg":"#00cc33"
+         "bg":"#824d03",
+         "blocked":true,
+         "blocks_vision":true,
+         "description":"mine wall"
         },
      "8614":
         {
-         "bg":"#00cc33"
+         "bg":"#824d03",
+         "blocked":true,
+         "blocks_vision":true,
+         "description":"mine wall"
         },
      "8615":
         {
-         "bg":"#00cc33"
+         "bg":"#824d03",
+         "blocked":true,
+         "blocks_vision":true,
+         "description":"mine wall"
         },
      "8616":
         {
-         "bg":"#00cc33"
+         "bg":"#824d03",
+         "blocked":true,
+         "blocks_vision":true,
+         "description":"mine wall"
         },
      "8640":
         {
@@ -23526,27 +23745,45 @@
         },
      "8731":
         {
-         "bg":"#00cc33"
+         "bg":"#824d03",
+         "blocked":true,
+         "blocks_vision":true,
+         "description":"mine wall"
         },
      "8732":
         {
-         "bg":"#00cc33"
+         "bg":"#824d03",
+         "blocked":true,
+         "blocks_vision":true,
+         "description":"mine wall"
         },
      "8733":
         {
-         "bg":"#00cc33"
+         "bg":"#824d03",
+         "blocked":true,
+         "blocks_vision":true,
+         "description":"mine wall"
         },
      "8734":
         {
-         "bg":"#00cc33"
+         "bg":"#824d03",
+         "blocked":true,
+         "blocks_vision":true,
+         "description":"mine wall"
         },
      "8735":
         {
-         "bg":"#00cc33"
+         "bg":"#824d03",
+         "blocked":true,
+         "blocks_vision":true,
+         "description":"mine wall"
         },
      "8736":
         {
-         "bg":"#00cc33"
+         "bg":"#824d03",
+         "blocked":true,
+         "blocks_vision":true,
+         "description":"mine wall"
         },
      "8743":
         {
@@ -32433,6 +32670,27 @@
          "entity_id":"int"
         },
      "2552":
+        {
+         "animated":"bool",
+         "animated_id":"int",
+         "entity":"bool",
+         "entity_id":"string"
+        },
+     "2553":
+        {
+         "animated":"bool",
+         "animated_id":"int",
+         "entity":"bool",
+         "entity_id":"string"
+        },
+     "2554":
+        {
+         "animated":"bool",
+         "animated_id":"int",
+         "entity":"bool",
+         "entity_id":"string"
+        },
+     "2555":
         {
          "animated":"bool",
          "animated_id":"int",
@@ -45744,27 +46002,45 @@
         },
      "7411":
         {
-         "bg":"string"
+         "bg":"string",
+         "blocked":"bool",
+         "blocks_vision":"bool",
+         "description":"string"
         },
      "7412":
         {
-         "bg":"string"
+         "bg":"string",
+         "blocked":"bool",
+         "blocks_vision":"bool",
+         "description":"string"
         },
      "7413":
         {
-         "bg":"string"
+         "bg":"string",
+         "blocked":"bool",
+         "blocks_vision":"bool",
+         "description":"string"
         },
      "7414":
         {
-         "bg":"string"
+         "bg":"string",
+         "blocked":"bool",
+         "blocks_vision":"bool",
+         "description":"string"
         },
      "7415":
         {
-         "bg":"string"
+         "bg":"string",
+         "blocked":"bool",
+         "blocks_vision":"bool",
+         "description":"string"
         },
      "7416":
         {
-         "bg":"string"
+         "bg":"string",
+         "blocked":"bool",
+         "blocks_vision":"bool",
+         "description":"string"
         },
      "7418":
         {
@@ -46560,27 +46836,45 @@
         },
      "7531":
         {
-         "bg":"string"
+         "bg":"string",
+         "blocked":"bool",
+         "blocks_vision":"bool",
+         "description":"string"
         },
      "7532":
         {
-         "bg":"string"
+         "bg":"string",
+         "blocked":"bool",
+         "blocks_vision":"bool",
+         "description":"string"
         },
      "7533":
         {
-         "bg":"string"
+         "bg":"string",
+         "blocked":"bool",
+         "blocks_vision":"bool",
+         "description":"string"
         },
      "7534":
         {
-         "bg":"string"
+         "bg":"string",
+         "blocked":"bool",
+         "blocks_vision":"bool",
+         "description":"string"
         },
      "7535":
         {
-         "bg":"string"
+         "bg":"string",
+         "blocked":"bool",
+         "blocks_vision":"bool",
+         "description":"string"
         },
      "7536":
         {
-         "bg":"string"
+         "bg":"string",
+         "blocked":"bool",
+         "blocks_vision":"bool",
+         "description":"string"
         },
      "7540":
         {
@@ -47367,27 +47661,45 @@
         },
      "7651":
         {
-         "bg":"string"
+         "bg":"string",
+         "blocked":"bool",
+         "blocks_vision":"bool",
+         "description":"string"
         },
      "7652":
         {
-         "bg":"string"
+         "bg":"string",
+         "blocked":"bool",
+         "blocks_vision":"bool",
+         "description":"string"
         },
      "7653":
         {
-         "bg":"string"
+         "bg":"string",
+         "blocked":"bool",
+         "blocks_vision":"bool",
+         "description":"string"
         },
      "7654":
         {
-         "bg":"string"
+         "bg":"string",
+         "blocked":"bool",
+         "blocks_vision":"bool",
+         "description":"string"
         },
      "7655":
         {
-         "bg":"string"
+         "bg":"string",
+         "blocked":"bool",
+         "blocks_vision":"bool",
+         "description":"string"
         },
      "7656":
         {
-         "bg":"string"
+         "bg":"string",
+         "blocked":"bool",
+         "blocks_vision":"bool",
+         "description":"string"
         },
      "7660":
         {
@@ -48162,27 +48474,45 @@
         },
      "7771":
         {
-         "bg":"string"
+         "bg":"string",
+         "blocked":"bool",
+         "blocks_vision":"bool",
+         "description":"string"
         },
      "7772":
         {
-         "bg":"string"
+         "bg":"string",
+         "blocked":"bool",
+         "blocks_vision":"bool",
+         "description":"string"
         },
      "7773":
         {
-         "bg":"string"
+         "bg":"string",
+         "blocked":"bool",
+         "blocks_vision":"bool",
+         "description":"string"
         },
      "7774":
         {
-         "bg":"string"
+         "bg":"string",
+         "blocked":"bool",
+         "blocks_vision":"bool",
+         "description":"string"
         },
      "7775":
         {
-         "bg":"string"
+         "bg":"string",
+         "blocked":"bool",
+         "blocks_vision":"bool",
+         "description":"string"
         },
      "7776":
         {
-         "bg":"string"
+         "bg":"string",
+         "blocked":"bool",
+         "blocks_vision":"bool",
+         "description":"string"
         },
      "7780":
         {
@@ -48964,27 +49294,45 @@
         },
      "7891":
         {
-         "bg":"string"
+         "bg":"string",
+         "blocked":"bool",
+         "blocks_vision":"bool",
+         "description":"string"
         },
      "7892":
         {
-         "bg":"string"
+         "bg":"string",
+         "blocked":"bool",
+         "blocks_vision":"bool",
+         "description":"string"
         },
      "7893":
         {
-         "bg":"string"
+         "bg":"string",
+         "blocked":"bool",
+         "blocks_vision":"bool",
+         "description":"string"
         },
      "7894":
         {
-         "bg":"string"
+         "bg":"string",
+         "blocked":"bool",
+         "blocks_vision":"bool",
+         "description":"string"
         },
      "7895":
         {
-         "bg":"string"
+         "bg":"string",
+         "blocked":"bool",
+         "blocks_vision":"bool",
+         "description":"string"
         },
      "7896":
         {
-         "bg":"string"
+         "bg":"string",
+         "blocked":"bool",
+         "blocks_vision":"bool",
+         "description":"string"
         },
      "7900":
         {
@@ -49775,27 +50123,45 @@
         },
      "8011":
         {
-         "bg":"string"
+         "bg":"string",
+         "blocked":"bool",
+         "blocks_vision":"bool",
+         "description":"string"
         },
      "8012":
         {
-         "bg":"string"
+         "bg":"string",
+         "blocked":"bool",
+         "blocks_vision":"bool",
+         "description":"string"
         },
      "8013":
         {
-         "bg":"string"
+         "bg":"string",
+         "blocked":"bool",
+         "blocks_vision":"bool",
+         "description":"string"
         },
      "8014":
         {
-         "bg":"string"
+         "bg":"string",
+         "blocked":"bool",
+         "blocks_vision":"bool",
+         "description":"string"
         },
      "8015":
         {
-         "bg":"string"
+         "bg":"string",
+         "blocked":"bool",
+         "blocks_vision":"bool",
+         "description":"string"
         },
      "8016":
         {
-         "bg":"string"
+         "bg":"string",
+         "blocked":"bool",
+         "blocks_vision":"bool",
+         "description":"string"
         },
      "8020":
         {
@@ -50474,27 +50840,45 @@
         },
      "8131":
         {
-         "bg":"string"
+         "bg":"string",
+         "blocked":"bool",
+         "blocks_vision":"bool",
+         "description":"string"
         },
      "8132":
         {
-         "bg":"string"
+         "bg":"string",
+         "blocked":"bool",
+         "blocks_vision":"bool",
+         "description":"string"
         },
      "8133":
         {
-         "bg":"string"
+         "bg":"string",
+         "blocked":"bool",
+         "blocks_vision":"bool",
+         "description":"string"
         },
      "8134":
         {
-         "bg":"string"
+         "bg":"string",
+         "blocked":"bool",
+         "blocks_vision":"bool",
+         "description":"string"
         },
      "8135":
         {
-         "bg":"string"
+         "bg":"string",
+         "blocked":"bool",
+         "blocks_vision":"bool",
+         "description":"string"
         },
      "8136":
         {
-         "bg":"string"
+         "bg":"string",
+         "blocked":"bool",
+         "blocks_vision":"bool",
+         "description":"string"
         },
      "8160":
         {
@@ -51161,27 +51545,45 @@
         },
      "8251":
         {
-         "bg":"string"
+         "bg":"string",
+         "blocked":"bool",
+         "blocks_vision":"bool",
+         "description":"string"
         },
      "8252":
         {
-         "bg":"string"
+         "bg":"string",
+         "blocked":"bool",
+         "blocks_vision":"bool",
+         "description":"string"
         },
      "8253":
         {
-         "bg":"string"
+         "bg":"string",
+         "blocked":"bool",
+         "blocks_vision":"bool",
+         "description":"string"
         },
      "8254":
         {
-         "bg":"string"
+         "bg":"string",
+         "blocked":"bool",
+         "blocks_vision":"bool",
+         "description":"string"
         },
      "8255":
         {
-         "bg":"string"
+         "bg":"string",
+         "blocked":"bool",
+         "blocks_vision":"bool",
+         "description":"string"
         },
      "8256":
         {
-         "bg":"string"
+         "bg":"string",
+         "blocked":"bool",
+         "blocks_vision":"bool",
+         "description":"string"
         },
      "8280":
         {
@@ -51848,27 +52250,45 @@
         },
      "8371":
         {
-         "bg":"string"
+         "bg":"string",
+         "blocked":"bool",
+         "blocks_vision":"bool",
+         "description":"string"
         },
      "8372":
         {
-         "bg":"string"
+         "bg":"string",
+         "blocked":"bool",
+         "blocks_vision":"bool",
+         "description":"string"
         },
      "8373":
         {
-         "bg":"string"
+         "bg":"string",
+         "blocked":"bool",
+         "blocks_vision":"bool",
+         "description":"string"
         },
      "8374":
         {
-         "bg":"string"
+         "bg":"string",
+         "blocked":"bool",
+         "blocks_vision":"bool",
+         "description":"string"
         },
      "8375":
         {
-         "bg":"string"
+         "bg":"string",
+         "blocked":"bool",
+         "blocks_vision":"bool",
+         "description":"string"
         },
      "8376":
         {
-         "bg":"string"
+         "bg":"string",
+         "blocked":"bool",
+         "blocks_vision":"bool",
+         "description":"string"
         },
      "8400":
         {
@@ -52528,27 +52948,45 @@
         },
      "8491":
         {
-         "bg":"string"
+         "bg":"string",
+         "blocked":"bool",
+         "blocks_vision":"bool",
+         "description":"string"
         },
      "8492":
         {
-         "bg":"string"
+         "bg":"string",
+         "blocked":"bool",
+         "blocks_vision":"bool",
+         "description":"string"
         },
      "8493":
         {
-         "bg":"string"
+         "bg":"string",
+         "blocked":"bool",
+         "blocks_vision":"bool",
+         "description":"string"
         },
      "8494":
         {
-         "bg":"string"
+         "bg":"string",
+         "blocked":"bool",
+         "blocks_vision":"bool",
+         "description":"string"
         },
      "8495":
         {
-         "bg":"string"
+         "bg":"string",
+         "blocked":"bool",
+         "blocks_vision":"bool",
+         "description":"string"
         },
      "8496":
         {
-         "bg":"string"
+         "bg":"string",
+         "blocked":"bool",
+         "blocks_vision":"bool",
+         "description":"string"
         },
      "8520":
         {
@@ -53208,27 +53646,45 @@
         },
      "8611":
         {
-         "bg":"string"
+         "bg":"string",
+         "blocked":"bool",
+         "blocks_vision":"bool",
+         "description":"string"
         },
      "8612":
         {
-         "bg":"string"
+         "bg":"string",
+         "blocked":"bool",
+         "blocks_vision":"bool",
+         "description":"string"
         },
      "8613":
         {
-         "bg":"string"
+         "bg":"string",
+         "blocked":"bool",
+         "blocks_vision":"bool",
+         "description":"string"
         },
      "8614":
         {
-         "bg":"string"
+         "bg":"string",
+         "blocked":"bool",
+         "blocks_vision":"bool",
+         "description":"string"
         },
      "8615":
         {
-         "bg":"string"
+         "bg":"string",
+         "blocked":"bool",
+         "blocks_vision":"bool",
+         "description":"string"
         },
      "8616":
         {
-         "bg":"string"
+         "bg":"string",
+         "blocked":"bool",
+         "blocks_vision":"bool",
+         "description":"string"
         },
      "8640":
         {
@@ -53872,27 +54328,45 @@
         },
      "8731":
         {
-         "bg":"string"
+         "bg":"string",
+         "blocked":"bool",
+         "blocks_vision":"bool",
+         "description":"string"
         },
      "8732":
         {
-         "bg":"string"
+         "bg":"string",
+         "blocked":"bool",
+         "blocks_vision":"bool",
+         "description":"string"
         },
      "8733":
         {
-         "bg":"string"
+         "bg":"string",
+         "blocked":"bool",
+         "blocks_vision":"bool",
+         "description":"string"
         },
      "8734":
         {
-         "bg":"string"
+         "bg":"string",
+         "blocked":"bool",
+         "blocks_vision":"bool",
+         "description":"string"
         },
      "8735":
         {
-         "bg":"string"
+         "bg":"string",
+         "blocked":"bool",
+         "blocks_vision":"bool",
+         "description":"string"
         },
      "8736":
         {
-         "bg":"string"
+         "bg":"string",
+         "blocked":"bool",
+         "blocks_vision":"bool",
+         "description":"string"
         },
      "8743":
         {
