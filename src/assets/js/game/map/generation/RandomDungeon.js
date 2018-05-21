@@ -42,6 +42,10 @@ import { getRandomInt, getNormalRandomInt, randomProperty } from '#/utils/Helper
 	Game.changeLevels(`City Dungeon ${l}`, "up", l++)
 */
 
+/*
+	TODO:
+	- Add trolls, mummies, ghosts, ice elemental, golems, imps, snakes, vampires
+ */
 const actorTextures = {
 	ORC: [5292, 5293, 5294, 5295, 5296, 5297, 5299],
 	EMPOWERED_ORC: [5298],
@@ -578,7 +582,7 @@ const getWallTexture = (walls, sum) => {
 	return wallSums[sum]
 }
 
-export function dungeonFromTheme(width, height, dir, theme, level, mapGenerator) {
+export function dungeonFromTheme(width, height, dir, theme, level, mapGenerator, hasDoors = true) {
 	let gameMap = new GameMap(width, height)
 	const { tint, type, textures, mobDistribution } = theme
 	const { floor, corridorFloor, walls, doors } = textures
@@ -628,14 +632,14 @@ export function dungeonFromTheme(width, height, dir, theme, level, mapGenerator)
 		}
 
 		/* Set up the doors of the room */
-		room.getDoors((dx, dy) => {
-			let floor_ids =
-				Object.values(corridorFloor.vertical) +
-				Object.values(floor) +
-				Object.values(corridorFloor.horizontal) +
-				Object.values(floor) // doors?
+		if (getRandomInt(1, 2) === 1 && hasDoors) {
+			room.getDoors((dx, dy) => {
+				let floor_ids =
+					Object.values(corridorFloor.vertical) +
+					Object.values(floor) +
+					Object.values(corridorFloor.horizontal) +
+					Object.values(floor) // doors?
 
-			if (getRandomInt(1, 2) === 1) {
 				let above = gameMap.getTile(dx, dy - 1).obstacles[0].id
 				let below = gameMap.getTile(dx, dy + 1).obstacles[0].id
 				let door
@@ -648,8 +652,8 @@ export function dungeonFromTheme(width, height, dir, theme, level, mapGenerator)
 				}
 				gameMap.getTile(dx, dy).actors.push(door)
 				gameMap.actors.push(door)
-			}
-		})
+			})
+		}
 
 		// Now, we can mess around with the centers of each room and place items in the dungeons
 		// this places a ladder going further into the dungeon (either deeper or higher)
@@ -670,8 +674,9 @@ export function dungeonFromTheme(width, height, dir, theme, level, mapGenerator)
 				if (!gameMap.getTile(x, y).blocked()) validTiles.push(x + ',' + y)
 			}
 		}
-
-		roll = getNormalRandomInt(1, 5)
+		let roomWidth = right - left
+		let maxEnemies = Math.min(5, roomWidth * 0.5)
+		roll = getRandomInt(0, maxEnemies)
 		for (let i = 0; i < roll; i++) {
 			let coords = randomTile(validTiles)
 			if (coords === null) break
@@ -717,7 +722,15 @@ export function randomDungeon(width, height, dir, level = 1) {
 			corridorLength: [4, 4],
 			roomDugPercentage: 0.4
 		}
-		return dungeonFromTheme(width, height, dir, dungeonThemes.RUINS, level, new ROT.Map.Uniform(width, height, dungeonConfig))
+		return dungeonFromTheme(
+			width,
+			height,
+			dir,
+			dungeonThemes.RUINS,
+			level,
+			new ROT.Map.Uniform(width, height, dungeonConfig),
+			false
+		)
 	} else if (level <= 10) {
 		dungeonConfig = {
 			roomWidth: [3, 6],
@@ -733,7 +746,15 @@ export function randomDungeon(width, height, dir, level = 1) {
 			corridorLength: [1, 10],
 			roomDugPercentage: 0.4
 		}
-		return dungeonFromTheme(width, height, dir, dungeonThemes.MINE, level, new ROT.Map.Uniform(width, height, dungeonConfig))
+		return dungeonFromTheme(
+			width,
+			height,
+			dir,
+			dungeonThemes.MINE,
+			level,
+			new ROT.Map.Uniform(width, height, dungeonConfig),
+			false
+		)
 	} else {
 		dungeonConfig = {
 			roomWidth: [3, 20],
