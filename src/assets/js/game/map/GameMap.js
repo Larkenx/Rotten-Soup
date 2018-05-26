@@ -75,6 +75,7 @@ export class GameMap {
 		if (entity_type === 'NPC') {
 			// add NPC routines if any exist...
 			// NPCs may have items too!
+			actor.wanders = properties.wanders
 		} else if (entity_type === 'LADDER' || entity_type === 'LEVEL_TRANSITION') {
 			// ladders & level transitions have portal ID's
 			actor.portal = properties.portalID
@@ -96,89 +97,5 @@ export class GameMap {
 				this.createActorFromObject(object)
 			}
 		}
-	}
-
-	processItemLayer(layer) {
-		for (let i = 0; i < this.height; i++) {
-			for (let j = 0; j < this.width; j++) {
-				let id = layer.data[i * this.width + j] - 1 // grab the id in the json data
-				if (id > 1) {
-					// id of zero indicates no actor in this spot
-					Game.loadedIDS.push(id)
-					let properties = getTileInfo(id)
-					if (properties.entity !== true) throw 'Bad entity creation for tile ' + id
-					let newActor = createEntity(j, i, properties.entity_id, id)
-					this.actors.push(newActor) // add to the list of all actors
-					this.findActor(j, i).addToInventory(newActor)
-				}
-			}
-		}
-	}
-
-	processPortalLayer(layer) {
-		for (let i = 0; i < this.height; i++) {
-			for (let j = 0; j < this.width; j++) {
-				let id = layer.data[i * this.width + j] - 1 // grab the id in the json data
-				if (id > 1) {
-					// id of zero indicates no actor in this spot
-					Game.loadedIDS.push(id)
-					let properties = getTileInfo(id)
-					// now we've got a portal cell that tells us where a ladder should lead
-					// find the ladder at this location
-					let ladders = this.data[i][j].actors.filter(a => {
-						return a instanceof Ladder || a instanceof LevelTransition // throwing in condition that it can also be level transition
-					})
-					if (ladders.length === 0) {
-						throw 'tried to create a portal link for a ladder or level transition but neither was found'
-					} else {
-						ladders[0].portal = properties.level
-					}
-				}
-			}
-		}
-	}
-
-	print() {
-		let buf = ''
-		for (let i = 0; i < this.height; i++) {
-			let row = ''
-			for (let j = 0; j < this.width; j++) row += this.data[i][j].symbol //+ " ";
-			buf += row + '\n'
-		}
-
-		for (let i = 0; i < this.actors.length; i++) {
-			let actor = this.actors[i]
-			/* to calculate where the actor should go, we have to consider
-             the new line character in each line of the buffer, which is equal
-             to the actor's y coord. */
-			let index = actor.y * this.width + actor.x + actor.y
-			buf = buf.substr(0, index) + actor.symbol + buf.substr(index + 1)
-		}
-		console.log(buf)
-	}
-
-	findActor(x, y) {
-		let chests = this.data[y][x].actors.filter(a => {
-			return a instanceof Chest
-		})
-		// if there are no chests, then that means we need to find an actor who should have all of the items added to
-		if (chests.length === 0) {
-			let possibleActors = this.data[y][x].actors
-			if (possibleActors.length === 0) throw `There's no actor in which an item can be placed at (${x},${y})`
-			return possibleActors[0]
-		} else {
-			return chests[0]
-		}
-	}
-
-	/* Returns the tiles adjacent to the given tile */
-	adjTiles(tile) {
-		let adjacentTiles = []
-		for (let dist of ROT.DIRS[8]) {
-			let nx = tile.x + dist[0]
-			let ny = tile.y + dist[1]
-			if (!(nx < 0 || nx === this.width || ny < 0 || ny === this.height)) adjacentTiles.push(this.data[ny][nx])
-		}
-		return adjacentTiles
 	}
 }

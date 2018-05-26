@@ -433,11 +433,13 @@
                  "name":"NPC",
                  "properties":
                     {
-                     "entity_type":"NPC"
+                     "entity_type":"NPC",
+                     "wanders":true
                     },
                  "propertytypes":
                     {
-                     "entity_type":"string"
+                     "entity_type":"string",
+                     "wanders":"bool"
                     },
                  "rotation":0,
                  "type":"",
@@ -453,11 +455,13 @@
                  "name":"NPC",
                  "properties":
                     {
-                     "entity_type":"NPC"
+                     "entity_type":"NPC",
+                     "wanders":true
                     },
                  "propertytypes":
                     {
-                     "entity_type":"string"
+                     "entity_type":"string",
+                     "wanders":"bool"
                     },
                  "rotation":0,
                  "type":"",
@@ -473,11 +477,13 @@
                  "name":"NPC",
                  "properties":
                     {
-                     "entity_type":"NPC"
+                     "entity_type":"NPC",
+                     "wanders":false
                     },
                  "propertytypes":
                     {
-                     "entity_type":"string"
+                     "entity_type":"string",
+                     "wanders":"bool"
                     },
                  "rotation":0,
                  "type":"",
@@ -493,11 +499,13 @@
                  "name":"NPC",
                  "properties":
                     {
-                     "entity_type":"NPC"
+                     "entity_type":"NPC",
+                     "wanders":false
                     },
                  "propertytypes":
                     {
-                     "entity_type":"string"
+                     "entity_type":"string",
+                     "wanders":"bool"
                     },
                  "rotation":0,
                  "type":"",
@@ -513,11 +521,13 @@
                  "name":"NPC",
                  "properties":
                     {
-                     "entity_type":"NPC"
+                     "entity_type":"NPC",
+                     "wanders":false
                     },
                  "propertytypes":
                     {
-                     "entity_type":"string"
+                     "entity_type":"string",
+                     "wanders":"bool"
                     },
                  "rotation":0,
                  "type":"",
@@ -533,11 +543,13 @@
                  "name":"NPC",
                  "properties":
                     {
-                     "entity_type":"NPC"
+                     "entity_type":"NPC",
+                     "wanders":false
                     },
                  "propertytypes":
                     {
-                     "entity_type":"string"
+                     "entity_type":"string",
+                     "wanders":"bool"
                     },
                  "rotation":0,
                  "type":"",
@@ -553,11 +565,13 @@
                  "name":"NPC",
                  "properties":
                     {
-                     "entity_type":"NPC"
+                     "entity_type":"NPC",
+                     "wanders":true
                     },
                  "propertytypes":
                     {
-                     "entity_type":"string"
+                     "entity_type":"string",
+                     "wanders":"bool"
                     },
                  "rotation":0,
                  "type":"",
@@ -573,11 +587,13 @@
                  "name":"NPC",
                  "properties":
                     {
-                     "entity_type":"NPC"
+                     "entity_type":"NPC",
+                     "wanders":true
                     },
                  "propertytypes":
                     {
-                     "entity_type":"string"
+                     "entity_type":"string",
+                     "wanders":"bool"
                     },
                  "rotation":0,
                  "type":"",
@@ -593,11 +609,13 @@
                  "name":"NPC",
                  "properties":
                     {
-                     "entity_type":"NPC"
+                     "entity_type":"NPC",
+                     "wanders":true
                     },
                  "propertytypes":
                     {
-                     "entity_type":"string"
+                     "entity_type":"string",
+                     "wanders":"bool"
                     },
                  "rotation":0,
                  "type":"",
@@ -613,11 +631,13 @@
                  "name":"NPC",
                  "properties":
                     {
-                     "entity_type":"NPC"
+                     "entity_type":"NPC",
+                     "wanders":true
                     },
                  "propertytypes":
                     {
-                     "entity_type":"string"
+                     "entity_type":"string",
+                     "wanders":"bool"
                     },
                  "rotation":0,
                  "type":"",
@@ -633,11 +653,13 @@
                  "name":"NPC",
                  "properties":
                     {
-                     "entity_type":"NPC"
+                     "entity_type":"NPC",
+                     "wanders":true
                     },
                  "propertytypes":
                     {
-                     "entity_type":"string"
+                     "entity_type":"string",
+                     "wanders":"bool"
                     },
                  "rotation":0,
                  "type":"",
@@ -653,11 +675,13 @@
                  "name":"NPC",
                  "properties":
                     {
-                     "entity_type":"NPC"
+                     "entity_type":"NPC",
+                     "wanders":true
                     },
                  "propertytypes":
                     {
-                     "entity_type":"string"
+                     "entity_type":"string",
+                     "wanders":"bool"
                     },
                  "rotation":0,
                  "type":"",
@@ -673,11 +697,13 @@
                  "name":"NPC",
                  "properties":
                     {
-                     "entity_type":"NPC"
+                     "entity_type":"NPC",
+                     "wanders":false
                     },
                  "propertytypes":
                     {
-                     "entity_type":"string"
+                     "entity_type":"string",
+                     "wanders":"bool"
                     },
                  "rotation":0,
                  "type":"",
@@ -693,11 +719,13 @@
                  "name":"NPC",
                  "properties":
                     {
-                     "entity_type":"NPC"
+                     "entity_type":"NPC",
+                     "wanders":false
                     },
                  "propertytypes":
                     {
-                     "entity_type":"string"
+                     "entity_type":"string",
+                     "wanders":"bool"
                     },
                  "rotation":0,
                  "type":"",
@@ -713,11 +741,13 @@
                  "name":"NPC",
                  "properties":
                     {
-                     "entity_type":"NPC"
+                     "entity_type":"NPC",
+                     "wanders":true
                     },
                  "propertytypes":
                     {
-                     "entity_type":"string"
+                     "entity_type":"string",
+                     "wanders":"bool"
                     },
                  "rotation":0,
                  "type":"",
@@ -733,11 +763,13 @@
                  "name":"NPC",
                  "properties":
                     {
-                     "entity_type":"NPC"
+                     "entity_type":"NPC",
+                     "wanders":true
                     },
                  "propertytypes":
                     {
-                     "entity_type":"string"
+                     "entity_type":"string",
+                     "wanders":"bool"
                     },
                  "rotation":0,
                  "type":"",
@@ -753,11 +785,13 @@
                  "name":"Mayor",
                  "properties":
                     {
-                     "entity_type":"NPC"
+                     "entity_type":"NPC",
+                     "wanders":false
                     },
                  "propertytypes":
                     {
-                     "entity_type":"string"
+                     "entity_type":"string",
+                     "wanders":"bool"
                     },
                  "rotation":0,
                  "type":"",
@@ -793,11 +827,13 @@
                  "name":"NPC",
                  "properties":
                     {
-                     "entity_type":"NPC"
+                     "entity_type":"NPC",
+                     "wanders":true
                     },
                  "propertytypes":
                     {
-                     "entity_type":"string"
+                     "entity_type":"string",
+                     "wanders":"bool"
                     },
                  "rotation":0,
                  "type":"",
@@ -813,11 +849,13 @@
                  "name":"NPC",
                  "properties":
                     {
-                     "entity_type":"NPC"
+                     "entity_type":"NPC",
+                     "wanders":true
                     },
                  "propertytypes":
                     {
-                     "entity_type":"string"
+                     "entity_type":"string",
+                     "wanders":"bool"
                     },
                  "rotation":0,
                  "type":"",
@@ -855,11 +893,13 @@
                  "name":"NPC",
                  "properties":
                     {
-                     "entity_type":"NPC"
+                     "entity_type":"NPC",
+                     "wanders":true
                     },
                  "propertytypes":
                     {
-                     "entity_type":"string"
+                     "entity_type":"string",
+                     "wanders":"bool"
                     },
                  "rotation":0,
                  "type":"",

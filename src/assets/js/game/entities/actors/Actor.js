@@ -8,6 +8,8 @@ import { Game } from '#/Game.js'
 import { Entity } from '#/entities/Entity.js'
 import { getRandomInt, addPrefix } from '#/utils/HelperFunctions.js'
 import Door from '#/entities/misc/Door.js'
+import Chest from '#/entities/misc/Chest.js'
+import Ladder from '#/entities/misc/Ladder.js'
 import Weapon from '#/entities/items/weapons/Weapon.js'
 import { Ammo } from '#/entities/items/weapons/ranged/ammo/Ammo.js'
 import { Buff } from '#/modifiers/Buff.js'
@@ -176,13 +178,18 @@ export class Actor extends Entity {
 				let actor = ntile.actors[i]
 				// this actor has stumbled upon another actor
 				if (actor instanceof Actor && actor.blocked && actor.visible) {
-					if (!actor.isDead()) this.interact(actor)
+					if (!actor.isDead()) {
+						this.interact(actor)
+					}
 					return true
 				}
+				// }
 				// actor has stumbled upon a non-Actor entity (an item or miscellaneous entity like a door)
 				if (actor instanceof Door) {
-					this.interact(actor)
-					// return actor.blocked;
+					actor.react()
+					return true
+				} else if (this !== Game.player && (actor instanceof Ladder || actor instanceof Chest)) {
+					return false
 				}
 			}
 		}
