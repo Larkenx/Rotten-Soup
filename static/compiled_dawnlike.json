@@ -1711,11 +1711,13 @@
         },
      "176":
         {
-         "blocked":true
+         "blocked":true,
+         "description":"barrel"
         },
      "177":
         {
-         "blocked":true
+         "blocked":true,
+         "description":"barrel"
         },
      "178":
         {
@@ -1778,7 +1780,8 @@
         },
      "184":
         {
-         "blocked":true
+         "blocked":true,
+         "description":"barrel"
         },
      "1842":
         {
@@ -1814,7 +1817,8 @@
         },
      "185":
         {
-         "blocked":true
+         "blocked":true,
+         "description":"barrel"
         },
      "1850":
         {
@@ -1976,6 +1980,20 @@
          "entity":true,
          "entity_id":"25"
         },
+     "2289":
+        {
+         "animated":true,
+         "animated_id":2297,
+         "entity":true,
+         "entity_id":"24"
+        },
+     "2295":
+        {
+         "animated":true,
+         "animated_id":2303,
+         "entity":true,
+         "entity_id":"24"
+        },
      "2314":
         {
          "animated":true,
@@ -2086,6 +2104,139 @@
          "entity":true,
          "entity_id":15
         },
+     "2408":
+        {
+         "animated":true,
+         "animated_id":7088,
+         "entity":true,
+         "entity_id":"6"
+        },
+     "2409":
+        {
+         "animated":true,
+         "animated_id":2417,
+         "entity":true,
+         "entity_id":"6"
+        },
+     "2410":
+        {
+         "animated":true,
+         "animated_id":2418,
+         "entity":true,
+         "entity_id":"6"
+        },
+     "2411":
+        {
+         "animated":true,
+         "animated_id":2419,
+         "entity":true,
+         "entity_id":"6"
+        },
+     "2412":
+        {
+         "animated":true,
+         "animated_id":2420,
+         "entity":true,
+         "entity_id":"6"
+        },
+     "2413":
+        {
+         "animated":true,
+         "animated_id":2421,
+         "entity":true,
+         "entity_id":"6"
+        },
+     "2414":
+        {
+         "animated":true,
+         "animated_id":2422,
+         "entity":true,
+         "entity_id":"6"
+        },
+     "2415":
+        {
+         "animated":true,
+         "animated_id":2423,
+         "entity":true,
+         "entity_id":"6"
+        },
+     "2432":
+        {
+         "animated":true,
+         "animated_id":2440,
+         "entity":true,
+         "entity_id":"24"
+        },
+     "2433":
+        {
+         "animated":true,
+         "animated_id":2441,
+         "entity":true,
+         "entity_id":"24"
+        },
+     "2434":
+        {
+         "animated":true,
+         "animated_id":2442,
+         "entity":true,
+         "entity_id":"24"
+        },
+     "2435":
+        {
+         "animated":true,
+         "animated_id":2443,
+         "entity":true,
+         "entity_id":"24"
+        },
+     "2436":
+        {
+         "animated":true,
+         "animated_id":2444,
+         "entity":true,
+         "entity_id":"24"
+        },
+     "2437":
+        {
+         "animated":true,
+         "animated_id":2445,
+         "entity":true,
+         "entity_id":"24"
+        },
+     "2438":
+        {
+         "animated":true,
+         "animated_id":2446,
+         "entity":true,
+         "entity_id":"24"
+        },
+     "2439":
+        {
+         "animated":true,
+         "animated_id":2447,
+         "entity":true,
+         "entity_id":"24"
+        },
+     "2457":
+        {
+         "animated":true,
+         "animated_id":2473,
+         "entity":true,
+         "entity_id":"24"
+        },
+     "2460":
+        {
+         "animated":true,
+         "animated_id":2476,
+         "entity":true,
+         "entity_id":"24"
+        },
+     "2461":
+        {
+         "animated":true,
+         "animated_id":2477,
+         "entity":true,
+         "entity_id":"24"
+        },
      "2552":
         {
          "animated":true,
@@ -2168,6 +2319,13 @@
          "entity":true,
          "entity_id":"25"
         },
+     "2672":
+        {
+         "animated":true,
+         "animated_id":2680,
+         "entity":true,
+         "entity_id":"24"
+        },
      "2736":
         {
          "blocked":true,
@@ -2197,6 +2355,27 @@
         {
          "blocked":true,
          "description":"fence"
+        },
+     "2792":
+        {
+         "animated":true,
+         "animated_id":2800,
+         "entity":true,
+         "entity_id":"24"
+        },
+     "2793":
+        {
+         "animated":true,
+         "animated_id":2801,
+         "entity":true,
+         "entity_id":"24"
+        },
+     "2794":
+        {
+         "animated":true,
+         "animated_id":2802,
+         "entity":true,
+         "entity_id":"24"
         },
      "2856":
         {
@@ -2352,6 +2531,13 @@
         {
          "blocked":"true"
         },
+     "3154":
+        {
+         "animated":true,
+         "animated_id":3162,
+         "entity":true,
+         "entity_id":"24"
+        },
      "32":
         {
          "animated":false,
@@ -2430,6 +2616,20 @@
         {
          "blocked":true,
          "description":"fence"
+        },
+     "3392":
+        {
+         "animated":true,
+         "animated_id":3400,
+         "entity":true,
+         "entity_id":"6"
+        },
+     "3393":
+        {
+         "animated":true,
+         "animated_id":3401,
+         "entity":true,
+         "entity_id":"6"
         },
      "34":
         {
@@ -2640,9 +2840,9 @@
      "3852":
         {
          "animated":true,
-         "animated_id":0,
+         "animated_id":3860,
          "entity":true,
-         "entity_id":0
+         "entity_id":6
         },
      "3853":
         {
@@ -5035,51 +5235,59 @@
         },
      "4360":
         {
-         "animated":false,
-         "animated_id":0,
-         "entity":false
+         "animated":true,
+         "animated_id":4368,
+         "entity":true,
+         "entity_id":"24"
         },
      "4361":
         {
-         "animated":false,
-         "animated_id":0,
-         "entity":false
+         "animated":true,
+         "animated_id":4369,
+         "entity":true,
+         "entity_id":"24"
         },
      "4362":
         {
-         "animated":false,
-         "animated_id":0,
-         "entity":false
+         "animated":true,
+         "animated_id":4370,
+         "entity":true,
+         "entity_id":"24"
         },
      "4363":
         {
-         "animated":false,
-         "animated_id":0,
-         "entity":false
+         "animated":true,
+         "animated_id":4371,
+         "entity":true,
+         "entity_id":"24"
         },
      "4364":
         {
-         "animated":false,
-         "animated_id":0,
-         "entity":false
+         "animated":true,
+         "animated_id":4372,
+         "entity":true,
+         "entity_id":"24"
         },
      "4365":
         {
-         "animated":false,
-         "animated_id":0,
-         "entity":false
+         "animated":true,
+         "animated_id":4373,
+         "entity":true,
+         "entity_id":"24"
         },
      "4366":
         {
-         "animated":false,
-         "animated_id":0,
-         "entity":false
+         "animated":true,
+         "animated_id":4374,
+         "entity":true,
+         "entity_id":"24"
         },
      "4367":
         {
-         "animated":false,
-         "animated_id":0,
-         "entity":false
+         "animated":true,
+         "animated_id":4375,
+         "entity":true,
+         "entity_id":"24"
         },
      "4368":
         {
@@ -6385,67 +6593,83 @@
         },
      "4648":
         {
-         "blocked":true
+         "blocked":true,
+         "description":"sign"
         },
      "4649":
         {
-         "blocked":true
+         "blocked":true,
+         "description":"sign"
         },
      "4650":
         {
-         "blocked":true
+         "blocked":true,
+         "description":"sign"
         },
      "4651":
         {
-         "blocked":true
+         "blocked":true,
+         "description":"sign"
         },
      "4652":
         {
-         "blocked":true
+         "blocked":true,
+         "description":"sign"
         },
      "4653":
         {
-         "blocked":true
+         "blocked":true,
+         "description":"sign"
         },
      "4654":
         {
-         "blocked":true
+         "blocked":true,
+         "description":"sign"
         },
      "4655":
         {
-         "blocked":true
+         "blocked":true,
+         "description":"sign"
         },
      "4656":
         {
-         "blocked":true
+         "blocked":true,
+         "description":"sign"
         },
      "4657":
         {
-         "blocked":true
+         "blocked":true,
+         "description":"sign"
         },
      "4658":
         {
-         "blocked":true
+         "blocked":true,
+         "description":"sign"
         },
      "4659":
         {
-         "blocked":true
+         "blocked":true,
+         "description":"sign"
         },
      "4660":
         {
-         "blocked":true
+         "blocked":true,
+         "description":"sign"
         },
      "4661":
         {
-         "blocked":true
+         "blocked":true,
+         "description":"sign"
         },
      "4662":
         {
-         "blocked":true
+         "blocked":true,
+         "description":"sign"
         },
      "4663":
         {
-         "blocked":true
+         "blocked":true,
+         "description":"sign"
         },
      "4680":
         {
@@ -6522,9 +6746,9 @@
      "4692":
         {
          "animated":true,
-         "animated_id":0,
+         "animated_id":4700,
          "entity":true,
-         "entity_id":0
+         "entity_id":6
         },
      "4693":
         {
@@ -6536,9 +6760,9 @@
      "4694":
         {
          "animated":true,
-         "animated_id":0,
+         "animated_id":4702,
          "entity":true,
-         "entity_id":0
+         "entity_id":6
         },
      "4695":
         {
@@ -6580,7 +6804,7 @@
          "animated":true,
          "animated_id":0,
          "entity":true,
-         "entity_id":0
+         "entity_id":6
         },
      "4701":
         {
@@ -7133,9 +7357,9 @@
      "4817":
         {
          "animated":true,
-         "animated_id":0,
+         "animated_id":4825,
          "entity":true,
-         "entity_id":0
+         "entity_id":6
         },
      "4818":
         {
@@ -8634,35 +8858,43 @@
         },
      "5128":
         {
-         "blocked":true
+         "blocked":true,
+         "description":"bar"
         },
      "5129":
         {
-         "blocked":true
+         "blocked":true,
+         "description":"bar"
         },
      "5130":
         {
-         "blocked":true
+         "blocked":true,
+         "description":"bar"
         },
      "5131":
         {
-         "blocked":true
+         "blocked":true,
+         "description":"bar"
         },
      "5132":
         {
-         "blocked":true
+         "blocked":true,
+         "description":"bar"
         },
      "5133":
         {
-         "blocked":true
+         "blocked":true,
+         "description":"bar"
         },
      "5134":
         {
-         "blocked":true
+         "blocked":true,
+         "description":"coffin"
         },
      "5135":
         {
-         "blocked":true
+         "blocked":true,
+         "description":"coffin"
         },
      "5136":
         {
@@ -8690,11 +8922,13 @@
         },
      "5142":
         {
-         "blocked":true
+         "blocked":true,
+         "description":"coffin"
         },
      "5143":
         {
-         "blocked":true
+         "blocked":true,
+         "description":"coffin"
         },
      "5160":
         {
@@ -9878,14 +10112,16 @@
      "5412":
         {
          "animated":true,
-         "animated_id":0,
-         "entity":true
+         "animated_id":5420,
+         "entity":true,
+         "entity_id":"24"
         },
      "5413":
         {
          "animated":true,
-         "animated_id":0,
-         "entity":true
+         "animated_id":5421,
+         "entity":true,
+         "entity_id":"24"
         },
      "5414":
         {
@@ -11277,6 +11513,14 @@
          "entity":true,
          "entity_id":10
         },
+     "570":
+        {
+         "activated_id":571,
+         "animated":false,
+         "animated_id":0,
+         "entity":true,
+         "entity_id":16
+        },
      "5700":
         {
          "animated":false,
@@ -12437,23 +12681,28 @@
         },
      "5968":
         {
-         "blocked":true
+         "blocked":true,
+         "description":"grave"
         },
      "5969":
         {
-         "blocked":true
+         "blocked":true,
+         "description":"grave"
         },
      "5970":
         {
-         "blocked":true
+         "blocked":true,
+         "description":"grave"
         },
      "5971":
         {
-         "blocked":true
+         "blocked":true,
+         "description":"grave"
         },
      "5972":
         {
-         "blocked":true
+         "blocked":true,
+         "description":"grave"
         },
      "5973":
         {
@@ -12469,23 +12718,28 @@
         },
      "5976":
         {
-         "blocked":true
+         "blocked":true,
+         "description":"grave"
         },
      "5977":
         {
-         "blocked":true
+         "blocked":true,
+         "description":"grave"
         },
      "5978":
         {
-         "blocked":true
+         "blocked":true,
+         "description":"grave"
         },
      "5979":
         {
-         "blocked":true
+         "blocked":true,
+         "description":"grave"
         },
      "5980":
         {
-         "blocked":true
+         "blocked":true,
+         "description":"grave"
         },
      "60":
         {
@@ -12505,23 +12759,28 @@
         },
      "6088":
         {
-         "blocked":true
+         "blocked":true,
+         "description":"grave"
         },
      "6089":
         {
-         "blocked":true
+         "blocked":true,
+         "description":"grave"
         },
      "6090":
         {
-         "blocked":true
+         "blocked":true,
+         "description":"grave"
         },
      "6091":
         {
-         "blocked":true
+         "blocked":true,
+         "description":"grave"
         },
      "6092":
         {
-         "blocked":true
+         "blocked":true,
+         "description":"grave"
         },
      "6093":
         {
@@ -12537,19 +12796,23 @@
         },
      "6096":
         {
-         "blocked":true
+         "blocked":true,
+         "description":"grave"
         },
      "6097":
         {
-         "blocked":true
+         "blocked":true,
+         "description":"grave"
         },
      "6098":
         {
-         "blocked":true
+         "blocked":true,
+         "description":"grave"
         },
      "6099":
         {
-         "blocked":true
+         "blocked":true,
+         "description":"grave"
         },
      "61":
         {
@@ -12557,11 +12820,52 @@
         },
      "6100":
         {
-         "blocked":true
+         "blocked":true,
+         "description":"grave"
         },
      "62":
         {
          "blocked":true
+        },
+     "6208":
+        {
+         "description":"cobwebs"
+        },
+     "6209":
+        {
+         "description":"cobwebs"
+        },
+     "6210":
+        {
+         "description":"cobwebs"
+        },
+     "6211":
+        {
+         "description":"cobwebs"
+        },
+     "6212":
+        {
+         "description":"cobwebs"
+        },
+     "6216":
+        {
+         "description":"cobwebs"
+        },
+     "6217":
+        {
+         "description":"cobwebs"
+        },
+     "6218":
+        {
+         "description":"cobwebs"
+        },
+     "6219":
+        {
+         "description":"cobwebs"
+        },
+     "6220":
+        {
+         "description":"cobwebs"
         },
      "63":
         {
@@ -12569,11 +12873,13 @@
         },
      "6328":
         {
-         "blocked":true
+         "blocked":true,
+         "description":"pedestal"
         },
      "6329":
         {
-         "blocked":true
+         "blocked":true,
+         "description":"bloody pedestal"
         },
      "6330":
         {
@@ -12581,11 +12887,13 @@
         },
      "6336":
         {
-         "blocked":true
+         "blocked":true,
+         "description":"pedestal"
         },
      "6337":
         {
-         "blocked":true
+         "blocked":true,
+         "description":"bloody pedestal"
         },
      "6338":
         {
@@ -13296,14 +13604,14 @@
      "7080":
         {
          "animated":true,
-         "animated_id":0,
+         "animated_id":7088,
          "entity":true,
          "entity_id":"6"
         },
      "7081":
         {
          "animated":true,
-         "animated_id":0,
+         "animated_id":7089,
          "entity":true,
          "entity_id":"6"
         },
@@ -15327,42 +15635,42 @@
         },
      "7397":
         {
-         "bg":"navyblue",
+         "bg":"#737373",
          "blocked":"true",
          "blocks_vision":"true",
          "description":"stone wall"
         },
      "7398":
         {
-         "bg":"navyblue",
+         "bg":"#737373",
          "blocked":"true",
          "blocks_vision":"true",
          "description":"stone wall"
         },
      "7399":
         {
-         "bg":"navyblue",
+         "bg":"#737373",
          "blocked":"true",
          "blocks_vision":"true",
          "description":"stone wall"
         },
      "7400":
         {
-         "bg":"navyblue",
+         "bg":"#737373",
          "blocked":"true",
          "blocks_vision":"true",
          "description":"stone wall"
         },
      "7401":
         {
-         "bg":"navyblue",
+         "bg":"#737373",
          "blocked":"true",
          "blocks_vision":"true",
          "description":"stone wall"
         },
      "7402":
         {
-         "bg":"navyblue",
+         "bg":"#737373",
          "blocked":"true",
          "blocks_vision":"true",
          "description":"stone wall"
@@ -15373,42 +15681,42 @@
         },
      "7404":
         {
-         "bg":"#824d03",
+         "bg":"#6c4002",
          "blocked":true,
          "blocks_vision":true,
          "description":"wooden wall"
         },
      "7405":
         {
-         "bg":"#824d03",
+         "bg":"#6c4002",
          "blocked":true,
          "blocks_vision":true,
          "description":"wooden wall"
         },
      "7406":
         {
-         "bg":"#824d03",
+         "bg":"#6c4002",
          "blocked":true,
          "blocks_vision":true,
          "description":"wooden wall"
         },
      "7407":
         {
-         "bg":"#824d03",
+         "bg":"#6c4002",
          "blocked":true,
          "blocks_vision":true,
          "description":"wooden wall"
         },
      "7408":
         {
-         "bg":"#824d03",
+         "bg":"#6c4002",
          "blocked":true,
          "blocks_vision":true,
          "description":"wooden wall"
         },
      "7409":
         {
-         "bg":"#824d03",
+         "bg":"#6c4002",
          "blocked":true,
          "blocks_vision":true,
          "description":"wooden wall"
@@ -16161,42 +16469,42 @@
         },
      "7517":
         {
-         "bg":"navyblue",
+         "bg":"#737373",
          "blocked":"true",
          "blocks_vision":"true",
          "description":"stone wall"
         },
      "7518":
         {
-         "bg":"navyblue",
+         "bg":"#737373",
          "blocked":"true",
          "blocks_vision":"true",
          "description":"stone wall"
         },
      "7519":
         {
-         "bg":"navyblue",
+         "bg":"#737373",
          "blocked":"true",
          "blocks_vision":"true",
          "description":"stone wall"
         },
      "7520":
         {
-         "bg":"navyblue",
+         "bg":"#737373",
          "blocked":"true",
          "blocks_vision":"true",
          "description":"stone wall"
         },
      "7521":
         {
-         "bg":"navyblue",
+         "bg":"#737373",
          "blocked":"true",
          "blocks_vision":"true",
          "description":"stone wall"
         },
      "7522":
         {
-         "bg":"navyblue",
+         "bg":"#737373",
          "blocked":"true",
          "blocks_vision":"true",
          "description":"stone wall"
@@ -16207,42 +16515,42 @@
         },
      "7524":
         {
-         "bg":"#824d03",
+         "bg":"#6c4002",
          "blocked":true,
          "blocks_vision":true,
          "description":"wooden wall"
         },
      "7525":
         {
-         "bg":"#824d03",
+         "bg":"#6c4002",
          "blocked":true,
          "blocks_vision":true,
          "description":"wooden wall"
         },
      "7526":
         {
-         "bg":"#824d03",
+         "bg":"#6c4002",
          "blocked":true,
          "blocks_vision":true,
          "description":"wooden wall"
         },
      "7527":
         {
-         "bg":"#824d03",
+         "bg":"#6c4002",
          "blocked":true,
          "blocks_vision":true,
          "description":"wooden wall"
         },
      "7528":
         {
-         "bg":"#824d03",
+         "bg":"#6c4002",
          "blocked":true,
          "blocks_vision":true,
          "description":"wooden wall"
         },
      "7529":
         {
-         "bg":"#824d03",
+         "bg":"#6c4002",
          "blocked":true,
          "blocks_vision":true,
          "description":"wooden wall"
@@ -16986,42 +17294,42 @@
         },
      "7637":
         {
-         "bg":"navyblue",
+         "bg":"#737373",
          "blocked":"true",
          "blocks_vision":"true",
          "description":"stone wall"
         },
      "7638":
         {
-         "bg":"navyblue",
+         "bg":"#737373",
          "blocked":"true",
          "blocks_vision":"true",
          "description":"stone wall"
         },
      "7639":
         {
-         "bg":"navyblue",
+         "bg":"#737373",
          "blocked":"true",
          "blocks_vision":"true",
          "description":"stone wall"
         },
      "7640":
         {
-         "bg":"navyblue",
+         "bg":"#737373",
          "blocked":"true",
          "blocks_vision":"true",
          "description":"stone wall"
         },
      "7641":
         {
-         "bg":"navyblue",
+         "bg":"#737373",
          "blocked":"true",
          "blocks_vision":"true",
          "description":"stone wall"
         },
      "7642":
         {
-         "bg":"navyblue",
+         "bg":"#737373",
          "blocked":"true",
          "blocks_vision":"true",
          "description":"stone wall"
@@ -17032,42 +17340,42 @@
         },
      "7644":
         {
-         "bg":"#824d03",
+         "bg":"#6c4002",
          "blocked":true,
          "blocks_vision":true,
          "description":"wooden wall"
         },
      "7645":
         {
-         "bg":"#824d03",
+         "bg":"#6c4002",
          "blocked":true,
          "blocks_vision":true,
          "description":"wooden wall"
         },
      "7646":
         {
-         "bg":"#824d03",
+         "bg":"#6c4002",
          "blocked":true,
          "blocks_vision":true,
          "description":"wooden wall"
         },
      "7647":
         {
-         "bg":"#824d03",
+         "bg":"#6c4002",
          "blocked":true,
          "blocks_vision":true,
          "description":"wooden wall"
         },
      "7648":
         {
-         "bg":"#824d03",
+         "bg":"#6c4002",
          "blocked":true,
          "blocks_vision":true,
          "description":"wooden wall"
         },
      "7649":
         {
-         "bg":"#824d03",
+         "bg":"#6c4002",
          "blocked":true,
          "blocks_vision":true,
          "description":"wooden wall"
@@ -17799,42 +18107,42 @@
         },
      "7757":
         {
-         "bg":"blue",
+         "bg":"#737373",
          "blocked":"true",
          "blocks_vision":"true",
          "description":"stone wall"
         },
      "7758":
         {
-         "bg":"blue",
+         "bg":"#737373",
          "blocked":"true",
          "blocks_vision":"true",
          "description":"stone wall"
         },
      "7759":
         {
-         "bg":"blue",
+         "bg":"#737373",
          "blocked":"true",
          "blocks_vision":"true",
          "description":"stone wall"
         },
      "7760":
         {
-         "bg":"blue",
+         "bg":"#737373",
          "blocked":"true",
          "blocks_vision":"true",
          "description":"stone wall"
         },
      "7761":
         {
-         "bg":"blue",
+         "bg":"#737373",
          "blocked":"true",
          "blocks_vision":"true",
          "description":"stone wall"
         },
      "7762":
         {
-         "bg":"blue",
+         "bg":"#737373",
          "blocked":"true",
          "blocks_vision":"true",
          "description":"stone wall"
@@ -17845,42 +18153,42 @@
         },
      "7764":
         {
-         "bg":"#824d03",
+         "bg":"#6c4002",
          "blocked":true,
          "blocks_vision":true,
          "description":"wooden wall"
         },
      "7765":
         {
-         "bg":"#824d03",
+         "bg":"#6c4002",
          "blocked":true,
          "blocks_vision":true,
          "description":"wooden wall"
         },
      "7766":
         {
-         "bg":"#824d03",
+         "bg":"#6c4002",
          "blocked":true,
          "blocks_vision":true,
          "description":"wooden wall"
         },
      "7767":
         {
-         "bg":"#824d03",
+         "bg":"#6c4002",
          "blocked":true,
          "blocks_vision":true,
          "description":"wooden wall"
         },
      "7768":
         {
-         "bg":"#824d03",
+         "bg":"#6c4002",
          "blocked":true,
          "blocks_vision":true,
          "description":"wooden wall"
         },
      "7769":
         {
-         "bg":"#824d03",
+         "bg":"#6c4002",
          "blocked":true,
          "blocks_vision":true,
          "description":"wooden wall"
@@ -18619,42 +18927,42 @@
         },
      "7877":
         {
-         "bg":"blue",
+         "bg":"#737373",
          "blocked":"true",
          "blocks_vision":"true",
          "description":"stone wall"
         },
      "7878":
         {
-         "bg":"blue",
+         "bg":"#737373",
          "blocked":"true",
          "blocks_vision":"true",
          "description":"stone wall"
         },
      "7879":
         {
-         "bg":"blue",
+         "bg":"#737373",
          "blocked":"true",
          "blocks_vision":"true",
          "description":"stone wall"
         },
      "7880":
         {
-         "bg":"blue",
+         "bg":"#737373",
          "blocked":"true",
          "blocks_vision":"true",
          "description":"stone wall"
         },
      "7881":
         {
-         "bg":"blue",
+         "bg":"#737373",
          "blocked":"true",
          "blocks_vision":"true",
          "description":"stone wall"
         },
      "7882":
         {
-         "bg":"blue",
+         "bg":"#737373",
          "blocked":"true",
          "blocks_vision":"true",
          "description":"stone wall"
@@ -18665,42 +18973,42 @@
         },
      "7884":
         {
-         "bg":"#824d03",
+         "bg":"#6c4002",
          "blocked":true,
          "blocks_vision":true,
          "description":"wooden wall"
         },
      "7885":
         {
-         "bg":"#824d03",
+         "bg":"#6c4002",
          "blocked":true,
          "blocks_vision":true,
          "description":"wooden wall"
         },
      "7886":
         {
-         "bg":"#824d03",
+         "bg":"#6c4002",
          "blocked":true,
          "blocks_vision":true,
          "description":"wooden wall"
         },
      "7887":
         {
-         "bg":"#824d03",
+         "bg":"#6c4002",
          "blocked":true,
          "blocks_vision":true,
          "description":"wooden wall"
         },
      "7888":
         {
-         "bg":"#824d03",
+         "bg":"#6c4002",
          "blocked":true,
          "blocks_vision":true,
          "description":"wooden wall"
         },
      "7889":
         {
-         "bg":"#824d03",
+         "bg":"#6c4002",
          "blocked":true,
          "blocks_vision":true,
          "description":"wooden wall"
@@ -19448,42 +19756,42 @@
         },
      "7997":
         {
-         "bg":"blue",
+         "bg":"#737373",
          "blocked":"true",
          "blocks_vision":"true",
          "description":"stone wall"
         },
      "7998":
         {
-         "bg":"blue",
+         "bg":"#737373",
          "blocked":"true",
          "blocks_vision":"true",
          "description":"stone wall"
         },
      "7999":
         {
-         "bg":"blue",
+         "bg":"#737373",
          "blocked":"true",
          "blocks_vision":"true",
          "description":"stone wall"
         },
      "8000":
         {
-         "bg":"blue",
+         "bg":"#737373",
          "blocked":"true",
          "blocks_vision":"true",
          "description":"stone wall"
         },
      "8001":
         {
-         "bg":"blue",
+         "bg":"#737373",
          "blocked":"true",
          "blocks_vision":"true",
          "description":"stone wall"
         },
      "8002":
         {
-         "bg":"blue",
+         "bg":"#737373",
          "blocked":"true",
          "blocks_vision":"true",
          "description":"stone wall"
@@ -19494,42 +19802,42 @@
         },
      "8004":
         {
-         "bg":"#824d03",
+         "bg":"#6c4002",
          "blocked":true,
          "blocks_vision":true,
          "description":"wooden wall"
         },
      "8005":
         {
-         "bg":"#824d03",
+         "bg":"#6c4002",
          "blocked":true,
          "blocks_vision":true,
          "description":"wooden wall"
         },
      "8006":
         {
-         "bg":"#824d03",
+         "bg":"#6c4002",
          "blocked":true,
          "blocks_vision":true,
          "description":"wooden wall"
         },
      "8007":
         {
-         "bg":"#824d03",
+         "bg":"#6c4002",
          "blocked":true,
          "blocks_vision":true,
          "description":"wooden wall"
         },
      "8008":
         {
-         "bg":"#824d03",
+         "bg":"#6c4002",
          "blocked":true,
          "blocks_vision":true,
          "description":"wooden wall"
         },
      "8009":
         {
-         "bg":"#824d03",
+         "bg":"#6c4002",
          "blocked":true,
          "blocks_vision":true,
          "description":"wooden wall"
@@ -20165,42 +20473,42 @@
         },
      "8117":
         {
-         "bg":"black",
+         "bg":"#737373",
          "blocked":"true",
          "blocks_vision":"true",
          "description":"stone wall"
         },
      "8118":
         {
-         "bg":"black",
+         "bg":"#737373",
          "blocked":"true",
          "blocks_vision":"true",
          "description":"stone wall"
         },
      "8119":
         {
-         "bg":"black",
+         "bg":"#737373",
          "blocked":"true",
          "blocks_vision":"true",
          "description":"stone wall"
         },
      "8120":
         {
-         "bg":"black",
+         "bg":"#737373",
          "blocked":"true",
          "blocks_vision":"true",
          "description":"stone wall"
         },
      "8121":
         {
-         "bg":"black",
+         "bg":"#737373",
          "blocked":"true",
          "blocks_vision":"true",
          "description":"stone wall"
         },
      "8122":
         {
-         "bg":"black",
+         "bg":"#737373",
          "blocked":"true",
          "blocks_vision":"true",
          "description":"stone wall"
@@ -20211,42 +20519,42 @@
         },
      "8124":
         {
-         "bg":"#824d03",
+         "bg":"#6c4002",
          "blocked":true,
          "blocks_vision":true,
          "description":"wooden wall"
         },
      "8125":
         {
-         "bg":"#824d03",
+         "bg":"#6c4002",
          "blocked":true,
          "blocks_vision":true,
          "description":"wooden wall"
         },
      "8126":
         {
-         "bg":"#824d03",
+         "bg":"#6c4002",
          "blocked":true,
          "blocks_vision":true,
          "description":"wooden wall"
         },
      "8127":
         {
-         "bg":"#824d03",
+         "bg":"#6c4002",
          "blocked":true,
          "blocks_vision":true,
          "description":"wooden wall"
         },
      "8128":
         {
-         "bg":"#824d03",
+         "bg":"#6c4002",
          "blocked":true,
          "blocks_vision":true,
          "description":"wooden wall"
         },
      "8129":
         {
-         "bg":"#824d03",
+         "bg":"#6c4002",
          "blocked":true,
          "blocks_vision":true,
          "description":"wooden wall"
@@ -20870,42 +21178,42 @@
         },
      "8237":
         {
-         "bg":"black",
+         "bg":"#737373",
          "blocked":"true",
          "blocks_vision":"true",
          "description":"stone wall"
         },
      "8238":
         {
-         "bg":"black",
+         "bg":"#737373",
          "blocked":"true",
          "blocks_vision":"true",
          "description":"stone wall"
         },
      "8239":
         {
-         "bg":"black",
+         "bg":"#737373",
          "blocked":"true",
          "blocks_vision":"true",
          "description":"stone wall"
         },
      "8240":
         {
-         "bg":"black",
+         "bg":"#737373",
          "blocked":"true",
          "blocks_vision":"true",
          "description":"stone wall"
         },
      "8241":
         {
-         "bg":"black",
+         "bg":"#737373",
          "blocked":"true",
          "blocks_vision":"true",
          "description":"stone wall"
         },
      "8242":
         {
-         "bg":"black",
+         "bg":"#737373",
          "blocked":"true",
          "blocks_vision":"true",
          "description":"stone wall"
@@ -20916,42 +21224,42 @@
         },
      "8244":
         {
-         "bg":"#824d03",
+         "bg":"#6c4002",
          "blocked":true,
          "blocks_vision":true,
          "description":"wooden wall"
         },
      "8245":
         {
-         "bg":"#824d03",
+         "bg":"#6c4002",
          "blocked":true,
          "blocks_vision":true,
          "description":"wooden wall"
         },
      "8246":
         {
-         "bg":"#824d03",
+         "bg":"#6c4002",
          "blocked":true,
          "blocks_vision":true,
          "description":"wooden wall"
         },
      "8247":
         {
-         "bg":"#824d03",
+         "bg":"#6c4002",
          "blocked":true,
          "blocks_vision":true,
          "description":"wooden wall"
         },
      "8248":
         {
-         "bg":"#824d03",
+         "bg":"#6c4002",
          "blocked":true,
          "blocks_vision":true,
          "description":"wooden wall"
         },
      "8249":
         {
-         "bg":"#824d03",
+         "bg":"#6c4002",
          "blocked":true,
          "blocks_vision":true,
          "description":"wooden wall"
@@ -21575,42 +21883,42 @@
         },
      "8357":
         {
-         "bg":"black",
+         "bg":"#737373",
          "blocked":"true",
          "blocks_vision":"true",
          "description":"stone wall"
         },
      "8358":
         {
-         "bg":"black",
+         "bg":"#737373",
          "blocked":"true",
          "blocks_vision":"true",
          "description":"stone wall"
         },
      "8359":
         {
-         "bg":"black",
+         "bg":"#737373",
          "blocked":"true",
          "blocks_vision":"true",
          "description":"stone wall"
         },
      "8360":
         {
-         "bg":"black",
+         "bg":"#737373",
          "blocked":"true",
          "blocks_vision":"true",
          "description":"stone wall"
         },
      "8361":
         {
-         "bg":"black",
+         "bg":"#737373",
          "blocked":"true",
          "blocks_vision":"true",
          "description":"stone wall"
         },
      "8362":
         {
-         "bg":"black",
+         "bg":"#737373",
          "blocked":"true",
          "blocks_vision":"true",
          "description":"stone wall"
@@ -21621,42 +21929,42 @@
         },
      "8364":
         {
-         "bg":"#824d03",
+         "bg":"#6c4002",
          "blocked":true,
          "blocks_vision":true,
          "description":"wooden wall"
         },
      "8365":
         {
-         "bg":"#824d03",
+         "bg":"#6c4002",
          "blocked":true,
          "blocks_vision":true,
          "description":"wooden wall"
         },
      "8366":
         {
-         "bg":"#824d03",
+         "bg":"#6c4002",
          "blocked":true,
          "blocks_vision":true,
          "description":"wooden wall"
         },
      "8367":
         {
-         "bg":"#824d03",
+         "bg":"#6c4002",
          "blocked":true,
          "blocks_vision":true,
          "description":"wooden wall"
         },
      "8368":
         {
-         "bg":"#824d03",
+         "bg":"#6c4002",
          "blocked":true,
          "blocks_vision":true,
          "description":"wooden wall"
         },
      "8369":
         {
-         "bg":"#824d03",
+         "bg":"#6c4002",
          "blocked":true,
          "blocks_vision":true,
          "description":"wooden wall"
@@ -22319,42 +22627,42 @@
         },
      "8484":
         {
-         "bg":"#824d03",
+         "bg":"#6c4002",
          "blocked":true,
          "blocks_vision":true,
          "description":"wooden wall"
         },
      "8485":
         {
-         "bg":"#824d03",
+         "bg":"#6c4002",
          "blocked":true,
          "blocks_vision":true,
          "description":"wooden wall"
         },
      "8486":
         {
-         "bg":"#824d03",
+         "bg":"#6c4002",
          "blocked":true,
          "blocks_vision":true,
          "description":"wooden wall"
         },
      "8487":
         {
-         "bg":"#824d03",
+         "bg":"#6c4002",
          "blocked":true,
          "blocks_vision":true,
          "description":"wooden wall"
         },
      "8488":
         {
-         "bg":"#824d03",
+         "bg":"#6c4002",
          "blocked":true,
          "blocks_vision":true,
          "description":"wooden wall"
         },
      "8489":
         {
-         "bg":"#824d03",
+         "bg":"#6c4002",
          "blocked":true,
          "blocks_vision":true,
          "description":"wooden wall"
@@ -22415,23 +22723,23 @@
      "8521":
         {
          "animated":true,
-         "animated_id":0,
+         "animated_id":8529,
          "entity":true,
-         "entity_id":"6"
+         "entity_id":"0"
         },
      "8522":
         {
          "animated":true,
-         "animated_id":0,
+         "animated_id":8530,
          "entity":true,
-         "entity_id":"6"
+         "entity_id":"0"
         },
      "8523":
         {
          "animated":true,
-         "animated_id":0,
+         "animated_id":8531,
          "entity":true,
-         "entity_id":"6"
+         "entity_id":"0"
         },
      "8524":
         {
@@ -23017,42 +23325,42 @@
         },
      "8604":
         {
-         "bg":"#824d03",
+         "bg":"#6c4002",
          "blocked":true,
          "blocks_vision":true,
          "description":"wooden wall"
         },
      "8605":
         {
-         "bg":"#824d03",
+         "bg":"#6c4002",
          "blocked":true,
          "blocks_vision":true,
          "description":"wooden wall"
         },
      "8606":
         {
-         "bg":"#824d03",
+         "bg":"#6c4002",
          "blocked":true,
          "blocks_vision":true,
          "description":"wooden wall"
         },
      "8607":
         {
-         "bg":"#824d03",
+         "bg":"#6c4002",
          "blocked":true,
          "blocks_vision":true,
          "description":"wooden wall"
         },
      "8608":
         {
-         "bg":"#824d03",
+         "bg":"#6c4002",
          "blocked":true,
          "blocks_vision":true,
          "description":"wooden wall"
         },
      "8609":
         {
-         "bg":"#824d03",
+         "bg":"#6c4002",
          "blocked":true,
          "blocks_vision":true,
          "description":"wooden wall"
@@ -23699,42 +24007,42 @@
         },
      "8724":
         {
-         "bg":"#824d03",
+         "bg":"#6c4002",
          "blocked":true,
          "blocks_vision":true,
          "description":"wooden wall"
         },
      "8725":
         {
-         "bg":"#824d03",
+         "bg":"#6c4002",
          "blocked":true,
          "blocks_vision":true,
          "description":"wooden wall"
         },
      "8726":
         {
-         "bg":"#824d03",
+         "bg":"#6c4002",
          "blocked":true,
          "blocks_vision":true,
          "description":"wooden wall"
         },
      "8727":
         {
-         "bg":"#824d03",
+         "bg":"#6c4002",
          "blocked":true,
          "blocks_vision":true,
          "description":"wooden wall"
         },
      "8728":
         {
-         "bg":"#824d03",
+         "bg":"#6c4002",
          "blocked":true,
          "blocks_vision":true,
          "description":"wooden wall"
         },
      "8729":
         {
-         "bg":"#824d03",
+         "bg":"#6c4002",
          "blocked":true,
          "blocks_vision":true,
          "description":"wooden wall"
@@ -24449,7 +24757,7 @@
      "8863":
         {
          "animated":true,
-         "animated_id":4896,
+         "animated_id":9703,
          "blocked":true,
          "entity":true,
          "entity_id":22
@@ -25114,6 +25422,12 @@
          "blocked":true,
          "entity":true,
          "entity_id":22
+        },
+     "8990":
+        {
+         "animated":true,
+         "animated_id":9830,
+         "blocked":false
         },
      "9000":
         {
@@ -27685,14 +27999,14 @@
      "9480":
         {
          "animated":true,
-         "animated_id":0,
+         "animated_id":9488,
          "entity":true,
          "entity_id":"6"
         },
      "9481":
         {
          "animated":true,
-         "animated_id":0,
+         "animated_id":9489,
          "entity":true,
          "entity_id":"6"
         },
@@ -32294,11 +32608,13 @@
         },
      "176":
         {
-         "blocked":"bool"
+         "blocked":"bool",
+         "description":"string"
         },
      "177":
         {
-         "blocked":"bool"
+         "blocked":"bool",
+         "description":"string"
         },
      "178":
         {
@@ -32361,7 +32677,8 @@
         },
      "184":
         {
-         "blocked":"bool"
+         "blocked":"bool",
+         "description":"string"
         },
      "1842":
         {
@@ -32397,7 +32714,8 @@
         },
      "185":
         {
-         "blocked":"bool"
+         "blocked":"bool",
+         "description":"string"
         },
      "1850":
         {
@@ -32559,6 +32877,20 @@
          "entity":"bool",
          "entity_id":"string"
         },
+     "2289":
+        {
+         "animated":"bool",
+         "animated_id":"int",
+         "entity":"bool",
+         "entity_id":"string"
+        },
+     "2295":
+        {
+         "animated":"bool",
+         "animated_id":"int",
+         "entity":"bool",
+         "entity_id":"string"
+        },
      "2314":
         {
          "animated":"bool",
@@ -32669,6 +33001,139 @@
          "entity":"bool",
          "entity_id":"int"
         },
+     "2408":
+        {
+         "animated":"bool",
+         "animated_id":"int",
+         "entity":"bool",
+         "entity_id":"string"
+        },
+     "2409":
+        {
+         "animated":"bool",
+         "animated_id":"int",
+         "entity":"bool",
+         "entity_id":"string"
+        },
+     "2410":
+        {
+         "animated":"bool",
+         "animated_id":"int",
+         "entity":"bool",
+         "entity_id":"string"
+        },
+     "2411":
+        {
+         "animated":"bool",
+         "animated_id":"int",
+         "entity":"bool",
+         "entity_id":"string"
+        },
+     "2412":
+        {
+         "animated":"bool",
+         "animated_id":"int",
+         "entity":"bool",
+         "entity_id":"string"
+        },
+     "2413":
+        {
+         "animated":"bool",
+         "animated_id":"int",
+         "entity":"bool",
+         "entity_id":"string"
+        },
+     "2414":
+        {
+         "animated":"bool",
+         "animated_id":"int",
+         "entity":"bool",
+         "entity_id":"string"
+        },
+     "2415":
+        {
+         "animated":"bool",
+         "animated_id":"int",
+         "entity":"bool",
+         "entity_id":"string"
+        },
+     "2432":
+        {
+         "animated":"bool",
+         "animated_id":"int",
+         "entity":"bool",
+         "entity_id":"string"
+        },
+     "2433":
+        {
+         "animated":"bool",
+         "animated_id":"int",
+         "entity":"bool",
+         "entity_id":"string"
+        },
+     "2434":
+        {
+         "animated":"bool",
+         "animated_id":"int",
+         "entity":"bool",
+         "entity_id":"string"
+        },
+     "2435":
+        {
+         "animated":"bool",
+         "animated_id":"int",
+         "entity":"bool",
+         "entity_id":"string"
+        },
+     "2436":
+        {
+         "animated":"bool",
+         "animated_id":"int",
+         "entity":"bool",
+         "entity_id":"string"
+        },
+     "2437":
+        {
+         "animated":"bool",
+         "animated_id":"int",
+         "entity":"bool",
+         "entity_id":"string"
+        },
+     "2438":
+        {
+         "animated":"bool",
+         "animated_id":"int",
+         "entity":"bool",
+         "entity_id":"string"
+        },
+     "2439":
+        {
+         "animated":"bool",
+         "animated_id":"int",
+         "entity":"bool",
+         "entity_id":"string"
+        },
+     "2457":
+        {
+         "animated":"bool",
+         "animated_id":"int",
+         "entity":"bool",
+         "entity_id":"string"
+        },
+     "2460":
+        {
+         "animated":"bool",
+         "animated_id":"int",
+         "entity":"bool",
+         "entity_id":"string"
+        },
+     "2461":
+        {
+         "animated":"bool",
+         "animated_id":"int",
+         "entity":"bool",
+         "entity_id":"string"
+        },
      "2552":
         {
          "animated":"bool",
@@ -32751,6 +33216,13 @@
          "entity":"bool",
          "entity_id":"string"
         },
+     "2672":
+        {
+         "animated":"bool",
+         "animated_id":"int",
+         "entity":"bool",
+         "entity_id":"string"
+        },
      "2736":
         {
          "blocked":"bool",
@@ -32780,6 +33252,27 @@
         {
          "blocked":"bool",
          "description":"string"
+        },
+     "2792":
+        {
+         "animated":"bool",
+         "animated_id":"int",
+         "entity":"bool",
+         "entity_id":"string"
+        },
+     "2793":
+        {
+         "animated":"bool",
+         "animated_id":"int",
+         "entity":"bool",
+         "entity_id":"string"
+        },
+     "2794":
+        {
+         "animated":"bool",
+         "animated_id":"int",
+         "entity":"bool",
+         "entity_id":"string"
         },
      "2856":
         {
@@ -32935,6 +33428,13 @@
         {
          "blocked":"string"
         },
+     "3154":
+        {
+         "animated":"bool",
+         "animated_id":"int",
+         "entity":"bool",
+         "entity_id":"string"
+        },
      "32":
         {
          "animated":"bool",
@@ -33013,6 +33513,20 @@
         {
          "blocked":"bool",
          "description":"string"
+        },
+     "3392":
+        {
+         "animated":"bool",
+         "animated_id":"int",
+         "entity":"bool",
+         "entity_id":"string"
+        },
+     "3393":
+        {
+         "animated":"bool",
+         "animated_id":"int",
+         "entity":"bool",
+         "entity_id":"string"
         },
      "34":
         {
@@ -35620,49 +36134,57 @@
         {
          "animated":"bool",
          "animated_id":"int",
-         "entity":"bool"
+         "entity":"bool",
+         "entity_id":"string"
         },
      "4361":
         {
          "animated":"bool",
          "animated_id":"int",
-         "entity":"bool"
+         "entity":"bool",
+         "entity_id":"string"
         },
      "4362":
         {
          "animated":"bool",
          "animated_id":"int",
-         "entity":"bool"
+         "entity":"bool",
+         "entity_id":"string"
         },
      "4363":
         {
          "animated":"bool",
          "animated_id":"int",
-         "entity":"bool"
+         "entity":"bool",
+         "entity_id":"string"
         },
      "4364":
         {
          "animated":"bool",
          "animated_id":"int",
-         "entity":"bool"
+         "entity":"bool",
+         "entity_id":"string"
         },
      "4365":
         {
          "animated":"bool",
          "animated_id":"int",
-         "entity":"bool"
+         "entity":"bool",
+         "entity_id":"string"
         },
      "4366":
         {
          "animated":"bool",
          "animated_id":"int",
-         "entity":"bool"
+         "entity":"bool",
+         "entity_id":"string"
         },
      "4367":
         {
          "animated":"bool",
          "animated_id":"int",
-         "entity":"bool"
+         "entity":"bool",
+         "entity_id":"string"
         },
      "4368":
         {
@@ -36968,67 +37490,83 @@
         },
      "4648":
         {
-         "blocked":"bool"
+         "blocked":"bool",
+         "description":"string"
         },
      "4649":
         {
-         "blocked":"bool"
+         "blocked":"bool",
+         "description":"string"
         },
      "4650":
         {
-         "blocked":"bool"
+         "blocked":"bool",
+         "description":"string"
         },
      "4651":
         {
-         "blocked":"bool"
+         "blocked":"bool",
+         "description":"string"
         },
      "4652":
         {
-         "blocked":"bool"
+         "blocked":"bool",
+         "description":"string"
         },
      "4653":
         {
-         "blocked":"bool"
+         "blocked":"bool",
+         "description":"string"
         },
      "4654":
         {
-         "blocked":"bool"
+         "blocked":"bool",
+         "description":"string"
         },
      "4655":
         {
-         "blocked":"bool"
+         "blocked":"bool",
+         "description":"string"
         },
      "4656":
         {
-         "blocked":"bool"
+         "blocked":"bool",
+         "description":"string"
         },
      "4657":
         {
-         "blocked":"bool"
+         "blocked":"bool",
+         "description":"string"
         },
      "4658":
         {
-         "blocked":"bool"
+         "blocked":"bool",
+         "description":"string"
         },
      "4659":
         {
-         "blocked":"bool"
+         "blocked":"bool",
+         "description":"string"
         },
      "4660":
         {
-         "blocked":"bool"
+         "blocked":"bool",
+         "description":"string"
         },
      "4661":
         {
-         "blocked":"bool"
+         "blocked":"bool",
+         "description":"string"
         },
      "4662":
         {
-         "blocked":"bool"
+         "blocked":"bool",
+         "description":"string"
         },
      "4663":
         {
-         "blocked":"bool"
+         "blocked":"bool",
+         "description":"string"
         },
      "4680":
         {
@@ -39217,35 +39755,43 @@
         },
      "5128":
         {
-         "blocked":"bool"
+         "blocked":"bool",
+         "description":"string"
         },
      "5129":
         {
-         "blocked":"bool"
+         "blocked":"bool",
+         "description":"string"
         },
      "5130":
         {
-         "blocked":"bool"
+         "blocked":"bool",
+         "description":"string"
         },
      "5131":
         {
-         "blocked":"bool"
+         "blocked":"bool",
+         "description":"string"
         },
      "5132":
         {
-         "blocked":"bool"
+         "blocked":"bool",
+         "description":"string"
         },
      "5133":
         {
-         "blocked":"bool"
+         "blocked":"bool",
+         "description":"string"
         },
      "5134":
         {
-         "blocked":"bool"
+         "blocked":"bool",
+         "description":"string"
         },
      "5135":
         {
-         "blocked":"bool"
+         "blocked":"bool",
+         "description":"string"
         },
      "5136":
         {
@@ -39273,11 +39819,13 @@
         },
      "5142":
         {
-         "blocked":"bool"
+         "blocked":"bool",
+         "description":"string"
         },
      "5143":
         {
-         "blocked":"bool"
+         "blocked":"bool",
+         "description":"string"
         },
      "5160":
         {
@@ -40462,13 +41010,15 @@
         {
          "animated":"bool",
          "animated_id":"int",
-         "entity":"bool"
+         "entity":"bool",
+         "entity_id":"string"
         },
      "5413":
         {
          "animated":"bool",
          "animated_id":"int",
-         "entity":"bool"
+         "entity":"bool",
+         "entity_id":"string"
         },
      "5414":
         {
@@ -41860,6 +42410,14 @@
          "entity":"bool",
          "entity_id":"int"
         },
+     "570":
+        {
+         "activated_id":"int",
+         "animated":"bool",
+         "animated_id":"int",
+         "entity":"bool",
+         "entity_id":"int"
+        },
      "5700":
         {
          "animated":"bool",
@@ -43020,23 +43578,28 @@
         },
      "5968":
         {
-         "blocked":"bool"
+         "blocked":"bool",
+         "description":"string"
         },
      "5969":
         {
-         "blocked":"bool"
+         "blocked":"bool",
+         "description":"string"
         },
      "5970":
         {
-         "blocked":"bool"
+         "blocked":"bool",
+         "description":"string"
         },
      "5971":
         {
-         "blocked":"bool"
+         "blocked":"bool",
+         "description":"string"
         },
      "5972":
         {
-         "blocked":"bool"
+         "blocked":"bool",
+         "description":"string"
         },
      "5973":
         {
@@ -43052,23 +43615,28 @@
         },
      "5976":
         {
-         "blocked":"bool"
+         "blocked":"bool",
+         "description":"string"
         },
      "5977":
         {
-         "blocked":"bool"
+         "blocked":"bool",
+         "description":"string"
         },
      "5978":
         {
-         "blocked":"bool"
+         "blocked":"bool",
+         "description":"string"
         },
      "5979":
         {
-         "blocked":"bool"
+         "blocked":"bool",
+         "description":"string"
         },
      "5980":
         {
-         "blocked":"bool"
+         "blocked":"bool",
+         "description":"string"
         },
      "60":
         {
@@ -43088,23 +43656,28 @@
         },
      "6088":
         {
-         "blocked":"bool"
+         "blocked":"bool",
+         "description":"string"
         },
      "6089":
         {
-         "blocked":"bool"
+         "blocked":"bool",
+         "description":"string"
         },
      "6090":
         {
-         "blocked":"bool"
+         "blocked":"bool",
+         "description":"string"
         },
      "6091":
         {
-         "blocked":"bool"
+         "blocked":"bool",
+         "description":"string"
         },
      "6092":
         {
-         "blocked":"bool"
+         "blocked":"bool",
+         "description":"string"
         },
      "6093":
         {
@@ -43120,19 +43693,23 @@
         },
      "6096":
         {
-         "blocked":"bool"
+         "blocked":"bool",
+         "description":"string"
         },
      "6097":
         {
-         "blocked":"bool"
+         "blocked":"bool",
+         "description":"string"
         },
      "6098":
         {
-         "blocked":"bool"
+         "blocked":"bool",
+         "description":"string"
         },
      "6099":
         {
-         "blocked":"bool"
+         "blocked":"bool",
+         "description":"string"
         },
      "61":
         {
@@ -43140,11 +43717,52 @@
         },
      "6100":
         {
-         "blocked":"bool"
+         "blocked":"bool",
+         "description":"string"
         },
      "62":
         {
          "blocked":"bool"
+        },
+     "6208":
+        {
+         "description":"string"
+        },
+     "6209":
+        {
+         "description":"string"
+        },
+     "6210":
+        {
+         "description":"string"
+        },
+     "6211":
+        {
+         "description":"string"
+        },
+     "6212":
+        {
+         "description":"string"
+        },
+     "6216":
+        {
+         "description":"string"
+        },
+     "6217":
+        {
+         "description":"string"
+        },
+     "6218":
+        {
+         "description":"string"
+        },
+     "6219":
+        {
+         "description":"string"
+        },
+     "6220":
+        {
+         "description":"string"
         },
      "63":
         {
@@ -43152,11 +43770,13 @@
         },
      "6328":
         {
-         "blocked":"bool"
+         "blocked":"bool",
+         "description":"string"
         },
      "6329":
         {
-         "blocked":"bool"
+         "blocked":"bool",
+         "description":"string"
         },
      "6330":
         {
@@ -43164,11 +43784,13 @@
         },
      "6336":
         {
-         "blocked":"bool"
+         "blocked":"bool",
+         "description":"string"
         },
      "6337":
         {
-         "blocked":"bool"
+         "blocked":"bool",
+         "description":"string"
         },
      "6338":
         {
@@ -55697,6 +56319,12 @@
          "blocked":"bool",
          "entity":"bool",
          "entity_id":"int"
+        },
+     "8990":
+        {
+         "animated":"bool",
+         "animated_id":"int",
+         "blocked":"bool"
         },
      "9000":
         {

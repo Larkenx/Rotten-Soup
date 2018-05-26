@@ -79,7 +79,8 @@ export const entityShop = {
 		return new ManaPotion(x, y, id)
 	},
 	14: (x, y, id) => {
-		return new Sword(x, y, 4, 7, 'Orc Purifier', id)
+		const sword = new Sword(x, y, 4, 3, 'The Purifier', id)
+		return sword
 	},
 	15: (x, y, id) => {
 		return new Key(x, y, id)
@@ -212,7 +213,9 @@ export class GameMap {
 					// id of zero indicates no actor in this spot
 					Game.loadedIDS.push(id)
 					let properties = getTileInfo(id)
-					if (properties.entity !== true) throw 'Bad entity creation for tile ' + id
+					if (properties === undefined) {
+						console.error(`Bad entity creation for tile ${id}`)
+					}
 					if (properties.entity_id === 0) {
 						this.playerLocation = [j, i]
 						this.playerID = id

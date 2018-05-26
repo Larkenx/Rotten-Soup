@@ -79,7 +79,7 @@ export default {
 	font-size: 14px;
 	font-style: normal;
 	font-weight: normal;
-	height: 175px;
+	height: 170px;
 	line-height: 0;
 	overflow: hidden;
 	position: relative;

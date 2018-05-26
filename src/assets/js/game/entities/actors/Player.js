@@ -16,7 +16,7 @@ import HealthPotion from '#/entities/items/potions/HealthPotion.js'
 import StrengthPotion from '#/entities/items/potions/StrengthPotion.js'
 import ManaPotion from '#/entities/items/potions/ManaPotion.js'
 // Spells
-import { targetTypes, MagicDart, Regeneration, Pain, VampiricDraining, AnimateDead } from '#/magic/Spell.js'
+import { targetTypes, MagicDart, Regeneration, Pain, VampiricDraining, AnimateDead, MinorHeal } from '#/magic/Spell.js'
 // effects
 import { BleedEnchantment } from '#/modifiers/Enchantment.js'
 // Misc
@@ -59,7 +59,7 @@ export default class Player extends Actor {
 				/* Per-turn effects */
 				hpRecovery: 5,
 				manaRecovery: 2.5,
-				invulnerable: true,
+				invulnerable: false,
 				/* Magic & Ranged */
 				validTarget: null,
 				currentSpell: null,
@@ -86,17 +86,19 @@ export default class Player extends Actor {
 		// Give the player a few starting items:
 		// - a health potion
 		// - a random sword (equip the sword)
-		let sword = new Sword(this.x, this.y, 2, 2, 'Training Sword', 35)
-		sword.addNewEnchantment(new BleedEnchantment())
+		let sword = new Sword(this.x, this.y, 3, 1, 'Training Sword', 32)
+		// sword.addNewEnchantment(new BleedEnchantment())
 		this.addToInventory(sword)
 		super.equipWeapon(this.inventory[0].item)
 		this.addToInventory(createBow(this.x, this.y, 664))
-		this.addToInventory(new SteelArrow(this.x, this.y, 784, 30))
+		this.addToInventory(new SteelArrow(this.x, this.y, 784, 7))
 		this.addToInventory(new HealthPotion(this.x, this.y, 488))
 		this.addToInventory(new ManaPotion(this.x, this.y, 608))
 
 		// this.addToInventory(new ManaPotion(this.x,this.y, 495));
 		this.cb.spells.push(new MagicDart())
+		this.cb.spells.push(new MinorHeal())
+
 		// this.cb.spells.push(new Pain())
 		// this.cb.spells.push(new Regeneration())
 		// this.cb.spells.push(new VampiricDraining())
@@ -145,12 +147,14 @@ export default class Player extends Actor {
 
 	level_up() {
 		this.cb.level += 1
-		this.cb.maxhp += 5
-		this.cb.str += 1
+		Game.log(`You leveled up! You are now Level ${this.cb.level}.`, 'level_up')
+		if (this.cb.level % 2 === 0) {
+			Game.log('Your strength and health have improved.', 'level_up')
+			this.cb.maxhp += 5
+			this.cb.str += 1
+		}
 		this.cb.hp = this.cb.maxhp
 		this.cb.mana = this.cb.maxmana
-		Game.log(`You leveled up! You are now Level ${this.cb.level}.`, 'level_up')
-		Game.log('Your strength and health have improved.', 'level_up')
 	}
 
 	act() {
@@ -340,6 +344,8 @@ export default class Player extends Actor {
 			70: 'fire',
 			/* Cast a spell */
 			90: 'cast',
+			/* Interact */
+			69: 'interact',
 			/* Misc */
 			188: 'pickup',
 			71: 'pickup',
@@ -403,19 +409,17 @@ export default class Player extends Actor {
 			return
 		}
 
-		if (keyMap[code] === 'rest' && !shift_pressed) {
+		const action = keyMap[code]
+		if (action === 'rest' && !shift_pressed) {
 			// Rest
 			// this.heal(this.cb.hpRecovery);
 			// this.restore(this.cb.manaRecovery);
 			Game.log('You rest for a turn.', 'player_move')
-		} else if (keyMap[code] === 'pickup' && !shift_pressed) {
+		} else if (action === 'pickup' && !shift_pressed) {
 			this.pickup()
-		} else if (keyMap[code] === 'rest' && shift_pressed) {
-			// climb down
-			this.climb('down')
-		} else if (keyMap[code] === 'pickup' && shift_pressed) {
-			this.climb('up')
-		} else if (keyMap[code] === 'fire' && !shift_pressed) {
+		} else if ((action === 'rest' && shift_pressed) || (action === 'pickup' && shift_pressed) || action === 'interact') {
+			this.climb()
+		} else if (action === 'fire' && !shift_pressed) {
 			let weapon = this.cb.equipment.weapon
 			let ammo = this.cb.equipment.ammo
 			if (weapon !== null && ammo !== null && weapon.cb.ranged && ammo.cb.ammoType === weapon.cb.ammoType && ammo.quantity > 0) {
@@ -440,7 +444,7 @@ export default class Player extends Actor {
 
 				return
 			}
-		} else if (keyMap[code] === 'cast') {
+		} else if (action === 'cast') {
 			let currentSpell = this.cb.currentSpell
 			if (currentSpell === null) {
 				Game.log('You must select a spell to cast. Select one from the spellbook!', 'information')
@@ -467,13 +471,13 @@ export default class Player extends Actor {
 
 				return
 			}
-		} else if (keyMap[code] === 'examine') {
+		} else if (action === 'examine') {
 			Game.log('You begin examining the area.', 'information')
 			this.examining = true
 			Game.changeSelectedTile(Game.getTile(this.x, this.y))
 			return
 		} else {
-			let diff = ROT.DIRS[8][keyMap[code]]
+			let diff = ROT.DIRS[8][action]
 			let nx = this.x + diff[0]
 			let ny = this.y + diff[1]
 			if (!this.tryMove(nx, ny)) {
@@ -537,13 +541,14 @@ export default class Player extends Actor {
 		}
 	}
 
-	climb(dir) {
+	climb() {
 		let ctile = Game.map.data[this.y][this.x]
 		let ladder = ctile.actors.filter(a => {
 			return a instanceof Ladder
 		})[0]
-		if (ladder === undefined || ladder.direction !== dir) {
-			Game.log(`You cannot climb ${dir} here.`, 'information')
+
+		if (ladder === undefined) {
+			Game.log('There are no steps or ladders here to use!', 'information')
 		} else {
 			ladder.react(this)
 		}

@@ -5,27 +5,7 @@ import ROT from 'rot-js'
 import { Game } from '#/Game.js'
 import { GameMap } from '#/map/GameMap.js'
 import Player from '#/entities/actors/Player.js'
-import NPC from '#/entities/actors/NPC.js'
-// Enemies
-import Goblin from '#/entities/actors/enemies/Goblin.js'
-import Kobold from '#/entities/actors/enemies/Kobold.js'
-import Orc from '#/entities/actors/enemies/Orc.js'
-import Rat from '#/entities/actors/enemies/Rat.js'
-import Bat from '#/entities/actors/enemies/Bat.js'
-import Skeleton from '#/entities/actors/enemies/Skeleton.js'
-import Zombie from '#/entities/actors/enemies/Zombie.js'
-import { Corpse, corpseTypes } from '#/entities/items/misc/Corpse.js'
 
-import Lich from '#/entities/actors/enemies/boss/Lich.js'
-// Items
-// Weapons
-import { createSword, Sword } from '#/entities/items/weapons/Sword.js'
-import { Bow, createBow } from '#/entities/items/weapons/ranged/Bow.js'
-import { SteelArrow } from '#/entities/items/weapons/ranged/ammo/Arrow.js'
-// Potions
-import HealthPotion from '#/entities/items/potions/HealthPotion.js'
-import StrengthPotion from '#/entities/items/potions/StrengthPotion.js'
-import ManaPotion from '#/entities/items/potions/ManaPotion.js'
 // Misc
 import Chest from '#/entities/misc/Chest.js'
 import Door from '#/entities/misc/Door.js'
@@ -35,50 +15,7 @@ import { NecromancySpellBook } from '#/entities/items/misc/Spellbook.js'
 import Ladder from '#/entities/misc/Ladder.js'
 import LevelTransition from '#/entities/misc/LevelTransition.js'
 import { getRandomInt, getNormalRandomInt, randomProperty } from '#/utils/HelperFunctions.js'
-
-/*
-	// skip to next floor
-	let l = 1
-	Game.changeLevels(`City Dungeon ${l}`, "up", l++)
-*/
-
-/*
-	TODO:
-	- Add trolls, mummies, ghosts, ice elemental, golems, imps, snakes, vampires
- */
-const actorTextures = {
-	ORC: [5292, 5293, 5294, 5295, 5296, 5297, 5299],
-	EMPOWERED_ORC: [5298],
-	GOBLIN: [7440, 7441, 7442, 7443, 7444, 7445, 7446],
-	RAT: [2365],
-	BAT: [3704, 3706],
-	KOBOLD: [5532, 5533, 5534, 5535, 5536, 5537, 5538, 5539],
-	SKELETON: [2552, 2553, 2554, 2555],
-	ZOMBIE: [2314, 2317]
-}
-
-const createActor = (actorString, x, y, id) => {
-	switch (actorString) {
-		case 'ORC':
-			return new Orc(x, y, id)
-		case 'EMPOWERED_ORC':
-			return new Orc(x, y, id, true)
-		case 'KOBOLD':
-			return new Kobold(x, y, id)
-		case 'GOBLIN':
-			return new Goblin(x, y, id)
-		case 'BAT':
-			return new Bat(x, y, id)
-		case 'RAT':
-			return new Rat(x, y, id)
-		case 'SKELETON':
-			return new Skeleton(x, y, id)
-		case 'ZOMBIE':
-			return new Zombie(x, y, id)
-		default:
-			throw 'Unidentified actor given to create actor'
-	}
-}
+import { createActor } from '#/utils/EntityFactory.js'
 
 const dungeonTypes = {
 	RUINS: 'RUINS',
@@ -92,12 +29,27 @@ const dungeonThemes = {
 	RUINS: {
 		tint: null,
 		mobDistribution: {
+			// TROLL: 1,
+			// MUMMY: 1,
+			// GHOST: 1,
+			// ICE_ELEMENTAL: 1,
+			// GOLEM: 1,
+			// IMP: 1,
+			// SNAKE: 1,
+			// SIREN: 1,
+			// VAMPIRE: 1,
+			// MINOTAUR: 1,
+			// CYCLOPS: 1,
+			// BANSHEE: 1,
+			// DEMON: 1,
+			// BONE_MAN: 1
 			ORC: 2,
 			EMPOWERED_ORC: 1,
 			KOBOLD: 1,
 			GOBLIN: 7,
 			BAT: 10,
-			RAT: 10
+			RAT: 10,
+			SNAKE: 10
 		},
 		type: dungeonTypes.RUINS,
 		textures: {
@@ -166,8 +118,12 @@ const dungeonThemes = {
 		type: dungeonTypes.CATACOMBS,
 		tint: null,
 		mobDistribution: {
-			ZOMBIE: 1,
-			SKELETON: 1
+			ZOMBIE: 30,
+			SKELETON: 30,
+			MUMMY: 30,
+			GHOST: 10,
+			BANSHEE: 5,
+			VAMPIRE: 1
 		},
 		textures: {
 			floor: {
@@ -229,12 +185,14 @@ const dungeonThemes = {
 		type: dungeonTypes.MINE,
 		tint: null,
 		mobDistribution: {
-			ORC: 2,
-			EMPOWERED_ORC: 1,
-			KOBOLD: 1,
-			GOBLIN: 7,
-			BAT: 10,
-			RAT: 10
+			KOBOLD: 2,
+			MINOTAUR: 1,
+			GOBLIN: 5,
+			BAT: 5,
+			RAT: 5,
+			SNAKE: 5,
+			BONE_MAN: 10,
+			GOLEM: 1
 		},
 		textures: {
 			floor: {
@@ -296,12 +254,13 @@ const dungeonThemes = {
 		type: dungeonTypes.ICE,
 		tint: null,
 		mobDistribution: {
-			ORC: 2,
-			EMPOWERED_ORC: 1,
-			KOBOLD: 1,
-			GOBLIN: 7,
-			BAT: 10,
-			RAT: 10
+			CYCLOPS: 1,
+			TROLL: 3,
+			MINOTAUR: 1,
+			ICE_ELEMENTAL: 3,
+			SKELETON: 20,
+			IMP: 10,
+			SIREN: 1
 		},
 		textures: {
 			floor: {
@@ -671,20 +630,21 @@ export function dungeonFromTheme(width, height, dir, theme, level, mapGenerator,
 		let possibleWalls = Object.values(walls)
 		for (let y = wtop; y < wbottom; y++) {
 			for (let x = wleft; x < wright; x++) {
-				if (!gameMap.getTile(x, y).blocked()) validTiles.push(x + ',' + y)
+				if (!gameMap.getTile(x, y).blocked() && gameMap.getTile(x, y).actors.length === 0) validTiles.push(x + ',' + y)
 			}
 		}
 		let roomWidth = right - left
-		let maxEnemies = Math.min(5, roomWidth * 0.5)
-		roll = getRandomInt(0, maxEnemies)
+		let roomHeight = bottom - top
+		let maxEnemies = roomWidth > 6 && roomHeight > 6 ? 5 : 3
+		let minEnemies = roomWidth > 7 && roomHeight > 7 ? 3 : 1
+
+		roll = getNormalRandomInt(minEnemies, maxEnemies)
 		for (let i = 0; i < roll; i++) {
 			let coords = randomTile(validTiles)
 			if (coords === null) break
 			let [x, y] = coords
 			let chosenActor = ROT.RNG.getWeightedValue(mobDistribution)
-			let possibleActorTextures = actorTextures[chosenActor]
-			let randomTexture = possibleActorTextures[getRandomInt(0, possibleActorTextures.length - 1)]
-			let actor = createActor(chosenActor, x, y, randomTexture)
+			let actor = createActor(chosenActor, x, y)
 			gameMap.getTile(x, y).actors.push(actor)
 			gameMap.actors.push(actor)
 		}
@@ -708,7 +668,7 @@ export function dungeonFromTheme(width, height, dir, theme, level, mapGenerator,
 	let ladder = new Ladder(x, y, ladders.up, 'up')
 	gameMap.getTile(x, y).actors.push(ladder)
 	gameMap.actors.push(ladder)
-	gameMap.revealed = true
+	gameMap.revealed = false
 	return gameMap
 }
 

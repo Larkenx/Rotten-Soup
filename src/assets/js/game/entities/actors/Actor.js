@@ -260,13 +260,16 @@ export class Actor extends Entity {
 	damage(hp) {
 		if (this.cb.invulnerable) return
 		this.cb.damageTaken += hp
-		this.cb.hp -= hp
+
+		if (this.cb.hp <= hp) this.cb.hp = 0
+		else this.cb.hp -= hp
+
 		if (this.isDead()) {
 			if (this !== Game.player) Game.player.gain_xp(Math.floor(this.cb.maxhp * 0.5))
 
 			this.death()
 		}
-		if (this.sprite !== null) {
+		if (this.sprite !== null && !this.isDead) {
 			this.sprite.tint = '0xba1b21'
 			setTimeout(() => (this.sprite.tint = '0xFFFFFF'), 200)
 		}
@@ -353,16 +356,17 @@ export class Actor extends Entity {
 		}
 
 		if (getRandomInt(0, 1) === 0) {
-			if (this.corpseType !== undefined) {
+			if (this.corpseType !== undefined && this.corpseType !== null) {
 				let corpse = new Corpse(this.x, this.y, this.name, this.corpseType)
 				ctile.actors.unshift(corpse)
 				Game.scheduler.add(corpse, true)
 				Game.display.assignSprite(corpse, true)
 			}
 		}
+
 		let blood = 2644 - getRandomInt(0, 1)
 		// specifically don't want to add blood if it's a skeleton...
-		if (this.corpseType !== corpseTypes.SKELETON) {
+		if (this.corpseType === corpseTypes.HUMANOID) {
 			let bloodSprite = new PIXI.Sprite(Game.display.tilesetMapping[blood])
 			bloodSprite.position.set(this.x * Game.display.tileSize, this.y * Game.display.tileSize)
 			Game.display.background.addChildAt(bloodSprite, 1)
