@@ -42,7 +42,7 @@ export let Game = {
 	engine: null,
 	loaded: false,
 	levels: {},
-	currentLevel: { name: 'overworld' },
+	currentLevel: { name: 'Mulberry Town' },
 	map: null,
 	messageHistory: [],
 	tempMessages: [],
@@ -57,7 +57,6 @@ export let Game = {
 	init(playerSpriteID) {
 		this.playerID = playerSpriteID
 		this.player = new Player(0, 0, playerSpriteID)
-		this.currentLevel.name = 'City Dungeon 1'
 		this.displayOptions = {
 			width: 32,
 			height: 20,
@@ -68,15 +67,15 @@ export let Game = {
 			tileHeight: 32
 		}
 		let onceLoaded = () => {
-			this.levels['graveyard'] = createMapFromJSON(PIXI.loader.resources['graveyard'].data)
-			this.levels['Lich Lair'] = createMapFromJSON(PIXI.loader.resources['lichLair'].data)
-			this.levels['overworld'] = createMapFromJSON(PIXI.loader.resources['overworld'].data)
-			this.levels['Orc Castle'] = createMapFromJSON(PIXI.loader.resources['orcCastle'].data)
-			this.levels['City Dungeon 1'] = randomDungeon(40, 40, 'down', 1)
-			this.levels['graveyard'].revealed = true
-			this.levels['Lich Lair'].revealed = true
-			this.levels['overworld'].revealed = true
-			this.levels['Orc Castle'].revealed = true
+			this.levels['Mulberry Town'] = createMapFromJSON(PIXI.loader.resources['mulberryTown'].data)
+			// this.levels['graveyard'] = createMapFromJSON(PIXI.loader.resources['graveyard'].data)
+			// this.levels['Lich Lair'] = createMapFromJSON(PIXI.loader.resources['lichLair'].data)
+			// this.levels['Orc Castle'] = createMapFromJSON(PIXI.loader.resources['orcCastle'].data)
+			// this.levels['City Dungeon 1'] = randomDungeon(40, 40, 'down', 1)
+			// this.levels['graveyard'].revealed = true
+			// this.levels['Lich Lair'].revealed = true
+			// this.levels['Mulberry Town'].revealed = true
+			// this.levels['Orc Castle'].revealed = true
 			this.map = this.levels[this.currentLevel.name]
 			this.width = this.map.width < this.displayOptions.width ? this.map.width : this.displayOptions.width
 			this.height = this.map.height < this.displayOptions.height ? this.map.height : this.displayOptions.height
@@ -159,13 +158,13 @@ export let Game = {
 					// we want to populate the chests with loot
 					let items = getItemsFromDropTable({
 						minItems: 1,
-						maxItems: 4,
+						maxItems: 2,
 						dropTable: {
-							STRENGTH_POTION: 1,
-							HEALTH_POTION: 1,
-							STEEL_ARROW: 1,
-							MANA_POTION: 1,
-							SWORD: 3
+							STRENGTH_POTION: 3,
+							HEALTH_POTION: 15,
+							STEEL_ARROW: 20,
+							MANA_POTION: 10,
+							SWORD: 1
 						},
 						x: actor.x,
 						y: actor.y
@@ -469,7 +468,7 @@ export let Game = {
 	log(message, type, tmp = false) {
 		let message_color = {
 			defend: 'lightblue',
-			magic: '#3C1CFD',
+			magic: '#6757c6',
 			attack: 'red',
 			death: 'crimson',
 			information: 'yellow',

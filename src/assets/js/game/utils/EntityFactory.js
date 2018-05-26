@@ -1,3 +1,18 @@
+// Miscellaneous
+import Chest from '#/entities/misc/Chest.js'
+import Door from '#/entities/misc/Door.js'
+import LockedDoor from '#/entities/misc/LockedDoor.js'
+import LevelTransition from '#/entities/misc/LevelTransition.js'
+import Ladder from '#/entities/misc/Ladder.js'
+import NPC from '#/entities/actors/NPC.js'
+import { Corpse, corpseTypes } from '#/entities/items/misc/Corpse.js'
+// Items
+import HealthPotion from '#/entities/items/potions/HealthPotion.js'
+import StrengthPotion from '#/entities/items/potions/StrengthPotion.js'
+import ManaPotion from '#/entities/items/potions/ManaPotion.js'
+import { createSword } from '#/entities/items/weapons/Sword.js'
+import { SteelArrow } from '#/entities/items/weapons/ranged/ammo/Arrow.js'
+// Enemies
 import Orc from '#/entities/actors/enemies/Orc.js'
 import Kobold from '#/entities/actors/enemies/Kobold.js'
 import Goblin from '#/entities/actors/enemies/Goblin.js'
@@ -46,57 +61,71 @@ export const actorTextures = {
 	BONE_MAN: [3392, 3393]
 }
 
-export function createActor(actorString, x, y) {
-	let possibleActorTextures = actorTextures[actorString]
-	let randomTexture = possibleActorTextures[getRandomInt(0, possibleActorTextures.length - 1)]
-	switch (actorString) {
-		case 'ORC':
-			return new Orc(x, y, randomTexture)
-		case 'EMPOWERED_ORC':
-			return new Orc(x, y, randomTexture, true)
-		case 'KOBOLD':
-			return new Kobold(x, y, randomTexture)
-		case 'GOBLIN':
-			return new Goblin(x, y, randomTexture)
-		case 'BAT':
-			return new Bat(x, y, randomTexture)
-		case 'RAT':
-			return new Rat(x, y, randomTexture)
-		case 'SNAKE':
-			return new Snake(x, y, randomTexture)
-		case 'SKELETON':
-			return new Skeleton(x, y, randomTexture)
-		case 'ZOMBIE':
-			return new Zombie(x, y, randomTexture)
-		case 'TROLL':
-			return new Troll(x, y, randomTexture)
-		case 'MUMMY':
-			return new Mummy(x, y, randomTexture)
-		case 'GHOST':
-			return new Ghost(x, y, randomTexture)
-		case 'ICE_ELEMENTAL':
-			return new IceElemental(x, y, randomTexture)
-		case 'GOLEM':
-			return new Golem(x, y, randomTexture)
-		case 'IMP':
-			return new Imp(x, y, randomTexture)
-		case 'SNAKE':
-			return new Snake(x, y, randomTexture)
-		case 'SIREN':
-			return new Siren(x, y, randomTexture)
-		case 'BANSHEE':
-			return new Banshee(x, y, randomTexture)
-		case 'VAMPIRE':
-			return new Vampire(x, y, randomTexture)
-		case 'MINOTAUR':
-			return new Minotaur(x, y, randomTexture)
-		case 'CYCLOPS':
-			return new Cyclops(x, y, randomTexture)
-		case 'DEMON':
-			return new Demon(x, y, randomTexture)
-		case 'BONE_MAN':
-			return new BoneMan(x, y, randomTexture)
-		default:
-			throw 'Unidentified actor given to create actor'
+export function createItem(itemString, x, y, id = null) {
+	const defaultItemTextures = {
+		HEALTH_POTION: 488,
+		MANA_POTION: 608,
+		STRENGTH_POTION: 969,
+		SWORD: 35,
+		BOW: 664,
+		STEEL_ARROW: 784
 	}
+	const texture = id === null ? defaultItemTextures[itemString] : id
+	const itemShop = {
+		HEALTH_POTION: () => new HealthPotion(x, y, texture),
+		STRENGTH_POTION: () => new StrengthPotion(x, y, texture),
+		MANA_POTION: () => new ManaPotion(x, y, texture),
+		SWORD: () => createSword(x, y, texture),
+		BOW: () => createBow(x, y, texture),
+		STEEL_ARROW: () => new SteelArrow(x, y, texture, 5)
+	}
+	if (!(itemString in itemShop)) {
+		console.error(`Tried to create an item without an entry: ${itemString} with ID: ${id}`)
+		return null
+	}
+	return itemShop[itemString]()
+}
+
+export function createActor(actorString, x, y, id = null) {
+	let texture = id
+	if (id === null) {
+		let possibleActorTextures = actorTextures[actorString]
+		let texture = possibleActorTextures[getRandomInt(0, possibleActorTextures.length - 1)]
+	}
+	const entityShop = {
+		NPC: () => new NPC(x, y, texture),
+		LEVEL_TRANSITION: () => new LevelTransition(x, y, texture),
+		CHEST: () => new Chest(x, y, texture),
+		DOOR: () => new Door(x, y, texture),
+		LOCKED_DOOR: () => new LockedDoor(x, y, texture),
+		LADDER: () => new Ladder(x, y, texture),
+		ORC: () => new Orc(x, y, texture),
+		EMPOWERED_ORC: () => new Orc(x, y, texture, true),
+		KOBOLD: () => new Kobold(x, y, texture),
+		GOBLIN: () => new Goblin(x, y, texture),
+		BAT: () => new Bat(x, y, texture),
+		RAT: () => new Rat(x, y, texture),
+		SNAKE: () => new Snake(x, y, texture),
+		SKELETON: () => new Skeleton(x, y, texture),
+		ZOMBIE: () => new Zombie(x, y, texture),
+		TROLL: () => new Troll(x, y, texture),
+		MUMMY: () => new Mummy(x, y, texture),
+		GHOST: () => new Ghost(x, y, texture),
+		ICE_ELEMENTAL: () => new IceElemental(x, y, texture),
+		GOLEM: () => new Golem(x, y, texture),
+		IMP: () => new Imp(x, y, texture),
+		SNAKE: () => new Snake(x, y, texture),
+		SIREN: () => new Siren(x, y, texture),
+		BANSHEE: () => new Banshee(x, y, texture),
+		VAMPIRE: () => new Vampire(x, y, texture),
+		MINOTAUR: () => new Minotaur(x, y, texture),
+		CYCLOPS: () => new Cyclops(x, y, texture),
+		DEMON: () => new Demon(x, y, texture),
+		BONE_MAN: () => new BoneMan(x, y, texture)
+	}
+	if (!(actorString in entityShop)) {
+		console.error(`Tried to create entity without an entry: ${actorString} with ID: ${id}`)
+		return null
+	}
+	return entityShop[actorString]()
 }

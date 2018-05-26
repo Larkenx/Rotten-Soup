@@ -33,6 +33,7 @@ export default class GameDisplay {
 		this.viewPort = null
 		this.tileSize = 32
 		this.tileset = null
+		this.objectTemplates = null
 		this.tilesetMapping = {}
 		this.spriteBox = [] // Game.width * Game.height sprites to overlay screen for FOV
 	}
@@ -55,6 +56,7 @@ export default class GameDisplay {
 	loadAssets(cb) {
 		let { renderer, stage, view } = this.app
 		let { resources } = PIXI.loader
+		/* Images & Texture Atlas */
 		const spritesheet = {
 			url: 'static/images/compiled_tileset_32x32.png',
 			name: 'spritesheet'
@@ -63,10 +65,12 @@ export default class GameDisplay {
 			url: 'static/compiled_dawnlike.json',
 			name: 'textureAtlas'
 		}
-		const overworldMap = {
-			url: 'static/maps/overworld.json',
-			name: 'overworld'
+		/* Maps */
+		const mulberryTown = {
+			url: 'static/maps/mulberryTown.json',
+			name: 'mulberryTown'
 		}
+
 		const graveyardMap = {
 			url: 'static/maps/graveyard.json',
 			name: 'graveyard'
@@ -81,9 +85,9 @@ export default class GameDisplay {
 		}
 
 		PIXI.loader
-			.add(textureAtlas)
 			.add(spritesheet)
-			.add(overworldMap)
+			.add(textureAtlas)
+			.add(mulberryTown)
 			.add(graveyardMap)
 			.add(lichLairMap)
 			.add(orcCastleMap)

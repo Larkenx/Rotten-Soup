@@ -1,143 +1,12 @@
 import { Game, tileset } from '#/Game.js'
 import Tile, { getTileInfo } from '#/map/Tile.js'
-// Entities
-import Player from '#/entities/actors/Player.js'
-import NPC from '#/entities/actors/NPC.js'
-// Enemies
-import Goblin from '#/entities/actors/enemies/Goblin.js'
-import Kobold from '#/entities/actors/enemies/Kobold.js'
-import Orc from '#/entities/actors/enemies/Orc.js'
-import Rat from '#/entities/actors/enemies/Rat.js'
-import Bat from '#/entities/actors/enemies/Bat.js'
-import WildGoat from '#/entities/actors/enemies/WildGoat.js'
-import Skeleton from '#/entities/actors/enemies/Skeleton.js'
-import Zombie from '#/entities/actors/enemies/Zombie.js'
-import { Corpse, corpseTypes } from '#/entities/items/misc/Corpse.js'
-
-import Lich from '#/entities/actors/enemies/boss/Lich.js'
-// Items
-// Weapons
-import { createSword, Sword } from '#/entities/items/weapons/Sword.js'
-import { Bow, createBow } from '#/entities/items/weapons/ranged/Bow.js'
-import { SteelArrow } from '#/entities/items/weapons/ranged/ammo/Arrow.js'
-// Potions
-import HealthPotion from '#/entities/items/potions/HealthPotion.js'
-import StrengthPotion from '#/entities/items/potions/StrengthPotion.js'
-import ManaPotion from '#/entities/items/potions/ManaPotion.js'
-// Misc
-import Chest from '#/entities/misc/Chest.js'
-import Door from '#/entities/misc/Door.js'
-import LockedDoor from '#/entities/misc/LockedDoor.js'
-import Key from '#/entities/items/misc/Key.js'
-import { NecromancySpellBook } from '#/entities/items/misc/Spellbook.js'
-import Ladder from '#/entities/misc/Ladder.js'
-import LevelTransition from '#/entities/misc/LevelTransition.js'
-
-export const entityShop = {
-	0: (x, y, id) => {
-		return new Player(x, y, id)
-	},
-	1: (x, y, id) => {
-		return new Goblin(x, y, id)
-	},
-	2: (x, y, id) => {
-		return new Rat(x, y, id)
-	},
-	3: (x, y, id) => {
-		return new Ladder(x, y, id, 'down')
-	},
-	4: (x, y, id) => {
-		return new Ladder(x, y, id, 'up')
-	},
-	5: (x, y, id) => {
-		return createSword(x, y, id)
-	},
-	6: (x, y, id) => {
-		return new NPC(x, y, id)
-	},
-	7: (x, y, id) => {
-		// normal Orc
-		return new Orc(x, y, id)
-	},
-	8: (x, y, id) => {
-		// empowered Orc
-		return new Orc(x, y, id, true)
-	},
-	9: (x, y, id) => {
-		return new Door(x, y, id)
-	},
-	10: (x, y, id) => {
-		return new Chest(x, y, id)
-	},
-	11: (x, y, id) => {
-		return new HealthPotion(x, y, id)
-	},
-	12: (x, y, id) => {
-		return new StrengthPotion(x, y, id)
-	},
-	13: (x, y, id) => {
-		return new ManaPotion(x, y, id)
-	},
-	14: (x, y, id) => {
-		const sword = new Sword(x, y, 4, 3, 'The Purifier', id)
-		return sword
-	},
-	15: (x, y, id) => {
-		return new Key(x, y, id)
-	},
-	16: (x, y, id) => {
-		return new LockedDoor(x, y, id)
-	},
-	17: (x, y, id) => {
-		return createBow(x, y, id)
-	},
-	18: (x, y, id) => {
-		return new SteelArrow(x, y, id, 5)
-	},
-	19: (x, y, id) => {
-		return new Kobold(x, y, id)
-	},
-	20: (x, y, id) => {
-		return new Bat(x, y, id)
-	},
-	21: (x, y, id) => {
-		return new Lich(x, y, id)
-	},
-	22: (x, y, id) => {
-		return new LevelTransition(x, y, id)
-	},
-	23: (x, y, id) => {
-		return new Zombie(x, y, id)
-	},
-	24: (x, y, id) => {
-		return new Skeleton(x, y, id)
-	},
-	25: (x, y, id) => {
-		return new Corpse(x, y, 'zombie', id)
-	},
-	26: (x, y, id) => {
-		return new Corpse(x, y, 'skeleton', id)
-	},
-	27: (x, y, id) => {
-		return new NecromancySpellBook(x, y, id)
-	},
-	28: (x, y, id) => {
-		return new WildGoat(x, y, id)
-	}
-}
-
-export function createEntity(x, y, entity_id, frame_id) {
-	if (entity_id in entityShop) {
-		return entityShop[entity_id](x, y, frame_id)
-	} else {
-		throw `No entity assigned to ID ${entity_id} for frame ${frame_id} at ${x + ',' + y}`
-	}
-}
+import { createActor, createItem } from '#/utils/EntityFactory.js'
 
 export function createMapFromJSON(json) {
 	let { layers, width, height } = json
 	let gameMap = new GameMap(width, height)
 	gameMap.createFromJSON(json)
+	gameMap.revealed = true
 	return gameMap
 }
 /**
@@ -173,25 +42,13 @@ export class GameMap {
 		let itemLayers = []
 		let portalLayers = []
 		for (let layer of layers) {
-			// Obstacle Layer
-			if (layer.properties.obstacles === true) this.processObstacleLayer(layer)
-			else if (layer.properties.items === true) itemLayers.push(layer)
-			else if (layer.properties.actors === true) this.processActorLayer(layer)
-			else if (layer.properties.portal === true) portalLayers.push(layer)
+			if (layer.type === 'tilelayer') this.processTileLayer(layer)
+			else if (layer.type === 'objectgroup') this.processObjectGroupLayer(layer)
 			else throw 'A layer has been added to the map and is invalid'
-		}
-		// if (this.playerLocation === null) throw "Error - no player starting position!";
-		// add chest items to chests where appropriate
-		for (let layer of itemLayers) {
-			this.processItemLayer(layer)
-		}
-
-		for (let layer of portalLayers) {
-			this.processPortalLayer(layer)
 		}
 	}
 
-	processObstacleLayer(layer) {
+	processTileLayer(layer) {
 		for (let i = 0; i < this.height; i++) {
 			for (let j = 0; j < this.width; j++) {
 				// Grabs the ID from the layer
@@ -204,27 +61,39 @@ export class GameMap {
 		}
 	}
 
-	processActorLayer(layer) {
-		// console.log("Loading actors...");
-		for (let i = 0; i < this.height; i++) {
-			for (let j = 0; j < this.width; j++) {
-				let id = layer.data[i * this.width + j] - 1 // grab the id in the json data
-				if (id > 1) {
-					// id of zero indicates no actor in this spot
-					Game.loadedIDS.push(id)
-					let properties = getTileInfo(id)
-					if (properties === undefined) {
-						console.error(`Bad entity creation for tile ${id}`)
-					}
-					if (properties.entity_id === 0) {
-						this.playerLocation = [j, i]
-						this.playerID = id
-					} else {
-						let newActor = createEntity(j, i, properties.entity_id, id)
-						this.actors.push(newActor) // add to the list of all actors
-						this.data[i][j].actors.push(newActor) // also push to the tiles' actors
-					}
-				}
+	createActorFromObject(object) {
+		const { gid, x, y, properties } = object
+		if (properties.entity_type === undefined) {
+			console.error(`No entity type given in properties for object ${object}`)
+			return
+		}
+		const { entity_type } = properties
+		let nx = x / 32
+		let ny = y / 32 - 1 // for some reason, TILED objects y position are 1-indexed..?
+		let actor = createActor(entity_type, nx, ny, gid - 1)
+		/* Post actor creation clean up... */
+		if (entity_type === 'NPC') {
+			// add NPC routines if any exist...
+			// NPCs may have items too!
+		} else if (entity_type === 'LADDER' || entity_type === 'LEVEL_TRANSITION') {
+			// ladders & level transitions have portal ID's
+			actor.portal = properties.portalID
+		} else if (entity_type === 'CHEST') {
+			// chests have items as a comma delimited string
+			let items = properties.items.split(',').map(i => createItem(i, nx, ny))
+			items.forEach(item => actor.addToInventory(item))
+		}
+		this.actors.push(actor)
+		this.getTile(nx, ny).actors.push(actor)
+	}
+
+	processObjectGroupLayer(layer) {
+		// for each object, there is one entity to add to the map
+		for (let object of layer.objects) {
+			if (object.properties.entity_type === 'PLAYER') {
+				this.playerLocation = [object.x / 32, object.y / 32 - 1] // for some reason, TILED objects y position are 1-indexed..?
+			} else {
+				this.createActorFromObject(object)
 			}
 		}
 	}
