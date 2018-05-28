@@ -142,7 +142,7 @@ export default {
 			return levelName
 		},
 		getCurrentLevelDepth() {
-			return Game.currentLevel.level
+			return Game.currentLevel.depth
 		}
 	},
 	components: {

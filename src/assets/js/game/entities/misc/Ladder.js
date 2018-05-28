@@ -5,7 +5,7 @@ import { Game } from '#/Game.js'
 import { Entity } from '#/entities/Entity.js'
 
 export default class Ladder extends Entity {
-	constructor(x, y, id, dir, portal, leadsToDungeon = false) {
+	constructor(x, y, id, dir, portal, createDungeon = false) {
 		super(x, y, {
 			id: id,
 			name: 'ladder',
@@ -17,7 +17,7 @@ export default class Ladder extends Entity {
 			visible: true
 		})
 		this.portal = portal
-		this.leadsToDungeon = leadsToDungeon
+		this.createDungeon = createDungeon
 	}
 
 	act() {}
@@ -30,6 +30,6 @@ export default class Ladder extends Entity {
 
 		if (this.direction === 'down') Game.log('You climb down the ladder...', 'player_move')
 		if (this.direction === 'up') Game.log('You climb up the ladder...', 'player_move')
-		Game.changeLevels(this.portal, this.leadsToDungeon)
+		Game.changeLevels(this.portal, this.createDungeon)
 	}
 }

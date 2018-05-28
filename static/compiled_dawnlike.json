@@ -965,6 +965,11 @@
          "blocked":false,
          "blocks_vision":false
         },
+     "1169":
+        {
+         "animated":true,
+         "animated_id":1177
+        },
      "11880":
         {
          "bg":"#00cc33"
@@ -27765,6 +27770,11 @@
          "bg":"string",
          "blocked":"bool",
          "blocks_vision":"bool"
+        },
+     "1169":
+        {
+         "animated":"bool",
+         "animated_id":"int"
         },
      "11880":
         {

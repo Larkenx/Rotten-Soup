@@ -54,7 +54,7 @@ export default class Player extends Actor {
 				level: 1,
 				hp: 50,
 				mana: 15,
-				str: 1,
+				str: 100,
 				def: 1,
 				/* Per-turn effects */
 				hpRecovery: 5,
@@ -106,6 +106,7 @@ export default class Player extends Actor {
 
 		this.selectSpell(this.cb.spells[0])
 		this.mouseEnabled = false
+		this.commandQueue = []
 	}
 
 	selectSpell(spell) {
@@ -164,6 +165,12 @@ export default class Player extends Actor {
 		this.currentLevel = Game.currentLevel
 
 		Game.engine.lock()
+		if (this.commandQueue.length > 0) {
+			// perform player commands and unlock
+			this.commandQueue.pop()()
+			Game.engine.unlock()
+			return
+		}
 		window.addEventListener('keydown', this)
 		if (this.mouseEnabled) {
 			window.addEventListener('mousemove', this)

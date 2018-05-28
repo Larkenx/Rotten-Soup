@@ -42,7 +42,7 @@ export let Game = {
 	engine: null,
 	loaded: false,
 	levels: {},
-	currentLevel: { name: 'Mulberry Forest' },
+	currentLevel: { name: 'Mulberry Forest', depth: 0 },
 	map: null,
 	messageHistory: [],
 	tempMessages: [],
@@ -135,49 +135,21 @@ export let Game = {
 		return cx <= x && x <= cx + Game.width && cy <= y && y <= cy + Game.height
 	},
 
-	/*
-		if (this.levels[newLevel] === undefined) {
-			this.player.cb.dungeonsExplored++
-			// generating a new random room
-			this.levels[newLevel] = randomDungeon(40, 40, level, this.currentLevel.name)
-
-			for (let actor of this.levels[newLevel].actors) {
-				if (actor instanceof Chest) {
-					// console.log("filling chest with goodies!");
-					// we want to populate the chests with loot
-					let items = getItemsFromDropTable({
-						minItems: 1,
-						maxItems: 2,
-						dropTable: {
-							STRENGTH_POTION: 3,
-							HEALTH_POTION: 15,
-							STEEL_ARROW: 20,
-							MANA_POTION: 10,
-							SWORD: 1
-						},
-						x: actor.x,
-						y: actor.y
-					})
-					items.forEach(item => actor.addToInventory(item))
-				}
-			}
-			console.log(newLevel + ' does not exist, so a new random instance is being created.')
-		}
-	*/
-
 	createDungeonFloors(origin, dungeonName, numberOfFloors) {
 		this.levels[dungeonName + 1] = randomDungeon(40, 40, {
 			dungeonName,
 			lastDungeon: false,
 			fromPortal: origin,
-			toPortal: dungeonName + 2
+			toPortal: dungeonName + 2,
+			level: 1
 		})
 		for (let depth = 2; depth < numberOfFloors; depth++) {
 			let options = {
 				dungeonName,
 				lastDungeon: false,
 				fromPortal: dungeonName + (depth - 1),
-				toPortal: dungeonName + (depth + 1)
+				toPortal: dungeonName + (depth + 1),
+				level: depth
 			}
 			this.levels[dungeonName + depth] = randomDungeon(40, 40, options)
 		}
@@ -185,25 +157,35 @@ export let Game = {
 			dungeonName,
 			lastDungeon: true,
 			fromPortal: dungeonName + (numberOfFloors - 1),
-			toPortal: null
+			toPortal: origin,
+			level: numberOfFloors
 		})
 	},
 
 	changeLevels(mapID, dungeon = false) {
-		if (dungeon === true && !(mapID in this.levels)) {
-			this.createDungeonFloors(this.currentLevel.name, mapID, 20)
-		}
 		let nextMap = this.levels[mapID]
+		if (dungeon === true && !(mapID + 1 in this.levels)) {
+			this.createDungeonFloors(this.currentLevel.name, mapID, 20)
+			nextMap = this.levels[mapID + 1]
+		} else if (dungeon === true) {
+			nextMap = this.levels[mapID + 1]
+		}
+		console.log(`Switching worlds from ${this.currentLevel.name} to ${mapID}`)
 		// Maps can be either a series of dungeons, or a single 'unconnected' map
 		// save the player's location on this map
 		this.map.playerLocation = [Game.player.x, Game.player.y]
 		// Save the old map
-		this.levels[this.currentLevel.name].map = this.map // add the old map to 'levels'
+		if (this.map.type === 'dungeon') {
+			this.levels[this.currentLevel.name + this.currentLevel.depth] = this.map // add the old map to 'levels'
+		} else {
+			this.levels[this.currentLevel.name] = this.map // add the old map to 'levels'
+		}
 		// Unshift player from ladder position (so that when resurfacing, no player is present)
 		this.getTile(this.player.x, this.player.y).removeActor(this.player)
 		this.map.actors = this.map.actors.filter(a => a !== this.player)
 		this.map = nextMap
 		this.currentLevel.name = nextMap.name
+		this.currentLevel.depth = nextMap.depth !== undefined ? nextMap.depth : 0
 		this.playerLocation = this.map.playerLocation
 		// before drawing the viewport, we need to clear the screen of whatever was here last
 		this.display.clear()
@@ -500,5 +482,10 @@ export let Game = {
 		let color = type in message_color ? message_color[type] : type
 		if (tmp) this.tempMessages.splice(0, 1, [message, color])
 		else this.messageHistory.push([message, color])
+	},
+	/* Testing Functions */
+	getNearestLadder() {
+		let ladders = this.map.actors.filter(a => a instanceof Ladder)
+		return ladders[0]
 	}
 }

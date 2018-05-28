@@ -331,12 +331,14 @@
                  "name":"Stairs Down",
                  "properties":
                     {
+                     "createDungeon":true,
                      "direction":"down",
                      "entity_type":"LADDER",
                      "portalID":"Forest Dungeon"
                     },
                  "propertytypes":
                     {
+                     "createDungeon":"bool",
                      "direction":"string",
                      "entity_type":"string",
                      "portalID":"string"

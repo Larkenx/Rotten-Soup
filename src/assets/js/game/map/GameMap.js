@@ -82,6 +82,7 @@ export class GameMap {
 		} else if (entity_type === 'LADDER' || entity_type === 'LEVEL_TRANSITION') {
 			// ladders & level transitions have portal ID's
 			actor.portal = properties.portalID
+			actor.createDungeon = properties.createDungeon
 			if (entity_type === 'LADDER') actor.direction = properties.direction
 		} else if (entity_type === 'CHEST') {
 			// chests have items as a comma delimited string

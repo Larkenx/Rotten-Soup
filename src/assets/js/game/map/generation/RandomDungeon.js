@@ -542,8 +542,9 @@ const getWallTexture = (walls, sum) => {
 }
 
 export function dungeonFromTheme(width, height, theme, mapGenerator, options, hasDoors = true) {
-	let gameMap = new GameMap(width, height)
+	console.log(options)
 	let { dungeonName, lastDungeon, fromPortal, toPortal, level } = options
+	let gameMap = new GameMap(width, height, dungeonName)
 	const { tint, type, textures, mobDistribution } = theme
 	const { floor, corridorFloor, walls, doors } = textures
 	// Generate ROT map and store empty tiles in hashmap
@@ -617,13 +618,20 @@ export function dungeonFromTheme(width, height, theme, mapGenerator, options, ha
 
 		// Now, we can mess around with the centers of each room and place items in the dungeons
 		// this places a ladder going further into the dungeon (either deeper or higher)
-		let roll = getRandomInt(1, rotMap.getRooms().length)
-		if ((roll == 1 || createdLadders == 0) && createdLadders !== 1) {
-			let texture = ladders.down
-			let ladder = new Ladder(center.x, center.y, texture, 'down')
-			gameMap.getTile(center.x, center.y).actors.push(ladder)
-			gameMap.actors.push(ladder)
-			createdLadders++
+		if (createdLadders < 1) {
+			if (!lastDungeon) {
+				let texture = ladders.down
+				let ladder = new Ladder(center.x, center.y, texture, 'down', toPortal)
+				gameMap.getTile(center.x, center.y).actors.push(ladder)
+				gameMap.actors.push(ladder)
+				createdLadders++
+			} else {
+				let levelTransition = new LevelTransition(center.x, center.y, 1169)
+				levelTransition.portal = toPortal
+				gameMap.getTile(center.x, center.y).actors.push(levelTransition)
+				gameMap.actors.push(levelTransition)
+				createdLadders++
+			}
 		}
 
 		// now I want to populate some random creatures in each room of the dungeon.
@@ -639,7 +647,7 @@ export function dungeonFromTheme(width, height, theme, mapGenerator, options, ha
 		let maxEnemies = roomWidth > 6 && roomHeight > 6 ? 5 : 3
 		let minEnemies = roomWidth > 7 && roomHeight > 7 ? 3 : 1
 
-		roll = getNormalRandomInt(minEnemies, maxEnemies)
+		let roll = getNormalRandomInt(minEnemies, maxEnemies)
 		for (let i = 0; i < roll; i++) {
 			let coords = randomTile(validTiles)
 			if (coords === null) break
@@ -666,10 +674,7 @@ export function dungeonFromTheme(width, height, theme, mapGenerator, options, ha
 	let [x, y] = start.map(s => parseInt(s))
 	gameMap.playerLocation = [x, y]
 	// gameMap.getTile(x, y).actors.push(new Player(x, y, Game.playerID + 1)) // set random spot to be the player
-	let ladder = new Ladder(x, y, ladders.up, 'up')
-	if (level === 1) {
-		ladder.portal = originPortal
-	}
+	let ladder = new Ladder(x, y, ladders.up, 'up', fromPortal)
 	gameMap.getTile(x, y).actors.push(ladder)
 	gameMap.actors.push(ladder)
 	gameMap.revealed = false
@@ -680,6 +685,7 @@ export function dungeonFromTheme(width, height, theme, mapGenerator, options, ha
 
 /* Returns a randomly generated textured dungeon in GameMap form  */
 export function randomDungeon(width, height, options) {
+	let { level } = options
 	let dc = {}
 	if (level <= 5) {
 		dc = {
