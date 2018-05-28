@@ -86,46 +86,47 @@ export function createItem(itemString, x, y, id = null) {
 	return itemShop[itemString]()
 }
 
+const entityShop = {
+	NPC: (x, y, t) => new NPC(x, y, t),
+	LEVEL_TRANSITION: (x, y, t) => new LevelTransition(x, y, t),
+	CHEST: (x, y, t) => new Chest(x, y, t),
+	DOOR: (x, y, t) => new Door(x, y, t),
+	LOCKED_DOOR: (x, y, t) => new LockedDoor(x, y, t),
+	LADDER: (x, y, t) => new Ladder(x, y, t),
+	ORC: (x, y, t) => new Orc(x, y, t),
+	EMPOWERED_ORC: (x, y, t) => new Orc(x, y, t, true),
+	KOBOLD: (x, y, t) => new Kobold(x, y, t),
+	GOBLIN: (x, y, t) => new Goblin(x, y, t),
+	BAT: (x, y, t) => new Bat(x, y, t),
+	RAT: (x, y, t) => new Rat(x, y, t),
+	SNAKE: (x, y, t) => new Snake(x, y, t),
+	SKELETON: (x, y, t) => new Skeleton(x, y, t),
+	ZOMBIE: (x, y, t) => new Zombie(x, y, t),
+	TROLL: (x, y, t) => new Troll(x, y, t),
+	MUMMY: (x, y, t) => new Mummy(x, y, t),
+	GHOST: (x, y, t) => new Ghost(x, y, t),
+	ICE_ELEMENTAL: (x, y, t) => new IceElemental(x, y, t),
+	GOLEM: (x, y, t) => new Golem(x, y, t),
+	IMP: (x, y, t) => new Imp(x, y, t),
+	SNAKE: (x, y, t) => new Snake(x, y, t),
+	SIREN: (x, y, t) => new Siren(x, y, t),
+	BANSHEE: (x, y, t) => new Banshee(x, y, t),
+	VAMPIRE: (x, y, t) => new Vampire(x, y, t),
+	MINOTAUR: (x, y, t) => new Minotaur(x, y, t),
+	CYCLOPS: (x, y, t) => new Cyclops(x, y, t),
+	DEMON: (x, y, t) => new Demon(x, y, t),
+	BONE_MAN: (x, y, t) => new BoneMan(x, y, t)
+}
+
 export function createActor(actorString, x, y, id = null) {
 	let texture = id
 	if (id === null) {
 		let possibleActorTextures = actorTextures[actorString]
-		let texture = possibleActorTextures[getRandomInt(0, possibleActorTextures.length - 1)]
-	}
-	const entityShop = {
-		NPC: () => new NPC(x, y, texture),
-		LEVEL_TRANSITION: () => new LevelTransition(x, y, texture),
-		CHEST: () => new Chest(x, y, texture),
-		DOOR: () => new Door(x, y, texture),
-		LOCKED_DOOR: () => new LockedDoor(x, y, texture),
-		LADDER: () => new Ladder(x, y, texture),
-		ORC: () => new Orc(x, y, texture),
-		EMPOWERED_ORC: () => new Orc(x, y, texture, true),
-		KOBOLD: () => new Kobold(x, y, texture),
-		GOBLIN: () => new Goblin(x, y, texture),
-		BAT: () => new Bat(x, y, texture),
-		RAT: () => new Rat(x, y, texture),
-		SNAKE: () => new Snake(x, y, texture),
-		SKELETON: () => new Skeleton(x, y, texture),
-		ZOMBIE: () => new Zombie(x, y, texture),
-		TROLL: () => new Troll(x, y, texture),
-		MUMMY: () => new Mummy(x, y, texture),
-		GHOST: () => new Ghost(x, y, texture),
-		ICE_ELEMENTAL: () => new IceElemental(x, y, texture),
-		GOLEM: () => new Golem(x, y, texture),
-		IMP: () => new Imp(x, y, texture),
-		SNAKE: () => new Snake(x, y, texture),
-		SIREN: () => new Siren(x, y, texture),
-		BANSHEE: () => new Banshee(x, y, texture),
-		VAMPIRE: () => new Vampire(x, y, texture),
-		MINOTAUR: () => new Minotaur(x, y, texture),
-		CYCLOPS: () => new Cyclops(x, y, texture),
-		DEMON: () => new Demon(x, y, texture),
-		BONE_MAN: () => new BoneMan(x, y, texture)
+		texture = possibleActorTextures[getRandomInt(0, possibleActorTextures.length - 1)]
 	}
 	if (!(actorString in entityShop)) {
 		console.error(`Tried to create entity without an entry: ${actorString} with ID: ${id}`)
 		return null
 	}
-	return entityShop[actorString]()
+	return entityShop[actorString](x, y, texture)
 }

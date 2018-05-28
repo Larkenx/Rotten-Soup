@@ -79,9 +79,10 @@ export class GameMap {
 		} else if (entity_type === 'LADDER' || entity_type === 'LEVEL_TRANSITION') {
 			// ladders & level transitions have portal ID's
 			actor.portal = properties.portalID
+			if (entity_type === 'LADDER') actor.direction = properties.direction
 		} else if (entity_type === 'CHEST') {
 			// chests have items as a comma delimited string
-			let items = properties.items.split(',').map(i => createItem(i, nx, ny))
+			let items = properties.items.split(',').map(i => createItem(i.trim(), nx, ny))
 			items.forEach(item => actor.addToInventory(item))
 		}
 		this.actors.push(actor)

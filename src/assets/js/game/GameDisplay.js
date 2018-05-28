@@ -71,6 +71,11 @@ export default class GameDisplay {
 			name: 'mulberryTown'
 		}
 
+		const mulberryForest = {
+			url: 'static/maps/mulberryForest.json',
+			name: 'mulberryForest'
+		}
+
 		const graveyardMap = {
 			url: 'static/maps/graveyard.json',
 			name: 'graveyard'
@@ -88,6 +93,7 @@ export default class GameDisplay {
 			.add(spritesheet)
 			.add(textureAtlas)
 			.add(mulberryTown)
+			.add(mulberryForest)
 			.add(graveyardMap)
 			.add(lichLairMap)
 			.add(orcCastleMap)
@@ -404,9 +410,14 @@ export default class GameDisplay {
 
 	assignSprite(actor, belowPlayer = false, index = 1) {
 		let { x, y, id } = actor
-		let props = this.tileset.tileproperties[actor.id + '']
+		let props = this.tileset.tileproperties[actor.id]
 		// if (actor.sprite === null || actor.sprite === undefined) {
-		if (props.animated === true && props.animated_id !== undefined && this.getTexture(props.animated_id) !== undefined) {
+		if (
+			props !== undefined &&
+			props.animated === true &&
+			props.animated_id !== undefined &&
+			this.getTexture(props.animated_id) !== undefined
+		) {
 			let frames = [this.getTexture(actor.id), this.getTexture(props.animated_id)]
 			let sprite = new PIXI.extras.AnimatedSprite(frames)
 			actor.setSprite(sprite)

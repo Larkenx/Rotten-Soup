@@ -541,7 +541,7 @@ const getWallTexture = (walls, sum) => {
 	return wallSums[sum]
 }
 
-export function dungeonFromTheme(width, height, dir, theme, level, mapGenerator, hasDoors = true) {
+export function dungeonFromTheme(width, height, theme, level, originPortal, mapGenerator, hasDoors = true) {
 	let gameMap = new GameMap(width, height)
 	const { tint, type, textures, mobDistribution } = theme
 	const { floor, corridorFloor, walls, doors } = textures
@@ -618,7 +618,7 @@ export function dungeonFromTheme(width, height, dir, theme, level, mapGenerator,
 		// this places a ladder going further into the dungeon (either deeper or higher)
 		let roll = getRandomInt(1, rotMap.getRooms().length)
 		if ((roll == 1 || createdLadders == 0) && createdLadders !== 1) {
-			let texture = dir === 'down' ? ladders.up : ladders.down
+			let texture = ladders.down
 			let ladder = new Ladder(center.x, center.y, texture, 'down')
 			gameMap.getTile(center.x, center.y).actors.push(ladder)
 			gameMap.actors.push(ladder)
@@ -666,6 +666,9 @@ export function dungeonFromTheme(width, height, dir, theme, level, mapGenerator,
 	gameMap.playerLocation = [x, y]
 	// gameMap.getTile(x, y).actors.push(new Player(x, y, Game.playerID + 1)) // set random spot to be the player
 	let ladder = new Ladder(x, y, ladders.up, 'up')
+	if (level === 1) {
+		ladder.portal = originPortal
+	}
 	gameMap.getTile(x, y).actors.push(ladder)
 	gameMap.actors.push(ladder)
 	gameMap.revealed = false
@@ -673,7 +676,7 @@ export function dungeonFromTheme(width, height, dir, theme, level, mapGenerator,
 }
 
 /* Returns a randomly generated textured dungeon in GameMap form  */
-export function randomDungeon(width, height, dir, level = 1) {
+export function randomDungeon(width, height, level = 1, origin) {
 	let dungeonConfig = {}
 	if (level <= 5) {
 		dungeonConfig = {
@@ -685,9 +688,9 @@ export function randomDungeon(width, height, dir, level = 1) {
 		return dungeonFromTheme(
 			width,
 			height,
-			dir,
 			dungeonThemes.RUINS,
 			level,
+			origin,
 			new ROT.Map.Uniform(width, height, dungeonConfig),
 			false
 		)
@@ -698,7 +701,14 @@ export function randomDungeon(width, height, dir, level = 1) {
 			corridorLength: [2, 4],
 			roomDugPercentage: 0.2
 		}
-		return dungeonFromTheme(width, height, dir, dungeonThemes.CATACOMBS, level, new ROT.Map.Digger(width, height, dungeonConfig))
+		return dungeonFromTheme(
+			width,
+			height,
+			dungeonThemes.CATACOMBS,
+			level,
+			origin,
+			new ROT.Map.Digger(width, height, dungeonConfig)
+		)
 	} else if (level <= 15) {
 		dungeonConfig = {
 			roomWidth: [3, 10],
@@ -709,9 +719,9 @@ export function randomDungeon(width, height, dir, level = 1) {
 		return dungeonFromTheme(
 			width,
 			height,
-			dir,
 			dungeonThemes.MINE,
 			level,
+			origin,
 			new ROT.Map.Uniform(width, height, dungeonConfig),
 			false
 		)
@@ -722,6 +732,6 @@ export function randomDungeon(width, height, dir, level = 1) {
 			corridorLength: [4, 4],
 			roomDugPercentage: 0.4
 		}
-		return dungeonFromTheme(width, height, dir, dungeonThemes.ICE, level, new ROT.Map.Digger(width, height, dungeonConfig))
+		return dungeonFromTheme(width, height, dungeonThemes.ICE, level, origin, new ROT.Map.Digger(width, height, dungeonConfig))
 	}
 }

@@ -22,29 +22,19 @@ export default class Ladder extends Entity {
 	act() {}
 
 	react(actor) {
-		let levelName = Game.currentLevel.name.replace(/[0-9]/g, '')
-		let levelNumber = parseInt(Game.currentLevel.name.replace(/[^0-9]/g, ''))
-		if (this.direction === 'down') {
-			Game.log('You climb down the ladder...', 'player_move')
-			if (this.portal !== null) {
-				Game.changeLevels(this.portal, this.direction == 'down' ? 'up' : 'down')
-				return
-			} else {
-				console.log(levelName + (levelNumber + 1), this.direction == 'down' ? 'up' : 'down', levelNumber)
-				Game.changeLevels(levelName + (levelNumber + 1), this.direction == 'down' ? 'up' : 'down', levelNumber)
-				return
-			}
+		if (this.direction === null) {
+			console.error('Ladder does not have a direction!')
+			return
+		}
+
+		if (this.direction === 'down') Game.log('You climb down the ladder...', 'player_move')
+		if (this.direction === 'up') Game.log('You climb up the ladder...', 'player_move')
+
+		if (this.portal !== null) {
+			Game.changeLevels(this.portal)
 		} else {
-			Game.log('You climb up the ladder...', 'player_move')
-			if (this.portal !== null) {
-				Game.changeLevels(this.portal, this.direction == 'down' ? 'up' : 'down')
-				return
-			}
-			if (levelNumber === 1) {
-				Game.changeLevels('overworld')
-				return
-			}
-			Game.changeLevels(levelName + (levelNumber - 1), this.direction == 'down' ? 'up' : 'down', levelNumber)
+			if (this.direction === 'up') Game.ascend()
+			if (this.direction === 'down') Game.descend()
 		}
 	}
 }

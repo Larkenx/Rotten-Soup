@@ -183,12 +183,12 @@ export class Actor extends Entity {
 					}
 					return true
 				}
-				// }
+
 				// actor has stumbled upon a non-Actor entity (an item or miscellaneous entity like a door)
 				if (actor instanceof Door) {
 					actor.react()
-					return true
-				} else if (this !== Game.player && (actor instanceof Ladder || actor instanceof Chest)) {
+					if (actor.closed === true) return true
+				} else if (actor instanceof Chest) {
 					return false
 				}
 			}

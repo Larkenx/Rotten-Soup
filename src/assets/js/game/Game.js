@@ -42,7 +42,7 @@ export let Game = {
 	engine: null,
 	loaded: false,
 	levels: {},
-	currentLevel: { name: 'Mulberry Town' },
+	currentLevel: { name: 'Mulberry Forest', depth: 0 },
 	map: null,
 	messageHistory: [],
 	tempMessages: [],
@@ -68,13 +68,13 @@ export let Game = {
 		}
 		let onceLoaded = () => {
 			this.levels['Mulberry Town'] = createMapFromJSON(PIXI.loader.resources['mulberryTown'].data)
+			this.levels['Mulberry Forest'] = createMapFromJSON(PIXI.loader.resources['mulberryForest'].data)
 			// this.levels['graveyard'] = createMapFromJSON(PIXI.loader.resources['graveyard'].data)
 			// this.levels['Lich Lair'] = createMapFromJSON(PIXI.loader.resources['lichLair'].data)
 			// this.levels['Orc Castle'] = createMapFromJSON(PIXI.loader.resources['orcCastle'].data)
 			// this.levels['City Dungeon 1'] = randomDungeon(40, 40, 'down', 1)
 			// this.levels['graveyard'].revealed = true
 			// this.levels['Lich Lair'].revealed = true
-			// this.levels['Mulberry Town'].revealed = true
 			// this.levels['Orc Castle'].revealed = true
 			this.map = this.levels[this.currentLevel.name]
 			this.width = this.map.width < this.displayOptions.width ? this.map.width : this.displayOptions.width
@@ -142,15 +142,11 @@ export let Game = {
 		return cx <= x && x <= cx + Game.width && cy <= y && y <= cy + Game.height
 	},
 
-	changeLevels(newLevel, dir, level) {
+	changeLevels(newLevel, level = 1) {
 		if (this.levels[newLevel] === undefined) {
 			this.player.cb.dungeonsExplored++
 			// generating a new random room
-			if (newLevel.toLowerCase().includes('cave')) {
-				this.levels[newLevel] = randomCave(80, 40, dir, level)
-			} else {
-				this.levels[newLevel] = randomDungeon(40, 40, dir, level)
-			}
+			this.levels[newLevel] = randomDungeon(40, 40, level, this.currentLevel.name)
 
 			for (let actor of this.levels[newLevel].actors) {
 				if (actor instanceof Chest) {
@@ -172,7 +168,7 @@ export let Game = {
 					items.forEach(item => actor.addToInventory(item))
 				}
 			}
-			// console.log(newLevel + " does not exist, so a new random instance is being created.");
+			console.log(newLevel + ' does not exist, so a new random instance is being created.')
 		}
 		// save the player's location on this map
 		this.map.playerLocation = [Game.player.x, Game.player.y]
@@ -183,6 +179,7 @@ export let Game = {
 		this.map.actors = this.map.actors.filter(a => a !== this.player)
 		this.map = this.levels[newLevel]
 		this.currentLevel.name = newLevel
+		this.currentLevel.level = level
 		this.playerLocation = this.map.playerLocation
 		// before drawing the viewport, we need to clear the screen of whatever was here last
 		this.display.clear()
@@ -213,6 +210,16 @@ export let Game = {
 		this.minimap.clear()
 		this.drawMiniMap()
 		this.renderMap()
+	},
+
+	ascend() {
+		this.currentLevel.depth--
+		this.changeLevels(this.currentLevel.name, this.currentLevel.depth)
+	},
+
+	descend() {
+		this.currentLevel.depth++
+		this.changeLevels(this.currentLevel.name, this.currentLevel.depth)
 	},
 
 	drawMiniMap() {
