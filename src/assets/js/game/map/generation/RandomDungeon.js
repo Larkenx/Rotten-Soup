@@ -541,8 +541,9 @@ const getWallTexture = (walls, sum) => {
 	return wallSums[sum]
 }
 
-export function dungeonFromTheme(width, height, theme, level, originPortal, mapGenerator, hasDoors = true) {
+export function dungeonFromTheme(width, height, theme, mapGenerator, options, hasDoors = true) {
 	let gameMap = new GameMap(width, height)
+	let { dungeonName, lastDungeon, fromPortal, toPortal, level } = options
 	const { tint, type, textures, mobDistribution } = theme
 	const { floor, corridorFloor, walls, doors } = textures
 	// Generate ROT map and store empty tiles in hashmap
@@ -672,66 +673,45 @@ export function dungeonFromTheme(width, height, theme, level, originPortal, mapG
 	gameMap.getTile(x, y).actors.push(ladder)
 	gameMap.actors.push(ladder)
 	gameMap.revealed = false
+	gameMap.type = 'dungeon'
+	gameMap.depth = level
 	return gameMap
 }
 
 /* Returns a randomly generated textured dungeon in GameMap form  */
-export function randomDungeon(width, height, level = 1, origin) {
-	let dungeonConfig = {}
+export function randomDungeon(width, height, options) {
+	let dc = {}
 	if (level <= 5) {
-		dungeonConfig = {
+		dc = {
 			roomWidth: [3, 20],
 			roomHeight: [4, 10],
 			corridorLength: [4, 4],
 			roomDugPercentage: 0.4
 		}
-		return dungeonFromTheme(
-			width,
-			height,
-			dungeonThemes.RUINS,
-			level,
-			origin,
-			new ROT.Map.Uniform(width, height, dungeonConfig),
-			false
-		)
+		return dungeonFromTheme(width, height, dungeonThemes.RUINS, new ROT.Map.Uniform(width, height, dc), options, false)
 	} else if (level <= 10) {
-		dungeonConfig = {
+		dc = {
 			roomWidth: [3, 6],
 			roomHeight: [4, 7],
 			corridorLength: [2, 4],
 			roomDugPercentage: 0.2
 		}
-		return dungeonFromTheme(
-			width,
-			height,
-			dungeonThemes.CATACOMBS,
-			level,
-			origin,
-			new ROT.Map.Digger(width, height, dungeonConfig)
-		)
+		return dungeonFromTheme(width, height, dungeonThemes.CATACOMBS, new ROT.Map.Digger(width, height, dc), options)
 	} else if (level <= 15) {
-		dungeonConfig = {
+		dc = {
 			roomWidth: [3, 10],
 			roomHeight: [4, 10],
 			corridorLength: [1, 10],
 			roomDugPercentage: 0.4
 		}
-		return dungeonFromTheme(
-			width,
-			height,
-			dungeonThemes.MINE,
-			level,
-			origin,
-			new ROT.Map.Uniform(width, height, dungeonConfig),
-			false
-		)
+		return dungeonFromTheme(width, height, dungeonThemes.MINE, new ROT.Map.Uniform(width, height, dc), options, false)
 	} else {
-		dungeonConfig = {
+		dc = {
 			roomWidth: [3, 20],
 			roomHeight: [4, 10],
 			corridorLength: [4, 4],
 			roomDugPercentage: 0.4
 		}
-		return dungeonFromTheme(width, height, dungeonThemes.ICE, level, origin, new ROT.Map.Digger(width, height, dungeonConfig))
+		return dungeonFromTheme(width, height, dungeonThemes.ICE, new ROT.Map.Digger(width, height, dc), options)
 	}
 }

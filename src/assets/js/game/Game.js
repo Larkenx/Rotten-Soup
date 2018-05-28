@@ -42,7 +42,7 @@ export let Game = {
 	engine: null,
 	loaded: false,
 	levels: {},
-	currentLevel: { name: 'Mulberry Forest', depth: 0 },
+	currentLevel: { name: 'Mulberry Forest' },
 	map: null,
 	messageHistory: [],
 	tempMessages: [],
@@ -67,15 +67,9 @@ export let Game = {
 			tileHeight: 32
 		}
 		let onceLoaded = () => {
-			this.levels['Mulberry Town'] = createMapFromJSON(PIXI.loader.resources['mulberryTown'].data)
-			this.levels['Mulberry Forest'] = createMapFromJSON(PIXI.loader.resources['mulberryForest'].data)
-			// this.levels['graveyard'] = createMapFromJSON(PIXI.loader.resources['graveyard'].data)
-			// this.levels['Lich Lair'] = createMapFromJSON(PIXI.loader.resources['lichLair'].data)
-			// this.levels['Orc Castle'] = createMapFromJSON(PIXI.loader.resources['orcCastle'].data)
-			// this.levels['City Dungeon 1'] = randomDungeon(40, 40, 'down', 1)
-			// this.levels['graveyard'].revealed = true
-			// this.levels['Lich Lair'].revealed = true
-			// this.levels['Orc Castle'].revealed = true
+			let { resources } = PIXI.loader
+			this.levels['Mulberry Town'] = createMapFromJSON(resources['mulberryTown'].data, 'Mulberry Town')
+			this.levels['Mulberry Forest'] = createMapFromJSON(resources['mulberryForest'].data, 'Mulberry Forest')
 			this.map = this.levels[this.currentLevel.name]
 			this.width = this.map.width < this.displayOptions.width ? this.map.width : this.displayOptions.width
 			this.height = this.map.height < this.displayOptions.height ? this.map.height : this.displayOptions.height
@@ -86,7 +80,6 @@ export let Game = {
 			this.initializeMinimap()
 			document.getElementById('game_container').appendChild(this.display.getContainer())
 			document.getElementById('minimap_container').appendChild(this.minimap.getContainer())
-
 			this.engine.start() // Start the engine
 			this.renderMap()
 		}
@@ -142,7 +135,7 @@ export let Game = {
 		return cx <= x && x <= cx + Game.width && cy <= y && y <= cy + Game.height
 	},
 
-	changeLevels(newLevel, level = 1) {
+	/*
 		if (this.levels[newLevel] === undefined) {
 			this.player.cb.dungeonsExplored++
 			// generating a new random room
@@ -170,16 +163,47 @@ export let Game = {
 			}
 			console.log(newLevel + ' does not exist, so a new random instance is being created.')
 		}
+	*/
+
+	createDungeonFloors(origin, dungeonName, numberOfFloors) {
+		this.levels[dungeonName + 1] = randomDungeon(40, 40, {
+			dungeonName,
+			lastDungeon: false,
+			fromPortal: origin,
+			toPortal: dungeonName + 2
+		})
+		for (let depth = 2; depth < numberOfFloors; depth++) {
+			let options = {
+				dungeonName,
+				lastDungeon: false,
+				fromPortal: dungeonName + (depth - 1),
+				toPortal: dungeonName + (depth + 1)
+			}
+			this.levels[dungeonName + depth] = randomDungeon(40, 40, options)
+		}
+		this.levels[dungeonName + numberOfFloors] = randomDungeon(40, 40, {
+			dungeonName,
+			lastDungeon: true,
+			fromPortal: dungeonName + (numberOfFloors - 1),
+			toPortal: null
+		})
+	},
+
+	changeLevels(mapID, dungeon = false) {
+		if (dungeon === true && !(mapID in this.levels)) {
+			this.createDungeonFloors(this.currentLevel.name, mapID, 20)
+		}
+		let nextMap = this.levels[mapID]
+		// Maps can be either a series of dungeons, or a single 'unconnected' map
 		// save the player's location on this map
 		this.map.playerLocation = [Game.player.x, Game.player.y]
 		// Save the old map
-		this.levels[this.currentLevel.name] = this.map // add the old map to 'levels'
+		this.levels[this.currentLevel.name].map = this.map // add the old map to 'levels'
 		// Unshift player from ladder position (so that when resurfacing, no player is present)
 		this.getTile(this.player.x, this.player.y).removeActor(this.player)
 		this.map.actors = this.map.actors.filter(a => a !== this.player)
-		this.map = this.levels[newLevel]
-		this.currentLevel.name = newLevel
-		this.currentLevel.level = level
+		this.map = nextMap
+		this.currentLevel.name = nextMap.name
 		this.playerLocation = this.map.playerLocation
 		// before drawing the viewport, we need to clear the screen of whatever was here last
 		this.display.clear()
@@ -210,16 +234,6 @@ export let Game = {
 		this.minimap.clear()
 		this.drawMiniMap()
 		this.renderMap()
-	},
-
-	ascend() {
-		this.currentLevel.depth--
-		this.changeLevels(this.currentLevel.name, this.currentLevel.depth)
-	},
-
-	descend() {
-		this.currentLevel.depth++
-		this.changeLevels(this.currentLevel.name, this.currentLevel.depth)
 	},
 
 	drawMiniMap() {

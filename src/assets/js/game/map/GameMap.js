@@ -2,18 +2,21 @@ import { Game, tileset } from '#/Game.js'
 import Tile, { getTileInfo } from '#/map/Tile.js'
 import { createActor, createItem } from '#/utils/EntityFactory.js'
 
-export function createMapFromJSON(json) {
+export function createMapFromJSON(json, name) {
 	let { layers, width, height } = json
-	let gameMap = new GameMap(width, height)
+	let gameMap = new GameMap(width, height, name)
 	gameMap.createFromJSON(json)
 	gameMap.revealed = true
+	gameMap.type = 'static'
 	return gameMap
 }
+
 /**
  * Created by Larken on 6/28/2017.
  */
 export class GameMap {
-	constructor(width, height) {
+	constructor(width, height, name) {
+		this.name = name
 		this.loadedIDS = []
 		this.playerLocation = null // this field is used exclusively for saving the player's last location before they change levels
 		this.width = width

@@ -36,6 +36,34 @@ import Demon from '#/entities/actors/enemies/Demon.js'
 import BoneMan from '#/entities/actors/enemies/BoneMan.js'
 import { getRandomInt, getNormalRandomInt, randomProperty } from '#/utils/HelperFunctions.js'
 
+const itemShop = {
+	HEALTH_POTION: (x, y, t) => new HealthPotion(x, y, t),
+	STRENGTH_POTION: (x, y, t) => new StrengthPotion(x, y, t),
+	MANA_POTION: (x, y, t) => new ManaPotion(x, y, t),
+	SWORD: (x, y, t) => createSword(x, y, t),
+	BOW: (x, y, t) => createBow(x, y, t),
+	STEEL_ARROW: (x, y, t) => new SteelArrow(x, y, t, 5)
+}
+
+export function createItem(itemString, x, y, id = null) {
+	const defaultItemTextures = {
+		HEALTH_POTION: 488,
+		MANA_POTION: 608,
+		STRENGTH_POTION: 969,
+		SWORD: 35,
+		BOW: 664,
+		STEEL_ARROW: 784
+	}
+	const texture = id === null ? defaultItemTextures[itemString] : id
+
+	if (!(itemString in itemShop)) {
+		console.error(`Tried to create an item without an entry: ${itemString} with ID: ${id}`)
+		return null
+	}
+
+	return itemShop[itemString](x, y, texture)
+}
+
 export const actorTextures = {
 	ORC: [5292, 5293, 5294, 5295, 5296, 5297, 5299],
 	EMPOWERED_ORC: [5298],
@@ -59,31 +87,6 @@ export const actorTextures = {
 	BANSHEE: [3154],
 	DEMON: [2409, 2410, 2411, 2412, 2413, 2414, 2415],
 	BONE_MAN: [3392, 3393]
-}
-
-export function createItem(itemString, x, y, id = null) {
-	const defaultItemTextures = {
-		HEALTH_POTION: 488,
-		MANA_POTION: 608,
-		STRENGTH_POTION: 969,
-		SWORD: 35,
-		BOW: 664,
-		STEEL_ARROW: 784
-	}
-	const texture = id === null ? defaultItemTextures[itemString] : id
-	const itemShop = {
-		HEALTH_POTION: () => new HealthPotion(x, y, texture),
-		STRENGTH_POTION: () => new StrengthPotion(x, y, texture),
-		MANA_POTION: () => new ManaPotion(x, y, texture),
-		SWORD: () => createSword(x, y, texture),
-		BOW: () => createBow(x, y, texture),
-		STEEL_ARROW: () => new SteelArrow(x, y, texture, 5)
-	}
-	if (!(itemString in itemShop)) {
-		console.error(`Tried to create an item without an entry: ${itemString} with ID: ${id}`)
-		return null
-	}
-	return itemShop[itemString]()
 }
 
 const entityShop = {
