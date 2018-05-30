@@ -7,12 +7,14 @@ import GameDisplay from '#/GameDisplay.js'
 import { Actor } from '#/entities/actors/Actor.js'
 import { Entity } from '#/entities/Entity.js'
 import { getItemsFromDropTable, addPrefix } from '#/utils/HelperFunctions.js'
+import PlayerController from '#/utils/PlayerController.js'
 
 import Item from '#/entities/items/Item.js'
 import Player from '#/entities/actors/Player.js'
 import MapGen from '#/map/generation/index.js'
 import Door from '#/entities/misc/Door.js'
 import Ladder from '#/entities/misc/Ladder.js'
+import LevelTransition from '#/entities/misc/LevelTransition.js'
 import Chest from '#/entities/misc/Chest.js'
 
 const { randomSimplexMap, randomDungeon, randomCave } = MapGen
@@ -42,7 +44,7 @@ export let Game = {
 	engine: null,
 	loaded: false,
 	levels: {},
-	currentLevel: { name: 'Mulberry Forest', depth: 0 },
+	currentLevel: { name: 'Mulberry Graveyard', depth: 0 },
 	map: null,
 	messageHistory: [],
 	tempMessages: [],
@@ -52,7 +54,7 @@ export let Game = {
 	targetReticle: null,
 	enemyCycle: null,
 	enemyCycleIndex: 0,
-	userSettings: { hpBars: true },
+	userSettings: { hpBars: false, animationsEnabled: true },
 
 	init(playerSpriteID) {
 		this.playerID = playerSpriteID
@@ -70,6 +72,7 @@ export let Game = {
 			let { resources } = PIXI.loader
 			this.levels['Mulberry Town'] = createMapFromJSON(resources['mulberryTown'].data, 'Mulberry Town')
 			this.levels['Mulberry Forest'] = createMapFromJSON(resources['mulberryForest'].data, 'Mulberry Forest')
+			this.levels['Mulberry Graveyard'] = createMapFromJSON(resources['mulberryGraveyard'].data, 'Mulberry Graveyard')
 			this.map = this.levels[this.currentLevel.name]
 			this.width = this.map.width < this.displayOptions.width ? this.map.width : this.displayOptions.width
 			this.height = this.map.height < this.displayOptions.height ? this.map.height : this.displayOptions.height
@@ -97,6 +100,7 @@ export let Game = {
 	scheduleAllActors() {
 		// Set up the ROT engine and scheduler
 		this.scheduler = new ROT.Scheduler.Simple()
+		// this.scheduler.add(new PlayerController(), true) // Add the player to the scheduler
 		this.scheduler.add(this.player, true) // Add the player to the scheduler
 		this.scheduler.add(this.display, true)
 		for (let i = 0; i < this.map.actors.length; i++) {
@@ -486,6 +490,13 @@ export let Game = {
 	/* Testing Functions */
 	getNearestLadder() {
 		let ladders = this.map.actors.filter(a => a instanceof Ladder)
-		return ladders[0]
+		if (ladders.length > 0) return ladders[0]
+		else return null
+	},
+
+	getNearestLevelTransition() {
+		let levelTransitions = this.map.actors.filter(a => a instanceof LevelTransition)
+		if (levelTransitions.length > 0) return levelTransitions[0]
+		else return null
 	}
 }

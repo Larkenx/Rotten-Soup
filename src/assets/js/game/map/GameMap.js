@@ -73,24 +73,25 @@ export class GameMap {
 		const { entity_type } = properties
 		let nx = x / 32
 		let ny = y / 32 - 1 // for some reason, TILED objects y position are 1-indexed..?
-		let actor = createActor(entity_type, nx, ny, gid - 1)
-		/* Post actor creation clean up... */
+		let entity = properties.item ? createItem(entity_type, nx, ny, gid - 1) : createActor(entity_type, nx, ny, gid - 1)
+		if (properties.item) entity.inInventory = false
+		if (properties.items !== undefined) {
+			let items = properties.items.split(',').map(i => createItem(i.trim(), nx, ny))
+			items.forEach(item => entity.addToInventory(item))
+		}
+		/* Post entity creation clean up... */
 		if (entity_type === 'NPC') {
 			// add NPC routines if any exist...
 			// NPCs may have items too!
-			actor.wanders = properties.wanders
+			entity.wanders = properties.wanders
 		} else if (entity_type === 'LADDER' || entity_type === 'LEVEL_TRANSITION') {
 			// ladders & level transitions have portal ID's
-			actor.portal = properties.portalID
-			actor.createDungeon = properties.createDungeon
-			if (entity_type === 'LADDER') actor.direction = properties.direction
-		} else if (entity_type === 'CHEST') {
-			// chests have items as a comma delimited string
-			let items = properties.items.split(',').map(i => createItem(i.trim(), nx, ny))
-			items.forEach(item => actor.addToInventory(item))
+			entity.portal = properties.portalID
+			entity.createDungeon = properties.createDungeon
+			if (entity_type === 'LADDER') entity.direction = properties.direction
 		}
-		this.actors.push(actor)
-		this.getTile(nx, ny).actors.push(actor)
+		this.actors.push(entity)
+		this.getTile(nx, ny).actors.push(entity)
 	}
 
 	processObjectGroupLayer(layer) {

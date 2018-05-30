@@ -54,7 +54,7 @@ export default class Player extends Actor {
 				level: 1,
 				hp: 50,
 				mana: 15,
-				str: 100,
+				str: 1,
 				def: 1,
 				/* Per-turn effects */
 				hpRecovery: 5,
@@ -66,6 +66,7 @@ export default class Player extends Actor {
 				spells: [],
 				range: 7, // how far we can see
 				/* End Game data */
+				turnsTaken: 0,
 				enemiesKilled: 0,
 				damageDealt: 0,
 				damageTaken: 0,
@@ -165,9 +166,11 @@ export default class Player extends Actor {
 		this.currentLevel = Game.currentLevel
 
 		Game.engine.lock()
+		this.cb.turnsTaken++
 		if (this.commandQueue.length > 0) {
 			// perform player commands and unlock
-			this.commandQueue.pop()()
+			let { fn } = this.commandQueue.pop()
+			fn()
 			Game.engine.unlock()
 			return
 		}

@@ -353,26 +353,6 @@
                 {
                  "gid":5300,
                  "height":32,
-                 "id":21,
-                 "name":"Orc",
-                 "properties":
-                    {
-                     "entity_type":"ORC"
-                    },
-                 "propertytypes":
-                    {
-                     "entity_type":"string"
-                    },
-                 "rotation":0,
-                 "type":"",
-                 "visible":true,
-                 "width":32,
-                 "x":1632,
-                 "y":960
-                }, 
-                {
-                 "gid":5300,
-                 "height":32,
                  "id":22,
                  "name":"Orc",
                  "properties":
@@ -523,9 +503,51 @@
                  "y":256
                 }, 
                 {
+                 "gid":5300,
+                 "height":32,
+                 "id":32,
+                 "name":"Orc",
+                 "properties":
+                    {
+                     "entity_type":"ORC"
+                    },
+                 "propertytypes":
+                    {
+                     "entity_type":"string"
+                    },
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":32,
+                 "x":1600,
+                 "y":960
+                }, 
+                {
+                 "gid":25,
+                 "height":32,
+                 "id":33,
+                 "name":"Key",
+                 "properties":
+                    {
+                     "entity_type":"KEY",
+                     "item":true
+                    },
+                 "propertytypes":
+                    {
+                     "entity_type":"string",
+                     "item":"bool"
+                    },
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":32,
+                 "x":1664,
+                 "y":992
+                }, 
+                {
                  "gid":4696,
                  "height":32,
-                 "id":30,
+                 "id":34,
                  "name":"Player",
                  "properties":
                     {
@@ -539,8 +561,8 @@
                  "type":"",
                  "visible":true,
                  "width":32,
-                 "x":1696,
-                 "y":1088
+                 "x":32,
+                 "y":832
                 }],
          "opacity":1,
          "type":"objectgroup",
@@ -548,7 +570,7 @@
          "x":0,
          "y":0
         }],
- "nextobjectid":31,
+ "nextobjectid":35,
  "orientation":"orthogonal",
  "renderorder":"right-down",
  "tiledversion":"1.1.5",

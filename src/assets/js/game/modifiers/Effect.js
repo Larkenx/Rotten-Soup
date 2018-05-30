@@ -11,12 +11,7 @@ import { Game } from '#/Game.js'
 export class Effect {
 	constructor(options) {
 		Object.assign(this, options)
-		if (
-			this.name === undefined ||
-			this.description === undefined ||
-			this.action === undefined ||
-			this.duration === undefined
-		)
+		if (this.name === undefined || this.description === undefined || this.action === undefined || this.duration === undefined)
 			throw 'Effect missing critical fields'
 	}
 
@@ -54,11 +49,11 @@ export class RegenerationEffect extends Effect {
 		super({
 			name: 'Regeneration',
 			action: entity => {
-				entity.heal(10)
+				entity.heal(5)
 			},
 			description: entity => {
-				if (entity === Game.player) return 'You regenerate 10 health.'
-				else return `${entity.name.capitalize()} regenerated 10 health.`
+				if (entity === Game.player) return 'You regenerate 5 health.'
+				else return `${entity.name.capitalize()} regenerated 5 health.`
 			},
 			duration: 5
 		})

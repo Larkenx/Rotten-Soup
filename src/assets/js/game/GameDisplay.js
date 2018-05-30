@@ -76,17 +76,9 @@ export default class GameDisplay {
 			name: 'mulberryForest'
 		}
 
-		const graveyardMap = {
-			url: 'static/maps/graveyard.json',
-			name: 'graveyard'
-		}
-		const lichLairMap = {
-			url: 'static/maps/lichLair.json',
-			name: 'lichLair'
-		}
-		const orcCastleMap = {
-			url: 'static/maps/orcCastle.json',
-			name: 'orcCastle'
+		const mulberryGraveyard = {
+			url: 'static/maps/mulberryGraveyard.json',
+			name: 'mulberryGraveyard'
 		}
 
 		PIXI.loader
@@ -94,9 +86,7 @@ export default class GameDisplay {
 			.add(textureAtlas)
 			.add(mulberryTown)
 			.add(mulberryForest)
-			.add(graveyardMap)
-			.add(lichLairMap)
-			.add(orcCastleMap)
+			.add(mulberryGraveyard)
 			.on('progress', (l, r) => this.handleAssetLoad(l, r))
 			.load(() => {
 				this.tileset = PIXI.loader.resources['textureAtlas'].data
@@ -219,7 +209,7 @@ export default class GameDisplay {
 		this.background.position.set(-startingPos[0] * this.tileSize, -startingPos[1] * this.tileSize)
 		// draw the actors last because they should be on the top-most layer
 		for (let a of map.actors) {
-			if (!(a instanceof Item)) {
+			if (!(a instanceof Item) || !a.inInventory) {
 				this.assignSprite(a)
 			}
 		}
@@ -452,10 +442,10 @@ export default class GameDisplay {
 	handleAssetLoad(loader, resource) {
 		let { stage, renderer } = this.app
 		this.clear()
-		let graphics = new PIXI.Graphics()
+		// let graphics = new PIXI.Graphics()
 		let cx = renderer.width / 2
 		let cy = renderer.height / 2
-		let barLength = renderer.width / 2
+		// let barLength = renderer.width / 2
 		let text = new PIXI.Text(`Loading ${resource.name}... ${Math.floor(loader.progress)}%`, {
 			fill: 0xffffff,
 			fontSize: 16,
@@ -463,16 +453,16 @@ export default class GameDisplay {
 			x: cx,
 			y: cy
 		})
-		// clear the previous progress bar
-		// draw the progress bar outline
-		graphics.lineStyle(50, 0x6f6f6f)
-		graphics.drawRoundedRect(cx - barLength / 2, cy, barLength, 4)
-		// draw the progress bar interior
-		let maxInteriorBarLength = barLength - 10
-		let currentBarLength = maxInteriorBarLength * (loader.progress / 100)
-		graphics.lineStyle(30, 0x04ab34)
-		graphics.drawRoundedRect(cx - maxInteriorBarLength / 2, cy, currentBarLength, 4)
-		stage.addChild(graphics)
+		// // clear the previous progress bar
+		// // draw the progress bar outline
+		// graphics.lineStyle(50, 0x6f6f6f)
+		// graphics.drawRoundedRect(cx - barLength / 2, cy, barLength, 4)
+		// // draw the progress bar interior
+		// let maxInteriorBarLength = barLength - 10
+		// let currentBarLength = maxInteriorBarLength * (loader.progress / 100)
+		// graphics.lineStyle(30, 0x04ab34)
+		// graphics.drawRoundedRect(cx - maxInteriorBarLength / 2, cy, currentBarLength, 4)
+		// stage.addChild(graphics)
 		stage.addChild(text)
 	}
 

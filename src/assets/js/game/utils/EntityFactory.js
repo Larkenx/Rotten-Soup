@@ -4,6 +4,7 @@ import Door from '#/entities/misc/Door.js'
 import LockedDoor from '#/entities/misc/LockedDoor.js'
 import LevelTransition from '#/entities/misc/LevelTransition.js'
 import Ladder from '#/entities/misc/Ladder.js'
+import Key from '#/entities/items/misc/Key.js'
 import NPC from '#/entities/actors/NPC.js'
 import { Corpse, corpseTypes } from '#/entities/items/misc/Corpse.js'
 // Items
@@ -34,6 +35,8 @@ import Minotaur from '#/entities/actors/enemies/Minotaur.js'
 import Cyclops from '#/entities/actors/enemies/Cyclops.js'
 import Demon from '#/entities/actors/enemies/Demon.js'
 import BoneMan from '#/entities/actors/enemies/BoneMan.js'
+import Lich from '#/entities/actors/enemies/boss/Lich.js'
+
 import { getRandomInt, getNormalRandomInt, randomProperty } from '#/utils/HelperFunctions.js'
 
 const itemShop = {
@@ -42,11 +45,13 @@ const itemShop = {
 	MANA_POTION: (x, y, t) => new ManaPotion(x, y, t),
 	SWORD: (x, y, t) => createSword(x, y, t),
 	BOW: (x, y, t) => createBow(x, y, t),
-	STEEL_ARROW: (x, y, t) => new SteelArrow(x, y, t, 5)
+	STEEL_ARROW: (x, y, t) => new SteelArrow(x, y, t, 5),
+	KEY: (x, y, t) => new Key(x, y, t)
 }
 
 export function createItem(itemString, x, y, id = null) {
 	const defaultItemTextures = {
+		KEY: 24,
 		HEALTH_POTION: 488,
 		MANA_POTION: 608,
 		STRENGTH_POTION: 969,
@@ -55,6 +60,7 @@ export function createItem(itemString, x, y, id = null) {
 		STEEL_ARROW: 784
 	}
 	const texture = id === null ? defaultItemTextures[itemString] : id
+	console.log(`Adding new ${itemString} with texture: ${texture}`)
 
 	if (!(itemString in itemShop)) {
 		console.error(`Tried to create an item without an entry: ${itemString} with ID: ${id}`)
@@ -118,7 +124,10 @@ const entityShop = {
 	MINOTAUR: (x, y, t) => new Minotaur(x, y, t),
 	CYCLOPS: (x, y, t) => new Cyclops(x, y, t),
 	DEMON: (x, y, t) => new Demon(x, y, t),
-	BONE_MAN: (x, y, t) => new BoneMan(x, y, t)
+	BONE_MAN: (x, y, t) => new BoneMan(x, y, t),
+	ZOMBIE_CORPSE: (x, y, t) => new Corpse(x, y, 'undead', t),
+	SKELETON_CORPSE: (x, y, t) => new Corpse(x, y, 'Skeleton', t),
+	LICH: (x, y, t) => new Lich(x, y, t)
 }
 
 export function createActor(actorString, x, y, id = null) {

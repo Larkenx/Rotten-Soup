@@ -152,7 +152,7 @@ export class Actor extends Entity {
 	interact(actor) {
 		let nx = actor.x - this.x
 		let ny = actor.y - this.y
-		if (this === Game.player || actor === Game.player) {
+		if ((this === Game.player || actor === Game.player) && Game.userSettings.animationsEnabled) {
 			Game.display.moveSprite(this.sprite, this.x + nx / 2, this.y + ny / 2)
 			setTimeout(() => {
 				Game.display.moveSprite(this.sprite, this.x, this.y)

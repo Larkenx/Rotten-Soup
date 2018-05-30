@@ -13,21 +13,29 @@
                 </v-card-text>
                 <v-card-text>
                     <v-layout row>
-                        <v-flex xs6>Enable Mouse Controls</v-flex>
-                        <v-flex xs4 offset-xs2>
-                            <v-switch color="yellow darken-4" v-model="mouseEnabled"></v-switch>
-                        </v-flex>
+                        <v-flex>Enable Mouse Controls*</v-flex>
+                        <span>
+                          <v-switch color="yellow darken-4" v-model="mouseEnabled"></v-switch>
+                        </span>
                     </v-layout>
 
                     <v-layout row>
-                        <v-flex xs6>Show HP Bars</v-flex>
-                        <v-flex xs4 offset-xs2>
-                            <v-switch color="yellow darken-4" @click.stop="toggleHPBars" v-model="userSettings.hpBars"></v-switch>
-                        </v-flex>
+                        <v-flex>Show HP Bars*</v-flex>
+                        <span>
+                          <v-switch color="yellow darken-4" @click.stop="toggleHPBars" v-model="userSettings.hpBars"></v-switch>
+                        </span>
+                    </v-layout>
+
+                    <v-layout row>
+                        <v-flex>Enable attacking animations*</v-flex>
+                        <span>
+                          <v-switch color="yellow darken-4" @click.stop="toggleAnimations" v-model="userSettings.animationsEnabled"></v-switch>
+                        </span>
                     </v-layout>
 
                 </v-card-text>
                 <v-card-actions>
+                    <small>* may cause performance issues</small>
                     <v-spacer></v-spacer>
                     <v-btn color="yellow darken-4" flat @click.stop="toolDialog=false">Close</v-btn>
                 </v-card-actions>
@@ -58,6 +66,9 @@ export default {
 	methods: {
 		toggleHPBars() {
 			Game.userSettings.hpBars = !Game.userSettings.hpBars
+		},
+		toggleAnimations() {
+			Game.userSettings.animationsEnabled = !Game.userSettings.animationsEnabled
 		}
 	}
 }

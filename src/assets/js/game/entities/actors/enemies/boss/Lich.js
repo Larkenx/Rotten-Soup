@@ -3,7 +3,7 @@ import { Game } from '#/Game.js'
 import ROT from 'rot-js'
 
 import { targetTypes, MagicDart, Regeneration, Pain, VampiricDraining, getNearbyCorpses, AnimateDead } from '#/magic/Spell.js'
-import { getVisibleTiles } from '#/utils/HelperFunctions'
+import { getVisibleTiles, getRandomInt } from '#/utils/HelperFunctions'
 export default class Lich extends Actor {
 	constructor(x, y, id) {
 		super(x, y, {
@@ -32,7 +32,7 @@ export default class Lich extends Actor {
 		})
 
 		this.spells = {
-			regeneration: new Regeneration({ cd: 0, maxCD: 5 }),
+			regeneration: new Regeneration({ cd: 0, maxCD: 15 }),
 			pain: new Pain({ cd: 0, maxCD: 2 }),
 			vampiricDraining: new VampiricDraining({ cd: 0, maxCD: 5 }),
 			animateDead: new AnimateDead({ cd: 0, maxCD: 7 })

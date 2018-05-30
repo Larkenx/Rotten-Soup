@@ -135,7 +135,7 @@ export class Regeneration extends Spell {
 	constructor(options) {
 		super({
 			name: 'Regeneration',
-			hoverInfo: 'Regenerates 10 health per turn by reanimating wounds with necromancy.',
+			hoverInfo: 'Regenerates 5 health per turn by reanimating wounds with necromancy.',
 			action: entity => {
 				entity.addNewEffect(new RegenerationEffect())
 			},
@@ -159,7 +159,7 @@ export class VampiricDraining extends Spell {
 	constructor(options) {
 		super({
 			name: 'Vampiric Draining',
-			hoverInfo: 'Drains the health of an enemy for 10-20 damage, healing the caster half of the damage dealt',
+			hoverInfo: 'Drains the health of an enemy for 6-12 damage, healing the caster half of the damage dealt',
 			action: (entity, dmg) => {
 				entity.damage(dmg)
 			},
@@ -172,7 +172,7 @@ export class VampiricDraining extends Spell {
 	}
 
 	cast(target, caster) {
-		let dmg = getDiceRoll(10, 2) // remember to update hover info if this changes!
+		let dmg = getDiceRoll(2, 6) // remember to update hover info if this changes!
 		if (caster === Game.player) {
 			Game.log(`You suck the life energy out of the ${target.name.toLowerCase()}, damaging it for ${dmg} hp.`, 'player_move')
 			Game.log(`You siphon ${~~(dmg / 2)} hp from the enemy and gain it as health.`, 'lightgreen')
