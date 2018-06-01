@@ -37,7 +37,19 @@ export function between(a, n, b) {
 export function addPrefix(word) {
 	const vowels = ['a', 'e', 'i', 'o', 'u']
 	if (word !== 'you') {
-		const someWords = ['trees', 'flowers', 'grass', 'wild grass', 'water', 'steel arrows', 'carpet', 'logs', 'cobwebs']
+		const someWords = [
+			'trees',
+			'flowers',
+			'grass',
+			'wild grass',
+			'water',
+			'steel arrows',
+			'carpet',
+			'logs',
+			'cobwebs',
+			'dirt',
+			'bones'
+		]
 		if (someWords.includes(word)) {
 			return 'some ' + word
 		}
@@ -64,6 +76,7 @@ export function getDiceRoll(rolls, sides) {
 	return n
 }
 
+// TODO: make this use the EntityFactory
 export function getItemsFromDropTable(options) {
 	if (
 		options.dropTable == undefined ||

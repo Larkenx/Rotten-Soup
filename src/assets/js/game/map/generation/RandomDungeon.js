@@ -14,7 +14,7 @@ import Key from '#/entities/items/misc/Key.js'
 import { NecromancySpellBook } from '#/entities/items/misc/Spellbook.js'
 import Ladder from '#/entities/misc/Ladder.js'
 import LevelTransition from '#/entities/misc/LevelTransition.js'
-import { getRandomInt, getNormalRandomInt, randomProperty } from '#/utils/HelperFunctions.js'
+import { getRandomInt, getNormalRandomInt, randomProperty, getItemsFromDropTable } from '#/utils/HelperFunctions.js'
 import { createActor } from '#/utils/EntityFactory.js'
 
 const dungeonTypes = {
@@ -43,12 +43,10 @@ const dungeonThemes = {
 			// BANSHEE: 1,
 			// DEMON: 1,
 			// BONE_MAN: 1
-			ORC: 2,
-			EMPOWERED_ORC: 1,
-			KOBOLD: 1,
-			GOBLIN: 7,
+			ORC: 1,
+			GOBLIN: 15,
 			BAT: 10,
-			RAT: 10,
+			RAT: 15,
 			SNAKE: 10
 		},
 		type: dungeonTypes.RUINS,
@@ -188,9 +186,8 @@ const dungeonThemes = {
 			KOBOLD: 2,
 			MINOTAUR: 1,
 			GOBLIN: 5,
-			BAT: 5,
-			RAT: 5,
-			SNAKE: 5,
+			ORC: 5,
+			EMPOWERED_ORC: 5,
 			BONE_MAN: 10,
 			GOLEM: 1
 		},
@@ -542,7 +539,6 @@ const getWallTexture = (walls, sum) => {
 }
 
 export function dungeonFromTheme(width, height, theme, mapGenerator, options, hasDoors = true) {
-	console.log(options)
 	let { dungeonName, lastDungeon, fromPortal, toPortal, level } = options
 	let gameMap = new GameMap(width, height, dungeonName)
 	const { tint, type, textures, mobDistribution } = theme
@@ -663,6 +659,20 @@ export function dungeonFromTheme(width, height, theme, mapGenerator, options, ha
 			if (coords !== null) {
 				let [x, y] = coords
 				let chest = new Chest(x, y, chestTexture)
+				let items = getItemsFromDropTable({
+					minItems: 1,
+					maxItems: 3,
+					dropTable: {
+						STRENGTH_POTION: 1,
+						HEALTH_POTION: 1,
+						STEEL_ARROW: 1,
+						MANA_POTION: 1,
+						SWORD: 10
+					},
+					x: chest.x,
+					y: chest.y
+				})
+				items.forEach(item => chest.addToInventory(item))
 				gameMap.getTile(x, y).actors.push(chest)
 				gameMap.actors.push(chest)
 			}

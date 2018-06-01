@@ -5,6 +5,8 @@ import LockedDoor from '#/entities/misc/LockedDoor.js'
 import LevelTransition from '#/entities/misc/LevelTransition.js'
 import Ladder from '#/entities/misc/Ladder.js'
 import Key from '#/entities/items/misc/Key.js'
+import { NecromancySpellBook } from '#/entities/items/misc/Spellbook.js'
+
 import NPC from '#/entities/actors/NPC.js'
 import { Corpse, corpseTypes } from '#/entities/items/misc/Corpse.js'
 // Items
@@ -46,7 +48,8 @@ const itemShop = {
 	SWORD: (x, y, t) => createSword(x, y, t),
 	BOW: (x, y, t) => createBow(x, y, t),
 	STEEL_ARROW: (x, y, t) => new SteelArrow(x, y, t, 5),
-	KEY: (x, y, t) => new Key(x, y, t)
+	KEY: (x, y, t) => new Key(x, y, t),
+	NECROMANCY_SPELLBOOK: (x, y, t) => new NecromancySpellBook(x, y, t)
 }
 
 export function createItem(itemString, x, y, id = null) {
@@ -57,10 +60,10 @@ export function createItem(itemString, x, y, id = null) {
 		STRENGTH_POTION: 969,
 		SWORD: 35,
 		BOW: 664,
-		STEEL_ARROW: 784
+		STEEL_ARROW: 784,
+		NECROMANCY_SPELLBOOK: 3264
 	}
 	const texture = id === null ? defaultItemTextures[itemString] : id
-	console.log(`Adding new ${itemString} with texture: ${texture}`)
 
 	if (!(itemString in itemShop)) {
 		console.error(`Tried to create an item without an entry: ${itemString} with ID: ${id}`)

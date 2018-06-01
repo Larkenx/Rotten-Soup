@@ -25,6 +25,7 @@ export class GameMap {
 		this.data = new Array(this.height) // stores all tiles in the game
 		this.visible_tiles = {}
 		this.seen_tiles = {}
+		this.visited = false
 		// Intialize all of the tiles...
 		for (let i = 0; i < this.height; i++) {
 			this.data[i] = new Array(this.width)

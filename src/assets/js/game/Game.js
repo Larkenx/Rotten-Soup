@@ -44,7 +44,7 @@ export let Game = {
 	engine: null,
 	loaded: false,
 	levels: {},
-	currentLevel: { name: 'Mulberry Graveyard', depth: 0 },
+	currentLevel: { name: 'Mulberry Town', depth: 0 },
 	map: null,
 	messageHistory: [],
 	tempMessages: [],
@@ -73,6 +73,7 @@ export let Game = {
 			this.levels['Mulberry Town'] = createMapFromJSON(resources['mulberryTown'].data, 'Mulberry Town')
 			this.levels['Mulberry Forest'] = createMapFromJSON(resources['mulberryForest'].data, 'Mulberry Forest')
 			this.levels['Mulberry Graveyard'] = createMapFromJSON(resources['mulberryGraveyard'].data, 'Mulberry Graveyard')
+			this.levels['Lich Lair'] = createMapFromJSON(resources['lichLair'].data, 'Lich Lair')
 			this.map = this.levels[this.currentLevel.name]
 			this.width = this.map.width < this.displayOptions.width ? this.map.width : this.displayOptions.width
 			this.height = this.map.height < this.displayOptions.height ? this.map.height : this.displayOptions.height
@@ -174,7 +175,6 @@ export let Game = {
 		} else if (dungeon === true) {
 			nextMap = this.levels[mapID + 1]
 		}
-		console.log(`Switching worlds from ${this.currentLevel.name} to ${mapID}`)
 		// Maps can be either a series of dungeons, or a single 'unconnected' map
 		// save the player's location on this map
 		this.map.playerLocation = [Game.player.x, Game.player.y]
@@ -187,10 +187,17 @@ export let Game = {
 		// Unshift player from ladder position (so that when resurfacing, no player is present)
 		this.getTile(this.player.x, this.player.y).removeActor(this.player)
 		this.map.actors = this.map.actors.filter(a => a !== this.player)
+		for (let a of this.map.actors) {
+			this.display.clearSprite(a)
+		}
 		this.map = nextMap
 		this.currentLevel.name = nextMap.name
 		this.currentLevel.depth = nextMap.depth !== undefined ? nextMap.depth : 0
 		this.playerLocation = this.map.playerLocation
+		if (!nextMap.visited && nextMap.type === 'dungeon') {
+			nextMap.visited = true
+			this.player.cb.dungeonsExplored++
+		}
 		// before drawing the viewport, we need to clear the screen of whatever was here last
 		this.display.clear()
 		this.width = this.map.width < this.displayOptions.width ? this.map.width : this.displayOptions.width

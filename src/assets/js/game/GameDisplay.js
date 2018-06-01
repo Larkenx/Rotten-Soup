@@ -81,12 +81,18 @@ export default class GameDisplay {
 			name: 'mulberryGraveyard'
 		}
 
+		const lichLair = {
+			url: 'static/maps/lichLair.json',
+			name: 'lichLair'
+		}
+
 		PIXI.loader
 			.add(spritesheet)
 			.add(textureAtlas)
 			.add(mulberryTown)
 			.add(mulberryForest)
 			.add(mulberryGraveyard)
+			.add(lichLair)
 			.on('progress', (l, r) => this.handleAssetLoad(l, r))
 			.load(() => {
 				this.tileset = PIXI.loader.resources['textureAtlas'].data

@@ -5,7 +5,7 @@ import { Game } from '#/Game.js'
 import { getRandomInt, getItemsFromDropTable } from '#/utils/HelperFunctions.js'
 import SimpleEnemy from '#/entities/actors/enemies/SimpleEnemy.js'
 
-export default class Skeleton extends SimpleEnemy {
+export default class Zombie extends SimpleEnemy {
 	constructor(x, y, id) {
 		let randomHP = getRandomInt(10, 15)
 		let randomStr = getRandomInt(1, 3)

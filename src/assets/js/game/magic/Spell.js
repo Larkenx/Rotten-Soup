@@ -78,7 +78,7 @@ export class MagicDart extends Spell {
 	constructor(options) {
 		super({
 			name: 'Magic Dart',
-			hoverInfo: 'Deals 1-8 damage to a target',
+			hoverInfo: 'Deals 1-5 damage to a target',
 			action: (entity, hit) => {
 				entity.damage(hit)
 			},
@@ -91,7 +91,7 @@ export class MagicDart extends Spell {
 	}
 
 	cast(target, caster) {
-		let dmg = getRandomInt(1, 8) // remember to update hover info if this changes!
+		let dmg = getRandomInt(1, 5) // remember to update hover info if this changes!
 		if (target === Game.player) Game.log(`You took ${dmg} damage from a Magic Dart spell!`, 'attack')
 		else Game.log(`Magic Dart blasts the ${target.name} for ${dmg} magical damage.`, 'player_move')
 

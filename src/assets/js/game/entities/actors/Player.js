@@ -48,18 +48,18 @@ export default class Player extends Actor {
 				description: [' attacked ', ' stabbed ', ' jabbed ', ' smashed '],
 				/* stat caps */
 				maxhp: 50,
-				maxmana: 15,
+				maxmana: 18,
 				/* current stats */
 				xp: 50,
 				level: 1,
 				hp: 50,
-				mana: 15,
+				mana: 18,
 				str: 1,
 				def: 1,
 				/* Per-turn effects */
-				hpRecovery: 5,
+				hpRecovery: 1,
 				manaRecovery: 2.5,
-				invulnerable: true,
+				invulnerable: false,
 				/* Magic & Ranged */
 				validTarget: null,
 				currentSpell: null,
@@ -167,6 +167,8 @@ export default class Player extends Actor {
 
 		Game.engine.lock()
 		this.cb.turnsTaken++
+		if (this.cb.turnsTaken % 5 === 0) this.heal(this.cb.hpRecovery)
+		if (this.cb.turnsTaken % 10 === 0) this.restore(this.cb.manaRecovery)
 		if (this.commandQueue.length > 0) {
 			// perform player commands and unlock
 			let { fn } = this.commandQueue.pop()
@@ -339,6 +341,11 @@ export default class Player extends Actor {
 			97: 5,
 			100: 6,
 			103: 7,
+			/* AWSD Movement */
+			68: 2,
+			65: 6,
+			87: 0,
+			83: 4,
 			/* Rest using '5' in numpad */
 			101: 'rest',
 			/* vi movement */

@@ -31,7 +31,7 @@
               You defeated {{formatNoOrMultiple("enemy", cb.enemiesKilled, "enemies")}}.
               <p />
 
-              You explored {{formatNoOrMultiple("dungeon", cb.dungeonsExplored, "dungeons")}}.
+              You explored {{formatNoOrMultiple("dungeon floor", cb.dungeonsExplored, "dungeon floors")}}.
               You looted {{formatNoOrMultiple("treasure chest", cb.chestsOpened, "treasure chests")}}.
               <p />
 
