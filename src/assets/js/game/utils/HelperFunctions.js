@@ -10,7 +10,7 @@ import { SteelArrow } from '#/entities/items/weapons/ranged/ammo/Arrow.js'
 export function getRandomInt(min, max) {
 	min = Math.ceil(min)
 	max = Math.floor(max)
-	return Math.floor(Math.random() * (max - min + 1)) + min //The maximum is exclusive and the minimum is inclusive
+	return Math.floor(Math.random() * (max - min + 1)) + min
 }
 
 export function getNormalRandomInt(min, max) {
@@ -37,11 +37,23 @@ export function between(a, n, b) {
 export function addPrefix(word) {
 	const vowels = ['a', 'e', 'i', 'o', 'u']
 	if (word !== 'you') {
-		const someWords = ['trees', 'flowers', 'grass', 'wild grass', 'water', 'steel arrows']
+		const someWords = [
+			'trees',
+			'flowers',
+			'grass',
+			'wild grass',
+			'water',
+			'steel arrows',
+			'carpet',
+			'logs',
+			'cobwebs',
+			'dirt',
+			'bones'
+		]
 		if (someWords.includes(word)) {
 			return 'some ' + word
 		}
-		if (word[0] in vowels) return 'an ' + word
+		if (vowels.includes(word[0].toLowerCase())) return 'an ' + word
 		else return 'a ' + word
 	} else {
 		return word
@@ -64,6 +76,7 @@ export function getDiceRoll(rolls, sides) {
 	return n
 }
 
+// TODO: make this use the EntityFactory
 export function getItemsFromDropTable(options) {
 	if (
 		options.dropTable == undefined ||

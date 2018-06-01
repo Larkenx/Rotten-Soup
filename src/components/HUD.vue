@@ -73,14 +73,14 @@
 				</v-layout>
 
 	      <!-- Current World -->
-	      <v-layout align-center class="mt-4">
-          <v-flex xs5><b>Location:</b> {{getCurrentLevel().capitalize()}}</v-flex>
-          <v-flex class="pl-3" v-if="getCurrentLevelDepth() > 0" ><b>Level:</b> {{getCurrentLevelDepth()}}</v-flex>
+	      <v-layout align-center class="mt-2">
+          <v-flex xs6><b>Location:</b> {{getCurrentLevel().capitalize()}}</v-flex>
+          <v-flex xs4 class="pl-3" v-if="getCurrentLevelDepth() > 0" ><b>Level:</b> {{getCurrentLevelDepth()}}</v-flex>
 	      </v-layout>
 
 
 	      <!-- Mini-map -->
-	      <v-layout class="text-xs-center pt-1" >
+	      <v-layout class="text-xs-center" >
           <v-flex xs10 fluid id="minimap_container"></v-flex>
 	      </v-layout>
 
@@ -138,11 +138,11 @@ export default {
 			return Game.player.cb.maxmana
 		},
 		getCurrentLevel() {
-			let levelName = Game.currentLevel.name.replace(/[0-9]/g, '')
+			let levelName = Game.currentLevel.name
 			return levelName
 		},
 		getCurrentLevelDepth() {
-			return parseInt(Game.currentLevel.name.replace(/[^0-9]/g, ''))
+			return Game.currentLevel.depth
 		}
 	},
 	components: {

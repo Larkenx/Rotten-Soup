@@ -7,12 +7,14 @@ import GameDisplay from '#/GameDisplay.js'
 import { Actor } from '#/entities/actors/Actor.js'
 import { Entity } from '#/entities/Entity.js'
 import { getItemsFromDropTable, addPrefix } from '#/utils/HelperFunctions.js'
+import PlayerController from '#/utils/PlayerController.js'
 
 import Item from '#/entities/items/Item.js'
 import Player from '#/entities/actors/Player.js'
 import MapGen from '#/map/generation/index.js'
 import Door from '#/entities/misc/Door.js'
 import Ladder from '#/entities/misc/Ladder.js'
+import LevelTransition from '#/entities/misc/LevelTransition.js'
 import Chest from '#/entities/misc/Chest.js'
 
 const { randomSimplexMap, randomDungeon, randomCave } = MapGen
@@ -42,7 +44,7 @@ export let Game = {
 	engine: null,
 	loaded: false,
 	levels: {},
-	currentLevel: { name: 'overworld' },
+	currentLevel: { name: 'Mulberry Town', depth: 0 },
 	map: null,
 	messageHistory: [],
 	tempMessages: [],
@@ -52,12 +54,11 @@ export let Game = {
 	targetReticle: null,
 	enemyCycle: null,
 	enemyCycleIndex: 0,
-	userSettings: { hpBars: true },
+	userSettings: { hpBars: false, animationsEnabled: true },
 
 	init(playerSpriteID) {
 		this.playerID = playerSpriteID
 		this.player = new Player(0, 0, playerSpriteID)
-		this.currentLevel.name = 'overworld'
 		this.displayOptions = {
 			width: 32,
 			height: 20,
@@ -68,14 +69,11 @@ export let Game = {
 			tileHeight: 32
 		}
 		let onceLoaded = () => {
-			this.levels['graveyard'] = createMapFromJSON(PIXI.loader.resources['graveyard'].data)
-			this.levels['Lich Lair'] = createMapFromJSON(PIXI.loader.resources['lichLair'].data)
-			this.levels['overworld'] = createMapFromJSON(PIXI.loader.resources['overworld'].data)
-			this.levels['Orc Castle'] = createMapFromJSON(PIXI.loader.resources['orcCastle'].data)
-			this.levels['graveyard'].revealed = true
-			this.levels['Lich Lair'].revealed = true
-			this.levels['overworld'].revealed = true
-			this.levels['Orc Castle'].revealed = true
+			let { resources } = PIXI.loader
+			this.levels['Mulberry Town'] = createMapFromJSON(resources['mulberryTown'].data, 'Mulberry Town')
+			this.levels['Mulberry Forest'] = createMapFromJSON(resources['mulberryForest'].data, 'Mulberry Forest')
+			this.levels['Mulberry Graveyard'] = createMapFromJSON(resources['mulberryGraveyard'].data, 'Mulberry Graveyard')
+			this.levels['Lich Lair'] = createMapFromJSON(resources['lichLair'].data, 'Lich Lair')
 			this.map = this.levels[this.currentLevel.name]
 			this.width = this.map.width < this.displayOptions.width ? this.map.width : this.displayOptions.width
 			this.height = this.map.height < this.displayOptions.height ? this.map.height : this.displayOptions.height
@@ -86,7 +84,6 @@ export let Game = {
 			this.initializeMinimap()
 			document.getElementById('game_container').appendChild(this.display.getContainer())
 			document.getElementById('minimap_container').appendChild(this.minimap.getContainer())
-
 			this.engine.start() // Start the engine
 			this.renderMap()
 		}
@@ -104,6 +101,7 @@ export let Game = {
 	scheduleAllActors() {
 		// Set up the ROT engine and scheduler
 		this.scheduler = new ROT.Scheduler.Simple()
+		// this.scheduler.add(new PlayerController(), true) // Add the player to the scheduler
 		this.scheduler.add(this.player, true) // Add the player to the scheduler
 		this.scheduler.add(this.display, true)
 		for (let i = 0; i < this.map.actors.length; i++) {
@@ -142,48 +140,64 @@ export let Game = {
 		return cx <= x && x <= cx + Game.width && cy <= y && y <= cy + Game.height
 	},
 
-	changeLevels(newLevel, dir, level) {
-		if (this.levels[newLevel] === undefined) {
-			this.player.cb.dungeonsExplored++
-			// generating a new random room
-			if (newLevel.toLowerCase().includes('cave')) {
-				this.levels[newLevel] = randomCave(80, 40, dir, level)
-			} else {
-				this.levels[newLevel] = randomDungeon(40, 40, dir, level)
+	createDungeonFloors(origin, dungeonName, numberOfFloors) {
+		this.levels[dungeonName + 1] = randomDungeon(40, 40, {
+			dungeonName,
+			lastDungeon: false,
+			fromPortal: origin,
+			toPortal: dungeonName + 2,
+			level: 1
+		})
+		for (let depth = 2; depth < numberOfFloors; depth++) {
+			let options = {
+				dungeonName,
+				lastDungeon: false,
+				fromPortal: dungeonName + (depth - 1),
+				toPortal: dungeonName + (depth + 1),
+				level: depth
 			}
-			this.levels[newLevel].revealed = false
-			for (let actor of this.levels[newLevel].actors) {
-				if (actor instanceof Chest) {
-					// console.log("filling chest with goodies!");
-					// we want to populate the chests with loot
-					let items = getItemsFromDropTable({
-						minItems: 1,
-						maxItems: 4,
-						dropTable: {
-							STRENGTH_POTION: 1,
-							HEALTH_POTION: 1,
-							STEEL_ARROW: 1,
-							MANA_POTION: 1,
-							SWORD: 3
-						},
-						x: actor.x,
-						y: actor.y
-					})
-					items.forEach(item => actor.addToInventory(item))
-				}
-			}
-			// console.log(newLevel + " does not exist, so a new random instance is being created.");
+			this.levels[dungeonName + depth] = randomDungeon(40, 40, options)
 		}
+		this.levels[dungeonName + numberOfFloors] = randomDungeon(40, 40, {
+			dungeonName,
+			lastDungeon: true,
+			fromPortal: dungeonName + (numberOfFloors - 1),
+			toPortal: origin,
+			level: numberOfFloors
+		})
+	},
+
+	changeLevels(mapID, dungeon = false) {
+		let nextMap = this.levels[mapID]
+		if (dungeon === true && !(mapID + 1 in this.levels)) {
+			this.createDungeonFloors(this.currentLevel.name, mapID, 20)
+			nextMap = this.levels[mapID + 1]
+		} else if (dungeon === true) {
+			nextMap = this.levels[mapID + 1]
+		}
+		// Maps can be either a series of dungeons, or a single 'unconnected' map
 		// save the player's location on this map
 		this.map.playerLocation = [Game.player.x, Game.player.y]
 		// Save the old map
-		this.levels[this.currentLevel.name] = this.map // add the old map to 'levels'
+		if (this.map.type === 'dungeon') {
+			this.levels[this.currentLevel.name + this.currentLevel.depth] = this.map // add the old map to 'levels'
+		} else {
+			this.levels[this.currentLevel.name] = this.map // add the old map to 'levels'
+		}
 		// Unshift player from ladder position (so that when resurfacing, no player is present)
 		this.getTile(this.player.x, this.player.y).removeActor(this.player)
 		this.map.actors = this.map.actors.filter(a => a !== this.player)
-		this.map = this.levels[newLevel]
-		this.currentLevel.name = newLevel
+		for (let a of this.map.actors) {
+			this.display.clearSprite(a)
+		}
+		this.map = nextMap
+		this.currentLevel.name = nextMap.name
+		this.currentLevel.depth = nextMap.depth !== undefined ? nextMap.depth : 0
 		this.playerLocation = this.map.playerLocation
+		if (!nextMap.visited && nextMap.type === 'dungeon') {
+			nextMap.visited = true
+			this.player.cb.dungeonsExplored++
+		}
 		// before drawing the viewport, we need to clear the screen of whatever was here last
 		this.display.clear()
 		this.width = this.map.width < this.displayOptions.width ? this.map.width : this.displayOptions.width
@@ -468,7 +482,7 @@ export let Game = {
 	log(message, type, tmp = false) {
 		let message_color = {
 			defend: 'lightblue',
-			magic: '#3C1CFD',
+			magic: '#6757c6',
 			attack: 'red',
 			death: 'crimson',
 			information: 'yellow',
@@ -479,5 +493,17 @@ export let Game = {
 		let color = type in message_color ? message_color[type] : type
 		if (tmp) this.tempMessages.splice(0, 1, [message, color])
 		else this.messageHistory.push([message, color])
+	},
+	/* Testing Functions */
+	getNearestLadder() {
+		let ladders = this.map.actors.filter(a => a instanceof Ladder)
+		if (ladders.length > 0) return ladders[0]
+		else return null
+	},
+
+	getNearestLevelTransition() {
+		let levelTransitions = this.map.actors.filter(a => a instanceof LevelTransition)
+		if (levelTransitions.length > 0) return levelTransitions[0]
+		else return null
 	}
 }

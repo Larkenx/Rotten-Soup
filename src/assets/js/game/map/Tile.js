@@ -27,13 +27,14 @@ export default class Tile {
 		this.obstacles = []
 	}
 
-	updateTileInfo(id) {
+	updateTileInfo(id, tint = null) {
 		let obstacle = {}
 		if (id in Game.display.tileset.tileproperties) {
 			// just means there are no tile properties for this guy
 			obstacle = getTileInfo(id)
 		}
 		obstacle.id = id
+		obstacle.tint = tint
 		this.obstacles.push(obstacle) // add to the end of the obstacles to be drawn on top
 	}
 

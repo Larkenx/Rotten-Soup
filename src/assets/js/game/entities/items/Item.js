@@ -8,6 +8,7 @@ import { Entity } from '#/entities/Entity.js'
 export default class Item extends Entity {
 	constructor(x, y, options) {
 		options.visible = true
+		options.inInventory = true
 		super(x, y, options)
 	}
 

@@ -1,7 +1,7 @@
 <template>
   <v-app dark class="black">
     <v-content>
-      <v-container v-show="playerSelected" id="main_container" :style="{'max-width': uiWidth, 'max-height': uiHeight}">
+      <v-container v-show="playerSelected"  class="mt-3" id="main_container" :style="{'max-width': uiWidth+6, 'max-height': uiHeight+6}">
           <!--  Notifications -->
           <v-layout row v-if="unstableBuildMessage">
             <v-flex xs12>
@@ -11,7 +11,7 @@
             </v-flex>
           </v-layout>
           <!-- Game Display and HUD-->
-          <v-layout class="mt-3" row id="ui" :style="{'max-width': uiWidth, 'max-height': uiHeight}">
+          <v-layout  row id="ui" :style="{'max-width': uiWidth, 'max-height': uiHeight}">
             <v-flex column :style="{'max-width': gameDisplayWidth}">
               <v-layout id="game_container_row" :style="{'max-height': gameDisplayHeight}">
                 <div id="game_container" />
@@ -145,11 +145,11 @@ html {
 }
 
 #main_container {
+	max-width: 1470px;
 	padding: 0px;
 }
 
 #ui {
-	max-width: 1470px;
 	border: 3px solid #4f4f4f;
 	background-color: #1e1f1f;
 	border-radius: 4px;

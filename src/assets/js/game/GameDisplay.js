@@ -33,6 +33,7 @@ export default class GameDisplay {
 		this.viewPort = null
 		this.tileSize = 32
 		this.tileset = null
+		this.objectTemplates = null
 		this.tilesetMapping = {}
 		this.spriteBox = [] // Game.width * Game.height sprites to overlay screen for FOV
 	}
@@ -55,6 +56,7 @@ export default class GameDisplay {
 	loadAssets(cb) {
 		let { renderer, stage, view } = this.app
 		let { resources } = PIXI.loader
+		/* Images & Texture Atlas */
 		const spritesheet = {
 			url: 'static/images/compiled_tileset_32x32.png',
 			name: 'spritesheet'
@@ -63,30 +65,34 @@ export default class GameDisplay {
 			url: 'static/compiled_dawnlike.json',
 			name: 'textureAtlas'
 		}
-		const overworldMap = {
-			url: 'static/maps/overworld.json',
-			name: 'overworld'
+		/* Maps */
+		const mulberryTown = {
+			url: 'static/maps/mulberryTown.json',
+			name: 'mulberryTown'
 		}
-		const graveyardMap = {
-			url: 'static/maps/graveyard.json',
-			name: 'graveyard'
+
+		const mulberryForest = {
+			url: 'static/maps/mulberryForest.json',
+			name: 'mulberryForest'
 		}
-		const lichLairMap = {
+
+		const mulberryGraveyard = {
+			url: 'static/maps/mulberryGraveyard.json',
+			name: 'mulberryGraveyard'
+		}
+
+		const lichLair = {
 			url: 'static/maps/lichLair.json',
 			name: 'lichLair'
 		}
-		const orcCastleMap = {
-			url: 'static/maps/orcCastle.json',
-			name: 'orcCastle'
-		}
 
 		PIXI.loader
-			.add(textureAtlas)
 			.add(spritesheet)
-			.add(overworldMap)
-			.add(graveyardMap)
-			.add(lichLairMap)
-			.add(orcCastleMap)
+			.add(textureAtlas)
+			.add(mulberryTown)
+			.add(mulberryForest)
+			.add(mulberryGraveyard)
+			.add(lichLair)
 			.on('progress', (l, r) => this.handleAssetLoad(l, r))
 			.load(() => {
 				this.tileset = PIXI.loader.resources['textureAtlas'].data
@@ -155,6 +161,7 @@ export default class GameDisplay {
 					if (o.animated === true && o.animated_id !== undefined && this.getTexture(o.animated_id) !== undefined) {
 						let frames = [this.getTexture(o.id), this.getTexture(o.animated_id)]
 						let sprite = new PIXI.extras.AnimatedSprite(frames)
+						if (o.tint !== null) sprite.tint = o.tint
 						sprite.position.set(x * this.tileSize, y * this.tileSize)
 						sprite.animationSpeed = 0.025
 						// pick a random interval for the animation to play at!
@@ -165,6 +172,7 @@ export default class GameDisplay {
 						this.animatedBackground.addChild(sprite)
 					} else {
 						let sprite = new PIXI.Sprite(this.getTexture(o.id))
+						if (o.tint !== null) sprite.tint = o.tint
 						sprite.position.set(x * this.tileSize, y * this.tileSize)
 						staticBackground.addChild(sprite)
 					}
@@ -207,7 +215,7 @@ export default class GameDisplay {
 		this.background.position.set(-startingPos[0] * this.tileSize, -startingPos[1] * this.tileSize)
 		// draw the actors last because they should be on the top-most layer
 		for (let a of map.actors) {
-			if (!(a instanceof Item)) {
+			if (!(a instanceof Item) || !a.inInventory) {
 				this.assignSprite(a)
 			}
 		}
@@ -398,9 +406,14 @@ export default class GameDisplay {
 
 	assignSprite(actor, belowPlayer = false, index = 1) {
 		let { x, y, id } = actor
-		let props = this.tileset.tileproperties[actor.id + '']
+		let props = this.tileset.tileproperties[actor.id]
 		// if (actor.sprite === null || actor.sprite === undefined) {
-		if (props.animated === true && props.animated_id !== undefined && this.getTexture(props.animated_id) !== undefined) {
+		if (
+			props !== undefined &&
+			props.animated === true &&
+			props.animated_id !== undefined &&
+			this.getTexture(props.animated_id) !== undefined
+		) {
 			let frames = [this.getTexture(actor.id), this.getTexture(props.animated_id)]
 			let sprite = new PIXI.extras.AnimatedSprite(frames)
 			actor.setSprite(sprite)
@@ -435,10 +448,10 @@ export default class GameDisplay {
 	handleAssetLoad(loader, resource) {
 		let { stage, renderer } = this.app
 		this.clear()
-		let graphics = new PIXI.Graphics()
+		// let graphics = new PIXI.Graphics()
 		let cx = renderer.width / 2
 		let cy = renderer.height / 2
-		let barLength = renderer.width / 2
+		// let barLength = renderer.width / 2
 		let text = new PIXI.Text(`Loading ${resource.name}... ${Math.floor(loader.progress)}%`, {
 			fill: 0xffffff,
 			fontSize: 16,
@@ -446,16 +459,16 @@ export default class GameDisplay {
 			x: cx,
 			y: cy
 		})
-		// clear the previous progress bar
-		// draw the progress bar outline
-		graphics.lineStyle(50, 0x6f6f6f)
-		graphics.drawRoundedRect(cx - barLength / 2, cy, barLength, 4)
-		// draw the progress bar interior
-		let maxInteriorBarLength = barLength - 10
-		let currentBarLength = maxInteriorBarLength * (loader.progress / 100)
-		graphics.lineStyle(30, 0x04ab34)
-		graphics.drawRoundedRect(cx - maxInteriorBarLength / 2, cy, currentBarLength, 4)
-		stage.addChild(graphics)
+		// // clear the previous progress bar
+		// // draw the progress bar outline
+		// graphics.lineStyle(50, 0x6f6f6f)
+		// graphics.drawRoundedRect(cx - barLength / 2, cy, barLength, 4)
+		// // draw the progress bar interior
+		// let maxInteriorBarLength = barLength - 10
+		// let currentBarLength = maxInteriorBarLength * (loader.progress / 100)
+		// graphics.lineStyle(30, 0x04ab34)
+		// graphics.drawRoundedRect(cx - maxInteriorBarLength / 2, cy, currentBarLength, 4)
+		// stage.addChild(graphics)
 		stage.addChild(text)
 	}
 

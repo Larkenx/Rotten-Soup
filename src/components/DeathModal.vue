@@ -10,6 +10,9 @@
         <v-layout>
 
           <v-flex id="death_text">
+              You played for {{cb.turnsTaken}} turns.
+              <p />
+
               You were level {{cb.level}}.
               Your strength was level {{cb.str}}.
               <p />
@@ -22,13 +25,13 @@
               <p />
 
               You recovered {{formatNoOrMultiple("heath point", cb.healthRestored, "health points")}}.
-              You consumed {{formatNoOrMultiple("potion", cb.potionsConsumed, "potions")}}
+              You consumed {{formatNoOrMultiple("potion", cb.potionsConsumed, "potions")}}.
               <p />
 
               You defeated {{formatNoOrMultiple("enemy", cb.enemiesKilled, "enemies")}}.
               <p />
 
-              You explored {{formatNoOrMultiple("dungeon", cb.dungeonsExplored, "dungeons")}}.
+              You explored {{formatNoOrMultiple("dungeon floor", cb.dungeonsExplored, "dungeon floors")}}.
               You looted {{formatNoOrMultiple("treasure chest", cb.chestsOpened, "treasure chests")}}.
               <p />
 

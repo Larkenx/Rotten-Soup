@@ -5,7 +5,7 @@
             <v-layout row align-center>
                 <v-flex md1 style="min-width: 70px;" col><b>Level</b></v-flex>
                 <v-flex md2 col style="padding-left: 7px;">{{getLevel()}}</v-flex>
-                <v-flex md5 col>{{Math.floor(getRemainingXP())}}XP until level {{getLevel()+1}}</v-flex>
+                <v-flex md5 col>{{Math.ceil(getRemainingXP())}}XP until level {{getLevel()+1}}</v-flex>
                 <!-- <v-flex md2 col>
                     <v-progress-circular
                         style="xpCircleFont"
@@ -37,6 +37,22 @@
             </v-flex>
         </v-layout>
       </v-flex>
+      <!-- Currently Weapon -->
+      <v-flex class="stat-row">
+        <v-layout  row align-center>
+          <v-flex md4 col><b>Current Weapon</b></v-flex>
+          <v-flex md5 col>
+            {{getCurrentWeapon() !== null ? getCurrentWeapon().name : 'Fists'}}
+          </v-flex>
+        </v-layout>
+      </v-flex>
+      <!-- Currently Selected Spell -->
+      <v-flex class="stat-row">
+        <v-layout  row align-center>
+          <v-flex md4 col><b>Current Spell</b></v-flex>
+          <v-flex md3 col>{{getCurrentSpell() !== null ? getCurrentSpell().name : 'None'}}</v-flex>
+      </v-layout>
+    </v-flex>
         <!-- Defence -->
         <!-- <v-flex class="stat-row">
             <v-layout   row align-center>
@@ -105,6 +121,9 @@ export default {
 			} else {
 				return null
 			}
+		},
+		getCurrentSpell() {
+			return Game.player.cb.currentSpell
 		}
 	}
 }

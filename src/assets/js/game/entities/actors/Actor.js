@@ -8,6 +8,8 @@ import { Game } from '#/Game.js'
 import { Entity } from '#/entities/Entity.js'
 import { getRandomInt, addPrefix } from '#/utils/HelperFunctions.js'
 import Door from '#/entities/misc/Door.js'
+import Chest from '#/entities/misc/Chest.js'
+import Ladder from '#/entities/misc/Ladder.js'
 import Weapon from '#/entities/items/weapons/Weapon.js'
 import { Ammo } from '#/entities/items/weapons/ranged/ammo/Ammo.js'
 import { Buff } from '#/modifiers/Buff.js'
@@ -150,7 +152,7 @@ export class Actor extends Entity {
 	interact(actor) {
 		let nx = actor.x - this.x
 		let ny = actor.y - this.y
-		if (this === Game.player || actor === Game.player) {
+		if ((this === Game.player || actor === Game.player) && Game.userSettings.animationsEnabled) {
 			Game.display.moveSprite(this.sprite, this.x + nx / 2, this.y + ny / 2)
 			setTimeout(() => {
 				Game.display.moveSprite(this.sprite, this.x, this.y)
@@ -176,13 +178,18 @@ export class Actor extends Entity {
 				let actor = ntile.actors[i]
 				// this actor has stumbled upon another actor
 				if (actor instanceof Actor && actor.blocked && actor.visible) {
-					if (!actor.isDead()) this.interact(actor)
+					if (!actor.isDead()) {
+						this.interact(actor)
+					}
 					return true
 				}
+
 				// actor has stumbled upon a non-Actor entity (an item or miscellaneous entity like a door)
 				if (actor instanceof Door) {
-					this.interact(actor)
-					// return actor.blocked;
+					actor.react()
+					if (actor.closed === true) return true
+				} else if (actor instanceof Chest) {
+					return false
 				}
 			}
 		}
@@ -260,13 +267,16 @@ export class Actor extends Entity {
 	damage(hp) {
 		if (this.cb.invulnerable) return
 		this.cb.damageTaken += hp
-		this.cb.hp -= hp
+
+		if (this.cb.hp <= hp) this.cb.hp = 0
+		else this.cb.hp -= hp
+
 		if (this.isDead()) {
 			if (this !== Game.player) Game.player.gain_xp(Math.floor(this.cb.maxhp * 0.5))
 
 			this.death()
 		}
-		if (this.sprite !== null) {
+		if (this.sprite !== null && !this.isDead) {
 			this.sprite.tint = '0xba1b21'
 			setTimeout(() => (this.sprite.tint = '0xFFFFFF'), 200)
 		}
@@ -353,16 +363,17 @@ export class Actor extends Entity {
 		}
 
 		if (getRandomInt(0, 1) === 0) {
-			if (this.corpseType !== undefined) {
+			if (this.corpseType !== undefined && this.corpseType !== null) {
 				let corpse = new Corpse(this.x, this.y, this.name, this.corpseType)
 				ctile.actors.unshift(corpse)
 				Game.scheduler.add(corpse, true)
 				Game.display.assignSprite(corpse, true)
 			}
 		}
+
 		let blood = 2644 - getRandomInt(0, 1)
 		// specifically don't want to add blood if it's a skeleton...
-		if (this.corpseType !== corpseTypes.SKELETON) {
+		if (this.corpseType === corpseTypes.HUMANOID) {
 			let bloodSprite = new PIXI.Sprite(Game.display.tilesetMapping[blood])
 			bloodSprite.position.set(this.x * Game.display.tileSize, this.y * Game.display.tileSize)
 			Game.display.background.addChildAt(bloodSprite, 1)

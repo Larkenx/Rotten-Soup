@@ -38,7 +38,7 @@ export default class Orc extends SimpleEnemy {
 					def: 1,
 					/* misc */
 					hostile: true,
-					range: 5,
+					range: 9,
 					invulnerable: false,
 					empowered: empowered
 				}
