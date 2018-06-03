@@ -35,7 +35,7 @@ export default class Player extends Actor {
 			name: 'you',
 			description: "It's you!",
 			fg: 'yellow',
-			bg: 'black',
+			bg: 'yellow',
 			visible: true,
 			targeting: false,
 			casting: false,
@@ -128,7 +128,7 @@ export default class Player extends Actor {
 			if (!actor.isDead()) actor.react(this)
 			else return true // we can move
 		} else {
-			// non-combat interaction which leties from each actor to another,
+			// non-combat interaction which varies from each actor to another,
 			// so we will design non-combat based actors to simply perform actions
 			// in a reactionary manner so that it offloads player code blocks.
 			actor.react(this)

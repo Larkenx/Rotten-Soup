@@ -19,6 +19,11 @@ export default class NPC extends Actor {
 			}
 		})
 		this.wanders = false
+		this.dialogData = null
+	}
+
+	react() {
+		if (this.dialogData !== null) Game.openNPCDialog(this.dialogData)
 	}
 
 	act() {

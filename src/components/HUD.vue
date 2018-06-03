@@ -67,22 +67,28 @@
 						<tool-dialog></tool-dialog>
 					</v-flex>
 	      </v-layout>
-
+				<!--
 				<v-layout >
 					<stats></stats>
 				</v-layout>
-
-	      <!-- Current World -->
-	      <v-layout align-center class="mt-2">
-          <v-flex xs6><b>Location:</b> {{getCurrentLevel().capitalize()}}</v-flex>
-          <v-flex xs4 class="pl-3" v-if="getCurrentLevelDepth() > 0" ><b>Level:</b> {{getCurrentLevelDepth()}}</v-flex>
-	      </v-layout>
-
+				-->
 
 	      <!-- Mini-map -->
 	      <v-layout class="text-xs-center" >
-          <v-flex xs10 fluid id="minimap_container"></v-flex>
+					<v-flex>
+						<v-card fluid>
+							<v-card-title>
+								<!-- Current World -->
+								<v-layout align-center class="mt-2">
+									<v-flex xs6><b>Location:</b> {{getCurrentLevel().capitalize()}}</v-flex>
+									<v-flex xs4 class="pl-3" v-if="getCurrentLevelDepth() > 0" ><b>Level:</b> {{getCurrentLevelDepth()}}</v-flex>
+								</v-layout>
+							</v-card-title>
+							<v-flex id="minimap_container"></v-flex>
+						</v-card>
+					</v-flex>
 	      </v-layout>
+
 
 				<!--  Placeholder Row for stuff -->
 				<v-layout class="pt-1" style="min-height: 145px;" v-if="showEquipment">
