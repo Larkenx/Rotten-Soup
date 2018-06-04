@@ -82,12 +82,12 @@ export default {
 	mounted() {
 		window.addEventListener('resize', this.recomputeSize)
 		this.loadGame(4219)
-		// this.loadDialog({
-		// 	component: 'npc-dialogue',
-		// 	title: 'Leonard',
-		// 	text: 'You must be the adventurer we sent for! Take this key and clear out anything you find down there!',
-		// 	choices: ['Sure!', 'No thanks']
-		// })
+		this.loadDialog({
+			component: 'npc-dialogue',
+			title: 'Leonard',
+			text: 'You must be the adventurer we sent for! Take this key and clear out anything you find down there!',
+			choices: ['Sure!', 'No thanks']
+		})
 	},
 	beforeDestroy() {
 		window.removeEventListener('resize', this.recomputeSize)

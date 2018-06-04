@@ -51,6 +51,6 @@ export class Entity {
 		this.x = nx // update x,y coords to new coords
 		this.y = ny
 		// Place the sprite directly at the new location
-		if (this.sprite !== undefined) Game.display.moveSprite(this.sprite, nx, ny, false)
+		if (this.sprite !== undefined && this.sprite !== null) Game.display.moveSprite(this.sprite, nx, ny, false)
 	}
 }

@@ -55,7 +55,7 @@ export let Game = {
 	targetReticle: null,
 	enemyCycle: null,
 	enemyCycleIndex: 0,
-	userSettings: { hpBars: false, animationsEnabled: true },
+	userSettings: { hpBars: true, animationsEnabled: true },
 
 	init(playerSpriteID, windowRef) {
 		this.playerID = playerSpriteID
@@ -72,9 +72,9 @@ export let Game = {
 		}
 		this.minimapOptions = {
 			width: 40,
-			height: 20,
-			fontSize: 3,
-			spacing: 3,
+			height: 27,
+			fontSize: 10,
+			spacing: 1,
 			forceSquareRatio: true
 		}
 
@@ -258,13 +258,10 @@ export let Game = {
 				if (this.inbounds(x, y)) {
 					if (this.map.revealed || this.map.visible_tiles[x + ',' + y] || this.map.seen_tiles[x + ',' + y]) {
 						let tile = this.getTile(x, y)
-
-						this.minimap.draw(dx, dy, ' ', tile.bg(), tile.bg())
-						if (tile.x + ',' + tile.y in this.map.visible_tiles) {
-							this.minimap.draw(dx, dy, ' ', tile.bg(), this.brightenColor(tile.bg()))
-						}
+						const bg = tile.x + ',' + tile.y in this.map.visible_tiles ? this.brightenColor(tile.bg()) : tile.bg()
+						this.minimap.draw(dx, dy, ' ', tile.bg(), bg)
 						for (let a of tile.actors) {
-							if (a.bg !== undefined) this.minimap.draw(dx, dy, ' ', a.fg, a.bg)
+							if (a.bg !== undefined) this.minimap.draw(dx, dy, '●', a.bg, bg)
 						}
 					}
 				}

@@ -36,6 +36,12 @@
 	font-size: 5px;
 }
 
+#minimap_container > canvas {
+	border: 2px solid #4f4f4f;
+	background-color: #294646;
+	border-radius: 4px;
+}
+
 /* .v-tab-card {
 	min-height: 103px;
 } */
@@ -67,41 +73,43 @@
 						<tool-dialog></tool-dialog>
 					</v-flex>
 	      </v-layout>
-				<!--
-				<v-layout >
-					<stats></stats>
+
+				<v-layout align-center class="mt-2">
+					<v-flex xs6><b>Location:</b> {{getCurrentLevel().capitalize()}}</v-flex>
+					<v-flex xs4 class="pl-3" v-if="getCurrentLevelDepth() > 0" ><b>Floor:</b> {{getCurrentLevelDepth()}}</v-flex>
 				</v-layout>
-				-->
 
 	      <!-- Mini-map -->
-	      <v-layout class="text-xs-center" >
+	      <v-layout class="text-xs-center mt-2">
 					<v-flex>
-						<v-card fluid>
-							<v-card-title>
-								<!-- Current World -->
-								<v-layout align-center class="mt-2">
-									<v-flex xs6><b>Location:</b> {{getCurrentLevel().capitalize()}}</v-flex>
-									<v-flex xs4 class="pl-3" v-if="getCurrentLevelDepth() > 0" ><b>Level:</b> {{getCurrentLevelDepth()}}</v-flex>
-								</v-layout>
-							</v-card-title>
 							<v-flex id="minimap_container"></v-flex>
-						</v-card>
 					</v-flex>
 	      </v-layout>
 
 
 				<!--  Placeholder Row for stuff -->
-				<v-layout class="pt-1" style="min-height: 145px;" v-if="showEquipment">
-					<equipment></equipment>
+				<v-layout class="mt-3" style="min-height: 145px;" v-if="showEquipment">
+					<v-flex xs6 align-content-center>
+						<v-layout>
+							<v-flex md1 style="min-width: 75px;"> <b>Equipment</b></v-flex>
+						</v-layout>
+						<equipment></equipment>
+					</v-flex>
+					<v-flex xs6>
+						<v-layout>
+							<v-flex md1 style="min-width: 75px;"> <b>Stats</b></v-flex>
+						</v-layout>
+						<stats></stats>
+					</v-flex>
 				</v-layout>
 
 				<!-- Spells  -->
-				<v-layout >
+				<v-layout class="mt-3">
 					<spellbook></spellbook>
 				</v-layout>
 
 	      <!-- Inventory -->
-				<v-layout class="mt-1">
+				<v-layout class="mt-3">
 					<inventory></inventory>
 				</v-layout>
 	    </v-container>

@@ -11,6 +11,7 @@ export default class NPC extends Actor {
 	constructor(x, y, id) {
 		super(x, y, {
 			id: id,
+			bg: 'orange',
 			name: 'non-player character',
 			visible: true,
 			blocked: true,
