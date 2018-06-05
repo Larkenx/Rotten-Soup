@@ -663,11 +663,11 @@ export function dungeonFromTheme(width, height, theme, mapGenerator, options, ha
 					minItems: 1,
 					maxItems: 3,
 					dropTable: {
-						STRENGTH_POTION: 1,
-						HEALTH_POTION: 1,
-						STEEL_ARROW: 1,
-						MANA_POTION: 1,
-						SWORD: 10
+						STRENGTH_POTION: 10,
+						HEALTH_POTION: 20,
+						STEEL_ARROW: 15,
+						MANA_POTION: 20,
+						SWORD: 1
 					},
 					x: chest.x,
 					y: chest.y
