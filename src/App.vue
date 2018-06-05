@@ -81,7 +81,7 @@ export default {
 	},
 	mounted() {
 		window.addEventListener('resize', this.recomputeSize)
-		this.loadGame(4219)
+		// this.loadGame(4219)
 	},
 	beforeDestroy() {
 		window.removeEventListener('resize', this.recomputeSize)
