@@ -7,7 +7,7 @@
             </v-btn>
         </v-tooltip>
         <v-dialog v-model="toolDialog" max-width="400px" >
-            <v-card>
+            <v-card style="background-color: #1e1f1f">
                 <v-card-text class="text-xs-center">
                     <h2>Settings</h2>
                 </v-card-text>
@@ -15,7 +15,7 @@
                     <v-layout row>
                         <v-flex>Enable Mouse Controls*</v-flex>
                         <span>
-                          <v-switch color="yellow darken-4" v-model="mouseEnabled"></v-switch>
+                          <v-switch disabled color="yellow darken-4" v-model="mouseEnabled"></v-switch>
                         </span>
                     </v-layout>
 

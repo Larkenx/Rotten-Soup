@@ -13,6 +13,7 @@ import ROT from 'rot-js'
 export class StatelessAI extends Actor {
 	constructor(x, y, options, config) {
 		super(x, y, options)
+		this.fg = this.bg = 'red'
 		this.ai = config
 	}
 

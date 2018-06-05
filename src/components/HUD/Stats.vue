@@ -1,65 +1,61 @@
 <template>
-    <v-container fluid class="pa-0">
+    <v-container fluid class="pl-1">
         <!-- Level -->
-        <v-flex class="stat-row">
-            <v-layout row align-center>
-                <v-flex md1 style="min-width: 70px;" col><b>Level</b></v-flex>
-                <v-flex md2 col style="padding-left: 7px;">{{getLevel()}}</v-flex>
-                <v-flex md5 col>{{Math.ceil(getRemainingXP())}}XP until level {{getLevel()+1}}</v-flex>
-                <!-- <v-flex md2 col>
-                    <v-progress-circular
-                        style="xpCircleFont"
-                        color="success"
-                        background-color="grey lighten-1"
-                        fill="success"
-                        size="10"
-                        height
-                        :value="Math.floor(getPercentToLevel() * 100)"
-                    >
-                  </v-progress-circular>
-                </v-flex> -->
+            <v-layout>
+                <v-flex md6><b>Level</b></v-flex>
+                <v-flex md3>{{getLevel()}}</v-flex>
             </v-layout>
-        </v-flex>
+            <!-- <v-layout>
+              <v-flex>
+                <v-progress-circular
+                  style="xpCircleFont"
+                  color="green"
+                  background-color="blue-grey lighten-4"
+                  size="25"
+                  :value="Math.floor(getPercentToLevel() * 100)"
+                />
+              </v-flex>
+            </v-layout> -->
+            <!-- <v-layout>
+              <v-flex xs9>{{Math.ceil(getRemainingXP())}}XP until level {{getLevel()+1}}</v-flex>
+              <v-flex xs3>
+            </v-flex>
+            </v-layout> -->
         <!-- Strength -->
-        <v-flex class="stat-row">
-            <v-layout row align-center>
-                <v-flex md1 style="min-width: 70px;" col><b>Strength</b></v-flex>
-                <v-flex md3 col style="padding-left: 7px;">{{getStrength()}}</v-flex>
+            <v-layout>
+                <v-flex md6><b>Strength</b></v-flex>
+                <v-flex md3>{{getStrength()}}</v-flex>
             </v-layout>
-        </v-flex>
-        <!-- Damage -->
-        <v-flex class="stat-row">
-          <v-layout  row align-center>
-            <v-flex md1 style="min-width: 70px;" col><b>Damage</b></v-flex>
-            <v-flex md2 col style="padding-left: 7px;">{{getDamageRange()}}</v-flex>
+        <!-- Defence -->
+          <v-layout row>
+              <v-flex md6><b>Defence</b></v-flex>
+              <v-flex md3>{{getDefence()}}</v-flex>
+          </v-layout>
+    <!-- Damage -->
+          <v-layout>
+            <v-flex md6><b>Damage</b></v-flex>
+            <v-flex md6>{{getDamageRange()}}</v-flex>
             <v-flex v-if="getCurrentWeapon() !== null && getCurrentWeaponEnchantments() !== null" md6 col>
               <b>Weapon Enchantments:</b> {{getCurrentWeaponEnchantments()}}
             </v-flex>
         </v-layout>
-      </v-flex>
       <!-- Currently Weapon -->
-      <v-flex class="stat-row">
+      <!-- <v-flex class="stat-row">
         <v-layout  row align-center>
           <v-flex md4 col><b>Current Weapon</b></v-flex>
           <v-flex md5 col>
             {{getCurrentWeapon() !== null ? getCurrentWeapon().name : 'Fists'}}
           </v-flex>
         </v-layout>
-      </v-flex>
+      </v-flex> -->
       <!-- Currently Selected Spell -->
-      <v-flex class="stat-row">
+      <!-- <v-flex class="stat-row">
         <v-layout  row align-center>
           <v-flex md4 col><b>Current Spell</b></v-flex>
           <v-flex md3 col>{{getCurrentSpell() !== null ? getCurrentSpell().name : 'None'}}</v-flex>
       </v-layout>
-    </v-flex>
-        <!-- Defence -->
-        <!-- <v-flex class="stat-row">
-            <v-layout   row align-center>
-                <v-flex md1 style="min-width: 70px;" col><b>Defence</b></v-flex>
-                <v-flex md3 col style="padding-left: 5px;">{{getDefence()}}</v-flex>
-            </v-layout>
-        </v-flex> -->
+    </v-flex> -->
+
     </v-container>
 </template>
 

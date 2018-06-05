@@ -11,8 +11,9 @@ Vue.use(Vuetify)
 Vue.config.productionTip = false
 
 /* eslint-disable no-new */
-new Vue({
+var vm = new Vue({
 	el: '#app',
 	components: { App },
-	template: '<App/>'
+	template: '<App ref="app" />'
 })
+window.vm = vm

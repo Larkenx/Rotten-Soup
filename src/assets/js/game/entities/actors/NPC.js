@@ -11,6 +11,7 @@ export default class NPC extends Actor {
 	constructor(x, y, id) {
 		super(x, y, {
 			id: id,
+			bg: 'orange',
 			name: 'non-player character',
 			visible: true,
 			blocked: true,
@@ -19,6 +20,21 @@ export default class NPC extends Actor {
 			}
 		})
 		this.wanders = false
+		this.dialogData = null
+	}
+
+	react(actor) {
+		if (this.dialogData !== null) {
+			Game.openNPCDialog(this.dialogData)
+			this.dialogData = null
+			this.removeSpriteAbove()
+		} else if (this.wanders) {
+			// you can swap places with this NPC
+			let nx = actor.x
+			let ny = actor.y
+			actor.move(this.x, this.y)
+			this.move(nx, ny)
+		}
 	}
 
 	act() {

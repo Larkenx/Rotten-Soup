@@ -19,18 +19,10 @@ import Chest from '#/entities/misc/Chest.js'
 
 const { randomSimplexMap, randomDungeon, randomCave } = MapGen
 
-const targetingBorders = {
-	id: 7418,
-	visible: true
-}
-const untargetableBorders = {
-	id: 7419,
-	visible: true
-}
-
 export let Game = {
 	app: null,
 	overview: null,
+	dialogController: null,
 	dev: false,
 	display: null,
 	HUD: null,
@@ -54,7 +46,12 @@ export let Game = {
 	targetReticle: null,
 	enemyCycle: null,
 	enemyCycleIndex: 0,
-	userSettings: { hpBars: false, animationsEnabled: true },
+	userSettings: { hpBars: true, animationsEnabled: true },
+	overlayData: {
+		visible: false,
+		component: null,
+		data: {}
+	},
 
 	init(playerSpriteID) {
 		this.playerID = playerSpriteID
@@ -68,6 +65,13 @@ export let Game = {
 			tileWidth: 32,
 			tileHeight: 32
 		}
+		this.minimapOptions = {
+			width: 44,
+			height: 26,
+			fontSize: 11,
+			spacing: 0.6,
+			forceSquareRatio: true
+		}
 		let onceLoaded = () => {
 			let { resources } = PIXI.loader
 			this.levels['Mulberry Town'] = createMapFromJSON(resources['mulberryTown'].data, 'Mulberry Town')
@@ -77,6 +81,8 @@ export let Game = {
 			this.map = this.levels[this.currentLevel.name]
 			this.width = this.map.width < this.displayOptions.width ? this.map.width : this.displayOptions.width
 			this.height = this.map.height < this.displayOptions.height ? this.map.height : this.displayOptions.height
+			this.minimapOptions.width = this.map.width < this.minimapOptions.width ? this.map.width : this.minimapOptions.width
+			this.minimapOptions.height = this.map.height < this.minimapOptions.height ? this.map.height : this.minimapOptions.height
 			this.map.actors.push(this.player) // add to the list of all actors
 			let [px, py] = this.map.playerLocation
 			this.player.placeAt(px, py)
@@ -116,13 +122,7 @@ export let Game = {
 	initializeMinimap() {
 		/* Create a ROT.JS display for the minimap! */
 		this.minimap = new ROT.Display()
-		this.minimap.setOptions({
-			width: this.map.width,
-			height: this.map.height,
-			fontSize: 2,
-			spacing: 2,
-			forceSquareRatio: true
-		})
+		this.minimap.setOptions(this.minimapOptions)
 		this.drawMiniMap()
 	},
 
@@ -202,6 +202,8 @@ export let Game = {
 		this.display.clear()
 		this.width = this.map.width < this.displayOptions.width ? this.map.width : this.displayOptions.width
 		this.height = this.map.height < this.displayOptions.height ? this.map.height : this.displayOptions.height
+		this.minimapOptions.width = this.map.width < this.minimapOptions.width ? this.map.width : this.minimapOptions.width
+		this.minimapOptions.height = this.map.height < this.minimapOptions.height ? this.map.height : this.minimapOptions.height
 		this.player.placeAt(this.playerLocation[0], this.playerLocation[1])
 		this.map.actors.push(this.player)
 		this.scheduleAllActors()
@@ -217,56 +219,55 @@ export let Game = {
 		fov.compute(this.player.x, this.player.y, this.player.cb.range, (x, y, r, visibility) => {
 			this.map.visible_tiles[x + ',' + y] = true
 		})
-		this.minimap.setOptions({
-			width: this.map.width,
-			height: this.map.height,
-			fontSize: 2,
-			spacing: 2,
-			forceSquareRatio: true
-		})
+		this.minimap.setOptions(this.minimapOptions)
 		this.minimap.clear()
 		this.drawMiniMap()
 		this.renderMap()
 	},
 
 	drawMiniMap() {
-		let otherActors = this.map.actors.filter(a => {
-			return a instanceof Ladder || a instanceof Door
-		})
-		if (this.map.revealed) {
-			for (let y = 0; y < this.map.height; y++) {
-				for (let x = 0; x < this.map.width; x++) {
-					let tile = this.getTile(x, y)
-					if (tile.x + ',' + tile.y in this.map.visible_tiles) {
-						this.minimap.draw(x, y, ' ', tile.bg(), this.brightenColor(tile.bg()))
-					} else {
-						this.minimap.draw(x, y, ' ', tile.bg(), tile.bg())
-					}
-				}
-			}
+		this.minimap.clear()
 
-			for (let a of otherActors) {
-				this.minimap.draw(a.x, a.y, ' ', a.fg, a.bg)
-			}
-		} else {
-			for (let y = 0; y < this.map.height; y++) {
-				for (let x = 0; x < this.map.width; x++) {
-					let tile = this.getTile(x, y)
-					if (tile.x + ',' + tile.y in this.map.visible_tiles) {
-						this.minimap.draw(x, y, ' ', tile.bg(), this.brightenColor(tile.bg()))
-					} else if (tile.x + ',' + tile.y in this.map.seen_tiles) {
-						this.minimap.draw(x, y, ' ', tile.bg(), tile.bg())
+		let camera = {
+			// camera x,y resides in the upper left corner
+			x: this.player.x - ~~(this.minimapOptions.width / 2),
+			y: this.player.y - ~~(this.minimapOptions.height / 2),
+			width: this.minimapOptions.width,
+			height: this.minimapOptions.height
+		}
+		let startingPos = [camera.x, camera.y]
+		if (camera.x < 0) {
+			startingPos[0] = 0
+		}
+		if (camera.x + camera.width >= this.map.width) {
+			startingPos[0] = this.map.width - camera.width
+		}
+		if (camera.y <= 0) {
+			startingPos[1] = 0
+		}
+		if (camera.y + camera.height >= this.map.height) {
+			startingPos[1] = this.map.height - camera.height
+		}
+		let endingPos = [startingPos[0] + camera.width, startingPos[1] + camera.height]
+		let dx = 0
+		let dy = 0
+		for (let x = startingPos[0]; x < endingPos[0]; x++) {
+			for (let y = startingPos[1]; y < endingPos[1]; y++) {
+				if (this.inbounds(x, y)) {
+					if (this.map.revealed || this.map.visible_tiles[x + ',' + y] || this.map.seen_tiles[x + ',' + y]) {
+						let tile = this.getTile(x, y)
+						const bg = tile.x + ',' + tile.y in this.map.visible_tiles ? this.brightenColor(tile.bg()) : tile.bg()
+						this.minimap.draw(dx, dy, ' ', tile.bg(), bg)
+						for (let a of tile.actors) {
+							if (a.bg !== undefined) this.minimap.draw(dx, dy, '●', a.bg, bg)
+						}
 					}
 				}
+				dy++
 			}
-			for (let a of otherActors) {
-				if (a.x + ',' + a.y in this.map.seen_tiles) {
-					this.minimap.draw(a.x, a.y, ' ', a.fg, a.bg)
-				}
-			}
+			dy = 0
+			dx++
 		}
-		// Draw the actor in the mini-map
-		this.minimap.draw(this.player.x, this.player.y, ' ', 'yellow', 'yellow')
 	},
 
 	brightenColor(color) {
@@ -447,11 +448,7 @@ export let Game = {
 		}
 
 		if ((Game.player.targeting || Game.player.casting) && this.selectedTile !== null) {
-			let inView = Game.map.data[this.selectedTile.y][this.selectedTile.x].actors.some(obs => {
-				return obs.id === untargetableBorders.id
-			})
-				? ' This tile is out of range or blocked.'
-				: ''
+			let inView = Game.map.data[this.selectedTile.y][this.selectedTile.x].actors ? ' This tile is out of range or blocked.' : ''
 			this.log(`[You see ${prettyNames} here.${inView}]`, 'player_move', true)
 		} else {
 			this.log(`[You see ${prettyNames} here.]`, 'player_move', true)
@@ -501,9 +498,22 @@ export let Game = {
 		else return null
 	},
 
+	closeDialog() {
+		if (this.dialogController !== null && this.dialogController.vm !== null && this.dialogController.vm.$refs !== null) {
+			this.dialogController.vm.$refs.app.closeDialog()
+		} else {
+			console.log('Unable to close dialog')
+		}
+	},
+
 	getNearestLevelTransition() {
 		let levelTransitions = this.map.actors.filter(a => a instanceof LevelTransition)
 		if (levelTransitions.length > 0) return levelTransitions[0]
 		else return null
+	},
+
+	openNPCDialog(data) {
+		this.overlayData.visible = true
+		;(this.overlayData.component = 'npc-dialogue'), (this.overlayData.data = { ...data })
 	}
 }
