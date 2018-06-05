@@ -19,15 +19,6 @@ import Chest from '#/entities/misc/Chest.js'
 
 const { randomSimplexMap, randomDungeon, randomCave } = MapGen
 
-const targetingBorders = {
-	id: 7418,
-	visible: true
-}
-const untargetableBorders = {
-	id: 7419,
-	visible: true
-}
-
 export let Game = {
 	app: null,
 	overview: null,
@@ -56,11 +47,15 @@ export let Game = {
 	enemyCycle: null,
 	enemyCycleIndex: 0,
 	userSettings: { hpBars: true, animationsEnabled: true },
+	overlayData: {
+		visible: false,
+		component: null,
+		data: {}
+	},
 
-	init(playerSpriteID, windowRef) {
+	init(playerSpriteID) {
 		this.playerID = playerSpriteID
 		this.player = new Player(0, 0, playerSpriteID)
-		this.dialogController = windowRef
 		this.displayOptions = {
 			width: 32,
 			height: 20,
@@ -71,13 +66,12 @@ export let Game = {
 			tileHeight: 32
 		}
 		this.minimapOptions = {
-			width: 40,
-			height: 27,
-			fontSize: 10,
-			spacing: 1,
+			width: 44,
+			height: 26,
+			fontSize: 11,
+			spacing: 0.6,
 			forceSquareRatio: true
 		}
-
 		let onceLoaded = () => {
 			let { resources } = PIXI.loader
 			this.levels['Mulberry Town'] = createMapFromJSON(resources['mulberryTown'].data, 'Mulberry Town')
@@ -87,6 +81,8 @@ export let Game = {
 			this.map = this.levels[this.currentLevel.name]
 			this.width = this.map.width < this.displayOptions.width ? this.map.width : this.displayOptions.width
 			this.height = this.map.height < this.displayOptions.height ? this.map.height : this.displayOptions.height
+			this.minimapOptions.width = this.map.width < this.minimapOptions.width ? this.map.width : this.minimapOptions.width
+			this.minimapOptions.height = this.map.height < this.minimapOptions.height ? this.map.height : this.minimapOptions.height
 			this.map.actors.push(this.player) // add to the list of all actors
 			let [px, py] = this.map.playerLocation
 			this.player.placeAt(px, py)
@@ -206,6 +202,8 @@ export let Game = {
 		this.display.clear()
 		this.width = this.map.width < this.displayOptions.width ? this.map.width : this.displayOptions.width
 		this.height = this.map.height < this.displayOptions.height ? this.map.height : this.displayOptions.height
+		this.minimapOptions.width = this.map.width < this.minimapOptions.width ? this.map.width : this.minimapOptions.width
+		this.minimapOptions.height = this.map.height < this.minimapOptions.height ? this.map.height : this.minimapOptions.height
 		this.player.placeAt(this.playerLocation[0], this.playerLocation[1])
 		this.map.actors.push(this.player)
 		this.scheduleAllActors()
@@ -450,11 +448,7 @@ export let Game = {
 		}
 
 		if ((Game.player.targeting || Game.player.casting) && this.selectedTile !== null) {
-			let inView = Game.map.data[this.selectedTile.y][this.selectedTile.x].actors.some(obs => {
-				return obs.id === untargetableBorders.id
-			})
-				? ' This tile is out of range or blocked.'
-				: ''
+			let inView = Game.map.data[this.selectedTile.y][this.selectedTile.x].actors ? ' This tile is out of range or blocked.' : ''
 			this.log(`[You see ${prettyNames} here.${inView}]`, 'player_move', true)
 		} else {
 			this.log(`[You see ${prettyNames} here.]`, 'player_move', true)
@@ -516,5 +510,10 @@ export let Game = {
 		let levelTransitions = this.map.actors.filter(a => a instanceof LevelTransition)
 		if (levelTransitions.length > 0) return levelTransitions[0]
 		else return null
+	},
+
+	openNPCDialog(data) {
+		this.overlayData.visible = true
+		;(this.overlayData.component = 'npc-dialogue'), (this.overlayData.data = { ...data })
 	}
 }

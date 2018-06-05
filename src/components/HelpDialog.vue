@@ -7,7 +7,7 @@
             </v-btn>
         </v-tooltip>
         <v-dialog v-model="helpDialog" max-width="600px" >
-            <v-card>
+            <v-card style="background-color: #1e1f1f">
                 <v-card-text class="text-xs-center">
                     <h2 class="pa-1">Controls</h2>
                 </v-card-text>

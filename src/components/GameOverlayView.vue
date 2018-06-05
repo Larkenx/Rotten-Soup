@@ -1,11 +1,11 @@
 <template>
-  <div id="game_overlay_view" :is="data.component" />
+  <div id="game_overlay_view" v-show="overlayVisible()" :is="overlayData.component" />
 </template>
 
 <script>
+import { Game } from '@/assets/js/game/Game.js'
 import NPCDialogue from '@/components/NPCDialogue'
 export default {
-	props: ['data'],
 	components: {
 		'npc-dialogue': NPCDialogue
 		// NPC Dialog
@@ -14,7 +14,17 @@ export default {
 		// Skills
 		// Map
 	},
-	name: 'game-overlay-view'
+	name: 'game-overlay-view',
+	data() {
+		return {
+			overlayData: Game.overlayData
+		}
+	},
+	methods: {
+		overlayVisible() {
+			return Game.overlayData.visible
+		}
+	}
 }
 </script>
 

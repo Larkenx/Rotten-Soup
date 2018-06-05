@@ -14,7 +14,7 @@
           <v-layout  row id="ui" :style="{'max-width': uiWidth, 'max-height': uiHeight}">
             <v-flex column :style="{'max-width': gameDisplayWidth}">
               <v-layout id="game_container_row" :style="{'max-height': gameDisplayHeight, 'max-width': gameDisplayWidth}">
-                <game-overlay-view v-if="gameOverlayVisible" :data="gameOverlayData" />
+                <game-overlay-view ref="gameOverlayView" />
                 <div id="game_container" />
               </v-layout>
               <message-log v-if="playerSelected"></message-log>
@@ -82,12 +82,6 @@ export default {
 	mounted() {
 		window.addEventListener('resize', this.recomputeSize)
 		this.loadGame(4219)
-		this.loadDialog({
-			component: 'npc-dialogue',
-			title: 'Leonard',
-			text: 'You must be the adventurer we sent for! Take this key and clear out anything you find down there!',
-			choices: ['Sure!', 'No thanks']
-		})
 	},
 	beforeDestroy() {
 		window.removeEventListener('resize', this.recomputeSize)
@@ -109,14 +103,6 @@ export default {
 			Game.init(id, window)
 			Game.log('Welcome to Rotten Soup!', 'information')
 			Game.log('Press ? to view the controls.', 'player_move')
-		},
-		loadDialog(data) {
-			this.gameOverlayData = data
-			this.gameOverlayVisible = true
-		},
-		closeDialog() {
-			this.gameOverlayData = {}
-			this.gameOverlayVisible = false
 		},
 		recomputeSize(evt) {
 			console.log('resizing!')

@@ -218,6 +218,20 @@ export default class GameDisplay {
 			if (!(a instanceof Item) || !a.inInventory) {
 				this.assignSprite(a)
 			}
+
+			if (a.dialogData !== undefined && a.dialogData !== null) {
+				console.log(a)
+				let gx = a.x * this.tileSize
+				let gy = (a.y - 1) * this.tileSize
+				const dialogBubble = { id: 8990, animated_id: 9830 }
+				let frames = [this.getTexture(dialogBubble.id), this.getTexture(dialogBubble.animated_id)]
+				let sprite = new PIXI.extras.AnimatedSprite(frames)
+				sprite.position.set(gx, gy)
+				sprite.animationSpeed = 0.025
+				sprite.play()
+				a.setSpriteAbove(sprite)
+				this.background.addChild(sprite)
+			}
 		}
 
 		// if the map isn't completely revealed, we need to generate some FOV shadowing hiding the
@@ -329,9 +343,9 @@ export default class GameDisplay {
 		}
 		if (!Game.userSettings.hpBars) {
 			for (let actor of Game.map.actors) {
-				if (actor.spriteHPBar !== undefined) {
-					this.background.removeChild(actor.spriteHPBar)
-					actor.spriteHPBar = undefined
+				if (actor.spriteAbove !== undefined && !(actor instanceof NPC)) {
+					this.background.removeChild(actor.spriteAbove)
+					actor.spriteAbove = undefined
 				}
 			}
 		} else {
@@ -345,8 +359,8 @@ export default class GameDisplay {
 							})
 							if (actors.length >= 1) {
 								for (let a of actors) {
-									if (a.spriteHPBar !== undefined) {
-										this.background.removeChild(a.spriteHPBar)
+									if (a.spriteAbove !== undefined) {
+										this.background.removeChild(a.spriteAbove)
 									}
 									if (a.cb.hp < a.cb.maxhp) {
 										// create new PIXI Sprite to be the health bar
@@ -363,7 +377,7 @@ export default class GameDisplay {
 										g.endFill()
 										let sprite = new PIXI.Sprite(this.app.renderer.generateTexture(g))
 										sprite.position.set(gx, gy)
-										a.setSpriteHPBar(sprite)
+										a.setSpriteAbove(sprite)
 										this.background.addChild(sprite)
 									}
 								}

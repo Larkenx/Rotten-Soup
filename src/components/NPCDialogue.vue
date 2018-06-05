@@ -11,14 +11,14 @@
         <v-flex xs12 class="ma-1" v-for="(option, index) in dialogueData.choices" :key="index">
           <v-layout align-center>
             <v-flex xs1  style="max-width: 35px">
-              <span v-if="index === selectedChoice" class="pa-1 headline" style="margin: auto; font-weight: bold;">{{'>'}}</span>
+              <span v-if="index === dialogueData.selectedChoice" class="pa-1 headline" style="margin: auto; font-weight: bold;">{{'>'}}</span>
             </v-flex>
-            <v-flex xs11 :class="{dialogue_choice: index === selectedChoice, selected_dialogue_choice: index !== selectedChoice}">
+            <v-flex xs11 :class="{dialogue_choice: index !== dialogueData.selectedChoice, selected_dialogue_choice: index === dialogueData.selectedChoice}" @click="">
               <span class="pa-2 headline">
                 <span class="pr-2 white--text">
                   <span class="yellow--text darken-4">{{index+1}}</span>)
                 </span>
-                {{option}}
+                {{option.text}}
               </span>
             </v-flex>
         </v-layout>
@@ -29,31 +29,21 @@
 </template>
 
 <script>
+import { Game } from '@/assets/js/game/Game.js'
+
 export default {
-	// props: ['dialogueData'],
-	mounted() {
-		window.addEventListener('keydown', evt => {
-			const { keyCode } = evt
-		})
-	},
 	data() {
 		return {
-			dialogueData: {
-				title: 'Leonard',
-				text: 'You must be the adventurer we sent for. Take this key and clear out anything you find down there!',
-				choices: ['Sure!', 'No thanks.']
-			},
-			selectedChoice: 0
+			overlayData: Game.overlayData,
+			dialogueData: Game.overlayData.data
 		}
-	},
-	changeChoice(index) {
-		this.selectedChoice = index
 	}
 }
 </script>
 
 <style lang="css">
 .dialogue_choice {
+  padding: 10px;
   border: 2px solid #4f4f4f;
   background-color: #294646;
   border-radius: 4px;
@@ -65,7 +55,8 @@ export default {
 }
 
 .selected_dialogue_choice {
-  border: 2px solid #4f4f4f;
+  padding: 10px;
+  border: 2px solid #f57f17;
   background-color: #294646;
   border-radius: 4px;
 }

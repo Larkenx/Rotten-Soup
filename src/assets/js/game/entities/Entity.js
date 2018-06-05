@@ -17,8 +17,13 @@ export class Entity {
 		this.sprite = sprite
 	}
 
-	setSpriteHPBar(sprite) {
-		this.spriteHPBar = sprite
+	setSpriteAbove(sprite) {
+		this.spriteAbove = sprite
+	}
+
+	removeSpriteAbove() {
+		Game.display.removeChild(this.spriteAbove)
+		this.spriteAbove = null
 	}
 
 	move(nx, ny) {
@@ -36,8 +41,8 @@ export class Entity {
 		}
 		this.x = nx // update x,y coords to new coords
 		this.y = ny
-		if (this.spriteHPBar !== undefined) {
-			Game.display.moveSprite(this.spriteHPBar, nx, ny - 0.5)
+		if (this.spriteAbove !== undefined) {
+			Game.display.moveSprite(this.spriteAbove, nx, ny - 0.5)
 		}
 		// this.sprite.position.set(this.x * 32, this.y * 32)
 		// Game.drawActor(this); // draw the actor at the new spot

@@ -76,7 +76,7 @@ export default {
 }
 
 #spell_bar {
-	/* margin: 2px; */
+	margin-left: 18px;
 }
 
 .selectedSpell {

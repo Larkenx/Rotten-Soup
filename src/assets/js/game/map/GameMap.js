@@ -1,6 +1,7 @@
 import { Game, tileset } from '#/Game.js'
 import Tile, { getTileInfo } from '#/map/Tile.js'
 import { createActor, createItem } from '#/utils/EntityFactory.js'
+import DIALOGUES from '#/utils/Dialogues.js'
 
 export function createMapFromJSON(json, name) {
 	let { layers, width, height } = json
@@ -85,6 +86,13 @@ export class GameMap {
 			// add NPC routines if any exist...
 			// NPCs may have items too!
 			entity.wanders = properties.wanders
+			if (properties.dialog !== undefined) {
+				console.log(entity)
+				const dialogID = properties.dialog
+				if (dialogID in DIALOGUES) {
+					entity.dialogData = DIALOGUES[dialogID]
+				}
+			}
 		} else if (entity_type === 'LADDER' || entity_type === 'LEVEL_TRANSITION') {
 			// ladders & level transitions have portal ID's
 			entity.portal = properties.portalID
