@@ -11,7 +11,7 @@
 		"unit": "jest --config test/unit/jest.conf.js --coverage",
 		"test": "npm run unit",
 		"build": "node build/build.js",
-		"deploy": "git push heroku master"
+		"heroku-postbuild": "npm run build"
 	},
 	"dependencies": {
 		"cross-env": "^5.1.4",
