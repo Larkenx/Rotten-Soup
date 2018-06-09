@@ -1,7 +1,18 @@
 class DialogueNode {
-	constructor(data) {
+	constructor(data, origin = false, leaf = false) {
+		this.origin = origin
+		this.leaf = false
 		this.data = data
 		this.edges = {}
+	}
+}
+
+/* Edges in a dialogue are the choices of dialogue that you can express. Every edge 
+
+ */
+class DialogueEdge {
+	constructor(data, endsDialogue = false) {
+		this.text = data.text
 	}
 }
 
@@ -11,12 +22,20 @@ export class DialogueGraph {
 		this.adjacencyList = new Map()
 	}
 
+	getVertices() {
+		return Object.keys(this.adjacencyList)
+	}
+
+	getEdges(node) {
+		return this.adjacencyList[node]
+	}
+
 	addVertex(node) {
 		if (!this.adjacencyList.has(node)) this.adjacencyList.set(node, [])
 	}
 
-	addEdge(u, v) {
-		this.adjacencyList.get(u).push(v)
+	addEdge(u, edge, v) {
+		this.adjacencyList.get(u).push({ node: v, edge })
 	}
 
 	printGraph() {
