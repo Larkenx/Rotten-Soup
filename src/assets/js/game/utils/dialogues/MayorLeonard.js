@@ -79,7 +79,8 @@ const n3e1 = new Edge({
 })
 // decline quest, for now
 const n3e2 = new Edge({
-	text: "Sorry, not right now. I don't think I'm up to that just yet."
+	text: "Sorry, not right now. I don't think I'm up to that just yet.",
+	node: n5
 })
 
 graph.addEdge(n3, n3e1)

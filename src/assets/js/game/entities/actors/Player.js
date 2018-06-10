@@ -384,7 +384,10 @@ export default class Player extends Actor {
 			if (this.validTarget) {
 				confirmSpellcasting()
 			} else {
-				Game.log(`You cannot cast ${this.cb.currentSpell.name} at this tile because it's blocked or too far away.`, 'alert')
+				Game.log(
+					`You cannot cast ${this.cb.currentSpell.name} at this tile because it's blocked or too far away.`,
+					'alert'
+				)
 			}
 		} else if (movementKeys.includes(this.keyMap[keyCode])) {
 			let diff = ROT.DIRS[8][this.keyMap[keyCode]]
@@ -405,14 +408,17 @@ export default class Player extends Actor {
 		const confirm = [ROT.VK_RETURN, ROT.VK_E]
 		const up = [ROT.VK_UP, ROT.VK_NUMPAD8, ROT.VK_W]
 		const down = [ROT.VK_DOWN, ROT.VK_NUMPAD2, ROT.VK_S]
-		const { choices, selectedChoice } = Game.overlayData.dialogue
+		const dialogue = Game.overlayData.dialogue
+		const selectedChoiceIndex = dialogue.selectedChoice // the index of the choice we've selected
+		const choices = Game.overlayData.dialogue.getChoices()
 		if (confirm.includes(keyCode)) {
 			// select that choice and proceed in dialog
-			choices[selectedChoice].result(Game)
+			const selectedChoice = dialogue.getChoices()[selectedChoiceIndex] // the selected choice
+			dialogue.selectChoice(selectedChoice)
 		} else if (down.includes(keyCode)) {
-			if (selectedChoice < choices.length - 1) Game.overlayData.data.selectedChoice++
+			if (selectedChoiceIndex < choices.length - 1) Game.overlayData.dialogue.selectedChoice++
 		} else if (up.includes(keyCode)) {
-			if (selectedChoice > 0) Game.overlayData.data.selectedChoice--
+			if (selectedChoiceIndex > 0) Game.overlayData.dialogue.selectedChoice--
 		}
 	}
 
@@ -429,7 +435,10 @@ export default class Player extends Actor {
 				if (this.validTarget) {
 					confirmSpellcasting()
 				} else {
-					Game.log(`You cannot cast ${this.cb.currentSpell.name} at this tile because it's blocked or too far away.`, 'alert')
+					Game.log(
+						`You cannot cast ${this.cb.currentSpell.name} at this tile because it's blocked or too far away.`,
+						'alert'
+					)
 				}
 			}
 			// else, if the tile is within one square of the player, they can move to that tile by clicking
@@ -529,7 +538,11 @@ export default class Player extends Actor {
 				Game.log('You rest for a turn.', 'player_move')
 			} else if (action === 'pickup' && !shiftPressed) {
 				this.pickup()
-			} else if ((action === 'rest' && shiftPressed) || (action === 'pickup' && shiftPressed) || action === 'interact') {
+			} else if (
+				(action === 'rest' && shiftPressed) ||
+				(action === 'pickup' && shiftPressed) ||
+				action === 'interact'
+			) {
 				this.climb()
 			} else if (action === 'fire' && !shiftPressed) {
 				let weapon = this.cb.equipment.weapon

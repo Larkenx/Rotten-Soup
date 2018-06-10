@@ -1,14 +1,14 @@
 <template>
-  <v-card class="pa-4 ma-4">
+  <v-card class="pa-4 ma-4" v-if="overlayData.visible">
     <v-card-title class="display-1">
-      {{dialogue.title}}
+      {{dialogue.getTitle()}}
     </v-card-title>
     <v-card-text class="headline">
-      {{dialogue.text}}
+      {{dialogue.getText()}}
     </v-card-text>
     <v-card-text>
       <v-layout wrap>
-        <v-flex xs12 class="ma-1" v-for="(option, index) in dialogue.choices" :key="index">
+        <v-flex xs12 class="ma-1" v-for="(choice, index) in dialogue.getChoices()" :key="index">
           <v-layout align-center>
             <v-flex xs1  style="max-width: 35px">
               <span v-if="index === dialogue.selectedChoice" class="pa-1 headline" style="margin: auto; font-weight: bold;">{{'>'}}</span>
@@ -18,7 +18,7 @@
                 <span class="pr-2 white--text">
                   <span class="yellow--text darken-4">{{index+1}}</span>)
                 </span>
-                {{option.text}}
+                {{choice.text}}
               </span>
             </v-flex>
         </v-layout>

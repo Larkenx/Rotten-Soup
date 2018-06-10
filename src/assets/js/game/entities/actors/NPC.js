@@ -26,8 +26,6 @@ export default class NPC extends Actor {
 	react(actor) {
 		if (this.dialogData !== null) {
 			Game.openNPCDialog(this.dialogData)
-			this.dialogData = null
-			this.removeSpriteAbove()
 		} else if (this.wanders) {
 			// you can swap places with this NPC
 			let nx = actor.x

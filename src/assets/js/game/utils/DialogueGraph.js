@@ -1,3 +1,5 @@
+import { Game } from '#/Game.js'
+
 export class DialogueNode {
 	constructor(data) {
 		Object.assign(this, data)
@@ -38,7 +40,7 @@ export class DialogueGraph {
 	}
 
 	addEdge(u, edge) {
-		this.adjacencyList.get(u).push({ edge })
+		this.adjacencyList.get(u).push(edge)
 	}
 
 	copyToNewVertex(from, to) {
@@ -69,9 +71,13 @@ export class Dialogue {
 		this.graph = graph
 		this.currentNode = null
 		this.dialogueEnded = false
-		this.selectedChoice
+		this.selectedChoice = 0
 		// find the origin node (start of the conversation)
-		for (let node of graph.getVertices()) {
+		this.initializeOrigin()
+	}
+
+	initializeOrigin() {
+		for (let node of this.graph.getVertices()) {
 			if (node.origin) this.currentNode = node
 			break
 		}
@@ -79,33 +85,42 @@ export class Dialogue {
 	}
 
 	getTitle() {
-		return graph.title
+		return this.graph.title
+	}
+
+	getText() {
+		return this.currentNode.text
 	}
 
 	getChoices() {
-		let choices = graph.getEdges(this.currentNode).filter(e => !e.disabled)
+		let choices = this.graph.getEdges(this.currentNode).filter(e => !e.disabled)
 		if (choices.length === 0) {
 			console.error('Current node has no choices!')
 			console.error(this.currentNode)
 			this.dialogueEnded = true
 		}
-		return graph.getEdges(this.currentNode).filter(e => !e.disabled)
+		return this.graph.getEdges(this.currentNode).filter(e => !e.disabled)
 	}
 
 	selectChoice(selectedChoice) {
-		for (const choice of this.graph.getEdges(this.currentNode)) {
+		for (const [index, choice] of this.graph.getEdges(this.currentNode).entries()) {
 			if (choice === selectedChoice) {
-				const { node, text, action, endsDialogue, copyPreviousChoices, removeWhenVisited } = choice
+				const { node, text, action, endsDialogue, copyChoicesFrom, removeWhenVisited } = choice
 				choice.visited = true
-				this.dialogueEnded = endsDialogue === true
+				if (endsDialogue === true) {
+					Game.overlayData.visible = false
+					this.selectedChoice = 0
+					this.initializeOrigin()
+					return
+				}
 				// perform the action
-				if (action !== undefined) action()
+				if (action !== undefined) action(Game)
 				if (!this.dialogueEnded) {
 					if (copyChoicesFrom !== undefined) {
 						// if we are supposed to have the same options, but
 						// provide a response for the selected choice,
 						// then we can simply copy the edges
-						graph.copyToNewVertex(copyChoicesFrom, node)
+						this.graph.copyToNewVertex(copyChoicesFrom, node)
 					}
 					// filter this edge from the list of possible edges
 					// TODO: perform a DFS on the graph. Trim any path connected to the edge. For now, the edge actually has scope
