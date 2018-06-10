@@ -50,7 +50,7 @@ export let Game = {
 	overlayData: {
 		visible: false,
 		component: null,
-		data: {}
+		dialogue: {}
 	},
 
 	init(playerSpriteID) {
@@ -498,22 +498,15 @@ export let Game = {
 		else return null
 	},
 
-	closeDialog() {
-		if (this.dialogController !== null && this.dialogController.vm !== null && this.dialogController.vm.$refs !== null) {
-			this.dialogController.vm.$refs.app.closeDialog()
-		} else {
-			console.log('Unable to close dialog')
-		}
-	},
-
 	getNearestLevelTransition() {
 		let levelTransitions = this.map.actors.filter(a => a instanceof LevelTransition)
 		if (levelTransitions.length > 0) return levelTransitions[0]
 		else return null
 	},
 
-	openNPCDialog(data) {
+	openNPCDialog(dialogue) {
 		this.overlayData.visible = true
-		;(this.overlayData.component = 'npc-dialogue'), (this.overlayData.data = { ...data })
+		this.overlayData.component = 'npc-dialogue'
+		this.overlayData.dialogue = dialogue
 	}
 }

@@ -1,19 +1,19 @@
 <template>
   <v-card class="pa-4 ma-4">
     <v-card-title class="display-1">
-      {{dialogueData.title}}
+      {{dialogue.title}}
     </v-card-title>
     <v-card-text class="headline">
-      {{dialogueData.text}}
+      {{dialogue.text}}
     </v-card-text>
     <v-card-text>
       <v-layout wrap>
-        <v-flex xs12 class="ma-1" v-for="(option, index) in dialogueData.choices" :key="index">
+        <v-flex xs12 class="ma-1" v-for="(option, index) in dialogue.choices" :key="index">
           <v-layout align-center>
             <v-flex xs1  style="max-width: 35px">
-              <span v-if="index === dialogueData.selectedChoice" class="pa-1 headline" style="margin: auto; font-weight: bold;">{{'>'}}</span>
+              <span v-if="index === dialogue.selectedChoice" class="pa-1 headline" style="margin: auto; font-weight: bold;">{{'>'}}</span>
             </v-flex>
-            <v-flex xs11 :class="{dialogue_choice: index !== dialogueData.selectedChoice, selected_dialogue_choice: index === dialogueData.selectedChoice}" @click="">
+            <v-flex xs11 :class="{dialogue_choice: index !== dialogue.selectedChoice, selected_dialogue_choice: index === dialogue.selectedChoice}" @click="">
               <span class="pa-2 headline">
                 <span class="pr-2 white--text">
                   <span class="yellow--text darken-4">{{index+1}}</span>)
@@ -35,7 +35,7 @@ export default {
 	data() {
 		return {
 			overlayData: Game.overlayData,
-			dialogueData: Game.overlayData.data
+			dialogue: Game.overlayData.dialogue
 		}
 	}
 }

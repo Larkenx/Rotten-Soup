@@ -405,7 +405,7 @@ export default class Player extends Actor {
 		const confirm = [ROT.VK_RETURN, ROT.VK_E]
 		const up = [ROT.VK_UP, ROT.VK_NUMPAD8, ROT.VK_W]
 		const down = [ROT.VK_DOWN, ROT.VK_NUMPAD2, ROT.VK_S]
-		const { choices, selectedChoice } = Game.overlayData.data
+		const { choices, selectedChoice } = Game.overlayData.dialogue
 		if (confirm.includes(keyCode)) {
 			// select that choice and proceed in dialog
 			choices[selectedChoice].result(Game)
