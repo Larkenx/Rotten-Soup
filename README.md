@@ -1,5 +1,5 @@
 # Rotten Soup
-
+[![Donate](https://img.shields.io/badge/Donate-PayPal-green.svg)](https://www.paypal.me/larkenx)
 ###### A roguelike written in JavaScript with Vue, [Vuetify](https://vuetifyjs.com/en/), [ROT.js](http://ondras.github.io/rot.js/hp/) and [PixiJS](http://www.pixijs.com/).
 
 ![screenshot](static/images/screen.gif)
@@ -31,3 +31,8 @@ While maintaining some roots in traditional roguelike gameplay with features lik
 ## Contact / Feedback
 
 If you have any feedback, please send me an email at larkenx@gmail.com or drop an issue on GitHub. Any feedback is welcome and greatly appreciated.
+
+## Donate
+If you've really enjoyed my game and want to buy me a cup of coffee, I won't stop you!
+
+[![paypal](https://www.paypalobjects.com/en_US/i/btn/btn_donateCC_LG.gif)](https://www.paypal.me/larkenx)
