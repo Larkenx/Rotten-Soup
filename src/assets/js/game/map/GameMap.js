@@ -87,7 +87,6 @@ export class GameMap {
 			// NPCs may have items too!
 			entity.wanders = properties.wanders
 			if (properties.dialog !== undefined) {
-				console.log(entity)
 				const dialogID = properties.dialog
 				if (dialogID in DIALOGUES) {
 					entity.dialogData = DIALOGUES[dialogID]

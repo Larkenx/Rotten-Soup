@@ -243,7 +243,8 @@ export default class Player extends Actor {
 		Game.engine.unlock()
 	}
 
-	handleExamineEvent({ keyCode }) {
+	handleExamineEvent(evt) {
+		let { keyCode } = evt
 		let cycleKeys = [9, 61, 187, 191]
 		let confirmKeys = [101, 13, 190, 110]
 		let exitKeys = [70, 27, 90, 88]
@@ -268,7 +269,9 @@ export default class Player extends Actor {
 		return
 	}
 
-	handleRangedFireEvent({ keyCode }) {
+	handleRangedFireEvent(evt) {
+		let { keyCode } = evt
+		evt.preventDefault()
 		let cycleKeys = [9, 61, 187, 191]
 		let confirmKeys = [101, 13, 190, 110]
 		let exitKeys = [70, 27, 90, 88]
@@ -348,7 +351,9 @@ export default class Player extends Actor {
 		return
 	}
 
-	handleMagicEvent({ keyCode }) {
+	handleMagicEvent(evt) {
+		let { keyCode } = evt
+		evt.preventDefault()
 		let cycleKeys = [9, 61, 187, 191]
 		let confirmKeys = [101, 13, 190, 110]
 		let exitKeys = [70, 27, 90, 88]
@@ -384,10 +389,7 @@ export default class Player extends Actor {
 			if (this.validTarget) {
 				confirmSpellcasting()
 			} else {
-				Game.log(
-					`You cannot cast ${this.cb.currentSpell.name} at this tile because it's blocked or too far away.`,
-					'alert'
-				)
+				Game.log(`You cannot cast ${this.cb.currentSpell.name} at this tile because it's blocked or too far away.`, 'alert')
 			}
 		} else if (movementKeys.includes(this.keyMap[keyCode])) {
 			let diff = ROT.DIRS[8][this.keyMap[keyCode]]
@@ -404,17 +406,25 @@ export default class Player extends Actor {
 
 	helpScreenHandler(evt) {}
 
-	npcDialogHandler({ keyCode }) {
+	npcDialogHandler(evt) {
+		let { keyCode } = evt
+		evt.preventDefault()
 		const confirm = [ROT.VK_RETURN, ROT.VK_E]
 		const up = [ROT.VK_UP, ROT.VK_NUMPAD8, ROT.VK_W]
 		const down = [ROT.VK_DOWN, ROT.VK_NUMPAD2, ROT.VK_S]
+		const numbers = [ROT.VK_1, ROT.VK_2, ROT.VK_3, ROT.VK_4, ROT.VK_5, ROT.VK_6, ROT.VK_7, ROT.VK_8, ROT.VK_9]
 		const dialogue = Game.overlayData.dialogue
 		const selectedChoiceIndex = dialogue.selectedChoice // the index of the choice we've selected
 		const choices = Game.overlayData.dialogue.getChoices()
 		if (confirm.includes(keyCode)) {
 			// select that choice and proceed in dialog
-			const selectedChoice = dialogue.getChoices()[selectedChoiceIndex] // the selected choice
+			const selectedChoice = choices[selectedChoiceIndex] // the selected choice
 			dialogue.selectChoice(selectedChoice)
+		} else if (numbers.includes(keyCode)) {
+			const index = keyCode - 49 // the key code for 1 starts at 49 leading up to 57
+			if (index <= choices.length - 1) {
+				dialogue.selectChoice(choices[index])
+			}
 		} else if (down.includes(keyCode)) {
 			if (selectedChoiceIndex < choices.length - 1) Game.overlayData.dialogue.selectedChoice++
 		} else if (up.includes(keyCode)) {
@@ -435,10 +445,7 @@ export default class Player extends Actor {
 				if (this.validTarget) {
 					confirmSpellcasting()
 				} else {
-					Game.log(
-						`You cannot cast ${this.cb.currentSpell.name} at this tile because it's blocked or too far away.`,
-						'alert'
-					)
+					Game.log(`You cannot cast ${this.cb.currentSpell.name} at this tile because it's blocked or too far away.`, 'alert')
 				}
 			}
 			// else, if the tile is within one square of the player, they can move to that tile by clicking
@@ -510,6 +517,7 @@ export default class Player extends Actor {
 			let { keyCode } = evt
 			let shiftPressed = evt.getModifierState('Shift')
 			let movementKeys = [0, 1, 2, 3, 4, 5, 6, 7]
+			evt.preventDefault()
 
 			if (!(keyCode in this.keyMap)) {
 				// invalid key press, retry turn
@@ -538,11 +546,7 @@ export default class Player extends Actor {
 				Game.log('You rest for a turn.', 'player_move')
 			} else if (action === 'pickup' && !shiftPressed) {
 				this.pickup()
-			} else if (
-				(action === 'rest' && shiftPressed) ||
-				(action === 'pickup' && shiftPressed) ||
-				action === 'interact'
-			) {
+			} else if ((action === 'rest' && shiftPressed) || (action === 'pickup' && shiftPressed) || action === 'interact') {
 				this.climb()
 			} else if (action === 'fire' && !shiftPressed) {
 				let weapon = this.cb.equipment.weapon

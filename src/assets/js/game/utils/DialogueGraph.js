@@ -3,7 +3,6 @@ import { Game } from '#/Game.js'
 export class DialogueNode {
 	constructor(data) {
 		Object.assign(this, data)
-		console.log(this)
 	}
 }
 
@@ -64,6 +63,23 @@ export class DialogueGraph {
 			console.log(k + ' -> ' + output)
 		}
 	}
+
+	getVisualizationFormat() {
+		let nodes = []
+		for (const node of this.getVertices()) {
+			nodes.push({ id: node.text, label: node.text, node })
+		}
+
+		let edges = []
+		for (const n of nodes) {
+			for (const edge of this.getEdges(n.node)) {
+				if (edge.node !== undefined) {
+					edges.push({ from: n.label, label: edge.text, to: edge.node.text })
+				}
+			}
+		}
+		return { nodes, edges }
+	}
 }
 
 export class Dialogue {
@@ -107,10 +123,11 @@ export class Dialogue {
 			if (choice === selectedChoice) {
 				const { node, text, action, endsDialogue, copyChoicesFrom, removeWhenVisited } = choice
 				choice.visited = true
+				this.selectedChoice = 0
 				if (endsDialogue === true) {
 					Game.overlayData.visible = false
-					this.selectedChoice = 0
 					this.initializeOrigin()
+					Game.overlayData.dialogue = null
 					return
 				}
 				// perform the action

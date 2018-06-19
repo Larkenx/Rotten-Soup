@@ -220,7 +220,6 @@ export default class GameDisplay {
 			}
 
 			if (a.dialogData !== undefined && a.dialogData !== null) {
-				console.log(a)
 				let gx = a.x * this.tileSize
 				let gy = (a.y - 1) * this.tileSize
 				const dialogBubble = { id: 8990, animated_id: 9830 }

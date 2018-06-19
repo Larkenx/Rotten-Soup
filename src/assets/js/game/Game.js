@@ -406,7 +406,7 @@ export let Game = {
 
 	cycleThroughSelectableEnemies() {
 		if (this.enemyCycle === null) {
-			this.enemyCycle = this.getNearbyEnemies()
+			this.enemyCycle = this.getNearbyEnemies().filter(e => this.map.visible_tile[e.x + ',' + e.y])
 			this.enemyCycleIndex = 0
 		}
 		// if there's more than one enemy, we can cycle to the next closest enemy
@@ -508,5 +508,6 @@ export let Game = {
 		this.overlayData.visible = true
 		this.overlayData.component = 'npc-dialogue'
 		this.overlayData.dialogue = dialogue
+		console.log(this.overlayData)
 	}
 }

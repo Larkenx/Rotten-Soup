@@ -401,11 +401,13 @@
                  "name":"NPC",
                  "properties":
                     {
+                     "dialog":"DWARF_BILI",
                      "entity_type":"NPC",
-                     "wanders":true
+                     "wanders":false
                     },
                  "propertytypes":
                     {
+                     "dialog":"string",
                      "entity_type":"string",
                      "wanders":"bool"
                     },
@@ -413,8 +415,8 @@
                  "type":"",
                  "visible":true,
                  "width":32,
-                 "x":352,
-                 "y":480
+                 "x":256,
+                 "y":416
                 }, 
                 {
                  "gid":8164,
@@ -589,8 +591,8 @@
                  "type":"",
                  "visible":true,
                  "width":32,
-                 "x":1088,
-                 "y":1056
+                 "x":384,
+                 "y":544
                 }, 
                 {
                  "gid":3974,
