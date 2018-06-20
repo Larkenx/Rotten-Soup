@@ -21,6 +21,7 @@ export default class NPC extends Actor {
 		})
 		this.wanders = false
 		this.dialogData = null
+		this.dialogBubbleEnabled = false
 	}
 
 	react(actor) {

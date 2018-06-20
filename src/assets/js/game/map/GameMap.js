@@ -90,6 +90,7 @@ export class GameMap {
 				const dialogID = properties.dialog
 				if (dialogID in DIALOGUES) {
 					entity.dialogData = DIALOGUES[dialogID]
+					entity.dialogBubbleEnabled = 'dialogBubbleEnabled' in properties ? properties.dialogBubbleEnabled : true
 				}
 			}
 		} else if (entity_type === 'LADDER' || entity_type === 'LEVEL_TRANSITION') {

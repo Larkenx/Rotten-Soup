@@ -219,7 +219,7 @@ export default class GameDisplay {
 				this.assignSprite(a)
 			}
 
-			if (a.dialogData !== undefined && a.dialogData !== null) {
+			if (a.dialogData !== undefined && a.dialogData !== null && a.dialogBubbleEnabled) {
 				let gx = a.x * this.tileSize
 				let gy = (a.y - 1) * this.tileSize
 				const dialogBubble = { id: 8990, animated_id: 9830 }

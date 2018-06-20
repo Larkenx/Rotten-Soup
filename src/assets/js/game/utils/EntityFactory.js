@@ -5,6 +5,9 @@ import LockedDoor from '#/entities/misc/LockedDoor.js'
 import LevelTransition from '#/entities/misc/LevelTransition.js'
 import Ladder from '#/entities/misc/Ladder.js'
 import Key from '#/entities/items/misc/Key.js'
+import Gold from '#/entities/items/misc/Gold.js'
+import Beer from '#/entities/items/misc/Beer.js'
+
 import { NecromancySpellBook } from '#/entities/items/misc/Spellbook.js'
 
 import NPC from '#/entities/actors/NPC.js'
@@ -42,6 +45,8 @@ import Lich from '#/entities/actors/enemies/boss/Lich.js'
 import { getRandomInt, getNormalRandomInt, randomProperty } from '#/utils/HelperFunctions.js'
 
 const itemShop = {
+	GOLD: (x, y, t) => new Gold(x, y, t, 1),
+	BEER: (x, y, t) => new Beer(x, y, t),
 	HEALTH_POTION: (x, y, t) => new HealthPotion(x, y, t),
 	STRENGTH_POTION: (x, y, t) => new StrengthPotion(x, y, t),
 	MANA_POTION: (x, y, t) => new ManaPotion(x, y, t),
@@ -54,6 +59,8 @@ const itemShop = {
 
 export function createItem(itemString, x, y, id = null) {
 	const defaultItemTextures = {
+		GOLD: 1388,
+		BEER: 1070,
 		KEY: 24,
 		HEALTH_POTION: 488,
 		MANA_POTION: 608,

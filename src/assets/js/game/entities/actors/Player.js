@@ -22,6 +22,7 @@ import { BleedEnchantment } from '#/modifiers/Enchantment.js'
 // Misc
 import Ladder from '#/entities/misc/Ladder.js'
 import { xp_levels } from '#/entities/Entity.js'
+import Gold from '#/entities/items/misc/Gold.js'
 
 function pathfinding(x, y) {
 	if (x <= 0 || x >= Game.map.width || y <= 0 || y >= Game.map.height) return false
@@ -134,6 +135,7 @@ export default class Player extends Actor {
 		// sword.addNewEnchantment(new BleedEnchantment())
 		this.addToInventory(sword)
 		super.equipWeapon(this.inventory[0].item)
+		this.addToInventory(new Gold(this.x, this.y, 1388, 100))
 		this.addToInventory(createBow(this.x, this.y, 664))
 		this.addToInventory(new SteelArrow(this.x, this.y, 784, 7))
 		this.addToInventory(new HealthPotion(this.x, this.y, 488))
@@ -498,7 +500,6 @@ export default class Player extends Actor {
 		if (Game.overlayData.visible) {
 			switch (Game.overlayData.component) {
 				case 'npc-dialogue':
-					console.log('NPC Dialogue handler switch-off')
 					return this.npcDialogHandler(evt)
 				default:
 					console.error('Game is showing overlay for which the player cannot handle')

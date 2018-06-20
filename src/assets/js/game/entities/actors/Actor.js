@@ -78,6 +78,9 @@ export class Actor extends Entity {
 				let item = this.inventory[i].item
 				if (item !== null && item.type === newItem.type) {
 					item.quantity += newItem.quantity
+					if (item.updateQuantitySprite !== undefined) {
+						item.updateQuantity()
+					}
 					return item
 				}
 			}

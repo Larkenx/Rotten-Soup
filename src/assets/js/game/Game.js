@@ -406,7 +406,7 @@ export let Game = {
 
 	cycleThroughSelectableEnemies() {
 		if (this.enemyCycle === null) {
-			this.enemyCycle = this.getNearbyEnemies().filter(e => this.map.visible_tile[e.x + ',' + e.y])
+			this.enemyCycle = this.getNearbyEnemies().filter(e => this.map.visible_tiles[e.x + ',' + e.y])
 			this.enemyCycleIndex = 0
 		}
 		// if there's more than one enemy, we can cycle to the next closest enemy
@@ -448,7 +448,9 @@ export let Game = {
 		}
 
 		if ((Game.player.targeting || Game.player.casting) && this.selectedTile !== null) {
-			let inView = Game.map.data[this.selectedTile.y][this.selectedTile.x].actors ? ' This tile is out of range or blocked.' : ''
+			const { x, y } = this.selectedTile
+			let visible = x + ',' + y in this.map.visible_tiles && !this.getTile(x, y).obstacles.any(o => o.blocked)
+			let inView = !visible ? ' This tile is out of range or blocked.' : ''
 			this.log(`[You see ${prettyNames} here.${inView}]`, 'player_move', true)
 		} else {
 			this.log(`[You see ${prettyNames} here.]`, 'player_move', true)
@@ -508,6 +510,5 @@ export let Game = {
 		this.overlayData.visible = true
 		this.overlayData.component = 'npc-dialogue'
 		this.overlayData.dialogue = dialogue
-		console.log(this.overlayData)
 	}
 }
