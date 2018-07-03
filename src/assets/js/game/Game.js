@@ -510,5 +510,7 @@ export let Game = {
 		this.overlayData.visible = true
 		this.overlayData.component = 'npc-dialogue'
 		this.overlayData.dialogue = dialogue
+		this.overlayData.dialogue.init(this, this.overlayData.dialogue)
+		// this.overlayData.dialogue.initializeOrigin()
 	}
 }

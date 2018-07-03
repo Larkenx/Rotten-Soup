@@ -26,6 +26,10 @@ export class DialogueGraph {
 		this.adjacencyList = new Map()
 	}
 
+	clearVerticesAndEdges() {
+		this.adjacencyList.clear()
+	}
+
 	getVertices() {
 		return this.adjacencyList.keys()
 	}
@@ -83,18 +87,22 @@ export class DialogueGraph {
 }
 
 export class Dialogue {
-	constructor(graph) {
+	constructor(graph, state = {}, init = () => {}) {
 		this.graph = graph
 		this.currentNode = null
 		this.dialogueEnded = false
 		this.selectedChoice = 0
 		// find the origin node (start of the conversation)
 		this.initializeOrigin()
+		this.state = state
+		this.init = init
 	}
 
 	initializeOrigin() {
 		for (let node of this.graph.getVertices()) {
-			if (node.origin) this.currentNode = node
+			if (node.origin) {
+				this.currentNode = node
+			}
 			break
 		}
 		if (this.currentNode === null) console.error('Dialogue failed to find an origin for the dialogue graph!')

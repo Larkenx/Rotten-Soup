@@ -518,12 +518,13 @@ export default class Player extends Actor {
 			let { keyCode } = evt
 			let shiftPressed = evt.getModifierState('Shift')
 			let movementKeys = [0, 1, 2, 3, 4, 5, 6, 7]
-			evt.preventDefault()
 
 			if (!(keyCode in this.keyMap)) {
 				// invalid key press, retry turn
 				return
 			}
+
+			evt.preventDefault()
 
 			/* If the key event isn't repeated within the last 160 milliseconds (too soon), then we proceed but we keep track of this
 			 	key movement time */

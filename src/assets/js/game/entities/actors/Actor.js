@@ -72,6 +72,19 @@ export class Actor extends Entity {
 		)
 	}
 
+	hasItem(itemType) {
+		return this.inventory.some(cell => cell.item instanceof itemType)
+	}
+
+	removeItemType(itemType) {
+		for (let cell of this.inventory) {
+			if (cell.item instanceof itemType) {
+				this.removeFromInventory(cell.item)
+				return
+			}
+		}
+	}
+
 	addToInventory(newItem) {
 		if ('quantity' in newItem) {
 			for (let i = 0; i < this.inventory.length; i++) {
