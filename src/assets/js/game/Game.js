@@ -18,7 +18,13 @@ import LevelTransition from '#/entities/misc/LevelTransition.js'
 import Chest from '#/entities/misc/Chest.js'
 
 const { randomSimplexMap, randomDungeon, randomCave } = MapGen
-
+const defaultMinimapConfiguration = {
+	width: 44,
+	height: 26,
+	fontSize: 11,
+	spacing: 0.6,
+	forceSquareRatio: true
+}
 export let Game = {
 	app: null,
 	overview: null,
@@ -50,7 +56,7 @@ export let Game = {
 	overlayData: {
 		visible: false,
 		component: null,
-		data: {}
+		dialogue: {}
 	},
 
 	init(playerSpriteID) {
@@ -65,13 +71,7 @@ export let Game = {
 			tileWidth: 32,
 			tileHeight: 32
 		}
-		this.minimapOptions = {
-			width: 44,
-			height: 26,
-			fontSize: 11,
-			spacing: 0.6,
-			forceSquareRatio: true
-		}
+		this.minimapOptions = { ...defaultMinimapConfiguration }
 		let onceLoaded = () => {
 			let { resources } = PIXI.loader
 			this.levels['Mulberry Town'] = createMapFromJSON(resources['mulberryTown'].data, 'Mulberry Town')
@@ -102,6 +102,12 @@ export let Game = {
 		this.targetReticle = new PIXI.Sprite(this.display.tilesetMapping[7418])
 		this.targetReticle.visible = false
 		this.display.background.addChild(this.targetReticle)
+	},
+
+	findActor(type, id) {
+		return this.map.actors.filter(a => {
+			return a instanceof type && a.id === id
+		})
 	},
 
 	scheduleAllActors() {
@@ -135,9 +141,11 @@ export let Game = {
 	},
 
 	inViewport(x, y) {
-		let cx = Game.player.x - ~~(Game.width / 2)
-		let cy = Game.player.y - ~~(Game.height / 2)
-		return cx <= x && x <= cx + Game.width && cy <= y && y <= cy + Game.height
+		let width = ~~(Game.display.width / 2 / 32)
+		let height = ~~(Game.display.height / 2 / 32)
+		let cx = Game.player.x - width
+		let cy = Game.player.y - height
+		return cx <= x && x <= cx + Game.display.width / 32 && cy <= y && y <= cy + Game.display.height / 32
 	},
 
 	createDungeonFloors(origin, dungeonName, numberOfFloors) {
@@ -168,6 +176,7 @@ export let Game = {
 	},
 
 	changeLevels(mapID, dungeon = false) {
+		this.minimapOptions = { ...defaultMinimapConfiguration }
 		let nextMap = this.levels[mapID]
 		if (dungeon === true && !(mapID + 1 in this.levels)) {
 			this.createDungeonFloors(this.currentLevel.name, mapID, 20)
@@ -406,7 +415,7 @@ export let Game = {
 
 	cycleThroughSelectableEnemies() {
 		if (this.enemyCycle === null) {
-			this.enemyCycle = this.getNearbyEnemies()
+			this.enemyCycle = this.getNearbyEnemies().filter(e => this.map.visible_tiles[e.x + ',' + e.y])
 			this.enemyCycleIndex = 0
 		}
 		// if there's more than one enemy, we can cycle to the next closest enemy
@@ -448,7 +457,9 @@ export let Game = {
 		}
 
 		if ((Game.player.targeting || Game.player.casting) && this.selectedTile !== null) {
-			let inView = Game.map.data[this.selectedTile.y][this.selectedTile.x].actors ? ' This tile is out of range or blocked.' : ''
+			const { x, y } = this.selectedTile
+			let visible = x + ',' + y in this.map.visible_tiles && !this.getTile(x, y).obstacles.some(o => o.blocked)
+			let inView = !visible ? ' This tile is out of range or blocked.' : ''
 			this.log(`[You see ${prettyNames} here.${inView}]`, 'player_move', true)
 		} else {
 			this.log(`[You see ${prettyNames} here.]`, 'player_move', true)
@@ -498,22 +509,31 @@ export let Game = {
 		else return null
 	},
 
-	closeDialog() {
-		if (this.dialogController !== null && this.dialogController.vm !== null && this.dialogController.vm.$refs !== null) {
-			this.dialogController.vm.$refs.app.closeDialog()
-		} else {
-			console.log('Unable to close dialog')
-		}
-	},
-
 	getNearestLevelTransition() {
 		let levelTransitions = this.map.actors.filter(a => a instanceof LevelTransition)
 		if (levelTransitions.length > 0) return levelTransitions[0]
 		else return null
 	},
 
-	openNPCDialog(data) {
+	openNPCDialog(dialogue) {
 		this.overlayData.visible = true
-		;(this.overlayData.component = 'npc-dialogue'), (this.overlayData.data = { ...data })
+		this.overlayData.component = 'npc-dialogue'
+		this.overlayData.dialogue = dialogue
+		this.overlayData.dialogue.init(this, this.overlayData.dialogue)
+		// this.overlayData.dialogue.initializeOrigin()
+	},
+
+	getValidPlaceableTilesForMap(mapIdentifier, x1, y1, x2, y2) {
+		let map = this.levels[mapIdentifier]
+		let validTiles = []
+		for (let x = x1; x <= x2; x++) {
+			for (let y = y1; y <= y2; y++) {
+				let tile = map.data[y][x]
+				if (!tile.blocked() && tile.actors.length === 0) {
+					validTiles.push(tile)
+				}
+			}
+		}
+		return validTiles
 	}
 }

@@ -22,10 +22,11 @@ import { BleedEnchantment } from '#/modifiers/Enchantment.js'
 // Misc
 import Ladder from '#/entities/misc/Ladder.js'
 import { xp_levels } from '#/entities/Entity.js'
+import Gold from '#/entities/items/misc/Gold.js'
+import { createItem } from '#/utils/EntityFactory.js'
 
 function pathfinding(x, y) {
-	if (x <= 0 || x >= Game.map.width || y <= 0 || y >= Game.map.height) return false
-	return !Game.getTile(x, y).blocked()
+	return !Game.getTile(x, y).blocked() && Game.inbounds(x, y)
 }
 
 export default class Player extends Actor {
@@ -134,10 +135,12 @@ export default class Player extends Actor {
 		// sword.addNewEnchantment(new BleedEnchantment())
 		this.addToInventory(sword)
 		super.equipWeapon(this.inventory[0].item)
+		this.addToInventory(new Gold(this.x, this.y, 1388, 100))
 		this.addToInventory(createBow(this.x, this.y, 664))
 		this.addToInventory(new SteelArrow(this.x, this.y, 784, 7))
 		this.addToInventory(new HealthPotion(this.x, this.y, 488))
 		this.addToInventory(new ManaPotion(this.x, this.y, 608))
+		this.addToInventory(createItem('KEY', this.x, this.y))
 
 		// this.addToInventory(new ManaPotion(this.x,this.y, 495));
 		this.cb.spells.push(new MagicDart())
@@ -243,7 +246,8 @@ export default class Player extends Actor {
 		Game.engine.unlock()
 	}
 
-	handleExamineEvent({ keyCode }) {
+	handleExamineEvent(evt) {
+		let { keyCode } = evt
 		let cycleKeys = [9, 61, 187, 191]
 		let confirmKeys = [101, 13, 190, 110]
 		let exitKeys = [70, 27, 90, 88]
@@ -268,7 +272,9 @@ export default class Player extends Actor {
 		return
 	}
 
-	handleRangedFireEvent({ keyCode }) {
+	handleRangedFireEvent(evt) {
+		let { keyCode } = evt
+		evt.preventDefault()
 		let cycleKeys = [9, 61, 187, 191]
 		let confirmKeys = [101, 13, 190, 110]
 		let exitKeys = [70, 27, 90, 88]
@@ -348,7 +354,9 @@ export default class Player extends Actor {
 		return
 	}
 
-	handleMagicEvent({ keyCode }) {
+	handleMagicEvent(evt) {
+		let { keyCode } = evt
+		evt.preventDefault()
 		let cycleKeys = [9, 61, 187, 191]
 		let confirmKeys = [101, 13, 190, 110]
 		let exitKeys = [70, 27, 90, 88]
@@ -401,18 +409,29 @@ export default class Player extends Actor {
 
 	helpScreenHandler(evt) {}
 
-	npcDialogHandler({ keyCode }) {
+	npcDialogHandler(evt) {
+		let { keyCode } = evt
+		evt.preventDefault()
 		const confirm = [ROT.VK_RETURN, ROT.VK_E]
 		const up = [ROT.VK_UP, ROT.VK_NUMPAD8, ROT.VK_W]
 		const down = [ROT.VK_DOWN, ROT.VK_NUMPAD2, ROT.VK_S]
-		const { choices, selectedChoice } = Game.overlayData.data
+		const numbers = [ROT.VK_1, ROT.VK_2, ROT.VK_3, ROT.VK_4, ROT.VK_5, ROT.VK_6, ROT.VK_7, ROT.VK_8, ROT.VK_9]
+		const dialogue = Game.overlayData.dialogue
+		const selectedChoiceIndex = dialogue.selectedChoice // the index of the choice we've selected
+		const choices = Game.overlayData.dialogue.getChoices()
 		if (confirm.includes(keyCode)) {
 			// select that choice and proceed in dialog
-			choices[selectedChoice].result(Game)
+			const selectedChoice = choices[selectedChoiceIndex] // the selected choice
+			dialogue.selectChoice(selectedChoice)
+		} else if (numbers.includes(keyCode)) {
+			const index = keyCode - 49 // the key code for 1 starts at 49 leading up to 57
+			if (index <= choices.length - 1) {
+				dialogue.selectChoice(choices[index])
+			}
 		} else if (down.includes(keyCode)) {
-			if (selectedChoice < choices.length - 1) Game.overlayData.data.selectedChoice++
+			if (selectedChoiceIndex < choices.length - 1) Game.overlayData.dialogue.selectedChoice++
 		} else if (up.includes(keyCode)) {
-			if (selectedChoice > 0) Game.overlayData.data.selectedChoice--
+			if (selectedChoiceIndex > 0) Game.overlayData.dialogue.selectedChoice--
 		}
 	}
 
@@ -482,7 +501,6 @@ export default class Player extends Actor {
 		if (Game.overlayData.visible) {
 			switch (Game.overlayData.component) {
 				case 'npc-dialogue':
-					console.log('NPC Dialogue handler switch-off')
 					return this.npcDialogHandler(evt)
 				default:
 					console.error('Game is showing overlay for which the player cannot handle')
@@ -506,6 +524,8 @@ export default class Player extends Actor {
 				// invalid key press, retry turn
 				return
 			}
+
+			evt.preventDefault()
 
 			/* If the key event isn't repeated within the last 160 milliseconds (too soon), then we proceed but we keep track of this
 			 	key movement time */

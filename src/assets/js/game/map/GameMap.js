@@ -87,10 +87,11 @@ export class GameMap {
 			// NPCs may have items too!
 			entity.wanders = properties.wanders
 			if (properties.dialog !== undefined) {
-				console.log(entity)
 				const dialogID = properties.dialog
 				if (dialogID in DIALOGUES) {
 					entity.dialogData = DIALOGUES[dialogID]
+					entity.dialogBubbleEnabled = 'dialogBubbleEnabled' in properties ? properties.dialogBubbleEnabled : true
+					entity.bubbleData = 'bubbleData' in properties ? properties.bubbleData : null
 				}
 			}
 		} else if (entity_type === 'LADDER' || entity_type === 'LEVEL_TRANSITION') {

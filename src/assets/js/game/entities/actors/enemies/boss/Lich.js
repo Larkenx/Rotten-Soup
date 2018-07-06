@@ -22,7 +22,7 @@ export default class Lich extends Actor {
 				/* current stats */
 				hp: 40,
 				mana: 25,
-				str: 15,
+				str: 5,
 				def: 5,
 				/* misc */
 				hostile: true,

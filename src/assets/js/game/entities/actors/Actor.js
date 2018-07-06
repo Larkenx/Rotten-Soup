@@ -72,12 +72,28 @@ export class Actor extends Entity {
 		)
 	}
 
+	hasItem(itemType) {
+		return this.inventory.some(cell => cell.item instanceof itemType)
+	}
+
+	removeItemType(itemType) {
+		for (let cell of this.inventory) {
+			if (cell.item instanceof itemType) {
+				this.removeFromInventory(cell.item)
+				return
+			}
+		}
+	}
+
 	addToInventory(newItem) {
 		if ('quantity' in newItem) {
 			for (let i = 0; i < this.inventory.length; i++) {
 				let item = this.inventory[i].item
 				if (item !== null && item.type === newItem.type) {
 					item.quantity += newItem.quantity
+					if (item.updateQuantitySprite !== undefined) {
+						item.updateQuantity()
+					}
 					return item
 				}
 			}
@@ -349,34 +365,27 @@ export class Actor extends Entity {
 		// dump the contents of the actor's inventory (items) onto the ground.
 		const numberOfEntities = Game.display.background.children.length
 
-		// redraw the tile, either with an appropriate actor or the tile symbol
-		/* On death, we want to spray some blood on the tile.
-         * We also want to place a corpse corresponding to the actor as well
-        */
-
-		if (this.inventory.length > 0) {
-			let items = this.items()
-			for (let item of items) {
-				// if the item was previously equipped, it needs to be 'unequipped'
-				this.dropItem(item)
-			}
+		let items = this.items()
+		for (let item of items) {
+			this.dropItem(item)
 		}
-
-		if (getRandomInt(0, 1) === 0) {
-			if (this.corpseType !== undefined && this.corpseType !== null) {
-				let corpse = new Corpse(this.x, this.y, this.name, this.corpseType)
-				ctile.actors.unshift(corpse)
-				Game.scheduler.add(corpse, true)
-				Game.display.assignSprite(corpse, true)
+		if (items.length === 0) {
+			if (getRandomInt(0, 1) === 0) {
+				if (this.corpseType !== undefined && this.corpseType !== null) {
+					let corpse = new Corpse(this.x, this.y, this.name, this.corpseType)
+					ctile.actors.unshift(corpse)
+					Game.scheduler.add(corpse, true)
+					Game.display.assignSprite(corpse, true)
+				}
 			}
-		}
 
-		let blood = 2644 - getRandomInt(0, 1)
-		// specifically don't want to add blood if it's a skeleton...
-		if (this.corpseType === corpseTypes.HUMANOID) {
-			let bloodSprite = new PIXI.Sprite(Game.display.tilesetMapping[blood])
-			bloodSprite.position.set(this.x * Game.display.tileSize, this.y * Game.display.tileSize)
-			Game.display.background.addChildAt(bloodSprite, 1)
+			let blood = 2643 + getRandomInt(0, 2)
+			// specifically don't want to add blood if it's a skeleton...
+			if (this.corpseType === corpseTypes.HUMANOID) {
+				let bloodSprite = new PIXI.Sprite(Game.display.tilesetMapping[blood])
+				bloodSprite.position.set(this.x * Game.display.tileSize, this.y * Game.display.tileSize)
+				Game.display.background.addChildAt(bloodSprite, 1)
+			}
 		}
 
 		Game.display.background.removeChild(this.sprite)
@@ -408,5 +417,17 @@ export class Actor extends Entity {
 		let wep = this.cb.equipment.weapon
 		let maxWeaponDmg = wep !== null ? wep.cb.rolls * wep.cb.sides : 0
 		return this.cb.str + maxWeaponDmg
+	}
+
+	removeActor() {
+		let idx = Game.engine._scheduler.remove(this)
+		let ctile = Game.map.data[this.y][this.x]
+		// remove this actor from the global actors list and the occupied tile
+		ctile.removeActor(this)
+		idx = Game.map.actors.indexOf(this)
+		Game.map.actors.splice(idx, 1)
+
+		Game.display.background.removeChild(this.sprite)
+		if (this.spriteAbove !== undefined) Game.display.background.removeChild(this.spriteAbove)
 	}
 }

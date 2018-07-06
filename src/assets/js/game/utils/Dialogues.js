@@ -1,31 +1,11 @@
-import { createActor, createItem } from '#/utils/EntityFactory.js'
-
-const addKeyToPlayerInventory = p => {
-	p.addToInventory(createItem('KEY', p.x, p.y))
-}
+import MayorLeonard from '#/utils/dialogues/MayorLeonard.js'
+import DwarfBili from '#/utils/dialogues/DwarfBili.js'
+import Bartender from '#/utils/dialogues/Bartender.js'
+import NaniAndBiliRescue from '#/utils/dialogues/NaniAndBiliRescue.js'
 
 export default {
-	MAYOR_LEONARD: {
-		title: 'Mayor Leonard',
-		text: 'You must be the adventurer we sent for! Take this key and clear out anything you find down there!',
-		choices: [
-			{
-				text: 'Sure!',
-				result: game => {
-					addKeyToPlayerInventory(game.player)
-					game.log('You received a key from Mayor Leonard.', 'lightblue')
-					game.overlayData.visible = false
-				}
-			},
-			{
-				text: 'Ok.',
-				result: game => {
-					addKeyToPlayerInventory(game.player)
-					game.log('You received a key from Mayor Leonard.', 'lightblue')
-					game.overlayData.visible = false
-				}
-			}
-		],
-		selectedChoice: 0
-	}
+	MAYOR_LEONARD: MayorLeonard,
+	DWARF_BILI: DwarfBili,
+	BARTENDER: Bartender,
+	NANI_AND_BILI_RESCUE: NaniAndBiliRescue
 }
