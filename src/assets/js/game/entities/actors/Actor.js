@@ -425,4 +425,16 @@ export class Actor extends Entity {
 		let maxWeaponDmg = wep !== null ? wep.cb.rolls * wep.cb.sides : 0
 		return this.cb.str + maxWeaponDmg
 	}
+
+	removeActor() {
+		let idx = Game.engine._scheduler.remove(this)
+		let ctile = Game.map.data[this.y][this.x]
+		// remove this actor from the global actors list and the occupied tile
+		ctile.removeActor(this)
+		idx = Game.map.actors.indexOf(this)
+		Game.map.actors.splice(idx, 1)
+
+		Game.display.background.removeChild(this.sprite)
+		if (this.spriteAbove !== undefined) Game.display.background.removeChild(this.spriteAbove)
+	}
 }

@@ -6,6 +6,12 @@ const addKeyToPlayerInventory = p => {
 	p.addToInventory(createItem('KEY', p.x, p.y))
 }
 
+const addBessyTheBattleAxeToPlayerInventory = p => {
+	let bessy = createItem('BATTLEAXE', p.x, p.y)
+	bessy.name = 'Bessy'
+	p.addToInventory(bessy)
+}
+
 /* Local re-binding of nodes and edges */
 const Node = DialogueNode
 const Edge = DialogueEdge
@@ -16,7 +22,9 @@ let graph = new Graph('Drunken Dwarf')
 let state = {
 	startedBeerQuest: false,
 	finishedBeerQuest: false,
-	acceptedSearchForFriendsQuest: false
+	acceptedSearchForFriendsQuest: false,
+	finishedSavingFriends: false,
+	rewardGiven: false
 }
 
 /* First interaction */
@@ -165,16 +173,64 @@ const stillLooking = new Edge({
 graph.addVertex(didYouFindThem)
 graph.addEdge(didYouFindThem, stillLooking)
 
+/* After you finish the quest */
+const youFoundThem = new Node({
+	text: 'You found Nani and Bili! Thank you so much. We will raise a pint to you tonight!'
+})
+
+const reward = new Node({
+	text:
+		"Nani and Bili wanted me to give you this for your help. It was their best mate's battle axe. May it serve you well in your endeavors to smash skulls of orcs and goblins."
+})
+
+const itWasNothing = new Edge({
+	text: "You're welcome.",
+	node: reward
+})
+
+const thanks = new Edge({
+	text: "Thanks. I'll be sure to put it to good use.",
+	action: g => {
+		state.rewardGiven = true
+		addBessyTheBattleAxeToPlayerInventory(g.player)
+	},
+	endsDialogue: true
+})
+
+graph.addVertex(youFoundThem)
+graph.addEdge(youFoundThem, itWasNothing)
+graph.addVertex(reward)
+graph.addEdge(reward, thanks)
+
+/*  Talking after receiving reward*/
+const helloAgain = new Node({
+	text: "'Oi mate. We are drinking to your bravery! Cheers!"
+})
+
+const cheers = new Edge({
+	text: 'Cheers!',
+	endsDialogue: true
+})
+
+graph.addVertex(helloAgain)
+graph.addEdge(helloAgain, cheers)
+
 let init = (game, dialogue) => {
 	let { state } = dialogue
-	let { startedBeerQuest, finishedBeerQuest, acceptedSearchForFriendsQuest } = state
-	if (startedBeerQuest && !finishedBeerQuest) {
+	let { startedBeerQuest, finishedBeerQuest, acceptedSearchForFriendsQuest, finishedSavingFriends, rewardGiven } = state
+	if (finishedSavingFriends && !rewardGiven) {
+		dialogue.currentNode = youFoundThem
+	} else if (rewardGiven) {
+		dialogue.currentNode = helloAgain
+	} else if (startedBeerQuest && !finishedBeerQuest) {
 		giveBeer.disabled = !game.player.hasItem(Beer)
 		dialogue.currentNode = gotTheBeerYet
 	} else if (finishedBeerQuest && !acceptedSearchForFriendsQuest) {
 		dialogue.currentNode = helpMyFriends // returning point if you said you couldn't help his friends
 	} else if (acceptedSearchForFriendsQuest) {
 		dialogue.currentNode = didYouFindThem
+	} else {
+		dialogue.initializeOrigin()
 	}
 }
 

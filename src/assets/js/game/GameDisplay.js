@@ -222,7 +222,8 @@ export default class GameDisplay {
 			if (a.dialogData !== undefined && a.dialogData !== null && a.dialogBubbleEnabled) {
 				let gx = a.x * this.tileSize
 				let gy = (a.y - 1) * this.tileSize
-				const dialogBubble = { id: 8990, animated_id: 9830 }
+				let bubbleData = a.bubbleData
+				const dialogBubble = bubbleData !== null ? bubbleData : { id: 8623, animated_id: 9463 }
 				let frames = [this.getTexture(dialogBubble.id), this.getTexture(dialogBubble.animated_id)]
 				let sprite = new PIXI.extras.AnimatedSprite(frames)
 				sprite.position.set(gx, gy)

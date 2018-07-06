@@ -132,14 +132,14 @@ export class Dialogue {
 				const { node, text, action, endsDialogue, copyChoicesFrom, removeWhenVisited } = choice
 				choice.visited = true
 				this.selectedChoice = 0
+				// perform the action
+				if (action !== undefined) action(Game)
 				if (endsDialogue === true) {
 					Game.overlayData.visible = false
 					this.initializeOrigin()
 					Game.overlayData.dialogue = null
 					return
 				}
-				// perform the action
-				if (action !== undefined) action(Game)
 				if (!this.dialogueEnded) {
 					if (copyChoicesFrom !== undefined) {
 						// if we are supposed to have the same options, but

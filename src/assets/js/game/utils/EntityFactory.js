@@ -17,6 +17,8 @@ import HealthPotion from '#/entities/items/potions/HealthPotion.js'
 import StrengthPotion from '#/entities/items/potions/StrengthPotion.js'
 import ManaPotion from '#/entities/items/potions/ManaPotion.js'
 import { createSword } from '#/entities/items/weapons/Sword.js'
+import { createBattleaxe } from '#/entities/items/weapons/Battleaxe.js'
+
 import { SteelArrow } from '#/entities/items/weapons/ranged/ammo/Arrow.js'
 // Enemies
 import Orc from '#/entities/actors/enemies/Orc.js'
@@ -51,6 +53,7 @@ const itemShop = {
 	STRENGTH_POTION: (x, y, t) => new StrengthPotion(x, y, t),
 	MANA_POTION: (x, y, t) => new ManaPotion(x, y, t),
 	SWORD: (x, y, t) => createSword(x, y, t),
+	BATTLEAXE: (x, y, t) => createBattleaxe(x, y, t),
 	BOW: (x, y, t) => createBow(x, y, t),
 	STEEL_ARROW: (x, y, t) => new SteelArrow(x, y, t, 5),
 	KEY: (x, y, t) => new Key(x, y, t),
@@ -60,7 +63,7 @@ const itemShop = {
 export function createItem(itemString, x, y, id = null) {
 	const defaultItemTextures = {
 		GOLD: 1388,
-		BEER: 1070,
+		BEER: 1190,
 		KEY: 24,
 		HEALTH_POTION: 488,
 		MANA_POTION: 608,
@@ -68,7 +71,8 @@ export function createItem(itemString, x, y, id = null) {
 		SWORD: 35,
 		BOW: 664,
 		STEEL_ARROW: 784,
-		NECROMANCY_SPELLBOOK: 3264
+		NECROMANCY_SPELLBOOK: 3264,
+		BATTLEAXE: 153
 	}
 	const texture = id === null ? defaultItemTextures[itemString] : id
 

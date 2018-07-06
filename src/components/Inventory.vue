@@ -71,9 +71,9 @@
                           </v-card-actions>
                       </v-card>
                   </v-menu>
-                  <v-badge overlay bottom color="transparent" overlap>
+                  <v-badge bottom color="transparent" overlap>
                       <span v-if="cell.item.quantity !== undefined" slot="badge" dark>
-                        <b style="font-size: 10px">{{cell.item.quantity}}</b>
+                        <span style="font-size: 11px">{{cell.item.quantity}}</span>
                       </span>
                       <img v-bind:src="getInventorySprite(cell.item.id)" />
                   </v-badge>

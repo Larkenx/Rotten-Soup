@@ -12,6 +12,7 @@ let edges = visualizationData.edges.map(edge => {
 let nodes = visualizationData.nodes.map(node => {
 	return { from: node.from, to: node.to, label: node.label, shape: 'box' }
 })
+
 export default {
 	components: {
 		Network

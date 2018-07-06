@@ -39,28 +39,6 @@
          "name":"Actors",
          "objects":[
                 {
-                 "gid":9104,
-                 "height":32,
-                 "id":4,
-                 "name":"Level Transition",
-                 "properties":
-                    {
-                     "entity_type":"LEVEL_TRANSITION",
-                     "portalID":"Mulberry Town"
-                    },
-                 "propertytypes":
-                    {
-                     "entity_type":"string",
-                     "portalID":"string"
-                    },
-                 "rotation":0,
-                 "type":"",
-                 "visible":true,
-                 "width":32,
-                 "x":0,
-                 "y":832
-                }, 
-                {
                  "gid":7447,
                  "height":32,
                  "id":5,
@@ -188,7 +166,7 @@
                  "properties":
                     {
                      "entity_type":"NPC",
-                     "wanders":true
+                     "wanders":false
                     },
                  "propertytypes":
                     {
@@ -229,11 +207,13 @@
                  "name":"NPC",
                  "properties":
                     {
+                     "dialog":"NANI_AND_BILI_RESCUE",
                      "entity_type":"NPC",
-                     "wanders":true
+                     "wanders":false
                     },
                  "propertytypes":
                     {
+                     "dialog":"string",
                      "entity_type":"string",
                      "wanders":"bool"
                     },
@@ -547,7 +527,7 @@
                 {
                  "gid":4696,
                  "height":32,
-                 "id":34,
+                 "id":35,
                  "name":"Player",
                  "properties":
                     {
@@ -561,7 +541,29 @@
                  "type":"",
                  "visible":true,
                  "width":32,
-                 "x":32,
+                 "x":1792,
+                 "y":704
+                }, 
+                {
+                 "gid":7907,
+                 "height":32,
+                 "id":37,
+                 "name":"Level Transition",
+                 "properties":
+                    {
+                     "entity_type":"LEVEL_TRANSITION",
+                     "portalID":"Mulberry Town"
+                    },
+                 "propertytypes":
+                    {
+                     "entity_type":"string",
+                     "portalID":"string"
+                    },
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":32,
+                 "x":0,
                  "y":832
                 }],
          "opacity":1,
@@ -570,7 +572,7 @@
          "x":0,
          "y":0
         }],
- "nextobjectid":35,
+ "nextobjectid":38,
  "orientation":"orthogonal",
  "renderorder":"right-down",
  "tiledversion":"1.1.5",

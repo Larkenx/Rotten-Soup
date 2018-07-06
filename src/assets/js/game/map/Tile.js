@@ -51,6 +51,11 @@ export default class Tile {
 		return false
 	}
 
+	blockedByObstacle() {
+		if (this.obstacles.length > 0) return this.obstacles[this.obstacles.length - 1].blocked
+		return false
+	}
+
 	visible() {
 		return !(
 			this.obstacles.some(el => {

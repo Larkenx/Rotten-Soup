@@ -104,6 +104,12 @@ export let Game = {
 		this.display.background.addChild(this.targetReticle)
 	},
 
+	findActor(type, id) {
+		return this.map.actors.filter(a => {
+			return a instanceof type && a.id === id
+		})
+	},
+
 	scheduleAllActors() {
 		// Set up the ROT engine and scheduler
 		this.scheduler = new ROT.Scheduler.Simple()
@@ -135,9 +141,11 @@ export let Game = {
 	},
 
 	inViewport(x, y) {
-		let cx = Game.player.x - ~~(Game.width / 2)
-		let cy = Game.player.y - ~~(Game.height / 2)
-		return cx <= x && x <= cx + Game.width && cy <= y && y <= cy + Game.height
+		let width = ~~(Game.display.width / 2 / 32)
+		let height = ~~(Game.display.height / 2 / 32)
+		let cx = Game.player.x - width
+		let cy = Game.player.y - height
+		return cx <= x && x <= cx + Game.display.width / 32 && cy <= y && y <= cy + Game.display.height / 32
 	},
 
 	createDungeonFloors(origin, dungeonName, numberOfFloors) {
@@ -449,7 +457,7 @@ export let Game = {
 
 		if ((Game.player.targeting || Game.player.casting) && this.selectedTile !== null) {
 			const { x, y } = this.selectedTile
-			let visible = x + ',' + y in this.map.visible_tiles && !this.getTile(x, y).obstacles.any(o => o.blocked)
+			let visible = x + ',' + y in this.map.visible_tiles && !this.getTile(x, y).obstacles.some(o => o.blocked)
 			let inView = !visible ? ' This tile is out of range or blocked.' : ''
 			this.log(`[You see ${prettyNames} here.${inView}]`, 'player_move', true)
 		} else {
@@ -512,5 +520,19 @@ export let Game = {
 		this.overlayData.dialogue = dialogue
 		this.overlayData.dialogue.init(this, this.overlayData.dialogue)
 		// this.overlayData.dialogue.initializeOrigin()
+	},
+
+	getValidPlaceableTilesForMap(mapIdentifier, x1, y1, x2, y2) {
+		let map = this.levels[mapIdentifier]
+		let validTiles = []
+		for (let x = x1; x <= x2; x++) {
+			for (let y = y1; y <= y2; y++) {
+				let tile = map.data[y][x]
+				if (!tile.blocked() && tile.actors.length === 0) {
+					validTiles.push(tile)
+				}
+			}
+		}
+		return validTiles
 	}
 }

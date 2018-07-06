@@ -23,10 +23,10 @@ import { BleedEnchantment } from '#/modifiers/Enchantment.js'
 import Ladder from '#/entities/misc/Ladder.js'
 import { xp_levels } from '#/entities/Entity.js'
 import Gold from '#/entities/items/misc/Gold.js'
+import { createItem } from '#/utils/EntityFactory.js'
 
 function pathfinding(x, y) {
-	if (x <= 0 || x >= Game.map.width || y <= 0 || y >= Game.map.height) return false
-	return !Game.getTile(x, y).blocked()
+	return !Game.getTile(x, y).blocked() && Game.inbounds(x, y)
 }
 
 export default class Player extends Actor {
@@ -60,7 +60,7 @@ export default class Player extends Actor {
 				/* Per-turn effects */
 				hpRecovery: 1,
 				manaRecovery: 2.5,
-				invulnerable: false,
+				invulnerable: true,
 				/* Magic & Ranged */
 				validTarget: null,
 				currentSpell: null,
@@ -140,6 +140,7 @@ export default class Player extends Actor {
 		this.addToInventory(new SteelArrow(this.x, this.y, 784, 7))
 		this.addToInventory(new HealthPotion(this.x, this.y, 488))
 		this.addToInventory(new ManaPotion(this.x, this.y, 608))
+		this.addToInventory(createItem('KEY', this.x, this.y))
 
 		// this.addToInventory(new ManaPotion(this.x,this.y, 495));
 		this.cb.spells.push(new MagicDart())
