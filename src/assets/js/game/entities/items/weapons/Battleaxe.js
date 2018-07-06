@@ -56,7 +56,7 @@ let axeNames = [
 ]
 
 export function createBattleaxe(x, y, id) {
-	let axe = new Battleaxe(x, y, 8, 2, axeNames[getRandomInt(0, axeNames.length - 1)], id)
+	let axe = new Battleaxe(x, y, 6, 2, axeNames[getRandomInt(0, axeNames.length - 1)], id)
 	// axe.addNewEnchantment(new BleedEnchantment())
 	return axe
 }

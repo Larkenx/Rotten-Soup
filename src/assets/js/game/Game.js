@@ -18,7 +18,13 @@ import LevelTransition from '#/entities/misc/LevelTransition.js'
 import Chest from '#/entities/misc/Chest.js'
 
 const { randomSimplexMap, randomDungeon, randomCave } = MapGen
-
+const defaultMinimapConfiguration = {
+	width: 44,
+	height: 26,
+	fontSize: 11,
+	spacing: 0.6,
+	forceSquareRatio: true
+}
 export let Game = {
 	app: null,
 	overview: null,
@@ -65,13 +71,7 @@ export let Game = {
 			tileWidth: 32,
 			tileHeight: 32
 		}
-		this.minimapOptions = {
-			width: 44,
-			height: 26,
-			fontSize: 11,
-			spacing: 0.6,
-			forceSquareRatio: true
-		}
+		this.minimapOptions = { ...defaultMinimapConfiguration }
 		let onceLoaded = () => {
 			let { resources } = PIXI.loader
 			this.levels['Mulberry Town'] = createMapFromJSON(resources['mulberryTown'].data, 'Mulberry Town')
@@ -176,6 +176,7 @@ export let Game = {
 	},
 
 	changeLevels(mapID, dungeon = false) {
+		this.minimapOptions = { ...defaultMinimapConfiguration }
 		let nextMap = this.levels[mapID]
 		if (dungeon === true && !(mapID + 1 in this.levels)) {
 			this.createDungeonFloors(this.currentLevel.name, mapID, 20)

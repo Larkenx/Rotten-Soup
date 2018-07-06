@@ -365,34 +365,27 @@ export class Actor extends Entity {
 		// dump the contents of the actor's inventory (items) onto the ground.
 		const numberOfEntities = Game.display.background.children.length
 
-		// redraw the tile, either with an appropriate actor or the tile symbol
-		/* On death, we want to spray some blood on the tile.
-         * We also want to place a corpse corresponding to the actor as well
-        */
-
-		if (this.inventory.length > 0) {
-			let items = this.items()
-			for (let item of items) {
-				// if the item was previously equipped, it needs to be 'unequipped'
-				this.dropItem(item)
-			}
+		let items = this.items()
+		for (let item of items) {
+			this.dropItem(item)
 		}
-
-		if (getRandomInt(0, 1) === 0) {
-			if (this.corpseType !== undefined && this.corpseType !== null) {
-				let corpse = new Corpse(this.x, this.y, this.name, this.corpseType)
-				ctile.actors.unshift(corpse)
-				Game.scheduler.add(corpse, true)
-				Game.display.assignSprite(corpse, true)
+		if (items.length === 0) {
+			if (getRandomInt(0, 1) === 0) {
+				if (this.corpseType !== undefined && this.corpseType !== null) {
+					let corpse = new Corpse(this.x, this.y, this.name, this.corpseType)
+					ctile.actors.unshift(corpse)
+					Game.scheduler.add(corpse, true)
+					Game.display.assignSprite(corpse, true)
+				}
 			}
-		}
 
-		let blood = 2644 - getRandomInt(0, 1)
-		// specifically don't want to add blood if it's a skeleton...
-		if (this.corpseType === corpseTypes.HUMANOID) {
-			let bloodSprite = new PIXI.Sprite(Game.display.tilesetMapping[blood])
-			bloodSprite.position.set(this.x * Game.display.tileSize, this.y * Game.display.tileSize)
-			Game.display.background.addChildAt(bloodSprite, 1)
+			let blood = 2643 + getRandomInt(0, 2)
+			// specifically don't want to add blood if it's a skeleton...
+			if (this.corpseType === corpseTypes.HUMANOID) {
+				let bloodSprite = new PIXI.Sprite(Game.display.tilesetMapping[blood])
+				bloodSprite.position.set(this.x * Game.display.tileSize, this.y * Game.display.tileSize)
+				Game.display.background.addChildAt(bloodSprite, 1)
+			}
 		}
 
 		Game.display.background.removeChild(this.sprite)
