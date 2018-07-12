@@ -10,7 +10,11 @@ export class Entity {
 		this.x = x
 		this.y = y
 		Object.assign(this, options)
-		if (options.id === undefined) throw 'Error - entity created without valid id'
+
+		if (options.id === undefined) {
+			console.log(this)
+			throw new Error('Error - entity created without valid id')
+		}
 	}
 
 	setSprite(sprite) {

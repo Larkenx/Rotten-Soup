@@ -52,7 +52,7 @@ const itemShop = {
 	HEALTH_POTION: (x, y, t) => new HealthPotion(x, y, t),
 	STRENGTH_POTION: (x, y, t) => new StrengthPotion(x, y, t),
 	MANA_POTION: (x, y, t) => new ManaPotion(x, y, t),
-	SWORD: (x, y, t) => createSword(x, y, t),
+	SWORD: (x, y, t, options) => createSword(x, y, t, options),
 	BATTLEAXE: (x, y, t) => createBattleaxe(x, y, t),
 	BOW: (x, y, t) => createBow(x, y, t),
 	STEEL_ARROW: (x, y, t) => new SteelArrow(x, y, t, 5),
@@ -60,7 +60,7 @@ const itemShop = {
 	NECROMANCY_SPELLBOOK: (x, y, t) => new NecromancySpellBook(x, y, t)
 }
 
-export function createItem(itemString, x, y, id = null) {
+export function createItem(itemString, x, y, id, options) {
 	const defaultItemTextures = {
 		GOLD: 1388,
 		BEER: 1190,
@@ -74,14 +74,15 @@ export function createItem(itemString, x, y, id = null) {
 		NECROMANCY_SPELLBOOK: 3264,
 		BATTLEAXE: 153
 	}
-	const texture = id === null ? defaultItemTextures[itemString] : id
+
+	const texture = id == null ? defaultItemTextures[itemString] : id
 
 	if (!(itemString in itemShop)) {
 		console.error(`Tried to create an item without an entry: ${itemString} with ID: ${id}`)
 		return null
 	}
 
-	return itemShop[itemString](x, y, texture)
+	return itemShop[itemString](x, y, texture, options)
 }
 
 export const actorTextures = {

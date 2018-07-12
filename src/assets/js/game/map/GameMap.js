@@ -91,7 +91,12 @@ export class GameMap {
 				if (dialogID in DIALOGUES) {
 					entity.dialogData = DIALOGUES[dialogID]
 					entity.dialogBubbleEnabled = 'dialogBubbleEnabled' in properties ? properties.dialogBubbleEnabled : true
-					entity.bubbleData = 'bubbleData' in properties ? properties.bubbleData : null
+					if ('bubbleData' in properties) {
+						let [id, animated_id] = properties.bubbleData.split(',')
+						entity.bubbleData = { id, animated_id }
+					} else {
+						entity.bubbleData = null
+					}
 				}
 			}
 		} else if (entity_type === 'LADDER' || entity_type === 'LEVEL_TRANSITION') {

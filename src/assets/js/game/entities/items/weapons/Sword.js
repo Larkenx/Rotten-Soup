@@ -7,15 +7,15 @@ import { getRandomInt } from '#/utils/HelperFunctions.js'
 import { BleedEnchantment } from '#/modifiers/Enchantment.js'
 
 export class Sword extends Weapon {
-	constructor(x, y, sides, rolls, name, id) {
+	constructor(x, y, rolls, sides, name, id) {
 		super(x, y, {
 			id: id,
 			name: name,
 			type: 'Sword',
 			fg: 'orange',
 			combat: {
-				rolls: rolls,
-				sides: sides
+				sides,
+				rolls
 			},
 			attackVerbs: ['slashed', 'stabbed', 'gutted', 'sliced']
 		})
@@ -147,8 +147,59 @@ let swordNames = [
 	'Sting'
 ]
 
-export function createSword(x, y, id) {
-	let sword = new Sword(x, y, getRandomInt(2, 4), getRandomInt(1, 2), swordNames[getRandomInt(0, swordNames.length - 1)], id)
-	// sword.addNewEnchantment(new BleedEnchantment())
-	return sword
+const materialTypes = {
+	BRONZE: 'BRONZE',
+	IRON: 'IRON',
+	STEEL: 'STEEL',
+	MITHRIL: 'MITHRIL',
+	ADAMANTIUM: 'ADAMANTIUM',
+	ORICHALCUM: 'ORICHALCUM',
+	VULCANITE: 'VULCANITE',
+	AQUANITE: 'AQUANITE',
+	VRONITE: 'VRONITE',
+	LOULOUDIUM: 'LOULOUDIUM',
+	ILIOTIUM: 'ILIOTIUM',
+	LEVANTIUM: 'LEVANTIUM'
+}
+
+const materialTextures = {
+	[materialTypes.BRONZE]: [11640, 11641, 11642, 11643, 11648, 11649, 11650, 11651, 11652, 11653, 11654, 11655],
+	[materialTypes.IRON]: [11760, 11761, 11762, 11763, 11768, 11769, 11770, 11771, 11772, 11773, 11774, 11775],
+	[materialTypes.STEEL]: [11880, 11881, 11882, 11883, 11888, 11889, 11890, 11891, 11892, 11893, 11894, 11895],
+	[materialTypes.MITHRIL]: [12000, 12001, 12002, 12003, 12008, 12009, 12010, 12011, 12012, 12013, 12014, 12015],
+	[materialTypes.ADAMANTIUM]: [12120, 12121, 12122, 12123, 12128, 12129, 12130, 12131, 12132, 12133, 12134, 12135],
+	[materialTypes.ORICHALCUM]: [12240, 12241, 12242, 12243, 12248, 12249, 12250, 12251, 12252, 12253, 12254, 12255],
+	[materialTypes.VULCANITE]: [12360, 12361, 12362, 12363, 12368, 12369, 12370, 12371, 12372, 12373, 12374, 12375],
+	[materialTypes.AQUANITE]: [12480, 12481, 12482, 12483, 12488, 12489, 12490, 12491, 12492, 12493, 12494, 12495],
+	[materialTypes.VRONITE]: [12600, 12601, 12602, 12603, 12608, 12609, 12610, 12611, 12612, 12613, 12614, 12615],
+	[materialTypes.LOULOUDIUM]: [12720, 12721, 12722, 12723, 12728, 12729, 12730, 12731, 12732, 12733, 12734, 12735],
+	[materialTypes.ILIOTIUM]: [12840, 12841, 12842, 12843, 12848, 12849, 12850, 12851, 12852, 12853, 12854, 12855],
+	[materialTypes.LEVANTIUM]: [12960, 12961, 12962, 12963, 12968, 12969, 12970, 12971, 12972, 12973, 12974, 12975]
+}
+
+const swordShop = {
+	[materialTypes.BRONZE]: (x, y, t) => new Sword(x, y, 1, 4, 'Bronze Sword', t),
+	[materialTypes.IRON]: (x, y, t) => new Sword(x, y, 2, 2, 'Iron Sword', t),
+	[materialTypes.STEEL]: (x, y, t) => new Sword(x, y, 1, 6, 'Steel Sword', t),
+	[materialTypes.MITHRIL]: (x, y, t) => new Sword(x, y, 2, 3, 'Mithril Sword', t),
+	[materialTypes.ADAMANTIUM]: (x, y, t) => new Sword(x, y, 1, 8, 'Adamantium Sword', t),
+	[materialTypes.ORICHALCUM]: (x, y, t) => new Sword(x, y, 2, 4, 'Orichalcum Sword', t),
+	[materialTypes.VULCANITE]: (x, y, t) => new Sword(x, y, 1, 10, 'Vulcanite Sword', t),
+	[materialTypes.AQUANITE]: (x, y, t) => new Sword(x, y, 2, 5, 'Aquanite Sword', t),
+	[materialTypes.VRONITE]: (x, y, t) => new Sword(x, y, 2, 6, 'Vronite Sword', t),
+	[materialTypes.LOULOUDIUM]: (x, y, t) => new Sword(x, y, 4, 3, 'Louloudium Sword', t),
+	[materialTypes.ILIOTIUM]: (x, y, t) => new Sword(x, y, 3, 5, 'Iliotium Sword', t),
+	[materialTypes.LEVANTIUM]: (x, y, t) => new Sword(x, y, 5, 3, 'Levantium Sword', t)
+}
+
+export function createSword(x, y, id, options) {
+	let { materialType } = options
+	if (materialType in materialTypes) {
+		let possibleTextures = materialTextures[materialType]
+		let texture = possibleTextures[getRandomInt(0, possibleTextures.length - 1)]
+		return swordShop[materialType](x, y, texture)
+	} else {
+		console.error(`Material Type: ${materialType} not found in material type sword shop.`)
+		return new Sword(x, y, 1, getRandomInt(2, 4), swordNames[getRandomInt(0, swordNames.length - 1)], 32)
+	}
 }

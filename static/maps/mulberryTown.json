@@ -357,13 +357,15 @@
                  "name":"NPC",
                  "properties":
                     {
+                     "bubbleData":"8629,9469",
                      "dialog":"BARTENDER",
-                     "dialogBubbleEnabled":false,
+                     "dialogBubbleEnabled":true,
                      "entity_type":"NPC",
                      "wanders":false
                     },
                  "propertytypes":
                     {
+                     "bubbleData":"string",
                      "dialog":"string",
                      "dialogBubbleEnabled":"bool",
                      "entity_type":"string",

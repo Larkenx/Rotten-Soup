@@ -131,9 +131,7 @@ export default class Player extends Actor {
 		// Give the player a few starting items:
 		// - a health potion
 		// - a random sword (equip the sword)
-		let sword = new Sword(this.x, this.y, 3, 1, 'Training Sword', 32)
-		// sword.addNewEnchantment(new BleedEnchantment())
-		this.addToInventory(sword)
+		this.addToInventory(createItem('SWORD', this.x, this.y, null, { materialType: 'BRONZE' }))
 		super.equipWeapon(this.inventory[0].item)
 		this.addToInventory(new Gold(this.x, this.y, 1388, 100))
 		this.addToInventory(createBow(this.x, this.y, 664))
