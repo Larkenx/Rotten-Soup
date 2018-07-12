@@ -7,7 +7,7 @@ import { Actor } from '#/entities/actors/Actor.js'
 import { addPrefix } from '#/utils/HelperFunctions.js'
 import Item from '#/entities/items/Item.js'
 // Weapons
-import { Sword } from '#/entities/items/weapons/Sword.js'
+import { Sword, materialTypes } from '#/entities/items/weapons/Sword.js'
 
 import { createBow } from '#/entities/items/weapons/ranged/Bow.js'
 import { SteelArrow } from '#/entities/items/weapons/ranged/ammo/Arrow.js'
@@ -131,24 +131,15 @@ export default class Player extends Actor {
 		// Give the player a few starting items:
 		// - a health potion
 		// - a random sword (equip the sword)
-		this.addToInventory(createItem('SWORD', this.x, this.y, null, { materialType: 'BRONZE' }))
+		this.addToInventory(createItem('SWORD', this.x, this.y, null, { materialType: materialTypes.BRONZE }))
 		super.equipWeapon(this.inventory[0].item)
-		this.addToInventory(new Gold(this.x, this.y, 1388, 100))
+		this.addToInventory(new Gold(this.x, this.y, 1388, 10))
 		this.addToInventory(createBow(this.x, this.y, 664))
 		this.addToInventory(new SteelArrow(this.x, this.y, 784, 7))
 		this.addToInventory(new HealthPotion(this.x, this.y, 488))
 		this.addToInventory(new ManaPotion(this.x, this.y, 608))
-		this.addToInventory(createItem('KEY', this.x, this.y))
-
-		// this.addToInventory(new ManaPotion(this.x,this.y, 495));
 		this.cb.spells.push(new MagicDart())
 		this.cb.spells.push(new MinorHeal())
-
-		// this.cb.spells.push(new Pain())
-		// this.cb.spells.push(new Regeneration())
-		// this.cb.spells.push(new VampiricDraining())
-		// this.cb.spells.push(new AnimateDead())
-
 		this.selectSpell(this.cb.spells[0])
 		this.mouseEnabled = false
 		this.commandQueue = []

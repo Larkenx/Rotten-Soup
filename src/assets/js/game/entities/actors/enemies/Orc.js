@@ -5,7 +5,8 @@ import SimpleEnemy from '#/entities/actors/enemies/SimpleEnemy.js'
 import HealthPotion from '#/entities/items/potions/HealthPotion.js'
 import StrengthPotion from '#/entities/items/potions/StrengthPotion.js'
 import ManaPotion from '#/entities/items/potions/ManaPotion.js'
-import { getRandomInt, getItemsFromDropTable } from '#/utils/HelperFunctions.js'
+import { getRandomInt } from '#/utils/HelperFunctions.js'
+import { getItemsFromDropTable } from '#/utils/EntityFactory.js'
 import { Sword } from '#/entities/items/weapons/Sword.js'
 import { Game } from '#/Game.js'
 import ROT from 'rot-js'
@@ -50,11 +51,11 @@ export default class Orc extends SimpleEnemy {
 				minItems: 0,
 				maxItems: 2,
 				dropTable: {
-					STRENGTH_POTION: 1,
-					HEALTH_POTION: 1,
-					STEEL_ARROW: 1,
-					MANA_POTION: 1,
-					SWORD: 1
+					STRENGTH_POTION: { chance: 1 },
+					HEALTH_POTION: { chance: 1 },
+					STEEL_ARROW: { chance: 1 },
+					MANA_POTION: { chance: 1 },
+					SWORD: { chance: 1, options: { materialType: 'STEEL' } }
 				},
 				x: this.x,
 				y: this.y

@@ -7,7 +7,7 @@
               <span v-if="'name' in item">{{"Name: " + item.name}}<br /></span> {{item.hoverInfo()}}
           </p>
           <v-layout ripple v-on:click="useItem(item, $event)" v-if="item !== null" slot="activator"  row>
-              <v-badge overlay bottom color="grey" overlap>
+              <v-badge overlay bottom color="grey" overlap style="max-height: 32px">
                   <span v-if="item.quantity !== undefined" slot="badge" dark>
                               <b>{{item.quantity}}</b>
                           </span>

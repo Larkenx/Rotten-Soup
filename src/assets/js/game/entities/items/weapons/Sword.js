@@ -147,7 +147,7 @@ let swordNames = [
 	'Sting'
 ]
 
-const materialTypes = {
+export const materialTypes = {
 	BRONZE: 'BRONZE',
 	IRON: 'IRON',
 	STEEL: 'STEEL',

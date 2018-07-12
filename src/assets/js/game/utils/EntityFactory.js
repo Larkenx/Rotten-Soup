@@ -44,7 +44,7 @@ import Demon from '#/entities/actors/enemies/Demon.js'
 import BoneMan from '#/entities/actors/enemies/BoneMan.js'
 import Lich from '#/entities/actors/enemies/boss/Lich.js'
 
-import { getRandomInt, getNormalRandomInt, randomProperty } from '#/utils/HelperFunctions.js'
+import { getRandomInt, getNormalRandomInt, randomProperty, getWeightedValue } from '#/utils/HelperFunctions.js'
 
 const itemShop = {
 	GOLD: (x, y, t) => new Gold(x, y, t, 1),
@@ -83,6 +83,17 @@ export function createItem(itemString, x, y, id, options) {
 	}
 
 	return itemShop[itemString](x, y, texture, options)
+}
+
+export function getItemsFromDropTable(options) {
+	let { dropTable, minItems, maxItems, x, y } = options
+	let items = []
+	let roll = getRandomInt(minItems, maxItems)
+	for (let i = 0; i < roll; i++) {
+		let chosenItem = getWeightedValue(dropTable)
+		items.push(createItem(chosenItem, x, y, null, dropTable[chosenItem].options))
+	}
+	return items
 }
 
 export const actorTextures = {

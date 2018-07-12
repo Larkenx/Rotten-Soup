@@ -2,8 +2,9 @@
  * Created by Larken on 6/22/2017.
  */
 import SimpleEnemy from '#/entities/actors/enemies/SimpleEnemy.js'
-import { getRandomInt, getItemsFromDropTable } from '#/utils/HelperFunctions.js'
+import { getRandomInt } from '#/utils/HelperFunctions.js'
 import { createSword, Sword } from '#/entities/items/weapons/Sword.js'
+import { getItemsFromDropTable } from '#/utils/EntityFactory.js'
 import HealthPotion from '#/entities/items/potions/HealthPotion.js'
 import StrengthPotion from '#/entities/items/potions/StrengthPotion.js'
 import { Game } from '#/Game.js'
@@ -42,10 +43,10 @@ export default class Kobold extends SimpleEnemy {
 			minItems: 0,
 			maxItems: 2,
 			dropTable: {
-				STRENGTH_POTION: 1,
-				HEALTH_POTION: 1,
-				STEEL_ARROW: 2,
-				SWORD: 1
+				STRENGTH_POTION: { chance: 1 },
+				HEALTH_POTION: { chance: 1 },
+				STEEL_ARROW: { chance: 2 },
+				SWORD: { chance: 1, options: { materialType: 'STEEL' } }
 			},
 			x: this.x,
 			y: this.y

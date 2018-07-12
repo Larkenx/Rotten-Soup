@@ -3,8 +3,9 @@
  */
 import ROT from 'rot-js'
 import { StatelessAI } from '#/entities/actors/enemies/StatelessAI.js'
-import { getRandomInt, getItemsFromDropTable } from '#/utils/HelperFunctions.js'
-import { createSword, Sword } from '#/entities/items/weapons/Sword.js'
+import { getRandomInt } from '#/utils/HelperFunctions.js'
+import { getItemsFromDropTable } from '#/utils/EntityFactory.js'
+import { createSword, Sword, materialTypes } from '#/entities/items/weapons/Sword.js'
 import HealthPotion from '#/entities/items/potions/HealthPotion.js'
 import StrengthPotion from '#/entities/items/potions/StrengthPotion.js'
 import ManaPotion from '#/entities/items/potions/ManaPotion.js'
@@ -59,11 +60,11 @@ export default class Goblin extends StatelessAI {
 				minItems: 0,
 				maxItems: 1,
 				dropTable: {
-					STRENGTH_POTION: 3,
-					HEALTH_POTION: 2,
-					MANA_POTION: 2,
-					STEEL_ARROW: 2,
-					SWORD: 0
+					STRENGTH_POTION: { chance: 3 },
+					HEALTH_POTION: { chance: 2 },
+					MANA_POTION: { chance: 2 },
+					STEEL_ARROW: { chance: 2 },
+					SWORD: { chance: 1, options: { materialType: materialTypes.IRON } }
 				},
 				x: this.x,
 				y: this.y

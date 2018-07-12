@@ -14,8 +14,8 @@ import Key from '#/entities/items/misc/Key.js'
 import { NecromancySpellBook } from '#/entities/items/misc/Spellbook.js'
 import Ladder from '#/entities/misc/Ladder.js'
 import LevelTransition from '#/entities/misc/LevelTransition.js'
-import { getRandomInt, getNormalRandomInt, randomProperty, getItemsFromDropTable } from '#/utils/HelperFunctions.js'
-import { createActor } from '#/utils/EntityFactory.js'
+import { getRandomInt, getNormalRandomInt, randomProperty } from '#/utils/HelperFunctions.js'
+import { createActor, getItemsFromDropTable } from '#/utils/EntityFactory.js'
 
 const dungeonTypes = {
 	RUINS: 'RUINS',
@@ -663,11 +663,21 @@ export function dungeonFromTheme(width, height, theme, mapGenerator, options, ha
 					minItems: 1,
 					maxItems: 3,
 					dropTable: {
-						STRENGTH_POTION: 10,
-						HEALTH_POTION: 20,
-						STEEL_ARROW: 15,
-						MANA_POTION: 20,
-						SWORD: 1
+						STRENGTH_POTION: { chance: 10 },
+						HEALTH_POTION: { chance: 20 },
+						STEEL_ARROW: { chance: 15 },
+						MANA_POTION: { chance: 20 },
+						SWORD: { chance: 15, options: { materialType: 'IRON' } },
+						SWORD: { chance: 13, options: { materialType: 'STEEL' } },
+						SWORD: { chance: 10, options: { materialType: 'MITHRIL' } },
+						SWORD: { chance: 8, options: { materialType: 'ADAMANTIUM' } },
+						SWORD: { chance: 6, options: { materialType: 'ORICHALCUM' } },
+						SWORD: { chance: 5, options: { materialType: 'VULCANITE' } },
+						SWORD: { chance: 4, options: { materialType: 'AQUANITE' } },
+						SWORD: { chance: 3, options: { materialType: 'VRONITE' } },
+						SWORD: { chance: 2, options: { materialType: 'LOULOUDIUM' } },
+						SWORD: { chance: 1, options: { materialType: 'ILIOTIUM' } },
+						SWORD: { chance: 1, options: { materialType: 'LEVANTIUM' } }
 					},
 					x: chest.x,
 					y: chest.y
