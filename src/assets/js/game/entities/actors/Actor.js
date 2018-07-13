@@ -87,13 +87,14 @@ export class Actor extends Entity {
 
 	addToInventory(newItem) {
 		if ('quantity' in newItem) {
+			if (newItem.updateQuantity !== undefined) {
+				newItem.updateQuantity()
+			}
+
 			for (let i = 0; i < this.inventory.length; i++) {
 				let item = this.inventory[i].item
 				if (item !== null && item.type === newItem.type) {
 					item.quantity += newItem.quantity
-					if (item.updateQuantitySprite !== undefined) {
-						item.updateQuantity()
-					}
 					return item
 				}
 			}
@@ -143,6 +144,7 @@ export class Actor extends Entity {
 
 	dropItem(item) {
 		if (!this.memberOfInventory(item)) throw "Error - trying to drop an item you don't have in your inventory"
+		item.inInventory = false
 		if (item !== null && 'cb' in item) {
 			item.cb.equipped = false
 			if (this.cb.equipment.weapon == item) this.cb.equipment.weapon = null
@@ -360,8 +362,6 @@ export class Actor extends Entity {
 		let ctile = Game.map.data[this.y][this.x]
 		// remove this actor from the global actors list and the occupied tile
 		ctile.removeActor(this)
-		idx = Game.map.actors.indexOf(this)
-		Game.map.actors.splice(idx, 1)
 		// dump the contents of the actor's inventory (items) onto the ground.
 		const numberOfEntities = Game.display.background.children.length
 
@@ -424,9 +424,6 @@ export class Actor extends Entity {
 		let ctile = Game.map.data[this.y][this.x]
 		// remove this actor from the global actors list and the occupied tile
 		ctile.removeActor(this)
-		idx = Game.map.actors.indexOf(this)
-		Game.map.actors.splice(idx, 1)
-
 		Game.display.background.removeChild(this.sprite)
 		if (this.spriteAbove !== undefined) Game.display.background.removeChild(this.spriteAbove)
 	}

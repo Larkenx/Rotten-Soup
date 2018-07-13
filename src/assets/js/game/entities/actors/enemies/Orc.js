@@ -48,13 +48,12 @@ export default class Orc extends SimpleEnemy {
 		)
 		if (getRandomInt(1, 10) < 5) {
 			let items = getItemsFromDropTable({
-				minItems: 0,
+				minItems: 1,
 				maxItems: 2,
 				dropTable: {
+					GOLD: { chance: 5, options: { quantity: getRandomInt(5, 15) } },
 					STRENGTH_POTION: { chance: 1 },
 					HEALTH_POTION: { chance: 1 },
-					STEEL_ARROW: { chance: 1 },
-					MANA_POTION: { chance: 1 },
 					SWORD: { chance: 1, options: { materialType: 'STEEL' } }
 				},
 				x: this.x,

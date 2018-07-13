@@ -47,7 +47,7 @@ import Lich from '#/entities/actors/enemies/boss/Lich.js'
 import { getRandomInt, getNormalRandomInt, randomProperty, getWeightedValue } from '#/utils/HelperFunctions.js'
 
 const itemShop = {
-	GOLD: (x, y, t) => new Gold(x, y, t, 1),
+	GOLD: (x, y, t, options) => new Gold(x, y, t, options.quantity !== null ? options.quantity : 1),
 	BEER: (x, y, t) => new Beer(x, y, t),
 	HEALTH_POTION: (x, y, t) => new HealthPotion(x, y, t),
 	STRENGTH_POTION: (x, y, t) => new StrengthPotion(x, y, t),
@@ -60,7 +60,7 @@ const itemShop = {
 	NECROMANCY_SPELLBOOK: (x, y, t) => new NecromancySpellBook(x, y, t)
 }
 
-export function createItem(itemString, x, y, id, options) {
+export function createItem(itemString, x, y, id, options = {}) {
 	const defaultItemTextures = {
 		GOLD: 1388,
 		BEER: 1190,
@@ -76,6 +76,10 @@ export function createItem(itemString, x, y, id, options) {
 	}
 
 	const texture = id == null ? defaultItemTextures[itemString] : id
+
+	if (itemString.includes('SWORD')) {
+		return itemShop['SWORD'](x, y, texture, options)
+	}
 
 	if (!(itemString in itemShop)) {
 		console.error(`Tried to create an item without an entry: ${itemString} with ID: ${id}`)
@@ -93,6 +97,7 @@ export function getItemsFromDropTable(options) {
 		let chosenItem = getWeightedValue(dropTable)
 		items.push(createItem(chosenItem, x, y, null, dropTable[chosenItem].options))
 	}
+	console.log(items)
 	return items
 }
 

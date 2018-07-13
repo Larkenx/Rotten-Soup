@@ -446,7 +446,6 @@ export function randomSimplexMap(width, height, zoom) {
 						let randomTexture = possibleActorTextures[getRandomInt(0, possibleActorTextures.length - 1)]
 						let actor = createActor(chosenActor, x, y, randomTexture)
 						tile.actors.push(actor)
-						gameMap.actors.push(actor)
 					}
 				}
 			}

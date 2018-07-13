@@ -133,7 +133,7 @@ export default class Player extends Actor {
 		// - a random sword (equip the sword)
 		this.addToInventory(createItem('SWORD', this.x, this.y, null, { materialType: materialTypes.BRONZE }))
 		super.equipWeapon(this.inventory[0].item)
-		this.addToInventory(new Gold(this.x, this.y, 1388, 10))
+		this.addToInventory(new Gold(this.x, this.y, 1388, 5))
 		this.addToInventory(createBow(this.x, this.y, 664))
 		this.addToInventory(new SteelArrow(this.x, this.y, 784, 7))
 		this.addToInventory(new HealthPotion(this.x, this.y, 488))
@@ -635,7 +635,7 @@ export default class Player extends Actor {
 			let buffer = `You picked up ${prettyItemTypes + lastItem}`
 			Game.log(buffer, 'information')
 		} else {
-			Game.log("There's nothing to pick up.", 'information')
+			Game.log("There's nothing here to pick up.", 'information')
 		}
 	}
 

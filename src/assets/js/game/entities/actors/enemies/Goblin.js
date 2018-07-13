@@ -55,16 +55,17 @@ export default class Goblin extends StatelessAI {
 			}
 		)
 
-		if (getRandomInt(1, 10) < 2) {
+		if (getRandomInt(1, 10) <= 2) {
 			let items = getItemsFromDropTable({
-				minItems: 0,
+				minItems: 1,
 				maxItems: 1,
 				dropTable: {
-					STRENGTH_POTION: { chance: 3 },
-					HEALTH_POTION: { chance: 2 },
-					MANA_POTION: { chance: 2 },
-					STEEL_ARROW: { chance: 2 },
-					SWORD: { chance: 1, options: { materialType: materialTypes.IRON } }
+					GOLD: { chance: 5, options: { quantity: getRandomInt(1, 10) } },
+					STRENGTH_POTION: { chance: 1 },
+					HEALTH_POTION: { chance: 5 },
+					MANA_POTION: { chance: 5 },
+					SWORD: { chance: 3, options: { materialType: materialTypes.IRON } },
+					SWORD: { chance: 1, options: { materialType: materialTypes.STEEL } }
 				},
 				x: this.x,
 				y: this.y

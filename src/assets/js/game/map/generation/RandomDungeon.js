@@ -608,7 +608,6 @@ export function dungeonFromTheme(width, height, theme, mapGenerator, options, ha
 					door = new Door(dx, dy, doors.vertical)
 				}
 				gameMap.getTile(dx, dy).actors.push(door)
-				gameMap.actors.push(door)
 			})
 		}
 
@@ -619,13 +618,11 @@ export function dungeonFromTheme(width, height, theme, mapGenerator, options, ha
 				let texture = ladders.down
 				let ladder = new Ladder(center.x, center.y, texture, 'down', toPortal)
 				gameMap.getTile(center.x, center.y).actors.push(ladder)
-				gameMap.actors.push(ladder)
 				createdLadders++
 			} else {
 				let levelTransition = new LevelTransition(center.x, center.y, 1169)
 				levelTransition.portal = toPortal
 				gameMap.getTile(center.x, center.y).actors.push(levelTransition)
-				gameMap.actors.push(levelTransition)
 				createdLadders++
 			}
 		}
@@ -651,40 +648,40 @@ export function dungeonFromTheme(width, height, theme, mapGenerator, options, ha
 			let chosenActor = ROT.RNG.getWeightedValue(mobDistribution)
 			let actor = createActor(chosenActor, x, y)
 			gameMap.getTile(x, y).actors.push(actor)
-			gameMap.actors.push(actor)
 		}
-		// if there atleast 4 enemies in the room, drop a chest in the room too!
-		if (roll >= 4) {
+
+		// if there atleast 3 enemies in the room, we might drop a chest in the room
+		if (roll >= 3 && getNormalRandomInt(0, 4) === 0) {
 			let coords = randomTile(validTiles)
 			if (coords !== null) {
 				let [x, y] = coords
 				let chest = new Chest(x, y, chestTexture)
 				let items = getItemsFromDropTable({
 					minItems: 1,
-					maxItems: 3,
+					maxItems: 2,
 					dropTable: {
 						STRENGTH_POTION: { chance: 10 },
-						HEALTH_POTION: { chance: 20 },
+						HEALTH_POTION: { chance: 15 },
 						STEEL_ARROW: { chance: 15 },
-						MANA_POTION: { chance: 20 },
-						SWORD: { chance: 15, options: { materialType: 'IRON' } },
-						SWORD: { chance: 13, options: { materialType: 'STEEL' } },
-						SWORD: { chance: 10, options: { materialType: 'MITHRIL' } },
-						SWORD: { chance: 8, options: { materialType: 'ADAMANTIUM' } },
-						SWORD: { chance: 6, options: { materialType: 'ORICHALCUM' } },
-						SWORD: { chance: 5, options: { materialType: 'VULCANITE' } },
-						SWORD: { chance: 4, options: { materialType: 'AQUANITE' } },
-						SWORD: { chance: 3, options: { materialType: 'VRONITE' } },
-						SWORD: { chance: 2, options: { materialType: 'LOULOUDIUM' } },
-						SWORD: { chance: 1, options: { materialType: 'ILIOTIUM' } },
-						SWORD: { chance: 1, options: { materialType: 'LEVANTIUM' } }
+						MANA_POTION: { chance: 15 },
+						IRON_SWORD: { chance: 12, options: { materialType: 'IRON' } },
+						STEEL_SWORD: { chance: 13, options: { materialType: 'STEEL' } },
+						MITHRIL_SWORD: { chance: 10, options: { materialType: 'MITHRIL' } },
+						ADAMANTIUM_SWORD: { chance: 8, options: { materialType: 'ADAMANTIUM' } },
+						ORICHALCUM_SWORD: { chance: 6, options: { materialType: 'ORICHALCUM' } },
+						VULCANITE_SWORD: { chance: 5, options: { materialType: 'VULCANITE' } },
+						AQUANITE_SWORD: { chance: 4, options: { materialType: 'AQUANITE' } },
+						VRONITE_SWORD: { chance: 3, options: { materialType: 'VRONITE' } },
+						LOULOUDIUM_SWORD: { chance: 2, options: { materialType: 'LOULOUDIUM' } },
+						ILIOTIUM_SWORD: { chance: 1, options: { materialType: 'ILIOTIUM' } },
+						LEVANTIUM_SWORD: { chance: 1, options: { materialType: 'LEVANTIUM' } }
 					},
 					x: chest.x,
 					y: chest.y
 				})
 				items.forEach(item => chest.addToInventory(item))
 				gameMap.getTile(x, y).actors.push(chest)
-				gameMap.actors.push(chest)
+				console.log(items)
 			}
 		}
 	}
@@ -696,7 +693,6 @@ export function dungeonFromTheme(width, height, theme, mapGenerator, options, ha
 	// gameMap.getTile(x, y).actors.push(new Player(x, y, Game.playerID + 1)) // set random spot to be the player
 	let ladder = new Ladder(x, y, ladders.up, 'up', fromPortal)
 	gameMap.getTile(x, y).actors.push(ladder)
-	gameMap.actors.push(ladder)
 	gameMap.revealed = false
 	gameMap.type = 'dungeon'
 	gameMap.depth = level

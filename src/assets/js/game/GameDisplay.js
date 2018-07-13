@@ -214,7 +214,7 @@ export default class GameDisplay {
 		let endingPos = [startingPos[0] + camera.width, startingPos[1] + camera.height]
 		this.background.position.set(-startingPos[0] * this.tileSize, -startingPos[1] * this.tileSize)
 		// draw the actors last because they should be on the top-most layer
-		for (let a of map.actors) {
+		for (let a of map.getActors()) {
 			if (!(a instanceof Item) || !a.inInventory) {
 				this.assignSprite(a)
 			}
@@ -342,7 +342,7 @@ export default class GameDisplay {
 			}
 		}
 		if (!Game.userSettings.hpBars) {
-			for (let actor of Game.map.actors) {
+			for (let actor of Game.map.getActors()) {
 				if (actor.spriteAbove !== undefined && !(actor instanceof NPC)) {
 					this.background.removeChild(actor.spriteAbove)
 					actor.spriteAbove = undefined

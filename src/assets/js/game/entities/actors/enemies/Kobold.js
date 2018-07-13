@@ -40,12 +40,10 @@ export default class Kobold extends SimpleEnemy {
 		})
 
 		let items = getItemsFromDropTable({
-			minItems: 0,
+			minItems: 1,
 			maxItems: 2,
 			dropTable: {
-				STRENGTH_POTION: { chance: 1 },
-				HEALTH_POTION: { chance: 1 },
-				STEEL_ARROW: { chance: 2 },
+				STEEL_ARROW: { chance: 3 },
 				SWORD: { chance: 1, options: { materialType: 'STEEL' } }
 			},
 			x: this.x,
