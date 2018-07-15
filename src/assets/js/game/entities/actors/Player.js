@@ -7,7 +7,8 @@ import { Actor } from '#/entities/actors/Actor.js'
 import { addPrefix } from '#/utils/HelperFunctions.js'
 import Item from '#/entities/items/Item.js'
 // Weapons
-import { Sword, materialTypes } from '#/entities/items/weapons/Sword.js'
+import { materialTypes } from '#/utils/Constants.js'
+import { Sword } from '#/entities/items/weapons/Sword.js'
 
 import { createBow } from '#/entities/items/weapons/ranged/Bow.js'
 import { SteelArrow } from '#/entities/items/weapons/ranged/ammo/Arrow.js'
@@ -132,7 +133,17 @@ export default class Player extends Actor {
 		// - a health potion
 		// - a random sword (equip the sword)
 		this.addToInventory(createItem('SWORD', this.x, this.y, null, { materialType: materialTypes.BRONZE }))
-		super.equipWeapon(this.inventory[0].item)
+		this.addToInventory(createItem('CHEST_ARMOR', this.x, this.y, null, { materialType: materialTypes.BRONZE }))
+		this.addToInventory(createItem('LEG_ARMOR', this.x, this.y, null, { materialType: materialTypes.BRONZE }))
+		this.addToInventory(createItem('HELMET', this.x, this.y, null, { materialType: materialTypes.BRONZE }))
+		this.addToInventory(createItem('BOOTS', this.x, this.y, null, { materialType: materialTypes.BRONZE }))
+
+		this.equip(this.inventory[0].item)
+		this.equip(this.inventory[1].item)
+		this.equip(this.inventory[2].item)
+		this.equip(this.inventory[3].item)
+		this.equip(this.inventory[4].item)
+
 		this.addToInventory(new Gold(this.x, this.y, 1388, 5))
 		this.addToInventory(createBow(this.x, this.y, 664))
 		this.addToInventory(new SteelArrow(this.x, this.y, 784, 7))
@@ -293,7 +304,7 @@ export default class Player extends Actor {
 				Game.log(`Your ${ammo.type.toLowerCase()} didn't hit anything!`, 'alert')
 			}
 			if (ammo.quantity == 0) {
-				this.unequipAmmo()
+				this.unequip(ammo)
 				this.removeFromInventory(ammo)
 			}
 			this.targeting = false
@@ -615,7 +626,7 @@ export default class Player extends Actor {
 			return el instanceof Item
 		})
 		if (tileItems.length === 1) {
-			Game.log(`You picked up a ${tileItems[0].type.toLowerCase()}.`, 'information')
+			Game.log(`You picked up ${addPrefix(tileItems[0].type.toLowerCase())}.`, 'information')
 			Game.display.clearSprite(tileItems[0])
 			this.addToInventory(tileItems[0])
 			ctile.removeActor(tileItems[0])
@@ -636,30 +647,6 @@ export default class Player extends Actor {
 			Game.log(buffer, 'information')
 		} else {
 			Game.log("There's nothing here to pick up.", 'information')
-		}
-	}
-
-	// Overriding the actor
-	equipWeapon(item) {
-		super.equipWeapon(item)
-		Game.log(`You wield the ${item.type.toLowerCase()}.`, 'information')
-	}
-
-	unequipWeapon() {
-		if (this.cb.equipment.weapon !== null) {
-			this.cb.equipment.weapon.cb.equipped = false
-			this.cb.equipment.weapon = null
-		} else {
-			throw 'Tried to uneqip weapon but no item was equipped.'
-		}
-	}
-
-	unequipAmmo() {
-		if (this.cb.equipment.ammo !== null) {
-			this.cb.equipment.ammo.cb.equipped = false
-			this.cb.equipment.ammo = null
-		} else {
-			throw 'Tried to uneqip ammo but no item was equipped.'
 		}
 	}
 

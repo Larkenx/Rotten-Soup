@@ -43,14 +43,14 @@
     <v-flex xs4><b>Items</b></v-flex>
   </v-layout>
   <v-layout wrap class="inventory_row">
-      <v-flex v-for="(cell, i) in getInventory()" v-bind:key="i" v-bind:class="{selectedItem : colorSlot(cell), inventory_cell : ! colorSlot(cell)}" align-center>
+      <v-flex style="max-height: 32px; max-width: 32px;" v-for="(cell, i) in getInventory()" v-bind:key="i" v-bind:class="{selectedItem : colorSlot(cell), inventory_cell : ! colorSlot(cell)}" align-center>
           <v-tooltip open-delay="200" bottom v-if="cell.item !== null" align-center>
               <p class="text-xs-center ma-0">
                   {{cell.item.getAction()}} {{cell.item.type}}
                   <br />
                   <span v-if="'name' in cell.item">{{"Name: " + cell.item.name}}<br /></span> {{cell.item.hoverInfo()}}
               </p>
-              <v-layout ripple v-on:click="useItem(cell, $event)" v-if="cell.item !== null" slot="activator" @contextmenu="show(cell, $event)" row>
+              <v-layout style="max-height: 32px; max-width: 32px; margin: auto;" ripple v-on:click="useItem(cell, $event)" v-if="cell.item !== null" slot="activator" @contextmenu="show(cell, $event)" row>
                   <v-menu offset-x :nudge-width="200" :close-on-click="true" v-model="cell.menu" absolute :position-x="x" :position-y="y">
                       <v-card>
                           <v-list>
@@ -71,7 +71,7 @@
                           </v-card-actions>
                       </v-card>
                   </v-menu>
-                  <v-badge bottom color="transparent" overlap style="max-height: 32px">
+                  <v-badge bottom color="transparent" overlap style="max-height: 32px; max-width: 32px;">
                       <span v-if="cell.item.quantity !== undefined" slot="badge" dark >
                         <span style="font-size: 11px">{{cell.item.quantity}}</span>
                       </span>

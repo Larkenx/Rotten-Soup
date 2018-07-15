@@ -1,10 +1,7 @@
-/**
- * Created by Larken on 6/22/2017.
- */
-
 import Weapon from '#/entities/items/weapons/Weapon.js'
 import { getRandomInt } from '#/utils/HelperFunctions.js'
 import { BleedEnchantment } from '#/modifiers/Enchantment.js'
+import { materialTypes } from '#/utils/Constants.js'
 
 export class Sword extends Weapon {
 	constructor(x, y, rolls, sides, name, id) {
@@ -146,21 +143,6 @@ let swordNames = [
 	'Nightfall',
 	'Sting'
 ]
-
-export const materialTypes = {
-	BRONZE: 'BRONZE',
-	IRON: 'IRON',
-	STEEL: 'STEEL',
-	MITHRIL: 'MITHRIL',
-	ADAMANTIUM: 'ADAMANTIUM',
-	ORICHALCUM: 'ORICHALCUM',
-	VULCANITE: 'VULCANITE',
-	AQUANITE: 'AQUANITE',
-	VRONITE: 'VRONITE',
-	LOULOUDIUM: 'LOULOUDIUM',
-	ILIOTIUM: 'ILIOTIUM',
-	LEVANTIUM: 'LEVANTIUM'
-}
 
 const materialTextures = {
 	[materialTypes.BRONZE]: [11640, 11641, 11642, 11643, 11648, 11649, 11650, 11651, 11652, 11653, 11654, 11655],

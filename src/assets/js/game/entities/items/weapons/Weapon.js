@@ -2,29 +2,13 @@
  * Created by Larken on 6/22/2017.
  */
 import { Game } from '#/Game.js'
-import Item from '#/entities/items/Item.js'
+import Equippable from '#/entities/items/Equippable.js'
 import { getRandomInt } from '#/utils/HelperFunctions.js'
 
-export default class Weapon extends Item {
+export default class Weapon extends Equippable {
 	constructor(x, y, options) {
-		if (options.combat === null)
-			throw `Error - no options.combat property defined. Bad weapon creation for ${options.name}`
-		options.visible = true
-		options.blocked = false
-		options.combat.equippable = true
-		options.combat.equipped = false
+		options.combat.equipmentSlot = 'weapon'
 		super(x, y, options)
-		this.cb = this.combat
-		this.cb.enchantments = []
-		this.action = 'Equip'
-	}
-
-	use() {
-		if (Game.player.cb.equipment.weapon === this) {
-			Game.player.unequipWeapon()
-		} else {
-			Game.player.equipWeapon(this)
-		}
 	}
 
 	roll() {

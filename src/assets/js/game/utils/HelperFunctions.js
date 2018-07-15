@@ -48,9 +48,10 @@ export function addPrefix(word) {
 			'logs',
 			'cobwebs',
 			'dirt',
-			'bones'
+			'bones',
+			'gold'
 		]
-		if (someWords.includes(word)) {
+		if (someWords.includes(word.toLowerCase())) {
 			return 'some ' + word
 		}
 		if (vowels.includes(word[0].toLowerCase())) return 'an ' + word

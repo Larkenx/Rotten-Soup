@@ -6,7 +6,7 @@ import * as PIXI from 'pixi.js'
 
 import { Game } from '#/Game.js'
 import { Entity } from '#/entities/Entity.js'
-import { getRandomInt, addPrefix } from '#/utils/HelperFunctions.js'
+import { getRandomInt, getNormalRandomInt, addPrefix } from '#/utils/HelperFunctions.js'
 import Door from '#/entities/misc/Door.js'
 import Chest from '#/entities/misc/Chest.js'
 import Ladder from '#/entities/misc/Ladder.js'
@@ -27,6 +27,7 @@ export class Actor extends Entity {
 			head: null,
 			torso: null,
 			legs: null,
+			boots: null,
 			weapon: null,
 			ammo: null,
 			ring: null
@@ -52,6 +53,18 @@ export class Actor extends Entity {
 			effect.applyEffect(this)
 		}
 		// if any effects have expired, we remove them
+	}
+
+	// goes through all of the actor's equipment and adds up the defensive value of each piece of armor
+	getDefenceRating() {
+		let def = 0
+		for (let slot in this.cb.equipment) {
+			let item = this.cb.equipment[slot]
+			if (item !== null && item.cb.def !== undefined) {
+				def += item.cb.def
+			}
+		}
+		return def
 	}
 
 	addNewEffect(effect) {
@@ -147,7 +160,7 @@ export class Actor extends Entity {
 		item.inInventory = false
 		if (item !== null && 'cb' in item) {
 			item.cb.equipped = false
-			if (this.cb.equipment.weapon == item) this.cb.equipment.weapon = null
+			if (this.cb.equipment[item.cb.equipmentSlot] === item) this.cb.equipment[item.cb.equipmentSlot] = null
 		}
 		item.placeAt(this.x, this.y)
 		Game.display.assignSprite(item, true, 2)
@@ -222,9 +235,16 @@ export class Actor extends Entity {
 
 	/* attacks another actor with a melee attack */
 	attack(actor) {
+		// get this actor's weapon & calculate weapon damage based on a roll & current str level
 		let { weapon } = this.cb.equipment
 		let dmg = weapon !== null ? this.cb.str + weapon.roll() : this.cb.str
 		if (weapon && weapon.cb.ranged) dmg = this.cb.str
+		// once damage is calculated, roll a defensive dice to see how much dmg is blocked
+		let { def } = actor.cb
+		let deflectedDamage = getNormalRandomInt(0, def + actor.getDefenceRating() + 1)
+		dmg -= deflectedDamage
+		console.log('Deflected ', deflectedDamage)
+
 		let verb,
 			message = ''
 		if (weapon !== null) {
@@ -259,26 +279,23 @@ export class Actor extends Entity {
 		return dmg
 	}
 
-	equipWeapon(item) {
-		if (!(item instanceof Weapon) || !('cb' in item)) throw 'Error - equipped invalid item - ' + this.item.type
-
-		// already wielding a weapon
-		if (this.cb.equipment.weapon !== null) {
-			this.cb.equipment.weapon.cb.equipped = false
+	equip(item) {
+		// already equipping something in the same slot
+		let { equipmentSlot } = item.cb
+		if (this.cb.equipment[equipmentSlot] !== null) {
+			this.cb.equipment[equipmentSlot].cb.equipped = false
 		}
-		this.cb.equipment.weapon = item
+		this.cb.equipment[equipmentSlot] = item
 		item.cb.equipped = true
 	}
 
-	equipAmmo(item) {
-		if (!(item instanceof Ammo) || !('cb' in item)) throw 'Error - equipped invalid item - ' + this.item.type
+	unequip(item) {
+		let { equipmentSlot } = item.cb
 
-		// already wielding a weapon
-		if (this.cb.equipment.ammo !== null) {
-			this.cb.equipment.ammo.cb.equipped = false
+		if (this.cb.equipment[equipmentSlot] !== null) {
+			this.cb.equipment[equipmentSlot].cb.equipped = false
+			this.cb.equipment[equipmentSlot] = null
 		}
-		this.cb.equipment.ammo = item
-		this.cb.equipment.ammo.cb.equipped = true
 	}
 
 	/* Reduce hp. If less than 0, causes death */

@@ -16,10 +16,16 @@ import { Corpse, corpseTypes } from '#/entities/items/misc/Corpse.js'
 import HealthPotion from '#/entities/items/potions/HealthPotion.js'
 import StrengthPotion from '#/entities/items/potions/StrengthPotion.js'
 import ManaPotion from '#/entities/items/potions/ManaPotion.js'
+// Weapons
+import { SteelArrow } from '#/entities/items/weapons/ranged/ammo/Arrow.js'
 import { createSword } from '#/entities/items/weapons/Sword.js'
 import { createBattleaxe } from '#/entities/items/weapons/Battleaxe.js'
+// Armors
+import { createChestArmor } from '#/entities/items/armor/ChestArmor.js'
+import { createLegArmor } from '#/entities/items/armor/LegArmor.js'
+import { createHelmet } from '#/entities/items/armor/Helmet.js'
+import { createBoots } from '#/entities/items/armor/Boots.js'
 
-import { SteelArrow } from '#/entities/items/weapons/ranged/ammo/Arrow.js'
 // Enemies
 import Orc from '#/entities/actors/enemies/Orc.js'
 import Kobold from '#/entities/actors/enemies/Kobold.js'
@@ -54,6 +60,10 @@ const itemShop = {
 	MANA_POTION: (x, y, t) => new ManaPotion(x, y, t),
 	SWORD: (x, y, t, options) => createSword(x, y, t, options),
 	BATTLEAXE: (x, y, t) => createBattleaxe(x, y, t),
+	HELMET: (x, y, t, options) => createHelmet(x, y, t, options),
+	CHEST_ARMOR: (x, y, t, options) => createChestArmor(x, y, t, options),
+	LEG_ARMOR: (x, y, t, options) => createLegArmor(x, y, t, options),
+	BOOTS: (x, y, t, options) => createBoots(x, y, t, options),
 	BOW: (x, y, t) => createBow(x, y, t),
 	STEEL_ARROW: (x, y, t) => new SteelArrow(x, y, t, 5),
 	KEY: (x, y, t) => new Key(x, y, t),
@@ -79,6 +89,14 @@ export function createItem(itemString, x, y, id, options = {}) {
 
 	if (itemString.includes('SWORD')) {
 		return itemShop['SWORD'](x, y, texture, options)
+	} else if (itemString.includes('CHEST_ARMOR')) {
+		return itemShop['CHEST_ARMOR'](x, y, texture, options)
+	} else if (itemString.includes('LEG_ARMOR')) {
+		return itemShop['LEG_ARMOR'](x, y, texture, options)
+	} else if (itemString.includes('HELMET')) {
+		return itemShop['HELMET'](x, y, texture, options)
+	} else if (itemString.includes('BOOTS')) {
+		return itemShop['BOOTS'](x, y, texture, options)
 	}
 
 	if (!(itemString in itemShop)) {
@@ -97,7 +115,6 @@ export function getItemsFromDropTable(options) {
 		let chosenItem = getWeightedValue(dropTable)
 		items.push(createItem(chosenItem, x, y, null, dropTable[chosenItem].options))
 	}
-	console.log(items)
 	return items
 }
 
