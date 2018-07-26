@@ -243,7 +243,6 @@ export class Actor extends Entity {
 		let { def } = actor.cb
 		let deflectedDamage = getNormalRandomInt(0, def + actor.getDefenceRating() + 1)
 		dmg -= deflectedDamage
-		console.log('Deflected ', deflectedDamage)
 
 		let verb,
 			message = ''
@@ -254,7 +253,8 @@ export class Actor extends Entity {
 				type.toLowerCase()
 			)} and dealt ${dmg} damage.`
 		} else {
-			message = `${addPrefix(this.name).capitalize()} attacked ${addPrefix(actor.name)} and dealt ${dmg} damage.`
+			if (dmg > 0) message = `${addPrefix(this.name).capitalize()} attacked ${addPrefix(actor.name)} and dealt ${dmg} damage.`
+			else message = `${addPrefix(this.name).capitalize()} tried to attack ${addPrefix(actor.name)} but failed to hit.`
 		}
 
 		if (Game.player === this) Game.log(message, 'player_move')

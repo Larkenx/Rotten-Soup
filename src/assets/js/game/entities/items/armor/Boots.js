@@ -34,16 +34,16 @@ const materialTextures = {
 const armorShop = {
 	[materialTypes.BRONZE]: (x, y, t) => new Boots(x, y, 1, 'Bronze Boots', t),
 	[materialTypes.IRON]: (x, y, t) => new Boots(x, y, 1, 'Iron Boots', t),
-	[materialTypes.STEEL]: (x, y, t) => new Boots(x, y, 1, 'Steel Boots', t),
-	[materialTypes.MITHRIL]: (x, y, t) => new Boots(x, y, 1, 'Mithril Boots', t),
-	[materialTypes.ADAMANTIUM]: (x, y, t) => new Boots(x, y, 1, 'Adamantium Boots', t),
-	[materialTypes.ORICHALCUM]: (x, y, t) => new Boots(x, y, 1, 'Orichalcum Boots', t),
-	[materialTypes.VULCANITE]: (x, y, t) => new Boots(x, y, 1, 'Vulcanite Boots', t),
-	[materialTypes.AQUANITE]: (x, y, t) => new Boots(x, y, 1, 'Aquanite Boots', t),
-	[materialTypes.VRONITE]: (x, y, t) => new Boots(x, y, 1, 'Vronite Boots', t),
-	[materialTypes.LOULOUDIUM]: (x, y, t) => new Boots(x, y, 1, 'Louloudium Boots', t),
-	[materialTypes.ILIOTIUM]: (x, y, t) => new Boots(x, y, 1, 'Iliotium Boots', t),
-	[materialTypes.LEVANTIUM]: (x, y, t) => new Boots(x, y, 1, 'Levantium Boots', t)
+	[materialTypes.STEEL]: (x, y, t) => new Boots(x, y, 2, 'Steel Boots', t),
+	[materialTypes.MITHRIL]: (x, y, t) => new Boots(x, y, 2, 'Mithril Boots', t),
+	[materialTypes.ADAMANTIUM]: (x, y, t) => new Boots(x, y, 3, 'Adamantium Boots', t),
+	[materialTypes.ORICHALCUM]: (x, y, t) => new Boots(x, y, 3, 'Orichalcum Boots', t),
+	[materialTypes.VULCANITE]: (x, y, t) => new Boots(x, y, 4, 'Vulcanite Boots', t),
+	[materialTypes.AQUANITE]: (x, y, t) => new Boots(x, y, 4, 'Aquanite Boots', t),
+	[materialTypes.VRONITE]: (x, y, t) => new Boots(x, y, 5, 'Vronite Boots', t),
+	[materialTypes.LOULOUDIUM]: (x, y, t) => new Boots(x, y, 5, 'Louloudium Boots', t),
+	[materialTypes.ILIOTIUM]: (x, y, t) => new Boots(x, y, 6, 'Iliotium Boots', t),
+	[materialTypes.LEVANTIUM]: (x, y, t) => new Boots(x, y, 6, 'Levantium Boots', t)
 }
 
 export function createBoots(x, y, id, options) {

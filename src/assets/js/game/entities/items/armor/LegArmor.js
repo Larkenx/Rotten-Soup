@@ -33,17 +33,17 @@ const materialTextures = {
 
 const armorShop = {
 	[materialTypes.BRONZE]: (x, y, t) => new LegArmor(x, y, 1, 'Bronze Plate Legs', t),
-	[materialTypes.IRON]: (x, y, t) => new LegArmor(x, y, 1, 'Iron Plate Legs', t),
-	[materialTypes.STEEL]: (x, y, t) => new LegArmor(x, y, 1, 'Steel Plate Legs', t),
-	[materialTypes.MITHRIL]: (x, y, t) => new LegArmor(x, y, 1, 'Mithril Plate Legs', t),
-	[materialTypes.ADAMANTIUM]: (x, y, t) => new LegArmor(x, y, 1, 'Adamantium Plate Legs', t),
-	[materialTypes.ORICHALCUM]: (x, y, t) => new LegArmor(x, y, 1, 'Orichalcum Plate Legs', t),
-	[materialTypes.VULCANITE]: (x, y, t) => new LegArmor(x, y, 1, 'Vulcanite Plate Legs', t),
-	[materialTypes.AQUANITE]: (x, y, t) => new LegArmor(x, y, 1, 'Aquanite Plate Legs', t),
-	[materialTypes.VRONITE]: (x, y, t) => new LegArmor(x, y, 1, 'Vronite Plate Legs', t),
-	[materialTypes.LOULOUDIUM]: (x, y, t) => new LegArmor(x, y, 1, 'Louloudium Plate Legs', t),
-	[materialTypes.ILIOTIUM]: (x, y, t) => new LegArmor(x, y, 1, 'Iliotium Plate Legs', t),
-	[materialTypes.LEVANTIUM]: (x, y, t) => new LegArmor(x, y, 1, 'Levantium Plate Legs', t)
+	[materialTypes.IRON]: (x, y, t) => new LegArmor(x, y, 2, 'Iron Plate Legs', t),
+	[materialTypes.STEEL]: (x, y, t) => new LegArmor(x, y, 3, 'Steel Plate Legs', t),
+	[materialTypes.MITHRIL]: (x, y, t) => new LegArmor(x, y, 4, 'Mithril Plate Legs', t),
+	[materialTypes.ADAMANTIUM]: (x, y, t) => new LegArmor(x, y, 5, 'Adamantium Plate Legs', t),
+	[materialTypes.ORICHALCUM]: (x, y, t) => new LegArmor(x, y, 6, 'Orichalcum Plate Legs', t),
+	[materialTypes.VULCANITE]: (x, y, t) => new LegArmor(x, y, 7, 'Vulcanite Plate Legs', t),
+	[materialTypes.AQUANITE]: (x, y, t) => new LegArmor(x, y, 8, 'Aquanite Plate Legs', t),
+	[materialTypes.VRONITE]: (x, y, t) => new LegArmor(x, y, 9, 'Vronite Plate Legs', t),
+	[materialTypes.LOULOUDIUM]: (x, y, t) => new LegArmor(x, y, 10, 'Louloudium Plate Legs', t),
+	[materialTypes.ILIOTIUM]: (x, y, t) => new LegArmor(x, y, 11, 'Iliotium Plate Legs', t),
+	[materialTypes.LEVANTIUM]: (x, y, t) => new LegArmor(x, y, 12, 'Levantium Plate Legs', t)
 }
 
 export function createLegArmor(x, y, id, options) {

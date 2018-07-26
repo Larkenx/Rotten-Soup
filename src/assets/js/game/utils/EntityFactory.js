@@ -59,7 +59,7 @@ const itemShop = {
 	STRENGTH_POTION: (x, y, t) => new StrengthPotion(x, y, t),
 	MANA_POTION: (x, y, t) => new ManaPotion(x, y, t),
 	SWORD: (x, y, t, options) => createSword(x, y, t, options),
-	BATTLEAXE: (x, y, t) => createBattleaxe(x, y, t),
+	BATTLEAXE: (x, y, t, options) => createBattleaxe(x, y, t, options),
 	HELMET: (x, y, t, options) => createHelmet(x, y, t, options),
 	CHEST_ARMOR: (x, y, t, options) => createChestArmor(x, y, t, options),
 	LEG_ARMOR: (x, y, t, options) => createLegArmor(x, y, t, options),
@@ -89,6 +89,8 @@ export function createItem(itemString, x, y, id, options = {}) {
 
 	if (itemString.includes('SWORD')) {
 		return itemShop['SWORD'](x, y, texture, options)
+	} else if (itemString.includes('BATTLEAXE')) {
+		return itemShop['BATTLEAXE'](x, y, texture, options)
 	} else if (itemString.includes('CHEST_ARMOR')) {
 		return itemShop['CHEST_ARMOR'](x, y, texture, options)
 	} else if (itemString.includes('LEG_ARMOR')) {

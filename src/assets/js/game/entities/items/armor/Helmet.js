@@ -34,16 +34,16 @@ const materialTextures = {
 const armorShop = {
 	[materialTypes.BRONZE]: (x, y, t) => new Helmet(x, y, 1, 'Bronze Helmet', t),
 	[materialTypes.IRON]: (x, y, t) => new Helmet(x, y, 1, 'Iron Helmet', t),
-	[materialTypes.STEEL]: (x, y, t) => new Helmet(x, y, 1, 'Steel Helmet', t),
-	[materialTypes.MITHRIL]: (x, y, t) => new Helmet(x, y, 1, 'Mithril Helmet', t),
-	[materialTypes.ADAMANTIUM]: (x, y, t) => new Helmet(x, y, 1, 'Adamantium Helmet', t),
-	[materialTypes.ORICHALCUM]: (x, y, t) => new Helmet(x, y, 1, 'Orichalcum Helmet', t),
-	[materialTypes.VULCANITE]: (x, y, t) => new Helmet(x, y, 1, 'Vulcanite Helmet', t),
-	[materialTypes.AQUANITE]: (x, y, t) => new Helmet(x, y, 1, 'Aquanite Helmet', t),
-	[materialTypes.VRONITE]: (x, y, t) => new Helmet(x, y, 1, 'Vronite Helmet', t),
-	[materialTypes.LOULOUDIUM]: (x, y, t) => new Helmet(x, y, 1, 'Louloudium Helmet', t),
-	[materialTypes.ILIOTIUM]: (x, y, t) => new Helmet(x, y, 1, 'Iliotium Helmet', t),
-	[materialTypes.LEVANTIUM]: (x, y, t) => new Helmet(x, y, 1, 'Levantium Helmet', t)
+	[materialTypes.STEEL]: (x, y, t) => new Helmet(x, y, 2, 'Steel Helmet', t),
+	[materialTypes.MITHRIL]: (x, y, t) => new Helmet(x, y, 2, 'Mithril Helmet', t),
+	[materialTypes.ADAMANTIUM]: (x, y, t) => new Helmet(x, y, 3, 'Adamantium Helmet', t),
+	[materialTypes.ORICHALCUM]: (x, y, t) => new Helmet(x, y, 3, 'Orichalcum Helmet', t),
+	[materialTypes.VULCANITE]: (x, y, t) => new Helmet(x, y, 4, 'Vulcanite Helmet', t),
+	[materialTypes.AQUANITE]: (x, y, t) => new Helmet(x, y, 4, 'Aquanite Helmet', t),
+	[materialTypes.VRONITE]: (x, y, t) => new Helmet(x, y, 6, 'Vronite Helmet', t),
+	[materialTypes.LOULOUDIUM]: (x, y, t) => new Helmet(x, y, 6, 'Louloudium Helmet', t),
+	[materialTypes.ILIOTIUM]: (x, y, t) => new Helmet(x, y, 7, 'Iliotium Helmet', t),
+	[materialTypes.LEVANTIUM]: (x, y, t) => new Helmet(x, y, 7, 'Levantium Helmet', t)
 }
 
 export function createHelmet(x, y, id, options) {

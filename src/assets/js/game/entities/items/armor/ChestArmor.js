@@ -33,17 +33,17 @@ const materialTextures = {
 
 const armorShop = {
 	[materialTypes.BRONZE]: (x, y, t) => new ChestArmor(x, y, 1, 'Bronze Chest Plate', t),
-	[materialTypes.IRON]: (x, y, t) => new ChestArmor(x, y, 1, 'Iron Chest Plate', t),
-	[materialTypes.STEEL]: (x, y, t) => new ChestArmor(x, y, 1, 'Steel Chest Plate', t),
-	[materialTypes.MITHRIL]: (x, y, t) => new ChestArmor(x, y, 1, 'Mithril Chest Plate', t),
-	[materialTypes.ADAMANTIUM]: (x, y, t) => new ChestArmor(x, y, 1, 'Adamantium Chest Plate', t),
-	[materialTypes.ORICHALCUM]: (x, y, t) => new ChestArmor(x, y, 1, 'Orichalcum Chest Plate', t),
-	[materialTypes.VULCANITE]: (x, y, t) => new ChestArmor(x, y, 1, 'Vulcanite Chest Plate', t),
-	[materialTypes.AQUANITE]: (x, y, t) => new ChestArmor(x, y, 1, 'Aquanite Chest Plate', t),
-	[materialTypes.VRONITE]: (x, y, t) => new ChestArmor(x, y, 1, 'Vronite Chest Plate', t),
-	[materialTypes.LOULOUDIUM]: (x, y, t) => new ChestArmor(x, y, 1, 'Louloudium Chest Plate', t),
-	[materialTypes.ILIOTIUM]: (x, y, t) => new ChestArmor(x, y, 1, 'Iliotium Chest Plate', t),
-	[materialTypes.LEVANTIUM]: (x, y, t) => new ChestArmor(x, y, 1, 'Levantium Chest Plate', t)
+	[materialTypes.IRON]: (x, y, t) => new ChestArmor(x, y, 2, 'Iron Chest Plate', t),
+	[materialTypes.STEEL]: (x, y, t) => new ChestArmor(x, y, 3, 'Steel Chest Plate', t),
+	[materialTypes.MITHRIL]: (x, y, t) => new ChestArmor(x, y, 4, 'Mithril Chest Plate', t),
+	[materialTypes.ADAMANTIUM]: (x, y, t) => new ChestArmor(x, y, 5, 'Adamantium Chest Plate', t),
+	[materialTypes.ORICHALCUM]: (x, y, t) => new ChestArmor(x, y, 6, 'Orichalcum Chest Plate', t),
+	[materialTypes.VULCANITE]: (x, y, t) => new ChestArmor(x, y, 7, 'Vulcanite Chest Plate', t),
+	[materialTypes.AQUANITE]: (x, y, t) => new ChestArmor(x, y, 8, 'Aquanite Chest Plate', t),
+	[materialTypes.VRONITE]: (x, y, t) => new ChestArmor(x, y, 9, 'Vronite Chest Plate', t),
+	[materialTypes.LOULOUDIUM]: (x, y, t) => new ChestArmor(x, y, 10, 'Louloudium Chest Plate', t),
+	[materialTypes.ILIOTIUM]: (x, y, t) => new ChestArmor(x, y, 11, 'Iliotium Chest Plate', t),
+	[materialTypes.LEVANTIUM]: (x, y, t) => new ChestArmor(x, y, 12, 'Levantium Chest Plate', t)
 }
 
 export function createChestArmor(x, y, id, options) {

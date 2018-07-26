@@ -133,6 +133,7 @@ export default class Player extends Actor {
 		// - a health potion
 		// - a random sword (equip the sword)
 		this.addToInventory(createItem('SWORD', this.x, this.y, null, { materialType: materialTypes.BRONZE }))
+		this.addToInventory(createItem('BATTLEAXE', this.x, this.y, null, { materialType: materialTypes.BRONZE }))
 		this.addToInventory(createItem('CHEST_ARMOR', this.x, this.y, null, { materialType: materialTypes.BRONZE }))
 		this.addToInventory(createItem('LEG_ARMOR', this.x, this.y, null, { materialType: materialTypes.BRONZE }))
 		this.addToInventory(createItem('HELMET', this.x, this.y, null, { materialType: materialTypes.BRONZE }))

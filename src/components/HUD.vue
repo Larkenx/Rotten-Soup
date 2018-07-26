@@ -75,7 +75,7 @@
 			</v-layout>
 
 			<v-layout align-center class="mt-2">
-				<v-flex xs6><b>Location:</b> {{getCurrentLevel().capitalize()}}</v-flex>
+				<v-flex xs8><b>Location:</b> {{getCurrentLevel().capitalize()}}</v-flex>
 				<v-flex xs4 class="pl-3" v-if="getCurrentLevelDepth() > 0" ><b>Floor:</b> {{getCurrentLevelDepth()}}</v-flex>
 			</v-layout>
 
