@@ -48,9 +48,10 @@ export function addPrefix(word) {
 			'logs',
 			'cobwebs',
 			'dirt',
-			'bones'
+			'bones',
+			'gold'
 		]
-		if (someWords.includes(word)) {
+		if (someWords.includes(word.toLowerCase())) {
 			return 'some ' + word
 		}
 		if (vowels.includes(word[0].toLowerCase())) return 'an ' + word
@@ -60,61 +61,12 @@ export function addPrefix(word) {
 	}
 }
 
-export let itemTypes = {
-	STRENGTH_POTION: 'STRENGTH_POTION',
-	MANA_POTION: 'MANA_POTION',
-	HEALTH_POTION: 'HEALTH_POTION',
-	SWORD: 'SWORD',
-	STEEL_ARROW: 'STEEL_ARROW'
-}
-
 export function getDiceRoll(rolls, sides) {
 	let n = 0
 	for (let i = 0; i < rolls; i++) {
 		n += getRandomInt(1, sides)
 	}
 	return n
-}
-
-// TODO: make this use the EntityFactory
-export function getItemsFromDropTable(options) {
-	if (
-		options.dropTable == undefined ||
-		options.minItems == undefined ||
-		options.maxItems == undefined ||
-		options.x == undefined ||
-		options.y == undefined
-	)
-		throw 'Not enough arguments given. Expected drop table object, min and max number of items to produce, and x,y location'
-
-	let { dropTable, minItems, maxItems, x, y } = options
-	let items = []
-	let roll = getRandomInt(minItems, maxItems)
-	for (let i = 0; i < roll; i++) {
-		let chosenItem = ROT.RNG.getWeightedValue(dropTable)
-		switch (chosenItem) {
-			case itemTypes.STRENGTH_POTION:
-				items.push(new StrengthPotion(x, y, 969))
-				break
-			case itemTypes.HEALTH_POTION:
-				items.push(new HealthPotion(x, y, 488))
-				break
-			case itemTypes.MANA_POTION:
-				items.push(new ManaPotion(x, y, 608))
-				break
-			case itemTypes.SWORD:
-				items.push(createSword(x, y, 35))
-				break
-			case itemTypes.STEEL_ARROW:
-				items.push(new SteelArrow(x, y, 784, 5))
-				break
-			default:
-				console.log("tried to add some item that doesn't exist to an inventroy from drop table")
-				console.log(chosenItem)
-		}
-	}
-	// console.log("Generated drop table", items)
-	return items
 }
 
 export function getVisibleTiles(actor) {
@@ -127,4 +79,12 @@ export function getVisibleTiles(actor) {
 		if (Game.inbounds(x, y)) visibleTiles.push(Game.map.data[y][x])
 	})
 	return visibleTiles
+}
+
+export function getWeightedValue(table) {
+	let rotFormat = {}
+	for (let key in table) {
+		rotFormat[key] = table[key].chance
+	}
+	return ROT.RNG.getWeightedValue(rotFormat)
 }

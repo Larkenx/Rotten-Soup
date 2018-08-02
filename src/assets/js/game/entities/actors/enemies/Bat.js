@@ -3,7 +3,7 @@
  */
 import ROT from 'rot-js'
 import { StatelessAI } from '#/entities/actors/enemies/StatelessAI.js'
-import { getRandomInt, getItemsFromDropTable } from '#/utils/HelperFunctions.js'
+import { getRandomInt } from '#/utils/HelperFunctions.js'
 import { Game } from '#/Game.js'
 
 export default class Bat extends StatelessAI {

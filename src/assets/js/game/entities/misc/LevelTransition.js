@@ -18,7 +18,7 @@ export default class LevelTransition extends Entity {
 	act() {}
 
 	react(actor) {
-		Game.log(`You leave the ${Game.currentLevel.name} and go to the ${this.portal}.`, 'information')
+		// Game.log(`You leave the ${Game.currentLevel.name} and go to the ${this.portal}.`, 'information')
 		Game.changeLevels(this.portal)
 	}
 }

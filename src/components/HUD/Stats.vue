@@ -84,7 +84,7 @@ export default {
 			return Game.player.cb.str
 		},
 		getDefence() {
-			return Game.player.cb.def
+			return Game.player.cb.def + Game.player.getDefenceRating()
 		},
 		getDamageRange() {
 			if (Game.player.getMinDmg() === Game.player.getMaxDmg()) return Game.player.getMinDmg()

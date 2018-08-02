@@ -2,7 +2,7 @@
  * Created by Larken on 6/22/2017.
  */
 import { Game } from '#/Game.js'
-import { getRandomInt, getItemsFromDropTable } from '#/utils/HelperFunctions.js'
+import { getRandomInt } from '#/utils/HelperFunctions.js'
 import SimpleEnemy from '#/entities/actors/enemies/SimpleEnemy.js'
 
 export default class Zombie extends SimpleEnemy {

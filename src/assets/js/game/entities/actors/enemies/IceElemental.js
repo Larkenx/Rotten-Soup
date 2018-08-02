@@ -3,7 +3,7 @@
  */
 import ROT from 'rot-js'
 import SimpleEnemy from '#/entities/actors/enemies/SimpleEnemy.js'
-import { getRandomInt, getItemsFromDropTable } from '#/utils/HelperFunctions.js'
+import { getRandomInt } from '#/utils/HelperFunctions.js'
 import { Game } from '#/Game.js'
 
 export default class IceElemental extends SimpleEnemy {

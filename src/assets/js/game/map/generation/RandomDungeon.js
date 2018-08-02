@@ -14,8 +14,8 @@ import Key from '#/entities/items/misc/Key.js'
 import { NecromancySpellBook } from '#/entities/items/misc/Spellbook.js'
 import Ladder from '#/entities/misc/Ladder.js'
 import LevelTransition from '#/entities/misc/LevelTransition.js'
-import { getRandomInt, getNormalRandomInt, randomProperty, getItemsFromDropTable } from '#/utils/HelperFunctions.js'
-import { createActor } from '#/utils/EntityFactory.js'
+import { getRandomInt, getNormalRandomInt, randomProperty } from '#/utils/HelperFunctions.js'
+import { createActor, getItemsFromDropTable } from '#/utils/EntityFactory.js'
 
 const dungeonTypes = {
 	RUINS: 'RUINS',
@@ -29,20 +29,6 @@ const dungeonThemes = {
 	RUINS: {
 		tint: null,
 		mobDistribution: {
-			// TROLL: 1,
-			// MUMMY: 1,
-			// GHOST: 1,
-			// ICE_ELEMENTAL: 1,
-			// GOLEM: 1,
-			// IMP: 1,
-			// SNAKE: 1,
-			// SIREN: 1,
-			// VAMPIRE: 1,
-			// MINOTAUR: 1,
-			// CYCLOPS: 1,
-			// BANSHEE: 1,
-			// DEMON: 1,
-			// BONE_MAN: 1
 			ORC: 1,
 			GOBLIN: 15,
 			BAT: 10,
@@ -608,7 +594,6 @@ export function dungeonFromTheme(width, height, theme, mapGenerator, options, ha
 					door = new Door(dx, dy, doors.vertical)
 				}
 				gameMap.getTile(dx, dy).actors.push(door)
-				gameMap.actors.push(door)
 			})
 		}
 
@@ -619,13 +604,11 @@ export function dungeonFromTheme(width, height, theme, mapGenerator, options, ha
 				let texture = ladders.down
 				let ladder = new Ladder(center.x, center.y, texture, 'down', toPortal)
 				gameMap.getTile(center.x, center.y).actors.push(ladder)
-				gameMap.actors.push(ladder)
 				createdLadders++
 			} else {
 				let levelTransition = new LevelTransition(center.x, center.y, 1169)
 				levelTransition.portal = toPortal
 				gameMap.getTile(center.x, center.y).actors.push(levelTransition)
-				gameMap.actors.push(levelTransition)
 				createdLadders++
 			}
 		}
@@ -651,30 +634,102 @@ export function dungeonFromTheme(width, height, theme, mapGenerator, options, ha
 			let chosenActor = ROT.RNG.getWeightedValue(mobDistribution)
 			let actor = createActor(chosenActor, x, y)
 			gameMap.getTile(x, y).actors.push(actor)
-			gameMap.actors.push(actor)
 		}
-		// if there atleast 4 enemies in the room, drop a chest in the room too!
-		if (roll >= 4) {
+
+		// if there atleast 3 enemies in the room, we might drop a chest in the room
+		if (roll >= 3 && getNormalRandomInt(0, 4) === 0) {
 			let coords = randomTile(validTiles)
 			if (coords !== null) {
 				let [x, y] = coords
 				let chest = new Chest(x, y, chestTexture)
 				let items = getItemsFromDropTable({
 					minItems: 1,
-					maxItems: 3,
+					maxItems: 2,
 					dropTable: {
-						STRENGTH_POTION: 10,
-						HEALTH_POTION: 20,
-						STEEL_ARROW: 15,
-						MANA_POTION: 20,
-						SWORD: 1
+						STRENGTH_POTION: { chance: 25 },
+						HEALTH_POTION: { chance: 30 },
+						STEEL_ARROW: { chance: 30 },
+						MANA_POTION: { chance: 30 },
+						GOLD: { chance: 40, options: { quantity: getRandomInt(10, 30) } },
+
+						IRON_SWORD: { chance: 15, options: { materialType: 'IRON' } },
+						STEEL_SWORD: { chance: 13, options: { materialType: 'STEEL' } },
+						MITHRIL_SWORD: { chance: 10, options: { materialType: 'MITHRIL' } },
+						ADAMANTIUM_SWORD: { chance: 8, options: { materialType: 'ADAMANTIUM' } },
+						ORICHALCUM_SWORD: { chance: 6, options: { materialType: 'ORICHALCUM' } },
+						VULCANITE_SWORD: { chance: 5, options: { materialType: 'VULCANITE' } },
+						AQUANITE_SWORD: { chance: 4, options: { materialType: 'AQUANITE' } },
+						VRONITE_SWORD: { chance: 3, options: { materialType: 'VRONITE' } },
+						LOULOUDIUM_SWORD: { chance: 2, options: { materialType: 'LOULOUDIUM' } },
+						ILIOTIUM_SWORD: { chance: 1, options: { materialType: 'ILIOTIUM' } },
+						LEVANTIUM_SWORD: { chance: 1, options: { materialType: 'LEVANTIUM' } },
+
+						IRON_BATTLEAXE: { chance: 15, options: { materialType: 'IRON' } },
+						STEEL_BATTLEAXE: { chance: 13, options: { materialType: 'STEEL' } },
+						MITHRIL_BATTLEAXE: { chance: 10, options: { materialType: 'MITHRIL' } },
+						ADAMANTIUM_BATTLEAXE: { chance: 8, options: { materialType: 'ADAMANTIUM' } },
+						ORICHALCUM_BATTLEAXE: { chance: 6, options: { materialType: 'ORICHALCUM' } },
+						VULCANITE_BATTLEAXE: { chance: 5, options: { materialType: 'VULCANITE' } },
+						AQUANITE_BATTLEAXE: { chance: 4, options: { materialType: 'AQUANITE' } },
+						VRONITE_BATTLEAXE: { chance: 3, options: { materialType: 'VRONITE' } },
+						LOULOUDIUM_BATTLEAXE: { chance: 2, options: { materialType: 'LOULOUDIUM' } },
+						ILIOTIUM_BATTLEAXE: { chance: 1, options: { materialType: 'ILIOTIUM' } },
+						LEVANTIUM_BATTLEAXE: { chance: 1, options: { materialType: 'LEVANTIUM' } },
+
+						IRON_CHEST_ARMOR: { chance: 15, options: { materialType: 'IRON' } },
+						STEEL_CHEST_ARMOR: { chance: 13, options: { materialType: 'STEEL' } },
+						MITHRIL_CHEST_ARMOR: { chance: 10, options: { materialType: 'MITHRIL' } },
+						ADAMANTIUM_CHEST_ARMOR: { chance: 8, options: { materialType: 'ADAMANTIUM' } },
+						ORICHALCUM_CHEST_ARMOR: { chance: 6, options: { materialType: 'ORICHALCUM' } },
+						VULCANITE_CHEST_ARMOR: { chance: 5, options: { materialType: 'VULCANITE' } },
+						AQUANITE_CHEST_ARMOR: { chance: 4, options: { materialType: 'AQUANITE' } },
+						VRONITE_CHEST_ARMOR: { chance: 3, options: { materialType: 'VRONITE' } },
+						LOULOUDIUM_CHEST_ARMOR: { chance: 2, options: { materialType: 'LOULOUDIUM' } },
+						ILIOTIUM_CHEST_ARMOR: { chance: 1, options: { materialType: 'ILIOTIUM' } },
+						LEVANTIUM_CHEST_ARMOR: { chance: 1, options: { materialType: 'LEVANTIUM' } },
+
+						IRON_LEG_ARMOR: { chance: 15, options: { materialType: 'IRON' } },
+						STEEL_LEG_ARMOR: { chance: 13, options: { materialType: 'STEEL' } },
+						MITHRIL_LEG_ARMOR: { chance: 10, options: { materialType: 'MITHRIL' } },
+						ADAMANTIUM_LEG_ARMOR: { chance: 8, options: { materialType: 'ADAMANTIUM' } },
+						ORICHALCUM_LEG_ARMOR: { chance: 6, options: { materialType: 'ORICHALCUM' } },
+						VULCANITE_LEG_ARMOR: { chance: 5, options: { materialType: 'VULCANITE' } },
+						AQUANITE_LEG_ARMOR: { chance: 4, options: { materialType: 'AQUANITE' } },
+						VRONITE_LEG_ARMOR: { chance: 3, options: { materialType: 'VRONITE' } },
+						LOULOUDIUM_LEG_ARMOR: { chance: 2, options: { materialType: 'LOULOUDIUM' } },
+						ILIOTIUM_LEG_ARMOR: { chance: 1, options: { materialType: 'ILIOTIUM' } },
+						LEVANTIUM_LEG_ARMOR: { chance: 1, options: { materialType: 'LEVANTIUM' } },
+
+						IRON_HELMET: { chance: 15, options: { materialType: 'IRON' } },
+						STEEL_HELMET: { chance: 13, options: { materialType: 'STEEL' } },
+						MITHRIL_HELMET: { chance: 10, options: { materialType: 'MITHRIL' } },
+						ADAMANTIUM_HELMET: { chance: 8, options: { materialType: 'ADAMANTIUM' } },
+						ORICHALCUM_HELMET: { chance: 6, options: { materialType: 'ORICHALCUM' } },
+						VULCANITE_HELMET: { chance: 5, options: { materialType: 'VULCANITE' } },
+						AQUANITE_HELMET: { chance: 4, options: { materialType: 'AQUANITE' } },
+						VRONITE_HELMET: { chance: 3, options: { materialType: 'VRONITE' } },
+						LOULOUDIUM_HELMET: { chance: 2, options: { materialType: 'LOULOUDIUM' } },
+						ILIOTIUM_HELMET: { chance: 1, options: { materialType: 'ILIOTIUM' } },
+						LEVANTIUM_HELMET: { chance: 1, options: { materialType: 'LEVANTIUM' } },
+
+						IRON_BOOTS: { chance: 15, options: { materialType: 'IRON' } },
+						STEEL_BOOTS: { chance: 13, options: { materialType: 'STEEL' } },
+						MITHRIL_BOOTS: { chance: 10, options: { materialType: 'MITHRIL' } },
+						ADAMANTIUM_BOOTS: { chance: 8, options: { materialType: 'ADAMANTIUM' } },
+						ORICHALCUM_BOOTS: { chance: 6, options: { materialType: 'ORICHALCUM' } },
+						VULCANITE_BOOTS: { chance: 5, options: { materialType: 'VULCANITE' } },
+						AQUANITE_BOOTS: { chance: 4, options: { materialType: 'AQUANITE' } },
+						VRONITE_BOOTS: { chance: 3, options: { materialType: 'VRONITE' } },
+						LOULOUDIUM_BOOTS: { chance: 2, options: { materialType: 'LOULOUDIUM' } },
+						ILIOTIUM_BOOTS: { chance: 1, options: { materialType: 'ILIOTIUM' } },
+						LEVANTIUM_BOOTS: { chance: 1, options: { materialType: 'LEVANTIUM' } }
 					},
 					x: chest.x,
 					y: chest.y
 				})
 				items.forEach(item => chest.addToInventory(item))
 				gameMap.getTile(x, y).actors.push(chest)
-				gameMap.actors.push(chest)
+				console.log(items)
 			}
 		}
 	}
@@ -686,7 +741,6 @@ export function dungeonFromTheme(width, height, theme, mapGenerator, options, ha
 	// gameMap.getTile(x, y).actors.push(new Player(x, y, Game.playerID + 1)) // set random spot to be the player
 	let ladder = new Ladder(x, y, ladders.up, 'up', fromPortal)
 	gameMap.getTile(x, y).actors.push(ladder)
-	gameMap.actors.push(ladder)
 	gameMap.revealed = false
 	gameMap.type = 'dungeon'
 	gameMap.depth = level

@@ -73,7 +73,8 @@ export default {
 	},
 	mounted() {
 		window.addEventListener('resize', this.recomputeSize)
-		// this.loadGame(4219)
+		console.log(window.location.host)
+		if (window.location.host.includes('localhost')) this.loadGame(4219)
 	},
 	beforeDestroy() {
 		window.removeEventListener('resize', this.recomputeSize)

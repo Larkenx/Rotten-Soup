@@ -22,7 +22,6 @@ export class GameMap {
 		this.playerLocation = null // this field is used exclusively for saving the player's last location before they change levels
 		this.width = width
 		this.height = height
-		this.actors = [] // store all of the actors in array
 		this.data = new Array(this.height) // stores all tiles in the game
 		this.visible_tiles = {}
 		this.seen_tiles = {}
@@ -37,6 +36,16 @@ export class GameMap {
 		// Process all of the json layers
 		// process the group layers last. this is specifically for placing static itemsets into treasure chests in the overworld.
 		// process it last so that all of the chest entities have been created already
+	}
+
+	getActors() {
+		let actors = []
+		for (let row of this.data) {
+			for (let tile of row) {
+				actors = actors.concat(tile.actors)
+			}
+		}
+		return actors
 	}
 
 	getTile(x, y) {
@@ -91,7 +100,12 @@ export class GameMap {
 				if (dialogID in DIALOGUES) {
 					entity.dialogData = DIALOGUES[dialogID]
 					entity.dialogBubbleEnabled = 'dialogBubbleEnabled' in properties ? properties.dialogBubbleEnabled : true
-					entity.bubbleData = 'bubbleData' in properties ? properties.bubbleData : null
+					if ('bubbleData' in properties) {
+						let [id, animated_id] = properties.bubbleData.split(',')
+						entity.bubbleData = { id, animated_id }
+					} else {
+						entity.bubbleData = null
+					}
 				}
 			}
 		} else if (entity_type === 'LADDER' || entity_type === 'LEVEL_TRANSITION') {
@@ -100,7 +114,6 @@ export class GameMap {
 			entity.createDungeon = properties.createDungeon
 			if (entity_type === 'LADDER') entity.direction = properties.direction
 		}
-		this.actors.push(entity)
 		this.getTile(nx, ny).actors.push(entity)
 	}
 

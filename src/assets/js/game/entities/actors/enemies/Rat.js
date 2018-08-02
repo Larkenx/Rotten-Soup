@@ -26,7 +26,7 @@ export default class Rat extends SimpleEnemy {
 				hp: 3,
 				mana: 0,
 				str: 1,
-				def: 0,
+				def: 1,
 				/* misc */
 				hostile: true,
 				range: 4,

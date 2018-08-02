@@ -83,7 +83,6 @@ export let Game = {
 			this.height = this.map.height < this.displayOptions.height ? this.map.height : this.displayOptions.height
 			this.minimapOptions.width = this.map.width < this.minimapOptions.width ? this.map.width : this.minimapOptions.width
 			this.minimapOptions.height = this.map.height < this.minimapOptions.height ? this.map.height : this.minimapOptions.height
-			this.map.actors.push(this.player) // add to the list of all actors
 			let [px, py] = this.map.playerLocation
 			this.player.placeAt(px, py)
 			this.scheduleAllActors()
@@ -105,7 +104,7 @@ export let Game = {
 	},
 
 	findActor(type, id) {
-		return this.map.actors.filter(a => {
+		return this.map.getActors().filter(a => {
 			return a instanceof type && a.id === id
 		})
 	},
@@ -116,10 +115,11 @@ export let Game = {
 		// this.scheduler.add(new PlayerController(), true) // Add the player to the scheduler
 		this.scheduler.add(this.player, true) // Add the player to the scheduler
 		this.scheduler.add(this.display, true)
-		for (let i = 0; i < this.map.actors.length; i++) {
+		let actors = this.map.getActors()
+		for (let i = 0; i < actors.length; i++) {
 			// Some 'actor' objects do not take turns, such as ladders / items
-			if (this.map.actors[i] !== this.player && this.map.actors[i] instanceof Actor) {
-				this.scheduler.add(this.map.actors[i], true)
+			if (actors[i] !== this.player && actors[i] instanceof Actor) {
+				this.scheduler.add(actors[i], true)
 			}
 		}
 		this.engine = new ROT.Engine(this.scheduler) // Create new engine with the newly created scheduler
@@ -195,8 +195,7 @@ export let Game = {
 		}
 		// Unshift player from ladder position (so that when resurfacing, no player is present)
 		this.getTile(this.player.x, this.player.y).removeActor(this.player)
-		this.map.actors = this.map.actors.filter(a => a !== this.player)
-		for (let a of this.map.actors) {
+		for (let a of this.map.getActors()) {
 			this.display.clearSprite(a)
 		}
 		this.map = nextMap
@@ -214,7 +213,6 @@ export let Game = {
 		this.minimapOptions.width = this.map.width < this.minimapOptions.width ? this.map.width : this.minimapOptions.width
 		this.minimapOptions.height = this.map.height < this.minimapOptions.height ? this.map.height : this.minimapOptions.height
 		this.player.placeAt(this.playerLocation[0], this.playerLocation[1])
-		this.map.actors.push(this.player)
 		this.scheduleAllActors()
 		// Clear the last visible tiles that were available to be seen
 		Object.assign(this.map.seen_tiles, this.map.visible_tiles)
@@ -445,15 +443,15 @@ export let Game = {
 
 		let obstacleDescriptions = obstacles.map(o => o.description).filter(o => o !== undefined)
 		if (obstacleDescriptions.length > 0) names.push(obstacleDescriptions.slice(-1)[0])
-		let prettyNames = []
-		prettyNames = names.slice(1, -1).reduce((buf, str) => {
-			return buf + ', ' + addPrefix(str)
-		}, addPrefix(names.slice(0, 1)[0]))
+		let prettyNames = 'nothing'
+		if (names.length === 1) {
+			prettyNames = addPrefix(names.slice(0, 1)[0])
+		} else if (names.length > 1) {
+			prettyNames = names.slice(1, -1).reduce((buf, str) => {
+				return buf + ', ' + addPrefix(str)
+			}, addPrefix(names.slice(0, 1)[0]))
 
-		if (names.length > 1) {
-			prettyNames = prettyNames + [` and ${addPrefix(names.slice(-1)[0])}`]
-		} else if (names.length == 0) {
-			prettyNames = 'nothing'
+			prettyNames = prettyNames + ` and ${addPrefix(names.slice(-1)[0])}`
 		}
 
 		if ((Game.player.targeting || Game.player.casting) && this.selectedTile !== null) {
@@ -504,13 +502,13 @@ export let Game = {
 	},
 	/* Testing Functions */
 	getNearestLadder() {
-		let ladders = this.map.actors.filter(a => a instanceof Ladder)
+		let ladders = this.map.getActors().filter(a => a instanceof Ladder)
 		if (ladders.length > 0) return ladders[0]
 		else return null
 	},
 
 	getNearestLevelTransition() {
-		let levelTransitions = this.map.actors.filter(a => a instanceof LevelTransition)
+		let levelTransitions = this.map.getActors().filter(a => a instanceof LevelTransition)
 		if (levelTransitions.length > 0) return levelTransitions[0]
 		else return null
 	},

@@ -190,8 +190,6 @@ export const reanimate = corpse => {
 	let ctile = Game.map.data[corpse.y][corpse.x]
 	// remove the corpse from the ground
 	ctile.removeActor(corpse)
-	let idx = Game.map.actors.indexOf(corpse)
-	Game.map.actors.splice(idx, 1)
 	Game.display.removeChild(corpse)
 	let undeadActor =
 		corpse.id === corpseTypes.HUMANOID ? new Zombie(corpse.x, corpse.y, 2317) : new Skeleton(corpse.x, corpse.y, 2552)
@@ -199,7 +197,6 @@ export const reanimate = corpse => {
 	undeadActor.chasing = true
 	ctile.actors.push(undeadActor)
 	Game.display.assignSprite(undeadActor)
-	Game.map.actors.push(undeadActor)
 	Game.scheduler.add(undeadActor, true)
 }
 
