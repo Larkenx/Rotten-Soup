@@ -412,14 +412,14 @@ export default class Player extends Actor {
 		}
 	}
 
-	helpScreenHandler(evt) {}
+	handleHelpScreenEvent(evt) {}
 
-	npcDialogHandler(evt) {
+	handleNPCDialogueEvent(evt) {
 		let { keyCode } = evt
 		evt.preventDefault()
 		const confirm = [ROT.VK_RETURN, ROT.VK_E]
-		const up = [ROT.VK_UP, ROT.VK_NUMPAD8, ROT.VK_W]
-		const down = [ROT.VK_DOWN, ROT.VK_NUMPAD2, ROT.VK_S]
+		const up = [ROT.VK_UP, ROT.VK_NUMPAD8, ROT.VK_W, ROT.VK_K]
+		const down = [ROT.VK_DOWN, ROT.VK_NUMPAD2, ROT.VK_S, ROT.VK_J]
 		const numbers = [ROT.VK_1, ROT.VK_2, ROT.VK_3, ROT.VK_4, ROT.VK_5, ROT.VK_6, ROT.VK_7, ROT.VK_8, ROT.VK_9]
 		const dialogue = Game.overlayData.dialogue
 		const selectedChoiceIndex = dialogue.selectedChoice // the index of the choice we've selected
@@ -509,7 +509,7 @@ export default class Player extends Actor {
 		if (Game.overlayData.visible) {
 			switch (Game.overlayData.component) {
 				case 'npc-dialogue':
-					return this.npcDialogHandler(evt)
+					return this.handleNPCDialogueEvent(evt)
 				default:
 					console.error('Game is showing overlay for which the player cannot handle')
 			}
@@ -520,9 +520,9 @@ export default class Player extends Actor {
 		} else if (this.targeting) {
 			this.handleRangedFireEvent(evt)
 		} else if (this.helpDialogOpen) {
-			this.helpScreenHandler(evt)
+			this.handleHelpScreenEvent(evt)
 		} else if (this.npcDialogOpen) {
-			this.npcDialogHandler(evt)
+			this.handleNPCDialogueEvent(evt)
 		} else {
 			let { keyCode } = evt
 			let shiftPressed = evt.getModifierState('Shift')
