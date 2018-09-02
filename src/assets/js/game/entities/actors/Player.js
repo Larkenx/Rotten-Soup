@@ -144,6 +144,7 @@ export default class Player extends Actor {
 		this.equip(this.inventory[2].item)
 		this.equip(this.inventory[3].item)
 		this.equip(this.inventory[4].item)
+		this.equip(this.inventory[5].item)
 
 		this.addToInventory(new Gold(this.x, this.y, 1388, 5))
 		this.addToInventory(createBow(this.x, this.y, 664))
@@ -393,7 +394,10 @@ export default class Player extends Actor {
 			if (this.validTarget) {
 				confirmSpellcasting()
 			} else {
-				Game.log(`You cannot cast ${this.cb.currentSpell.name} at this tile because it's blocked or too far away.`, 'alert')
+				Game.log(
+					`You cannot cast ${this.cb.currentSpell.name} at this tile because it's blocked or too far away.`,
+					'alert'
+				)
 			}
 		} else if (movementKeys.includes(this.keyMap[keyCode])) {
 			let diff = ROT.DIRS[8][this.keyMap[keyCode]]
@@ -449,7 +453,10 @@ export default class Player extends Actor {
 				if (this.validTarget) {
 					confirmSpellcasting()
 				} else {
-					Game.log(`You cannot cast ${this.cb.currentSpell.name} at this tile because it's blocked or too far away.`, 'alert')
+					Game.log(
+						`You cannot cast ${this.cb.currentSpell.name} at this tile because it's blocked or too far away.`,
+						'alert'
+					)
 				}
 			}
 			// else, if the tile is within one square of the player, they can move to that tile by clicking
@@ -550,7 +557,11 @@ export default class Player extends Actor {
 				Game.log('You rest for a turn.', 'player_move')
 			} else if (action === 'pickup' && !shiftPressed) {
 				this.pickup()
-			} else if ((action === 'rest' && shiftPressed) || (action === 'pickup' && shiftPressed) || action === 'interact') {
+			} else if (
+				(action === 'rest' && shiftPressed) ||
+				(action === 'pickup' && shiftPressed) ||
+				action === 'interact'
+			) {
 				this.climb()
 			} else if (action === 'fire' && !shiftPressed) {
 				let weapon = this.cb.equipment.weapon
