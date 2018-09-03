@@ -1,5 +1,7 @@
 import { createActor, createItem } from '#/utils/EntityFactory.js'
 import { DialogueEdge, DialogueNode, DialogueGraph, Dialogue } from '#/utils/DialogueGraph.js'
+import { materialTypes } from '#/utils/Constants.js'
+
 import Beer from '#/entities/items/misc/Beer.js'
 
 const addKeyToPlayerInventory = p => {
@@ -7,7 +9,7 @@ const addKeyToPlayerInventory = p => {
 }
 
 const addBessyTheBattleAxeToPlayerInventory = p => {
-	let bessy = createItem('BATTLEAXE', p.x, p.y)
+	let bessy = createItem('BATTLEAXE', p.x, p.y, null, { materialType: materialTypes.STEEL })
 	bessy.name = 'Bessy'
 	p.addToInventory(bessy)
 }
@@ -20,10 +22,10 @@ const Graph = DialogueGraph
 let graph = new Graph('Drunken Dwarf')
 
 let state = {
-	startedBeerQuest: false,
-	finishedBeerQuest: false,
-	acceptedSearchForFriendsQuest: false,
-	finishedSavingFriends: false,
+	startedBeerQuest: true,
+	finishedBeerQuest: true,
+	acceptedSearchForFriendsQuest: true,
+	finishedSavingFriends: true,
 	rewardGiven: false
 }
 

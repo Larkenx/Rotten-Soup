@@ -144,6 +144,7 @@ export default class Player extends Actor {
 		this.equip(this.inventory[2].item)
 		this.equip(this.inventory[3].item)
 		this.equip(this.inventory[4].item)
+		this.equip(this.inventory[5].item)
 
 		this.addToInventory(new Gold(this.x, this.y, 1388, 5))
 		this.addToInventory(createBow(this.x, this.y, 664))
@@ -393,7 +394,10 @@ export default class Player extends Actor {
 			if (this.validTarget) {
 				confirmSpellcasting()
 			} else {
-				Game.log(`You cannot cast ${this.cb.currentSpell.name} at this tile because it's blocked or too far away.`, 'alert')
+				Game.log(
+					`You cannot cast ${this.cb.currentSpell.name} at this tile because it's blocked or too far away.`,
+					'alert'
+				)
 			}
 		} else if (movementKeys.includes(this.keyMap[keyCode])) {
 			let diff = ROT.DIRS[8][this.keyMap[keyCode]]
@@ -408,14 +412,14 @@ export default class Player extends Actor {
 		}
 	}
 
-	helpScreenHandler(evt) {}
+	handleHelpScreenEvent(evt) {}
 
-	npcDialogHandler(evt) {
+	handleNPCDialogueEvent(evt) {
 		let { keyCode } = evt
 		evt.preventDefault()
 		const confirm = [ROT.VK_RETURN, ROT.VK_E]
-		const up = [ROT.VK_UP, ROT.VK_NUMPAD8, ROT.VK_W]
-		const down = [ROT.VK_DOWN, ROT.VK_NUMPAD2, ROT.VK_S]
+		const up = [ROT.VK_UP, ROT.VK_NUMPAD8, ROT.VK_W, ROT.VK_K]
+		const down = [ROT.VK_DOWN, ROT.VK_NUMPAD2, ROT.VK_S, ROT.VK_J]
 		const numbers = [ROT.VK_1, ROT.VK_2, ROT.VK_3, ROT.VK_4, ROT.VK_5, ROT.VK_6, ROT.VK_7, ROT.VK_8, ROT.VK_9]
 		const dialogue = Game.overlayData.dialogue
 		const selectedChoiceIndex = dialogue.selectedChoice // the index of the choice we've selected
@@ -449,7 +453,10 @@ export default class Player extends Actor {
 				if (this.validTarget) {
 					confirmSpellcasting()
 				} else {
-					Game.log(`You cannot cast ${this.cb.currentSpell.name} at this tile because it's blocked or too far away.`, 'alert')
+					Game.log(
+						`You cannot cast ${this.cb.currentSpell.name} at this tile because it's blocked or too far away.`,
+						'alert'
+					)
 				}
 			}
 			// else, if the tile is within one square of the player, they can move to that tile by clicking
@@ -502,7 +509,7 @@ export default class Player extends Actor {
 		if (Game.overlayData.visible) {
 			switch (Game.overlayData.component) {
 				case 'npc-dialogue':
-					return this.npcDialogHandler(evt)
+					return this.handleNPCDialogueEvent(evt)
 				default:
 					console.error('Game is showing overlay for which the player cannot handle')
 			}
@@ -513,9 +520,9 @@ export default class Player extends Actor {
 		} else if (this.targeting) {
 			this.handleRangedFireEvent(evt)
 		} else if (this.helpDialogOpen) {
-			this.helpScreenHandler(evt)
+			this.handleHelpScreenEvent(evt)
 		} else if (this.npcDialogOpen) {
-			this.npcDialogHandler(evt)
+			this.handleNPCDialogueEvent(evt)
 		} else {
 			let { keyCode } = evt
 			let shiftPressed = evt.getModifierState('Shift')
@@ -550,7 +557,11 @@ export default class Player extends Actor {
 				Game.log('You rest for a turn.', 'player_move')
 			} else if (action === 'pickup' && !shiftPressed) {
 				this.pickup()
-			} else if ((action === 'rest' && shiftPressed) || (action === 'pickup' && shiftPressed) || action === 'interact') {
+			} else if (
+				(action === 'rest' && shiftPressed) ||
+				(action === 'pickup' && shiftPressed) ||
+				action === 'interact'
+			) {
 				this.climb()
 			} else if (action === 'fire' && !shiftPressed) {
 				let weapon = this.cb.equipment.weapon
