@@ -36,6 +36,19 @@ const dungeonThemes = {
 			SNAKE: 10
 		},
 		type: dungeonTypes.RUINS,
+		dropTable: {
+			STRENGTH_POTION: { chance: 25 },
+			HEALTH_POTION: { chance: 30 },
+			STEEL_ARROW: { chance: 30 },
+			MANA_POTION: { chance: 30 },
+			GOLD: { chance: 40, options: { quantity: getRandomInt(10, 30) } },
+			IRON_SWORD: { chance: 15, options: { materialType: 'IRON' } },
+			IRON_BATTLEAXE: { chance: 15, options: { materialType: 'IRON' } },
+			IRON_CHEST_ARMOR: { chance: 15, options: { materialType: 'IRON' } },
+			IRON_LEG_ARMOR: { chance: 15, options: { materialType: 'IRON' } },
+			IRON_HELMET: { chance: 15, options: { materialType: 'IRON' } },
+			IRON_BOOTS: { chance: 15, options: { materialType: 'IRON' } }
+		},
 		textures: {
 			floor: {
 				upperLeft: 7736,
@@ -109,6 +122,19 @@ const dungeonThemes = {
 			BANSHEE: 5,
 			VAMPIRE: 1
 		},
+		dropTable: {
+			STRENGTH_POTION: { chance: 25 },
+			HEALTH_POTION: { chance: 30 },
+			STEEL_ARROW: { chance: 30 },
+			MANA_POTION: { chance: 30 },
+			GOLD: { chance: 40, options: { quantity: getRandomInt(10, 30) } },
+			STEEL_SWORD: { chance: 13, options: { materialType: 'STEEL' } },
+			STEEL_BATTLEAXE: { chance: 13, options: { materialType: 'STEEL' } },
+			STEEL_CHEST_ARMOR: { chance: 13, options: { materialType: 'STEEL' } },
+			STEEL_LEG_ARMOR: { chance: 13, options: { materialType: 'STEEL' } },
+			STEEL_HELMET: { chance: 13, options: { materialType: 'STEEL' } },
+			STEEL_BOOTS: { chance: 13, options: { materialType: 'STEEL' } }
+		},
 		textures: {
 			floor: {
 				upperLeft: 8096,
@@ -177,6 +203,19 @@ const dungeonThemes = {
 			BONE_MAN: 10,
 			GOLEM: 1
 		},
+		dropTable: {
+			STRENGTH_POTION: { chance: 25 },
+			HEALTH_POTION: { chance: 30 },
+			STEEL_ARROW: { chance: 30 },
+			MANA_POTION: { chance: 30 },
+			GOLD: { chance: 40, options: { quantity: getRandomInt(10, 30) } },
+			MITHRIL_SWORD: { chance: 10, options: { materialType: 'MITHRIL' } },
+			MITHRIL_BATTLEAXE: { chance: 10, options: { materialType: 'MITHRIL' } },
+			MITHRIL_CHEST_ARMOR: { chance: 10, options: { materialType: 'MITHRIL' } },
+			MITHRIL_LEG_ARMOR: { chance: 10, options: { materialType: 'MITHRIL' } },
+			MITHRIL_HELMET: { chance: 10, options: { materialType: 'MITHRIL' } },
+			MITHRIL_BOOTS: { chance: 10, options: { materialType: 'MITHRIL' } }
+		},
 		textures: {
 			floor: {
 				upperLeft: 9176,
@@ -244,6 +283,19 @@ const dungeonThemes = {
 			SKELETON: 20,
 			IMP: 10,
 			SIREN: 1
+		},
+		dropTable: {
+			STRENGTH_POTION: { chance: 25 },
+			HEALTH_POTION: { chance: 30 },
+			STEEL_ARROW: { chance: 30 },
+			MANA_POTION: { chance: 30 },
+			GOLD: { chance: 40, options: { quantity: getRandomInt(10, 30) } },
+			ADAMANTIUM_SWORD: { chance: 8, options: { materialType: 'ADAMANTIUM' } },
+			ADAMANTIUM_BATTLEAXE: { chance: 8, options: { materialType: 'ADAMANTIUM' } },
+			ADAMANTIUM_CHEST_ARMOR: { chance: 8, options: { materialType: 'ADAMANTIUM' } },
+			ADAMANTIUM_LEG_ARMOR: { chance: 8, options: { materialType: 'ADAMANTIUM' } },
+			ADAMANTIUM_HELMET: { chance: 8, options: { materialType: 'ADAMANTIUM' } },
+			ADAMANTIUM_BOOTS: { chance: 8, options: { materialType: 'ADAMANTIUM' } }
 		},
 		textures: {
 			floor: {
@@ -527,7 +579,7 @@ const getWallTexture = (walls, sum) => {
 export function dungeonFromTheme(width, height, theme, mapGenerator, options, hasDoors = true) {
 	let { dungeonName, lastDungeon, fromPortal, toPortal, level } = options
 	let gameMap = new GameMap(width, height, dungeonName)
-	const { tint, type, textures, mobDistribution } = theme
+	const { tint, type, textures, mobDistribution, dropTable } = theme
 	const { floor, corridorFloor, walls, doors } = textures
 	// Generate ROT map and store empty tiles in hashmap
 	let createdLadders = 0
@@ -637,7 +689,7 @@ export function dungeonFromTheme(width, height, theme, mapGenerator, options, ha
 		}
 
 		// if there atleast 3 enemies in the room, we might drop a chest in the room
-		if (roll >= 3 && getNormalRandomInt(0, 4) === 0) {
+		if (roll >= 3 && getNormalRandomInt(0, 4) === 2) {
 			let coords = randomTile(validTiles)
 			if (coords !== null) {
 				let [x, y] = coords
@@ -645,85 +697,7 @@ export function dungeonFromTheme(width, height, theme, mapGenerator, options, ha
 				let items = getItemsFromDropTable({
 					minItems: 1,
 					maxItems: 2,
-					dropTable: {
-						STRENGTH_POTION: { chance: 25 },
-						HEALTH_POTION: { chance: 30 },
-						STEEL_ARROW: { chance: 30 },
-						MANA_POTION: { chance: 30 },
-						GOLD: { chance: 40, options: { quantity: getRandomInt(10, 30) } },
-
-						IRON_SWORD: { chance: 15, options: { materialType: 'IRON' } },
-						STEEL_SWORD: { chance: 13, options: { materialType: 'STEEL' } },
-						MITHRIL_SWORD: { chance: 10, options: { materialType: 'MITHRIL' } },
-						ADAMANTIUM_SWORD: { chance: 8, options: { materialType: 'ADAMANTIUM' } },
-						ORICHALCUM_SWORD: { chance: 6, options: { materialType: 'ORICHALCUM' } },
-						VULCANITE_SWORD: { chance: 5, options: { materialType: 'VULCANITE' } },
-						AQUANITE_SWORD: { chance: 4, options: { materialType: 'AQUANITE' } },
-						VRONITE_SWORD: { chance: 3, options: { materialType: 'VRONITE' } },
-						LOULOUDIUM_SWORD: { chance: 2, options: { materialType: 'LOULOUDIUM' } },
-						ILIOTIUM_SWORD: { chance: 1, options: { materialType: 'ILIOTIUM' } },
-						LEVANTIUM_SWORD: { chance: 1, options: { materialType: 'LEVANTIUM' } },
-
-						IRON_BATTLEAXE: { chance: 15, options: { materialType: 'IRON' } },
-						STEEL_BATTLEAXE: { chance: 13, options: { materialType: 'STEEL' } },
-						MITHRIL_BATTLEAXE: { chance: 10, options: { materialType: 'MITHRIL' } },
-						ADAMANTIUM_BATTLEAXE: { chance: 8, options: { materialType: 'ADAMANTIUM' } },
-						ORICHALCUM_BATTLEAXE: { chance: 6, options: { materialType: 'ORICHALCUM' } },
-						VULCANITE_BATTLEAXE: { chance: 5, options: { materialType: 'VULCANITE' } },
-						AQUANITE_BATTLEAXE: { chance: 4, options: { materialType: 'AQUANITE' } },
-						VRONITE_BATTLEAXE: { chance: 3, options: { materialType: 'VRONITE' } },
-						LOULOUDIUM_BATTLEAXE: { chance: 2, options: { materialType: 'LOULOUDIUM' } },
-						ILIOTIUM_BATTLEAXE: { chance: 1, options: { materialType: 'ILIOTIUM' } },
-						LEVANTIUM_BATTLEAXE: { chance: 1, options: { materialType: 'LEVANTIUM' } },
-
-						IRON_CHEST_ARMOR: { chance: 15, options: { materialType: 'IRON' } },
-						STEEL_CHEST_ARMOR: { chance: 13, options: { materialType: 'STEEL' } },
-						MITHRIL_CHEST_ARMOR: { chance: 10, options: { materialType: 'MITHRIL' } },
-						ADAMANTIUM_CHEST_ARMOR: { chance: 8, options: { materialType: 'ADAMANTIUM' } },
-						ORICHALCUM_CHEST_ARMOR: { chance: 6, options: { materialType: 'ORICHALCUM' } },
-						VULCANITE_CHEST_ARMOR: { chance: 5, options: { materialType: 'VULCANITE' } },
-						AQUANITE_CHEST_ARMOR: { chance: 4, options: { materialType: 'AQUANITE' } },
-						VRONITE_CHEST_ARMOR: { chance: 3, options: { materialType: 'VRONITE' } },
-						LOULOUDIUM_CHEST_ARMOR: { chance: 2, options: { materialType: 'LOULOUDIUM' } },
-						ILIOTIUM_CHEST_ARMOR: { chance: 1, options: { materialType: 'ILIOTIUM' } },
-						LEVANTIUM_CHEST_ARMOR: { chance: 1, options: { materialType: 'LEVANTIUM' } },
-
-						IRON_LEG_ARMOR: { chance: 15, options: { materialType: 'IRON' } },
-						STEEL_LEG_ARMOR: { chance: 13, options: { materialType: 'STEEL' } },
-						MITHRIL_LEG_ARMOR: { chance: 10, options: { materialType: 'MITHRIL' } },
-						ADAMANTIUM_LEG_ARMOR: { chance: 8, options: { materialType: 'ADAMANTIUM' } },
-						ORICHALCUM_LEG_ARMOR: { chance: 6, options: { materialType: 'ORICHALCUM' } },
-						VULCANITE_LEG_ARMOR: { chance: 5, options: { materialType: 'VULCANITE' } },
-						AQUANITE_LEG_ARMOR: { chance: 4, options: { materialType: 'AQUANITE' } },
-						VRONITE_LEG_ARMOR: { chance: 3, options: { materialType: 'VRONITE' } },
-						LOULOUDIUM_LEG_ARMOR: { chance: 2, options: { materialType: 'LOULOUDIUM' } },
-						ILIOTIUM_LEG_ARMOR: { chance: 1, options: { materialType: 'ILIOTIUM' } },
-						LEVANTIUM_LEG_ARMOR: { chance: 1, options: { materialType: 'LEVANTIUM' } },
-
-						IRON_HELMET: { chance: 15, options: { materialType: 'IRON' } },
-						STEEL_HELMET: { chance: 13, options: { materialType: 'STEEL' } },
-						MITHRIL_HELMET: { chance: 10, options: { materialType: 'MITHRIL' } },
-						ADAMANTIUM_HELMET: { chance: 8, options: { materialType: 'ADAMANTIUM' } },
-						ORICHALCUM_HELMET: { chance: 6, options: { materialType: 'ORICHALCUM' } },
-						VULCANITE_HELMET: { chance: 5, options: { materialType: 'VULCANITE' } },
-						AQUANITE_HELMET: { chance: 4, options: { materialType: 'AQUANITE' } },
-						VRONITE_HELMET: { chance: 3, options: { materialType: 'VRONITE' } },
-						LOULOUDIUM_HELMET: { chance: 2, options: { materialType: 'LOULOUDIUM' } },
-						ILIOTIUM_HELMET: { chance: 1, options: { materialType: 'ILIOTIUM' } },
-						LEVANTIUM_HELMET: { chance: 1, options: { materialType: 'LEVANTIUM' } },
-
-						IRON_BOOTS: { chance: 15, options: { materialType: 'IRON' } },
-						STEEL_BOOTS: { chance: 13, options: { materialType: 'STEEL' } },
-						MITHRIL_BOOTS: { chance: 10, options: { materialType: 'MITHRIL' } },
-						ADAMANTIUM_BOOTS: { chance: 8, options: { materialType: 'ADAMANTIUM' } },
-						ORICHALCUM_BOOTS: { chance: 6, options: { materialType: 'ORICHALCUM' } },
-						VULCANITE_BOOTS: { chance: 5, options: { materialType: 'VULCANITE' } },
-						AQUANITE_BOOTS: { chance: 4, options: { materialType: 'AQUANITE' } },
-						VRONITE_BOOTS: { chance: 3, options: { materialType: 'VRONITE' } },
-						LOULOUDIUM_BOOTS: { chance: 2, options: { materialType: 'LOULOUDIUM' } },
-						ILIOTIUM_BOOTS: { chance: 1, options: { materialType: 'ILIOTIUM' } },
-						LEVANTIUM_BOOTS: { chance: 1, options: { materialType: 'LEVANTIUM' } }
-					},
+					dropTable,
 					x: chest.x,
 					y: chest.y
 				})
@@ -785,3 +759,81 @@ export function randomDungeon(width, height, options) {
 		return dungeonFromTheme(width, height, dungeonThemes.ICE, new ROT.Map.Digger(width, height, dc), options)
 	}
 }
+
+// STRENGTH_POTION: { chance: 25 },
+// HEALTH_POTION: { chance: 30 },
+// STEEL_ARROW: { chance: 30 },
+// MANA_POTION: { chance: 30 },
+// GOLD: { chance: 40, options: { quantity: getRandomInt(10, 30) } },
+//
+// // IRON_SWORD: { chance: 15, options: { materialType: 'IRON' } },
+// // STEEL_SWORD: { chance: 13, options: { materialType: 'STEEL' } },
+// // MITHRIL_SWORD: { chance: 10, options: { materialType: 'MITHRIL' } },
+// // ADAMANTIUM_SWORD: { chance: 8, options: { materialType: 'ADAMANTIUM' } },
+// // ORICHALCUM_SWORD: { chance: 6, options: { materialType: 'ORICHALCUM' } },
+// // VULCANITE_SWORD: { chance: 5, options: { materialType: 'VULCANITE' } },
+// // AQUANITE_SWORD: { chance: 4, options: { materialType: 'AQUANITE' } },
+// // VRONITE_SWORD: { chance: 3, options: { materialType: 'VRONITE' } },
+// // LOULOUDIUM_SWORD: { chance: 2, options: { materialType: 'LOULOUDIUM' } },
+// // ILIOTIUM_SWORD: { chance: 1, options: { materialType: 'ILIOTIUM' } },
+// // LEVANTIUM_SWORD: { chance: 1, options: { materialType: 'LEVANTIUM' } },
+// //
+// // IRON_BATTLEAXE: { chance: 15, options: { materialType: 'IRON' } },
+// // STEEL_BATTLEAXE: { chance: 13, options: { materialType: 'STEEL' } },
+// // MITHRIL_BATTLEAXE: { chance: 10, options: { materialType: 'MITHRIL' } },
+// // ADAMANTIUM_BATTLEAXE: { chance: 8, options: { materialType: 'ADAMANTIUM' } },
+// // ORICHALCUM_BATTLEAXE: { chance: 6, options: { materialType: 'ORICHALCUM' } },
+// // VULCANITE_BATTLEAXE: { chance: 5, options: { materialType: 'VULCANITE' } },
+// // AQUANITE_BATTLEAXE: { chance: 4, options: { materialType: 'AQUANITE' } },
+// // VRONITE_BATTLEAXE: { chance: 3, options: { materialType: 'VRONITE' } },
+// // LOULOUDIUM_BATTLEAXE: { chance: 2, options: { materialType: 'LOULOUDIUM' } },
+// // ILIOTIUM_BATTLEAXE: { chance: 1, options: { materialType: 'ILIOTIUM' } },
+// // LEVANTIUM_BATTLEAXE: { chance: 1, options: { materialType: 'LEVANTIUM' } },
+// //
+// // IRON_CHEST_ARMOR: { chance: 15, options: { materialType: 'IRON' } },
+// // STEEL_CHEST_ARMOR: { chance: 13, options: { materialType: 'STEEL' } },
+// // MITHRIL_CHEST_ARMOR: { chance: 10, options: { materialType: 'MITHRIL' } },
+// // ADAMANTIUM_CHEST_ARMOR: { chance: 8, options: { materialType: 'ADAMANTIUM' } },
+// // ORICHALCUM_CHEST_ARMOR: { chance: 6, options: { materialType: 'ORICHALCUM' } },
+// // VULCANITE_CHEST_ARMOR: { chance: 5, options: { materialType: 'VULCANITE' } },
+// // AQUANITE_CHEST_ARMOR: { chance: 4, options: { materialType: 'AQUANITE' } },
+// // VRONITE_CHEST_ARMOR: { chance: 3, options: { materialType: 'VRONITE' } },
+// // LOULOUDIUM_CHEST_ARMOR: { chance: 2, options: { materialType: 'LOULOUDIUM' } },
+// // ILIOTIUM_CHEST_ARMOR: { chance: 1, options: { materialType: 'ILIOTIUM' } },
+// // LEVANTIUM_CHEST_ARMOR: { chance: 1, options: { materialType: 'LEVANTIUM' } },
+// //
+// // IRON_LEG_ARMOR: { chance: 15, options: { materialType: 'IRON' } },
+// // STEEL_LEG_ARMOR: { chance: 13, options: { materialType: 'STEEL' } },
+// // MITHRIL_LEG_ARMOR: { chance: 10, options: { materialType: 'MITHRIL' } },
+// // ADAMANTIUM_LEG_ARMOR: { chance: 8, options: { materialType: 'ADAMANTIUM' } },
+// // ORICHALCUM_LEG_ARMOR: { chance: 6, options: { materialType: 'ORICHALCUM' } },
+// // VULCANITE_LEG_ARMOR: { chance: 5, options: { materialType: 'VULCANITE' } },
+// // AQUANITE_LEG_ARMOR: { chance: 4, options: { materialType: 'AQUANITE' } },
+// // VRONITE_LEG_ARMOR: { chance: 3, options: { materialType: 'VRONITE' } },
+// // LOULOUDIUM_LEG_ARMOR: { chance: 2, options: { materialType: 'LOULOUDIUM' } },
+// // ILIOTIUM_LEG_ARMOR: { chance: 1, options: { materialType: 'ILIOTIUM' } },
+// // LEVANTIUM_LEG_ARMOR: { chance: 1, options: { materialType: 'LEVANTIUM' } },
+// //
+// // IRON_HELMET: { chance: 15, options: { materialType: 'IRON' } },
+// // STEEL_HELMET: { chance: 13, options: { materialType: 'STEEL' } },
+// // MITHRIL_HELMET: { chance: 10, options: { materialType: 'MITHRIL' } },
+// // ADAMANTIUM_HELMET: { chance: 8, options: { materialType: 'ADAMANTIUM' } },
+// // ORICHALCUM_HELMET: { chance: 6, options: { materialType: 'ORICHALCUM' } },
+// // VULCANITE_HELMET: { chance: 5, options: { materialType: 'VULCANITE' } },
+// // AQUANITE_HELMET: { chance: 4, options: { materialType: 'AQUANITE' } },
+// // VRONITE_HELMET: { chance: 3, options: { materialType: 'VRONITE' } },
+// // LOULOUDIUM_HELMET: { chance: 2, options: { materialType: 'LOULOUDIUM' } },
+// // ILIOTIUM_HELMET: { chance: 1, options: { materialType: 'ILIOTIUM' } },
+// // LEVANTIUM_HELMET: { chance: 1, options: { materialType: 'LEVANTIUM' } },
+// //
+// // IRON_BOOTS: { chance: 15, options: { materialType: 'IRON' } },
+// // STEEL_BOOTS: { chance: 13, options: { materialType: 'STEEL' } },
+// // MITHRIL_BOOTS: { chance: 10, options: { materialType: 'MITHRIL' } },
+// // ADAMANTIUM_BOOTS: { chance: 8, options: { materialType: 'ADAMANTIUM' } },
+// // ORICHALCUM_BOOTS: { chance: 6, options: { materialType: 'ORICHALCUM' } },
+// // VULCANITE_BOOTS: { chance: 5, options: { materialType: 'VULCANITE' } },
+// // AQUANITE_BOOTS: { chance: 4, options: { materialType: 'AQUANITE' } },
+// // VRONITE_BOOTS: { chance: 3, options: { materialType: 'VRONITE' } },
+// // LOULOUDIUM_BOOTS: { chance: 2, options: { materialType: 'LOULOUDIUM' } },
+// // ILIOTIUM_BOOTS: { chance: 1, options: { materialType: 'ILIOTIUM' } },
+// // LEVANTIUM_BOOTS: { chance: 1, options: { materialType: 'LEVANTIUM' } }
