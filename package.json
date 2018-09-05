@@ -27,7 +27,8 @@
 		"vue-router": "^3.0.1",
 		"vue2vis": "^0.0.13",
 		"vuedraggable": "^2.16.0",
-		"vuetify": "^1.0.0"
+		"vuetify": "^1.0.0",
+		"yarn": "^1.9.4"
 	},
 	"devDependencies": {
 		"autoprefixer": "^7.1.2",
