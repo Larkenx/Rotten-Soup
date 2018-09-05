@@ -11,7 +11,7 @@
 		"unit": "jest --config test/unit/jest.conf.js --coverage",
 		"test": "npm run unit",
 		"build": "node build/build.js",
-		"heroku-postbuild": "npm run build"
+		"heroku-postbuild": "yarn run build"
 	},
 	"dependencies": {
 		"cross-env": "^5.1.4",
@@ -74,7 +74,7 @@
 		"webpack-merge": "^4.1.0"
 	},
 	"engines": {
-		"node": ">= 8.0.0",
+		"node": ">= 8.9.1",
 		"npm": ">= 3.0.0"
 	},
 	"browserslist": [
