@@ -15,8 +15,8 @@ While maintaining some roots in traditional roguelike gameplay with features lik
 * [x] Melee, Magic, and Ranged combat
 * [x] Wide variety of playable characters
 * [x] Potions, swords, keys, and spellbooks!
-* [ ] Quests
-* [ ] Dialog and interaction with NPC's
+* [x] Quests
+* [x] Dialog and interaction with NPC's
 * [ ] Shops where you can sell/buy items
 * [ ] Unique characters classes, skills, and abilities
 * [ ] More weapons (Axes, Polearms, Bows, Staves, Morningstar, Whips, Daggers, Clubs, Spears)
