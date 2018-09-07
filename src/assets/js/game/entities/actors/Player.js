@@ -158,6 +158,16 @@ export default class Player extends Actor {
 		this.commandQueue = []
 	}
 
+	swapInventorySlots(origin, target) {
+		if (origin >= 0 && origin < this.inventory.length && target >= 0 && target < this.inventory.length && origin !== target) {
+			let originalItem = this.inventory[origin]
+			this.inventory.splice(origin, 1, this.inventory[target])
+			this.inventory.splice(target, 1, originalItem)
+			return true
+		}
+		return false
+	}
+
 	selectSpell(spell) {
 		if (this.cb.spells.includes(spell)) {
 			this.cb.currentSpell = spell
@@ -394,10 +404,7 @@ export default class Player extends Actor {
 			if (this.validTarget) {
 				confirmSpellcasting()
 			} else {
-				Game.log(
-					`You cannot cast ${this.cb.currentSpell.name} at this tile because it's blocked or too far away.`,
-					'alert'
-				)
+				Game.log(`You cannot cast ${this.cb.currentSpell.name} at this tile because it's blocked or too far away.`, 'alert')
 			}
 		} else if (movementKeys.includes(this.keyMap[keyCode])) {
 			let diff = ROT.DIRS[8][this.keyMap[keyCode]]
@@ -453,10 +460,7 @@ export default class Player extends Actor {
 				if (this.validTarget) {
 					confirmSpellcasting()
 				} else {
-					Game.log(
-						`You cannot cast ${this.cb.currentSpell.name} at this tile because it's blocked or too far away.`,
-						'alert'
-					)
+					Game.log(`You cannot cast ${this.cb.currentSpell.name} at this tile because it's blocked or too far away.`, 'alert')
 				}
 			}
 			// else, if the tile is within one square of the player, they can move to that tile by clicking
@@ -557,22 +561,12 @@ export default class Player extends Actor {
 				Game.log('You rest for a turn.', 'player_move')
 			} else if (action === 'pickup' && !shiftPressed) {
 				this.pickup()
-			} else if (
-				(action === 'rest' && shiftPressed) ||
-				(action === 'pickup' && shiftPressed) ||
-				action === 'interact'
-			) {
+			} else if ((action === 'rest' && shiftPressed) || (action === 'pickup' && shiftPressed) || action === 'interact') {
 				this.climb()
 			} else if (action === 'fire' && !shiftPressed) {
 				let weapon = this.cb.equipment.weapon
 				let ammo = this.cb.equipment.ammo
-				if (
-					weapon !== null &&
-					ammo !== null &&
-					weapon.cb.ranged &&
-					ammo.cb.ammoType === weapon.cb.ammoType &&
-					ammo.quantity > 0
-				) {
+				if (weapon !== null && ammo !== null && weapon.cb.ranged && ammo.cb.ammoType === weapon.cb.ammoType && ammo.quantity > 0) {
 					Game.log(`You take aim with your ${weapon.type.toLowerCase()}.`, 'darkgreen')
 					Game.log(
 						`Select a target with the movement keys and press [enter] or [.] to fire your ${weapon.type.toLowerCase()}.`,

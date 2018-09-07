@@ -10,7 +10,7 @@
         </v-flex>
       </v-layout>
       <!-- Game Display and HUD-->
-      <v-layout  row id="ui" :style="{'max-width': uiWidth, 'max-height': uiHeight}">
+      <v-layout row id="ui" :style="{'max-width': uiWidth, 'max-height': uiHeight}">
         <v-flex column :style="{'max-width': gameDisplayWidth}">
           <v-layout id="game_container_row" :style="{'max-height': gameDisplayHeight, 'max-width': gameDisplayWidth}">
             <game-overlay-view ref="gameOverlayView" />
@@ -146,9 +146,9 @@ html {
 	padding: 0px;
 }
 
-#game_container {
+#game_container canvas {
 	position: absolute;
-	z-index: 1;
+  z-index: 0;
 }
 
 #ui {

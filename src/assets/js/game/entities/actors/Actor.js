@@ -36,7 +36,8 @@ export class Actor extends Entity {
 		for (let i = 0; i < 27; i++) {
 			this.inventory.push({
 				item: null,
-				menu: false
+				menu: false,
+				tooltip: false
 			})
 		}
 	}

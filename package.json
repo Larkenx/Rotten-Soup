@@ -24,9 +24,9 @@
 		"rot-js": "^0.6.5",
 		"simplex-noise": "^2.4.0",
 		"vue": "^2.5.2",
+		"vue-drag-drop": "^1.1.4",
 		"vue-router": "^3.0.1",
 		"vue2vis": "^0.0.13",
-		"vuedraggable": "^2.16.0",
 		"vuetify": "^1.0.0",
 		"yarn": "^1.9.4"
 	},

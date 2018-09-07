@@ -13,6 +13,7 @@
 	max-width: 440px;
 	border-left: 4px solid #4f4f4f;
 	background-color: #1e1f1f;
+	z-index: 1;
 	padding: 0px;
 	/* margin-left: 20px; */
 }
