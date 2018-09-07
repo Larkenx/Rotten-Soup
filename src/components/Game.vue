@@ -146,9 +146,13 @@ html {
 	padding: 0px;
 }
 
-#game_container canvas {
+#game_container {
 	position: absolute;
-  z-index: 0;
+	z-index: 1;
+}
+
+#game_container canvas {
+	z-index: 2;
 }
 
 #ui {
@@ -185,7 +189,7 @@ html {
 	left: 20%;
 	top: 25%;
 	/*margin-left: -150px;*/
-	z-index: 2;
+	z-index: 5;
 	/*margin-top: -150px;*/
 }
 </style>

@@ -1,5 +1,5 @@
 <template>
-  <div id="game_overlay_view" v-show="overlayVisible()" :is="overlayData.component" />
+	<div id="game_overlay_view" v-show="overlayVisible()" :is="overlayData.component" />
 </template>
 
 <script>
@@ -32,7 +32,7 @@ export default {
 #game_overlay_view {
 	width: 100%;
 	height: 100%;
-	z-index: 2;
+	z-index: 10;
 	position: relative;
 	background-color: #1e1f1f;
 	border: 2px solid #4f4f4f;
