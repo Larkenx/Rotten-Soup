@@ -20,6 +20,7 @@
 import * as PIXI from 'pixi.js'
 import SimplexNoise from 'simplex-noise'
 import RNG from 'prng-parkmiller-js'
+import { Delaunay } from 'd3-delaunay'
 import { getRandomInt, getNormalRandomInt, randomProperty, between } from '#/utils/HelperFunctions.js'
 
 const width = 800
@@ -51,6 +52,15 @@ export default {
 	methods: {
 		generateColor() {
 			return parseInt(('00000' + ((Math.random() * (1 << 24)) | 0).toString(16)).slice(-6), 16)
+		},
+		generateRandomPoints(regions) {
+			for (let j = 0; j < height; j += height / regions) {
+				for (let i = 0; i < width; i += width / regions) {
+					let x = i + getRandomInt(0, 50)
+					let y = j + getRandomInt(0, 50)
+					points.push([x, y])
+				}
+			}
 		},
 		generatePoints(regions) {
 			const textures = {
@@ -145,25 +155,30 @@ export default {
 			}
 			return nearest
 		},
-renderMap() {
-	let g = new PIXI.Graphics()
-	let points = this.generatePoints(30)
-	let computedNearestPoints = {}
-	let size = 5
-	for (let y = 0; y < height; y += size) {
-		for (let x = 0; x < width; x += size) {
-			let nearestPoint = this.nearestPoint({ x, y }, points)
-			computedNearestPoints[x + ',' + y] = nearestPoint
-			let roll = getRandomInt(0, 4)
-			g.beginFill(nearestPoint.color)
-			g.drawRect(x, y, size, size)
-			g.endFill()
-		}
-	}
-	stage.addChild(g)
-	renderer.render(stage)
-	this.renderDebug(size, points, computedNearestPoints)
-},
+		renderDelaunaryTriangulation() {
+			const points = this.generateRandomPoints()
+			const delaunay = Delaunay.from(points)
+			const voronoi = delaunay.voronoi([0, 0, width, height])
+		},
+		renderMap() {
+			let g = new PIXI.Graphics()
+			let points = this.generatePoints(30)
+			let computedNearestPoints = {}
+			let size = 5
+			for (let y = 0; y < height; y += size) {
+				for (let x = 0; x < width; x += size) {
+					let nearestPoint = this.nearestPoint({ x, y }, points)
+					computedNearestPoints[x + ',' + y] = nearestPoint
+					let roll = getRandomInt(0, 4)
+					g.beginFill(nearestPoint.color)
+					g.drawRect(x, y, size, size)
+					g.endFill()
+				}
+			}
+			stage.addChild(g)
+			renderer.render(stage)
+			this.renderDebug(size, points, computedNearestPoints)
+		},
 		renderDebug(size, points, computedNearestPoints) {
 			let g = new PIXI.Graphics()
 			for (let y = 0; y < height; y += size) {
