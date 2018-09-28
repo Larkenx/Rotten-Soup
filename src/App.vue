@@ -1,23 +1,24 @@
 <template>
-  <v-app dark class="black">
-    <v-content>
-      <router-view></router-view>
-    </v-content>
-    <v-footer app v-if="showFooter">
-      <small class="pl-2">RottenSoup</small>
-      <v-spacer />
-      <v-btn target="_blank" href="https://github.com/Larkenx/Rotten-Soup" icon ripple>
-        <v-icon>fa-github</v-icon>
-      </v-btn>
-        <v-btn target="_blank" href="https://twitter.com/stevenlarken" icon ripple>
-          <v-icon>fa-twitter</v-icon>
-        </v-btn>
-    </v-footer>
-  </v-app>
+	<v-app dark class="black">
+		<v-content>
+			<router-view></router-view>
+		</v-content>
+		<v-footer app v-if="showFooter">
+			<small class="pl-2">RottenSoup</small>
+			<v-spacer />
+			<v-btn target="_blank" href="https://github.com/Larkenx/Rotten-Soup" icon ripple>
+				<v-icon>fa-github</v-icon>
+			</v-btn>
+			<v-btn target="_blank" href="https://twitter.com/stevenlarken" icon ripple>
+				<v-icon>fa-twitter</v-icon>
+			</v-btn>
+		</v-footer>
+	</v-app>
 </template>
 
 <script>
 import { Game } from '@/assets/js/game/Game.js'
+
 // components
 import startMenu from './components/StartMenu.vue'
 import gameDisplay from './components/GameDisplay.vue'
