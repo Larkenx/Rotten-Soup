@@ -5,7 +5,7 @@
 				Playground
 			</v-toolbar-title>
 			<v-spacer />
-			<v-btn raised color="primary" @click.native="renderMap()">Generate</v-btn>
+			<v-btn raised color="primary" @click.native="renderDelaunaryTriangulation()">Generate</v-btn>
 		</v-toolbar>
 		<v-container fluid fill-height align-content-center justify-center>
 			<v-layout column>
@@ -19,13 +19,19 @@
 <script>
 import * as PIXI from 'pixi.js'
 import SimplexNoise from 'simplex-noise'
+import Poisson from 'poisson-disk-sampling'
 import RNG from 'prng-parkmiller-js'
 import { Delaunay } from 'd3-delaunay'
 import { getRandomInt, getNormalRandomInt, randomProperty, between } from '#/utils/HelperFunctions.js'
-
-const width = 800
-const height = 400
-const renderer = PIXI.autoDetectRenderer(width, height, { antialias: true })
+let seed1 = 908234
+let seed2 = 908234
+let rng1 = RNG.create(seed1)
+let rng2 = RNG.create(seed2)
+let gen1 = new SimplexNoise(rng1.nextDouble.bind(rng1))
+let gen2 = new SimplexNoise(rng2.nextDouble.bind(rng2))
+const width = 1600
+const height = 800
+const renderer = PIXI.autoDetectRenderer(width, height, { antialias: true, backgroundColor: 0x474747 })
 const debugRenderer = PIXI.autoDetectRenderer(width, height, { antialias: true })
 const stage = new PIXI.Container()
 const debugStage = new PIXI.Container()
@@ -45,24 +51,18 @@ export default {
 			debugChild = document.getElementById('debug_canvas').firstChild
 		}
 		document.getElementById('pixi_canvas').appendChild(renderer.view)
-		document.getElementById('debug_canvas').appendChild(debugRenderer.view)
+		// document.getElementById('debug_canvas').appendChild(debugRenderer.view)
 
-		this.renderMap()
+		// this.renderMap()
+		this.renderDelaunaryTriangulation()
 	},
 	methods: {
-		generateColor() {
-			return parseInt(('00000' + ((Math.random() * (1 << 24)) | 0).toString(16)).slice(-6), 16)
-		},
-		generateRandomPoints(regions) {
-			for (let j = 0; j < height; j += height / regions) {
-				for (let i = 0; i < width; i += width / regions) {
-					let x = i + getRandomInt(0, 50)
-					let y = j + getRandomInt(0, 50)
-					points.push([x, y])
-				}
+		clearStage() {
+			for (let i = stage.children.length - 1; i >= 0; i--) {
+				stage.removeChild(stage.children[i])
 			}
 		},
-		generatePoints(regions) {
+		getBiomeColor(x, y) {
 			const textures = {
 				COASTAL_WATER: 0x649ffc,
 				FOREST: 0x0d7744,
@@ -71,13 +71,6 @@ export default {
 				PEAK: 0x848484
 			}
 
-			const points = []
-			let seed1 = 908234
-			let seed2 = 908234
-			let rng1 = RNG.create(seed1)
-			let rng2 = RNG.create(seed2)
-			let gen1 = new SimplexNoise(rng1.nextDouble.bind(rng1))
-			let gen2 = new SimplexNoise(rng2.nextDouble.bind(rng2))
 			let frequency = 2.0
 
 			const noise1 = (nx, ny) => {
@@ -128,11 +121,29 @@ export default {
 					return textures.PEAK
 				}
 			}
+
+			return getBiome(getElevation(x, y))
+		},
+		generateColor() {
+			return parseInt(('00000' + ((Math.random() * (1 << 24)) | 0).toString(16)).slice(-6), 16)
+		},
+		generateRandomPoints(minDist, maxDist) {
+			// const points = []
+			// for (let j = 0; j < height; j += regions) {
+			// 	for (let i = 0; i < width; i += regions) {
+			// 		let x = i + getRandomInt(0, 50)
+			// 		let y = j + getRandomInt(0, 50)
+			// 		points.push([x, y])
+			// 	}
+			// }
+			return new Poisson([width, height], minDist, maxDist, 10).fill()
+		},
+		generatePoints(regions) {
 			for (let y = 0; y < height; y += height / regions) {
 				for (let x = 0; x < width; x += width / regions) {
 					let dx = x + getRandomInt(0, 50)
 					let dy = y + getRandomInt(0, 50)
-					points.push({ x: dx, y: dy, color: getBiome(getElevation(dx, dy)), randomColor: this.generateColor() })
+					points.push({ x: dx, y: dy, color: this.getBiomeColor(dx, dy), randomColor: this.generateColor() })
 				}
 			}
 			return points
@@ -156,13 +167,97 @@ export default {
 			return nearest
 		},
 		renderDelaunaryTriangulation() {
-			const points = this.generateRandomPoints()
-			const delaunay = Delaunay.from(points)
-			const voronoi = delaunay.voronoi([0, 0, width, height])
+			this.clearStage()
+			let g = new PIXI.Graphics()
+			let point = (x, y) => new PIXI.Point(x, y)
+			const initialPoints = this.generateRandomPoints(35, 35)
+			const voronoi = Delaunay.from(initialPoints).voronoi([0, 0, width, height])
+			const {
+				delaunay: { halfedges, hull, triangles, points },
+				circumcenters,
+				vectors
+			} = voronoi
+
+			const renderCells = () => {
+				for (let i = 0; i <= triangles.length; i += 3) {
+					const t0 = triangles[i]
+					const t1 = triangles[i + 1]
+					const t2 = triangles[i + 2]
+					const v1 = point(points[t0 * 2], points[t0 * 2 + 1])
+					const v2 = point(points[t1 * 2], points[t1 * 2 + 1])
+					const v3 = point(points[t2 * 2], points[t2 * 2 + 1])
+					g.beginFill(this.getBiomeColor(v1.x, v1.y))
+						.drawPolygon(voronoi.cellPolygon(i).map(p => point(p[0], p[1])))
+						.endFill()
+
+					g.beginFill(this.getBiomeColor(v2.x, v2.y))
+						.drawPolygon(voronoi.cellPolygon(i + 1).map(p => point(p[0], p[1])))
+						.endFill()
+
+					g.beginFill(this.getBiomeColor(v3.x, v3.y))
+						.drawPolygon(voronoi.cellPolygon(i + 2).map(p => point(p[0], p[1])))
+						.endFill()
+				}
+			}
+			const renderHalfEdges = () => {
+				for (let i = 0, n = halfedges.length; i < n; ++i) {
+					const j = halfedges[i]
+					if (j < i) continue
+					const ti = ~~(i / 3) * 2
+					const tj = ~~(j / 3) * 2
+					const xi = circumcenters[ti]
+					const yi = circumcenters[ti + 1]
+					const xj = circumcenters[tj]
+					const yj = circumcenters[tj + 1]
+					g.lineStyle(1, 0xfefefe)
+						.moveTo(xi, yi)
+						.lineTo(xj, yj)
+				}
+			}
+
+			const renderCircumcenters = () => {
+				for (let i = 0; i < circumcenters.length; i += 2) {
+					let cx = circumcenters[i]
+					let cy = circumcenters[i + 1]
+					g.beginFill(0x0000bb)
+						.drawCircle(cx, cy, 4)
+						.endFill()
+				}
+			}
+			const renderTriangulation = () => {
+				for (let i = 0; i <= triangles.length; i += 3) {
+					const t0 = triangles[i]
+					const t1 = triangles[i + 1]
+					const t2 = triangles[i + 2]
+					const v1 = point(points[t0 * 2], points[t0 * 2 + 1])
+					const v2 = point(points[t1 * 2], points[t1 * 2 + 1])
+					const v3 = point(points[t2 * 2], points[t2 * 2 + 1])
+					g.beginFill(this.getBiomeColor(v1.x, v1.y))
+						.drawCircle(v1.x, v1.y, 4)
+						.endFill()
+					g.beginFill(this.getBiomeColor(v2.x, v2.y))
+						.drawCircle(v2.x, v2.y, 4)
+						.endFill()
+					g.beginFill(this.getBiomeColor(v3.x, v3.y))
+						.drawCircle(v3.x, v3.y, 4)
+						.endFill()
+
+					g.lineStyle(1, 1)
+						.drawPolygon([v1, v2, v3])
+						.endFill()
+				}
+			}
+			// renderHalfEdges()
+			// renderCircumcenters()
+			renderCells()
+			renderTriangulation()
+			stage.addChild(g)
+			renderer.render(stage)
 		},
 		renderMap() {
+			this.clearStage()
 			let g = new PIXI.Graphics()
-			let points = this.generatePoints(30)
+			let points = this.generatePoints(100)
 			let computedNearestPoints = {}
 			let size = 5
 			for (let y = 0; y < height; y += size) {
@@ -177,7 +272,7 @@ export default {
 			}
 			stage.addChild(g)
 			renderer.render(stage)
-			this.renderDebug(size, points, computedNearestPoints)
+			// this.renderDebug(size, points, computedNearestPoints)
 		},
 		renderDebug(size, points, computedNearestPoints) {
 			let g = new PIXI.Graphics()
