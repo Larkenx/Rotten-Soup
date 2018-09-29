@@ -27,8 +27,8 @@ let seed1 = 908234
 let seed2 = 908234
 let rng1 = RNG.create(seed1)
 let rng2 = RNG.create(seed2)
-let gen1 = new SimplexNoise(rng1.nextDouble.bind(rng1))
-let gen2 = new SimplexNoise(rng2.nextDouble.bind(rng2))
+let gen1 = new SimplexNoise(rng1)
+let gen2 = new SimplexNoise(rng2)
 const width = 1600
 const height = 800
 const renderer = PIXI.autoDetectRenderer(width, height, { antialias: true, backgroundColor: 0x474747 })
@@ -64,14 +64,43 @@ export default {
 		},
 		getBiomeColor(x, y) {
 			const textures = {
-				COASTAL_WATER: 0x649ffc,
-				FOREST: 0x0d7744,
-				OCEAN: 0x13218c,
-				MOUNTAIN: 0xc9cad6,
-				PEAK: 0x848484
+				OCEAN: 0x444578,
+				BEACH: 0xd9cebc,
+				SCORCHED: 0x575c4f,
+				BARE: 0xbbbbbb,
+				TUNDRA: 0xdddcbd,
+				SNOW: 0xf8f8f8,
+				TEMPERATE_DESERT: 0xe4e7cb,
+				SHRUBLAND: 0xc4ccbc,
+				TAIGA: 0xccd4bc,
+				GRASSLAND: 0xc4d3ac,
+				TEMPERATE_DECIDUOUS_FOREST: 0xb4c8aa,
+				TEMPERATE_RAIN_FOREST: 0xa5c3a9,
+				SUBTROPICAL_DESERT: 0xe9ddc8,
+				TROPICAL_SEASONAL_FOREST: 0xaacba5,
+				TROPICAL_RAIN_FOREST: 0x9dbba9
+			}
+
+			const colorToTextureString = {
+				[0x444578]: 'OCEAN',
+				[0xd9cebc]: 'BEACH',
+				[0x575c4f]: 'SCORCHED',
+				[0xbbbbbb]: 'BARE',
+				[0xdddcbd]: 'TUNDRA',
+				[0xf8f8f8]: 'SNOW',
+				[0xe4e7cb]: 'TEMPERATE_DESERT',
+				[0xc4ccbc]: 'SHRUBLAND',
+				[0xccd4bc]: 'TAIGA',
+				[0xc4d3ac]: 'GRASSLAND',
+				[0xb4c8aa]: 'TEMPERATE_DECIDUOUS_FOREST',
+				[0xa5c3a9]: 'TEMPERATE_RAIN_FOREST',
+				[0xe9ddc8]: 'SUBTROPICAL_DESERT',
+				[0xaacba5]: 'TROPICAL_SEASONAL_FOREST',
+				[0x9dbba9]: 'TROPICAL_RAIN_FOREST'
 			}
 
 			let frequency = 2.0
+			let exponent = 3.0
 
 			const noise1 = (nx, ny) => {
 				return gen1.noise2D(nx, ny) / 2 + 0.5
@@ -92,8 +121,8 @@ export default {
 					0.06 * noise1(frequency * 16 * nx, frequency * 16 * ny) +
 					0.03 * noise1(frequency * 32 * nx, frequency * 32 * ny)
 				e /= 1.0 + 0.5 + 0.25 + 0.13 + 0.06 + 0.03
-				e = Math.pow(e, 5.0)
-				return e * 100
+				e = Math.pow(e, exponent)
+				return e
 			}
 
 			const getMoisture = (x, y) => {
@@ -110,19 +139,37 @@ export default {
 				return m
 			}
 
-			const getBiome = e => {
-				if (e < 1.0) {
-					return textures.OCEAN
-				} else if (e < 7) {
-					return textures.FOREST
-				} else if (e < 24) {
-					return textures.MOUNTAIN
-				} else {
-					return textures.PEAK
-				}
-			}
+			const getBiome = (e, m) => {
+				if (e < 0.1) return textures.OCEAN
+				if (e < 0.12) return textures.BEACH
 
-			return getBiome(getElevation(x, y))
+				if (e > 0.8) {
+					if (m < 0.1) return textures.SCORCHED
+					if (m < 0.2) return textures.BARE
+					if (m < 0.5) return textures.TUNDRA
+					return textures.SNOW
+				}
+
+				if (e > 0.6) {
+					if (m < 0.33) return textures.TEMPERATE_DESERT
+					if (m < 0.66) return textures.SHRUBLAND
+					return textures.TAIGA
+				}
+
+				if (e > 0.3) {
+					if (m < 0.16) return textures.TEMPERATE_DESERT
+					if (m < 0.5) return textures.GRASSLAND
+					if (m < 0.83) return textures.TEMPERATE_DECIDUOUS_FOREST
+					return textures.TEMPERATE_RAIN_FOREST
+				}
+
+				if (m < 0.16) return textures.SUBTROPICAL_DESERT
+				if (m < 0.33) return textures.GRASSLAND
+				if (m < 0.66) return textures.TROPICAL_SEASONAL_FOREST
+				return textures.TROPICAL_RAIN_FOREST
+			}
+			let texture = getBiome(getElevation(x, y), getMoisture(x, y))
+			return texture
 		},
 		generateColor() {
 			return parseInt(('00000' + ((Math.random() * (1 << 24)) | 0).toString(16)).slice(-6), 16)
@@ -170,32 +217,23 @@ export default {
 			this.clearStage()
 			let g = new PIXI.Graphics()
 			let point = (x, y) => new PIXI.Point(x, y)
-			const initialPoints = this.generateRandomPoints(35, 35)
-			const voronoi = Delaunay.from(initialPoints).voronoi([0, 0, width, height])
-			const {
-				delaunay: { halfedges, hull, triangles, points },
-				circumcenters,
-				vectors
-			} = voronoi
+			const initialPoints = this.generateRandomPoints(25, 25)
+			let voronoi = null
+			try {
+				voronoi = Delaunay.from(initialPoints).voronoi([0, 0, width, height])
+			} catch (exception) {
+				console.warn('Generated random points cannnot be triangulated...Retrying generation.')
+				return this.renderDelaunaryTriangulation()
+			}
+			const { delaunay, circumcenters, vectors } = voronoi
+			const { triangles, points, halfedges } = delaunay
 
 			const renderCells = () => {
-				for (let i = 0; i <= triangles.length; i += 3) {
+				for (let i = 0; i <= triangles.length; i++) {
 					const t0 = triangles[i]
-					const t1 = triangles[i + 1]
-					const t2 = triangles[i + 2]
 					const v1 = point(points[t0 * 2], points[t0 * 2 + 1])
-					const v2 = point(points[t1 * 2], points[t1 * 2 + 1])
-					const v3 = point(points[t2 * 2], points[t2 * 2 + 1])
 					g.beginFill(this.getBiomeColor(v1.x, v1.y))
-						.drawPolygon(voronoi.cellPolygon(i).map(p => point(p[0], p[1])))
-						.endFill()
-
-					g.beginFill(this.getBiomeColor(v2.x, v2.y))
-						.drawPolygon(voronoi.cellPolygon(i + 1).map(p => point(p[0], p[1])))
-						.endFill()
-
-					g.beginFill(this.getBiomeColor(v3.x, v3.y))
-						.drawPolygon(voronoi.cellPolygon(i + 2).map(p => point(p[0], p[1])))
+						.drawPolygon(voronoi.cellPolygon(delaunay.find(v1.x, v1.y)).map(p => point(p[0], p[1])))
 						.endFill()
 				}
 			}
@@ -209,7 +247,7 @@ export default {
 					const yi = circumcenters[ti + 1]
 					const xj = circumcenters[tj]
 					const yj = circumcenters[tj + 1]
-					g.lineStyle(1, 0xfefefe)
+					g.lineStyle(1, 0x93939381)
 						.moveTo(xi, yi)
 						.lineTo(xj, yj)
 				}
@@ -247,10 +285,10 @@ export default {
 						.endFill()
 				}
 			}
-			// renderHalfEdges()
+			renderHalfEdges()
 			// renderCircumcenters()
 			renderCells()
-			renderTriangulation()
+			// renderTriangulation()
 			stage.addChild(g)
 			renderer.render(stage)
 		},
