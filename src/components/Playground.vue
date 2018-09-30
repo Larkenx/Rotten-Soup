@@ -2,20 +2,26 @@
 	<span>
 		<v-toolbar>
 			<v-toolbar-title>
-				Playground
+				Polygonal Simplex Map Generator
 			</v-toolbar-title>
 			<v-spacer />
-			<v-btn raised color="primary" @click.native="renderDelaunaryTriangulation()">Generate</v-btn>
 		</v-toolbar>
-		<v-container fluid fill-height align-content-center justify-center>
-			<v-layout column>
+		<v-container fluid fill-height align-content-center justify-space-between>
+			<v-layout>
 				<div id="pixi_canvas"></div>
 				<div id="debug_canvas"></div>
 			</v-layout>
-			<v-layout column>
-				<v-flex xs-2 v-for="elevation of histogram" key="elevation">
-					{{`${elevation}:${histogram[elevation]}`}}
-				</v-flex>
+			<v-layout>
+				<v-data-table v-if="histogram !== null" :headers="tableHeaders" :items="tableItems" hide-actions>
+					<template slot="items" slot-scope="props">
+						<td>{{props.item.elevation}}</td>
+						<td>{{props.item.frequency}}</td>
+					</template>
+				</v-data-table>
+			</v-layout>
+			<v-layout justify-center align-content-center>
+				<v-slider label="Zoom" thumb-label :max="15" v-model="zoom"></v-slider>
+				<v-btn raised color="primary" @click.native="renderDelaunaryTriangulation()">Generate</v-btn>
 			</v-layout>
 		</v-container>
 	</span>
@@ -35,8 +41,11 @@ let rng2 = RNG.create()
 let gen1 = new SimplexNoise(rng1)
 let gen2 = new SimplexNoise(rng2)
 const width = 800
-const height = 500
-const renderer = PIXI.autoDetectRenderer(width, height, { antialias: true, backgroundColor: 0x474747 })
+const height = 600
+const renderer = PIXI.autoDetectRenderer(width, height, {
+	antialias: true,
+	backgroundColor: 0x474747
+})
 const debugRenderer = PIXI.autoDetectRenderer(width, height, { antialias: true })
 const stage = new PIXI.Container()
 const debugStage = new PIXI.Container()
@@ -44,7 +53,14 @@ let elevationHistogram = {}
 export default {
 	data() {
 		return {
-			histogram: null
+			histogram: null,
+			tableHeaders: [
+				{ text: 'Elevation', sortable: true, value: 'elevation' },
+				{ text: 'Frequency', sortable: false, value: 'frequency' }
+			],
+			tableItems: null,
+			zoom: 1,
+			exponent: 1
 		}
 	},
 	mounted() {
@@ -107,43 +123,37 @@ export default {
 				[0x9dbba9]: 'TROPICAL_RAIN_FOREST'
 			}
 
-			let zoom = 5.0
-			let exponent = 1.0
+			let zoom = 1.0
+			let exponent = 1.5
 
 			const noise1 = (nx, ny) => {
-				return gen1.noise2D(zoom * nx, zoom * ny) / 2 + 0.5
+				return gen1.noise2D(this.zoom * nx, this.zoom * ny) / 2 + 0.5
 			}
 
 			const noise2 = (nx, ny) => {
-				return gen2.noise2D(zoom * nx, zoom * ny) / 2 + 0.5
+				return gen2.noise2D(this.zoom * nx, this.zoom * ny) / 2 + 0.5
 			}
+
+			// const getElevation = (x, y) => {
+			// 	let nx = x / width - 0.5,
+			// 		ny = y / height - 0.5
+			// 	let e =
+			// 		1.0 * noise1(1 * nx, 1 * ny) +
+			// 		0.5 * noise1(2 * nx, 2 * ny) +
+			// 		0.25 * noise1(4 * nx, 4 * ny) +
+			// 		0.13 * noise1(8 * nx, 8 * ny) +
+			// 		0.06 * noise1(16 * nx, 16 * ny) +
+			// 		0.03 * noise1(32 * nx, 32 * ny)
+			// 	e /= 1.0 + 0.5 + 0.25 + 0.13 + 0.06 + 0.03
+			// 	e = Math.pow(e, this.exponent)
+			// 	return e
+			// }
 
 			const getElevation = (x, y) => {
 				let nx = x / width - 0.5,
 					ny = y / height - 0.5
-				let e =
-					1.0 * noise1(1 * nx, 1 * ny) +
-					0.5 * noise1(2 * nx, 2 * ny) +
-					0.25 * noise1(4 * nx, 4 * ny) +
-					0.13 * noise1(8 * nx, 8 * ny) +
-					0.06 * noise1(16 * nx, 16 * ny) +
-					0.03 * noise1(32 * nx, 32 * ny)
-				e /= 1.0 + 0.5 + 0.25 + 0.13 + 0.06 + 0.03
-				e = Math.pow(e, exponent)
-				return e
+				return noise1(nx, ny)
 			}
-
-			// var nx = x / width - 0.5,
-			// 	ny = y / height - 0.5
-			// var e =
-			// 	1.0 * noise1(1 * nx, 1 * ny) +
-			// 	0.5 * noise1(2 * nx, 2 * ny) +
-			// 	0.25 * noise1(4 * nx, 4 * ny) +
-			// 	0.13 * noise1(8 * nx, 8 * ny) +
-			// 	0.06 * noise1(16 * nx, 16 * ny) +
-			// 	0.03 * noise1(32 * nx, 32 * ny)
-			// e /= 1.0 + 0.5 + 0.25 + 0.13 + 0.06 + 0.03
-			// e = Math.pow(e, 5.0)
 
 			const getMoisture = (x, y) => {
 				let nx = x / width - 0.5,
@@ -215,7 +225,12 @@ export default {
 				for (let x = 0; x < width; x += width / regions) {
 					let dx = x + getRandomInt(0, 50)
 					let dy = y + getRandomInt(0, 50)
-					points.push({ x: dx, y: dy, color: this.getBiomeColor(dx, dy), randomColor: this.generateColor() })
+					points.push({
+						x: dx,
+						y: dy,
+						color: this.getBiomeColor(dx, dy),
+						randomColor: this.generateColor()
+					})
 				}
 			}
 			return points
@@ -240,6 +255,8 @@ export default {
 		},
 		renderDelaunaryTriangulation() {
 			this.clearStage()
+			this.histogram = {}
+			elevationHistogram = {}
 			let g = new PIXI.Graphics()
 			let point = (x, y) => new PIXI.Point(x, y)
 			const initialPoints = this.generateRandomPoints(15, 15)
@@ -316,8 +333,14 @@ export default {
 			// renderTriangulation()
 			stage.addChild(g)
 			renderer.render(stage)
-			console.log(elevationHistogram)
-			this.histogram = elevationHistogram.entries()
+			this.histogram = Object.entries(elevationHistogram)
+			this.tableItems = this.histogram.map(p => {
+				return {
+					value: false,
+					elevation: p[0],
+					frequency: p[1]
+				}
+			})
 		},
 		renderMap() {
 			this.clearStage()
