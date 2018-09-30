@@ -12,6 +12,11 @@
 				<div id="pixi_canvas"></div>
 				<div id="debug_canvas"></div>
 			</v-layout>
+			<v-layout column>
+				<v-flex xs-2 v-for="elevation of histogram" key="elevation">
+					{{`${elevation}:${histogram[elevation]}`}}
+				</v-flex>
+			</v-layout>
 		</v-container>
 	</span>
 </template>
@@ -25,19 +30,22 @@ import { Delaunay } from 'd3-delaunay'
 import { getRandomInt, getNormalRandomInt, randomProperty, between } from '#/utils/HelperFunctions.js'
 let seed1 = 908234
 let seed2 = 908234
-let rng1 = RNG.create(seed1)
-let rng2 = RNG.create(seed2)
+let rng1 = RNG.create()
+let rng2 = RNG.create()
 let gen1 = new SimplexNoise(rng1)
 let gen2 = new SimplexNoise(rng2)
-const width = 1600
-const height = 800
+const width = 800
+const height = 500
 const renderer = PIXI.autoDetectRenderer(width, height, { antialias: true, backgroundColor: 0x474747 })
 const debugRenderer = PIXI.autoDetectRenderer(width, height, { antialias: true })
 const stage = new PIXI.Container()
 const debugStage = new PIXI.Container()
+let elevationHistogram = {}
 export default {
 	data() {
-		return {}
+		return {
+			histogram: null
+		}
 	},
 	mounted() {
 		let child = document.getElementById('pixi_canvas').firstChild
@@ -99,31 +107,43 @@ export default {
 				[0x9dbba9]: 'TROPICAL_RAIN_FOREST'
 			}
 
-			let frequency = 2.0
-			let exponent = 3.0
+			let zoom = 5.0
+			let exponent = 1.0
 
 			const noise1 = (nx, ny) => {
-				return gen1.noise2D(nx, ny) / 2 + 0.5
+				return gen1.noise2D(zoom * nx, zoom * ny) / 2 + 0.5
 			}
 
 			const noise2 = (nx, ny) => {
-				return gen2.noise2D(nx, ny) / 2 + 0.5
+				return gen2.noise2D(zoom * nx, zoom * ny) / 2 + 0.5
 			}
 
 			const getElevation = (x, y) => {
 				let nx = x / width - 0.5,
 					ny = y / height - 0.5
 				let e =
-					1.0 * noise1(frequency * 1 * nx, frequency * 1 * ny) +
-					0.5 * noise1(frequency * 2 * nx, frequency * 2 * ny) +
-					0.25 * noise1(frequency * 4 * nx, frequency * 4 * ny) +
-					0.13 * noise1(frequency * 8 * nx, frequency * 8 * ny) +
-					0.06 * noise1(frequency * 16 * nx, frequency * 16 * ny) +
-					0.03 * noise1(frequency * 32 * nx, frequency * 32 * ny)
+					1.0 * noise1(1 * nx, 1 * ny) +
+					0.5 * noise1(2 * nx, 2 * ny) +
+					0.25 * noise1(4 * nx, 4 * ny) +
+					0.13 * noise1(8 * nx, 8 * ny) +
+					0.06 * noise1(16 * nx, 16 * ny) +
+					0.03 * noise1(32 * nx, 32 * ny)
 				e /= 1.0 + 0.5 + 0.25 + 0.13 + 0.06 + 0.03
 				e = Math.pow(e, exponent)
 				return e
 			}
+
+			// var nx = x / width - 0.5,
+			// 	ny = y / height - 0.5
+			// var e =
+			// 	1.0 * noise1(1 * nx, 1 * ny) +
+			// 	0.5 * noise1(2 * nx, 2 * ny) +
+			// 	0.25 * noise1(4 * nx, 4 * ny) +
+			// 	0.13 * noise1(8 * nx, 8 * ny) +
+			// 	0.06 * noise1(16 * nx, 16 * ny) +
+			// 	0.03 * noise1(32 * nx, 32 * ny)
+			// e /= 1.0 + 0.5 + 0.25 + 0.13 + 0.06 + 0.03
+			// e = Math.pow(e, 5.0)
 
 			const getMoisture = (x, y) => {
 				let nx = x / width - 0.5,
@@ -168,7 +188,12 @@ export default {
 				if (m < 0.66) return textures.TROPICAL_SEASONAL_FOREST
 				return textures.TROPICAL_RAIN_FOREST
 			}
-			let texture = getBiome(getElevation(x, y), getMoisture(x, y))
+			let elevation = getElevation(x, y)
+			let rounded = elevation.toFixed(1)
+			if (rounded in elevationHistogram) elevationHistogram[rounded]++
+			else elevationHistogram[rounded] = 1
+
+			let texture = getBiome(elevation, getMoisture(x, y))
 			return texture
 		},
 		generateColor() {
@@ -217,7 +242,7 @@ export default {
 			this.clearStage()
 			let g = new PIXI.Graphics()
 			let point = (x, y) => new PIXI.Point(x, y)
-			const initialPoints = this.generateRandomPoints(25, 25)
+			const initialPoints = this.generateRandomPoints(15, 15)
 			let voronoi = null
 			try {
 				voronoi = Delaunay.from(initialPoints).voronoi([0, 0, width, height])
@@ -291,6 +316,8 @@ export default {
 			// renderTriangulation()
 			stage.addChild(g)
 			renderer.render(stage)
+			console.log(elevationHistogram)
+			this.histogram = elevationHistogram.entries()
 		},
 		renderMap() {
 			this.clearStage()
