@@ -42,25 +42,30 @@ export const BIOME_COLORS = {
 }
 
 export class VoronoiMapGenerator {
-	constructor(width, height) {
-		this.width = width
-		this.height = height
+	constructor() {
 		this.gen1 = new SimplexNoise(RNG.create(908234))
 		this.gen2 = new SimplexNoise(RNG.create(908234))
 	}
 
-	generate(width, height, distanceBetweenCells) {
-		const randomPoints = new Poisson([width, height], distanceBetweenCells, distanceBetweenCells, 10).fill()
+	/* Returns d3 voronoi object */
+	generate(width, height, zoom, distanceBetweenCells) {
+		this.width = width
+		this.height = height
+		this.zoom = zoom
+		this.distanceBetweenCells = distanceBetweenCells
+		const randomPoints = new Poisson([this.width, this.height], this.distanceBetweenCells, this.distanceBetweenCells, 10).fill()
 		let voronoi = null
 		try {
-			voronoi = Delaunay.from(initialPoints).voronoi([0, 0, width, height])
+			voronoi = Delaunay.from(randomPoints).voronoi([0, 0, this.width, this.height])
 		} catch (exception) {
 			console.warn('Generated random points cannnot be triangulated...Retrying generation.')
-			return this.generate(width, height, distanceBetweenCells)
+			throw exception
+			// return this.generate(this.width, this.height, this.distanceBetweenCells)
 		}
 		return voronoi
 	}
 
+	/* Returns data object of cells & half edges / circumcenters from d3-voronoi object */
 	export(voronoi) {
 		const { delaunay, circumcenters } = voronoi
 		const { triangles, points, halfedges } = delaunay
@@ -68,7 +73,7 @@ export class VoronoiMapGenerator {
 		for (let i = 0; i <= triangles.length; i++) {
 			const triangle = triangles[i]
 			const center = { x: points[triangle * 2], y: points[triangle * 2 + 1] }
-			const elevation = this.elevation(center.x, center.y)
+			const elevation = this.getElevation(center.x, center.y)
 			const moisture = this.getMoisture(center.x, center.y)
 			const biome = this.getBiome(elevation, moisture)
 			const color = this.getBiomeColor(biome)
@@ -79,8 +84,8 @@ export class VoronoiMapGenerator {
 	}
 
 	getElevation(x, y) {
-		let nx = x / width - 0.5,
-			ny = y / height - 0.5
+		let nx = x / this.width - 0.5,
+			ny = y / this.height - 0.5
 		let e = this.gen1.noise2D(this.zoom * nx, this.zoom * ny) / 2 + 0.5
 		let flatElevationIncrease = 0.0
 		let b = 1.0
@@ -95,8 +100,8 @@ export class VoronoiMapGenerator {
 		const noise = (nx, ny) => {
 			return this.gen2.noise2D(this.zoom * nx, this.zoom * ny) / 2 + 0.5
 		}
-		let nx = x / width - 0.5,
-			ny = y / height - 0.5
+		let nx = x / this.width - 0.5,
+			ny = y / this.height - 0.5
 		let m =
 			1.0 * noise(1 * nx, 1 * ny) +
 			0.75 * noise(2 * nx, 2 * ny) +
@@ -167,9 +172,9 @@ export class VoronoiMapVisualizer {
 				document.getElementById('debug_canvas').removeChild(debugChild)
 				debugChild = document.getElementById('debug_canvas').firstChild
 			}
-			document.getElementById('debug_canvas').appendChild(renderer.view)
+			document.getElementById('debug_canvas').appendChild(this.renderer.view)
 		}
-		document.getElementById('pixi_canvas').appendChild(renderer.view)
+		document.getElementById('pixi_canvas').appendChild(this.renderer.view)
 	}
 
 	clearStage(stage) {
@@ -179,12 +184,12 @@ export class VoronoiMapVisualizer {
 	}
 
 	render(data, options) {
-		this.clearStage()
+		this.clearStage(this.stage)
 		const { circumcenters, halfedges, cells } = data
 		let g = new PIXI.Graphics()
 		for (const { center, elevation, moisture, biome, color, polygonVertices } of data.cells) {
 			g.beginFill(color)
-				.drawPolygon(polygonVertices)
+				.drawPolygon(polygonVertices.map(p => new PIXI.Point(p.x, p.y)))
 				.endFill()
 		}
 
@@ -204,7 +209,7 @@ export class VoronoiMapVisualizer {
 			}
 		}
 
-		stage.addChild(g)
-		renderer.render(stage)
+		this.stage.addChild(g)
+		this.renderer.render(this.stage)
 	}
 }
