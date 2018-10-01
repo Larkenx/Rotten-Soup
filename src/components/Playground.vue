@@ -20,8 +20,26 @@
 				</v-data-table>
 			</v-layout>
 			<v-layout justify-center align-content-center>
-				<v-slider label="Zoom" thumb-label :max="15" v-model="zoom"></v-slider>
-				<v-btn raised color="primary" @click.native="renderDelaunaryTriangulation()">Generate</v-btn>
+				<v-card height="400px" :width="400" style="padding: 12px">
+					<v-container fluid>
+						<v-layout>
+							<v-flex xs12>
+								<v-slider :tick-size="0.5" always-dirty label="Zoom" thumb-label :max="15" v-model="zoom"></v-slider>
+							</v-flex>
+						</v-layout>
+						<v-layout justify-space-around>
+							<v-flex xs3>
+								<v-text-field label="Min Dist" v-model="minDistance" />
+							</v-flex>
+							<v-flex xs3>
+								<v-text-field label="Max Dist" v-model="maxDistance" />
+							</v-flex>
+						</v-layout>
+					</v-container>
+					<v-card-actions>
+						<v-btn raised color="primary" @click.native="renderDelaunaryTriangulation()">Generate</v-btn>
+					</v-card-actions>
+				</v-card>
 			</v-layout>
 		</v-container>
 	</span>
@@ -53,6 +71,8 @@ let elevationHistogram = {}
 export default {
 	data() {
 		return {
+			minDistance: 15,
+			maxDistance: 15,
 			histogram: null,
 			tableHeaders: [
 				{ text: 'Elevation', sortable: true, value: 'elevation' },
@@ -152,7 +172,14 @@ export default {
 			const getElevation = (x, y) => {
 				let nx = x / width - 0.5,
 					ny = y / height - 0.5
-				return noise1(nx, ny)
+				let e = noise1(nx, ny)
+				let a = 0.09
+				let b = 1.0
+				let c = 2.0
+				// let d = 2 * Math.max(Math.abs(nx), Math.abs(ny))
+				let d = 2 * Math.sqrt(nx * nx + ny * ny)
+				e = (e + a) * (b - Math.pow(d, c))
+				return Math.max(e, 0)
 			}
 
 			const getMoisture = (x, y) => {
@@ -167,6 +194,11 @@ export default {
 					0.5 * noise2(32 * nx, 32 * ny)
 				m /= 1.0 + 0.75 + 0.33 + 0.33 + 0.33 + 0.5
 				return m
+			}
+
+			const center = {
+				x: ~~(width / 2),
+				y: ~~(height / 2)
 			}
 
 			const getBiome = (e, m) => {
@@ -259,7 +291,7 @@ export default {
 			elevationHistogram = {}
 			let g = new PIXI.Graphics()
 			let point = (x, y) => new PIXI.Point(x, y)
-			const initialPoints = this.generateRandomPoints(15, 15)
+			const initialPoints = this.generateRandomPoints(this.minDistance, this.maxDistance)
 			let voronoi = null
 			try {
 				voronoi = Delaunay.from(initialPoints).voronoi([0, 0, width, height])
@@ -327,7 +359,7 @@ export default {
 						.endFill()
 				}
 			}
-			renderHalfEdges()
+			// renderHalfEdges()
 			// renderCircumcenters()
 			renderCells()
 			// renderTriangulation()
