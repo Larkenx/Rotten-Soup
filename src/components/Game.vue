@@ -21,6 +21,21 @@
         <hud v-if="playerSelected" :showEquipment="showFooter"></hud>
       </v-layout>
       <death-modal v-if="playerSelected"></death-modal>
+	  <v-dialog v-model="navigateAwayModalActive" max-width="600px">
+		  <v-card>
+			<v-card-text class="text-xs-center">
+				<h2 class="pa-1">Navigating Away</h2>
+		  	</v-card-text>
+			<v-card-text>
+				If you navigate away, you will lose your progress with this game! Are you sure you want to navigate away?
+			</v-card-text>
+			<v-card-actions>
+				<v-spacer></v-spacer>
+				<v-btn color="yellow darken-4" raised @click.native="navigate(true)">Continue</v-btn>
+				<v-btn color="yellow darken-4" flat @click.native="navigate(false)">Cancel</v-btn>
+			</v-card-actions>
+		</v-card>
+	  </v-dialog>
     </v-container>
     <start-menu v-show="!playerSelected" v-on:spriteSelected="loadGame"></start-menu>
   </v-container>
@@ -58,6 +73,8 @@ export default {
 	name: 'Game',
 	data() {
 		return {
+			navigateAwayModalActive: false,
+			handleNavigateAway: () => {},
 			mouseControls: false,
 			loading: true,
 			playerSelected: false,
@@ -111,13 +128,20 @@ export default {
 				this.gameDisplayHeight = '500px'
 			}
 			Game.display.resize()
+		},
+		navigate(didNavigate) {
+			this.navigateAwayModalActive = false
+			this.handleNavigateAway(didNavigate)
 		}
+	},
+	beforeRouteLeave(to, from, next) {
+		this.navigateAwayModalActive = true
+		this.handleNavigateAway = next
 	}
 }
 </script>
 
 <style>
-@import url('https://fonts.googleapis.com/css?family=Droid+Sans+Mono|PT+Mono');
 .black {
 	background-color: black;
 }
@@ -127,7 +151,6 @@ html {
 }
 
 * {
-	font-family: 'Droid Sans Mono', monospace;
 	-webkit-touch-callout: none;
 	/* iOS Safari */
 	-webkit-user-select: none;

@@ -41,26 +41,36 @@ export const BIOME_COLORS = {
 	TROPICAL_RAIN_FOREST: 0x9dbba9
 }
 
+// 908234
+// 908234
+// ab39dca
+
 export class VoronoiMapGenerator {
-	constructor() {
-		this.gen1 = new SimplexNoise(RNG.create(908234))
-		this.gen2 = new SimplexNoise(RNG.create(908234))
-	}
+	constructor() {}
 
 	/* Returns d3 voronoi object */
-	generate(width, height, zoom, distanceBetweenCells) {
+	generate(width, height, zoom, distanceBetweenCells, islands, seed, distanceFunction) {
 		this.width = width
 		this.height = height
 		this.zoom = zoom
 		this.distanceBetweenCells = distanceBetweenCells
-		const randomPoints = new Poisson([this.width, this.height], this.distanceBetweenCells, this.distanceBetweenCells, 10).fill()
+		this.islands = islands
+		this.gen1 = new SimplexNoise(seed.toString())
+		this.gen2 = new SimplexNoise(seed.toString())
+		this.distanceFunction = distanceFunction.toLowerCase()
+		const randomPoints = new Poisson(
+			[this.width, this.height],
+			this.distanceBetweenCells,
+			this.distanceBetweenCells,
+			10
+		).fill()
 		let voronoi = null
 		try {
 			voronoi = Delaunay.from(randomPoints).voronoi([0, 0, this.width, this.height])
 		} catch (exception) {
 			console.warn('Generated random points cannnot be triangulated...Retrying generation.')
-			throw exception
-			// return this.generate(this.width, this.height, this.distanceBetweenCells)
+			// throw exception
+			return this.generate(this.width, this.height, this.distanceBetweenCells)
 		}
 		return voronoi
 	}
@@ -77,7 +87,9 @@ export class VoronoiMapGenerator {
 			const moisture = this.getMoisture(center.x, center.y)
 			const biome = this.getBiome(elevation, moisture)
 			const color = this.getBiomeColor(biome)
-			const polygonVertices = voronoi.cellPolygon(delaunay.find(center.x, center.y)).map(p => ({ x: p[0], y: p[1] }))
+			const polygonVertices = voronoi
+				.cellPolygon(delaunay.find(center.x, center.y))
+				.map(p => ({ x: p[0], y: p[1] }))
 			cells.push({ center, elevation, moisture, biome, color, polygonVertices })
 		}
 		return { cells, halfedges, circumcenters }
@@ -90,9 +102,12 @@ export class VoronoiMapGenerator {
 		let flatElevationIncrease = 0.0
 		let b = 1.0
 		let c = 2.0
-		// let d = 2 * Math.max(Math.abs(nx), Math.abs(ny))
-		let d = 2 * sqrt(nx * nx + ny * ny) // adjusting based on distance from the center of the map
-		e = (e + flatElevationIncrease) * (b - pow(d, c))
+		if (this.islands) {
+			let d = 2 * sqrt(nx * nx + ny * ny) // adjusting based on distance from the center of the map
+			if (this.distanceFunction === 'manhattan') d = 2 * Math.max(Math.abs(nx), Math.abs(ny))
+
+			e = (e + flatElevationIncrease) * (b - pow(d, c))
+		}
 		return max(e, 0)
 	}
 
@@ -156,7 +171,10 @@ export class VoronoiMapVisualizer {
 		})
 
 		this.stage = new PIXI.Container()
-		this.debugRenderer = PIXI.autoDetectRenderer(width, height, { antialias: true, backgroundColor: 0x474747 })
+		this.debugRenderer = PIXI.autoDetectRenderer(width, height, {
+			antialias: true,
+			backgroundColor: 0x474747
+		})
 		this.debugStage = new PIXI.Container()
 	}
 

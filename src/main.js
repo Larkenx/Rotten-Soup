@@ -6,6 +6,7 @@ import App from './App'
 import Vuetify from 'vuetify'
 import router from './router'
 import 'vuetify/dist/vuetify.min.css'
+import '@fortawesome/fontawesome-free/css/all.css'
 import VueDragDrop from 'vue-drag-drop'
 
 Vue.use(Vuetify)
@@ -18,6 +19,7 @@ var vm = new Vue({
 	el: '#app',
 	router,
 	components: { App },
-	template: '<App />'
+	template: '<App />',
+	iconfont: 'fa'
 })
 window.vm = vm

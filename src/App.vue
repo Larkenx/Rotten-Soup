@@ -6,12 +6,30 @@
 		<v-footer app v-if="showFooter">
 			<small class="pl-2">RottenSoup</small>
 			<v-spacer />
-			<v-btn target="_blank" href="https://github.com/Larkenx/Rotten-Soup" icon ripple>
-				<v-icon>fa-github</v-icon>
-			</v-btn>
-			<v-btn target="_blank" href="https://twitter.com/stevenlarken" icon ripple>
-				<v-icon>fa-twitter</v-icon>
-			</v-btn>
+			<v-tooltip top>
+				<v-btn slot="activator" active-class="" @click.native="backToGame()" icon ripple>
+					<v-icon>fa-gamepad</v-icon>
+				</v-btn>
+				<span>Play the game!</span>
+			</v-tooltip>
+			<v-tooltip top>
+				<v-btn slot="activator" active-class="" to="/voronoi" icon ripple>
+					<v-icon>map</v-icon>
+				</v-btn>
+				<span>Map Generator</span>
+			</v-tooltip>
+			<v-tooltip top>
+				<v-btn slot="activator" target="_blank" href="https://github.com/Larkenx/Rotten-Soup" icon ripple>
+					<v-icon>fab fa-github</v-icon>
+				</v-btn>
+				<span>The source code</span>
+			</v-tooltip>
+			<v-tooltip top>
+				<v-btn slot="activator" target="_blank" href="https://twitter.com/stevenlarken" icon ripple>
+					<v-icon>fab fa-twitter</v-icon>
+				</v-btn>
+				<span>Tweet tweet!</span>
+			</v-tooltip>
 		</v-footer>
 	</v-app>
 </template>
@@ -54,7 +72,11 @@ export default {
 	},
 	components: {},
 	created() {},
-	methods: {}
+	methods: {
+		backToGame() {
+			window.location.replace(window.location.origin)
+		}
+	}
 }
 </script>
 
