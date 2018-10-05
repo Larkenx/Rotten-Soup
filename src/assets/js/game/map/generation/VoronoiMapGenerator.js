@@ -165,33 +165,24 @@ export class VoronoiMapGenerator {
 
 export class VoronoiMapVisualizer {
 	constructor(width, height) {
-		this.renderer = PIXI.autoDetectRenderer(width, height, {
+		this.width = width
+		this.height = height
+		this.renderer = PIXI.autoDetectRenderer({
+			width,
+			height,
 			antialias: true,
 			backgroundColor: 0x474747
 		})
-
+		console.log(this.renderer)
 		this.stage = new PIXI.Container()
-		this.debugRenderer = PIXI.autoDetectRenderer(width, height, {
-			antialias: true,
-			backgroundColor: 0x474747
-		})
-		this.debugStage = new PIXI.Container()
+	}
+
+	destroy() {
+		this.renderer.destroy()
 	}
 
 	mountCanvas() {
-		let child = document.getElementById('pixi_canvas').firstChild
-		while (child) {
-			document.getElementById('pixi_canvas').removeChild(child)
-			child = document.getElementById('pixi_canvas').firstChild
-		}
-		if (document.getElementById('debug_canvas')) {
-			let debugChild = document.getElementById('debug_canvas').firstChild
-			while (debugChild) {
-				document.getElementById('debug_canvas').removeChild(debugChild)
-				debugChild = document.getElementById('debug_canvas').firstChild
-			}
-			document.getElementById('debug_canvas').appendChild(this.renderer.view)
-		}
+		document.getElementById('pixi_canvas').innerHTML = ''
 		document.getElementById('pixi_canvas').appendChild(this.renderer.view)
 	}
 

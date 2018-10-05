@@ -59,7 +59,7 @@ typings/
 .env
 
 # build output
-# dist/
+dist/
 
 # editor files
 .idea

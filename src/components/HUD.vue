@@ -10,7 +10,6 @@
 .hud_container {
 	color: white;
 	font-size: 13px;
-	max-width: 440px;
 	border-left: 4px solid #4f4f4f;
 	background-color: #1e1f1f;
 	z-index: 3;
@@ -49,7 +48,7 @@
 </style>
 
 <template>
-	<v-flex class="hud_container elevation-0 pa-2" column>
+	<v-flex class="hud_container elevation-0 pa-2" column style="max-width: 440px;">
 
 		<!-- Health Bar -->
 		<v-layout align-center style="margin-bottom: -20px; margin-top: -10px">

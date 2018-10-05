@@ -1,62 +1,73 @@
 <template>
-    <span>
-        <v-container>
-            <v-layout justify-space-around>
-                <v-card>
-                    <v-toolbar>
-                        <v-toolbar-title>
-                            Map Generator
-                        </v-toolbar-title>
-                        <v-spacer />
-                        <v-tooltip top>
-                            <v-btn slot="activator" v-if="generated" dark icon @click.native="saveAsJSON()">
-                                <v-icon>fas fa-file-download</v-icon>
-                            </v-btn>
-                            <span>Download this map as JSON</span>
-                        </v-tooltip>
-                    </v-toolbar>
-                    <v-container>
-                        <v-layout style="min-height: 400px; min-width: 800px;" align-center justify-center>
-                            <div id="pixi_canvas"></div>
-                            <v-layout column v-if="!generated" align-center justify-center>
-                                <v-flex md12>
-                                    There's nothing here yet!
-                                </v-flex>
-                            </v-layout>
-                        </v-layout>
-                        <v-container fluid grid-list-md>
-                            <v-layout wrap pa-4 align-content-center justify-space-between>
-                                <v-flex md3>
-                                    <v-checkbox label="Rerender on Zoom" v-model="rerenderOnZoomChange"></v-checkbox>
-                                </v-flex>
-                                <v-flex md9>
-                                    <v-slider @click:prepend="zoomIn()" @click:append="zoomOut()" :always-dirty="true" style="cursor: hand" append-icon="zoom_out" prepend-icon="zoom_in" thumb-label="always" label="Zoom" :min="minZoom" :max="maxZoom" v-model="zoom"></v-slider>
-                                </v-flex>
-                                <v-flex md2>
-                                    <v-text-field label="Seed" v-model="seed" />
-                                </v-flex>
-                                <v-flex md3>
-                                    <v-text-field :rules="[value => !!value || 'You must give a distance between the cells!']" label="Distance between cells" v-model="distanceBetweenCells" />
-                                </v-flex>
-                                <v-flex md2>
-                                    <v-checkbox label="Show edges" v-model="showEdges" @click.stop="rerender()" :disabled="disableShowEdges"></v-checkbox>
-                                </v-flex>
-                                <v-flex md2>
-                                    <v-checkbox label="Islands" v-model="islands"></v-checkbox>
-                                </v-flex>
-                                <v-flex md2>
-                                    <v-select v-if="islands" label="Distance function" :items="distanceFunctions" v-model="distanceFunction"></v-select>
-                                </v-flex>
-                            </v-layout>
-                        </v-container>
-                        <v-layout>
-                            <v-btn :disabled="distanceBetweenCells === ''" block color="primary" @click.native="generateAndRender()">Generate Map</v-btn>
-                        </v-layout>
-                    </v-container>
-                </v-card>
-            </v-layout>
-        </v-container>
-    </span>
+	<span>
+		<v-container>
+			<v-layout justify-space-around>
+				<v-card>
+					<v-toolbar color="primary">
+						<v-toolbar-title>
+							Map Generator
+						</v-toolbar-title>
+						<v-spacer />
+						<v-tooltip right>
+							<v-btn slot="activator" :disabled="!generated" dark icon @click.native="saveAsJSON()">
+								<v-icon>fas fa-file-download</v-icon>
+							</v-btn>
+							<span>Download this map as JSON</span>
+						</v-tooltip>
+					</v-toolbar>
+					<v-container>
+						<v-layout justify-space-around>
+							<v-flex xs4>
+								<v-text-field :rules="sizeRules" prepend-icon="fa-arrows-alt-h" label="Width" v-model="width" suffix="px" />
+							</v-flex>
+							<v-flex xs4>
+								<v-text-field prepend-icon="fa-arrows-alt-v" label="Height" v-model="height" suffix="px" />
+							</v-flex>
+						</v-layout>
+						<v-layout align-center justify-center :style="{minWidth: width+'px', minHeight: height+'px'}">
+							<div id="pixi_canvas"></div>
+							<v-layout column v-if="!generated" align-center justify-center>
+								<v-flex md12>
+									There's nothing here yet!
+								</v-flex>
+							</v-layout>
+						</v-layout>
+						<v-container fluid grid-list-md>
+							<v-layout wrap align-content-center justify-space-between>
+								<v-flex xs2>
+									<v-checkbox label="Show edges" v-model="showEdges" @click.stop="rerender()" :disabled="disableShowEdges"></v-checkbox>
+								</v-flex>
+								<v-flex xs3>
+									<v-checkbox label="Rerender on Zoom" v-model="rerenderOnZoomChange"></v-checkbox>
+								</v-flex>
+								<v-flex xs6>
+									<v-slider @end="zoomBlurred()" @click:prepend="zoomIn()" @click:append="zoomOut()" :always-dirty="true" style="cursor: hand" append-icon="zoom_out" prepend-icon="zoom_in" thumb-label="always" label="Zoom" :min="minZoom" :max="maxZoom" v-model="zoom"></v-slider>
+								</v-flex>
+							</v-layout>
+							<v-layout wrap align-content-center justify-space-between>
+								<v-flex xs2>
+									<v-text-field append-icon="sync" @click:append="() => createNewSeed()" label="Seed" v-model="seed" />
+								</v-flex>
+								<v-flex xs3>
+									<v-text-field :rules="[value => !!value || 'You must give a distance between the cells!']" label="Distance between cells" v-model="distanceBetweenCells" />
+								</v-flex>
+
+								<v-flex xs2>
+									<v-checkbox label="Islands" v-model="islands"></v-checkbox>
+								</v-flex>
+								<v-flex xs3>
+									<v-select :disabled="!islands" label="Distance function" :items="distanceFunctions" v-model="distanceFunction"></v-select>
+								</v-flex>
+							</v-layout>
+						</v-container>
+						<v-layout>
+							<v-btn :loading="generating" :disabled="distanceBetweenCells === ''" block color="primary" @click.native="generateAndRender()">Generate Map</v-btn>
+						</v-layout>
+					</v-container>
+				</v-card>
+			</v-layout>
+		</v-container>
+	</span>
 </template>
 
 <script>
@@ -68,7 +79,9 @@ export default {
 		return {
 			distanceFunction: 'Euclidean',
 			distanceFunctions: ['Euclidean', 'Manhattan'],
+			generating: false,
 			generated: false,
+			updatedSize: false,
 			width: 800,
 			height: 400,
 			zoom: 4,
@@ -79,7 +92,11 @@ export default {
 			disableShowEdges: false,
 			islands: false,
 			rerenderOnZoomChange: true,
-			seed: 'ab39dca'
+			seed: '6zPFSoo0',
+			sizeRules: [
+				value => !!value || 'This field is required!',
+				value => parseInt(value, 10) >= 100 || 'This field must be at least 100px!'
+			]
 		}
 	},
 	methods: {
@@ -95,10 +112,16 @@ export default {
 				if (this.generated && this.rerenderOnZoomChange) this.generateAndRender()
 			}
 		},
-		generateAndRender() {
+		zoomBlurred(n) {
+			if (this.generated && this.rerenderOnZoomChange) this.generateAndRender()
+		},
+		async generateAndRender() {
+			this.generating = true
+			if (this.generated) voronoiMapVisualizer.destroy()
 			voronoiMapVisualizer = new VoronoiMapVisualizer(this.width, this.height)
 			voronoiMapVisualizer.mountCanvas()
-			voronoiMapVisualizer.render(this.generateMap(), { showEdges: this.showEdges })
+			voronoiMapVisualizer.render(await this.generateMap(), { showEdges: this.showEdges })
+			this.generating = false
 		},
 		rerender() {
 			this.showEdges = !this.showEdges
@@ -106,9 +129,11 @@ export default {
 			setTimeout(() => {
 				this.disableShowEdges = false
 			}, 500)
-			if (this.generated) voronoiMapVisualizer.render(data, { showEdges: this.showEdges })
+			if (this.generated) {
+				voronoiMapVisualizer.render(data, { showEdges: this.showEdges })
+			}
 		},
-		generateMap() {
+		async generateMap() {
 			let mapGen = new VoronoiMapGenerator()
 			data = mapGen.export(
 				mapGen.generate(
@@ -123,6 +148,15 @@ export default {
 			)
 			this.generated = true
 			return data
+		},
+		createNewSeed() {
+			let text = ''
+			let possible = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789'
+
+			for (let i = 0; i < 8; i++)
+				text += possible.charAt(Math.floor(Math.random() * possible.length))
+
+			this.seed = text
 		},
 		saveAsJSON() {
 			if (this.generated) {
