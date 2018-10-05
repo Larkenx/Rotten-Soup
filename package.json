@@ -15,9 +15,11 @@
 	},
 	"dependencies": {
 		"cross-env": "^5.1.4",
+		"d3-delaunay": "^4.1.5",
 		"express": "^4.16.3",
 		"material-design-icons": "^3.0.1",
 		"pixi.js": "^4.7.0",
+		"poisson-disk-sampling": "^1.0.2",
 		"prettier": "^1.14.2",
 		"prng-parkmiller-js": "^0.1.1",
 		"roboto-fontface": "^0.9.0",
@@ -31,6 +33,7 @@
 		"yarn": "^1.9.4"
 	},
 	"devDependencies": {
+		"@fortawesome/fontawesome-free": "^5.3.1",
 		"autoprefixer": "^7.1.2",
 		"babel-core": "^6.22.1",
 		"babel-helper-vue-jsx-merge-props": "^2.0.3",
@@ -75,7 +78,7 @@
 		"webpack-merge": "^4.1.0"
 	},
 	"engines": {
-		"node": "8.9.1",
+		"node": "^8.9.1",
 		"npm": "5.5.1"
 	},
 	"browserslist": [
