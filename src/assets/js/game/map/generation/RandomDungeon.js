@@ -703,7 +703,6 @@ export function dungeonFromTheme(width, height, theme, mapGenerator, options, ha
 				})
 				items.forEach(item => chest.addToInventory(item))
 				gameMap.getTile(x, y).actors.push(chest)
-				console.log(items)
 			}
 		}
 	}

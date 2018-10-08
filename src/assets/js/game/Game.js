@@ -1,14 +1,12 @@
 import ROT from 'rot-js'
 import * as PIXI from 'pixi.js'
 PIXI.utils.skipHello()
-
 import { getTilesetCoords, createMapFromJSON } from '#/map/GameMap.js'
 import GameDisplay from '#/GameDisplay.js'
 import { Actor } from '#/entities/actors/Actor.js'
 import { Entity } from '#/entities/Entity.js'
 import { getItemsFromDropTable, addPrefix } from '#/utils/HelperFunctions.js'
 import PlayerController from '#/utils/PlayerController.js'
-
 import Item from '#/entities/items/Item.js'
 import Player from '#/entities/actors/Player.js'
 import MapGen from '#/map/generation/index.js'
@@ -59,7 +57,7 @@ export let Game = {
 		dialogue: {}
 	},
 
-	init(playerSpriteID) {
+	init(playerSpriteID, options) {
 		this.playerID = playerSpriteID
 		this.player = new Player(0, 0, playerSpriteID)
 		this.displayOptions = {
@@ -88,11 +86,12 @@ export let Game = {
 			this.scheduleAllActors()
 			this.initializeMinimap()
 			document.getElementById('game_container').appendChild(this.display.getContainer())
-			document.getElementById('minimap_container').appendChild(this.minimap.getContainer())
+			// document.getElementById('minimap_container').appendChild(this.minimap.getContainer())
 			this.engine.start() // Start the engine
 			this.renderMap()
 		}
-		this.display = new GameDisplay()
+		let { width, height } = options
+		this.display = new GameDisplay(width, height)
 		this.display.loadAssets(onceLoaded)
 	},
 

@@ -10,10 +10,9 @@ import Item from '#/entities/items/Item.js'
 import * as PIXI from 'pixi.js'
 
 export default class GameDisplay {
-	constructor() {
-		let smallerScreen = window.innerHeight <= 800 || window.innerWidth <= 1400
-		this.width = smallerScreen ? 800 : 1024
-		this.height = smallerScreen ? 500 : 640
+	constructor(width, height) {
+		this.width = width
+		this.height = height
 		this.scale = 1.0
 		this.app = new PIXI.Application({
 			// forceCanvas: true,
@@ -187,12 +186,13 @@ export default class GameDisplay {
 		this.background.addChild(this.staticBackground)
 		this.background.addChild(this.animatedBackground)
 		stage.addChild(this.background)
+		let viewPort = { width: this.width / this.tileSize, height: this.height / this.tileSize }
 		let camera = {
 			// camera x,y resides in the upper left corner
-			x: Game.player.x - ~~(Game.width / 2),
-			y: Game.player.y - ~~(Game.height / 2),
-			width: Math.ceil(Game.width),
-			height: Game.height
+			x: Game.player.x - ~~(viewPort.width / 2),
+			y: Game.player.y - ~~(viewPort.height / 2),
+			width: Math.ceil(viewPort.width),
+			height: viewPort.height
 		}
 		let startingPos = [camera.x, camera.y]
 		if (camera.x < 0) {
@@ -269,12 +269,18 @@ export default class GameDisplay {
 	}
 
 	updateMap() {
+		// Center of the camera should not be offset by the game's map width or height,
+		// but by the view / canvas width & height
+		let viewPort = {
+			width: this.width / this.tileSize,
+			height: this.height / this.tileSize
+		}
 		let camera = {
 			// camera x,y resides in the upper left corner
-			x: Game.player.x - ~~(Game.width / 2),
-			y: Game.player.y - ~~(Game.height / 2),
-			width: Math.ceil(Game.width),
-			height: Game.height
+			x: Game.player.x - ~~(viewPort.width / 2),
+			y: Game.player.y - ~~(viewPort.height / 2),
+			width: Math.ceil(viewPort.width),
+			height: viewPort.height
 		}
 		let startingPos = [camera.x, camera.y]
 		if (camera.x < 0) {
@@ -289,7 +295,6 @@ export default class GameDisplay {
 		if (camera.y + camera.height > Game.map.height) {
 			startingPos[1] = Game.map.height - camera.height
 		}
-		let endingPos = [startingPos[0] + camera.width, startingPos[1] + camera.height]
 		if (!Game.map.revealed) {
 			Object.assign(Game.map.seen_tiles, Game.map.visible_tiles)
 			Game.map.visible_tiles = {}
@@ -369,12 +374,13 @@ export default class GameDisplay {
 										let gy = (a.y - 0.5) * this.tileSize
 										// background
 										g.beginFill(0xa22a2a)
-										g.drawRect(gx + 1, gy, this.tileSize - 2, 7)
+											.drawRect(gx + 1, gy, this.tileSize - 2, 7)
+											.endFill()
 										// foreground
+										let width = (a.cb.hp / a.cb.maxhp) * (this.tileSize - 4)
 										g.beginFill(0xff5252)
-										let width = a.cb.hp / a.cb.maxhp * (this.tileSize - 4)
-										g.drawRect(gx + 2, gy + 1, width, 5)
-										g.endFill()
+											.drawRect(gx + 2, gy + 1, width, 5)
+											.endFill()
 										let sprite = new PIXI.Sprite(this.app.renderer.generateTexture(g))
 										sprite.position.set(gx, gy)
 										a.setSpriteAbove(sprite)
