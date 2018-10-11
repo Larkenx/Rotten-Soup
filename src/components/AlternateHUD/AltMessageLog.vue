@@ -3,12 +3,11 @@
 		<v-flex align-start>
 			<v-layout wrap id="console" class="pt-3">
 				<v-flex xs12 v-for="(message, index) in getMessages()" v-bind:key="index">
-					<b class="pl-2" v-bind:style="{color : message[1]}">{{message[0]}}</b>
+					<v-icon style="font-size: 14px;">fas fa-angle-right</v-icon><b class="pl-2" v-bind:style="{color : message[1]}">{{message[0]}}</b>
 				</v-flex>
 				<!-- Temporary log item for displaying info that isn't stored (examine text, or "this is blocked")  -->
 				<v-flex xs12 v-for="(message, index) in getTempMessages()" :key="index+1*-1">
-					<b class="pl-2" v-bind:style="{color : message[1]}">{{message[0]}}</b>
-
+					<v-icon style="font-size: 14px;">fas fa-angle-left</v-icon><b class="pl-2" v-bind:style="{color : message[1]}">{{message[0]}}</b>
 				</v-flex>
 			</v-layout>
 		</v-flex>
@@ -51,7 +50,7 @@ export default {
 			return this.tempMessages
 		},
 		getMessages() {
-			return this.messages.slice(-10 + -this.offset + this.getTempMessages().length)
+			return this.messages.slice(-15 + -this.offset + this.getTempMessages().length)
 		},
 		resetOffset() {
 			this.offset = 0
@@ -68,7 +67,7 @@ export default {
 
 <style>
 #console_container {
-	border-top: 4px solid #4f4f4f;
+	/* border-top: 4px solid #4f4f4f; */
 	background-color: #1e1f1f;
 }
 

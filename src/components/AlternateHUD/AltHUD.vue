@@ -1,40 +1,53 @@
 <template>
-    <v-flex id="hud_container" class="elevation-0 pa-2">
-        <v-layout wrap align-center justify-space-around>
-            <v-flex xs6>
-                <b>HP:</b>
-            </v-flex>
-            <v-flex xs6>
-                <b :style="getHPStyling()">{{getHP()}} </b>/ {{getMaxHP()}}
-            </v-flex>
-            <v-flex xs6>
-                <b>Magic:</b>
-            </v-flex>
-            <v-flex xs6>
-                {{getMana()}} / {{getMaxMana()}}
-            </v-flex>
-            <v-flex xs6>
-                <b>Location:</b>
-            </v-flex>
-            <v-flex xs6>
-                {{getCurrentLevel().capitalize()}}
-            </v-flex>
-            <v-flex xs6 v-if="getCurrentLevelDepth() > 0">
-                <b>Floor:</b>
-            </v-flex>
-            <v-flex xs6 v-if="getCurrentLevel() > 0">
-                {{getCurrentLevelDepth()}}
-            </v-flex>
-        </v-layout>
-    </v-flex>
+	<v-container id="hud_container" class="elevation-0 pa-2">
+		<v-layout wrap align-center justify-space-around style="font-size: 14px;">
+			<v-flex xs6>
+				<b>HP:</b>
+			</v-flex>
+			<v-flex xs6>
+				<b :style="getHPStyling()">{{getHP()}} </b>/ {{getMaxHP()}}
+			</v-flex>
+			<v-flex xs6>
+				<b>Magic:</b>
+			</v-flex>
+			<v-flex xs6>
+				{{getMana()}} / {{getMaxMana()}}
+			</v-flex>
+			<v-flex xs6>
+				<b>Location:</b>
+			</v-flex>
+			<v-flex xs6>
+				{{getCurrentLevel().capitalize()}}
+			</v-flex>
+			<v-flex xs6 v-if="getCurrentLevelDepth() > 0">
+				<b>Floor:</b>
+			</v-flex>
+			<v-flex xs6 v-if="getCurrentLevelDepth() > 0">
+				{{getCurrentLevelDepth()}}
+			</v-flex>
+			<v-flex xs12>
+				<v-layout class="text-xs-center mt-2">
+					<v-flex>
+						<v-flex id="minimap_container"></v-flex>
+					</v-flex>
+				</v-layout>
+			</v-flex>
+			<v-flex xs12>
+				<message-log></message-log>
+			</v-flex>
+		</v-layout>
+	</v-container>
 </template>
 
 <script>
 import { Game } from '@/assets/js/game/Game.js'
 import helpDialog from '@/components/HelpDialog.vue'
 import toolDialog from '@/components/ToolDialog.vue'
+import messageLog from '@/components/AlternateHud/AltMessageLog.vue'
+console.log(messageLog)
 
 export default {
+	name: 'alt-hud',
 	data() {
 		return {
 			activeTab: null,
@@ -86,13 +99,14 @@ export default {
 	},
 	components: {
 		'help-dialog': helpDialog,
-		'tool-dialog': toolDialog
+		'tool-dialog': toolDialog,
+		'message-log': messageLog
 	},
 	created() {}
 }
 </script>
 
-<style>
+<style scoped>
 #hud_container {
 	color: white;
 	font-size: 13px;
@@ -100,6 +114,9 @@ export default {
 	z-index: 3;
 	padding: 0px;
 	min-width: 250px;
+	max-width: 250px;
+	min-height: 806px;
+	max-height: 806px;
 	border: 3px solid #4f4f4f;
 	background-color: #1e1f1f;
 	/* margin-left: 20px; */

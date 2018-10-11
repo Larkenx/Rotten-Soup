@@ -17,10 +17,10 @@ import Chest from '#/entities/misc/Chest.js'
 
 const { randomSimplexMap, randomDungeon, randomCave } = MapGen
 const defaultMinimapConfiguration = {
-	width: 44,
-	height: 26,
-	fontSize: 11,
-	spacing: 0.6,
+	width: 45,
+	height: 35,
+	fontSize: 7,
+	spacing: 0.5,
 	forceSquareRatio: true
 }
 export let Game = {
@@ -86,7 +86,7 @@ export let Game = {
 			this.scheduleAllActors()
 			this.initializeMinimap()
 			document.getElementById('game_container').appendChild(this.display.getContainer())
-			// document.getElementById('minimap_container').appendChild(this.minimap.getContainer())
+			document.getElementById('minimap_container').appendChild(this.minimap.getContainer())
 			this.engine.start() // Start the engine
 			this.renderMap()
 		}

@@ -109,7 +109,7 @@ export default {
 	methods: {
 		loadGame(id) {
 			this.playerSelected = true
-			Game.init(id, window)
+			Game.init(id, { width: 1024, height: 640 })
 			Game.log('Welcome to Rotten Soup!', 'information')
 			Game.log('Press ? to view the controls.', 'player_move')
 		},

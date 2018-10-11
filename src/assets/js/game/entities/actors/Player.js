@@ -321,7 +321,7 @@ export default class Player extends Actor {
 			}
 			this.targeting = false
 			this.validTarget = null
-			// create an arrow sprite and move it to the fired location
+			// // create an arrow sprite and move it to the fired location
 			// let ammoSprite = new PIXI.Sprite(Game.display.getTexture(ammo.id))
 			// Game.display.background.addChild(ammoSprite)
 			// ammoSprite.position.set(this.x * Game.display.tileSize, this.y * Game.display.tileSize)
@@ -558,7 +558,7 @@ export default class Player extends Actor {
 
 			const action = this.keyMap[keyCode]
 			if (action === 'rest' && !shiftPressed) {
-				Game.log('You rest for a turn.', 'player_move')
+				// Game.log('You rest for a turn.', 'player_move')
 			} else if (action === 'pickup' && !shiftPressed) {
 				this.pickup()
 			} else if ((action === 'rest' && shiftPressed) || (action === 'pickup' && shiftPressed) || action === 'interact') {
@@ -568,10 +568,6 @@ export default class Player extends Actor {
 				let ammo = this.cb.equipment.ammo
 				if (weapon !== null && ammo !== null && weapon.cb.ranged && ammo.cb.ammoType === weapon.cb.ammoType && ammo.quantity > 0) {
 					Game.log(`You take aim with your ${weapon.type.toLowerCase()}.`, 'darkgreen')
-					Game.log(
-						`Select a target with the movement keys and press [enter] or [.] to fire your ${weapon.type.toLowerCase()}.`,
-						'player_move'
-					)
 					this.validTarget = Game.selectNearestEnemyTile()
 					if (!this.validTarget) Game.changeSelectedTile(Game.getTile(this.x, this.y))
 					this.targeting = true
@@ -602,7 +598,6 @@ export default class Player extends Actor {
 					this.cb.mana -= currentSpell.manaCost
 				} else if (currentSpell.targetType === targetTypes.TARGET) {
 					Game.log('You begin casting a spell.', 'magic')
-					Game.log('Select a target with the movement keys and press [enter] or [.] to cast the spell.', 'player_move')
 					this.validTarget = Game.selectNearestEnemyTile()
 					if (!this.validTarget) Game.changeSelectedTile(Game.getTile(this.x, this.y))
 					this.casting = true
