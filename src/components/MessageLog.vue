@@ -1,18 +1,17 @@
 <template>
 	<v-layout id="console_container">
-		<v-flex align-start>
-			<v-layout wrap id="console" class="pt-3">
-				<v-flex xs12 v-for="(message, index) in getMessages()" v-bind:key="index">
-					<b class="pl-2" v-bind:style="{color : message[1]}">{{message[0]}}</b>
-				</v-flex>
+		<v-flex column align-start>
+			<v-list id="console" class="pt-3">
+				<li class="ml-2" v-for="(message, index) in getMessages()" v-bind:key="index">
+					<p><b v-bind:style="{color : message[1]}">{{message[0]}}</b></p>
+				</li>
 				<!-- Temporary log item for displaying info that isn't stored (examine text, or "this is blocked")  -->
-				<v-flex xs12 v-for="(message, index) in getTempMessages()" :key="index+1*-1">
-					<b class="pl-2" v-bind:style="{color : message[1]}">{{message[0]}}</b>
-
-				</v-flex>
-			</v-layout>
+				<li class="ml-2" v-for="(message, index) in getTempMessages()">
+					<p><b v-bind:style="{color : message[1]}">{{message[0]}}</b> </p>
+				</li>
+			</v-list>
 		</v-flex>
-		<!-- <v-flex id="scroll_controls" class="text-xs-center" style="max-width: 27px">
+		<v-flex id="scroll_controls" column class="text-xs-center" style="max-width: 27px">
 			<v-layout>
 				<v-flex xs12 class="text-xs-center">
 					<v-icon class="scroll_controls" v-on:click="up()" small>fa-angle-up</v-icon>
@@ -29,7 +28,12 @@
 					<v-icon class="scroll_controls" v-on:click="resetOffset()" small>fa-angle-double-down</v-icon>
 				</v-flex>
 			</v-layout>
-		</v-flex> -->
+			<!-- <v-layout>
+          <v-flex xs12 class="text-xs-center">
+            <v-icon class="scroll_controls" v-on:click="" small>fa-sticky-note</v-icon>
+          </v-flex>
+        </v-layout> -->
+		</v-flex>
 	</v-layout>
 </template>
 
@@ -38,7 +42,6 @@ import { Game } from '#/Game.js'
 
 /* import your actions here */
 export default {
-	name: 'message-log',
 	data() {
 		return {
 			messages: Game.messageHistory,
@@ -76,6 +79,8 @@ export default {
 	font-size: 14px;
 	font-style: normal;
 	font-weight: normal;
+	height: 170px;
+	line-height: 0;
 	overflow: hidden;
 	position: relative;
 	background-color: inherit;

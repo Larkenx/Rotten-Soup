@@ -32,9 +32,13 @@
 					</v-flex>
 				</v-layout>
 			</v-flex>
-			<v-flex xs12>
+			<v-flex xs12 style="min-height: 525px">
 				<message-log></message-log>
 			</v-flex>
+		</v-layout>
+		<v-layout justify-end>
+			<tool-dialog />
+			<help-dialog />
 		</v-layout>
 	</v-container>
 </template>

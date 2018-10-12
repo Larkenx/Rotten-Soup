@@ -3,15 +3,15 @@
     <div class="pa-0" v-show="playerSelected">
 		<div id="root_container">
 			<!-- Game Display -->
-			<div id="game_container" />
+			<div id="game_container" :style="getGameContainerStyling()" />
 			<!-- The game overlay  -->
 			<div id="game_overlay_view" 
 				v-show="overlayVisible()" 
 				:is="overlayData.component" 
-				:style="{ left: this.offset + 'px', top: this.offset + 'px', width: this.width - (this.offset*4) + 'px', height: this.height - (this.offset*4) + 'px'}" 
+				:style="getGameOverlayStyling()" 
 			/>
 			<!-- The HUD -->
-			<div id="hud" :style="{ left: this.width + this.borderWidth + 'px', top: '0px',}" v-if="playerSelected">
+			<div id="hud" :style="getHUDStyling()" v-if="playerSelected">
 				<hud />
 			</div>
 		</div>
@@ -49,8 +49,12 @@ export default {
 	data() {
 		return {
 			width: 1280,
+			hudWidth: 250,
 			height: 800,
-			offset: 20,
+			footerHeight: 32,
+			widthOffset: 0,
+			heightOffset: 0,
+			overlayOffset: 20,
 			borderWidth: 6,
 			navigateAwayModalActive: false,
 			handleNavigateAway: () => {},
@@ -61,6 +65,10 @@ export default {
 	},
 	mounted() {
 		if (window.location.host.includes('localhost')) this.loadGame(4219)
+		let { clientWidth, clientHeight } = document.documentElement
+		let uiWidth = this.width + this.hudWidth
+		this.widthOffset = clientWidth > uiWidth ? (clientWidth - uiWidth) / 2 : 0
+		this.heightOffset = clientHeight > this.height ? (clientHeight - this.height) / 2 : 0
 	},
 	components: {
 		'game-overlay-view': gameOverlayView,
@@ -82,6 +90,26 @@ export default {
 		},
 		overlayVisible() {
 			return Game.overlayData.visible
+		},
+		getGameOverlayStyling() {
+			return {
+				left: this.widthOffset + this.overlayOffset + 'px',
+				top: this.heightOffset + this.overlayOffset - this.footerHeight + 'px',
+				width: this.width - this.overlayOffset * 4 + 'px',
+				height: this.height - this.overlayOffset * 4 + 'px'
+			}
+		},
+		getGameContainerStyling() {
+			return {
+				left: this.widthOffset + 0 + 'px',
+				top: this.heightOffset - this.footerHeight + 'px'
+			}
+		},
+		getHUDStyling() {
+			return {
+				left: this.widthOffset + this.width + this.borderWidth + 'px',
+				top: this.heightOffset - this.footerHeight + 'px'
+			}
 		}
 	},
 	beforeRouteLeave(to, from, next) {
@@ -110,14 +138,7 @@ export default {
 	position: absolute;
 }
 
-#game_container {
-	left: 0px;
-	top: 0px;
-}
-
 #game_overlay_view {
-	top: 0;
-	left: 0;
 	z-index: 1050;
 	background-color: #1e1f1f;
 	border: 2px solid #4f4f4f;

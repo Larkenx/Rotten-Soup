@@ -4,7 +4,7 @@
 			<router-view></router-view>
 		</v-content>
 		<v-footer app v-if="showFooter">
-			<small class="pl-2">RottenSoup</small>
+			<span class="pl-2">RottenSoup</span>
 			<v-spacer />
 			<v-tooltip top>
 				<v-btn slot="activator" active-class="" @click.native="backToGame()" icon ripple>
