@@ -5,9 +5,11 @@
 <script>
 import { Game } from '@/assets/js/game/Game.js'
 import NPCDialogue from '@/components/NPCDialogue'
+import Inventory from '@/components/Inventory'
 export default {
 	components: {
-		'npc-dialogue': NPCDialogue
+		'npc-dialogue': NPCDialogue,
+		inventory: Inventory
 		// NPC Dialog
 		// Trading
 		// Inventory

@@ -641,9 +641,9 @@ export default class Player extends Actor {
 			}
 			let prettyItemTypes = itemTypes.slice(1, itemTypes.length - 1)
 			prettyItemTypes = prettyItemTypes.reduce((buf, str) => {
-				return buf + ', a ' + str
+				return buf + ', ' + addPrefix(str)
 			}, 'a  ' + itemTypes.slice(0, 1))
-			let lastItem = ` and a ${itemTypes.slice(-1)}.`
+			let lastItem = ` and ${addPrefix(itemTypes.slice(-1))}.`
 			let buffer = `You picked up ${prettyItemTypes + lastItem}`
 			Game.log(buffer, 'information')
 		} else {

@@ -1,9 +1,9 @@
 <template>
     <div id="help">
-        <v-tooltip right align-center>
-            <span>Controls</span>
-            <v-btn flat icon color="yellow darken-4" slot="activator" @click.stop="helpDialog=true">
-                <v-icon>fa-question-circle</v-icon>
+        <v-tooltip bottom align-center>
+            <span>Help</span>
+            <v-btn small flat icon color="yellow darken-4" slot="activator" @click.stop="helpDialog=true">
+                <v-icon small>fa-question-circle</v-icon>
             </v-btn>
         </v-tooltip>
         <v-dialog v-model="helpDialog" max-width="600px">

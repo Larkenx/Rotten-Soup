@@ -148,6 +148,7 @@ export default {
 canvas {
 	border: 3px solid #4f4f4f;
 	background-color: #1e1f1f;
+	z-index: -1;
 	/* border-radius: 4px; */
 }
 

@@ -1,46 +1,54 @@
 <template>
-	<v-container id="hud_container" class="elevation-0 pa-2">
-		<v-layout wrap align-center justify-space-around style="font-size: 14px;">
-			<v-flex xs6>
-				<b>HP:</b>
-			</v-flex>
-			<v-flex xs6>
-				<b :style="getHPStyling()">{{getHP()}} </b>/ {{getMaxHP()}}
-			</v-flex>
-			<v-flex xs6>
-				<b>Magic:</b>
-			</v-flex>
-			<v-flex xs6>
-				{{getMana()}} / {{getMaxMana()}}
-			</v-flex>
-			<v-flex xs6>
-				<b>Location:</b>
-			</v-flex>
-			<v-flex xs6>
-				{{getCurrentLevel().capitalize()}}
-			</v-flex>
-			<v-flex xs6 v-if="getCurrentLevelDepth() > 0">
-				<b>Floor:</b>
-			</v-flex>
-			<v-flex xs6 v-if="getCurrentLevelDepth() > 0">
-				{{getCurrentLevelDepth()}}
-			</v-flex>
-			<v-flex xs12>
-				<v-layout class="text-xs-center mt-2">
-					<v-flex>
-						<v-flex id="minimap_container"></v-flex>
-					</v-flex>
-				</v-layout>
-			</v-flex>
-			<v-flex xs12 style="min-height: 525px">
-				<message-log></message-log>
-			</v-flex>
-		</v-layout>
-		<v-layout justify-end>
-			<tool-dialog />
-			<help-dialog />
-		</v-layout>
-	</v-container>
+	<v-layout align-center justify-space-between column fill-height id="hud_container" class="elevation-0 pa-2">
+		<div>
+			<v-layout wrap align-center justify-space-around style="font-size: 14px;">
+				<v-flex xs6>
+					<b>HP:</b>
+				</v-flex>
+				<v-flex xs6>
+					<b :style="getHPStyling()">{{getHP()}} </b>/ {{getMaxHP()}}
+				</v-flex>
+				<v-flex xs6>
+					<b>Magic:</b>
+				</v-flex>
+				<v-flex xs6>
+					{{getMana()}} / {{getMaxMana()}}
+				</v-flex>
+				<v-flex xs6>
+					<b>Location:</b>
+				</v-flex>
+				<v-flex xs6>
+					{{getCurrentLevel().capitalize()}}
+				</v-flex>
+				<v-flex xs6 v-if="getCurrentLevelDepth() > 0">
+					<b>Floor:</b>
+				</v-flex>
+				<v-flex xs6 v-if="getCurrentLevelDepth() > 0">
+					{{getCurrentLevelDepth()}}
+				</v-flex>
+				<v-flex xs12>
+					<v-layout class="text-xs-center mt-2">
+						<v-flex>
+							<v-flex id="minimap_container"></v-flex>
+						</v-flex>
+					</v-layout>
+				</v-flex>
+			</v-layout>
+		</div>
+		<div style="flex-grow: 1;">
+			<v-layout fill-height wrap align-center justify-space-between style="font-size: 14px;">
+				<v-flex xs12>
+					<message-log></message-log>
+				</v-flex>
+			</v-layout>
+		</div>
+		<div style="align-self: flex-end">
+			<v-layout justify-space-around>
+				<tool-dialog />
+				<help-dialog />
+			</v-layout>
+		</div>
+	</v-layout>
 </template>
 
 <script>

@@ -86,8 +86,6 @@ const goodbye = new Edge({
 						let nd2 = new NPC(t2.x, t2.y, d2.id)
 						t1.actors.push(nd1)
 						t2.actors.push(nd2)
-						Game.levels['Mulberry Town'].actors.push(nd1)
-						Game.levels['Mulberry Town'].actors.push(nd2)
 					}
 				}
 			}

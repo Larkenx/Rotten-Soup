@@ -50,7 +50,7 @@ export default {
 			return this.tempMessages
 		},
 		getMessages() {
-			return this.messages.slice(-15 + -this.offset + this.getTempMessages().length)
+			return this.messages.slice(-13 + -this.offset + this.getTempMessages().length)
 		},
 		resetOffset() {
 			this.offset = 0
@@ -68,7 +68,10 @@ export default {
 <style>
 #console_container {
 	/* border-top: 4px solid #4f4f4f; */
+	overflow-y: auto;
+	max-height: 520px;
 	background-color: #1e1f1f;
+	flex: 1;
 }
 
 #console {
