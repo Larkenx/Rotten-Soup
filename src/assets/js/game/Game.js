@@ -512,6 +512,16 @@ export let Game = {
 		else return null
 	},
 
+	closeGameOverlayScreen() {
+		this.overlayData.component = null
+		this.overlayData.visible = false
+	},
+
+	openInventory() {
+		this.overlayData.component = 'inventory-equipment-view'
+		this.overlayData.visible = true
+	},
+
 	openNPCDialog(dialogue) {
 		this.overlayData.visible = true
 		this.overlayData.component = 'npc-dialogue'

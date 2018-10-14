@@ -44,6 +44,7 @@ import altHud from '@/components/AlternateHUD/AltHud'
 import deathModal from '@/components/DeathModal'
 import gameOverlayView from '@/components/GameOverlayView'
 import NPCDialogue from '@/components/NPCDialogue'
+import inventoryEquipmentView from '@/components/AlternateHUD/InventoryEquipmentView.vue'
 export default {
 	name: 'AltGame',
 	data() {
@@ -74,6 +75,7 @@ export default {
 		'game-overlay-view': gameOverlayView,
 		'npc-dialogue': NPCDialogue,
 		'start-menu': startMenu,
+		'inventory-equipment-view': inventoryEquipmentView,
 		hud: altHud,
 		'death-modal': deathModal
 	},

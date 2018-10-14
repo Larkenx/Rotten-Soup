@@ -38,11 +38,6 @@
 
 <template>
 	<v-container fluid class="pa-0">
-		<v-layout>
-			<v-flex xs4>
-				<b>Items</b>
-			</v-flex>
-		</v-layout>
 		<v-layout wrap class="inventory_row">
 			<v-flex style="max-height: 32px; max-width: 32px;" v-for="(cell, i) in inventory" v-bind:key="i" v-bind:class="{selectedItem : colorSlot(cell), inventory_cell : ! colorSlot(cell)}" align-center>
 				<drop tag="v-flex" @drop="swapInventorySlots([i, ...arguments])">
@@ -96,6 +91,7 @@ import { Game } from '@/assets/js/game/Game.js'
 
 /* import other components here */
 export default {
+	name: 'inventory',
 	data() {
 		return {
 			inventory: Game.player.inventory,

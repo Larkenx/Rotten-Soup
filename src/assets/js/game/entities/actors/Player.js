@@ -119,6 +119,7 @@ export default class Player extends Actor {
 			/* Interact */
 			69: 'interact',
 			/* Misc */
+			73: 'openInventory',
 			188: 'pickup',
 			71: 'pickup',
 			190: 'rest',
@@ -421,6 +422,15 @@ export default class Player extends Actor {
 
 	handleHelpScreenEvent(evt) {}
 
+	handleInventoryEvent(evt) {
+		let { keyCode } = evt
+		evt.preventDefault()
+		const exit = [ROT.VK_ESCAPE, ROT.VK_I]
+		if (exit.includes(keyCode)) {
+			Game.closeGameOverlayScreen()
+		}
+	}
+
 	handleNPCDialogueEvent(evt) {
 		let { keyCode } = evt
 		evt.preventDefault()
@@ -514,6 +524,8 @@ export default class Player extends Actor {
 			switch (Game.overlayData.component) {
 				case 'npc-dialogue':
 					return this.handleNPCDialogueEvent(evt)
+				case 'inventory-equipment-view':
+					return this.handleInventoryEvent(evt)
 				default:
 					console.error('Game is showing overlay for which the player cannot handle')
 			}
@@ -563,6 +575,8 @@ export default class Player extends Actor {
 				this.pickup()
 			} else if ((action === 'rest' && shiftPressed) || (action === 'pickup' && shiftPressed) || action === 'interact') {
 				this.climb()
+			} else if (action === 'openInventory') {
+				Game.openInventory()
 			} else if (action === 'fire' && !shiftPressed) {
 				let weapon = this.cb.equipment.weapon
 				let ammo = this.cb.equipment.ammo
