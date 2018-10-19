@@ -70,6 +70,7 @@ export default {
 		let uiWidth = this.width + this.hudWidth
 		this.widthOffset = clientWidth > uiWidth ? (clientWidth - uiWidth) / 2 : 0
 		this.heightOffset = clientHeight > this.height ? (clientHeight - this.height) / 2 : 0
+		Game.openInventory()
 	},
 	components: {
 		'game-overlay-view': gameOverlayView,

@@ -422,12 +422,58 @@ export default class Player extends Actor {
 
 	handleHelpScreenEvent(evt) {}
 
+	getSelectedItem() {
+		let selectedInventoryItemIndex = -1
+		let selectedItem = null
+		let contextMenuOpen = false
+		for (let index = 0; index < this.inventory.length; index++) {
+			let { selected, item, context } = this.inventory[index]
+			if (selected) {
+				selectedInventoryItemIndex = index
+				selectedItem = item
+				contextMenuOpen = context
+			}
+		}
+		console.log({ selectedInventoryItemIndex, selectedItem, contextMenuOpen })
+		return { selectedInventoryItemIndex, selectedItem, contextMenuOpen }
+	}
+
 	handleInventoryEvent(evt) {
 		let { keyCode } = evt
 		evt.preventDefault()
 		const exit = [ROT.VK_ESCAPE, ROT.VK_I]
-		if (exit.includes(keyCode)) {
-			Game.closeGameOverlayScreen()
+		const confirm = [ROT.VK_RETURN, ROT.VK_E]
+		const drop = [ROT.VK_D]
+		const up = [ROT.VK_UP, ROT.VK_NUMPAD8, ROT.VK_W, ROT.VK_K]
+		const down = [ROT.VK_DOWN, ROT.VK_NUMPAD2, ROT.VK_S, ROT.VK_J]
+		let { selectedInventoryItemIndex, selectedItem, contextMenuOpen } = this.getSelectedItem()
+		if (selectedInventoryItemIndex === -1) {
+			this.inventory[0].selected = true
+			selectedInventoryItemIndex = 0
+			selectedItem = this.inventory[0].item
+			contextMenuOpen = false
+		}
+
+		if (contextMenuOpen) {
+			if (exit.includes(keyCode)) {
+				this.inventory[index].context = false
+			} else if (confirm.includes(keyCode)) {
+				this.inventory[index].use()
+			} else if (drop.includes(keyCode)) {
+				this.inventory[index].drop()
+			}
+		} else {
+			if (exit.includes(keyCode)) {
+				Game.closeGameOverlayScreen()
+			} else if (up.includes(keyCode) || down.includes(keyCode)) {
+				let change = up.includes(keyCode) ? -1 : 1
+				let newSelectedIndex = selectedInventoryItemIndex + change
+				if (selectedInventoryItemIndex !== -1 && newSelectedIndex >= 0 && newSelectedIndex < this.inventory.length) {
+					this.inventory[selectedInventoryItemIndex].selected = false
+					this.inventory[newSelectedIndex].selected = true
+				}
+			} else if (confirm.includes(keyCode)) {
+			}
 		}
 	}
 

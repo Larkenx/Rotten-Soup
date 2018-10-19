@@ -12,3 +12,12 @@ export const materialTypes = {
 	ILIOTIUM: 'ILIOTIUM',
 	LEVANTIUM: 'LEVANTIUM'
 }
+
+export const itemTypes = {
+	ARMOR: 'ARMOR',
+	AMMUNITION: 'AMMUNITION',
+	WEAPONS: 'WEAPONS',
+	BOOKS: 'BOOKS',
+	POTIONS: 'POTIONS',
+	MISCELLANEOUS: 'MISCELLANEOUS'
+}
