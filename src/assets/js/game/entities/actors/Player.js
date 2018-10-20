@@ -157,6 +157,7 @@ export default class Player extends Actor {
 		this.selectSpell(this.cb.spells[0])
 		this.mouseEnabled = false
 		this.commandQueue = []
+		this.selectedItemSlot = { contextMenuOpen: false }
 	}
 
 	swapInventorySlots(origin, target) {
@@ -425,17 +426,18 @@ export default class Player extends Actor {
 	getSelectedItem() {
 		let selectedInventoryItemIndex = -1
 		let selectedItem = null
-		let contextMenuOpen = false
+		let context = false
+		let slot = null
 		for (let index = 0; index < this.inventory.length; index++) {
-			let { selected, item, context } = this.inventory[index]
+			let { selected, item, contextMenuOpen } = this.inventory[index]
 			if (selected) {
 				selectedInventoryItemIndex = index
 				selectedItem = item
-				contextMenuOpen = context
+				context = contextMenuOpen
+				slot = this.inventory[index]
 			}
 		}
-		console.log({ selectedInventoryItemIndex, selectedItem, contextMenuOpen })
-		return { selectedInventoryItemIndex, selectedItem, contextMenuOpen }
+		return { selectedInventoryItemIndex, selectedItem, contextMenuOpen: context, slot }
 	}
 
 	handleInventoryEvent(evt) {
@@ -446,7 +448,7 @@ export default class Player extends Actor {
 		const drop = [ROT.VK_D]
 		const up = [ROT.VK_UP, ROT.VK_NUMPAD8, ROT.VK_W, ROT.VK_K]
 		const down = [ROT.VK_DOWN, ROT.VK_NUMPAD2, ROT.VK_S, ROT.VK_J]
-		let { selectedInventoryItemIndex, selectedItem, contextMenuOpen } = this.getSelectedItem()
+		let { selectedInventoryItemIndex, selectedItem, contextMenuOpen, slot } = this.getSelectedItem()
 		if (selectedInventoryItemIndex === -1) {
 			this.inventory[0].selected = true
 			selectedInventoryItemIndex = 0
@@ -454,13 +456,18 @@ export default class Player extends Actor {
 			contextMenuOpen = false
 		}
 
+		// TODO: this must be friendly to vue set/get
+		this.selectedItemSlot = { ...slot }
+
 		if (contextMenuOpen) {
 			if (exit.includes(keyCode)) {
-				this.inventory[index].context = false
+				this.inventory[selectedInventoryItemIndex].contextMenuOpen = false
 			} else if (confirm.includes(keyCode)) {
-				this.inventory[index].use()
+				selectedItem.use()
+				this.inventory[selectedInventoryItemIndex].contextMenuOpen = false
 			} else if (drop.includes(keyCode)) {
-				this.inventory[index].drop()
+				selectedItem.drop()
+				this.inventory[selectedInventoryItemIndex].contextMenuOpen = false
 			}
 		} else {
 			if (exit.includes(keyCode)) {
@@ -468,11 +475,13 @@ export default class Player extends Actor {
 			} else if (up.includes(keyCode) || down.includes(keyCode)) {
 				let change = up.includes(keyCode) ? -1 : 1
 				let newSelectedIndex = selectedInventoryItemIndex + change
-				if (selectedInventoryItemIndex !== -1 && newSelectedIndex >= 0 && newSelectedIndex < this.inventory.length) {
+				let length = this.inventory.filter(s => s.item !== null).length
+				if (selectedInventoryItemIndex !== -1 && newSelectedIndex >= 0 && newSelectedIndex < length) {
 					this.inventory[selectedInventoryItemIndex].selected = false
 					this.inventory[newSelectedIndex].selected = true
 				}
 			} else if (confirm.includes(keyCode)) {
+				this.inventory[selectedInventoryItemIndex].contextMenuOpen = true
 			}
 		}
 	}
@@ -622,6 +631,12 @@ export default class Player extends Actor {
 			} else if ((action === 'rest' && shiftPressed) || (action === 'pickup' && shiftPressed) || action === 'interact') {
 				this.climb()
 			} else if (action === 'openInventory') {
+				let { selectedInventoryItemIndex, slot } = this.getSelectedItem()
+				if (selectedInventoryItemIndex === -1) {
+					this.inventory[0].selected = true
+					slot = this.inventory[0]
+				}
+				this.selectedItemSlot = slot
 				Game.openInventory()
 			} else if (action === 'fire' && !shiftPressed) {
 				let weapon = this.cb.equipment.weapon

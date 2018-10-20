@@ -9,6 +9,7 @@
 				v-show="overlayVisible()" 
 				:is="overlayData.component" 
 				:style="getGameOverlayStyling()" 
+				:positioning="getGameOverlayPositioning()"
 			/>
 			<!-- The HUD -->
 			<div id="hud" :style="getHUDStyling()" v-if="playerSelected">
@@ -70,7 +71,9 @@ export default {
 		let uiWidth = this.width + this.hudWidth
 		this.widthOffset = clientWidth > uiWidth ? (clientWidth - uiWidth) / 2 : 0
 		this.heightOffset = clientHeight > this.height ? (clientHeight - this.height) / 2 : 0
-		Game.openInventory()
+		/* Development */
+		// Game.openInventory()
+		// Game.player.inventory[0].selected = true
 	},
 	components: {
 		'game-overlay-view': gameOverlayView,
@@ -93,6 +96,14 @@ export default {
 		},
 		overlayVisible() {
 			return Game.overlayData.visible
+		},
+		getGameOverlayPositioning() {
+			return {
+				left: this.widthOffset + this.overlayOffset,
+				top: this.heightOffset + this.overlayOffset - this.footerHeight,
+				width: this.width - this.overlayOffset * 4,
+				height: this.height - this.overlayOffset * 4
+			}
 		},
 		getGameOverlayStyling() {
 			return {

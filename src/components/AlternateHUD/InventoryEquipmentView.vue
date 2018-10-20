@@ -1,11 +1,11 @@
 <template>
     <v-card class="pa-4 ma-4">
         <v-card-title class="display-1">
-            Inventory & Equipment
+            Equipment & Status
         </v-card-title>
         <v-layout justify-space-around>
             <div style="width: 650px;">
-                <inventory />
+                <inventory :positioning="positioning" />
             </div>
             <div style="width: 275px;">
                 <equipment />
@@ -20,6 +20,7 @@ import equipment from '@/components/AlternateHUD/Equipment.vue'
 
 export default {
 	name: 'inventory-equipment-view',
+	props: ['positioning'],
 	components: {
 		inventory: inventory,
 		equipment: equipment
