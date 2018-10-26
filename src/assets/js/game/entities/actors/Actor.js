@@ -98,6 +98,7 @@ export class Actor extends Entity {
 
 	addToInventory(newItem) {
 		if ('quantity' in newItem) {
+			// some items change textures on quantity changes (gold pieces)
 			if (newItem.updateQuantity !== undefined) {
 				newItem.updateQuantity()
 			}
@@ -106,29 +107,12 @@ export class Actor extends Entity {
 				let item = this.inventory[i]
 				if (item !== null && item.type === newItem.type) {
 					item.quantity += newItem.quantity
-					return item
+					return
 				}
 			}
 		}
 
-		let nextFreeIndex = null
-		for (let i = 0; i < this.inventory.length; i++) {
-			if (this.inventory[i] == null) {
-				nextFreeIndex = i
-				break
-			}
-		}
-		if (nextFreeIndex === null) {
-			Game.log('Your inventory is full! Drop something in order to pick this up.')
-			// if your item is in a chest and you try to pick it up, but your inventory is full,
-			// it will drop the item below you.
-			this.placeEntityBelow(newItem)
-			return newItem
-		}
-
-		this.inventory[nextFreeIndex] = newItem
-		// this.inventory[nextFreeIndex].action = newItem.use;
-		return this.inventory[nextFreeIndex]
+		this.inventory.push(newItem)
 	}
 
 	placeEntityBelow(entity) {

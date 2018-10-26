@@ -435,14 +435,27 @@ export default class Player extends Actor {
 		const closeContextMenu = () => {
 			this.inventoryContextMenuOpen = false
 		}
+		const resetSelectedItem = () => {
+			let { contextMenuOpen, selectedInventoryItemIndex, item } = this.selectedItemSlot
+			if (this.inventory[selectedInventoryItemIndex] !== null) {
+				this.selectedItemSlot = {
+					contextMenuOpen: false,
+					selectedInventoryItemIndex,
+					item: this.inventory[selectedInventoryItemIndex]
+				}
+			}
+
+			this.selectedItemSlot = null
+		}
 		if (this.selectedItemSlot === null) {
 			Object.assign(this.selectedItem, {
 				contextMenuOpen: false,
 				selectedInventoryItemIndex: 0,
-				slot: this.inventory[0]
+				item: this.inventory[0]
 			})
 		}
-		let { contextMenuOpen, selectedItemIndex, item } = this.selectedItemSlot
+		let { contextMenuOpen, selectedInventoryItemIndex, item } = this.selectedItemSlot
+
 		if (contextMenuOpen) {
 			if (exit.includes(keyCode)) {
 				closeContextMenu()
@@ -450,17 +463,13 @@ export default class Player extends Actor {
 				closeContextMenu()
 				item.use()
 				// if the item is gone on use
-				if (!this.hasExactItem(selectedItemSlot)) {
+				if (!this.hasExactItem(item)) {
 					// set the currently selected item as null OR next item
-					if (this.inventory[selectedInventoryItemIndex] !== null)
-						this.selectedItemSlot = this.inventory[selectedInventoryItemIndex]
-					else this.selectedItemSlot = null
+					resetSelectedItem()
 				}
 			} else if (drop.includes(keyCode)) {
 				closeContextMenu()
 				item.drop()
-				if (selectedInventoryItemIndex === 0) {
-				}
 			}
 		} else {
 			if (exit.includes(keyCode)) {
