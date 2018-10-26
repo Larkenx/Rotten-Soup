@@ -53,7 +53,7 @@
 				</div>
 			</v-layout>
 		</v-flex>
-		<v-dialog :v-model="anyContextMenuOpen()" :max-width="contextMenuWidth">
+		<v-dialog v-model="selectedItemSlot.contextMenuOpen" :max-width="contextMenuWidth">
 			<v-card :width="contextMenuWidth">
 				<v-card-title>
 					<v-layout justify-center>

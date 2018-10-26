@@ -140,12 +140,12 @@ export default class Player extends Actor {
 		this.addToInventory(createItem('HELMET', this.x, this.y, null, { materialType: materialTypes.BRONZE }))
 		this.addToInventory(createItem('BOOTS', this.x, this.y, null, { materialType: materialTypes.BRONZE }))
 
-		this.equip(this.inventory[0].item)
-		this.equip(this.inventory[1].item)
-		this.equip(this.inventory[2].item)
-		this.equip(this.inventory[3].item)
-		this.equip(this.inventory[4].item)
-		this.equip(this.inventory[5].item)
+		this.equip(this.inventory[0])
+		this.equip(this.inventory[1])
+		this.equip(this.inventory[2])
+		this.equip(this.inventory[3])
+		this.equip(this.inventory[4])
+		this.equip(this.inventory[5])
 
 		this.addToInventory(new Gold(this.x, this.y, 1388, 5))
 		this.addToInventory(createBow(this.x, this.y, 664))
@@ -157,7 +157,8 @@ export default class Player extends Actor {
 		this.selectSpell(this.cb.spells[0])
 		this.mouseEnabled = false
 		this.commandQueue = []
-		this.selectedItemSlot = { contextMenuOpen: false }
+		this.selectedItemSlot = null
+		this.inventoryContextMenuOpen = false
 	}
 
 	swapInventorySlots(origin, target) {
@@ -423,23 +424,6 @@ export default class Player extends Actor {
 
 	handleHelpScreenEvent(evt) {}
 
-	getSelectedItem() {
-		let selectedInventoryItemIndex = -1
-		let selectedItem = null
-		let context = false
-		let slot = null
-		for (let index = 0; index < this.inventory.length; index++) {
-			let { selected, item, contextMenuOpen } = this.inventory[index]
-			if (selected) {
-				selectedInventoryItemIndex = index
-				selectedItem = item
-				context = contextMenuOpen
-				slot = this.inventory[index]
-			}
-		}
-		return { selectedInventoryItemIndex, selectedItem, contextMenuOpen: context, slot }
-	}
-
 	handleInventoryEvent(evt) {
 		let { keyCode } = evt
 		evt.preventDefault()
@@ -448,26 +432,35 @@ export default class Player extends Actor {
 		const drop = [ROT.VK_D]
 		const up = [ROT.VK_UP, ROT.VK_NUMPAD8, ROT.VK_W, ROT.VK_K]
 		const down = [ROT.VK_DOWN, ROT.VK_NUMPAD2, ROT.VK_S, ROT.VK_J]
-		let { selectedInventoryItemIndex, selectedItem, contextMenuOpen, slot } = this.getSelectedItem()
-		if (selectedInventoryItemIndex === -1) {
-			this.inventory[0].selected = true
-			selectedInventoryItemIndex = 0
-			selectedItem = this.inventory[0].item
-			contextMenuOpen = false
+		const closeContextMenu = () => {
+			this.inventoryContextMenuOpen = false
 		}
-
-		// TODO: this must be friendly to vue set/get
-		this.selectedItemSlot = { ...slot }
-
+		if (this.selectedItemSlot === null) {
+			Object.assign(this.selectedItem, {
+				contextMenuOpen: false,
+				selectedInventoryItemIndex: 0,
+				slot: this.inventory[0]
+			})
+		}
+		let { contextMenuOpen, selectedItemIndex, item } = this.selectedItemSlot
 		if (contextMenuOpen) {
 			if (exit.includes(keyCode)) {
-				this.inventory[selectedInventoryItemIndex].contextMenuOpen = false
+				closeContextMenu()
 			} else if (confirm.includes(keyCode)) {
-				selectedItem.use()
-				this.inventory[selectedInventoryItemIndex].contextMenuOpen = false
+				closeContextMenu()
+				item.use()
+				// if the item is gone on use
+				if (!this.hasExactItem(selectedItemSlot)) {
+					// set the currently selected item as null OR next item
+					if (this.inventory[selectedInventoryItemIndex] !== null)
+						this.selectedItemSlot = this.inventory[selectedInventoryItemIndex]
+					else this.selectedItemSlot = null
+				}
 			} else if (drop.includes(keyCode)) {
-				selectedItem.drop()
-				this.inventory[selectedInventoryItemIndex].contextMenuOpen = false
+				closeContextMenu()
+				item.drop()
+				if (selectedInventoryItemIndex === 0) {
+				}
 			}
 		} else {
 			if (exit.includes(keyCode)) {
@@ -475,7 +468,7 @@ export default class Player extends Actor {
 			} else if (up.includes(keyCode) || down.includes(keyCode)) {
 				let change = up.includes(keyCode) ? -1 : 1
 				let newSelectedIndex = selectedInventoryItemIndex + change
-				let length = this.inventory.filter(s => s.item !== null).length
+				let length = this.inventory.filter(s => s !== null).length
 				if (selectedInventoryItemIndex !== -1 && newSelectedIndex >= 0 && newSelectedIndex < length) {
 					this.inventory[selectedInventoryItemIndex].selected = false
 					this.inventory[newSelectedIndex].selected = true
