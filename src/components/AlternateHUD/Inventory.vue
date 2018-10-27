@@ -21,6 +21,10 @@
 	color: #636363;
 }
 
+.v-expansion-panel__header {
+	padding: 0px;
+}
+
 /* .selectedItem {
 	background-color: green;
 	margin: 2px;
@@ -40,7 +44,42 @@
 
 <template>
 	<v-container fluid class="pa-0">
-		<v-flex xs12 v-for="(item, i) in inventory" v-bind:key="i">
+		<v-expansion-panel :value="selectedItemSlot.selectedInventoryItemIndex">
+			<v-expansion-panel-content class="expansion_panel_header" v-for="(item, i) in inventory" :key="i">
+				<v-layout slot="header" wrap align-center @click="selectItem(i)" >
+					<div>
+						<img v-bind:src="getInventorySprite(item.id)">
+					</div>
+					<div style="">
+						<span class="pl-2">{{item.name || item.type}}</span>
+					</div>
+					<div style="flex-grow: 1">
+						<span class="pl-2" style="color: #636363">{{item.cb && item.cb.equipped ? '[equipped]' : ''}}</span>
+					</div>
+				</v-layout>
+				<v-card>
+				<v-layout class="pa-4" justify-flex-start align-center>
+					{{ item.hoverInfo()}}
+				</v-layout>
+				<v-card-actions>
+					<v-spacer />
+					<v-btn class="text-xs-center"  flat color="yellow darken-4" @click="dropSelectedItem()">
+						<span style="border-bottom: 1px solid #f57f17">D</span>
+						<span style="padding-bottom: 1px">rop</span>
+					</v-btn>
+					<v-btn v-if="item.getAction()" class="text-xs-center" color="yellow darken-4" @click="useSelectedItem()">
+						<span style="border-bottom: 1px solid #fff">
+							{{item.getAction().slice(0,1)}}
+						</span>
+						<span style="padding-bottom: 1px">{{item.getAction().substring(1)}}</span>
+					</v-btn>
+				</v-card-actions>
+			</v-card>
+
+			</v-expansion-panel-content>
+		</v-expansion-panel>
+
+		<!-- <v-flex xs12 v-for="(item, i) in inventory" v-bind:key="i">
 			<v-layout wrap align-center :class="{selected_item: item === selectedItemSlot.item, unselected_item: item !== selectedItemSlot.item}" @click="selectItem(i)">
 				<div>
 					<img v-bind:src="getInventorySprite(item.id)">
@@ -77,7 +116,7 @@
 					</v-btn>
 				</v-card-actions>
 			</v-card>
-		</v-dialog>
+		</v-dialog> -->
 	</v-container>
 </template>
 

@@ -289,7 +289,7 @@ export default class Player extends Actor {
 
 	handleRangedFireEvent(evt) {
 		let { keyCode } = evt
-		evt.preventDefault()
+		// evt.preventDefault()
 		let cycleKeys = [9, 61, 187, 191]
 		let confirmKeys = [101, 13, 190, 110]
 		let exitKeys = [70, 27, 90, 88]
@@ -371,7 +371,7 @@ export default class Player extends Actor {
 
 	handleMagicEvent(evt) {
 		let { keyCode } = evt
-		evt.preventDefault()
+		// evt.preventDefault()
 		let cycleKeys = [9, 61, 187, 191]
 		let confirmKeys = [101, 13, 190, 110]
 		let exitKeys = [70, 27, 90, 88]
@@ -499,7 +499,7 @@ export default class Player extends Actor {
 
 	handleInventoryEvent(evt) {
 		let { keyCode } = evt
-		evt.preventDefault()
+		// evt.preventDefault()
 		const exit = [ROT.VK_ESCAPE, ROT.VK_I]
 		const confirm = [ROT.VK_RETURN, ROT.VK_E]
 		const drop = [ROT.VK_D]
@@ -535,7 +535,7 @@ export default class Player extends Actor {
 
 	handleNPCDialogueEvent(evt) {
 		let { keyCode } = evt
-		evt.preventDefault()
+		// evt.preventDefault()
 		const confirm = [ROT.VK_RETURN, ROT.VK_E]
 		const up = [ROT.VK_UP, ROT.VK_NUMPAD8, ROT.VK_W, ROT.VK_K]
 		const down = [ROT.VK_DOWN, ROT.VK_NUMPAD2, ROT.VK_S, ROT.VK_J]
@@ -649,7 +649,7 @@ export default class Player extends Actor {
 				return
 			}
 
-			evt.preventDefault()
+			// evt.preventDefault()
 
 			/* If the key event isn't repeated within the last 160 milliseconds (too soon), then we proceed but we keep track of this
 			 	key movement time */
