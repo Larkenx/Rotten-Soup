@@ -40,21 +40,21 @@
 
 <template>
 	<v-container fluid class="pa-0">
-		<v-flex xs12 v-for="(cell, i) in getInventory()" v-bind:key="i">
-			<v-layout wrap align-center :class="{selected_item: cell.selected , unselected_item: !cell.selected}" @click="cell.item.use()">
+		<v-flex xs12 v-for="(item, i) in inventory" v-bind:key="i">
+			<v-layout wrap align-center :class="{selected_item: item === selectedItemSlot.item, unselected_item: item !== selectedItemSlot.item}" @click="selectItem(i)">
 				<div>
-					<img v-bind:src="getInventorySprite(cell.item.id)">
+					<img v-bind:src="getInventorySprite(item.id)">
 				</div>
 				<div style="">
-					<span class="pl-2">{{cell.item.name || cell.item.type}}</span>
+					<span class="pl-2">{{item.name || item.type}}</span>
 				</div>
 				<div style="flex-grow: 1">
-					<span class="pl-2" style="color: #636363">{{cell.item.cb && cell.item.cb.equipped ? '[equipped]' : ''}}</span>
+					<span class="pl-2" style="color: #636363">{{item.cb && item.cb.equipped ? '[equipped]' : ''}}</span>
 				</div>
 			</v-layout>
 		</v-flex>
 		<v-dialog v-model="selectedItemSlot.contextMenuOpen" :max-width="contextMenuWidth">
-			<v-card :width="contextMenuWidth">
+			<v-card v-if="selectedItemSlot.item !== null" :width="contextMenuWidth">
 				<v-card-title>
 					<v-layout justify-center>
 						<span>{{selectedItemSlot.item.name || selectedItemSlot.item.type}}</span>
@@ -65,14 +65,15 @@
 				</v-layout>
 				<v-card-actions>
 					<v-spacer />
-					<v-btn flat color="yellow darken-4">
-						<span style="border-bottom: 1px solid #f57f17">D</span>rop
+					<v-btn class="text-xs-center"  flat color="yellow darken-4" @click="dropSelectedItem()">
+						<span style="border-bottom: 1px solid #f57f17">D</span>
+						<span style="padding-bottom: 1px">rop</span>
 					</v-btn>
-					<v-btn color="yellow darken-4">
+					<v-btn v-if="selectedItemSlot.item.getAction()" class="text-xs-center" color="yellow darken-4" @click="useSelectedItem()">
 						<span style="border-bottom: 1px solid #fff">
 							{{selectedItemSlot.item.getAction().slice(0,1)}}
 						</span>
-						{{selectedItemSlot.item.getAction().substring(1)}}
+						<span style="padding-bottom: 1px">{{selectedItemSlot.item.getAction().substring(1)}}</span>
 					</v-btn>
 				</v-card-actions>
 			</v-card>
@@ -114,19 +115,6 @@ export default {
 			const [oldIndex, newIndex, dragEvent] = args
 			return Game.player.swapInventorySlots(oldIndex, newIndex)
 		},
-		useItem(cell, evt) {
-			// drop cell.item
-			if (evt.shiftKey) {
-				cell.item.drop()
-			} else {
-				// use cell.item
-				cell.item.use()
-			}
-		},
-		dropItem(cell, evt) {
-			// drop cell.item
-			cell.item.drop()
-		},
 		getInventory() {
 			this.inventory = Game.player.inventory
 			return Game.player.inventory.filter(s => s.item !== null)
@@ -145,6 +133,16 @@ export default {
 		getSelectedItemSlot() {
 			return this.selectedItemSlot
 		},
+		useSelectedItem() {
+			Game.player.useSelectedItem()
+		},
+		dropSelectedItem() {
+			Game.player.dropSelectedItem()
+		},
+		selectItem(index) {
+			console.log(index)
+			Game.player.selectItemAtIndex(index)
+		},
 		surroundFirstCharacterWithParens(s) {
 			return `(${s.slice(0, 1)})` + s.substring(1)
 		},
@@ -157,6 +155,10 @@ export default {
 			return this.inventory.reduce((p, v) => {
 				return p || v.contextMenuOpen
 			})
+		},
+		selectedItem(item) {
+			console.log(item === this.selectedItemSlot.item)
+			return item === this.selectedItemSlot.item
 		}
 	}
 }

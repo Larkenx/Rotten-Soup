@@ -72,7 +72,7 @@ export default {
 		this.widthOffset = clientWidth > uiWidth ? (clientWidth - uiWidth) / 2 : 0
 		this.heightOffset = clientHeight > this.height ? (clientHeight - this.height) / 2 : 0
 		/* Development */
-		// Game.openInventory()
+		Game.openInventory()
 		// Game.player.inventory[0].selected = true
 	},
 	components: {

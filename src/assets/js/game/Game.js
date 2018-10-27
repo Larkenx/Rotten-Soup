@@ -520,6 +520,7 @@ export let Game = {
 	openInventory() {
 		this.overlayData.component = 'inventory-equipment-view'
 		this.overlayData.visible = true
+		this.player.initializeSelectedItem()
 	},
 
 	openNPCDialog(dialogue) {

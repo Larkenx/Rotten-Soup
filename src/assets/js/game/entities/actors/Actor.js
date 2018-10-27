@@ -124,8 +124,6 @@ export class Actor extends Entity {
 		}
 	}
 
-	// expressly want to just remove the item from the inventory.
-	// no actions are taken to mutate the item (like unequipping it from the player - this is done in those classes)
 	removeFromInventory(removeItem) {
 		let idx = this.inventory.findIndex(i => {
 			return Object.is(removeItem, i)
