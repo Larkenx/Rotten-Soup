@@ -1,42 +1,42 @@
 <template>
   <!-- Equipment View  -->
-  <v-container class="pa-0">
+  <v-container class="pa-2">
     <!-- Helmet, Arrows  -->
-    <v-layout style="margin-top: 4px;">
-      <v-flex class="filler" xs2 v-for="i in 1" :key="i" />
-      <v-flex xs2 class="filler">
-        <item-slot :item="equipment.head" altSprite="../static/images/equipment_placeholders/head.png" index="head" />
-      </v-flex>
-      <v-flex xs2 class="filler">
-        <item-slot :item="equipment.ammo" altSprite="../static/images/equipment_placeholders/quiver.png" index="ammo" />
-      </v-flex>
+    <v-layout style="margin-top: 4px;" align-content-end>
+      <div class="filler" v-for="i in 1" :key="i" />
+      <div class="filler">
+        <item-slot :item="equipment.head" altSprite="../static/images/equipment_placeholders/head.png" :tooltip-configuration="{top: true}" index="head" />
+      </div>
+      <div class="filler">
+        <item-slot :item="equipment.ammo" altSprite="../static/images/equipment_placeholders/quiver.png" index="ammo" :tooltip-configuration="{right: true}" />
+      </div>
     </v-layout>
     <!-- Main, Torso, Off-hand  -->
-    <v-layout style="margin-top: 4px;">
-      <!-- <v-flex class="filler" xs2 v-for="i in 1" :key="i"/> -->
-      <v-flex xs2 class="filler">
-        <item-slot :item="equipment.weapon" altSprite="../static/images/equipment_placeholders/sword.png" index="weapon" />
-      </v-flex>
-      <v-flex xs2 class="filler">
-        <item-slot :item="equipment.torso" altSprite="../static/images/equipment_placeholders/chest-armor.png" index="torso" />
-      </v-flex>
+    <v-layout style="margin-top: 4px;" align-content-end>
+      <!-- <div class="filler"  v-for="i in 1" :key="i"/> -->
+      <div class="filler">
+        <item-slot :item="equipment.weapon" altSprite="../static/images/equipment_placeholders/sword.png" index="weapon" :tooltip-configuration="{left: true}" />
+      </div>
+      <div class="filler">
+        <item-slot :item="equipment.torso" altSprite="../static/images/equipment_placeholders/chest-armor.png" index="torso" :tooltip-configuration="{right: true}" />
+      </div>
     </v-layout>
     <!-- Legs  -->
-    <v-layout style="margin-top: 4px;">
-      <!-- <v-flex class="filler" xs2 v-for="i in 1" :key="i"/> -->
-      <v-flex xs2 class="filler">
-        <item-slot :item="equipment.ring" altSprite="../static/images/equipment_placeholders/ring.png" index="weapon" />
-      </v-flex>
-      <v-flex xs2 class="filler">
-        <item-slot :item="equipment.legs" altSprite="../static/images/equipment_placeholders/leg-pants.png" index="legs" />
-      </v-flex>
+    <v-layout style="margin-top: 4px;" align-content-end>
+      <!-- <div class="filler"  v-for="i in 1" :key="i"/> -->
+      <div class="filler">
+        <item-slot :item="equipment.ring" altSprite="../static/images/equipment_placeholders/ring.png" index="weapon" :tooltip-configuration="{left: true}" />
+      </div>
+      <div class="filler">
+        <item-slot :item="equipment.legs" altSprite="../static/images/equipment_placeholders/leg-pants.png" index="legs" :tooltip-configuration="{right: true}" />
+      </div>
     </v-layout>
     <!-- Boots  -->
-    <v-layout style="margin-top: 4px;">
-      <v-flex class="filler" xs2 v-for="i in 1" :key="i" />
-      <v-flex xs2 class="filler">
-        <item-slot :item="equipment.boots" altSprite="../static/images/equipment_placeholders/boots.png" index="boots" />
-      </v-flex>
+    <v-layout style="margin-top: 4px;" align-content-end>
+      <div class="filler" v-for="i in 1" :key="i" />
+      <div class="filler">
+        <item-slot :item="equipment.boots" altSprite="../static/images/equipment_placeholders/boots.png" index="boots" :tooltip-configuration="{right: true}" />
+      </div>
     </v-layout>
   </v-container>
 </template>
@@ -51,7 +51,8 @@ export default {
 	},
 	data() {
 		return {
-			equipment: Game.player.cb.equipment // head, torso, legs, weapon, ammo
+			equipment: Game.player.cb.equipment, // head, torso, legs, weapon, ammo,
+			config: { top: false, bottom: false, left: false, right: false }
 		}
 	}
 }

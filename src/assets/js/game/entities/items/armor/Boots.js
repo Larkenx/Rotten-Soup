@@ -2,7 +2,7 @@ import Armor from '#/entities/items/armor/Armor.js'
 import { materialTypes } from '#/utils/Constants.js'
 import { getRandomInt } from '#/utils/HelperFunctions.js'
 export default class Boots extends Armor {
-	constructor(x, y, def, name, id) {
+	constructor(x, y, def, name, id, materialType) {
 		super(x, y, {
 			id: id,
 			name: name,
@@ -11,7 +11,8 @@ export default class Boots extends Armor {
 			combat: {
 				def,
 				equipmentSlot: 'boots'
-			}
+			},
+			materialType
 		})
 	}
 }
@@ -32,18 +33,18 @@ const materialTextures = {
 }
 
 const armorShop = {
-	[materialTypes.BRONZE]: (x, y, t) => new Boots(x, y, 1, 'Bronze Boots', t),
-	[materialTypes.IRON]: (x, y, t) => new Boots(x, y, 1, 'Iron Boots', t),
-	[materialTypes.STEEL]: (x, y, t) => new Boots(x, y, 2, 'Steel Boots', t),
-	[materialTypes.MITHRIL]: (x, y, t) => new Boots(x, y, 2, 'Mithril Boots', t),
-	[materialTypes.ADAMANTIUM]: (x, y, t) => new Boots(x, y, 3, 'Adamantium Boots', t),
-	[materialTypes.ORICHALCUM]: (x, y, t) => new Boots(x, y, 3, 'Orichalcum Boots', t),
-	[materialTypes.VULCANITE]: (x, y, t) => new Boots(x, y, 4, 'Vulcanite Boots', t),
-	[materialTypes.AQUANITE]: (x, y, t) => new Boots(x, y, 4, 'Aquanite Boots', t),
-	[materialTypes.VRONITE]: (x, y, t) => new Boots(x, y, 5, 'Vronite Boots', t),
-	[materialTypes.LOULOUDIUM]: (x, y, t) => new Boots(x, y, 5, 'Louloudium Boots', t),
-	[materialTypes.ILIOTIUM]: (x, y, t) => new Boots(x, y, 6, 'Iliotium Boots', t),
-	[materialTypes.LEVANTIUM]: (x, y, t) => new Boots(x, y, 6, 'Levantium Boots', t)
+	[materialTypes.BRONZE]: (x, y, t) => new Boots(x, y, 1, 'Bronze Boots', t, materialTypes.BRONZE),
+	[materialTypes.IRON]: (x, y, t) => new Boots(x, y, 1, 'Iron Boots', t, materialTypes.IRON),
+	[materialTypes.STEEL]: (x, y, t) => new Boots(x, y, 2, 'Steel Boots', t, materialTypes.STEEL),
+	[materialTypes.MITHRIL]: (x, y, t) => new Boots(x, y, 2, 'Mithril Boots', t, materialTypes.MITHRIL),
+	[materialTypes.ADAMANTIUM]: (x, y, t) => new Boots(x, y, 3, 'Adamantium Boots', t, materialTypes.ADAMANTIUM),
+	[materialTypes.ORICHALCUM]: (x, y, t) => new Boots(x, y, 3, 'Orichalcum Boots', t, materialTypes.ORICHALCUM),
+	[materialTypes.VULCANITE]: (x, y, t) => new Boots(x, y, 4, 'Vulcanite Boots', t, materialTypes.VULCANITE),
+	[materialTypes.AQUANITE]: (x, y, t) => new Boots(x, y, 4, 'Aquanite Boots', t, materialTypes.AQUANITE),
+	[materialTypes.VRONITE]: (x, y, t) => new Boots(x, y, 5, 'Vronite Boots', t, materialTypes.VRONITE),
+	[materialTypes.LOULOUDIUM]: (x, y, t) => new Boots(x, y, 5, 'Louloudium Boots', t, materialTypes.LOULOUDIUM),
+	[materialTypes.ILIOTIUM]: (x, y, t) => new Boots(x, y, 6, 'Iliotium Boots', t, materialTypes.ILIOTIUM),
+	[materialTypes.LEVANTIUM]: (x, y, t) => new Boots(x, y, 6, 'Levantium Boots', t, materialTypes.LEVANTIUM)
 }
 
 export function createBoots(x, y, id, options) {
@@ -54,6 +55,6 @@ export function createBoots(x, y, id, options) {
 		return armorShop[materialType](x, y, texture)
 	} else {
 		console.error(`Material Type: ${materialType} not found in material type armor shop.`)
-		return new Boots(x, y, 1, 'Bronze Boots', 11691)
+		return new Boots(x, y, 1, 'Bronze Boots', 11691, null)
 	}
 }

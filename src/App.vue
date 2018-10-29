@@ -92,18 +92,18 @@ export default {
 
 /* Track */
 ::-webkit-scrollbar-track {
-	background: #8d8d8d;
+	background: #4f4f4f;
 	border-radius: 3px;
 }
 
 /* Handle */
 ::-webkit-scrollbar-thumb {
-	background: #4f4f4f;
+	background: #8d8d8d;
 	border-radius: 3px;
 }
 
 /* Handle on hover */
 ::-webkit-scrollbar-thumb:hover {
-	background: #353535;
+	background: #818181;
 }
 </style>

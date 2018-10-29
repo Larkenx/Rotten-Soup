@@ -362,7 +362,7 @@ export class Actor extends Entity {
 		// dump the contents of the actor's inventory (items) onto the ground.
 		const numberOfEntities = Game.display.background.children.length
 
-		let items = thiss()
+		let items = this.inventory
 		for (let item of items) {
 			this.dropItem(item)
 		}

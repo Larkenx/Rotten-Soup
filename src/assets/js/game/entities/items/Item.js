@@ -18,7 +18,7 @@ export default class Item extends Entity {
 
 	/* UI / Front End functions */
 	hoverInfo() {
-		return `${this.type}${this.name}\n`
+		return []
 	}
 
 	clipLocation() {

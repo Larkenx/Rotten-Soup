@@ -1,5 +1,5 @@
-<template lang="html">
-  <network ref="network" class="network" :nodes="nodes" :edges="edges" :options="options"/>
+<template >
+	<network ref="network" class="network" :nodes="nodes" :edges="edges" :options="options" />
 </template>
 
 <script>
@@ -59,9 +59,9 @@ export default {
 
 <style lang="css">
 .network {
-  background-color: darkgrey;
-  border: 1px solid #ccc;
-  height: 100%;
-  margin: 5px 0;
+	background-color: darkgrey;
+	border: 1px solid #ccc;
+	height: 100%;
+	margin: 5px 0;
 }
 </style>

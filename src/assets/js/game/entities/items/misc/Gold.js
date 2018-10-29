@@ -25,6 +25,12 @@ export default class Gold extends Item {
 	}
 
 	hoverInfo() {
+		return [
+			{
+				attribute: 'Quantity',
+				value: `${this.quantity}`
+			}
+		]
 		return `Quantity: ${this.quantity}`
 	}
 }

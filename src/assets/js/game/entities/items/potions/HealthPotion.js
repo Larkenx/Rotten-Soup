@@ -17,6 +17,12 @@ export default class HealthPotion extends Potion {
 	}
 
 	hoverInfo() {
+		return [
+			{
+				attribute: 'Effect',
+				value: `Heals for 25 HP`
+			}
+		]
 		return 'Effect: Heals for 25 HP'
 	}
 }

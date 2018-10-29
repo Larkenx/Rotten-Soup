@@ -2,7 +2,7 @@ import Armor from '#/entities/items/armor/Armor.js'
 import { materialTypes } from '#/utils/Constants.js'
 import { getRandomInt } from '#/utils/HelperFunctions.js'
 export default class Helmet extends Armor {
-	constructor(x, y, def, name, id) {
+	constructor(x, y, def, name, id, materialType) {
 		super(x, y, {
 			id: id,
 			name: name,
@@ -11,7 +11,8 @@ export default class Helmet extends Armor {
 			combat: {
 				def,
 				equipmentSlot: 'head'
-			}
+			},
+			materialType
 		})
 	}
 }
@@ -32,18 +33,18 @@ const materialTextures = {
 }
 
 const armorShop = {
-	[materialTypes.BRONZE]: (x, y, t) => new Helmet(x, y, 1, 'Bronze Helmet', t),
-	[materialTypes.IRON]: (x, y, t) => new Helmet(x, y, 1, 'Iron Helmet', t),
-	[materialTypes.STEEL]: (x, y, t) => new Helmet(x, y, 2, 'Steel Helmet', t),
-	[materialTypes.MITHRIL]: (x, y, t) => new Helmet(x, y, 2, 'Mithril Helmet', t),
-	[materialTypes.ADAMANTIUM]: (x, y, t) => new Helmet(x, y, 3, 'Adamantium Helmet', t),
-	[materialTypes.ORICHALCUM]: (x, y, t) => new Helmet(x, y, 3, 'Orichalcum Helmet', t),
-	[materialTypes.VULCANITE]: (x, y, t) => new Helmet(x, y, 4, 'Vulcanite Helmet', t),
-	[materialTypes.AQUANITE]: (x, y, t) => new Helmet(x, y, 4, 'Aquanite Helmet', t),
-	[materialTypes.VRONITE]: (x, y, t) => new Helmet(x, y, 6, 'Vronite Helmet', t),
-	[materialTypes.LOULOUDIUM]: (x, y, t) => new Helmet(x, y, 6, 'Louloudium Helmet', t),
-	[materialTypes.ILIOTIUM]: (x, y, t) => new Helmet(x, y, 7, 'Iliotium Helmet', t),
-	[materialTypes.LEVANTIUM]: (x, y, t) => new Helmet(x, y, 7, 'Levantium Helmet', t)
+	[materialTypes.BRONZE]: (x, y, t) => new Helmet(x, y, 1, 'Bronze Helmet', t, materialTypes.BRONZE),
+	[materialTypes.IRON]: (x, y, t) => new Helmet(x, y, 1, 'Iron Helmet', t, materialTypes.IRON),
+	[materialTypes.STEEL]: (x, y, t) => new Helmet(x, y, 2, 'Steel Helmet', t, materialTypes.STEEL),
+	[materialTypes.MITHRIL]: (x, y, t) => new Helmet(x, y, 2, 'Mithril Helmet', t, materialTypes.MITHRIL),
+	[materialTypes.ADAMANTIUM]: (x, y, t) => new Helmet(x, y, 3, 'Adamantium Helmet', t, materialTypes.ADAMANTIUM),
+	[materialTypes.ORICHALCUM]: (x, y, t) => new Helmet(x, y, 3, 'Orichalcum Helmet', t, materialTypes.ORICHALCUM),
+	[materialTypes.VULCANITE]: (x, y, t) => new Helmet(x, y, 4, 'Vulcanite Helmet', t, materialTypes.VULCANITE),
+	[materialTypes.AQUANITE]: (x, y, t) => new Helmet(x, y, 4, 'Aquanite Helmet', t, materialTypes.AQUANITE),
+	[materialTypes.VRONITE]: (x, y, t) => new Helmet(x, y, 6, 'Vronite Helmet', t, materialTypes.VRONITE),
+	[materialTypes.LOULOUDIUM]: (x, y, t) => new Helmet(x, y, 6, 'Louloudium Helmet', t, materialTypes.LOULOUDIUM),
+	[materialTypes.ILIOTIUM]: (x, y, t) => new Helmet(x, y, 7, 'Iliotium Helmet', t, materialTypes.ILIOTIUM),
+	[materialTypes.LEVANTIUM]: (x, y, t) => new Helmet(x, y, 7, 'Levantium Helmet', t, materialTypes.LEVANTIUM)
 }
 
 export function createHelmet(x, y, id, options) {
@@ -54,6 +55,6 @@ export function createHelmet(x, y, id, options) {
 		return armorShop[materialType](x, y, texture)
 	} else {
 		console.error(`Material Type: ${materialType} not found in material type armor shop.`)
-		return new Helmet(x, y, 1, 'Bronze Helmet', 11679)
+		return new Helmet(x, y, 1, 'Bronze Helmet', 11679, null)
 	}
 }

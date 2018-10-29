@@ -12,7 +12,7 @@
                     <h2 class="pa-1">Controls</h2>
                 </v-card-text>
                 <v-card-text>
-                    <v-expansion-panel>
+                    <v-expansion-panel popout>
                         <v-expansion-panel-content>
                             <div slot="header">All Keybinds</div>
                             <v-card flat>

@@ -1,27 +1,36 @@
-<template lang="html">
-  <div class="item_slot pa-0 ma-0 text-xs-center">
-      <v-tooltip open-delay="200" bottom v-if="item !== null" align-center>
-          <p class="text-xs-center ma-0">
-              {{item.getAction()}} {{item.type}}
-              <br />
-              <span v-if="'name' in item">{{"Name: " + item.name}}<br /></span> {{item.hoverInfo()}}
-          </p>
-          <v-layout style="max-height: 32px; max-width: 32px; margin: auto;"  ripple v-on:click="useItem(item, $event)" v-if="item !== null" slot="activator"  row>
-              <v-badge overlay bottom color="transparent" overlap style="max-height: 32px; max-width: 32px;">
-                  <span v-if="item.quantity !== undefined" slot="badge" dark>
-                              <b>{{item.quantity}}</b>
-                          </span>
-                  <img v-bind:src="getInventorySprite(item.id)" />
-              </v-badge>
-          </v-layout>
-      </v-tooltip>
-      <img v-else-if="altSprite !== null" v-bind:src="altSprite" width="35" height="35" style="opacity: 0.5"/>
-  </div>
+<template>
+	<v-tooltip open-delay="200" v-if="item !== null" align-center v-bind="tooltipConfiguration">
+		<v-card width="40px" height="40px" style="cursor: pointer" slot="activator">
+			<v-layout column justify-center align-center fill-height>
+				<div class="item_slot pa-0 ma-0">
+					<v-layout ripple v-on:click="useItem(item, $event)" v-if="item !== null" row>
+						<v-badge overlay bottom color="transparent" overlap style="max-height: 32px; max-width: 32px;">
+							<span v-if="item.quantity !== undefined" slot="badge" dark>
+								<b>{{item.quantity}}</b>
+							</span>
+							<img v-bind:src="getInventorySprite(item.id)" />
+						</v-badge>
+					</v-layout>
+					<img v-else-if="altSprite !== null" v-bind:src="altSprite" width="32px" height="32px" style="opacity: 0.5" />
+				</div>
+			</v-layout>
+		</v-card>
+		<p class="text-xs-center ma-0">
+			{{item.getAction()}} {{item.type}}
+		</p>
+	</v-tooltip>
+	<v-card v-else width="40px" height="40px">
+		<v-layout column justify-center align-center fill-height>
+			<div class="item_slot pa-0 ma-0">
+				<img v-if="altSprite !== null" v-bind:src="altSprite" width="32px" height="32px" style="opacity: 0.5" />
+			</div>
+		</v-layout>
+	</v-card>
 </template>
 
 <script>
 export default {
-	props: ['item', 'altSprite'],
+	props: ['item', 'altSprite', 'tooltipConfiguration'],
 	methods: {
 		getInventorySprite(id) {
 			return `../static/images/inventory_sprites/${id}.png`
@@ -49,20 +58,10 @@ export default {
 }
 </script>
 <style>
-.inventory_row {
-	/*margin-left: 10px;*/
-}
-
 .item_slot {
-	border: 2px solid #4f4f4f;
-	background-color: #294646;
+	background-color: #424242;
 	border-radius: 4px;
-	width: 40px;
-	height: 40px;
-}
-/* #172525 */
-.item_slot:hover {
-	background-color: #698394;
-	cursor: pointer;
+	width: 32px;
+	height: 32px;
 }
 </style>

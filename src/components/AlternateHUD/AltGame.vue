@@ -1,4 +1,4 @@
-<template lang="html">
+<template >
   <v-container class="pa-0" fill-height>
     <div class="pa-0" v-show="playerSelected">
 		<div id="root_container">
@@ -99,24 +99,26 @@ export default {
 		},
 		getGameOverlayPositioning() {
 			return {
-				left: this.widthOffset + this.overlayOffset,
-				top: this.heightOffset + this.overlayOffset - this.footerHeight,
-				width: this.width - this.overlayOffset * 4,
-				height: this.height - this.overlayOffset * 4
+				left: this.widthOffset + this.overlayOffset / 2,
+				top: this.heightOffset - this.footerHeight + this.overlayOffset / 2,
+				width: this.width + this.borderWidth - this.overlayOffset,
+				height: this.height + this.borderWidth - this.overlayOffset
 			}
 		},
 		getGameOverlayStyling() {
 			return {
-				left: this.widthOffset + this.overlayOffset + 'px',
-				top: this.heightOffset + this.overlayOffset - this.footerHeight + 'px',
-				width: this.width - this.overlayOffset * 4 + 'px',
-				height: this.height - this.overlayOffset * 4 + 'px'
+				left: this.widthOffset + this.overlayOffset / 2 + 'px',
+				top: this.heightOffset - this.footerHeight + this.overlayOffset / 2 + 'px',
+				width: this.width + this.borderWidth - this.overlayOffset + 'px',
+				height: this.height + this.borderWidth - this.overlayOffset + 'px'
 			}
 		},
 		getGameContainerStyling() {
 			return {
-				left: this.widthOffset + 0 + 'px',
-				top: this.heightOffset - this.footerHeight + 'px'
+				left: this.widthOffset + 'px',
+				top: this.heightOffset - this.footerHeight + 'px',
+				width: this.width + this.borderWidth + 'px',
+				height: this.height + this.borderWidth + 'px'
 			}
 		},
 		getHUDStyling() {
@@ -174,9 +176,9 @@ canvas {
 
 /* Overriding Vuetify's tool tip so that it is centered :) */
 
-[data-tooltip] {
-	position: relative;
+div.v-tooltip__content {
 	text-align: center;
+	opacity: 1 !important;
 }
 
 .modal {

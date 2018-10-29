@@ -133,20 +133,13 @@ export default class Player extends Actor {
 		// Give the player a few starting items:
 		// - a health potion
 		// - a random sword (equip the sword)
-		this.addToInventory(createItem('SWORD', this.x, this.y, null, { materialType: materialTypes.BRONZE }))
-		this.addToInventory(createItem('BATTLEAXE', this.x, this.y, null, { materialType: materialTypes.BRONZE }))
-		this.addToInventory(createItem('CHEST_ARMOR', this.x, this.y, null, { materialType: materialTypes.BRONZE }))
-		this.addToInventory(createItem('LEG_ARMOR', this.x, this.y, null, { materialType: materialTypes.BRONZE }))
-		this.addToInventory(createItem('HELMET', this.x, this.y, null, { materialType: materialTypes.BRONZE }))
-		this.addToInventory(createItem('BOOTS', this.x, this.y, null, { materialType: materialTypes.BRONZE }))
+		this.addToInventory(
+			createItem('SWORD', this.x, this.y, null, {
+				materialType: materialTypes.BRONZE
+			})
+		)
 
 		this.equip(this.inventory[0])
-		this.equip(this.inventory[1])
-		this.equip(this.inventory[2])
-		this.equip(this.inventory[3])
-		this.equip(this.inventory[4])
-		this.equip(this.inventory[5])
-
 		this.addToInventory(new Gold(this.x, this.y, 1388, 5))
 		this.addToInventory(createBow(this.x, this.y, 664))
 		this.addToInventory(new SteelArrow(this.x, this.y, 784, 7))
@@ -157,8 +150,10 @@ export default class Player extends Actor {
 		this.selectSpell(this.cb.spells[0])
 		this.mouseEnabled = false
 		this.commandQueue = []
-		this.selectedItemSlot = { contextMenuOpen: false, item: null, selectedInventoryItemIndex: null }
-		this.inventoryContextMenuOpen = false
+		this.selectedItemSlot = {
+			item: null,
+			index: null
+		}
 	}
 
 	swapInventorySlots(origin, target) {
@@ -427,15 +422,21 @@ export default class Player extends Actor {
 	resetSelectedItem() {}
 
 	initializeSelectedItem() {
-		const initialSelectedInventoryItemSlot = { contextMenuOpen: false, selectedInventoryItemIndex: null, item: null }
+		const initialSelectedInventoryItemSlot = {
+			contextMenuOpen: false,
+			index: null,
+			item: null
+		}
 		if (this.inventory.length !== 0) {
 			this.selectedItemSlot = {
 				contextMenuOpen: false,
-				selectedInventoryItemIndex: 0,
+				index: 0,
 				item: this.inventory[0]
 			}
 		} else {
-			this.selectedItemSlot = { ...initialSelectedInventoryItemSlot }
+			this.selectedItemSlot = {
+				...initialSelectedInventoryItemSlot
+			}
 		}
 	}
 
@@ -455,7 +456,7 @@ export default class Player extends Actor {
 		setTimeout(() => {
 			if (this.inventory.length === 1) {
 				this.selectedItemSlot.item = null
-				this.selectedItemSlot.selectedInventoryItemIndex = null
+				this.selectedItemSlot.index = null
 				this.inventory[0].drop()
 			} else {
 				this.selectedItemSlot.item.drop()
@@ -464,69 +465,99 @@ export default class Player extends Actor {
 		}, 250)
 	}
 
-	closeContextMenu() {
-		this.selectedItemSlot.contextMenuOpen = false
-	}
+	closeContextMenu() {}
 
 	resetSelectedItem() {
-		let { selectedInventoryItemIndex } = this.selectedItemSlot
+		let { index } = this.selectedItemSlot
 		// if there's a next item after the current item in the inventory,
 		// then select it
-		if (this.inventory.length > selectedInventoryItemIndex) {
-			this.selectedItemSlot.contextMenuOpen = false
-			this.selectedItemSlot.item = this.inventory[selectedInventoryItemIndex]
+		if (this.inventory.length > index) {
+			this.selectedItemSlot.item = this.inventory[index]
 			// otherwise, if there isn't an item next to the existing one in the inventory
 			// select the previous item
-		} else if (this.inventory.length > selectedInventoryItemIndex - 1) {
-			this.selectedItemSlot.contextMenuOpen = false
-			this.selectedItemSlot.selectedInventoryItemIndex = selectedInventoryItemIndex - 1
-			this.selectedItemSlot.item = this.inventory[selectedInventoryItemIndex - 1]
+		} else if (this.inventory.length > index - 1) {
+			this.selectedItemSlot.index = index - 1
+			this.selectedItemSlot.item = this.inventory[index - 1]
 			// finally, if that doesn't work then we can select nothing
 		} else {
-			this.selectedItemSlot.contextMenuOpen = false
 			this.selectedItemSlot.item = null
-			this.selectedItemSlot.selectedInventoryItemIndex = null
+			this.selectedItemSlot.index = null
 		}
 	}
 
 	selectItemAtIndex(index) {
 		if (index < this.inventory.length) {
-			this.selectedItemSlot.contextMenuOpen = true
 			this.selectedItemSlot.item = this.inventory[index]
-			this.selectedItemSlot.selectedInventoryItemIndex = index
+			this.selectedItemSlot.index = index
 		}
 	}
 
 	handleInventoryEvent(evt) {
 		let { keyCode } = evt
+
 		// evt.preventDefault()
 		const exit = [ROT.VK_ESCAPE, ROT.VK_I]
 		const confirm = [ROT.VK_RETURN, ROT.VK_E]
 		const drop = [ROT.VK_D]
 		const up = [ROT.VK_UP, ROT.VK_NUMPAD8, ROT.VK_W, ROT.VK_K]
 		const down = [ROT.VK_DOWN, ROT.VK_NUMPAD2, ROT.VK_S, ROT.VK_J]
-		let { contextMenuOpen, selectedInventoryItemIndex, item } = this.selectedItemSlot
-		if (contextMenuOpen) {
-			if (exit.includes(keyCode)) {
-				this.closeContextMenu()
-			} else if (confirm.includes(keyCode)) {
-				this.useSelectedItem()
-			} else if (drop.includes(keyCode)) {
-				this.dropSelectedItem()
+		const left = [ROT.VK_LEFT, ROT.VK_NUMPAD4, ROT.VK_H]
+		const right = [ROT.VK_RIGHT, ROT.VK_NUMPAD6, ROT.VK_L]
+		const ul = [ROT.VK_NUMPAD7, ROT.VK_Y]
+		const lr = [ROT.VK_NUMPAD3, ROT.VK_N]
+		const ur = [ROT.VK_NUMPAD9, ROT.VK_U]
+		const ll = [ROT.VK_NUMPAD1, ROT.VK_B]
+		/* If the key event isn't repeated within the last 160 milliseconds (too soon), then we proceed but we keep track of this
+	  key movement time */
+		if (evt.type === 'keydown' && up.concat(down).includes(keyCode)) {
+			if (this.keyTimer === null) {
+				this.keyTimer = new Date()
+			} else {
+				let start = this.keyTimer.getTime()
+				let now = new Date().getTime()
+				if (!(now - start >= 100)) {
+					return
+				} else {
+					// we've waited long enough, but add another timer just in case
+					this.keyTimer = new Date()
+				}
 			}
-		} else {
-			// at this point, we can assume that the
+		}
+		let { index, item } = this.selectedItemSlot
+		// at this point, we can assume that the
+		if (item !== null) {
 			if (exit.includes(keyCode)) {
 				Game.closeGameOverlayScreen()
 			} else if (up.includes(keyCode) || down.includes(keyCode)) {
-				let change = up.includes(keyCode) ? -1 : 1
-				let newSelectedIndex = selectedInventoryItemIndex + change
+				let change = up.includes(keyCode) ? -3 : 3
+				let newSelectedIndex = index + change
 				if (newSelectedIndex >= 0 && newSelectedIndex < this.inventory.length) {
-					this.selectedItemSlot.selectedInventoryItemIndex = newSelectedIndex
+					this.selectedItemSlot.index = newSelectedIndex
+					this.selectedItemSlot.item = this.inventory[newSelectedIndex]
+				}
+			} else if (left.includes(keyCode) || right.includes(keyCode)) {
+				let change = left.includes(keyCode) ? -1 : 1
+				let newSelectedIndex = index + change
+				if (newSelectedIndex >= 0 && newSelectedIndex < this.inventory.length) {
+					this.selectedItemSlot.index = newSelectedIndex
+					this.selectedItemSlot.item = this.inventory[newSelectedIndex]
+				}
+			} else if (ul.includes(keyCode) || lr.includes(keyCode)) {
+				let change = ul.includes(keyCode) ? -4 : 4
+				let newSelectedIndex = index + change
+				if (newSelectedIndex >= 0 && newSelectedIndex < this.inventory.length) {
+					this.selectedItemSlot.index = newSelectedIndex
+					this.selectedItemSlot.item = this.inventory[newSelectedIndex]
+				}
+			} else if (ll.includes(keyCode) || ur.includes(keyCode)) {
+				let change = ur.includes(keyCode) ? -2 : 2
+				let newSelectedIndex = index + change
+				if (newSelectedIndex >= 0 && newSelectedIndex < this.inventory.length) {
+					this.selectedItemSlot.index = newSelectedIndex
 					this.selectedItemSlot.item = this.inventory[newSelectedIndex]
 				}
 			} else if (confirm.includes(keyCode)) {
-				this.selectedItemSlot.contextMenuOpen = true
+				this.useSelectedItem()
 			} else if (drop.includes(keyCode)) {
 				this.dropSelectedItem()
 			}

@@ -26,7 +26,7 @@ const buyABeer = new Edge({
 	text: "I'd like to buy a drink!",
 	node: confirmOrDecline,
 	action: g => {
-		const gold = g.player.inventory.filter(i => i.item instanceof Gold && i.item.quantity >= 2)
+		const gold = g.player.inventory.filter(item => item instanceof Gold && item.quantity >= 2)
 		if (gold.length === 0) {
 			confirmBeerPurchase.disabled = true
 		} else {

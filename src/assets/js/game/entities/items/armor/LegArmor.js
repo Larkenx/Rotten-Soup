@@ -2,7 +2,7 @@ import Armor from '#/entities/items/armor/Armor.js'
 import { materialTypes } from '#/utils/Constants.js'
 import { getRandomInt } from '#/utils/HelperFunctions.js'
 export default class LegArmor extends Armor {
-	constructor(x, y, def, name, id) {
+	constructor(x, y, def, name, id, materialType) {
 		super(x, y, {
 			id: id,
 			name: name,
@@ -11,7 +11,8 @@ export default class LegArmor extends Armor {
 			combat: {
 				def,
 				equipmentSlot: 'legs'
-			}
+			},
+			materialType
 		})
 	}
 }
@@ -32,18 +33,18 @@ const materialTextures = {
 }
 
 const armorShop = {
-	[materialTypes.BRONZE]: (x, y, t) => new LegArmor(x, y, 1, 'Bronze Plate Legs', t),
-	[materialTypes.IRON]: (x, y, t) => new LegArmor(x, y, 2, 'Iron Plate Legs', t),
-	[materialTypes.STEEL]: (x, y, t) => new LegArmor(x, y, 3, 'Steel Plate Legs', t),
-	[materialTypes.MITHRIL]: (x, y, t) => new LegArmor(x, y, 4, 'Mithril Plate Legs', t),
-	[materialTypes.ADAMANTIUM]: (x, y, t) => new LegArmor(x, y, 5, 'Adamantium Plate Legs', t),
-	[materialTypes.ORICHALCUM]: (x, y, t) => new LegArmor(x, y, 6, 'Orichalcum Plate Legs', t),
-	[materialTypes.VULCANITE]: (x, y, t) => new LegArmor(x, y, 7, 'Vulcanite Plate Legs', t),
-	[materialTypes.AQUANITE]: (x, y, t) => new LegArmor(x, y, 8, 'Aquanite Plate Legs', t),
-	[materialTypes.VRONITE]: (x, y, t) => new LegArmor(x, y, 9, 'Vronite Plate Legs', t),
-	[materialTypes.LOULOUDIUM]: (x, y, t) => new LegArmor(x, y, 10, 'Louloudium Plate Legs', t),
-	[materialTypes.ILIOTIUM]: (x, y, t) => new LegArmor(x, y, 11, 'Iliotium Plate Legs', t),
-	[materialTypes.LEVANTIUM]: (x, y, t) => new LegArmor(x, y, 12, 'Levantium Plate Legs', t)
+	[materialTypes.BRONZE]: (x, y, t) => new LegArmor(x, y, 1, 'Bronze Plate Legs', t, materialTypes.BRONZE),
+	[materialTypes.IRON]: (x, y, t) => new LegArmor(x, y, 2, 'Iron Plate Legs', t, materialTypes.IRON),
+	[materialTypes.STEEL]: (x, y, t) => new LegArmor(x, y, 3, 'Steel Plate Legs', t, materialTypes.STEEL),
+	[materialTypes.MITHRIL]: (x, y, t) => new LegArmor(x, y, 4, 'Mithril Plate Legs', t, materialTypes.MITHRIL),
+	[materialTypes.ADAMANTIUM]: (x, y, t) => new LegArmor(x, y, 5, 'Adamantium Plate Legs', t, materialTypes.ADAMANTIUM),
+	[materialTypes.ORICHALCUM]: (x, y, t) => new LegArmor(x, y, 6, 'Orichalcum Plate Legs', t, materialTypes.ORICHALCUM),
+	[materialTypes.VULCANITE]: (x, y, t) => new LegArmor(x, y, 7, 'Vulcanite Plate Legs', t, materialTypes.VULCANITE),
+	[materialTypes.AQUANITE]: (x, y, t) => new LegArmor(x, y, 8, 'Aquanite Plate Legs', t, materialTypes.AQUANITE),
+	[materialTypes.VRONITE]: (x, y, t) => new LegArmor(x, y, 9, 'Vronite Plate Legs', t, materialTypes.VRONITE),
+	[materialTypes.LOULOUDIUM]: (x, y, t) => new LegArmor(x, y, 10, 'Louloudium Plate Legs', t, materialTypes.LOULOUDIUM),
+	[materialTypes.ILIOTIUM]: (x, y, t) => new LegArmor(x, y, 11, 'Iliotium Plate Legs', t, materialTypes.ILIOTIUM),
+	[materialTypes.LEVANTIUM]: (x, y, t) => new LegArmor(x, y, 12, 'Levantium Plate Legs', t, materialTypes.LEVANTIUM)
 }
 
 export function createLegArmor(x, y, id, options) {
@@ -54,6 +55,6 @@ export function createLegArmor(x, y, id, options) {
 		return armorShop[materialType](x, y, texture)
 	} else {
 		console.error(`Material Type: ${materialType} not found in material type armor shop.`)
-		return new LegArmor(x, y, 1, 'Bronze Plate Legs', 11679)
+		return new LegArmor(x, y, 1, 'Bronze Plate Legs', 11679, null)
 	}
 }

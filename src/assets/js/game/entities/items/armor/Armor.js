@@ -16,6 +16,16 @@ export default class Armor extends Equippable {
 	}
 
 	hoverInfo() {
-		return `Defence: ${this.cb.def}`
+		return [
+			{
+				attribute: 'Defence',
+				value: `${this.cb.def}`
+			},
+			{
+				attribute: 'Material',
+				value: `${this.materialType[0] + this.materialType.substring(1).toLowerCase()}`
+			}
+		]
+		// return `Defence: ${this.cb.def}`
 	}
 }

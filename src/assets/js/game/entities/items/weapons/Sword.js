@@ -4,7 +4,7 @@ import { BleedEnchantment } from '#/modifiers/Enchantment.js'
 import { materialTypes } from '#/utils/Constants.js'
 
 export class Sword extends Weapon {
-	constructor(x, y, rolls, sides, name, id) {
+	constructor(x, y, rolls, sides, name, id, materialType) {
 		super(x, y, {
 			id: id,
 			name: name,
@@ -14,7 +14,8 @@ export class Sword extends Weapon {
 				sides,
 				rolls
 			},
-			attackVerbs: ['slashed', 'stabbed', 'gutted', 'sliced']
+			attackVerbs: ['slashed', 'stabbed', 'gutted', 'sliced'],
+			materialType
 		})
 	}
 }
@@ -160,18 +161,18 @@ const materialTextures = {
 }
 
 const swordShop = {
-	[materialTypes.BRONZE]: (x, y, t) => new Sword(x, y, 1, 4, 'Bronze Sword', t),
-	[materialTypes.IRON]: (x, y, t) => new Sword(x, y, 2, 2, 'Iron Sword', t),
-	[materialTypes.STEEL]: (x, y, t) => new Sword(x, y, 1, 6, 'Steel Sword', t),
-	[materialTypes.MITHRIL]: (x, y, t) => new Sword(x, y, 2, 3, 'Mithril Sword', t),
-	[materialTypes.ADAMANTIUM]: (x, y, t) => new Sword(x, y, 1, 8, 'Adamantium Sword', t),
-	[materialTypes.ORICHALCUM]: (x, y, t) => new Sword(x, y, 2, 4, 'Orichalcum Sword', t),
-	[materialTypes.VULCANITE]: (x, y, t) => new Sword(x, y, 1, 10, 'Vulcanite Sword', t),
-	[materialTypes.AQUANITE]: (x, y, t) => new Sword(x, y, 2, 5, 'Aquanite Sword', t),
-	[materialTypes.VRONITE]: (x, y, t) => new Sword(x, y, 2, 6, 'Vronite Sword', t),
-	[materialTypes.LOULOUDIUM]: (x, y, t) => new Sword(x, y, 4, 3, 'Louloudium Sword', t),
-	[materialTypes.ILIOTIUM]: (x, y, t) => new Sword(x, y, 3, 5, 'Iliotium Sword', t),
-	[materialTypes.LEVANTIUM]: (x, y, t) => new Sword(x, y, 5, 3, 'Levantium Sword', t)
+	[materialTypes.BRONZE]: (x, y, t) => new Sword(x, y, 1, 4, 'Bronze Sword', t, materialTypes.BRONZE),
+	[materialTypes.IRON]: (x, y, t) => new Sword(x, y, 2, 2, 'Iron Sword', t, materialTypes.IRON),
+	[materialTypes.STEEL]: (x, y, t) => new Sword(x, y, 1, 6, 'Steel Sword', t, materialTypes.STEEL),
+	[materialTypes.MITHRIL]: (x, y, t) => new Sword(x, y, 2, 3, 'Mithril Sword', t, materialTypes.MITHRIL),
+	[materialTypes.ADAMANTIUM]: (x, y, t) => new Sword(x, y, 1, 8, 'Adamantium Sword', t, materialTypes.ADAMANTIUM),
+	[materialTypes.ORICHALCUM]: (x, y, t) => new Sword(x, y, 2, 4, 'Orichalcum Sword', t, materialTypes.ORICHALCUM),
+	[materialTypes.VULCANITE]: (x, y, t) => new Sword(x, y, 1, 10, 'Vulcanite Sword', t, materialTypes.VULCANITE),
+	[materialTypes.AQUANITE]: (x, y, t) => new Sword(x, y, 2, 5, 'Aquanite Sword', t, materialTypes.AQUANITE),
+	[materialTypes.VRONITE]: (x, y, t) => new Sword(x, y, 2, 6, 'Vronite Sword', t, materialTypes.VRONITE),
+	[materialTypes.LOULOUDIUM]: (x, y, t) => new Sword(x, y, 4, 3, 'Louloudium Sword', t, materialTypes.LOULOUDIUM),
+	[materialTypes.ILIOTIUM]: (x, y, t) => new Sword(x, y, 3, 5, 'Iliotium Sword', t, materialTypes.ILIOTIUM),
+	[materialTypes.LEVANTIUM]: (x, y, t) => new Sword(x, y, 5, 3, 'Levantium Sword', t, materialTypes.LEVANTIUM)
 }
 
 export function createSword(x, y, id, options) {
@@ -182,6 +183,6 @@ export function createSword(x, y, id, options) {
 		return swordShop[materialType](x, y, texture)
 	} else {
 		console.error(`Material Type: ${materialType} not found in material type sword shop.`)
-		return new Sword(x, y, 1, getRandomInt(2, 4), swordNames[getRandomInt(0, swordNames.length - 1)], 32)
+		return new Sword(x, y, 1, getRandomInt(2, 4), swordNames[getRandomInt(0, swordNames.length - 1)], 32, materialType)
 	}
 }

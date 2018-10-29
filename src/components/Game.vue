@@ -1,44 +1,44 @@
-<template lang="html">
-  <v-container fluid>
-    <v-container v-show="playerSelected"  class="mt-3" id="main_container" :style="{'max-width': uiWidth+6, 'max-height': uiHeight+6}">
-      <!--  Notifications -->
-      <v-layout row v-if="unstableBuildMessage">
-        <v-flex xs12>
-          <v-alert color="yellow darken-4" type="warning" dismissible v-model="unstableBuildMessage">
-            This build is unstable. A lot of working is going on under the hood. Expect lots of broken, weird things!
-          </v-alert>
-        </v-flex>
-      </v-layout>
-      <!-- Game Display and HUD-->
-      <v-layout row id="ui" :style="{'max-width': uiWidth, 'max-height': uiHeight}">
-        <v-flex column :style="{'max-width': gameDisplayWidth}">
-          <v-layout id="game_container_row" :style="{'max-height': gameDisplayHeight, 'max-width': gameDisplayWidth}">
-            <game-overlay-view ref="gameOverlayView" />
-            <div id="game_container" />
-          </v-layout>
-          <message-log v-if="playerSelected"></message-log>
-        </v-flex>
-        <hud v-if="playerSelected" :showEquipment="showFooter"></hud>
-      </v-layout>
-      <death-modal v-if="playerSelected"></death-modal>
-	  <v-dialog v-model="navigateAwayModalActive" max-width="600px">
-		  <v-card>
-			<v-card-text class="text-xs-center">
-				<h2 class="pa-1">Navigating Away</h2>
-		  	</v-card-text>
-			<v-card-text>
-				If you navigate away, you will lose your progress with this game! Are you sure you want to navigate away?
-			</v-card-text>
-			<v-card-actions>
-				<v-spacer></v-spacer>
-				<v-btn color="yellow darken-4" raised @click.native="navigate(true)">Continue</v-btn>
-				<v-btn color="yellow darken-4" flat @click.native="navigate(false)">Cancel</v-btn>
-			</v-card-actions>
-		</v-card>
-	  </v-dialog>
-    </v-container>
-    <start-menu v-show="!playerSelected" v-on:spriteSelected="loadGame"></start-menu>
-  </v-container>
+<template >
+	<v-container fluid>
+		<v-container v-show="playerSelected" class="mt-3" id="main_container" :style="{'max-width': uiWidth+6, 'max-height': uiHeight+6}">
+			<!--  Notifications -->
+			<v-layout row v-if="unstableBuildMessage">
+				<v-flex xs12>
+					<v-alert color="yellow darken-4" type="warning" dismissible v-model="unstableBuildMessage">
+						This build is unstable. A lot of working is going on under the hood. Expect lots of broken, weird things!
+					</v-alert>
+				</v-flex>
+			</v-layout>
+			<!-- Game Display and HUD-->
+			<v-layout row id="ui" :style="{'max-width': uiWidth, 'max-height': uiHeight}">
+				<v-flex column :style="{'max-width': gameDisplayWidth}">
+					<v-layout id="game_container_row" :style="{'max-height': gameDisplayHeight, 'max-width': gameDisplayWidth}">
+						<game-overlay-view ref="gameOverlayView" />
+						<div id="game_container" />
+					</v-layout>
+					<message-log v-if="playerSelected"></message-log>
+				</v-flex>
+				<hud v-if="playerSelected" :showEquipment="showFooter"></hud>
+			</v-layout>
+			<death-modal v-if="playerSelected"></death-modal>
+			<v-dialog v-model="navigateAwayModalActive" max-width="600px">
+				<v-card>
+					<v-card-text class="text-xs-center">
+						<h2 class="pa-1">Navigating Away</h2>
+					</v-card-text>
+					<v-card-text>
+						If you navigate away, you will lose your progress with this game! Are you sure you want to navigate away?
+					</v-card-text>
+					<v-card-actions>
+						<v-spacer></v-spacer>
+						<v-btn color="yellow darken-4" raised @click.native="navigate(true)">Continue</v-btn>
+						<v-btn color="yellow darken-4" flat @click.native="navigate(false)">Cancel</v-btn>
+					</v-card-actions>
+				</v-card>
+			</v-dialog>
+		</v-container>
+		<start-menu v-show="!playerSelected" v-on:spriteSelected="loadGame"></start-menu>
+	</v-container>
 </template>
 
 <script>

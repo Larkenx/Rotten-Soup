@@ -32,6 +32,19 @@ export default class Weapon extends Equippable {
 	}
 
 	hoverInfo() {
+		let descriptions = [
+			{
+				attribute: 'Damage',
+				value: `${this.cb.rolls}-${this.cb.sides * this.cb.rolls}`
+			}
+		]
+		if (this.materialType) {
+			descriptions.push({
+				attribute: 'Metal',
+				value: `${this.materialType[0] + this.materialType.substring(1).toLowerCase()}`
+			})
+		}
+		return descriptions
 		return `Damage: ${this.cb.rolls}-${this.cb.sides * this.cb.rolls}`
 	}
 }
