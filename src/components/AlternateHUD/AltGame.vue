@@ -46,6 +46,7 @@ import deathModal from '@/components/DeathModal'
 import gameOverlayView from '@/components/GameOverlayView'
 import NPCDialogue from '@/components/NPCDialogue'
 import inventoryEquipmentView from '@/components/AlternateHUD/InventoryEquipmentView.vue'
+import Spellbook from '@/components/AlternateHUD/Spellbook'
 export default {
 	name: 'AltGame',
 	data() {
@@ -72,7 +73,8 @@ export default {
 		this.widthOffset = clientWidth > uiWidth ? (clientWidth - uiWidth) / 2 : 0
 		this.heightOffset = clientHeight > this.height ? (clientHeight - this.height) / 2 : 0
 		/* Development */
-		Game.openInventory()
+		// Game.openInventory()
+		Game.openSpellbook()
 		// Game.player.inventory[0].selected = true
 	},
 	components: {
@@ -80,6 +82,7 @@ export default {
 		'npc-dialogue': NPCDialogue,
 		'start-menu': startMenu,
 		'inventory-equipment-view': inventoryEquipmentView,
+		spellbook: Spellbook,
 		hud: altHud,
 		'death-modal': deathModal
 	},

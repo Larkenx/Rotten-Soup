@@ -4,18 +4,8 @@
 
 <script>
 import { Game } from '@/assets/js/game/Game.js'
-import NPCDialogue from '@/components/NPCDialogue'
-import inventoryEquipmentView from '@/components/AlternateHUD/InventoryEquipmentView'
+
 export default {
-	components: {
-		'npc-dialogue': NPCDialogue,
-		'inventory-equipment-view': inventoryEquipmentView
-		// NPC Dialog
-		// Trading
-		// Inventory
-		// Skills
-		// Map
-	},
 	name: 'game-overlay-view',
 	data() {
 		return {

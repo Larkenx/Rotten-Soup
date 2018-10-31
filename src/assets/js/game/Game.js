@@ -517,6 +517,11 @@ export let Game = {
 		this.overlayData.visible = false
 	},
 
+	openSpellbook() {
+		this.overlayData.component = 'spellbook'
+		this.overlayData.visible = true
+	},
+
 	openInventory() {
 		this.overlayData.component = 'inventory-equipment-view'
 		this.overlayData.visible = true

@@ -76,7 +76,7 @@ div.v-expansion-panel__header {
 				</v-layout>
 				<v-layout v-for="(index, row) in Math.ceil(inventory.length / 3)" :key="row" justify-start style="margin-left: 25px;">
 					<v-card :id="`panel-${row*3 + i}`" :class="{selected_item: item === selectedItemSlot.item, unselected_item: item !== selectedItemSlot.item}" class="ma-2" width="200px" v-for="(item, i) in inventory.slice(row*3, (row+1)*3)" :key="row*3 + i" @click.native="selectItem(row*3 + i)">
-						<v-layout class="pa-2" wrap align-content-center justify-center>
+						<v-layout class="pa-2" wrap align-center justify-center>
 							<v-flex>
 								<img width="25px" height="25px" v-bind:src="getInventorySprite(item.id)">
 							</v-flex>

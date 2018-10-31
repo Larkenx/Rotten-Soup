@@ -1,5 +1,5 @@
 <template>
-  <v-card class="pa-4 ma-4" v-if="overlayData.visible">
+  <v-card class="pa-4" v-if="overlayData.visible">
     <v-card-title class="display-1">
       {{getDialogue().getTitle()}}
     </v-card-title>
