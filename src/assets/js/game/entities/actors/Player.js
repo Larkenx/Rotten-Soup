@@ -86,8 +86,8 @@ export default class Player extends Actor {
 			39: 2,
 			37: 6,
 			38: 0,
-			40: 4,
-			/* Num Pad Movement */
+			40: 4
+			/* Num Pad Movement */,
 			104: 0,
 			105: 1,
 			102: 2,
@@ -95,15 +95,10 @@ export default class Player extends Actor {
 			98: 4,
 			97: 5,
 			100: 6,
-			103: 7,
-			/* AWSD Movement */
-			68: 2,
-			65: 6,
-			87: 0,
-			83: 4,
-			/* Rest using '5' in numpad */
-			101: 'rest',
-			/* vi movement */
+			103: 7
+			/* Rest using '5' in numpad */,
+			101: 'rest'
+			/* vi movement */,
 			75: 0,
 			85: 1,
 			76: 2,
@@ -111,19 +106,21 @@ export default class Player extends Actor {
 			74: 4,
 			66: 5,
 			72: 6,
-			89: 7,
-			/* Fire a weapon */
-			70: 'fire',
-			/* Cast a spell */
-			90: 'cast',
-			/* Interact */
-			69: 'interact',
-			/* Misc */
-			73: 'openInventory',
-			188: 'pickup',
-			71: 'pickup',
-			190: 'rest',
-			88: 'examine'
+			89: 7
+			/* Fire a weapon */,
+			[ROT.VK_F]: 'fire'
+			/* Cast a spell */,
+			[ROT.VK_Z]: 'cast'
+			/* Interact */,
+			[ROT.VK_E]: 'interact'
+			/* Misc */,
+			[ROT.VK_I]: 'openInventory',
+			[ROT.VK_S]: 'openSpellbook',
+			[ROT.VK_M]: 'openSpellbook',
+			[ROT.VK_COMMA]: 'pickup',
+			[ROT.VK_G]: 'pickup',
+			[ROT.VK_PERIOD]: 'rest',
+			[ROT.VK_X]: 'examine'
 		}
 		this.path = new ROT.Path.AStar(this.x, this.y, pathfinding)
 		this.nearbyEnemies = []
@@ -156,6 +153,10 @@ export default class Player extends Actor {
 		this.commandQueue = []
 		this.selectedItemSlot = {
 			item: null,
+			index: null
+		}
+		this.selectedSpellSlot = {
+			spell: null,
 			index: null
 		}
 	}
@@ -421,9 +422,9 @@ export default class Player extends Actor {
 		}
 	}
 
-	handleHelpScreenEvent(evt) {}
+	handleHelpScreenEvent(evt) { }
 
-	resetSelectedItem() {}
+	resetSelectedItem() { }
 
 	initializeSelectedItem() {
 		const initialSelectedInventoryItemSlot = {
@@ -446,7 +447,6 @@ export default class Player extends Actor {
 
 	useSelectedItem() {
 		let { item } = this.selectedItemSlot
-		this.closeContextMenu()
 		item.use()
 		// if the item is gone on use
 		if (!this.hasExactItem(item)) {
@@ -456,7 +456,6 @@ export default class Player extends Actor {
 	}
 
 	dropSelectedItem() {
-		this.closeContextMenu()
 		setTimeout(() => {
 			if (this.inventory.length === 1) {
 				this.selectedItemSlot.item = null
@@ -468,8 +467,6 @@ export default class Player extends Actor {
 			}
 		}, 250)
 	}
-
-	closeContextMenu() {}
 
 	resetSelectedItem() {
 		let { index } = this.selectedItemSlot
@@ -564,6 +561,96 @@ export default class Player extends Actor {
 				this.useSelectedItem()
 			} else if (drop.includes(keyCode)) {
 				this.dropSelectedItem()
+			}
+		}
+	}
+
+	initializeSelectedSpell() {
+		if (this.cb.spells.length !== 0) {
+			this.selectedSpellSlot = {
+				index: 0,
+				spell: this.cb.spells[0]
+			}
+		} else {
+			this.selectedSpellSlot = {
+				index: null,
+				spell: null
+			}
+		}
+	}
+
+	selectSpellAtIndex(index) {
+		if (index < this.cb.spells.length) {
+			this.selectedSpellSlot.spell = this.cb.spells[index]
+			this.selectedSpellSlot.index = index
+		}
+	}
+
+	handleSpellbookEvent(evt) {
+		let { keyCode } = evt
+		let shiftPressed = evt.getModifierState('Shift')
+		// evt.preventDefault()
+		const exit = [ROT.VK_ESCAPE, ROT.VK_Z, ROT.VK_S, ROT.VK_M]
+		const confirm = [ROT.VK_RETURN, ROT.VK_E]
+		const up = [ROT.VK_UP, ROT.VK_NUMPAD8, ROT.VK_W, ROT.VK_K]
+		const down = [ROT.VK_DOWN, ROT.VK_NUMPAD2, ROT.VK_S, ROT.VK_J]
+		const left = [ROT.VK_LEFT, ROT.VK_NUMPAD4, ROT.VK_H]
+		const right = [ROT.VK_RIGHT, ROT.VK_NUMPAD6, ROT.VK_L]
+		const ul = [ROT.VK_NUMPAD7, ROT.VK_Y]
+		const lr = [ROT.VK_NUMPAD3, ROT.VK_N]
+		const ur = [ROT.VK_NUMPAD9, ROT.VK_U]
+		const ll = [ROT.VK_NUMPAD1, ROT.VK_B]
+		/* If the key event isn't repeated within the last 160 milliseconds (too soon), then we proceed but we keep track of this
+	  key movement time */
+		if (evt.type === 'keydown' && up.concat(down).includes(keyCode)) {
+			if (this.keyTimer === null) {
+				this.keyTimer = new Date()
+			} else {
+				let start = this.keyTimer.getTime()
+				let now = new Date().getTime()
+				if (!(now - start >= 100)) {
+					return
+				} else {
+					// we've waited long enough, but add another timer just in case
+					this.keyTimer = new Date()
+				}
+			}
+		}
+		let { index, spell } = this.selectedSpellSlot
+		// at this point, we can assume that the
+		if (spell !== null) {
+			if (exit.includes(keyCode)) {
+				Game.closeGameOverlayScreen()
+			} else if (up.includes(keyCode) || down.includes(keyCode)) {
+				let change = up.includes(keyCode) ? -3 : 3
+				let newSelectedIndex = index + change
+				if (newSelectedIndex >= 0 && newSelectedIndex < this.inventory.length) {
+					this.selectedSpellSlot.index = newSelectedIndex
+					this.selectedSpellSlot.spell = this.cb.spells[newSelectedIndex]
+				}
+			} else if (left.includes(keyCode) || right.includes(keyCode)) {
+				let change = left.includes(keyCode) ? -1 : 1
+				let newSelectedIndex = index + change
+				if (newSelectedIndex >= 0 && newSelectedIndex < this.cb.spells.length) {
+					this.selectedSpellSlot.index = newSelectedIndex
+					this.selectedSpellSlot.spell = this.cb.spells[newSelectedIndex]
+				}
+			} else if (ul.includes(keyCode) || lr.includes(keyCode)) {
+				let change = ul.includes(keyCode) ? -4 : 4
+				let newSelectedIndex = index + change
+				if (newSelectedIndex >= 0 && newSelectedIndex < this.cb.spells.length) {
+					this.selectedSpellSlot.index = newSelectedIndex
+					this.selectedSpellSlot.spell = this.cb.spells[newSelectedIndex]
+				}
+			} else if (ll.includes(keyCode) || ur.includes(keyCode)) {
+				let change = ur.includes(keyCode) ? -2 : 2
+				let newSelectedIndex = index + change
+				if (newSelectedIndex >= 0 && newSelectedIndex < this.cb.spells.length) {
+					this.selectedSpellSlot.index = newSelectedIndex
+					this.selectedSpellSlot.spell = this.cb.spells[newSelectedIndex]
+				}
+			} else if (confirm.includes(keyCode)) {
+				this.selectSpell(spell)
 			}
 		}
 	}
@@ -663,6 +750,8 @@ export default class Player extends Actor {
 					return this.handleNPCDialogueEvent(evt)
 				case 'inventory-equipment-view':
 					return this.handleInventoryEvent(evt)
+				case 'spellbook':
+					return this.handleSpellbookEvent(evt)
 				default:
 					console.error('Game is showing overlay for which the player cannot handle')
 			}
@@ -712,6 +801,8 @@ export default class Player extends Actor {
 				this.climb()
 			} else if (action === 'openInventory') {
 				Game.openInventory()
+			} else if (action === 'openSpellbook' || (action === 'cast' && shiftPressed)) {
+				Game.openSpellbook()
 			} else if (action === 'fire' && !shiftPressed) {
 				let weapon = this.cb.equipment.weapon
 				let ammo = this.cb.equipment.ammo

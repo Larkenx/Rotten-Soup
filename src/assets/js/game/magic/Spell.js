@@ -52,7 +52,7 @@ export class MinorHeal extends Spell {
 	constructor(options) {
 		super({
 			name: 'Minor Heal',
-			hoverInfo: 'Regenerates 20 health.',
+			hoverInfo: 'Mend your wounds with healing energy. Regenerates 20 health.',
 			action: entity => {
 				entity.heal(20)
 			},
@@ -65,7 +65,9 @@ export class MinorHeal extends Spell {
 	}
 
 	cast(target, caster) {
-		if (caster === Game.player) Game.log('You heal yourself for 20 health points.', '#e3c91c')
+		let healthRecovered = Math.max(0, caster.cb.maxhp - caster.cb.hp - 20)
+		if (caster === Game.player)
+			Game.log(`You mend your wounds with a healing spell and recover ${healthRecovered} health points.`, '#e3c91c')
 		else Game.log(`${caster.name.capitalize()} used minor heal to regenerate 20 health points.`, 'plum')
 
 		this.action(target)
@@ -78,7 +80,7 @@ export class MagicDart extends Spell {
 	constructor(options) {
 		super({
 			name: 'Magic Dart',
-			hoverInfo: 'Deals 1-5 damage to a target',
+			hoverInfo: 'A small but concentrated blast of magical energy. Deals 1-5 damage to a target.',
 			action: (entity, hit) => {
 				entity.damage(hit)
 			},
@@ -105,7 +107,7 @@ export class Pain extends Spell {
 	constructor(options) {
 		super({
 			name: 'Pain',
-			hoverInfo: 'Deals 3-9 negative energy to a target',
+			hoverInfo: 'Deals 3-9 damage by causing internal necrosis to a target.',
 			action: (entity, hit) => {
 				entity.damage(hit)
 			},
@@ -135,7 +137,7 @@ export class Regeneration extends Spell {
 	constructor(options) {
 		super({
 			name: 'Regeneration',
-			hoverInfo: 'Regenerates 5 health per turn by reanimating wounds with necromancy.',
+			hoverInfo: 'Regenerates 5 health per turn for 5 turns by reanimating wounds with a necromantic ritual.',
 			action: entity => {
 				entity.addNewEffect(new RegenerationEffect())
 			},
@@ -148,7 +150,7 @@ export class Regeneration extends Spell {
 	}
 
 	cast(target, caster) {
-		if (caster === Game.player) Game.log('You begin regenerating your wounds with dark magic.', 'player_move')
+		if (caster === Game.player) Game.log('You begin regenerating your wounds with dark magic.', 'lightgreen')
 		else Game.log(`${caster.name.capitalize()} begins regenerating its wounds.`, 'plum')
 
 		this.action(target)
@@ -191,8 +193,7 @@ export const reanimate = corpse => {
 	// remove the corpse from the ground
 	ctile.removeActor(corpse)
 	Game.display.removeChild(corpse)
-	let undeadActor =
-		corpse.id === corpseTypes.HUMANOID ? new Zombie(corpse.x, corpse.y, 2317) : new Skeleton(corpse.x, corpse.y, 2552)
+	let undeadActor = corpse.id === corpseTypes.HUMANOID ? new Zombie(corpse.x, corpse.y, 2317) : new Skeleton(corpse.x, corpse.y, 2552)
 
 	undeadActor.chasing = true
 	ctile.actors.push(undeadActor)

@@ -520,6 +520,7 @@ export let Game = {
 	openSpellbook() {
 		this.overlayData.component = 'spellbook'
 		this.overlayData.visible = true
+		this.player.initializeSelectedSpell()
 	},
 
 	openInventory() {

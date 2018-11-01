@@ -2,28 +2,28 @@
 	<v-layout align-center justify-space-between column fill-height id="hud_container" class="elevation-0 pa-2">
 		<div>
 			<v-layout wrap align-center justify-space-around style="font-size: 14px;">
-				<v-flex xs6>
+				<v-flex xs4>
 					<b>HP:</b>
 				</v-flex>
-				<v-flex xs6>
+				<v-flex xs8 class="text-xs-left pl-2">
 					<b :style="getHPStyling()">{{getHP()}} </b>/ {{getMaxHP()}}
 				</v-flex>
-				<v-flex xs6>
+				<v-flex xs4>
 					<b>Magic:</b>
 				</v-flex>
-				<v-flex xs6>
+				<v-flex xs8 class="text-xs-left pl-2"> 
 					{{getMana()}} / {{getMaxMana()}}
 				</v-flex>
-				<v-flex xs6>
+				<v-flex xs4>
 					<b>Location:</b>
 				</v-flex>
-				<v-flex xs6>
+				<v-flex xs8 class="text-xs-left pl-2"> 
 					{{getCurrentLevel().capitalize()}}
 				</v-flex>
-				<v-flex xs6 v-if="getCurrentLevelDepth() > 0">
+				<v-flex xs4 v-if="getCurrentLevelDepth() > 0">
 					<b>Floor:</b>
 				</v-flex>
-				<v-flex xs6 v-if="getCurrentLevelDepth() > 0">
+				<v-flex xs8 class="text-xs-left pl-2"  v-if="getCurrentLevelDepth() > 0">
 					{{getCurrentLevelDepth()}}
 				</v-flex>
 				<v-flex xs12>
@@ -32,6 +32,9 @@
 							<v-flex id="minimap_container"></v-flex>
 						</v-flex>
 					</v-layout>
+				</v-flex>
+				<!-- Add active weapon & active spell -->
+				<v-flex xs12>
 				</v-flex>
 			</v-layout>
 		</div>
