@@ -38,6 +38,40 @@ import { Game } from '#/Game.js'
 /* import your actions here */
 export default {
 	name: 'message-log',
+	mounted() {
+		this.$watch(
+			'messages',
+			() => {
+				const easeInOutQuad = (t, b, c, d) => {
+					t /= d / 2
+					if (t < 1) return (c / 2) * t * t + b
+					t--
+					return (-c / 2) * (t * (t - 2) - 1) + b
+				}
+				let elem = this.$el.querySelector('#console_container')
+				let topPos = elem.offsetTop
+				const scrollTo = (element, to, duration) => {
+					let start = element.scrollTop,
+						change = to - start,
+						currentTime = 0,
+						increment = 30
+					let animateScroll = () => {
+						currentTime += increment
+						var val = easeInOutQuad(currentTime, start, change, duration)
+						element.scrollTop = val
+						if (currentTime < duration) {
+							setTimeout(animateScroll, increment)
+						}
+					}
+					animateScroll()
+				}
+				scrollTo(document.getElementById('panel-list'), topPos, 600)
+			},
+			{
+				deep: true
+			}
+		)
+	},
 	data() {
 		return {
 			messages: Game.messageHistory,
@@ -50,7 +84,7 @@ export default {
 			return this.tempMessages
 		},
 		getMessages() {
-			return this.messages.slice(-13 + -this.offset + this.getTempMessages().length)
+			return this.messages
 		},
 		resetOffset() {
 			this.offset = 0
