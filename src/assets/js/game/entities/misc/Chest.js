@@ -33,7 +33,7 @@ export default class Chest extends Entity {
 						? addPrefix(itemTypes[0])
 						: itemTypes.slice(1, itemTypes.length - 1).reduce((buf, str) => {
 								return buf + ', ' + addPrefix(str)
-						  }, addPrefix(itemTypes.slice(0, 1)[0])) + ` and ${addPrefix(itemTypes.slice(-1)[0])}.`
+						  }, addPrefix(itemTypes.slice(0, 1)[0])) + ` and ${addPrefix(itemTypes.slice(-1)[0])}`
 				let buffer = `You take ${prettyItemTypes} from the chest.`
 				Game.log(buffer, 'information')
 				for (let item of this.items) actor.addToInventory(item)

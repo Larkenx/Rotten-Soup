@@ -6,13 +6,13 @@
                 <v-icon small>fa-question-circle</v-icon>
             </v-btn>
         </v-tooltip>
-        <v-dialog v-model="helpDialog" max-width="600px">
+        <v-dialog v-model="helpDialog" max-width="800px">
             <v-card style="background-color: #1e1f1f">
                 <v-card-text class="text-xs-center">
                     <h2 class="pa-1">Controls</h2>
                 </v-card-text>
                 <v-card-text>
-                    <v-expansion-panel popout>
+                    <v-expansion-panel>
                         <v-expansion-panel-content>
                             <div slot="header">All Keybinds</div>
                             <v-card flat>
@@ -24,7 +24,11 @@
                                         </v-layout>
                                         <v-layout row wrap v-for="(cheat, index) in cheatSheet" :key="index">
                                             <v-flex xs6>
-                                                <code>{{cheat.code}}</code>
+                                                <v-layout justify-start>
+                                                    <div v-for="code in cheat.code.split('|')" :key="code">
+                                                        <code class="mr-2 text-xs-center">{{code}}</code>
+                                                    </div>
+                                                </v-layout>
                                             </v-flex>
                                             <v-flex xs6>
                                                 <p>{{cheat.description}}</p>
@@ -40,7 +44,7 @@
                                 <v-card-text class="pt-0">
                                     <v-container fluid>
                                         <p><b>Magic</b></p>
-                                        <p>To cast a spell, first select a spell from your spellbook by <code>clicking</code> on it. Then, you can press <code>z</code> to cast the selected spell. If your spell is targeted, you will enter targeting mode.
+                                        <p>To cast a spell, first select a spell from your spellbook. Then, you can press <code>z</code> to cast the selected spell. If your spell is targeted, you will enter targeting mode.
 
                                             <p><b>Ranged</b></p>
 
@@ -48,7 +52,7 @@
                                             </p>
 
                                             <p><b>Targeting</b></p>
-                                            In targeting mode, you can select a tile to cast a spell or shoot a projectile so long as it's within range. By default, targeting will select the nearest enemy. You can change the selected tile with the standard <code>movement</code> keys. You can also cycle through enemies in view with <code>tab</code>, <code>=</code>, and <code>/</code>. You cannot select a tile that is blocked or out of your line of sight. Pressing <code>escape</code> will cancel your spell or ranged attack. You can also press <code>f</code> or <code>z</code> for ranged or magic respectively.
+                                            In targeting mode, you can select a tile to cast a spell or shoot a projectile so long as it's within range. By default, targeting will select the nearest enemy. You can change the selected tile with the standard <code>movement</code> keys. You can also cycle through enemies in view with <code>tab</code>, <code>=</code>, and <code>/</code>. You cannot select a tile that is blocked or out of your line of sight. Pressing <code>escape</code> will cancel your spell or ranged attack.
                                     </v-container>
                                 </v-card-text>
                             </v-card>
@@ -104,13 +108,7 @@
                                 <v-card-text class="pt-0">
                                     <v-container fluid>
                                         <p>
-                                            To equip a weapon or drink a potion, <code>click</code> the item in your inventory. To drop an item, <code>shift+click</code> the item in your inventory. Alternatively, you can either equip or drop items by right-clicking an item to bring up its context menu and selecting one of the actions from there.
-                                        </p>
-                                        <p>
-                                            You can rearrange inventory items by dragging and dropping items where you want them to be.
-                                        </p>
-                                        <p>
-                                            To view details about items, simply <code>hover</code> over the item in your inventory and view the tooltip.
+                                            You can open the inventory screen by pressing <code>i</code>. From here, you can use the movement keys to go back and forth between items. You can then press <code>d</code> to drop the selected item, or either <code>e</code> or <code>enter</code> to interact with the selected item. Detailed information about the item will be shown in the view in the upper right.
                                         </p>
                                     </v-container>
                                 </v-card-text>
@@ -134,11 +132,12 @@ export default {
 		return {
 			helpDialog: false,
 			cheatSheet: [
-				{ code: '. | 5', description: 'Rest for a turn' },
-				{ code: ', | g', description: 'Pick up an item' },
-				{ code: '<', description: 'Climb up a ladder' },
-				{ code: '>', description: 'Climb down a ladder' },
+				{ code: '.|5', description: 'Rest for a turn' },
+				{ code: ',|g', description: 'Pick up an item' },
+				{ code: 'e|<|>', description: 'Use a ladder' },
 				{ code: 'f', description: 'Fire a ranged weapon' },
+				{ code: 'Z|m|s', description: 'Open spellbook' },
+				{ code: 'i', description: 'Open inventory' },
 				{ code: 'z', description: 'Cast a spell' },
 				{ code: 'x', description: 'Examine the area' }
 			]
