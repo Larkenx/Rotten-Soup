@@ -25,6 +25,9 @@ export class Spellbook extends Item {
 	}
 
 	hoverInfo() {
+		return this.spells.map(spell => {
+			return { attribute: spell.name, value: `${spell.hoverInfo}` }
+		})
 		// return `${this.type}${this.name}\n`
 	}
 }
@@ -32,21 +35,13 @@ export class Spellbook extends Item {
 export class NecromancySpellBook extends Spellbook {
 	constructor(x, y, id) {
 		super(x, y, id, {
-			spells: [
-				new magic.Pain(),
-				new magic.VampiricDraining(),
-				new magic.AnimateDead(),
-				new magic.Regeneration()
-			],
+			spells: [new magic.Pain(), new magic.VampiricDraining(), new magic.AnimateDead(), new magic.Regeneration()],
 			name: 'Book of Death'
 		})
 	}
 
 	use() {
 		super.use()
-		Game.log(
-			'You have learned necromancy spells...but at what cost?',
-			'lightgreen'
-		)
+		Game.log('You have learned necromancy spells...but at what cost?', 'lightgreen')
 	}
 }

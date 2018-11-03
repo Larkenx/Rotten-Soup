@@ -1,4 +1,4 @@
-<template lang="html">
+<template >
   <div class="item_slot pa-0 ma-0 text-xs-center">
       <v-tooltip open-delay="200" bottom v-if="item !== null" align-center>
           <p class="text-xs-center ma-0">

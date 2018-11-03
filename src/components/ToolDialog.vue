@@ -1,12 +1,12 @@
 <template>
     <div>
-        <v-tooltip right align-center>
+        <v-tooltip bottom align-center>
             <span>Settings</span>
-            <v-btn flat icon color="yellow darken-4" slot="activator" @click.stop="toolDialog=true">
-                <v-icon>fa-cog</v-icon>
+            <v-btn small flat icon color="yellow darken-4" slot="activator" @click.stop="toolDialog=true">
+                <v-icon small>fa-cog</v-icon>
             </v-btn>
         </v-tooltip>
-        <v-dialog v-model="toolDialog" max-width="400px" >
+        <v-dialog v-model="toolDialog" max-width="400px">
             <v-card style="background-color: #1e1f1f">
                 <v-card-text class="text-xs-center">
                     <h2>Settings</h2>
@@ -15,21 +15,21 @@
                     <v-layout row>
                         <v-flex>Enable Mouse Controls*</v-flex>
                         <span>
-                          <v-switch disabled color="yellow darken-4" v-model="mouseEnabled"></v-switch>
+                            <v-switch disabled color="yellow darken-4" v-model="mouseEnabled"></v-switch>
                         </span>
                     </v-layout>
 
                     <v-layout row>
                         <v-flex>Show HP Bars*</v-flex>
                         <span>
-                          <v-switch color="yellow darken-4" @click.stop="toggleHPBars" v-model="userSettings.hpBars"></v-switch>
+                            <v-switch color="yellow darken-4" @click.stop="toggleHPBars" v-model="userSettings.hpBars"></v-switch>
                         </span>
                     </v-layout>
 
                     <v-layout row>
                         <v-flex>Enable attacking animations*</v-flex>
                         <span>
-                          <v-switch color="yellow darken-4" @click.stop="toggleAnimations" v-model="userSettings.animationsEnabled"></v-switch>
+                            <v-switch color="yellow darken-4" @click.stop="toggleAnimations" v-model="userSettings.animationsEnabled"></v-switch>
                         </span>
                     </v-layout>
 

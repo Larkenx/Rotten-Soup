@@ -49,7 +49,9 @@ export function addPrefix(word) {
 			'cobwebs',
 			'dirt',
 			'bones',
-			'gold'
+			'gold',
+			'plate legs',
+			'boots'
 		]
 		if (someWords.includes(word.toLowerCase())) {
 			return 'some ' + word

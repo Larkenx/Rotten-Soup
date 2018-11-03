@@ -1239,7 +1239,7 @@
                 {
                  "gid":4696,
                  "height":32,
-                 "id":221,
+                 "id":222,
                  "name":"Player",
                  "properties":
                     {
@@ -1253,8 +1253,8 @@
                  "type":"",
                  "visible":true,
                  "width":32,
-                 "x":384,
-                 "y":480
+                 "x":1088,
+                 "y":1056
                 }],
          "opacity":1,
          "type":"objectgroup",
@@ -1262,7 +1262,7 @@
          "x":0,
          "y":0
         }],
- "nextobjectid":222,
+ "nextobjectid":223,
  "orientation":"orthogonal",
  "renderorder":"right-down",
  "tiledversion":"1.1.5",

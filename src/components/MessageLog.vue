@@ -1,40 +1,35 @@
 <template>
-    <v-layout id="console_container">
-      <v-flex column align-start>
-        <v-list id="console" class="pt-3">
-          <li class="ml-2" v-for="(message, index) in getMessages()" v-bind:key="index">
-            <p><b v-bind:style="{color : message[1]}">{{message[0]}}</b></p>
-          </li>
-          <!-- Temporary log item for displaying info that isn't stored (examine text, or "this is blocked")  -->
-          <li class="ml-2" v-for="(message, index) in getTempMessages()">
-            <p><b v-bind:style="{color : message[1]}">{{message[0]}}</b> </p>
-          </li>
-        </v-list>
-      </v-flex>
-      <v-flex id="scroll_controls" column class="text-xs-center" style="max-width: 27px">
-        <v-layout>
-          <v-flex xs12 class="text-xs-center">
-            <v-icon class="scroll_controls" v-on:click="up()" small>fa-angle-up</v-icon>
-          </v-flex>
-        </v-layout>
-        <v-layout style="height: 70px;" />
-        <v-layout>
-          <v-flex xs12 class="text-xs-center">
-            <v-icon class="scroll_controls" v-on:click="down()" small>fa-angle-down</v-icon>
-          </v-flex>
-        </v-layout>
-        <v-layout>
-          <v-flex xs12 class="text-xs-center">
-              <v-icon class="scroll_controls" v-on:click="resetOffset()" small>fa-angle-double-down</v-icon>
-          </v-flex>
-        </v-layout>
-        <!-- <v-layout>
-          <v-flex xs12 class="text-xs-center">
-            <v-icon class="scroll_controls" v-on:click="" small>fa-sticky-note</v-icon>
-          </v-flex>
-        </v-layout> -->
-      </v-flex>
-    </v-layout>
+	<v-layout id="console_container">
+		<v-flex align-start>
+			<v-layout wrap id="console">
+				<v-flex xs12 v-for="(message, index) in messages" v-bind:key="index">
+					<v-icon style="font-size: 14px;">fas fa-angle-right</v-icon><b class="pl-2" v-bind:style="{color : message[1]}">{{message[0]}}</b>
+				</v-flex>
+				<!-- Temporary log item for displaying info that isn't stored (examine text, or "this is blocked")  -->
+				<v-flex xs12 v-for="(message, index) in tempMessages" :key="index+1*-1">
+					<v-icon style="font-size: 14px;">fas fa-angle-left</v-icon><b class="pl-2" v-bind:style="{color : message[1]}">{{message[0]}}</b>
+				</v-flex>
+			</v-layout>
+		</v-flex>
+		<!-- <v-flex id="scroll_controls" class="text-xs-center" style="max-width: 27px">
+			<v-layout>
+				<v-flex xs12 class="text-xs-center">
+					<v-icon class="scroll_controls" v-on:click="up()" small>fa-angle-up</v-icon>
+				</v-flex>
+			</v-layout>
+			<v-layout style="height: 70px;" />
+			<v-layout>
+				<v-flex xs12 class="text-xs-center">
+					<v-icon class="scroll_controls" v-on:click="down()" small>fa-angle-down</v-icon>
+				</v-flex>
+			</v-layout>
+			<v-layout>
+				<v-flex xs12 class="text-xs-center">
+					<v-icon class="scroll_controls" v-on:click="resetOffset()" small>fa-angle-double-down</v-icon>
+				</v-flex>
+			</v-layout>
+		</v-flex> -->
+	</v-layout>
 </template>
 
 <script>
@@ -42,6 +37,7 @@ import { Game } from '#/Game.js'
 
 /* import your actions here */
 export default {
+	name: 'message-log',
 	data() {
 		return {
 			messages: Game.messageHistory,
@@ -49,12 +45,21 @@ export default {
 			offset: 0
 		}
 	},
+	mounted() {
+		this.$watch('messages', () => {
+			this.scrollToBottomConsole()
+		})
+		this.$watch('tempMessages', () => {
+			this.scrollToBottomConsole()
+		})
+	},
+
 	methods: {
 		getTempMessages() {
 			return this.tempMessages
 		},
 		getMessages() {
-			return this.messages.slice(-10 + -this.offset + this.getTempMessages().length)
+			return this.messages
 		},
 		resetOffset() {
 			this.offset = 0
@@ -64,6 +69,31 @@ export default {
 		},
 		up() {
 			if (this.offset < this.messages.length - 10) this.offset++
+		},
+		scrollToBottomConsole() {
+			const easeInOutQuad = (t, b, c, d) => {
+				t /= d / 2
+				if (t < 1) return (c / 2) * t * t + b
+				t--
+				return (-c / 2) * (t * (t - 2) - 1) + b
+			}
+			let elem = document.getElementById('console_container')
+			const scrollTo = (element, to, duration) => {
+				let start = element.scrollTop,
+					change = to - start,
+					currentTime = 0,
+					increment = 30
+				let animateScroll = () => {
+					currentTime += increment
+					var val = easeInOutQuad(currentTime, start, change, duration)
+					element.scrollTop = val
+					if (currentTime < duration) {
+						setTimeout(animateScroll, increment)
+					}
+				}
+				animateScroll()
+			}
+			scrollTo(elem, elem.scrollHeight, 600)
 		}
 	}
 }
@@ -71,16 +101,17 @@ export default {
 
 <style>
 #console_container {
-	border-top: 4px solid #4f4f4f;
+	/* border-top: 4px solid #4f4f4f; */
+	overflow-y: hidden;
+	max-height: 500px;
 	background-color: #1e1f1f;
+	flex: 1;
 }
 
 #console {
 	font-size: 14px;
 	font-style: normal;
 	font-weight: normal;
-	height: 170px;
-	line-height: 0;
 	overflow: hidden;
 	position: relative;
 	background-color: inherit;

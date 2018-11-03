@@ -2,7 +2,7 @@ import Item from '#/entities/items/Item.js'
 import { Game } from '#/Game.js'
 export default class Potion extends Item {
 	constructor(x, y, options) {
-		options.action = 'Drink'
+		options.action = 'Quaff'
 		super(x, y, options)
 	}
 

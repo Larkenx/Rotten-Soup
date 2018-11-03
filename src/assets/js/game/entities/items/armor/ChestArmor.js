@@ -2,7 +2,7 @@ import Armor from '#/entities/items/armor/Armor.js'
 import { materialTypes } from '#/utils/Constants.js'
 import { getRandomInt } from '#/utils/HelperFunctions.js'
 export default class ChestArmor extends Armor {
-	constructor(x, y, def, name, id) {
+	constructor(x, y, def, name, id, materialType) {
 		super(x, y, {
 			id: id,
 			name: name,
@@ -11,7 +11,8 @@ export default class ChestArmor extends Armor {
 			combat: {
 				def,
 				equipmentSlot: 'torso'
-			}
+			},
+			materialType
 		})
 	}
 }
@@ -32,18 +33,18 @@ const materialTextures = {
 }
 
 const armorShop = {
-	[materialTypes.BRONZE]: (x, y, t) => new ChestArmor(x, y, 1, 'Bronze Chest Plate', t),
-	[materialTypes.IRON]: (x, y, t) => new ChestArmor(x, y, 2, 'Iron Chest Plate', t),
-	[materialTypes.STEEL]: (x, y, t) => new ChestArmor(x, y, 3, 'Steel Chest Plate', t),
-	[materialTypes.MITHRIL]: (x, y, t) => new ChestArmor(x, y, 4, 'Mithril Chest Plate', t),
-	[materialTypes.ADAMANTIUM]: (x, y, t) => new ChestArmor(x, y, 5, 'Adamantium Chest Plate', t),
-	[materialTypes.ORICHALCUM]: (x, y, t) => new ChestArmor(x, y, 6, 'Orichalcum Chest Plate', t),
-	[materialTypes.VULCANITE]: (x, y, t) => new ChestArmor(x, y, 7, 'Vulcanite Chest Plate', t),
-	[materialTypes.AQUANITE]: (x, y, t) => new ChestArmor(x, y, 8, 'Aquanite Chest Plate', t),
-	[materialTypes.VRONITE]: (x, y, t) => new ChestArmor(x, y, 9, 'Vronite Chest Plate', t),
-	[materialTypes.LOULOUDIUM]: (x, y, t) => new ChestArmor(x, y, 10, 'Louloudium Chest Plate', t),
-	[materialTypes.ILIOTIUM]: (x, y, t) => new ChestArmor(x, y, 11, 'Iliotium Chest Plate', t),
-	[materialTypes.LEVANTIUM]: (x, y, t) => new ChestArmor(x, y, 12, 'Levantium Chest Plate', t)
+	[materialTypes.BRONZE]: (x, y, t) => new ChestArmor(x, y, 1, 'Bronze Chest Plate', t, materialTypes.BRONZE),
+	[materialTypes.IRON]: (x, y, t) => new ChestArmor(x, y, 2, 'Iron Chest Plate', t, materialTypes.IRON),
+	[materialTypes.STEEL]: (x, y, t) => new ChestArmor(x, y, 3, 'Steel Chest Plate', t, materialTypes.STEEL),
+	[materialTypes.MITHRIL]: (x, y, t) => new ChestArmor(x, y, 4, 'Mithril Chest Plate', t, materialTypes.MITHRIL),
+	[materialTypes.ADAMANTIUM]: (x, y, t) => new ChestArmor(x, y, 5, 'Adamantium Chest Plate', t, materialTypes.ADAMANTIUM),
+	[materialTypes.ORICHALCUM]: (x, y, t) => new ChestArmor(x, y, 6, 'Orichalcum Chest Plate', t, materialTypes.ORICHALCUM),
+	[materialTypes.VULCANITE]: (x, y, t) => new ChestArmor(x, y, 7, 'Vulcanite Chest Plate', t, materialTypes.VULCANITE),
+	[materialTypes.AQUANITE]: (x, y, t) => new ChestArmor(x, y, 8, 'Aquanite Chest Plate', t, materialTypes.AQUANITE),
+	[materialTypes.VRONITE]: (x, y, t) => new ChestArmor(x, y, 9, 'Vronite Chest Plate', t, materialTypes.VRONITE),
+	[materialTypes.LOULOUDIUM]: (x, y, t) => new ChestArmor(x, y, 10, 'Louloudium Chest Plate', t, materialTypes.LOULOUDIUM),
+	[materialTypes.ILIOTIUM]: (x, y, t) => new ChestArmor(x, y, 11, 'Iliotium Chest Plate', t, materialTypes.ILIOTIUM),
+	[materialTypes.LEVANTIUM]: (x, y, t) => new ChestArmor(x, y, 12, 'Levantium Chest Plate', t, materialTypes.LEVANTIUM)
 }
 
 export function createChestArmor(x, y, id, options) {
@@ -54,6 +55,6 @@ export function createChestArmor(x, y, id, options) {
 		return armorShop[materialType](x, y, texture)
 	} else {
 		console.error(`Material Type: ${materialType} not found in material type armor shop.`)
-		return new ChestArmor(x, y, 1, 'Bronze Chest Plate', 11672)
+		return new ChestArmor(x, y, 1, 'Bronze Chest Plate', 11672, null)
 	}
 }

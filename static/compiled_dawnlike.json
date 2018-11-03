@@ -1726,6 +1726,18 @@
          "animated":true,
          "animated_id":1177
         },
+     "11857":
+        {
+         "activated_id":11865,
+         "animated":false,
+         "animated_id":0
+        },
+     "11859":
+        {
+         "activated_id":11865,
+         "animated":false,
+         "animated_id":0
+        },
      "11880":
         {
          "bg":"#00cc33"
@@ -29313,6 +29325,18 @@
         },
      "1169":
         {
+         "animated":"bool",
+         "animated_id":"int"
+        },
+     "11857":
+        {
+         "activated_id":"int",
+         "animated":"bool",
+         "animated_id":"int"
+        },
+     "11859":
+        {
+         "activated_id":"int",
          "animated":"bool",
          "animated_id":"int"
         },

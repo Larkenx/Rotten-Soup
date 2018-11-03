@@ -7,7 +7,7 @@ import { getRandomInt } from '#/utils/HelperFunctions.js'
 import { materialTypes } from '#/utils/Constants.js'
 
 export class Battleaxe extends Weapon {
-	constructor(x, y, sides, rolls, name, id) {
+	constructor(x, y, sides, rolls, name, id, materialType) {
 		super(x, y, {
 			id: id,
 			name: name,
@@ -17,7 +17,8 @@ export class Battleaxe extends Weapon {
 				rolls: rolls,
 				sides: sides
 			},
-			attackVerbs: ['slashed', 'stabbed', 'gutted', 'sliced']
+			attackVerbs: ['slashed', 'stabbed', 'gutted', 'sliced'],
+			materialType
 		})
 	}
 }
@@ -71,18 +72,18 @@ const materialTextures = {
 }
 
 const battleAxeShop = {
-	[materialTypes.BRONZE]: (x, y, t) => new Battleaxe(x, y, 1, 4, 'Bronze Battleaxe', t),
-	[materialTypes.IRON]: (x, y, t) => new Battleaxe(x, y, 1, 5, 'Iron Battleaxe', t),
-	[materialTypes.STEEL]: (x, y, t) => new Battleaxe(x, y, 1, 6, 'Steel Battleaxe', t),
-	[materialTypes.MITHRIL]: (x, y, t) => new Battleaxe(x, y, 1, 7, 'Mithril Battleaxe', t),
-	[materialTypes.ADAMANTIUM]: (x, y, t) => new Battleaxe(x, y, 1, 8, 'Adamantium Battleaxe', t),
-	[materialTypes.ORICHALCUM]: (x, y, t) => new Battleaxe(x, y, 1, 9, 'Orichalcum Battleaxe', t),
-	[materialTypes.VULCANITE]: (x, y, t) => new Battleaxe(x, y, 1, 11, 'Vulcanite Battleaxe', t),
-	[materialTypes.AQUANITE]: (x, y, t) => new Battleaxe(x, y, 1, 12, 'Aquanite Battleaxe', t),
-	[materialTypes.VRONITE]: (x, y, t) => new Battleaxe(x, y, 1, 13, 'Vronite Battleaxe', t),
-	[materialTypes.LOULOUDIUM]: (x, y, t) => new Battleaxe(x, y, 1, 14, 'Louloudium Battleaxe', t),
-	[materialTypes.ILIOTIUM]: (x, y, t) => new Battleaxe(x, y, 1, 15, 'Iliotium Battleaxe', t),
-	[materialTypes.LEVANTIUM]: (x, y, t) => new Battleaxe(x, y, 1, 16, 'Levantium Battleaxe', t)
+	[materialTypes.BRONZE]: (x, y, t) => new Battleaxe(x, y, 1, 4, 'Bronze Battleaxe', t, materialTypes.BRONZE),
+	[materialTypes.IRON]: (x, y, t) => new Battleaxe(x, y, 1, 5, 'Iron Battleaxe', t, materialTypes.IRON),
+	[materialTypes.STEEL]: (x, y, t) => new Battleaxe(x, y, 1, 6, 'Steel Battleaxe', t, materialTypes.STEEL),
+	[materialTypes.MITHRIL]: (x, y, t) => new Battleaxe(x, y, 1, 7, 'Mithril Battleaxe', t, materialTypes.MITHRIL),
+	[materialTypes.ADAMANTIUM]: (x, y, t) => new Battleaxe(x, y, 1, 8, 'Adamantium Battleaxe', t, materialTypes.ADAMANTIUM),
+	[materialTypes.ORICHALCUM]: (x, y, t) => new Battleaxe(x, y, 1, 9, 'Orichalcum Battleaxe', t, materialTypes.ORICHALCUM),
+	[materialTypes.VULCANITE]: (x, y, t) => new Battleaxe(x, y, 1, 11, 'Vulcanite Battleaxe', t, materialTypes.VULCANITE),
+	[materialTypes.AQUANITE]: (x, y, t) => new Battleaxe(x, y, 1, 12, 'Aquanite Battleaxe', t, materialTypes.AQUANITE),
+	[materialTypes.VRONITE]: (x, y, t) => new Battleaxe(x, y, 1, 13, 'Vronite Battleaxe', t, materialTypes.VRONITE),
+	[materialTypes.LOULOUDIUM]: (x, y, t) => new Battleaxe(x, y, 1, 14, 'Louloudium Battleaxe', t, materialTypes.LOULOUDIUM),
+	[materialTypes.ILIOTIUM]: (x, y, t) => new Battleaxe(x, y, 1, 15, 'Iliotium Battleaxe', t, materialTypes.ILIOTIUM),
+	[materialTypes.LEVANTIUM]: (x, y, t) => new Battleaxe(x, y, 1, 16, 'Levantium Battleaxe', t, materialTypes.LEVANTIUM)
 }
 
 export function createBattleaxe(x, y, id, options) {
@@ -93,6 +94,6 @@ export function createBattleaxe(x, y, id, options) {
 		return battleAxeShop[materialType](x, y, texture)
 	} else {
 		console.error(`Material Type: ${materialType} not found in material type sword shop.`)
-		return new Battleaxe(x, y, 1, getRandomInt(2, 4), axeNames[getRandomInt(0, axeNames.length - 1)])
+		return new Battleaxe(x, y, 1, getRandomInt(2, 4), axeNames[getRandomInt(0, axeNames.length - 1)], materialType)
 	}
 }

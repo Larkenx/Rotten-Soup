@@ -19,6 +19,12 @@ export default class StrengthPotion extends Potion {
 	}
 
 	hoverInfo() {
+		return [
+			{
+				attribute: 'Effect',
+				value: `+${this.buff.amount} STR for ${this.buff.duration} moves`
+			}
+		]
 		return `Effect: +${this.buff.amount} STR for ${this.buff.duration} moves`
 	}
 }

@@ -4,7 +4,7 @@
 			<router-view></router-view>
 		</v-content>
 		<v-footer app v-if="showFooter">
-			<small class="pl-2">RottenSoup</small>
+			<span class="pl-2">RottenSoup</span>
 			<v-spacer />
 			<v-tooltip top>
 				<v-btn slot="activator" active-class="" @click.native="backToGame()" icon ripple>
@@ -83,5 +83,27 @@ export default {
 <style>
 .black {
 	background-color: black;
+}
+
+/* width */
+::-webkit-scrollbar {
+	width: 5px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+	background: #4f4f4f;
+	border-radius: 3px;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+	background: #8d8d8d;
+	border-radius: 3px;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+	background: #818181;
 }
 </style>

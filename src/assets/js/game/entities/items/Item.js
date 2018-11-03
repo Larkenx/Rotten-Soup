@@ -4,17 +4,21 @@
 
 import { Game } from '#/Game.js'
 import { Entity } from '#/entities/Entity.js'
+import { itemTypes } from '../../utils/Constants'
 
 export default class Item extends Entity {
 	constructor(x, y, options) {
 		options.visible = true
 		options.inInventory = true
 		super(x, y, options)
+		if (options.category == null) {
+			options.category = itemTypes.MISCELLANEOUS
+		}
 	}
 
 	/* UI / Front End functions */
 	hoverInfo() {
-		return `${this.type}${this.name}\n`
+		return []
 	}
 
 	clipLocation() {

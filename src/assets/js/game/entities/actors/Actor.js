@@ -33,13 +33,6 @@ export class Actor extends Entity {
 			ring: null
 		}
 		this.inventory = []
-		for (let i = 0; i < 27; i++) {
-			this.inventory.push({
-				item: null,
-				menu: false,
-				tooltip: false
-			})
-		}
 	}
 
 	/* Called by the ROT.js game scheduler to indicate a turn */
@@ -80,20 +73,24 @@ export class Actor extends Entity {
 	memberOfInventory(item) {
 		return (
 			-1 <
-			this.inventory.findIndex(cell => {
-				return Object.is(item, cell.item)
+			this.inventory.findIndex(i => {
+				return Object.is(item, i)
 			})
 		)
 	}
 
 	hasItem(itemType) {
-		return this.inventory.some(cell => cell.item instanceof itemType)
+		return this.inventory.some(i => i instanceof itemType)
+	}
+
+	hasExactItem(item) {
+		return this.inventory.some(i => i === item)
 	}
 
 	removeItemType(itemType) {
-		for (let cell of this.inventory) {
-			if (cell.item instanceof itemType) {
-				this.removeFromInventory(cell.item)
+		for (let item of this.inventory) {
+			if (item instanceof itemType) {
+				this.removeFromInventory(item)
 				return
 			}
 		}
@@ -101,37 +98,21 @@ export class Actor extends Entity {
 
 	addToInventory(newItem) {
 		if ('quantity' in newItem) {
+			// some items change textures on quantity changes (gold pieces)
 			if (newItem.updateQuantity !== undefined) {
 				newItem.updateQuantity()
 			}
 
 			for (let i = 0; i < this.inventory.length; i++) {
-				let item = this.inventory[i].item
+				let item = this.inventory[i]
 				if (item !== null && item.type === newItem.type) {
 					item.quantity += newItem.quantity
-					return item
+					return
 				}
 			}
 		}
 
-		let nextFreeIndex = null
-		for (let i = 0; i < this.inventory.length; i++) {
-			if (this.inventory[i].item == null) {
-				nextFreeIndex = i
-				break
-			}
-		}
-		if (nextFreeIndex === null) {
-			Game.log('Your inventory is full! Drop something in order to pick this up.')
-			// if your item is in a chest and you try to pick it up, but your inventory is full,
-			// it will drop the item below you.
-			this.placeEntityBelow(newItem)
-			return newItem
-		}
-
-		this.inventory[nextFreeIndex].item = newItem
-		// this.inventory[nextFreeIndex].action = newItem.use;
-		return this.inventory[nextFreeIndex].item
+		this.inventory.push(newItem)
 	}
 
 	placeEntityBelow(entity) {
@@ -143,14 +124,12 @@ export class Actor extends Entity {
 		}
 	}
 
-	// expressly want to just remove the item from the inventory.
-	// no actions are taken to mutate the item (like unequipping it from the player - this is done in those classes)
 	removeFromInventory(removeItem) {
-		let idx = this.inventory.findIndex(cell => {
-			return Object.is(removeItem, cell.item)
+		let idx = this.inventory.findIndex(i => {
+			return Object.is(removeItem, i)
 		})
 		if (idx != -1) {
-			this.inventory[idx].item = null
+			this.inventory.splice(idx, 1)
 		} else {
 			throw 'invalid item removal - trying to remove an item that cannot be found in inventory!'
 		}
@@ -171,7 +150,7 @@ export class Actor extends Entity {
 	/* The inventory property of actors is an array of object 'slots'. This function
      * returns the actual items that are held at any given time */
 	items() {
-		return this.inventory.filter(e => e.item !== null).map(e => e.item)
+		return this.inventory
 	}
 
 	distanceTo(actor) {
@@ -383,7 +362,7 @@ export class Actor extends Entity {
 		// dump the contents of the actor's inventory (items) onto the ground.
 		const numberOfEntities = Game.display.background.children.length
 
-		let items = this.items()
+		let items = this.inventory
 		for (let item of items) {
 			this.dropItem(item)
 		}

@@ -19,6 +19,12 @@ export default class ManaPotion extends Potion {
 	}
 
 	hoverInfo() {
+		return [
+			{
+				attribute: 'Effect',
+				value: `Restores 10 mana`
+			}
+		]
 		return 'Effect: Restores 10 mana'
 	}
 }

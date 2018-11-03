@@ -1,14 +1,12 @@
 import ROT from 'rot-js'
 import * as PIXI from 'pixi.js'
 PIXI.utils.skipHello()
-
 import { getTilesetCoords, createMapFromJSON } from '#/map/GameMap.js'
 import GameDisplay from '#/GameDisplay.js'
 import { Actor } from '#/entities/actors/Actor.js'
 import { Entity } from '#/entities/Entity.js'
 import { getItemsFromDropTable, addPrefix } from '#/utils/HelperFunctions.js'
 import PlayerController from '#/utils/PlayerController.js'
-
 import Item from '#/entities/items/Item.js'
 import Player from '#/entities/actors/Player.js'
 import MapGen from '#/map/generation/index.js'
@@ -19,10 +17,10 @@ import Chest from '#/entities/misc/Chest.js'
 
 const { randomSimplexMap, randomDungeon, randomCave } = MapGen
 const defaultMinimapConfiguration = {
-	width: 44,
-	height: 26,
-	fontSize: 11,
-	spacing: 0.6,
+	width: 45,
+	height: 35,
+	fontSize: 7,
+	spacing: 0.5,
 	forceSquareRatio: true
 }
 export let Game = {
@@ -59,7 +57,7 @@ export let Game = {
 		dialogue: {}
 	},
 
-	init(playerSpriteID) {
+	init(playerSpriteID, options) {
 		this.playerID = playerSpriteID
 		this.player = new Player(0, 0, playerSpriteID)
 		this.displayOptions = {
@@ -92,7 +90,8 @@ export let Game = {
 			this.engine.start() // Start the engine
 			this.renderMap()
 		}
-		this.display = new GameDisplay()
+		let { width, height } = options
+		this.display = new GameDisplay(width, height)
 		this.display.loadAssets(onceLoaded)
 	},
 
@@ -445,7 +444,7 @@ export let Game = {
 		if (obstacleDescriptions.length > 0) names.push(obstacleDescriptions.slice(-1)[0])
 		let prettyNames = 'nothing'
 		if (names.length === 1) {
-			prettyNames = addPrefix(names.slice(0, 1)[0])
+			prettyNames = names.slice(0, 1)[0]
 		} else if (names.length > 1) {
 			prettyNames = names.slice(1, -1).reduce((buf, str) => {
 				return buf + ', ' + addPrefix(str)
@@ -511,6 +510,23 @@ export let Game = {
 		let levelTransitions = this.map.getActors().filter(a => a instanceof LevelTransition)
 		if (levelTransitions.length > 0) return levelTransitions[0]
 		else return null
+	},
+
+	closeGameOverlayScreen() {
+		this.overlayData.component = null
+		this.overlayData.visible = false
+	},
+
+	openSpellbook() {
+		this.overlayData.component = 'spellbook'
+		this.overlayData.visible = true
+		this.player.initializeSelectedSpell()
+	},
+
+	openInventory() {
+		this.overlayData.component = 'inventory-equipment-view'
+		this.overlayData.visible = true
+		this.player.initializeSelectedItem()
 	},
 
 	openNPCDialog(dialogue) {
