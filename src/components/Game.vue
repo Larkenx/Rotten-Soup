@@ -1,25 +1,16 @@
 <template >
-	<v-container fluid>
-		<v-container v-show="playerSelected" class="mt-3" id="main_container" :style="{'max-width': uiWidth+6, 'max-height': uiHeight+6}">
-			<!--  Notifications -->
-			<v-layout row v-if="unstableBuildMessage">
-				<v-flex xs12>
-					<v-alert color="yellow darken-4" type="warning" dismissible v-model="unstableBuildMessage">
-						This build is unstable. A lot of working is going on under the hood. Expect lots of broken, weird things!
-					</v-alert>
-				</v-flex>
-			</v-layout>
-			<!-- Game Display and HUD-->
-			<v-layout row id="ui" :style="{'max-width': uiWidth, 'max-height': uiHeight}">
-				<v-flex column :style="{'max-width': gameDisplayWidth}">
-					<v-layout id="game_container_row" :style="{'max-height': gameDisplayHeight, 'max-width': gameDisplayWidth}">
-						<game-overlay-view ref="gameOverlayView" />
-						<div id="game_container" />
-					</v-layout>
-					<message-log v-if="playerSelected"></message-log>
-				</v-flex>
-				<hud v-if="playerSelected" :showEquipment="showFooter"></hud>
-			</v-layout>
+	<v-container class="pa-0" fill-height>
+		<div class="pa-0" v-show="playerSelected">
+			<div id="root_container">
+				<!-- Game Display -->
+				<div id="game_container" :style="getGameContainerStyling()" />
+				<!-- The game overlay  -->
+				<div id="game_overlay_view" v-show="overlayVisible()" :is="overlayData.component" :style="getGameOverlayStyling()" :positioning="getGameOverlayPositioning()" />
+				<!-- The HUD -->
+				<div id="hud" :style="getHUDStyling()" v-if="playerSelected">
+					<hud />
+				</div>
+			</div>
 			<death-modal v-if="playerSelected"></death-modal>
 			<v-dialog v-model="navigateAwayModalActive" max-width="600px">
 				<v-card>
@@ -36,7 +27,7 @@
 					</v-card-actions>
 				</v-card>
 			</v-dialog>
-		</v-container>
+		</div>
 		<start-menu v-show="!playerSelected" v-on:spriteSelected="loadGame"></start-menu>
 	</v-container>
 </template>
@@ -44,94 +35,96 @@
 <script>
 import { Game } from '@/assets/js/game/Game.js'
 // components
-import startMenu from '@/components/StartMenu.vue'
-import gameDisplay from '@/components/GameDisplay.vue'
-import itemTransferModal from '@/components/ItemTransferModal.vue'
-import hud from '@/components/HUD.vue'
-import deathModal from '@/components/DeathModal.vue'
-import helpDialog from '@/components/HelpDialog.vue'
-import gameOverlayView from '@/components/GameOverlayView.vue'
-
-import messageLog from '@/components/MessageLog.vue'
-// DEBUG: Imports to export to window
-window.Game = Game
-let { innerWidth, innerHeight } = window
-let uiWidth = '1470px'
-let uiHeight = '823px'
-let showFooter = true
-let gameDisplayWidth = '1024px'
-let gameDisplayHeight = '640px'
-if (innerWidth <= 1400 || innerHeight <= 800) {
-	uiWidth = '1240px'
-	uiHeight = '750px'
-	showFooter = false
-	gameDisplayWidth = '800px'
-	gameDisplayHeight = '500px'
-}
-
+import startMenu from '@/components/StartMenu'
+import hud from '@/components/HUD'
+import deathModal from '@/components/DeathModal'
+import gameOverlayView from '@/components/GameOverlayView'
+import NPCDialogue from '@/components/NPCDialogue'
+import inventoryEquipmentView from '@/components/InventoryEquipmentView.vue'
+import Spellbook from '@/components/Spellbook'
 export default {
 	name: 'Game',
 	data() {
 		return {
+			width: 1280,
+			hudWidth: 250,
+			height: 800,
+			footerHeight: 32,
+			widthOffset: 0,
+			heightOffset: 0,
+			overlayOffset: 20,
+			borderWidth: 6,
 			navigateAwayModalActive: false,
 			handleNavigateAway: () => {},
 			mouseControls: false,
-			loading: true,
 			playerSelected: false,
-			unstableBuildMessage: false,
-			gameOverlayVisible: true,
-			gameOverlayData: {},
-			uiWidth,
-			uiHeight,
-			gameDisplayWidth,
-			gameDisplayHeight,
-			showFooter
+			overlayData: Game.overlayData
 		}
 	},
 	mounted() {
-		window.addEventListener('resize', this.recomputeSize)
-		console.log(window.location.host)
 		if (window.location.host.includes('localhost')) this.loadGame(4219)
-	},
-	beforeDestroy() {
-		window.removeEventListener('resize', this.recomputeSize)
+		let { clientWidth, clientHeight } = document.documentElement
+		let uiWidth = this.width + this.hudWidth
+		this.widthOffset = clientWidth > uiWidth ? (clientWidth - uiWidth) / 2 : 0
+		this.heightOffset = clientHeight > this.height ? (clientHeight - this.height) / 2 : 0
+		/* Development */
+		// Game.openInventory()
+		// Game.openSpellbook()
+		// Game.player.inventory[0].selected = true
+		// for (let i = 0; i < 20; i++) Game.log('The quick brown fox jumps over the lazy dog.', 'player_move')
 	},
 	components: {
 		'game-overlay-view': gameOverlayView,
+		'npc-dialogue': NPCDialogue,
 		'start-menu': startMenu,
-		'game-display': gameDisplay,
+		'inventory-equipment-view': inventoryEquipmentView,
+		spellbook: Spellbook,
 		hud: hud,
-		'item-transfer-modal': itemTransferModal,
-		'death-modal': deathModal,
-		'help-dialog': helpDialog,
-		'message-log': messageLog
+		'death-modal': deathModal
 	},
 	methods: {
 		loadGame(id) {
 			this.playerSelected = true
-			Game.init(id, { width: 1024, height: 640 })
+			Game.init(id, { width: this.width, height: this.height })
 			Game.log('Welcome to Rotten Soup!', 'information')
 			Game.log('Press ? to view the controls.', 'player_move')
-		},
-		recomputeSize(evt) {
-			console.log('resizing!')
-			this.uiWidth = '1470px'
-			this.uiHeight = '823px'
-			this.showFooter = true
-			this.gameDisplayWidth = '1024px'
-			this.gameDisplayHeight = '640px'
-			if (window.innerWidth <= 1400 || window.innerHeight <= 800) {
-				this.uiWidth = '1240px'
-				this.uiHeight = '750px'
-				this.showFooter = false
-				this.gameDisplayWidth = '800px'
-				this.gameDisplayHeight = '500px'
-			}
-			Game.display.resize()
 		},
 		navigate(didNavigate) {
 			this.navigateAwayModalActive = false
 			this.handleNavigateAway(didNavigate)
+		},
+		overlayVisible() {
+			return Game.overlayData.visible
+		},
+		getGameOverlayPositioning() {
+			return {
+				left: this.widthOffset + this.overlayOffset / 2,
+				top: this.heightOffset - this.footerHeight + this.overlayOffset / 2,
+				width: this.width + this.borderWidth - this.overlayOffset,
+				height: this.height + this.borderWidth - this.overlayOffset
+			}
+		},
+		getGameOverlayStyling() {
+			return {
+				left: this.widthOffset + this.overlayOffset / 2 + 'px',
+				top: this.heightOffset - this.footerHeight + this.overlayOffset / 2 + 'px',
+				width: this.width + this.borderWidth - this.overlayOffset + 'px',
+				height: this.height + this.borderWidth - this.overlayOffset + 'px'
+			}
+		},
+		getGameContainerStyling() {
+			return {
+				left: this.widthOffset + 'px',
+				top: this.heightOffset - this.footerHeight + 'px',
+				width: this.width + this.borderWidth + 'px',
+				height: this.height + this.borderWidth + 'px'
+			}
+		},
+		getHUDStyling() {
+			return {
+				left: this.widthOffset + this.width + this.borderWidth + 'px',
+				top: this.heightOffset - this.footerHeight + 'px'
+			}
 		}
 	},
 	beforeRouteLeave(to, from, next) {
@@ -142,14 +135,6 @@ export default {
 </script>
 
 <style>
-.black {
-	background-color: black;
-}
-
-html {
-	overflow: hidden;
-}
-
 * {
 	-webkit-touch-callout: none;
 	/* iOS Safari */
@@ -164,40 +149,35 @@ html {
 	user-select: none;
 }
 
-#main_container {
-	max-width: 1470px;
-	padding: 0px;
-}
-
-#game_container {
+#root_container > div {
 	position: absolute;
-	z-index: 1;
 }
 
-#game_container canvas {
-	z-index: 2;
+#game_overlay_view {
+	z-index: 1050;
+	background-color: #1e1f1f;
+	border: 2px solid #4f4f4f;
+	border-radius: 4px;
 }
 
-#ui {
+canvas {
+	border: 3px solid #4f4f4f;
+	background-color: #1e1f1f;
+	z-index: -1;
+	/* border-radius: 4px; */
+}
+
+.ui {
 	border: 3px solid #4f4f4f;
 	background-color: #1e1f1f;
 	border-radius: 4px;
 }
 
-#game_container_row {
-	height: 640px;
-	max-height: 640px;
-}
-
-.test {
-	background-color: #824d03;
-}
-
 /* Overriding Vuetify's tool tip so that it is centered :) */
 
-[data-tooltip] {
-	position: relative;
+div.v-tooltip__content {
 	text-align: center;
+	opacity: 1 !important;
 }
 
 .modal {

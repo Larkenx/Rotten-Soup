@@ -4,7 +4,6 @@ import Game from '@/components/Game'
 import DialogueGraphVisualizer from '@/components/DialogueGraphVisualizer'
 import VoronoiVisualizer from '@/components/VoronoiVisualizer'
 import Playground from '@/components/Playground'
-import AltGame from '@/components/AlternateHUD/AltGame'
 Vue.use(Router)
 
 const router = new Router({
@@ -13,11 +12,6 @@ const router = new Router({
 			path: '/playground',
 			name: 'Rotten Soup - Playground',
 			component: Playground
-		},
-		{
-			path: '/hud',
-			name: 'Rotten Soup - HUD',
-			component: AltGame
 		},
 		{
 			path: '/graphvis',

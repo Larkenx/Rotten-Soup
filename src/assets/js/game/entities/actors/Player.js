@@ -148,10 +148,6 @@ export default class Player extends Actor {
 		this.addToInventory(new ManaPotion(this.x, this.y, 608))
 		this.cb.spells.push(new MagicDart())
 		this.cb.spells.push(new MinorHeal())
-		this.cb.spells.push(new VampiricDraining())
-		this.cb.spells.push(new Regeneration())
-		this.cb.spells.push(new Pain())
-		this.cb.spells.push(new AnimateDead())
 		this.selectSpell(this.cb.spells[0])
 		this.mouseEnabled = false
 		this.commandQueue = []
@@ -564,9 +560,9 @@ export default class Player extends Actor {
 		}
 	}
 
-	handleHelpScreenEvent(evt) {}
+	handleHelpScreenEvent(evt) { }
 
-	resetSelectedItem() {}
+	resetSelectedItem() { }
 
 	initializeSelectedItem() {
 		const initialSelectedInventoryItemSlot = { contextMenuOpen: false, index: null, item: null }

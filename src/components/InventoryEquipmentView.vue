@@ -10,8 +10,8 @@
 </template>
 
 <script>
-import inventory from '@/components/AlternateHUD/Inventory.vue'
-import equipment from '@/components/AlternateHUD/Equipment.vue'
+import inventory from '@/components/Inventory.vue'
+import equipment from '@/components/Equipment.vue'
 
 export default {
 	name: 'inventory-equipment-view',
