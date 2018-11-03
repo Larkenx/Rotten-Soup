@@ -9,6 +9,7 @@
 
 code {
 	background-color: #424242;
+	color: white;
 }
 
 .selected_spell {
@@ -67,33 +68,35 @@ code {
 						<span class="headline pl-2" style="color: #535353">Spellbook</span>
 						<v-spacer />
 						<span class="pr-233" style="color: #535353">
-							press <code>e</code> or <code>⏎</code>to set active spell
+							press <code>e</code> or <code>⏎</code> to set active spell
 						</span>
 					</v-layout>
-					<v-layout wrap justify-space-around>
-						<v-card class="ma-2 pa-3" width="300px" height="200px" v-for="(spell, index) in spells" :key="index" :class="{selected_spell: spell === selectedSpellSlot.spell, unselected_spell: spell !== selectedSpellSlot.spell}" @click.native="selectSpellAtIndex(index)">
-							<v-layout fill-height column>
-								<v-layout wrap align-content-center align-center justify-center>
-									<v-flex>
-										<img :class="{active_spell_image: isActiveSpell(spell)}" width="32px" height="32px" v-bind:src="getSpellSplashArt(spell.type.toLowerCase(), spell.splashArt)">
-									</v-flex>
-									<v-flex style="flex-grow: 1">
-										<span>{{spell.name}}</span>
-									</v-flex>
+					<v-layout wrap>
+						<v-flex xs4 v-for="(spell, index) in spells" :key="index">
+							<v-card class="ma-2 pa-3" width="300px" height="200px" :class="{selected_spell: spell === selectedSpellSlot.spell, unselected_spell: spell !== selectedSpellSlot.spell}" @click.native="selectSpellAtIndex(index)">
+								<v-layout fill-height column>
+									<v-layout wrap align-content-center align-center justify-center>
+										<v-flex>
+											<img :class="{active_spell_image: isActiveSpell(spell)}" width="32px" height="32px" v-bind:src="getSpellSplashArt(spell.type.toLowerCase(), spell.splashArt)">
+										</v-flex>
+										<v-flex style="flex-grow: 1">
+											<span>{{spell.name}}</span>
+										</v-flex>
+									</v-layout>
+									<v-layout justify-center align-center column fill-height>
+										<span class="pa-2">{{spell.hoverInfo}}</span>
+									</v-layout>
+									<v-card-actions>
+										<v-chip small style="color: white" color="#1e1f1f">
+											{{spell.manaCost}} mana points
+										</v-chip>
+										<v-spacer />
+										<v-btn v-if="!isActiveSpell(spell)" small flat color="yellow darken-4" @click.native="setActiveSpell(spell)">Select Spell</v-btn>
+										<v-btn v-else disabled small flat color="yellow darken-4" >Active Spell</v-btn>
+									</v-card-actions>
 								</v-layout>
-								<v-layout justify-center align-center column fill-height>
-									<span class="pa-2">{{spell.hoverInfo}}</span>
-								</v-layout>
-								<v-card-actions>
-									<v-chip small style="color: white" color="#1e1f1f">
-										{{spell.manaCost}} mana points
-									</v-chip>
-									<v-spacer />
-									<v-btn v-if="!isActiveSpell(spell)" small flat color="yellow darken-4" @click.native="setActiveSpell(spell)">Select Spell</v-btn>
-									<v-btn v-else disabled small flat color="yellow darken-4" >Active Spell</v-btn>
-								</v-card-actions>
-							</v-layout>
-						</v-card>
+							</v-card>
+						</v-flex>
 					</v-layout>
 				</v-card>
 			</v-flex>

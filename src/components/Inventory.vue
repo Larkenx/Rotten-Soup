@@ -46,6 +46,11 @@ div.v-expansion-panel__header {
 	border-radius: 2px;
 }
 
+code {
+	background-color: #424242;
+	color: white;
+}
+
 /* .selectedItem {
 	background-color: green;
 	margin: 2px;
@@ -71,7 +76,7 @@ div.v-expansion-panel__header {
 					<span class="headline pl-2" style="color: #535353">Inventory</span>
 					<v-spacer />
 					<span class="pr-233" style="color: #535353">
-						press <code style="background-color: #424242">d</code> to drop. press <code style="background-color: #424242">e</code> to interact
+						press <code>d</code> to drop. press <code>e</code> to interact
 					</span>
 				</v-layout>
 				<v-layout v-for="(index, row) in Math.ceil(inventory.length / 3)" :key="row" justify-start style="margin-left: 25px;">
