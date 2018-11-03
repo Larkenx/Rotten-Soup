@@ -1,29 +1,29 @@
 <template>
 	<v-layout align-center justify-space-between column fill-height id="hud_container" class="elevation-0 pa-2">
 		<div>
-			<v-layout wrap align-center justify-space-around style="font-size: 14px;">
-				<v-flex xs4>
+			<v-layout wrap align-center justify-space-between style="font-size: 14px;">
+				<v-flex xs5>
 					<b>HP:</b>
 				</v-flex>
-				<v-flex xs8 class="text-xs-left pl-2">
+				<v-flex xs7 class="text-xs-left pl-2">
 					<b :style="getHPStyling()">{{getHP()}} </b>/ {{getMaxHP()}}
 				</v-flex>
-				<v-flex xs4>
+				<v-flex xs5>
 					<b>Magic:</b>
 				</v-flex>
-				<v-flex xs8 class="text-xs-left pl-2"> 
+				<v-flex xs7 class="text-xs-left pl-2">
 					{{getMana()}} / {{getMaxMana()}}
 				</v-flex>
-				<v-flex xs4>
+				<v-flex xs5>
 					<b>Location:</b>
 				</v-flex>
-				<v-flex xs8 class="text-xs-left pl-2"> 
+				<v-flex xs7 class="text-xs-left pl-2">
 					{{getCurrentLevel().capitalize()}}
 				</v-flex>
-				<v-flex xs4 v-if="getCurrentLevelDepth() > 0">
+				<v-flex xs5 v-if="getCurrentLevelDepth() > 0">
 					<b>Floor:</b>
 				</v-flex>
-				<v-flex xs8 class="text-xs-left pl-2"  v-if="getCurrentLevelDepth() > 0">
+				<v-flex xs7 class="text-xs-left pl-2" v-if="getCurrentLevelDepth() > 0">
 					{{getCurrentLevelDepth()}}
 				</v-flex>
 				<v-flex xs12>
@@ -38,7 +38,7 @@
 				</v-flex>
 			</v-layout>
 		</div>
-		<div style="flex-grow: 1;">
+		<div class="mt-2" style="flex-grow: 1;">
 			<v-layout fill-height wrap align-center justify-space-between style="font-size: 14px;">
 				<v-flex xs12>
 					<message-log></message-log>
@@ -128,8 +128,8 @@ export default {
 	background-color: #1e1f1f;
 	z-index: 3;
 	padding: 0px;
-	min-width: 250px;
-	max-width: 250px;
+	min-width: 275px;
+	max-width: 275px;
 	min-height: 806px;
 	max-height: 806px;
 	border: 3px solid #4f4f4f;

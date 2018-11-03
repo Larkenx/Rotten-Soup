@@ -1,12 +1,12 @@
 <template>
 	<v-layout id="console_container">
 		<v-flex align-start>
-			<v-layout wrap id="console" class="pt-3">
-				<v-flex xs12 v-for="(message, index) in getMessages()" v-bind:key="index">
+			<v-layout wrap id="console">
+				<v-flex xs12 v-for="(message, index) in messages" v-bind:key="index">
 					<v-icon style="font-size: 14px;">fas fa-angle-right</v-icon><b class="pl-2" v-bind:style="{color : message[1]}">{{message[0]}}</b>
 				</v-flex>
 				<!-- Temporary log item for displaying info that isn't stored (examine text, or "this is blocked")  -->
-				<v-flex xs12 v-for="(message, index) in getTempMessages()" :key="index+1*-1">
+				<v-flex xs12 v-for="(message, index) in tempMessages" :key="index+1*-1">
 					<v-icon style="font-size: 14px;">fas fa-angle-left</v-icon><b class="pl-2" v-bind:style="{color : message[1]}">{{message[0]}}</b>
 				</v-flex>
 			</v-layout>
@@ -38,40 +38,6 @@ import { Game } from '#/Game.js'
 /* import your actions here */
 export default {
 	name: 'message-log',
-	mounted() {
-		this.$watch(
-			'messages',
-			() => {
-				const easeInOutQuad = (t, b, c, d) => {
-					t /= d / 2
-					if (t < 1) return (c / 2) * t * t + b
-					t--
-					return (-c / 2) * (t * (t - 2) - 1) + b
-				}
-				let elem = this.$el.querySelector('#console_container')
-				let topPos = elem.offsetTop
-				const scrollTo = (element, to, duration) => {
-					let start = element.scrollTop,
-						change = to - start,
-						currentTime = 0,
-						increment = 30
-					let animateScroll = () => {
-						currentTime += increment
-						var val = easeInOutQuad(currentTime, start, change, duration)
-						element.scrollTop = val
-						if (currentTime < duration) {
-							setTimeout(animateScroll, increment)
-						}
-					}
-					animateScroll()
-				}
-				scrollTo(document.getElementById('panel-list'), topPos, 600)
-			},
-			{
-				deep: true
-			}
-		)
-	},
 	data() {
 		return {
 			messages: Game.messageHistory,
@@ -79,6 +45,15 @@ export default {
 			offset: 0
 		}
 	},
+	mounted() {
+		this.$watch('messages', () => {
+			this.scrollToBottomConsole()
+		})
+		this.$watch('tempMessages', () => {
+			this.scrollToBottomConsole()
+		})
+	},
+
 	methods: {
 		getTempMessages() {
 			return this.tempMessages
@@ -94,6 +69,31 @@ export default {
 		},
 		up() {
 			if (this.offset < this.messages.length - 10) this.offset++
+		},
+		scrollToBottomConsole() {
+			const easeInOutQuad = (t, b, c, d) => {
+				t /= d / 2
+				if (t < 1) return (c / 2) * t * t + b
+				t--
+				return (-c / 2) * (t * (t - 2) - 1) + b
+			}
+			let elem = document.getElementById('console_container')
+			const scrollTo = (element, to, duration) => {
+				let start = element.scrollTop,
+					change = to - start,
+					currentTime = 0,
+					increment = 30
+				let animateScroll = () => {
+					currentTime += increment
+					var val = easeInOutQuad(currentTime, start, change, duration)
+					element.scrollTop = val
+					if (currentTime < duration) {
+						setTimeout(animateScroll, increment)
+					}
+				}
+				animateScroll()
+			}
+			scrollTo(elem, elem.scrollHeight, 600)
 		}
 	}
 }
@@ -102,8 +102,8 @@ export default {
 <style>
 #console_container {
 	/* border-top: 4px solid #4f4f4f; */
-	overflow-y: auto;
-	max-height: 520px;
+	overflow-y: hidden;
+	max-height: 500px;
 	background-color: #1e1f1f;
 	flex: 1;
 }

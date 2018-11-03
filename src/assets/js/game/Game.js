@@ -444,7 +444,7 @@ export let Game = {
 		if (obstacleDescriptions.length > 0) names.push(obstacleDescriptions.slice(-1)[0])
 		let prettyNames = 'nothing'
 		if (names.length === 1) {
-			prettyNames = addPrefix(names.slice(0, 1)[0])
+			prettyNames = names.slice(0, 1)[0]
 		} else if (names.length > 1) {
 			prettyNames = names.slice(1, -1).reduce((buf, str) => {
 				return buf + ', ' + addPrefix(str)

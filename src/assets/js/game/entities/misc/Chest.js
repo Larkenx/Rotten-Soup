@@ -4,6 +4,7 @@
 
 import { Game } from '#/Game.js'
 import { Entity } from '#/entities/Entity.js'
+import { addPrefix } from '#/utils/HelperFunctions.js'
 
 export default class Chest extends Entity {
 	constructor(x, y, id) {
@@ -26,7 +27,15 @@ export default class Chest extends Entity {
 			if (this.items.length === 0 && isPlayer) {
 				Game.log("There's nothing left in this chest!", 'information')
 			} else {
-				if (isPlayer) Game.log('You collect everything from the chest.', 'information')
+				let itemTypes = this.items.map(i => i.type.toLowerCase())
+				let prettyItemTypes =
+					this.items.length === 1
+						? addPrefix(itemTypes[0])
+						: itemTypes.slice(1, itemTypes.length - 1).reduce((buf, str) => {
+								return buf + ', ' + addPrefix(str)
+						  }, addPrefix(itemTypes.slice(0, 1)[0])) + ` and ${addPrefix(itemTypes.slice(-1)[0])}.`
+				let buffer = `You take ${prettyItemTypes} from the chest.`
+				Game.log(buffer, 'information')
 				for (let item of this.items) actor.addToInventory(item)
 
 				if (isPlayer) Game.player.cb.chestsOpened++

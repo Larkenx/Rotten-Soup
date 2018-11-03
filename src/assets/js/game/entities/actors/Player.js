@@ -82,12 +82,13 @@ export default class Player extends Actor {
 			keyTimer: null
 		})
 		this.keyMap = {
-			/* Arrow Key movement */
+			// Arrow Key movement
+
 			39: 2,
 			37: 6,
 			38: 0,
-			40: 4
-			/* Num Pad Movement */,
+			40: 4,
+			// Num Pad Movement
 			104: 0,
 			105: 1,
 			102: 2,
@@ -95,10 +96,10 @@ export default class Player extends Actor {
 			98: 4,
 			97: 5,
 			100: 6,
-			103: 7
-			/* Rest using '5' in numpad */,
-			101: 'rest'
-			/* vi movement */,
+			103: 7,
+			// Rest using '5' in numpad
+			101: 'rest',
+			// vi movement
 			75: 0,
 			85: 1,
 			76: 2,
@@ -106,14 +107,17 @@ export default class Player extends Actor {
 			74: 4,
 			66: 5,
 			72: 6,
-			89: 7
-			/* Fire a weapon */,
-			[ROT.VK_F]: 'fire'
-			/* Cast a spell */,
-			[ROT.VK_Z]: 'cast'
-			/* Interact */,
-			[ROT.VK_E]: 'interact'
-			/* Misc */,
+			89: 7,
+			// Fire a weapon
+			[ROT.VK_F]: 'fire',
+			// Cast a spell
+			[ROT.VK_Z]: 'cast',
+			// Interact
+			[ROT.VK_E]: 'interact',
+			[ROT.VK_ADD]: 'interact',
+			[ROT.VK_SUBTRACT]: 'interact',
+
+			// Misc
 			[ROT.VK_I]: 'openInventory',
 			[ROT.VK_S]: 'openSpellbook',
 			[ROT.VK_M]: 'openSpellbook',
@@ -151,14 +155,8 @@ export default class Player extends Actor {
 		this.selectSpell(this.cb.spells[0])
 		this.mouseEnabled = false
 		this.commandQueue = []
-		this.selectedItemSlot = {
-			item: null,
-			index: null
-		}
-		this.selectedSpellSlot = {
-			spell: null,
-			index: null
-		}
+		this.selectedItemSlot = { item: null, index: null }
+		this.selectedSpellSlot = { spell: null, index: null }
 	}
 
 	swapInventorySlots(origin, target) {
@@ -259,6 +257,150 @@ export default class Player extends Actor {
 		window.addEventListener('keyup', waitUntilPlayerReleases)
 		Game.clearTempLog()
 		Game.engine.unlock()
+	}
+
+	handleEvent(evt) {
+		/* Switches event handlers based on context of what the player is currently doing
+			 Possibilities:
+				- Examining
+				- Ranged Targeting
+				- Magic Spell Casting
+				- Movement, Picking up items, Climbing Ladders
+				- Mouse movement
+				- Navigating a Menu
+					* Help Dialog Screen
+					* NPC Dialogue
+					* ...
+		 */
+
+		// updating our vision with the most up to date information
+		Object.assign(Game.map.seen_tiles, Game.map.visible_tiles)
+		Game.map.visible_tiles = {}
+
+		// FOV calculations
+		let fov = new ROT.FOV.PreciseShadowcasting((x, y) => {
+			return Game.inbounds(x, y) && Game.getTile(x, y).visible()
+		})
+
+		fov.compute(Game.player.x, Game.player.y, Game.player.cb.range, (x, y, r, visibility) => {
+			Game.map.visible_tiles[x + ',' + y] = true
+		})
+
+		if (Game.overlayData.visible) {
+			switch (Game.overlayData.component) {
+				case 'npc-dialogue':
+					return this.handleNPCDialogueEvent(evt)
+				case 'inventory-equipment-view':
+					return this.handleInventoryEvent(evt)
+				case 'spellbook':
+					return this.handleSpellbookEvent(evt)
+				default:
+					console.error('Game is showing overlay for which the player cannot handle')
+			}
+		} else if (this.examining) {
+			this.handleExamineEvent(evt)
+		} else if (this.casting) {
+			this.handleMagicEvent(evt)
+		} else if (this.targeting) {
+			this.handleRangedFireEvent(evt)
+		} else if (this.helpDialogOpen) {
+			this.handleHelpScreenEvent(evt)
+		} else {
+			let { keyCode } = evt
+			let shiftPressed = evt.getModifierState('Shift')
+			let movementKeys = [0, 1, 2, 3, 4, 5, 6, 7]
+
+			if (!(keyCode in this.keyMap)) {
+				// invalid key press, retry turn
+				return
+			}
+
+			// evt.preventDefault()
+
+			/* If the key event isn't repeated within the last 160 milliseconds (too soon), then we proceed but we keep track of this
+			 	key movement time */
+			if (evt.type === 'keydown' && movementKeys.includes(this.keyMap[keyCode])) {
+				if (this.keyTimer === null) {
+					this.keyTimer = new Date()
+				} else {
+					let start = this.keyTimer.getTime()
+					let now = new Date().getTime()
+					if (!(now - start >= 160)) {
+						return
+					} else {
+						// we've waited long enough, but add another timer just in case
+						this.keyTimer = new Date()
+					}
+				}
+			}
+
+			const action = this.keyMap[keyCode]
+			if (action === 'rest' && !shiftPressed) {
+				// Game.log('You rest for a turn.', 'player_move')
+			} else if (action === 'pickup' && !shiftPressed) {
+				this.pickup()
+			} else if ((action === 'rest' && shiftPressed) || (action === 'pickup' && shiftPressed) || action === 'interact') {
+				this.climb()
+			} else if (action === 'openInventory') {
+				Game.openInventory()
+			} else if (action === 'openSpellbook' || (action === 'cast' && shiftPressed)) {
+				Game.openSpellbook()
+			} else if (action === 'fire' && !shiftPressed) {
+				let weapon = this.cb.equipment.weapon
+				let ammo = this.cb.equipment.ammo
+				if (weapon !== null && ammo !== null && weapon.cb.ranged && ammo.cb.ammoType === weapon.cb.ammoType && ammo.quantity > 0) {
+					Game.log(`You take aim with your ${weapon.type.toLowerCase()}.`, 'darkgreen')
+					this.validTarget = Game.selectNearestEnemyTile()
+					if (!this.validTarget) Game.changeSelectedTile(Game.getTile(this.x, this.y))
+					this.targeting = true
+					return
+				} else {
+					if (weapon === null || !weapon.cb.ranged) {
+						Game.log("You don't have a ranged weapon equipped!", 'information')
+					} else if (ammo === null) {
+						Game.log("You don't have any ammunition equipped.", 'information')
+					} else if (ammo.cb.ammoType !== weapon.cb.ammoType) {
+						Game.log("You don't have the right ammunition equipped for this weapon.", 'information')
+					}
+					return
+				}
+			} else if (action === 'cast') {
+				let currentSpell = this.cb.currentSpell
+				if (currentSpell === null) {
+					Game.log('You must select a spell to cast. Select one from the spellbook!', 'information')
+					return
+				} else if (currentSpell.manaCost > this.cb.mana) {
+					Game.log(`You don't have enough mana to cast ${currentSpell.name}!`, 'alert')
+					return
+				}
+
+				if (currentSpell.targetType === targetTypes.SELF) {
+					Game.log(`You cast ${currentSpell.name}.`, 'magic')
+					currentSpell.cast(this, this)
+					this.cb.mana -= currentSpell.manaCost
+				} else if (currentSpell.targetType === targetTypes.TARGET) {
+					Game.log(`You begin casting ${currentSpell.name}.`, 'magic')
+					this.validTarget = Game.selectNearestEnemyTile()
+					if (!this.validTarget) Game.changeSelectedTile(Game.getTile(this.x, this.y))
+					this.casting = true
+					// our first selected tile can be the nearest enemy
+					return
+				}
+			} else if (action === 'examine') {
+				Game.log('You begin examining the area.', 'information')
+				this.examining = true
+				Game.changeSelectedTile(Game.getTile(this.x, this.y))
+				return
+			} else {
+				let diff = ROT.DIRS[8][action]
+				let nx = this.x + diff[0]
+				let ny = this.y + diff[1]
+				if (!this.tryMove(nx, ny)) {
+					return
+				}
+			}
+			this.endTurn()
+		}
 	}
 
 	handleExamineEvent(evt) {
@@ -422,26 +564,16 @@ export default class Player extends Actor {
 		}
 	}
 
-	handleHelpScreenEvent(evt) { }
+	handleHelpScreenEvent(evt) {}
 
-	resetSelectedItem() { }
+	resetSelectedItem() {}
 
 	initializeSelectedItem() {
-		const initialSelectedInventoryItemSlot = {
-			contextMenuOpen: false,
-			index: null,
-			item: null
-		}
+		const initialSelectedInventoryItemSlot = { contextMenuOpen: false, index: null, item: null }
 		if (this.inventory.length !== 0) {
-			this.selectedItemSlot = {
-				contextMenuOpen: false,
-				index: 0,
-				item: this.inventory[0]
-			}
+			this.selectedItemSlot = { contextMenuOpen: false, index: 0, item: this.inventory[0] }
 		} else {
-			this.selectedItemSlot = {
-				...initialSelectedInventoryItemSlot
-			}
+			this.selectedItemSlot = { ...initialSelectedInventoryItemSlot }
 		}
 	}
 
@@ -567,15 +699,9 @@ export default class Player extends Actor {
 
 	initializeSelectedSpell() {
 		if (this.cb.spells.length !== 0) {
-			this.selectedSpellSlot = {
-				index: 0,
-				spell: this.cb.spells[0]
-			}
+			this.selectedSpellSlot = { index: 0, spell: this.cb.spells[0] }
 		} else {
-			this.selectedSpellSlot = {
-				index: null,
-				spell: null
-			}
+			this.selectedSpellSlot = { index: null, spell: null }
 		}
 	}
 
@@ -717,150 +843,6 @@ export default class Player extends Actor {
 		}
 	}
 
-	handleEvent(evt) {
-		/* Switches event handlers based on context of what the player is currently doing
-			 Possibilities:
-				- Examining
-				- Ranged Targeting
-				- Magic Spell Casting
-				- Movement, Picking up items, Climbing Ladders
-				- Mouse movement
-				- Navigating a Menu
-					* Help Dialog Screen
-					* NPC Dialogue
-					* ...
-		 */
-
-		// updating our vision with the most up to date information
-		Object.assign(Game.map.seen_tiles, Game.map.visible_tiles)
-		Game.map.visible_tiles = {}
-
-		// FOV calculations
-		let fov = new ROT.FOV.PreciseShadowcasting((x, y) => {
-			return Game.inbounds(x, y) && Game.getTile(x, y).visible()
-		})
-
-		fov.compute(Game.player.x, Game.player.y, Game.player.cb.range, (x, y, r, visibility) => {
-			Game.map.visible_tiles[x + ',' + y] = true
-		})
-
-		if (Game.overlayData.visible) {
-			switch (Game.overlayData.component) {
-				case 'npc-dialogue':
-					return this.handleNPCDialogueEvent(evt)
-				case 'inventory-equipment-view':
-					return this.handleInventoryEvent(evt)
-				case 'spellbook':
-					return this.handleSpellbookEvent(evt)
-				default:
-					console.error('Game is showing overlay for which the player cannot handle')
-			}
-		} else if (this.examining) {
-			this.handleExamineEvent(evt)
-		} else if (this.casting) {
-			this.handleMagicEvent(evt)
-		} else if (this.targeting) {
-			this.handleRangedFireEvent(evt)
-		} else if (this.helpDialogOpen) {
-			this.handleHelpScreenEvent(evt)
-		} else {
-			let { keyCode } = evt
-			let shiftPressed = evt.getModifierState('Shift')
-			let movementKeys = [0, 1, 2, 3, 4, 5, 6, 7]
-
-			if (!(keyCode in this.keyMap)) {
-				// invalid key press, retry turn
-				return
-			}
-
-			// evt.preventDefault()
-
-			/* If the key event isn't repeated within the last 160 milliseconds (too soon), then we proceed but we keep track of this
-			 	key movement time */
-			if (evt.type === 'keydown' && movementKeys.includes(this.keyMap[keyCode])) {
-				if (this.keyTimer === null) {
-					this.keyTimer = new Date()
-				} else {
-					let start = this.keyTimer.getTime()
-					let now = new Date().getTime()
-					if (!(now - start >= 160)) {
-						return
-					} else {
-						// we've waited long enough, but add another timer just in case
-						this.keyTimer = new Date()
-					}
-				}
-			}
-
-			const action = this.keyMap[keyCode]
-			if (action === 'rest' && !shiftPressed) {
-				// Game.log('You rest for a turn.', 'player_move')
-			} else if (action === 'pickup' && !shiftPressed) {
-				this.pickup()
-			} else if ((action === 'rest' && shiftPressed) || (action === 'pickup' && shiftPressed) || action === 'interact') {
-				this.climb()
-			} else if (action === 'openInventory') {
-				Game.openInventory()
-			} else if (action === 'openSpellbook' || (action === 'cast' && shiftPressed)) {
-				Game.openSpellbook()
-			} else if (action === 'fire' && !shiftPressed) {
-				let weapon = this.cb.equipment.weapon
-				let ammo = this.cb.equipment.ammo
-				if (weapon !== null && ammo !== null && weapon.cb.ranged && ammo.cb.ammoType === weapon.cb.ammoType && ammo.quantity > 0) {
-					Game.log(`You take aim with your ${weapon.type.toLowerCase()}.`, 'darkgreen')
-					this.validTarget = Game.selectNearestEnemyTile()
-					if (!this.validTarget) Game.changeSelectedTile(Game.getTile(this.x, this.y))
-					this.targeting = true
-					return
-				} else {
-					if (weapon === null || !weapon.cb.ranged) {
-						Game.log("You don't have a ranged weapon equipped!", 'information')
-					} else if (ammo === null) {
-						Game.log("You don't have any ammunition equipped.", 'information')
-					} else if (ammo.cb.ammoType !== weapon.cb.ammoType) {
-						Game.log("You don't have the right ammunition equipped for this weapon.", 'information')
-					}
-					return
-				}
-			} else if (action === 'cast') {
-				let currentSpell = this.cb.currentSpell
-				if (currentSpell === null) {
-					Game.log('You must select a spell to cast. Select one from the spellbook!', 'information')
-					return
-				} else if (currentSpell.manaCost > this.cb.mana) {
-					Game.log(`You don't have enough mana to cast ${currentSpell.name}!`, 'alert')
-					return
-				}
-
-				if (currentSpell.targetType === targetTypes.SELF) {
-					Game.log(`You cast ${currentSpell.name}.`, 'magic')
-					currentSpell.cast(this, this)
-					this.cb.mana -= currentSpell.manaCost
-				} else if (currentSpell.targetType === targetTypes.TARGET) {
-					Game.log('You begin casting a spell.', 'magic')
-					this.validTarget = Game.selectNearestEnemyTile()
-					if (!this.validTarget) Game.changeSelectedTile(Game.getTile(this.x, this.y))
-					this.casting = true
-					// our first selected tile can be the nearest enemy
-					return
-				}
-			} else if (action === 'examine') {
-				Game.log('You begin examining the area.', 'information')
-				this.examining = true
-				Game.changeSelectedTile(Game.getTile(this.x, this.y))
-				return
-			} else {
-				let diff = ROT.DIRS[8][action]
-				let nx = this.x + diff[0]
-				let ny = this.y + diff[1]
-				if (!this.tryMove(nx, ny)) {
-					return
-				}
-			}
-			this.endTurn()
-		}
-	}
-
 	pickup() {
 		let ctile = Game.map.data[this.y][this.x]
 		let tileItems = ctile.actors.filter(el => {
@@ -882,7 +864,7 @@ export default class Player extends Actor {
 			let prettyItemTypes = itemTypes.slice(1, itemTypes.length - 1)
 			prettyItemTypes = prettyItemTypes.reduce((buf, str) => {
 				return buf + ', ' + addPrefix(str)
-			}, 'a  ' + itemTypes.slice(0, 1))
+			}, addPrefix(itemTypes.slice(0, 1)[0]))
 			let lastItem = ` and ${addPrefix(itemTypes.slice(-1)[0])}.`
 			let buffer = `You picked up ${prettyItemTypes + lastItem}`
 			Game.log(buffer, 'information')
