@@ -3,6 +3,7 @@
 import ROT from 'rot-js'
 import { getRandomInt, getDiceRoll } from '#/utils/HelperFunctions.js'
 import { RegenerationEffect } from '#/modifiers/Effect.js'
+import { StrengthBuff } from '#/modifiers/Buff.js'
 import { Game } from '#/Game.js'
 import { Corpse, corpseTypes } from '#/entities/items/misc/Corpse.js'
 import Skeleton from '#/entities/actors/enemies/Skeleton.js'
@@ -11,6 +12,7 @@ import Zombie from '#/entities/actors/enemies/Zombie.js'
 export const spellTypes = {
 	CONJURATION: 'CONJURATION',
 	RESTORATION: 'RESTORATION',
+	ENCHANTMENT: 'ENCHANTMENT',
 	CHARMS: 'CHARMS',
 	ICE: 'ICE',
 	AIR: 'AIR',
@@ -44,7 +46,7 @@ export class Spell {
 		Object.assign(this, options)
 	}
 
-	cast() {} // to be overwritten
+	cast() { } // to be overwritten
 }
 
 /* Restoration Spells */
@@ -52,9 +54,9 @@ export class MinorHeal extends Spell {
 	constructor(options) {
 		super({
 			name: 'Minor Heal',
-			hoverInfo: 'Mend your wounds with healing energy. Regenerates 20 health.',
+			hoverInfo: 'Mend your wounds with healing energy. Regenerates 15 health.',
 			action: entity => {
-				entity.heal(20)
+				entity.heal(15)
 			},
 			splashArt: 'minor_heal',
 			type: spellTypes.RESTORATION,
@@ -65,7 +67,7 @@ export class MinorHeal extends Spell {
 	}
 
 	cast(target, caster) {
-		let healthRecovered = Math.max(0, caster.cb.maxhp - caster.cb.hp - 20)
+		let healthRecovered = Math.max(0, caster.cb.maxhp - caster.cb.hp - 15)
 		if (caster === Game.player)
 			Game.log(`You mend your wounds with a healing spell and recover ${healthRecovered} health points.`, '#e3c91c')
 		else Game.log(`${caster.name.capitalize()} used minor heal to regenerate 20 health points.`, 'plum')
@@ -87,7 +89,7 @@ export class MagicDart extends Spell {
 			splashArt: 'magic_dart',
 			type: spellTypes.CONJURATION,
 			targetType: targetTypes.TARGET,
-			manaCost: 3
+			manaCost: 2
 		})
 		Object.assign(this, options)
 	}
@@ -100,6 +102,84 @@ export class MagicDart extends Spell {
 		this.action(target, dmg)
 	}
 }
+
+export class Shock extends Spell {
+	constructor(options) {
+		super({
+			name: 'Shock',
+			hoverInfo: 'Releases a small zap of electrical energy. Deals 3-6 damage to a target.',
+			action: (entity, hit) => {
+				entity.damage(hit)
+			},
+			splashArt: 'shock',
+			type: spellTypes.AIR,
+			targetType: targetTypes.TARGET,
+			manaCost: 6
+		})
+		Object.assign(this, options)
+	}
+
+	cast(target, caster) {
+		let dmg = getRandomInt(3, 6) // remember to update hover info if this changes!
+		if (target === Game.player) Game.log(`You took ${dmg} damage from a Shock spell!`, 'attack')
+		else Game.log(`Shock electrifies the ${target.name} for ${dmg} electrical damage.`, 'player_move')
+
+		this.action(target, dmg)
+	}
+}
+
+export class FireBall extends Spell {
+	constructor(options) {
+		super({
+			name: 'Fire Ball',
+			hoverInfo: 'Summon a ball of fire and hurl it towards a target. Deals 12-20 damage to a target.',
+			action: (entity, hit) => {
+				entity.damage(hit)
+			},
+			splashArt: 'fireball',
+			type: spellTypes.FIRE,
+			targetType: targetTypes.TARGET,
+			manaCost: 12
+		})
+		Object.assign(this, options)
+	}
+
+	cast(target, caster) {
+		let dmg = getRandomInt(12, 20) // remember to update hover info if this changes!
+		if (target === Game.player) Game.log(`You took ${dmg} fire damage from a Fire Ball spell!`, 'attack')
+		else Game.log(`Fire Ball sears the ${target.name} for ${dmg} fire damage.`, 'player_move')
+
+		this.action(target, dmg)
+	}
+}
+
+export class Rage extends Spell {
+	constructor(options) {
+		super({
+			name: 'Rage',
+			hoverInfo: 'Overcome with rage and fury, your strength is boosted by 3 for 5 turns.',
+			action: (entity) => {
+				let buff = new StrengthBuff(3)
+				buff.duration += 2
+				entity.addNewBuff(buff)
+			},
+			splashArt: 'berserker_rage',
+			type: spellTypes.ENCHANTMENT,
+			targetType: targetTypes.SELF,
+			manaCost: 6
+		})
+		Object.assign(this, options)
+	}
+
+	cast(target, caster) {
+		if (caster === Game.player)
+			Game.log(`You feel a burning rage and intensity within you. Strength is coursing through your veins...`, 'alert')
+		else Game.log(`${caster.name.capitalize()} becomes enraged.`, 'alert')
+
+		this.action(caster)
+	}
+}
+
 
 /* Necromancy Spells */
 
@@ -203,12 +283,12 @@ export const reanimate = corpse => {
 
 /* returns an array of corpses :) */
 export const getNearbyCorpses = actor => {
-	let fov = new ROT.FOV.PreciseShadowcasting(function(x, y) {
+	let fov = new ROT.FOV.PreciseShadowcasting(function (x, y) {
 		return Game.inbounds(x, y) && Game.map.data[y][x].visible()
 	})
 
 	let visibleTiles = []
-	fov.compute(actor.x, actor.y, actor.cb.range, function(x, y, r, visibility) {
+	fov.compute(actor.x, actor.y, actor.cb.range, function (x, y, r, visibility) {
 		if (Game.inbounds(x, y)) visibleTiles.push(Game.map.data[y][x])
 	})
 

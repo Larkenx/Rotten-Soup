@@ -17,7 +17,7 @@ import HealthPotion from '#/entities/items/potions/HealthPotion.js'
 import StrengthPotion from '#/entities/items/potions/StrengthPotion.js'
 import ManaPotion from '#/entities/items/potions/ManaPotion.js'
 // Spells
-import { targetTypes, MagicDart, Regeneration, Pain, VampiricDraining, AnimateDead, MinorHeal } from '#/magic/Spell.js'
+import { targetTypes, spellTypes, MagicDart, FireBall, Rage, MinorHeal, Shock } from '#/magic/Spell.js'
 // effects
 import { BleedEnchantment } from '#/modifiers/Enchantment.js'
 // Misc
@@ -50,12 +50,12 @@ export default class Player extends Actor {
 				description: [' attacked ', ' stabbed ', ' jabbed ', ' smashed '],
 				/* stat caps */
 				maxhp: 50,
-				maxmana: 18,
+				maxmana: 15,
 				/* current stats */
 				xp: 50,
 				level: 1,
 				hp: 50,
-				mana: 18,
+				mana: 15,
 				str: 1,
 				def: 1,
 				/* Per-turn effects */
@@ -148,6 +148,9 @@ export default class Player extends Actor {
 		this.addToInventory(new ManaPotion(this.x, this.y, 608))
 		this.cb.spells.push(new MagicDart())
 		this.cb.spells.push(new MinorHeal())
+		this.cb.spells.push(new Shock())
+		this.cb.spells.push(new FireBall())
+		this.cb.spells.push(new Rage())
 		this.selectSpell(this.cb.spells[0])
 		this.mouseEnabled = false
 		this.commandQueue = []
