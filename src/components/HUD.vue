@@ -1,6 +1,6 @@
 <template>
-	<v-layout align-center justify-space-between column fill-height id="hud_container" class="elevation-0 pa-2">
-		<div>
+	<v-layout align-center wrap fill-height id="hud_container" class="elevation-0 pa-2">
+		<v-flex xs12>
 			<v-layout wrap align-center justify-space-between style="font-size: 14px;">
 				<v-flex xs5>
 					<b>HP:</b>
@@ -37,20 +37,18 @@
 				<v-flex xs12>
 				</v-flex>
 			</v-layout>
-		</div>
-		<div class="mt-2" style="flex-grow: 1;">
-			<v-layout fill-height wrap align-center justify-space-between style="font-size: 14px;">
-				<v-flex xs12>
-					<message-log></message-log>
-				</v-flex>
+		</v-flex>
+		<v-flex xs12 class="mt-2" style="flex-grow: 1;">
+			<v-layout fill-height wrap style="font-size: 14px;">
+				<message-log></message-log>
 			</v-layout>
-		</div>
-		<div style="align-self: flex-end">
-			<v-layout justify-space-around>
+		</v-flex>
+		<v-flex xs12 style="align-self: flex-end">
+			<v-layout justify-end align-center>
 				<tool-dialog />
 				<help-dialog />
 			</v-layout>
-		</div>
+		</v-flex>
 	</v-layout>
 </template>
 

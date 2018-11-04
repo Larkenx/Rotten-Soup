@@ -1,17 +1,14 @@
 <template>
-	<v-layout id="console_container">
-		<v-flex align-start>
-			<v-layout wrap id="console">
-				<v-flex xs12 v-for="(message, index) in messages" v-bind:key="index">
-					<v-icon style="font-size: 14px;">fas fa-angle-right</v-icon><b class="pl-2" v-bind:style="{color : message[1]}">{{message[0]}}</b>
-				</v-flex>
-				<!-- Temporary log item for displaying info that isn't stored (examine text, or "this is blocked")  -->
-				<v-flex xs12 v-for="(message, index) in tempMessages" :key="index+1*-1">
-					<v-icon style="font-size: 14px;">fas fa-angle-left</v-icon><b class="pl-2" v-bind:style="{color : message[1]}">{{message[0]}}</b>
-				</v-flex>
-			</v-layout>
-		</v-flex>
-		<!-- <v-flex id="scroll_controls" class="text-xs-center" style="max-width: 27px">
+	<div id="console_container">
+		<div v-for="(message, index) in messages" v-bind:key="index">
+			<v-icon style="font-size: 14px;">fas fa-angle-right</v-icon><b class="pl-2" v-bind:style="{color : message[1]}">{{message[0]}}</b>
+		</div>
+		<!-- Temporary log item for displaying info that isn't stored (examine text, or "this is blocked")  -->
+		<div v-for="(message, index) in tempMessages" :key="index+1*-1">
+			<v-icon style="font-size: 14px;">fas fa-angle-left</v-icon><b class="pl-2" v-bind:style="{color : message[1]}">{{message[0]}}</b>
+		</div>
+	</div>
+	<!-- <v-flex id="scroll_controls" class="text-xs-center" style="max-width: 27px">
 			<v-layout>
 				<v-flex xs12 class="text-xs-center">
 					<v-icon class="scroll_controls" v-on:click="up()" small>fa-angle-up</v-icon>
@@ -29,7 +26,6 @@
 				</v-flex>
 			</v-layout>
 		</v-flex> -->
-	</v-layout>
 </template>
 
 <script>
@@ -101,19 +97,14 @@ export default {
 
 <style>
 #console_container {
-	/* border-top: 4px solid #4f4f4f; */
 	overflow-y: hidden;
-	max-height: 500px;
+	width: 100%;
+	min-height: 510px;
+	max-height: 510px;
 	background-color: #1e1f1f;
-	flex: 1;
-}
-
-#console {
 	font-size: 14px;
 	font-style: normal;
 	font-weight: normal;
-	overflow: hidden;
-	position: relative;
 	background-color: inherit;
 }
 
