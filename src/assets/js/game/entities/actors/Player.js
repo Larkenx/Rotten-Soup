@@ -255,6 +255,7 @@ export default class Player extends Actor {
 		window.removeEventListener('click', this.mouseHandler)
 		window.addEventListener('keyup', waitUntilPlayerReleases)
 		Game.clearTempLog()
+		Game.drawMiniMap()
 		Game.engine.unlock()
 	}
 
@@ -563,9 +564,9 @@ export default class Player extends Actor {
 		}
 	}
 
-	handleHelpScreenEvent(evt) { }
+	handleHelpScreenEvent(evt) {}
 
-	resetSelectedItem() { }
+	resetSelectedItem() {}
 
 	initializeSelectedItem() {
 		const initialSelectedInventoryItemSlot = { contextMenuOpen: false, index: null, item: null }
@@ -657,6 +658,7 @@ export default class Player extends Actor {
 		}
 		let { index, item } = this.selectedItemSlot
 		// at this point, we can assume that the
+		if (exit.includes(keyCode)) Game.closeGameOverlayScreen()
 		if (item !== null) {
 			if (exit.includes(keyCode)) {
 				Game.closeGameOverlayScreen()

@@ -395,7 +395,6 @@ export default class GameDisplay {
 		}
 
 		this.moveSprite(this.background, -startingPos[0], -startingPos[1])
-		Game.drawMiniMap()
 	}
 
 	getTexture(id) {

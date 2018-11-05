@@ -1,19 +1,19 @@
 <template>
-  <v-container class="pa-0 ma-0">
-    <v-layout row>
-      <v-flex md7><b>Current Weapon</b></v-flex>
-      <v-flex md5>{{getCurrentWeapon().name }}</v-flex>
-    </v-layout>
-    <v-layout row>
-      <v-flex md7><b>Armor Value</b></v-flex>
-      <v-flex md5>{{getDefence()}}</v-flex>
-    </v-layout>
-    <v-layout row>
-      <v-flex md7><b>Damage Value</b></v-flex>
-      <v-flex md5>{{getDamageRange()}}</v-flex>
-    </v-layout>
+	<v-container class="pa-0 ma-0">
+		<v-layout row>
+			<v-flex md7><b>Current Weapon</b></v-flex>
+			<v-flex md5>{{getCurrentWeapon().name }}</v-flex>
+		</v-layout>
+		<v-layout row>
+			<v-flex md7><b>Armor Value</b></v-flex>
+			<v-flex md5>{{getDefence()}}</v-flex>
+		</v-layout>
+		<v-layout row>
+			<v-flex md7><b>Damage Value</b></v-flex>
+			<v-flex md5>{{getDamageRange()}}</v-flex>
+		</v-layout>
 
-  </v-container>
+	</v-container>
 </template>
 
 <script>
@@ -65,7 +65,8 @@ export default {
 			return expTowards / costOfLevel
 		},
 		getCurrentWeapon() {
-			return Game.player.cb.equipment.weapon
+			if (Game.player.cb.equipment.weapon !== null) return Game.player.cb.equipment.weapon
+			else return { name: 'None' }
 		},
 		getCurrentWeaponEnchantments() {
 			if (this.getCurrentWeapon() !== null) {
