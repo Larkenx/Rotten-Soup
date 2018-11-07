@@ -1,0 +1,76 @@
+{ "height":8,
+ "infinite":false,
+ "layers":[
+        {
+         "data":[7405, 7406, 7406, 7406, 7406, 7406, 7407, 7525, 9184, 9185, 9185, 9185, 9186, 7525, 7525, 9304, 9305, 9305, 9305, 9306, 7525, 7525, 9304, 9305, 9305, 9305, 9306, 7525, 7525, 9304, 9305, 9305, 9305, 9306, 7525, 7525, 9304, 9305, 9305, 9305, 9306, 7525, 7525, 9424, 9425, 9425, 9425, 9426, 7525, 7645, 7406, 7406, 7406, 7406, 7406, 7647],
+         "height":8,
+         "name":"Tile Layer 1",
+         "opacity":1,
+         "type":"tilelayer",
+         "visible":true,
+         "width":7,
+         "x":0,
+         "y":0
+        }, 
+        {
+         "data":[0, 4889, 4414, 4415, 4410, 4889, 0, 0, 5609, 5610, 5610, 5610, 5611, 0, 0, 5729, 5730, 5730, 5730, 5731, 0, 0, 5729, 5730, 5730, 5730, 5731, 0, 0, 5729, 5730, 5730, 5730, 5731, 0, 0, 5729, 5730, 5730, 5730, 5731, 0, 0, 5849, 5850, 5850, 5850, 5851, 0, 0, 0, 0, 0, 0, 0, 0],
+         "height":8,
+         "name":"Tile Layer 2",
+         "opacity":1,
+         "type":"tilelayer",
+         "visible":true,
+         "width":7,
+         "x":0,
+         "y":0
+        }, 
+        {
+         "data":[0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 4774, 5012, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+         "height":8,
+         "name":"Tile Layer 4",
+         "opacity":1,
+         "type":"tilelayer",
+         "visible":true,
+         "width":7,
+         "x":0,
+         "y":0
+        }, 
+        {
+         "data":[0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 6214, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+         "height":8,
+         "name":"Tile Layer 3",
+         "opacity":1,
+         "type":"tilelayer",
+         "visible":true,
+         "width":7,
+         "x":0,
+         "y":0
+        }],
+ "nextobjectid":1,
+ "orientation":"orthogonal",
+ "properties":
+    {
+     "doorFloorReplacementId":9188,
+     "name":"Wooden Room with chair, crate, and bench",
+     "type":"prefab",
+     "walls":true
+    },
+ "propertytypes":
+    {
+     "doorFloorReplacementId":"int",
+     "name":"string",
+     "type":"string",
+     "walls":"bool"
+    },
+ "renderorder":"right-down",
+ "tiledversion":"1.1.5",
+ "tileheight":32,
+ "tilesets":[
+        {
+         "firstgid":1,
+         "source":"..\/..\/compiled_dawnlike.json"
+        }],
+ "tilewidth":32,
+ "type":"map",
+ "version":1,
+ "width":7
+}

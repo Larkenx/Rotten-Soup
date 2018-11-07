@@ -56,6 +56,10 @@ export default class Tile {
 		return false
 	}
 
+	removeBlockedObstacles() {
+		this.obstacles = this.obstacles.filter(o => !o.blocked)
+	}
+
 	visible() {
 		return !(
 			this.obstacles.some(el => {

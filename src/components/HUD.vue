@@ -57,7 +57,6 @@ import { Game } from '@/assets/js/game/Game.js'
 import helpDialog from '@/components/HelpDialog.vue'
 import toolDialog from '@/components/ToolDialog.vue'
 import messageLog from '@/components/MessageLog.vue'
-console.log(messageLog)
 
 export default {
 	name: 'hud',

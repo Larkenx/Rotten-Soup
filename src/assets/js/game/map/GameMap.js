@@ -1,6 +1,8 @@
 import { Game, tileset } from '#/Game.js'
 import Tile, { getTileInfo } from '#/map/Tile.js'
 import { createActor, createItem } from '#/utils/EntityFactory.js'
+import { getRandomInt } from '#/utils/HelperFunctions.js'
+
 import DIALOGUES from '#/utils/Dialogues.js'
 
 export function createMapFromJSON(json, name) {
@@ -26,6 +28,7 @@ export class GameMap {
 		this.visible_tiles = {}
 		this.seen_tiles = {}
 		this.visited = false
+		this.dungeon = null
 		// Intialize all of the tiles...
 		for (let i = 0; i < this.height; i++) {
 			this.data[i] = new Array(this.width)
@@ -126,5 +129,37 @@ export class GameMap {
 				this.createActorFromObject(object)
 			}
 		}
+	}
+
+	toASCII() {
+		return this.data.map(r => {
+			return r.map(tile => {
+				if (tile.actors.length > 0) {
+					let firstActor = tile.actors.slice(-1)[0]
+					if (firstActor.name.includes('ladder')) return '>'
+					if (firstActor.name.includes('door')) return '/'
+					if (firstActor.name.includes('chest')) return '$'
+
+					return firstActor.name.charAt(0).toLowerCase()
+				} else {
+					for (let o of tile.obstacles.reverse()) {
+						if (o.description !== undefined) {
+							if (o.description.includes('wall')) return '#'
+							if (o.description.includes('floor') || o.description.includes('dirt')) return ' '
+							if (o.description.includes('carpet')) return '.'
+							if (o.description.includes('grass')) return [',', '.', ';', '`'][getRandomInt(0, 3)]
+							if (o.description.includes('tree')) return '♠'
+							return o.description.charAt(0).toLowerCase()
+						}
+					}
+					return ' '
+				}
+			})
+		})
+	}
+	toString() {
+		return this.toASCII().reduce((p, c) => {
+			return `${p}\n${c.join('')}`
+		}, '')
 	}
 }

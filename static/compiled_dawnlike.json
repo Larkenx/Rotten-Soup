@@ -11516,6 +11516,14 @@
         {
          "description":"cobwebs"
         },
+     "6213":
+        {
+         "blocked":true
+        },
+     "6214":
+        {
+         "blocked":true
+        },
      "6216":
         {
          "description":"cobwebs"
@@ -11551,6 +11559,14 @@
          "description":"bloody pedestal"
         },
      "6330":
+        {
+         "blocked":true
+        },
+     "6333":
+        {
+         "blocked":true
+        },
+     "6334":
         {
          "blocked":true
         },
@@ -39118,6 +39134,14 @@
         {
          "description":"string"
         },
+     "6213":
+        {
+         "blocked":"bool"
+        },
+     "6214":
+        {
+         "blocked":"bool"
+        },
      "6216":
         {
          "description":"string"
@@ -39153,6 +39177,14 @@
          "description":"string"
         },
      "6330":
+        {
+         "blocked":"bool"
+        },
+     "6333":
+        {
+         "blocked":"bool"
+        },
+     "6334":
         {
          "blocked":"bool"
         },

@@ -1,6 +1,6 @@
 import ROT from 'rot-js'
 import * as PIXI from 'pixi.js'
-PIXI.utils.skipHello()
+import loadResources from '#/ResourceLoader.js'
 import { getTilesetCoords, createMapFromJSON } from '#/map/GameMap.js'
 import GameDisplay from '#/GameDisplay.js'
 import { Actor } from '#/entities/actors/Actor.js'
@@ -14,6 +14,9 @@ import Door from '#/entities/misc/Door.js'
 import Ladder from '#/entities/misc/Ladder.js'
 import LevelTransition from '#/entities/misc/LevelTransition.js'
 import Chest from '#/entities/misc/Chest.js'
+import { generatePrefabs } from '#/map/Prefab.js'
+
+PIXI.utils.skipHello()
 
 const { randomSimplexMap, randomDungeon, randomCave } = MapGen
 const defaultMinimapConfiguration = {
@@ -70,8 +73,7 @@ export let Game = {
 			tileHeight: 32
 		}
 		this.minimapOptions = { ...defaultMinimapConfiguration }
-		let onceLoaded = () => {
-			let { resources } = PIXI.loader
+		let onceLoaded = resources => {
 			this.levels['Mulberry Town'] = createMapFromJSON(resources['mulberryTown'].data, 'Mulberry Town')
 			this.levels['Mulberry Forest'] = createMapFromJSON(resources['mulberryForest'].data, 'Mulberry Forest')
 			this.levels['Mulberry Graveyard'] = createMapFromJSON(resources['mulberryGraveyard'].data, 'Mulberry Graveyard')
@@ -85,14 +87,23 @@ export let Game = {
 			this.player.placeAt(px, py)
 			this.scheduleAllActors()
 			this.initializeMinimap()
-			document.getElementById('game_container').appendChild(this.display.getContainer())
-			document.getElementById('minimap_container').appendChild(this.minimap.getContainer())
-			this.engine.start() // Start the engine
+			if (!options.testing) {
+				document.getElementById('game_container').appendChild(this.display.getContainer())
+				document.getElementById('minimap_container').appendChild(this.minimap.getContainer())
+			}
+			this.renderMap()
+			this.changeLevels('Mulberry Dungeon', true)
+			this.player.placeAt(0, 0)
+			this.display.app.stage.scale.x = this.display.app.stage.scale.y = 0.625
 			this.renderMap()
 		}
 		let { width, height } = options
 		this.display = new GameDisplay(width, height)
-		this.display.loadAssets(onceLoaded)
+		let resourceLoaderCallbacks = [
+			generatePrefabs,
+			resources => this.display.loadAssets(resources, onceLoaded, options.additionalCallback)
+		]
+		loadResources(resourceLoaderCallbacks)
 	},
 
 	renderMap() {
@@ -148,7 +159,7 @@ export let Game = {
 	},
 
 	createDungeonFloors(origin, dungeonName, numberOfFloors) {
-		this.levels[dungeonName + 1] = randomDungeon(40, 40, {
+		this.levels[dungeonName + 1] = randomDungeon(64, 40, {
 			dungeonName,
 			lastDungeon: false,
 			fromPortal: origin,

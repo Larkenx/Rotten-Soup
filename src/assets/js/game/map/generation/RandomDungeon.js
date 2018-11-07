@@ -4,6 +4,7 @@
 import ROT from 'rot-js'
 import { Game } from '#/Game.js'
 import { GameMap } from '#/map/GameMap.js'
+import { prefabs } from '#/map/Prefab.js'
 import Player from '#/entities/actors/Player.js'
 
 // Misc
@@ -16,6 +17,8 @@ import Ladder from '#/entities/misc/Ladder.js'
 import LevelTransition from '#/entities/misc/LevelTransition.js'
 import { getRandomInt, getNormalRandomInt, randomProperty } from '#/utils/HelperFunctions.js'
 import { createActor, getItemsFromDropTable } from '#/utils/EntityFactory.js'
+
+import * as PIXI from 'pixi.js' // for importing the prefabs from PIXI.loader.resources
 
 const dungeonTypes = {
 	RUINS: 'RUINS',
@@ -515,15 +518,6 @@ const randomTile = validTiles => {
 		return null
 	}
 }
-const sortCorridors = (a, b) => {
-	if (a._startX === a._endX && b._startX !== b._endX) {
-		return -1
-	} else if (b._startX === b._endX && a._startX !== a._endX) {
-		return 1
-	} else {
-		return 0
-	}
-}
 const getFloorTexture = (floor, sum) => {
 	const mapping = {
 		0: floor.single, // empty space (black spot)
@@ -581,13 +575,14 @@ export function dungeonFromTheme(width, height, theme, mapGenerator, options, ha
 	let gameMap = new GameMap(width, height, dungeonName)
 	const { tint, type, textures, mobDistribution, dropTable } = theme
 	const { floor, corridorFloor, walls, doors } = textures
-	// Generate ROT map and store empty tiles in hashmap
+	// Generate ROT map and store empty tiles in hashm ap
 	let createdLadders = 0
 	let freeCells = {}
 	let mapGeneratorCallback = (x, y, blocked) => {
 		if (!blocked) freeCells[x + ',' + y] = true
 	}
 	let rotMap = mapGenerator.create(mapGeneratorCallback)
+	gameMap.dungeon = rotMap
 
 	for (let room of rotMap.getRooms()) {
 		room.getDoors((dx, dy) => {
@@ -595,12 +590,11 @@ export function dungeonFromTheme(width, height, theme, mapGenerator, options, ha
 		})
 	}
 
-	// Place walls and floors
+	// Using bitmasking, texture the floors and walls
 	for (let y = 0; y < height; y++) {
 		for (let x = 0; x < width; x++) {
 			let tile = gameMap.getTile(x, y)
 			if (!(`${x},${y}` in freeCells)) {
-				// only want to place a wall somewhere if it's not a free cell
 				let sym = getWallTexture(walls, computeBitmaskWalls(x, y, freeCells))
 				tile.updateTileInfo(sym, tint)
 			} else {
@@ -610,8 +604,7 @@ export function dungeonFromTheme(width, height, theme, mapGenerator, options, ha
 		}
 	}
 
-	/* For every room in the dungeon, we're going to add
-     * textures from the tileset for the walls and the floors */
+	// for each room, place doors
 	for (let room of rotMap.getRooms()) {
 		let left = room.getLeft() - 1
 		let right = room.getRight() + 1
@@ -627,56 +620,144 @@ export function dungeonFromTheme(width, height, theme, mapGenerator, options, ha
 		}
 
 		/* Set up the doors of the room */
-		if (getRandomInt(1, 2) === 1 && hasDoors) {
-			room.getDoors((dx, dy) => {
-				let floor_ids =
-					Object.values(corridorFloor.vertical) +
-					Object.values(floor) +
-					Object.values(corridorFloor.horizontal) +
-					Object.values(floor) // doors?
+		room.getDoors((dx, dy) => {
+			let above = gameMap.getTile(dx, dy - 1)
+			let below = gameMap.getTile(dx, dy + 1)
+			let left = gameMap.getTile(dx - 1, dy)
+			let right = gameMap.getTile(dx + 1, dy)
+			const containsDoor = tile => {
+				return tile.actors.some(a => {
+					return a instanceof Door
+				})
+			}
+			const containsActors = tile => {
+				return tile.actors.length > 0
+			}
+			if (above.blocked() && below.blocked() && !containsActors(left) && !containsActors(right)) {
+				// horizontal door frame
+				gameMap.getTile(dx, dy).actors.push(new Door(dx, dy, doors.vertical))
+			} else if (left.blocked() && right.blocked() && !containsActors(above) && !containsActors(below)) {
+				// vertical door frame
+				gameMap.getTile(dx, dy).actors.push(new Door(dx, dy, doors.horizontal))
+			}
+		})
+	}
 
-				let above = gameMap.getTile(dx, dy - 1).obstacles[0].id
-				let below = gameMap.getTile(dx, dy + 1).obstacles[0].id
-				let door
-				if (floor_ids.includes(above) && floor_ids.includes(below)) {
-					// horizontal door frame
-					door = new Door(dx, dy, doors.horizontal)
-				} else {
-					// vertical door frame
-					door = new Door(dx, dy, doors.vertical)
-				}
-				gameMap.getTile(dx, dy).actors.push(door)
-			})
+	// create a copy of all the prefabs, and add a boolean flag of whether or
+	// not a prefab has been used in the dungeon already
+	let availablePrefabs = prefabs.map(p => {
+		p.used = false
+		return p
+	})
+
+	// for each room, try to fit a prefab in it
+	for (let room of rotMap.getRooms()) {
+		let doors = {}
+		room.getDoors((x, y) => {
+			doors[`${x},${y}`] = true
+		})
+		const hasSurroundingDoors = (x, y) => {
+			return `${x + 1},${y}` in doors || `${x - 1},${y}` in doors || `${x},${y + 1}` in doors || `${x},${y - 1}` in doors
+		}
+		const hasDoor = (x, y) => {
+			return gameMap.getTile(x, y).actors.some(a => a instanceof Door)
+		}
+		let left = room.getLeft() - 1
+		let right = room.getRight() + 1
+		let top = room.getTop() - 1
+		let bottom = room.getBottom() + 1
+		let wleft = room.getLeft()
+		let wright = room.getRight()
+		let wtop = room.getTop()
+		let wbottom = room.getBottom()
+		let center = {
+			y: ~~((wtop + wbottom) / 2),
+			x: ~~((wright + wleft) / 2)
 		}
 
-		// Now, we can mess around with the centers of each room and place items in the dungeons
-		// this places a ladder going further into the dungeon (either deeper or higher)
-		if (createdLadders < 1) {
-			if (!lastDungeon) {
-				let texture = ladders.down
-				let ladder = new Ladder(center.x, center.y, texture, 'down', toPortal)
-				gameMap.getTile(center.x, center.y).actors.push(ladder)
-				createdLadders++
-			} else {
-				let levelTransition = new LevelTransition(center.x, center.y, 1169)
-				levelTransition.portal = toPortal
-				gameMap.getTile(center.x, center.y).actors.push(levelTransition)
-				createdLadders++
+		// go through each prefab
+		for (let prefab of availablePrefabs) {
+			let roomWidth = wright - wleft + 1
+			let roomHeight = wbottom - wtop + 1
+			let offsetLeft = wleft
+			let offsetTop = wtop
+			if (prefab.walls) {
+				roomWidth = right - left + 1
+				roomHeight = bottom - top + 1
+				offsetLeft = left
+				offsetTop = top
+			}
+			if (prefab.width === roomWidth && prefab.height === roomHeight) {
+				for (let y = 0; y < prefab.height; y++) {
+					for (let x = 0; x < prefab.width; x++) {
+						prefab.data[y][x].forEach(id => {
+							let dx = offsetLeft + x
+							let dy = offsetTop + y
+							if (`${dx},${dy}` in doors) {
+								gameMap.getTile(dx, dy).updateTileInfo(prefab.doorFloorReplacementId)
+							} else {
+								// check above, below, right, and left for doors because we don't want to block entrances
+								gameMap.getTile(dx, dy).updateTileInfo(id)
+								if (
+									hasSurroundingDoors(dx, dy) &&
+									!(x === 0 || y === 0 || x === prefab.width - 1 || y === prefab.height - 1)
+								) {
+									gameMap.getTile(dx, dy).removeBlockedObstacles()
+								}
+							}
+						})
+					}
+				}
+				break
 			}
 		}
+	}
 
-		// now I want to populate some random creatures in each room of the dungeon.
-		let validTiles = [] // all the non-wall tiles in the room that don't already a ladder
-		let possibleWalls = Object.values(walls)
+	// for each room, place doors, chests, ladders/portals, and enemies
+	for (let room of rotMap.getRooms()) {
+		let left = room.getLeft() - 1
+		let right = room.getRight() + 1
+		let top = room.getTop() - 1
+		let bottom = room.getBottom() + 1
+		let wleft = room.getLeft()
+		let wright = room.getRight()
+		let wtop = room.getTop()
+		let wbottom = room.getBottom()
+		let center = {
+			y: ~~((wtop + wbottom) / 2),
+			x: ~~((wright + wleft) / 2)
+		}
+
+		let validTiles = []
 		for (let y = wtop; y < wbottom; y++) {
 			for (let x = wleft; x < wright; x++) {
 				if (!gameMap.getTile(x, y).blocked() && gameMap.getTile(x, y).actors.length === 0) validTiles.push(x + ',' + y)
 			}
 		}
+
+		// if there hasn't been a ladder to the next level or a portal to the outside, place one
+		if (createdLadders < 1) {
+			let coords = randomTile(validTiles)
+			if (coords !== null) {
+				let [x, y] = coords
+				if (!lastDungeon) {
+					let texture = ladders.down
+					let ladder = new Ladder(x, y, texture, 'down', toPortal)
+					gameMap.getTile(x, y).actors.push(ladder)
+					createdLadders++
+				} else {
+					let levelTransition = new LevelTransition(x, y, 1169)
+					levelTransition.portal = toPortal
+					gameMap.getTile(x, y).actors.push(levelTransition)
+					createdLadders++
+				}
+			}
+		}
+
 		let roomWidth = right - left
 		let roomHeight = bottom - top
-		let maxEnemies = roomWidth > 6 && roomHeight > 6 ? 5 : 3
-		let minEnemies = roomWidth > 7 && roomHeight > 7 ? 3 : 1
+		let maxEnemies = roomWidth > 6 && roomHeight > 6 ? 3 : 2
+		let minEnemies = roomWidth > 7 && roomHeight > 7 ? 2 : 1
 
 		let roll = getNormalRandomInt(minEnemies, maxEnemies)
 		for (let i = 0; i < roll; i++) {
@@ -689,7 +770,7 @@ export function dungeonFromTheme(width, height, theme, mapGenerator, options, ha
 		}
 
 		// if there atleast 3 enemies in the room, we might drop a chest in the room
-		if (roll >= 3 && getNormalRandomInt(0, 4) === 2) {
+		if (getNormalRandomInt(0, 10) === 8) {
 			let coords = randomTile(validTiles)
 			if (coords !== null) {
 				let [x, y] = coords
@@ -714,7 +795,7 @@ export function dungeonFromTheme(width, height, theme, mapGenerator, options, ha
 	// gameMap.getTile(x, y).actors.push(new Player(x, y, Game.playerID + 1)) // set random spot to be the player
 	let ladder = new Ladder(x, y, ladders.up, 'up', fromPortal)
 	gameMap.getTile(x, y).actors.push(ladder)
-	gameMap.revealed = false
+	gameMap.revealed = true
 	gameMap.type = 'dungeon'
 	gameMap.depth = level
 	return gameMap
@@ -726,10 +807,10 @@ export function randomDungeon(width, height, options) {
 	let dc = {}
 	if (level <= 5) {
 		dc = {
-			roomWidth: [3, 20],
-			roomHeight: [4, 10],
-			corridorLength: [4, 4],
-			roomDugPercentage: 0.4
+			roomWidth: [5, 7],
+			roomHeight: [5, 8],
+			corridorLength: [4, 6],
+			roomDugPercentage: 0.2
 		}
 		return dungeonFromTheme(width, height, dungeonThemes.RUINS, new ROT.Map.Uniform(width, height, dc), options, false)
 	} else if (level <= 10) {
