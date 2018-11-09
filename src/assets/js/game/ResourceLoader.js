@@ -32,7 +32,7 @@ export default function loadResources(callbacks) {
 	}
 
 	const prefabs = []
-	for (let i = 1; i <= 5; i++) {
+	for (let i = 1; i <= 35; i++) {
 		prefabs.push({
 			name: `ruins-${i}`,
 			url: `static/maps/prefabs/ruins-${i}.json`

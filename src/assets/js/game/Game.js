@@ -91,6 +91,7 @@ export let Game = {
 				document.getElementById('game_container').appendChild(this.display.getContainer())
 				document.getElementById('minimap_container').appendChild(this.minimap.getContainer())
 			}
+			this.engine.start()
 			this.renderMap()
 			this.changeLevels('Mulberry Dungeon', true)
 			this.player.placeAt(0, 0)

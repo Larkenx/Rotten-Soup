@@ -1,10 +1,10 @@
-{ "height":4,
+{ "height":6,
  "infinite":false,
  "layers":[
         {
-         "data":[0, 0, 0, 0, 0, 0, 0, 5014, 0, 0, 0, 0, 6328, 5013, 0, 0, 0, 0, 0, 0],
-         "height":4,
-         "name":"Tile Layer 2",
+         "data":[4415, 4416, 4413, 4771, 0, 0, 0, 0, 0, 0, 0, 4411, 4415, 4417, 4415, 0, 0, 0, 0, 0, 4410, 4412, 4410, 4415, 0, 0, 0, 0, 0, 0],
+         "height":6,
+         "name":"Tile Layer 1",
          "opacity":1,
          "type":"tilelayer",
          "visible":true,

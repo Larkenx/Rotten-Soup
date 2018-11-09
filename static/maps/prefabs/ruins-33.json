@@ -1,14 +1,14 @@
-{ "height":4,
+{ "height":7,
  "infinite":false,
  "layers":[
         {
-         "data":[0, 0, 0, 0, 0, 0, 0, 5014, 0, 0, 0, 0, 6328, 5013, 0, 0, 0, 0, 0, 0],
-         "height":4,
-         "name":"Tile Layer 2",
+         "data":[0, 0, 0, 0, 0, 0, 0, 3097, 3098, 816, 3099, 0, 0, 3217, 0, 0, 3217, 0, 0, 3217, 0, 0, 3217, 0, 0, 3217, 0, 0, 3217, 0, 0, 3337, 816, 3098, 3339, 0, 0, 0, 0, 0, 0, 0],
+         "height":7,
+         "name":"Tile Layer 1",
          "opacity":1,
          "type":"tilelayer",
          "visible":true,
-         "width":5,
+         "width":6,
          "x":0,
          "y":0
         }],
@@ -35,5 +35,5 @@
  "tilewidth":32,
  "type":"map",
  "version":1,
- "width":5
+ "width":6
 }

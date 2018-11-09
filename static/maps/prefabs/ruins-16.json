@@ -1,0 +1,80 @@
+{ "height":7,
+ "infinite":false,
+ "layers":[
+        {
+         "data":[8097, 8098, 8098, 8098, 8099, 8217, 8218, 8218, 8218, 8219, 8217, 8218, 8218, 8218, 8219, 8217, 8218, 8218, 8218, 8219, 8217, 8218, 8218, 8218, 8219, 8217, 8218, 8218, 8218, 8219, 8337, 8338, 8338, 8338, 8339],
+         "height":7,
+         "name":"Tile Layer 1",
+         "opacity":1,
+         "properties":
+            {
+             "disabled":true
+            },
+         "propertytypes":
+            {
+             "disabled":"bool"
+            },
+         "type":"tilelayer",
+         "visible":false,
+         "width":5,
+         "x":0,
+         "y":0
+        }, 
+        {
+         "data":[1248, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1248, 0, 0, 0],
+         "height":7,
+         "name":"Tile Layer 4",
+         "opacity":1,
+         "type":"tilelayer",
+         "visible":true,
+         "width":5,
+         "x":0,
+         "y":0
+        }, 
+        {
+         "data":[0, 0, 0, 0, 0, 0, 5609, 5610, 5611, 0, 0, 5729, 5730, 5731, 0, 0, 5849, 5850, 5851, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+         "height":7,
+         "name":"Tile Layer 2",
+         "opacity":1,
+         "type":"tilelayer",
+         "visible":true,
+         "width":5,
+         "x":0,
+         "y":0
+        }, 
+        {
+         "data":[0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 6333, 0, 5135, 0, 0, 0, 0, 5135, 0, 0, 0, 0, 5135, 0, 0, 6450, 0, 0, 0, 0, 0, 0, 5502],
+         "height":7,
+         "name":"Tile Layer 3",
+         "opacity":1,
+         "type":"tilelayer",
+         "visible":true,
+         "width":5,
+         "x":0,
+         "y":0
+        }],
+ "nextobjectid":1,
+ "orientation":"orthogonal",
+ "properties":
+    {
+     "name":"Rug, Table & Chairs",
+     "type":"prefab"
+    },
+ "propertytypes":
+    {
+     "name":"string",
+     "type":"string"
+    },
+ "renderorder":"right-down",
+ "tiledversion":"1.1.5",
+ "tileheight":32,
+ "tilesets":[
+        {
+         "firstgid":1,
+         "source":"..\/..\/compiled_dawnlike.json"
+        }],
+ "tilewidth":32,
+ "type":"map",
+ "version":1,
+ "width":5
+}

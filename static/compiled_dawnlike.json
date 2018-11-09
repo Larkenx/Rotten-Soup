@@ -49,6 +49,11 @@
         {
          "bg":"#00cc33"
         },
+     "1001":
+        {
+         "blocked":true,
+         "description":"flail"
+        },
      "10010":
         {
          "bg":"#00cc33"
@@ -258,42 +263,42 @@
      "10037":
         {
          "bg":"darkbrown",
-         "blocked":"true",
+         "blocked":true,
          "blocks_vision":"true",
          "description":"dirt wall"
         },
      "10038":
         {
          "bg":"darkbrown",
-         "blocked":"true",
+         "blocked":true,
          "blocks_vision":"true",
          "description":"dirt wall"
         },
      "10039":
         {
          "bg":"darkbrown",
-         "blocked":"true",
+         "blocked":true,
          "blocks_vision":"true",
          "description":"dirt wall"
         },
      "10040":
         {
          "bg":"darkbrown",
-         "blocked":"true",
+         "blocked":true,
          "blocks_vision":"true",
          "description":"dirt wall"
         },
      "10041":
         {
          "bg":"darkbrown",
-         "blocked":"true",
+         "blocked":true,
          "blocks_vision":"true",
          "description":"dirt wall"
         },
      "10042":
         {
          "bg":"darkbrown",
-         "blocked":"true",
+         "blocked":true,
          "blocks_vision":"true",
          "description":"dirt wall"
         },
@@ -846,42 +851,42 @@
      "10157":
         {
          "bg":"darkbrown",
-         "blocked":"true",
+         "blocked":true,
          "blocks_vision":"true",
          "description":"dirt wall"
         },
      "10158":
         {
          "bg":"darkbrown",
-         "blocked":"true",
+         "blocked":true,
          "blocks_vision":"true",
          "description":"dirt wall"
         },
      "10159":
         {
          "bg":"darkbrown",
-         "blocked":"true",
+         "blocked":true,
          "blocks_vision":"true",
          "description":"dirt wall"
         },
      "10160":
         {
          "bg":"darkbrown",
-         "blocked":"true",
+         "blocked":true,
          "blocks_vision":"true",
          "description":"dirt wall"
         },
      "10161":
         {
          "bg":"darkbrown",
-         "blocked":"true",
+         "blocked":true,
          "blocks_vision":"true",
          "description":"dirt wall"
         },
      "10162":
         {
          "bg":"darkbrown",
-         "blocked":"true",
+         "blocked":true,
          "blocks_vision":"true",
          "description":"dirt wall"
         },
@@ -1004,6 +1009,30 @@
          "blocks_vision":false,
          "description":"cobble stone floor"
         },
+     "10277":
+        {
+         "blocked":true
+        },
+     "10278":
+        {
+         "blocked":true
+        },
+     "10279":
+        {
+         "blocked":true
+        },
+     "10280":
+        {
+         "blocked":true
+        },
+     "10281":
+        {
+         "blocked":true
+        },
+     "10282":
+        {
+         "blocked":true
+        },
      "10384":
         {
          "animated":false,
@@ -1075,6 +1104,30 @@
          "blocks_vision":false,
          "description":"cobble stone floor"
         },
+     "10397":
+        {
+         "blocked":true
+        },
+     "10398":
+        {
+         "blocked":true
+        },
+     "10399":
+        {
+         "blocked":true
+        },
+     "10400":
+        {
+         "blocked":true
+        },
+     "10401":
+        {
+         "blocked":true
+        },
+     "10402":
+        {
+         "blocked":true
+        },
      "10510":
         {
          "animated":false,
@@ -1138,6 +1191,30 @@
          "blocks_vision":false,
          "description":"cobble stone floor"
         },
+     "10517":
+        {
+         "blocked":true
+        },
+     "10518":
+        {
+         "blocked":true
+        },
+     "10519":
+        {
+         "blocked":true
+        },
+     "10520":
+        {
+         "blocked":true
+        },
+     "10521":
+        {
+         "blocked":true
+        },
+     "10522":
+        {
+         "blocked":true
+        },
      "10630":
         {
          "animated":false,
@@ -1200,6 +1277,62 @@
          "blocked":false,
          "blocks_vision":false,
          "description":"stone floor"
+        },
+     "10637":
+        {
+         "blocked":true
+        },
+     "10638":
+        {
+         "blocked":true
+        },
+     "10639":
+        {
+         "blocked":true
+        },
+     "1064":
+        {
+         "blocked":true
+        },
+     "10640":
+        {
+         "blocked":true
+        },
+     "10641":
+        {
+         "blocked":true
+        },
+     "10642":
+        {
+         "blocked":true
+        },
+     "1065":
+        {
+         "blocked":true
+        },
+     "1066":
+        {
+         "blocked":true
+        },
+     "1067":
+        {
+         "blocked":true
+        },
+     "1068":
+        {
+         "blocked":true
+        },
+     "1069":
+        {
+         "blocked":true
+        },
+     "1070":
+        {
+         "blocked":true
+        },
+     "1071":
+        {
+         "blocked":true
         },
      "10744":
         {
@@ -1272,6 +1405,30 @@
          "blocks_vision":false,
          "description":"stone floor"
         },
+     "10757":
+        {
+         "blocked":true
+        },
+     "10758":
+        {
+         "blocked":true
+        },
+     "10759":
+        {
+         "blocked":true
+        },
+     "10760":
+        {
+         "blocked":true
+        },
+     "10761":
+        {
+         "blocked":true
+        },
+     "10762":
+        {
+         "blocked":true
+        },
      "10870":
         {
          "animated":false,
@@ -1335,6 +1492,30 @@
          "blocks_vision":false,
          "description":"stone floor"
         },
+     "10877":
+        {
+         "blocked":true
+        },
+     "10878":
+        {
+         "blocked":true
+        },
+     "10879":
+        {
+         "blocked":true
+        },
+     "10880":
+        {
+         "blocked":true
+        },
+     "10881":
+        {
+         "blocked":true
+        },
+     "10882":
+        {
+         "blocked":true
+        },
      "10990":
         {
          "animated":false,
@@ -1397,6 +1578,30 @@
          "blocked":false,
          "blocks_vision":false,
          "description":"stone floor"
+        },
+     "10997":
+        {
+         "blocked":true
+        },
+     "10998":
+        {
+         "blocked":true
+        },
+     "10999":
+        {
+         "blocked":true
+        },
+     "11000":
+        {
+         "blocked":true
+        },
+     "11001":
+        {
+         "blocked":true
+        },
+     "11002":
+        {
+         "blocked":true
         },
      "11104":
         {
@@ -1469,6 +1674,30 @@
          "blocks_vision":false,
          "description":"stone floor"
         },
+     "11117":
+        {
+         "blocked":true
+        },
+     "11118":
+        {
+         "blocked":true
+        },
+     "11119":
+        {
+         "blocked":true
+        },
+     "11120":
+        {
+         "blocked":true
+        },
+     "11121":
+        {
+         "blocked":true
+        },
+     "11122":
+        {
+         "blocked":true
+        },
      "11230":
         {
          "animated":false,
@@ -1531,6 +1760,30 @@
          "blocked":false,
          "blocks_vision":false,
          "description":"stone floor"
+        },
+     "11237":
+        {
+         "blocked":true
+        },
+     "11238":
+        {
+         "blocked":true
+        },
+     "11239":
+        {
+         "blocked":true
+        },
+     "11240":
+        {
+         "blocked":true
+        },
+     "11241":
+        {
+         "blocked":true
+        },
+     "11242":
+        {
+         "blocked":true
         },
      "11350":
         {
@@ -1595,6 +1848,30 @@
          "blocks_vision":false,
          "description":"stone floor"
         },
+     "11357":
+        {
+         "blocked":true
+        },
+     "11358":
+        {
+         "blocked":true
+        },
+     "11359":
+        {
+         "blocked":true
+        },
+     "11360":
+        {
+         "blocked":true
+        },
+     "11361":
+        {
+         "blocked":true
+        },
+     "11362":
+        {
+         "blocked":true
+        },
      "11470":
         {
          "animated":false,
@@ -1657,6 +1934,30 @@
          "blocked":false,
          "blocks_vision":false,
          "description":"stone floor"
+        },
+     "11477":
+        {
+         "blocked":true
+        },
+     "11478":
+        {
+         "blocked":true
+        },
+     "11479":
+        {
+         "blocked":true
+        },
+     "11480":
+        {
+         "blocked":true
+        },
+     "11481":
+        {
+         "blocked":true
+        },
+     "11482":
+        {
+         "blocked":true
         },
      "11590":
         {
@@ -1721,10 +2022,90 @@
          "blocks_vision":false,
          "description":"stone floor"
         },
+     "11597":
+        {
+         "blocked":true
+        },
+     "11598":
+        {
+         "blocked":true
+        },
+     "11599":
+        {
+         "blocked":true
+        },
+     "11600":
+        {
+         "blocked":true
+        },
+     "11601":
+        {
+         "blocked":true
+        },
+     "11602":
+        {
+         "blocked":true
+        },
      "1169":
         {
          "animated":true,
          "animated_id":1177
+        },
+     "11717":
+        {
+         "blocked":true
+        },
+     "11718":
+        {
+         "blocked":true
+        },
+     "11719":
+        {
+         "blocked":true
+        },
+     "11720":
+        {
+         "blocked":true
+        },
+     "11721":
+        {
+         "blocked":true
+        },
+     "11722":
+        {
+         "blocked":true
+        },
+     "11837":
+        {
+         "blocked":true
+        },
+     "11838":
+        {
+         "blocked":true
+        },
+     "11839":
+        {
+         "blocked":true
+        },
+     "1184":
+        {
+         "blocked":true
+        },
+     "11840":
+        {
+         "blocked":true
+        },
+     "11841":
+        {
+         "blocked":true
+        },
+     "11842":
+        {
+         "blocked":true
+        },
+     "1185":
+        {
+         "blocked":true
         },
      "11857":
         {
@@ -1738,21 +2119,141 @@
          "animated":false,
          "animated_id":0
         },
+     "1186":
+        {
+         "blocked":true
+        },
+     "1187":
+        {
+         "blocked":true
+        },
+     "1188":
+        {
+         "blocked":true
+        },
      "11880":
         {
          "bg":"#00cc33"
+        },
+     "1189":
+        {
+         "blocked":true
+        },
+     "1190":
+        {
+         "blocked":true
+        },
+     "1191":
+        {
+         "blocked":true
+        },
+     "11957":
+        {
+         "blocked":true
+        },
+     "11958":
+        {
+         "blocked":true
+        },
+     "11959":
+        {
+         "blocked":true
+        },
+     "11960":
+        {
+         "blocked":true
+        },
+     "11961":
+        {
+         "blocked":true
+        },
+     "11962":
+        {
+         "blocked":true
         },
      "12000":
         {
          "bg":"#00cc33"
         },
+     "12077":
+        {
+         "blocked":true
+        },
+     "12078":
+        {
+         "blocked":true
+        },
+     "12079":
+        {
+         "blocked":true
+        },
+     "12080":
+        {
+         "blocked":true
+        },
+     "12081":
+        {
+         "blocked":true
+        },
+     "12082":
+        {
+         "blocked":true
+        },
      "12120":
         {
          "bg":"#00cc33"
         },
+     "12197":
+        {
+         "blocked":true
+        },
+     "12198":
+        {
+         "blocked":true
+        },
+     "12199":
+        {
+         "blocked":true
+        },
+     "12200":
+        {
+         "blocked":true
+        },
+     "12201":
+        {
+         "blocked":true
+        },
+     "12202":
+        {
+         "blocked":true
+        },
      "12240":
         {
          "bg":"#00cc33"
+        },
+     "12317":
+        {
+         "blocked":true
+        },
+     "12318":
+        {
+         "blocked":true
+        },
+     "12319":
+        {
+         "blocked":true
+        },
+     "12320":
+        {
+         "blocked":true
+        },
+     "12321":
+        {
+         "blocked":true
+        },
+     "12322":
+        {
+         "blocked":true
         },
      "12360":
         {
@@ -1768,10 +2269,34 @@
          "bg":"darkgreen",
          "description":"wild grass"
         },
+     "12437":
+        {
+         "blocked":true
+        },
+     "12438":
+        {
+         "blocked":true
+        },
+     "12439":
+        {
+         "blocked":true
+        },
      "1244":
         {
          "bg":"darkgreen",
          "description":"wild grass"
+        },
+     "12440":
+        {
+         "blocked":true
+        },
+     "12441":
+        {
+         "blocked":true
+        },
+     "12442":
+        {
+         "blocked":true
         },
      "1245":
         {
@@ -1826,9 +2351,33 @@
         {
          "bg":"darkgreen"
         },
+     "12557":
+        {
+         "blocked":true
+        },
+     "12558":
+        {
+         "blocked":true
+        },
+     "12559":
+        {
+         "blocked":true
+        },
      "1256":
         {
          "bg":"darkgreen"
+        },
+     "12560":
+        {
+         "blocked":true
+        },
+     "12561":
+        {
+         "blocked":true
+        },
+     "12562":
+        {
+         "blocked":true
         },
      "1257":
         {
@@ -1838,9 +2387,57 @@
         {
          "bg":"#00cc33"
         },
+     "12677":
+        {
+         "blocked":true
+        },
+     "12678":
+        {
+         "blocked":true
+        },
+     "12679":
+        {
+         "blocked":true
+        },
+     "12680":
+        {
+         "blocked":true
+        },
+     "12681":
+        {
+         "blocked":true
+        },
+     "12682":
+        {
+         "blocked":true
+        },
      "12720":
         {
          "bg":"#00cc33"
+        },
+     "12797":
+        {
+         "blocked":true
+        },
+     "12798":
+        {
+         "blocked":true
+        },
+     "12799":
+        {
+         "blocked":true
+        },
+     "12800":
+        {
+         "blocked":true
+        },
+     "12801":
+        {
+         "blocked":true
+        },
+     "12802":
+        {
+         "blocked":true
         },
      "12840":
         {
@@ -1856,9 +2453,57 @@
          "animated":true,
          "animated_id":1296
         },
+     "12917":
+        {
+         "blocked":true
+        },
+     "12918":
+        {
+         "blocked":true
+        },
+     "12919":
+        {
+         "blocked":true
+        },
+     "12920":
+        {
+         "blocked":true
+        },
+     "12921":
+        {
+         "blocked":true
+        },
+     "12922":
+        {
+         "blocked":true
+        },
      "12960":
         {
          "bg":"#00cc33"
+        },
+     "13037":
+        {
+         "blocked":true
+        },
+     "13038":
+        {
+         "blocked":true
+        },
+     "13039":
+        {
+         "blocked":true
+        },
+     "13040":
+        {
+         "blocked":true
+        },
+     "13041":
+        {
+         "blocked":true
+        },
+     "13042":
+        {
+         "blocked":true
         },
      "1362":
         {
@@ -2212,6 +2857,11 @@
         {
          "blocked":true
         },
+     "1810":
+        {
+         "blocked":true,
+         "description":"whip"
+        },
      "182":
         {
          "blocked":true
@@ -2455,32 +3105,38 @@
      "2408":
         {
          "animated":true,
-         "animated_id":7088
+         "animated_id":7088,
+         "blocked":true
         },
      "2409":
         {
          "animated":true,
-         "animated_id":2417
+         "animated_id":2417,
+         "blocked":true
         },
      "2410":
         {
          "animated":true,
-         "animated_id":2418
+         "animated_id":2418,
+         "blocked":true
         },
      "2411":
         {
          "animated":true,
-         "animated_id":2419
+         "animated_id":2419,
+         "blocked":true
         },
      "2412":
         {
          "animated":true,
-         "animated_id":2420
+         "animated_id":2420,
+         "blocked":true
         },
      "2413":
         {
          "animated":true,
-         "animated_id":2421
+         "animated_id":2421,
+         "blocked":true
         },
      "2414":
         {
@@ -2701,6 +3357,10 @@
         {
          "blocked":true,
          "description":"fence"
+        },
+     "2905":
+        {
+         "blocked":true
         },
      "296":
         {
@@ -4450,21 +5110,21 @@
      "4206":
         {
          "animated":true,
-         "animated_id":0,
+         "animated_id":4234,
          "bg":"skyblue",
          "blocked":false
         },
      "4207":
         {
          "animated":true,
-         "animated_id":0,
+         "animated_id":4235,
          "bg":"skyblue",
          "blocked":false
         },
      "4208":
         {
          "animated":true,
-         "animated_id":0,
+         "animated_id":4236,
          "bg":"skyblue",
          "blocked":false
         },
@@ -4923,7 +5583,7 @@
      "4326":
         {
          "animated":true,
-         "animated_id":0,
+         "animated_id":4354,
          "bg":"skyblue",
          "blocked":false
         },
@@ -5400,7 +6060,7 @@
      "4446":
         {
          "animated":true,
-         "animated_id":0,
+         "animated_id":4474,
          "bg":"skyblue",
          "blocked":false
         },
@@ -5414,7 +6074,7 @@
      "4448":
         {
          "animated":true,
-         "animated_id":0,
+         "animated_id":4476,
          "bg":"skyblue",
          "blocked":false
         },
@@ -6726,7 +7386,7 @@
         },
      "4774":
         {
-         "blocked":false,
+         "blocked":true,
          "description":"throne"
         },
      "4775":
@@ -8155,32 +8815,38 @@
      "5136":
         {
          "bg":"#543f00",
-         "blocked":true
+         "blocked":true,
+         "description":"bar"
         },
      "5137":
         {
          "bg":"#543f00",
-         "blocked":true
+         "blocked":true,
+         "description":"bar"
         },
      "5138":
         {
          "bg":"#543f00",
-         "blocked":true
+         "blocked":true,
+         "description":"bar"
         },
      "5139":
         {
          "bg":"#543f00",
-         "blocked":true
+         "blocked":true,
+         "description":"bar"
         },
      "5140":
         {
          "bg":"#543f00",
-         "blocked":true
+         "blocked":true,
+         "description":"bar"
         },
      "5141":
         {
          "bg":"#543f00",
-         "blocked":true
+         "blocked":true,
+         "description":"bar"
         },
      "5142":
         {
@@ -11548,6 +12214,18 @@
         {
          "blocked":true
         },
+     "6326":
+        {
+         "animated":true,
+         "animated_id":6327,
+         "blocked":true
+        },
+     "6327":
+        {
+         "animated":true,
+         "animated_id":6447,
+         "blocked":true
+        },
      "6328":
         {
          "blocked":true,
@@ -11588,12 +12266,42 @@
         {
          "blocked":true
         },
+     "6448":
+        {
+         "animated":true,
+         "animated_id":6456,
+         "blocked":true
+        },
      "6449":
         {
          "animated":true,
          "animated_id":6457,
          "blocked":true,
          "description":"fountain"
+        },
+     "6451":
+        {
+         "animated":true,
+         "animated_id":6459,
+         "blocked":true
+        },
+     "6452":
+        {
+         "animated":true,
+         "animated_id":6460,
+         "blocked":true
+        },
+     "6453":
+        {
+         "animated":true,
+         "animated_id":6461,
+         "blocked":true
+        },
+     "6455":
+        {
+         "animated":true,
+         "animated_id":6463,
+         "blocked":true
         },
      "6457":
         {
@@ -12173,11 +12881,31 @@
          "blocked":false,
          "blocks_vision":false
         },
+     "704":
+        {
+         "blocked":true
+        },
      "7046":
         {
          "bg":"black",
          "blocked":"true",
          "blocks_vision":"true"
+        },
+     "705":
+        {
+         "blocked":true
+        },
+     "706":
+        {
+         "blocked":true
+        },
+     "707":
+        {
+         "blocked":true
+        },
+     "708":
+        {
+         "blocked":true
         },
      "7080":
         {
@@ -12228,6 +12956,10 @@
         {
          "animated":true,
          "animated_id":0
+        },
+     "709":
+        {
+         "blocked":true
         },
      "7090":
         {
@@ -12290,6 +13022,10 @@
      "71":
         {
          "blocked":"true"
+        },
+     "710":
+        {
+         "blocked":true
         },
      "7100":
         {
@@ -12360,6 +13096,10 @@
          "animated_id":0,
          "blocked":false,
          "blocks_vision":false
+        },
+     "711":
+        {
+         "blocked":true
         },
      "7110":
         {
@@ -12774,128 +13514,128 @@
         {
          "animated":false,
          "animated_id":0,
-         "bg":"#00cc33",
-         "blocked":false,
+         "bg":"#000000",
+         "blocked":true,
          "blocks_vision":false
         },
      "7217":
         {
          "animated":false,
          "animated_id":0,
-         "bg":"#00cc33",
-         "blocked":false,
+         "bg":"#000000",
+         "blocked":true,
          "blocks_vision":false
         },
      "7218":
         {
          "animated":false,
          "animated_id":0,
-         "bg":"#00cc33",
-         "blocked":false,
+         "bg":"#000000",
+         "blocked":true,
          "blocks_vision":false
         },
      "7219":
         {
          "animated":false,
          "animated_id":0,
-         "bg":"#00cc33",
-         "blocked":false,
+         "bg":"#000000",
+         "blocked":true,
          "blocks_vision":false
         },
      "7220":
         {
          "animated":false,
          "animated_id":0,
-         "bg":"#00cc33",
-         "blocked":false,
+         "bg":"#000000",
+         "blocked":true,
          "blocks_vision":false
         },
      "7221":
         {
          "animated":false,
          "animated_id":0,
-         "bg":"#00cc33",
-         "blocked":false,
+         "bg":"#000000",
+         "blocked":true,
          "blocks_vision":false
         },
      "7222":
         {
          "animated":false,
          "animated_id":0,
-         "bg":"#00cc33",
-         "blocked":false,
+         "bg":"#000000",
+         "blocked":true,
          "blocks_vision":false
         },
      "7223":
         {
          "animated":false,
          "animated_id":0,
-         "bg":"#00cc33",
-         "blocked":false,
+         "bg":"#000000",
+         "blocked":true,
          "blocks_vision":false
         },
      "7224":
         {
          "animated":false,
          "animated_id":0,
-         "bg":"#00cc33",
-         "blocked":false,
+         "bg":"#000000",
+         "blocked":true,
          "blocks_vision":false
         },
      "7225":
         {
          "animated":false,
          "animated_id":0,
-         "bg":"#00cc33",
-         "blocked":false,
+         "bg":"#000000",
+         "blocked":true,
          "blocks_vision":false
         },
      "7226":
         {
          "animated":false,
          "animated_id":0,
-         "bg":"#00cc33",
-         "blocked":false,
+         "bg":"#000000",
+         "blocked":true,
          "blocks_vision":false
         },
      "7227":
         {
          "animated":false,
          "animated_id":0,
-         "bg":"#00cc33",
-         "blocked":false,
+         "bg":"#000000",
+         "blocked":true,
          "blocks_vision":false
         },
      "7228":
         {
          "animated":false,
          "animated_id":0,
-         "bg":"#00cc33",
-         "blocked":false,
+         "bg":"#000000",
+         "blocked":true,
          "blocks_vision":false
         },
      "7229":
         {
          "animated":false,
          "animated_id":0,
-         "bg":"#00cc33",
-         "blocked":false,
+         "bg":"#000000",
+         "blocked":true,
          "blocks_vision":false
         },
      "7230":
         {
          "animated":false,
          "animated_id":0,
-         "bg":"#00cc33",
-         "blocked":false,
+         "bg":"#000000",
+         "blocked":true,
          "blocks_vision":false
         },
      "7231":
         {
          "animated":false,
          "animated_id":0,
-         "bg":"#00cc33",
-         "blocked":false,
+         "bg":"#000000",
+         "blocked":true,
          "blocks_vision":false
         },
      "7232":
@@ -13422,128 +14162,128 @@
         {
          "animated":false,
          "animated_id":0,
-         "bg":"#00cc33",
-         "blocked":false,
+         "bg":"#000000",
+         "blocked":true,
          "blocks_vision":false
         },
      "7337":
         {
          "animated":false,
          "animated_id":0,
-         "bg":"#00cc33",
-         "blocked":false,
+         "bg":"#000000",
+         "blocked":true,
          "blocks_vision":false
         },
      "7338":
         {
          "animated":false,
          "animated_id":0,
-         "bg":"#00cc33",
-         "blocked":false,
+         "bg":"#000000",
+         "blocked":true,
          "blocks_vision":false
         },
      "7339":
         {
          "animated":false,
          "animated_id":0,
-         "bg":"#00cc33",
-         "blocked":false,
+         "bg":"#000000",
+         "blocked":true,
          "blocks_vision":false
         },
      "7340":
         {
          "animated":false,
          "animated_id":0,
-         "bg":"#00cc33",
-         "blocked":false,
+         "bg":"#000000",
+         "blocked":true,
          "blocks_vision":false
         },
      "7341":
         {
          "animated":false,
          "animated_id":0,
-         "bg":"#00cc33",
-         "blocked":false,
+         "bg":"#000000",
+         "blocked":true,
          "blocks_vision":false
         },
      "7342":
         {
          "animated":false,
          "animated_id":0,
-         "bg":"#00cc33",
-         "blocked":false,
+         "bg":"#000000",
+         "blocked":true,
          "blocks_vision":false
         },
      "7343":
         {
          "animated":false,
          "animated_id":0,
-         "bg":"#00cc33",
-         "blocked":false,
+         "bg":"#000000",
+         "blocked":true,
          "blocks_vision":false
         },
      "7344":
         {
          "animated":false,
          "animated_id":0,
-         "bg":"#00cc33",
-         "blocked":false,
+         "bg":"#000000",
+         "blocked":true,
          "blocks_vision":false
         },
      "7345":
         {
          "animated":false,
          "animated_id":0,
-         "bg":"#00cc33",
-         "blocked":false,
+         "bg":"#000000",
+         "blocked":true,
          "blocks_vision":false
         },
      "7346":
         {
          "animated":false,
          "animated_id":0,
-         "bg":"#00cc33",
-         "blocked":false,
+         "bg":"#000000",
+         "blocked":true,
          "blocks_vision":false
         },
      "7347":
         {
          "animated":false,
          "animated_id":0,
-         "bg":"#00cc33",
-         "blocked":false,
+         "bg":"#000000",
+         "blocked":true,
          "blocks_vision":false
         },
      "7348":
         {
          "animated":false,
          "animated_id":0,
-         "bg":"#00cc33",
-         "blocked":false,
+         "bg":"#000000",
+         "blocked":true,
          "blocks_vision":false
         },
      "7349":
         {
          "animated":false,
          "animated_id":0,
-         "bg":"#00cc33",
-         "blocked":false,
+         "bg":"#000000",
+         "blocked":true,
          "blocks_vision":false
         },
      "7350":
         {
          "animated":false,
          "animated_id":0,
-         "bg":"#00cc33",
-         "blocked":false,
+         "bg":"#000000",
+         "blocked":true,
          "blocks_vision":false
         },
      "7351":
         {
          "animated":false,
          "animated_id":0,
-         "bg":"#00cc33",
-         "blocked":false,
+         "bg":"#000000",
+         "blocked":true,
          "blocks_vision":false
         },
      "7352":
@@ -13935,42 +14675,42 @@
      "7397":
         {
          "bg":"#737373",
-         "blocked":"true",
+         "blocked":true,
          "blocks_vision":"true",
          "description":"stone wall"
         },
      "7398":
         {
          "bg":"#737373",
-         "blocked":"true",
+         "blocked":true,
          "blocks_vision":"true",
          "description":"stone wall"
         },
      "7399":
         {
          "bg":"#737373",
-         "blocked":"true",
+         "blocked":true,
          "blocks_vision":"true",
          "description":"stone wall"
         },
      "7400":
         {
          "bg":"#737373",
-         "blocked":"true",
+         "blocked":true,
          "blocks_vision":"true",
          "description":"stone wall"
         },
      "7401":
         {
          "bg":"#737373",
-         "blocked":"true",
+         "blocked":true,
          "blocks_vision":"true",
          "description":"stone wall"
         },
      "7402":
         {
          "bg":"#737373",
-         "blocked":"true",
+         "blocked":true,
          "blocks_vision":"true",
          "description":"stone wall"
         },
@@ -14159,7 +14899,7 @@
          "animated":false,
          "animated_id":0,
          "bg":"#00cc33",
-         "blocked":false,
+         "blocked":true,
          "blocks_vision":false
         },
      "7457":
@@ -14167,7 +14907,7 @@
          "animated":false,
          "animated_id":0,
          "bg":"#00cc33",
-         "blocked":false,
+         "blocked":true,
          "blocks_vision":false
         },
      "7458":
@@ -14175,7 +14915,7 @@
          "animated":false,
          "animated_id":0,
          "bg":"#00cc33",
-         "blocked":false,
+         "blocked":true,
          "blocks_vision":false
         },
      "7459":
@@ -14183,7 +14923,7 @@
          "animated":false,
          "animated_id":0,
          "bg":"#00cc33",
-         "blocked":false,
+         "blocked":true,
          "blocks_vision":false
         },
      "7460":
@@ -14191,7 +14931,7 @@
          "animated":false,
          "animated_id":0,
          "bg":"#00cc33",
-         "blocked":false,
+         "blocked":true,
          "blocks_vision":false
         },
      "7461":
@@ -14199,7 +14939,7 @@
          "animated":false,
          "animated_id":0,
          "bg":"#00cc33",
-         "blocked":false,
+         "blocked":true,
          "blocks_vision":false
         },
      "7462":
@@ -14207,7 +14947,7 @@
          "animated":false,
          "animated_id":0,
          "bg":"#00cc33",
-         "blocked":false,
+         "blocked":true,
          "blocks_vision":false
         },
      "7463":
@@ -14215,7 +14955,7 @@
          "animated":false,
          "animated_id":0,
          "bg":"#00cc33",
-         "blocked":false,
+         "blocked":true,
          "blocks_vision":false
         },
      "7464":
@@ -14223,7 +14963,7 @@
          "animated":false,
          "animated_id":0,
          "bg":"#00cc33",
-         "blocked":false,
+         "blocked":true,
          "blocks_vision":false
         },
      "7465":
@@ -14231,7 +14971,7 @@
          "animated":false,
          "animated_id":0,
          "bg":"#00cc33",
-         "blocked":false,
+         "blocked":true,
          "blocks_vision":false
         },
      "7466":
@@ -14239,7 +14979,7 @@
          "animated":false,
          "animated_id":0,
          "bg":"#00cc33",
-         "blocked":false,
+         "blocked":true,
          "blocks_vision":false
         },
      "7467":
@@ -14247,7 +14987,7 @@
          "animated":false,
          "animated_id":0,
          "bg":"#00cc33",
-         "blocked":false,
+         "blocked":true,
          "blocks_vision":false
         },
      "7468":
@@ -14255,7 +14995,7 @@
          "animated":false,
          "animated_id":0,
          "bg":"#00cc33",
-         "blocked":false,
+         "blocked":true,
          "blocks_vision":false
         },
      "7469":
@@ -14263,7 +15003,7 @@
          "animated":false,
          "animated_id":0,
          "bg":"#00cc33",
-         "blocked":false,
+         "blocked":true,
          "blocks_vision":false
         },
      "7470":
@@ -14271,7 +15011,7 @@
          "animated":false,
          "animated_id":0,
          "bg":"#00cc33",
-         "blocked":false,
+         "blocked":true,
          "blocks_vision":false
         },
      "7471":
@@ -14279,7 +15019,7 @@
          "animated":false,
          "animated_id":0,
          "bg":"#00cc33",
-         "blocked":false,
+         "blocked":true,
          "blocks_vision":false
         },
      "7472":
@@ -14671,42 +15411,42 @@
      "7517":
         {
          "bg":"#737373",
-         "blocked":"true",
+         "blocked":true,
          "blocks_vision":"true",
          "description":"stone wall"
         },
      "7518":
         {
          "bg":"#737373",
-         "blocked":"true",
+         "blocked":true,
          "blocks_vision":"true",
          "description":"stone wall"
         },
      "7519":
         {
          "bg":"#737373",
-         "blocked":"true",
+         "blocked":true,
          "blocks_vision":"true",
          "description":"stone wall"
         },
      "7520":
         {
          "bg":"#737373",
-         "blocked":"true",
+         "blocked":true,
          "blocks_vision":"true",
          "description":"stone wall"
         },
      "7521":
         {
          "bg":"#737373",
-         "blocked":"true",
+         "blocked":true,
          "blocks_vision":"true",
          "description":"stone wall"
         },
      "7522":
         {
          "bg":"#737373",
-         "blocked":"true",
+         "blocked":true,
          "blocks_vision":"true",
          "description":"stone wall"
         },
@@ -14887,7 +15627,7 @@
          "animated":false,
          "animated_id":0,
          "bg":"#00cc33",
-         "blocked":false,
+         "blocked":true,
          "blocks_vision":false
         },
      "7577":
@@ -14895,7 +15635,7 @@
          "animated":false,
          "animated_id":0,
          "bg":"#00cc33",
-         "blocked":false,
+         "blocked":true,
          "blocks_vision":false
         },
      "7578":
@@ -14903,7 +15643,7 @@
          "animated":false,
          "animated_id":0,
          "bg":"#00cc33",
-         "blocked":false,
+         "blocked":true,
          "blocks_vision":false
         },
      "7579":
@@ -14911,7 +15651,7 @@
          "animated":false,
          "animated_id":0,
          "bg":"#00cc33",
-         "blocked":false,
+         "blocked":true,
          "blocks_vision":false
         },
      "7580":
@@ -14919,7 +15659,7 @@
          "animated":false,
          "animated_id":0,
          "bg":"#00cc33",
-         "blocked":false,
+         "blocked":true,
          "blocks_vision":false
         },
      "7581":
@@ -14927,7 +15667,7 @@
          "animated":false,
          "animated_id":0,
          "bg":"#00cc33",
-         "blocked":false,
+         "blocked":true,
          "blocks_vision":false
         },
      "7582":
@@ -14935,7 +15675,7 @@
          "animated":false,
          "animated_id":0,
          "bg":"#00cc33",
-         "blocked":false,
+         "blocked":true,
          "blocks_vision":false
         },
      "7583":
@@ -14943,7 +15683,7 @@
          "animated":false,
          "animated_id":0,
          "bg":"#00cc33",
-         "blocked":false,
+         "blocked":true,
          "blocks_vision":false
         },
      "7584":
@@ -14951,7 +15691,7 @@
          "animated":false,
          "animated_id":0,
          "bg":"#00cc33",
-         "blocked":false,
+         "blocked":true,
          "blocks_vision":false
         },
      "7585":
@@ -14959,7 +15699,7 @@
          "animated":false,
          "animated_id":0,
          "bg":"#00cc33",
-         "blocked":false,
+         "blocked":true,
          "blocks_vision":false
         },
      "7586":
@@ -14967,7 +15707,7 @@
          "animated":false,
          "animated_id":0,
          "bg":"#00cc33",
-         "blocked":false,
+         "blocked":true,
          "blocks_vision":false
         },
      "7587":
@@ -14975,7 +15715,7 @@
          "animated":false,
          "animated_id":0,
          "bg":"#00cc33",
-         "blocked":false,
+         "blocked":true,
          "blocks_vision":false
         },
      "7588":
@@ -14983,7 +15723,7 @@
          "animated":false,
          "animated_id":0,
          "bg":"#00cc33",
-         "blocked":false,
+         "blocked":true,
          "blocks_vision":false
         },
      "7589":
@@ -14991,7 +15731,7 @@
          "animated":false,
          "animated_id":0,
          "bg":"#00cc33",
-         "blocked":false,
+         "blocked":true,
          "blocks_vision":false
         },
      "7590":
@@ -14999,7 +15739,7 @@
          "animated":false,
          "animated_id":0,
          "bg":"#00cc33",
-         "blocked":false,
+         "blocked":true,
          "blocks_vision":false
         },
      "7591":
@@ -15007,7 +15747,7 @@
          "animated":false,
          "animated_id":0,
          "bg":"#00cc33",
-         "blocked":false,
+         "blocked":true,
          "blocks_vision":false
         },
      "7592":
@@ -15399,42 +16139,42 @@
      "7637":
         {
          "bg":"#737373",
-         "blocked":"true",
+         "blocked":true,
          "blocks_vision":"true",
          "description":"stone wall"
         },
      "7638":
         {
          "bg":"#737373",
-         "blocked":"true",
+         "blocked":true,
          "blocks_vision":"true",
          "description":"stone wall"
         },
      "7639":
         {
          "bg":"#737373",
-         "blocked":"true",
+         "blocked":true,
          "blocks_vision":"true",
          "description":"stone wall"
         },
      "7640":
         {
          "bg":"#737373",
-         "blocked":"true",
+         "blocked":true,
          "blocks_vision":"true",
          "description":"stone wall"
         },
      "7641":
         {
          "bg":"#737373",
-         "blocked":"true",
+         "blocked":true,
          "blocks_vision":"true",
          "description":"stone wall"
         },
      "7642":
         {
          "bg":"#737373",
-         "blocked":"true",
+         "blocked":true,
          "blocks_vision":"true",
          "description":"stone wall"
         },
@@ -16115,42 +16855,42 @@
      "7757":
         {
          "bg":"#737373",
-         "blocked":"true",
+         "blocked":true,
          "blocks_vision":"true",
          "description":"stone wall"
         },
      "7758":
         {
          "bg":"#737373",
-         "blocked":"true",
+         "blocked":true,
          "blocks_vision":"true",
          "description":"stone wall"
         },
      "7759":
         {
          "bg":"#737373",
-         "blocked":"true",
+         "blocked":true,
          "blocks_vision":"true",
          "description":"stone wall"
         },
      "7760":
         {
          "bg":"#737373",
-         "blocked":"true",
+         "blocked":true,
          "blocks_vision":"true",
          "description":"stone wall"
         },
      "7761":
         {
          "bg":"#737373",
-         "blocked":"true",
+         "blocked":true,
          "blocks_vision":"true",
          "description":"stone wall"
         },
      "7762":
         {
          "bg":"#737373",
-         "blocked":"true",
+         "blocked":true,
          "blocks_vision":"true",
          "description":"stone wall"
         },
@@ -16836,42 +17576,42 @@
      "7877":
         {
          "bg":"#737373",
-         "blocked":"true",
+         "blocked":true,
          "blocks_vision":"true",
          "description":"stone wall"
         },
      "7878":
         {
          "bg":"#737373",
-         "blocked":"true",
+         "blocked":true,
          "blocks_vision":"true",
          "description":"stone wall"
         },
      "7879":
         {
          "bg":"#737373",
-         "blocked":"true",
+         "blocked":true,
          "blocks_vision":"true",
          "description":"stone wall"
         },
      "7880":
         {
          "bg":"#737373",
-         "blocked":"true",
+         "blocked":true,
          "blocks_vision":"true",
          "description":"stone wall"
         },
      "7881":
         {
          "bg":"#737373",
-         "blocked":"true",
+         "blocked":true,
          "blocks_vision":"true",
          "description":"stone wall"
         },
      "7882":
         {
          "bg":"#737373",
-         "blocked":"true",
+         "blocked":true,
          "blocks_vision":"true",
          "description":"stone wall"
         },
@@ -17596,42 +18336,42 @@
      "7997":
         {
          "bg":"#737373",
-         "blocked":"true",
+         "blocked":true,
          "blocks_vision":"true",
          "description":"stone wall"
         },
      "7998":
         {
          "bg":"#737373",
-         "blocked":"true",
+         "blocked":true,
          "blocks_vision":"true",
          "description":"stone wall"
         },
      "7999":
         {
          "bg":"#737373",
-         "blocked":"true",
+         "blocked":true,
          "blocks_vision":"true",
          "description":"stone wall"
         },
      "8000":
         {
          "bg":"#737373",
-         "blocked":"true",
+         "blocked":true,
          "blocks_vision":"true",
          "description":"stone wall"
         },
      "8001":
         {
          "bg":"#737373",
-         "blocked":"true",
+         "blocked":true,
          "blocks_vision":"true",
          "description":"stone wall"
         },
      "8002":
         {
          "bg":"#737373",
-         "blocked":"true",
+         "blocked":true,
          "blocks_vision":"true",
          "description":"stone wall"
         },
@@ -18242,42 +18982,42 @@
      "8117":
         {
          "bg":"#737373",
-         "blocked":"true",
+         "blocked":true,
          "blocks_vision":"true",
          "description":"stone wall"
         },
      "8118":
         {
          "bg":"#737373",
-         "blocked":"true",
+         "blocked":true,
          "blocks_vision":"true",
          "description":"stone wall"
         },
      "8119":
         {
          "bg":"#737373",
-         "blocked":"true",
+         "blocked":true,
          "blocks_vision":"true",
          "description":"stone wall"
         },
      "8120":
         {
          "bg":"#737373",
-         "blocked":"true",
+         "blocked":true,
          "blocks_vision":"true",
          "description":"stone wall"
         },
      "8121":
         {
          "bg":"#737373",
-         "blocked":"true",
+         "blocked":true,
          "blocks_vision":"true",
          "description":"stone wall"
         },
      "8122":
         {
          "bg":"#737373",
-         "blocked":"true",
+         "blocked":true,
          "blocks_vision":"true",
          "description":"stone wall"
         },
@@ -18878,42 +19618,46 @@
      "8237":
         {
          "bg":"#737373",
-         "blocked":"true",
+         "blocked":true,
          "blocks_vision":"true",
          "description":"stone wall"
         },
      "8238":
         {
          "bg":"#737373",
-         "blocked":"true",
+         "blocked":true,
          "blocks_vision":"true",
          "description":"stone wall"
         },
      "8239":
         {
          "bg":"#737373",
-         "blocked":"true",
+         "blocked":true,
          "blocks_vision":"true",
          "description":"stone wall"
+        },
+     "824":
+        {
+         "blocked":true
         },
      "8240":
         {
          "bg":"#737373",
-         "blocked":"true",
+         "blocked":true,
          "blocks_vision":"true",
          "description":"stone wall"
         },
      "8241":
         {
          "bg":"#737373",
-         "blocked":"true",
+         "blocked":true,
          "blocks_vision":"true",
          "description":"stone wall"
         },
      "8242":
         {
          "bg":"#737373",
-         "blocked":"true",
+         "blocked":true,
          "blocks_vision":"true",
          "description":"stone wall"
         },
@@ -18963,6 +19707,10 @@
          "blocks_vision":true,
          "description":"wooden wall"
         },
+     "825":
+        {
+         "blocked":true
+        },
      "8250":
         {
          "bg":"#00cc33"
@@ -19008,6 +19756,18 @@
          "blocked":true,
          "blocks_vision":true,
          "description":"mine wall"
+        },
+     "826":
+        {
+         "blocked":true
+        },
+     "827":
+        {
+         "blocked":true
+        },
+     "828":
+        {
+         "blocked":true
         },
      "8280":
         {
@@ -19058,6 +19818,10 @@
         {
          "animated":true,
          "animated_id":0
+        },
+     "829":
+        {
+         "blocked":true
         },
      "8290":
         {
@@ -19124,6 +19888,10 @@
          "blocked":true,
          "blocks_vision":false,
          "description":"water"
+        },
+     "830":
+        {
+         "blocked":true
         },
      "8300":
         {
@@ -19214,6 +19982,10 @@
          "blocked":true,
          "blocks_vision":false,
          "description":"water"
+        },
+     "831":
+        {
+         "blocked":true
         },
      "8310":
         {
@@ -19519,42 +20291,42 @@
      "8357":
         {
          "bg":"#737373",
-         "blocked":"true",
+         "blocked":true,
          "blocks_vision":"true",
          "description":"stone wall"
         },
      "8358":
         {
          "bg":"#737373",
-         "blocked":"true",
+         "blocked":true,
          "blocks_vision":"true",
          "description":"stone wall"
         },
      "8359":
         {
          "bg":"#737373",
-         "blocked":"true",
+         "blocked":true,
          "blocks_vision":"true",
          "description":"stone wall"
         },
      "8360":
         {
          "bg":"#737373",
-         "blocked":"true",
+         "blocked":true,
          "blocks_vision":"true",
          "description":"stone wall"
         },
      "8361":
         {
          "bg":"#737373",
-         "blocked":"true",
+         "blocked":true,
          "blocks_vision":"true",
          "description":"stone wall"
         },
      "8362":
         {
          "bg":"#737373",
-         "blocked":"true",
+         "blocked":true,
          "blocks_vision":"true",
          "description":"stone wall"
         },
@@ -20148,42 +20920,42 @@
      "8477":
         {
          "bg":"#442534",
-         "blocked":"true",
+         "blocked":true,
          "blocks_vision":"true",
          "description":"stone wall"
         },
      "8478":
         {
          "bg":"#442534",
-         "blocked":"true",
+         "blocked":true,
          "blocks_vision":"true",
          "description":"stone wall"
         },
      "8479":
         {
          "bg":"#442534",
-         "blocked":"true",
+         "blocked":true,
          "blocks_vision":"true",
          "description":"stone wall"
         },
      "8480":
         {
          "bg":"#442534",
-         "blocked":"true",
+         "blocked":true,
          "blocks_vision":"true",
          "description":"stone wall"
         },
      "8481":
         {
          "bg":"#442534",
-         "blocked":"true",
+         "blocked":true,
          "blocks_vision":"true",
          "description":"stone wall"
         },
      "8482":
         {
          "bg":"#442534",
-         "blocked":"true",
+         "blocked":true,
          "blocks_vision":"true",
          "description":"stone wall"
         },
@@ -20777,42 +21549,42 @@
      "8597":
         {
          "bg":"#442534",
-         "blocked":"true",
+         "blocked":true,
          "blocks_vision":"true",
          "description":"stone wall"
         },
      "8598":
         {
          "bg":"#442534",
-         "blocked":"true",
+         "blocked":true,
          "blocks_vision":"true",
          "description":"stone wall"
         },
      "8599":
         {
          "bg":"#442534",
-         "blocked":"true",
+         "blocked":true,
          "blocks_vision":"true",
          "description":"stone wall"
         },
      "8600":
         {
          "bg":"#442534",
-         "blocked":"true",
+         "blocked":true,
          "blocks_vision":"true",
          "description":"stone wall"
         },
      "8601":
         {
          "bg":"#442534",
-         "blocked":"true",
+         "blocked":true,
          "blocks_vision":"true",
          "description":"stone wall"
         },
      "8602":
         {
          "bg":"#442534",
-         "blocked":"true",
+         "blocked":true,
          "blocks_vision":"true",
          "description":"stone wall"
         },
@@ -20928,6 +21700,10 @@
          "animated":true,
          "animated_id":9469
         },
+     "864":
+        {
+         "blocked":true
+        },
      "8640":
         {
          "animated":true,
@@ -20977,6 +21753,10 @@
         {
          "animated":true,
          "animated_id":0
+        },
+     "865":
+        {
+         "blocked":true
         },
      "8650":
         {
@@ -21039,6 +21819,12 @@
          "bg":"#66d9ef",
          "blocked":true,
          "blocks_vision":false
+        },
+     "866":
+        {
+         "animated":true,
+         "animated_id":874,
+         "blocked":true
         },
      "8660":
         {
@@ -21120,6 +21906,12 @@
          "blocked":true,
          "blocks_vision":false
         },
+     "867":
+        {
+         "animated":true,
+         "animated_id":875,
+         "blocked":true
+        },
      "8670":
         {
          "animated":true,
@@ -21168,6 +21960,12 @@
         {
          "bg":"#00cc33"
         },
+     "868":
+        {
+         "animated":true,
+         "animated_id":876,
+         "blocked":true
+        },
      "8680":
         {
          "bg":"#00cc33"
@@ -21207,6 +22005,12 @@
      "8689":
         {
          "bg":"#00cc33"
+        },
+     "869":
+        {
+         "animated":true,
+         "animated_id":877,
+         "blocked":true
         },
      "8690":
         {
@@ -21267,6 +22071,12 @@
          "blocked":false,
          "blocks_vision":false,
          "description":"stone floor"
+        },
+     "870":
+        {
+         "animated":true,
+         "animated_id":879,
+         "blocked":true
         },
      "8700":
         {
@@ -21351,6 +22161,10 @@
          "blocked":false,
          "blocks_vision":false
         },
+     "871":
+        {
+         "blocked":true
+        },
      "8710":
         {
          "animated":false,
@@ -21410,42 +22224,46 @@
      "8717":
         {
          "bg":"#442534",
-         "blocked":"true",
+         "blocked":true,
          "blocks_vision":"true",
          "description":"stone wall"
         },
      "8718":
         {
          "bg":"#442534",
-         "blocked":"true",
+         "blocked":true,
          "blocks_vision":"true",
          "description":"stone wall"
         },
      "8719":
         {
          "bg":"#442534",
-         "blocked":"true",
+         "blocked":true,
          "blocks_vision":"true",
          "description":"stone wall"
+        },
+     "872":
+        {
+         "blocked":true
         },
      "8720":
         {
          "bg":"#442534",
-         "blocked":"true",
+         "blocked":true,
          "blocks_vision":"true",
          "description":"stone wall"
         },
      "8721":
         {
          "bg":"#442534",
-         "blocked":"true",
+         "blocked":true,
          "blocks_vision":"true",
          "description":"stone wall"
         },
      "8722":
         {
          "bg":"#442534",
-         "blocked":"true",
+         "blocked":true,
          "blocks_vision":"true",
          "description":"stone wall"
         },
@@ -21495,6 +22313,10 @@
          "blocks_vision":true,
          "description":"wooden wall"
         },
+     "873":
+        {
+         "blocked":true
+        },
      "8730":
         {
          "bg":"#00cc33"
@@ -21541,10 +22363,22 @@
          "blocks_vision":true,
          "description":"mine wall"
         },
+     "874":
+        {
+         "blocked":true
+        },
      "8743":
         {
          "animated":true,
          "animated_id":9583,
+         "blocked":true
+        },
+     "875":
+        {
+         "blocked":true
+        },
+     "876":
+        {
          "blocked":true
         },
      "8760":
@@ -21596,6 +22430,10 @@
         {
          "animated":true,
          "animated_id":0
+        },
+     "877":
+        {
+         "blocked":true
         },
      "8770":
         {
@@ -21658,6 +22496,10 @@
          "bg":"#66d9ef",
          "blocked":true,
          "blocks_vision":false
+        },
+     "878":
+        {
+         "blocked":true
         },
      "8780":
         {
@@ -21738,6 +22580,10 @@
          "bg":"#66d9ef",
          "blocked":true,
          "blocks_vision":false
+        },
+     "879":
+        {
+         "blocked":true
         },
      "8790":
         {
@@ -22036,42 +22882,42 @@
      "8837":
         {
          "bg":"darkbrown",
-         "blocked":"true",
+         "blocked":true,
          "blocks_vision":"true",
          "description":"dirt wall"
         },
      "8838":
         {
          "bg":"darkbrown",
-         "blocked":"true",
+         "blocked":true,
          "blocks_vision":"true",
          "description":"dirt wall"
         },
      "8839":
         {
          "bg":"darkbrown",
-         "blocked":"true",
+         "blocked":true,
          "blocks_vision":"true",
          "description":"dirt wall"
         },
      "8840":
         {
          "bg":"darkbrown",
-         "blocked":"true",
+         "blocked":true,
          "blocks_vision":"true",
          "description":"dirt wall"
         },
      "8841":
         {
          "bg":"darkbrown",
-         "blocked":"true",
+         "blocked":true,
          "blocks_vision":"true",
          "description":"dirt wall"
         },
      "8842":
         {
          "bg":"darkbrown",
-         "blocked":"true",
+         "blocked":true,
          "blocks_vision":"true",
          "description":"dirt wall"
         },
@@ -22626,42 +23472,42 @@
      "8957":
         {
          "bg":"darkbrown",
-         "blocked":"true",
+         "blocked":true,
          "blocks_vision":"true",
          "description":"dirt wall"
         },
      "8958":
         {
          "bg":"darkbrown",
-         "blocked":"true",
+         "blocked":true,
          "blocks_vision":"true",
          "description":"dirt wall"
         },
      "8959":
         {
          "bg":"darkbrown",
-         "blocked":"true",
+         "blocked":true,
          "blocks_vision":"true",
          "description":"dirt wall"
         },
      "8960":
         {
          "bg":"darkbrown",
-         "blocked":"true",
+         "blocked":true,
          "blocks_vision":"true",
          "description":"dirt wall"
         },
      "8961":
         {
          "bg":"darkbrown",
-         "blocked":"true",
+         "blocked":true,
          "blocks_vision":"true",
          "description":"dirt wall"
         },
      "8962":
         {
          "bg":"darkbrown",
-         "blocked":"true",
+         "blocked":true,
          "blocks_vision":"true",
          "description":"dirt wall"
         },
@@ -23013,6 +23859,11 @@
         {
          "bg":"#00cc33"
         },
+     "905":
+        {
+         "blocked":true,
+         "description":"weird sharp object"
+        },
      "9050":
         {
          "bg":"#00cc33"
@@ -23222,42 +24073,42 @@
      "9077":
         {
          "bg":"darkbrown",
-         "blocked":"true",
+         "blocked":true,
          "blocks_vision":"true",
          "description":"dirt wall"
         },
      "9078":
         {
          "bg":"darkbrown",
-         "blocked":"true",
+         "blocked":true,
          "blocks_vision":"true",
          "description":"dirt wall"
         },
      "9079":
         {
          "bg":"darkbrown",
-         "blocked":"true",
+         "blocked":true,
          "blocks_vision":"true",
          "description":"dirt wall"
         },
      "9080":
         {
          "bg":"darkbrown",
-         "blocked":"true",
+         "blocked":true,
          "blocks_vision":"true",
          "description":"dirt wall"
         },
      "9081":
         {
          "bg":"darkbrown",
-         "blocked":"true",
+         "blocked":true,
          "blocks_vision":"true",
          "description":"dirt wall"
         },
      "9082":
         {
          "bg":"darkbrown",
-         "blocked":"true",
+         "blocked":true,
          "blocks_vision":"true",
          "description":"dirt wall"
         },
@@ -23804,42 +24655,42 @@
      "9197":
         {
          "bg":"brown",
-         "blocked":"true",
+         "blocked":true,
          "blocks_vision":"true",
          "description":"dirt wall"
         },
      "9198":
         {
          "bg":"brown",
-         "blocked":"true",
+         "blocked":true,
          "blocks_vision":"true",
          "description":"dirt wall"
         },
      "9199":
         {
          "bg":"brown",
-         "blocked":"true",
+         "blocked":true,
          "blocks_vision":"true",
          "description":"dirt wall"
         },
      "9200":
         {
          "bg":"brown",
-         "blocked":"true",
+         "blocked":true,
          "blocks_vision":"true",
          "description":"dirt wall"
         },
      "9201":
         {
          "bg":"brown",
-         "blocked":"true",
+         "blocked":true,
          "blocks_vision":"true",
          "description":"dirt wall"
         },
      "9202":
         {
          "bg":"darkbrown",
-         "blocked":"true",
+         "blocked":true,
          "blocks_vision":"true",
          "description":"dirt wall"
         },
@@ -24378,42 +25229,42 @@
      "9317":
         {
          "bg":"brown",
-         "blocked":"true",
+         "blocked":true,
          "blocks_vision":"true",
          "description":"dirt wall"
         },
      "9318":
         {
          "bg":"brown",
-         "blocked":"true",
+         "blocked":true,
          "blocks_vision":"true",
          "description":"dirt wall"
         },
      "9319":
         {
          "bg":"brown",
-         "blocked":"true",
+         "blocked":true,
          "blocks_vision":"true",
          "description":"dirt wall"
         },
      "9320":
         {
          "bg":"brown",
-         "blocked":"true",
+         "blocked":true,
          "blocks_vision":"true",
          "description":"dirt wall"
         },
      "9321":
         {
          "bg":"brown",
-         "blocked":"true",
+         "blocked":true,
          "blocks_vision":"true",
          "description":"dirt wall"
         },
      "9322":
         {
          "bg":"brown",
-         "blocked":"true",
+         "blocked":true,
          "blocks_vision":"true",
          "description":"dirt wall"
         },
@@ -24948,42 +25799,46 @@
      "9437":
         {
          "bg":"brown",
-         "blocked":"true",
+         "blocked":true,
          "blocks_vision":"true",
          "description":"dirt wall"
         },
      "9438":
         {
          "bg":"brown",
-         "blocked":"true",
+         "blocked":true,
          "blocks_vision":"true",
          "description":"dirt wall"
         },
      "9439":
         {
          "bg":"brown",
-         "blocked":"true",
+         "blocked":true,
          "blocks_vision":"true",
          "description":"dirt wall"
+        },
+     "944":
+        {
+         "blocked":true
         },
      "9440":
         {
          "bg":"brown",
-         "blocked":"true",
+         "blocked":true,
          "blocks_vision":"true",
          "description":"dirt wall"
         },
      "9441":
         {
          "bg":"brown",
-         "blocked":"true",
+         "blocked":true,
          "blocks_vision":"true",
          "description":"dirt wall"
         },
      "9442":
         {
          "bg":"darkbrown",
-         "blocked":"true",
+         "blocked":true,
          "blocks_vision":"true",
          "description":"dirt wall"
         },
@@ -25015,6 +25870,10 @@
         {
          "bg":"#00cc33"
         },
+     "945":
+        {
+         "blocked":true
+        },
      "9450":
         {
          "bg":"#00cc33"
@@ -25042,6 +25901,18 @@
      "9456":
         {
          "bg":"#00cc33"
+        },
+     "946":
+        {
+         "blocked":true
+        },
+     "947":
+        {
+         "blocked":true
+        },
+     "948":
+        {
+         "blocked":true
         },
      "9480":
         {
@@ -25092,6 +25963,10 @@
         {
          "animated":true,
          "animated_id":0
+        },
+     "949":
+        {
+         "blocked":true
         },
      "9490":
         {
@@ -25154,6 +26029,10 @@
          "bg":"#00cc33",
          "blocked":true,
          "blocks_vision":false
+        },
+     "950":
+        {
+         "blocked":true
         },
      "9500":
         {
@@ -25234,6 +26113,10 @@
          "bg":"#00cc33",
          "blocked":true,
          "blocks_vision":false
+        },
+     "951":
+        {
+         "blocked":true
         },
      "9510":
         {
@@ -25532,42 +26415,42 @@
      "9557":
         {
          "bg":"brown",
-         "blocked":"true",
+         "blocked":true,
          "blocks_vision":"true",
          "description":"dirt wall"
         },
      "9558":
         {
          "bg":"brown",
-         "blocked":"true",
+         "blocked":true,
          "blocks_vision":"true",
          "description":"dirt wall"
         },
      "9559":
         {
          "bg":"brown",
-         "blocked":"true",
+         "blocked":true,
          "blocks_vision":"true",
          "description":"dirt wall"
         },
      "9560":
         {
          "bg":"brown",
-         "blocked":"true",
+         "blocked":true,
          "blocks_vision":"true",
          "description":"dirt wall"
         },
      "9561":
         {
          "bg":"brown",
-         "blocked":"true",
+         "blocked":true,
          "blocks_vision":"true",
          "description":"dirt wall"
         },
      "9562":
         {
          "bg":"brown",
-         "blocked":"true",
+         "blocked":true,
          "blocks_vision":"true",
          "description":"dirt wall"
         },
@@ -26116,42 +26999,42 @@
      "9677":
         {
          "bg":"brown",
-         "blocked":"true",
+         "blocked":true,
          "blocks_vision":"true",
          "description":"dirt wall"
         },
      "9678":
         {
          "bg":"brown",
-         "blocked":"true",
+         "blocked":true,
          "blocks_vision":"true",
          "description":"dirt wall"
         },
      "9679":
         {
          "bg":"brown",
-         "blocked":"true",
+         "blocked":true,
          "blocks_vision":"true",
          "description":"dirt wall"
         },
      "9680":
         {
          "bg":"brown",
-         "blocked":"true",
+         "blocked":true,
          "blocks_vision":"true",
          "description":"dirt wall"
         },
      "9681":
         {
          "bg":"brown",
-         "blocked":"true",
+         "blocked":true,
          "blocks_vision":"true",
          "description":"dirt wall"
         },
      "9682":
         {
          "bg":"brown",
-         "blocked":"true",
+         "blocked":true,
          "blocks_vision":"true",
          "description":"dirt wall"
         },
@@ -26705,42 +27588,42 @@
      "9797":
         {
          "bg":"brown",
-         "blocked":"true",
+         "blocked":true,
          "blocks_vision":"true",
          "description":"dirt wall"
         },
      "9798":
         {
          "bg":"brown",
-         "blocked":"true",
+         "blocked":true,
          "blocks_vision":"true",
          "description":"dirt wall"
         },
      "9799":
         {
          "bg":"brown",
-         "blocked":"true",
+         "blocked":true,
          "blocks_vision":"true",
          "description":"dirt wall"
         },
      "9800":
         {
          "bg":"brown",
-         "blocked":"true",
+         "blocked":true,
          "blocks_vision":"true",
          "description":"dirt wall"
         },
      "9801":
         {
          "bg":"brown",
-         "blocked":"true",
+         "blocked":true,
          "blocks_vision":"true",
          "description":"dirt wall"
         },
      "9802":
         {
          "bg":"brown",
-         "blocked":"true",
+         "blocked":true,
          "blocks_vision":"true",
          "description":"dirt wall"
         },
@@ -27289,42 +28172,42 @@
      "9917":
         {
          "bg":"darkbrown",
-         "blocked":"true",
+         "blocked":true,
          "blocks_vision":"true",
          "description":"dirt wall"
         },
      "9918":
         {
          "bg":"darkbrown",
-         "blocked":"true",
+         "blocked":true,
          "blocks_vision":"true",
          "description":"dirt wall"
         },
      "9919":
         {
          "bg":"darkbrown",
-         "blocked":"true",
+         "blocked":true,
          "blocks_vision":"true",
          "description":"dirt wall"
         },
      "9920":
         {
          "bg":"darkbrown",
-         "blocked":"true",
+         "blocked":true,
          "blocks_vision":"true",
          "description":"dirt wall"
         },
      "9921":
         {
          "bg":"darkbrown",
-         "blocked":"true",
+         "blocked":true,
          "blocks_vision":"true",
          "description":"dirt wall"
         },
      "9922":
         {
          "bg":"darkbrown",
-         "blocked":"true",
+         "blocked":true,
          "blocks_vision":"true",
          "description":"dirt wall"
         },
@@ -27667,6 +28550,11 @@
         {
          "bg":"string"
         },
+     "1001":
+        {
+         "blocked":"bool",
+         "description":"string"
+        },
      "10010":
         {
          "bg":"string"
@@ -27876,42 +28764,42 @@
      "10037":
         {
          "bg":"string",
-         "blocked":"string",
+         "blocked":"bool",
          "blocks_vision":"string",
          "description":"string"
         },
      "10038":
         {
          "bg":"string",
-         "blocked":"string",
+         "blocked":"bool",
          "blocks_vision":"string",
          "description":"string"
         },
      "10039":
         {
          "bg":"string",
-         "blocked":"string",
+         "blocked":"bool",
          "blocks_vision":"string",
          "description":"string"
         },
      "10040":
         {
          "bg":"string",
-         "blocked":"string",
+         "blocked":"bool",
          "blocks_vision":"string",
          "description":"string"
         },
      "10041":
         {
          "bg":"string",
-         "blocked":"string",
+         "blocked":"bool",
          "blocks_vision":"string",
          "description":"string"
         },
      "10042":
         {
          "bg":"string",
-         "blocked":"string",
+         "blocked":"bool",
          "blocks_vision":"string",
          "description":"string"
         },
@@ -28464,42 +29352,42 @@
      "10157":
         {
          "bg":"string",
-         "blocked":"string",
+         "blocked":"bool",
          "blocks_vision":"string",
          "description":"string"
         },
      "10158":
         {
          "bg":"string",
-         "blocked":"string",
+         "blocked":"bool",
          "blocks_vision":"string",
          "description":"string"
         },
      "10159":
         {
          "bg":"string",
-         "blocked":"string",
+         "blocked":"bool",
          "blocks_vision":"string",
          "description":"string"
         },
      "10160":
         {
          "bg":"string",
-         "blocked":"string",
+         "blocked":"bool",
          "blocks_vision":"string",
          "description":"string"
         },
      "10161":
         {
          "bg":"string",
-         "blocked":"string",
+         "blocked":"bool",
          "blocks_vision":"string",
          "description":"string"
         },
      "10162":
         {
          "bg":"string",
-         "blocked":"string",
+         "blocked":"bool",
          "blocks_vision":"string",
          "description":"string"
         },
@@ -28622,6 +29510,30 @@
          "blocks_vision":"bool",
          "description":"string"
         },
+     "10277":
+        {
+         "blocked":"bool"
+        },
+     "10278":
+        {
+         "blocked":"bool"
+        },
+     "10279":
+        {
+         "blocked":"bool"
+        },
+     "10280":
+        {
+         "blocked":"bool"
+        },
+     "10281":
+        {
+         "blocked":"bool"
+        },
+     "10282":
+        {
+         "blocked":"bool"
+        },
      "10384":
         {
          "animated":"bool",
@@ -28693,6 +29605,30 @@
          "blocks_vision":"bool",
          "description":"string"
         },
+     "10397":
+        {
+         "blocked":"bool"
+        },
+     "10398":
+        {
+         "blocked":"bool"
+        },
+     "10399":
+        {
+         "blocked":"bool"
+        },
+     "10400":
+        {
+         "blocked":"bool"
+        },
+     "10401":
+        {
+         "blocked":"bool"
+        },
+     "10402":
+        {
+         "blocked":"bool"
+        },
      "10510":
         {
          "animated":"bool",
@@ -28756,6 +29692,30 @@
          "blocks_vision":"bool",
          "description":"string"
         },
+     "10517":
+        {
+         "blocked":"bool"
+        },
+     "10518":
+        {
+         "blocked":"bool"
+        },
+     "10519":
+        {
+         "blocked":"bool"
+        },
+     "10520":
+        {
+         "blocked":"bool"
+        },
+     "10521":
+        {
+         "blocked":"bool"
+        },
+     "10522":
+        {
+         "blocked":"bool"
+        },
      "10630":
         {
          "animated":"bool",
@@ -28818,6 +29778,62 @@
          "blocked":"bool",
          "blocks_vision":"bool",
          "description":"string"
+        },
+     "10637":
+        {
+         "blocked":"bool"
+        },
+     "10638":
+        {
+         "blocked":"bool"
+        },
+     "10639":
+        {
+         "blocked":"bool"
+        },
+     "1064":
+        {
+         "blocked":"bool"
+        },
+     "10640":
+        {
+         "blocked":"bool"
+        },
+     "10641":
+        {
+         "blocked":"bool"
+        },
+     "10642":
+        {
+         "blocked":"bool"
+        },
+     "1065":
+        {
+         "blocked":"bool"
+        },
+     "1066":
+        {
+         "blocked":"bool"
+        },
+     "1067":
+        {
+         "blocked":"bool"
+        },
+     "1068":
+        {
+         "blocked":"bool"
+        },
+     "1069":
+        {
+         "blocked":"bool"
+        },
+     "1070":
+        {
+         "blocked":"bool"
+        },
+     "1071":
+        {
+         "blocked":"bool"
         },
      "10744":
         {
@@ -28890,6 +29906,30 @@
          "blocks_vision":"bool",
          "description":"string"
         },
+     "10757":
+        {
+         "blocked":"bool"
+        },
+     "10758":
+        {
+         "blocked":"bool"
+        },
+     "10759":
+        {
+         "blocked":"bool"
+        },
+     "10760":
+        {
+         "blocked":"bool"
+        },
+     "10761":
+        {
+         "blocked":"bool"
+        },
+     "10762":
+        {
+         "blocked":"bool"
+        },
      "10870":
         {
          "animated":"bool",
@@ -28953,6 +29993,30 @@
          "blocks_vision":"bool",
          "description":"string"
         },
+     "10877":
+        {
+         "blocked":"bool"
+        },
+     "10878":
+        {
+         "blocked":"bool"
+        },
+     "10879":
+        {
+         "blocked":"bool"
+        },
+     "10880":
+        {
+         "blocked":"bool"
+        },
+     "10881":
+        {
+         "blocked":"bool"
+        },
+     "10882":
+        {
+         "blocked":"bool"
+        },
      "10990":
         {
          "animated":"bool",
@@ -29015,6 +30079,30 @@
          "blocked":"bool",
          "blocks_vision":"bool",
          "description":"string"
+        },
+     "10997":
+        {
+         "blocked":"bool"
+        },
+     "10998":
+        {
+         "blocked":"bool"
+        },
+     "10999":
+        {
+         "blocked":"bool"
+        },
+     "11000":
+        {
+         "blocked":"bool"
+        },
+     "11001":
+        {
+         "blocked":"bool"
+        },
+     "11002":
+        {
+         "blocked":"bool"
         },
      "11104":
         {
@@ -29087,6 +30175,30 @@
          "blocks_vision":"bool",
          "description":"string"
         },
+     "11117":
+        {
+         "blocked":"bool"
+        },
+     "11118":
+        {
+         "blocked":"bool"
+        },
+     "11119":
+        {
+         "blocked":"bool"
+        },
+     "11120":
+        {
+         "blocked":"bool"
+        },
+     "11121":
+        {
+         "blocked":"bool"
+        },
+     "11122":
+        {
+         "blocked":"bool"
+        },
      "11230":
         {
          "animated":"bool",
@@ -29149,6 +30261,30 @@
          "blocked":"bool",
          "blocks_vision":"bool",
          "description":"string"
+        },
+     "11237":
+        {
+         "blocked":"bool"
+        },
+     "11238":
+        {
+         "blocked":"bool"
+        },
+     "11239":
+        {
+         "blocked":"bool"
+        },
+     "11240":
+        {
+         "blocked":"bool"
+        },
+     "11241":
+        {
+         "blocked":"bool"
+        },
+     "11242":
+        {
+         "blocked":"bool"
         },
      "11350":
         {
@@ -29213,6 +30349,30 @@
          "blocks_vision":"bool",
          "description":"string"
         },
+     "11357":
+        {
+         "blocked":"bool"
+        },
+     "11358":
+        {
+         "blocked":"bool"
+        },
+     "11359":
+        {
+         "blocked":"bool"
+        },
+     "11360":
+        {
+         "blocked":"bool"
+        },
+     "11361":
+        {
+         "blocked":"bool"
+        },
+     "11362":
+        {
+         "blocked":"bool"
+        },
      "11470":
         {
          "animated":"bool",
@@ -29275,6 +30435,30 @@
          "blocked":"bool",
          "blocks_vision":"bool",
          "description":"string"
+        },
+     "11477":
+        {
+         "blocked":"bool"
+        },
+     "11478":
+        {
+         "blocked":"bool"
+        },
+     "11479":
+        {
+         "blocked":"bool"
+        },
+     "11480":
+        {
+         "blocked":"bool"
+        },
+     "11481":
+        {
+         "blocked":"bool"
+        },
+     "11482":
+        {
+         "blocked":"bool"
         },
      "11590":
         {
@@ -29339,10 +30523,90 @@
          "blocks_vision":"bool",
          "description":"string"
         },
+     "11597":
+        {
+         "blocked":"bool"
+        },
+     "11598":
+        {
+         "blocked":"bool"
+        },
+     "11599":
+        {
+         "blocked":"bool"
+        },
+     "11600":
+        {
+         "blocked":"bool"
+        },
+     "11601":
+        {
+         "blocked":"bool"
+        },
+     "11602":
+        {
+         "blocked":"bool"
+        },
      "1169":
         {
          "animated":"bool",
          "animated_id":"int"
+        },
+     "11717":
+        {
+         "blocked":"bool"
+        },
+     "11718":
+        {
+         "blocked":"bool"
+        },
+     "11719":
+        {
+         "blocked":"bool"
+        },
+     "11720":
+        {
+         "blocked":"bool"
+        },
+     "11721":
+        {
+         "blocked":"bool"
+        },
+     "11722":
+        {
+         "blocked":"bool"
+        },
+     "11837":
+        {
+         "blocked":"bool"
+        },
+     "11838":
+        {
+         "blocked":"bool"
+        },
+     "11839":
+        {
+         "blocked":"bool"
+        },
+     "1184":
+        {
+         "blocked":"bool"
+        },
+     "11840":
+        {
+         "blocked":"bool"
+        },
+     "11841":
+        {
+         "blocked":"bool"
+        },
+     "11842":
+        {
+         "blocked":"bool"
+        },
+     "1185":
+        {
+         "blocked":"bool"
         },
      "11857":
         {
@@ -29356,21 +30620,141 @@
          "animated":"bool",
          "animated_id":"int"
         },
+     "1186":
+        {
+         "blocked":"bool"
+        },
+     "1187":
+        {
+         "blocked":"bool"
+        },
+     "1188":
+        {
+         "blocked":"bool"
+        },
      "11880":
         {
          "bg":"string"
+        },
+     "1189":
+        {
+         "blocked":"bool"
+        },
+     "1190":
+        {
+         "blocked":"bool"
+        },
+     "1191":
+        {
+         "blocked":"bool"
+        },
+     "11957":
+        {
+         "blocked":"bool"
+        },
+     "11958":
+        {
+         "blocked":"bool"
+        },
+     "11959":
+        {
+         "blocked":"bool"
+        },
+     "11960":
+        {
+         "blocked":"bool"
+        },
+     "11961":
+        {
+         "blocked":"bool"
+        },
+     "11962":
+        {
+         "blocked":"bool"
         },
      "12000":
         {
          "bg":"string"
         },
+     "12077":
+        {
+         "blocked":"bool"
+        },
+     "12078":
+        {
+         "blocked":"bool"
+        },
+     "12079":
+        {
+         "blocked":"bool"
+        },
+     "12080":
+        {
+         "blocked":"bool"
+        },
+     "12081":
+        {
+         "blocked":"bool"
+        },
+     "12082":
+        {
+         "blocked":"bool"
+        },
      "12120":
         {
          "bg":"string"
         },
+     "12197":
+        {
+         "blocked":"bool"
+        },
+     "12198":
+        {
+         "blocked":"bool"
+        },
+     "12199":
+        {
+         "blocked":"bool"
+        },
+     "12200":
+        {
+         "blocked":"bool"
+        },
+     "12201":
+        {
+         "blocked":"bool"
+        },
+     "12202":
+        {
+         "blocked":"bool"
+        },
      "12240":
         {
          "bg":"string"
+        },
+     "12317":
+        {
+         "blocked":"bool"
+        },
+     "12318":
+        {
+         "blocked":"bool"
+        },
+     "12319":
+        {
+         "blocked":"bool"
+        },
+     "12320":
+        {
+         "blocked":"bool"
+        },
+     "12321":
+        {
+         "blocked":"bool"
+        },
+     "12322":
+        {
+         "blocked":"bool"
         },
      "12360":
         {
@@ -29386,10 +30770,34 @@
          "bg":"string",
          "description":"string"
         },
+     "12437":
+        {
+         "blocked":"bool"
+        },
+     "12438":
+        {
+         "blocked":"bool"
+        },
+     "12439":
+        {
+         "blocked":"bool"
+        },
      "1244":
         {
          "bg":"string",
          "description":"string"
+        },
+     "12440":
+        {
+         "blocked":"bool"
+        },
+     "12441":
+        {
+         "blocked":"bool"
+        },
+     "12442":
+        {
+         "blocked":"bool"
         },
      "1245":
         {
@@ -29444,9 +30852,33 @@
         {
          "bg":"string"
         },
+     "12557":
+        {
+         "blocked":"bool"
+        },
+     "12558":
+        {
+         "blocked":"bool"
+        },
+     "12559":
+        {
+         "blocked":"bool"
+        },
      "1256":
         {
          "bg":"string"
+        },
+     "12560":
+        {
+         "blocked":"bool"
+        },
+     "12561":
+        {
+         "blocked":"bool"
+        },
+     "12562":
+        {
+         "blocked":"bool"
         },
      "1257":
         {
@@ -29456,9 +30888,57 @@
         {
          "bg":"string"
         },
+     "12677":
+        {
+         "blocked":"bool"
+        },
+     "12678":
+        {
+         "blocked":"bool"
+        },
+     "12679":
+        {
+         "blocked":"bool"
+        },
+     "12680":
+        {
+         "blocked":"bool"
+        },
+     "12681":
+        {
+         "blocked":"bool"
+        },
+     "12682":
+        {
+         "blocked":"bool"
+        },
      "12720":
         {
          "bg":"string"
+        },
+     "12797":
+        {
+         "blocked":"bool"
+        },
+     "12798":
+        {
+         "blocked":"bool"
+        },
+     "12799":
+        {
+         "blocked":"bool"
+        },
+     "12800":
+        {
+         "blocked":"bool"
+        },
+     "12801":
+        {
+         "blocked":"bool"
+        },
+     "12802":
+        {
+         "blocked":"bool"
         },
      "12840":
         {
@@ -29474,9 +30954,57 @@
          "animated":"bool",
          "animated_id":"int"
         },
+     "12917":
+        {
+         "blocked":"bool"
+        },
+     "12918":
+        {
+         "blocked":"bool"
+        },
+     "12919":
+        {
+         "blocked":"bool"
+        },
+     "12920":
+        {
+         "blocked":"bool"
+        },
+     "12921":
+        {
+         "blocked":"bool"
+        },
+     "12922":
+        {
+         "blocked":"bool"
+        },
      "12960":
         {
          "bg":"string"
+        },
+     "13037":
+        {
+         "blocked":"bool"
+        },
+     "13038":
+        {
+         "blocked":"bool"
+        },
+     "13039":
+        {
+         "blocked":"bool"
+        },
+     "13040":
+        {
+         "blocked":"bool"
+        },
+     "13041":
+        {
+         "blocked":"bool"
+        },
+     "13042":
+        {
+         "blocked":"bool"
         },
      "1362":
         {
@@ -29830,6 +31358,11 @@
         {
          "blocked":"bool"
         },
+     "1810":
+        {
+         "blocked":"bool",
+         "description":"string"
+        },
      "182":
         {
          "blocked":"bool"
@@ -30073,32 +31606,38 @@
      "2408":
         {
          "animated":"bool",
-         "animated_id":"int"
+         "animated_id":"int",
+         "blocked":"bool"
         },
      "2409":
         {
          "animated":"bool",
-         "animated_id":"int"
+         "animated_id":"int",
+         "blocked":"bool"
         },
      "2410":
         {
          "animated":"bool",
-         "animated_id":"int"
+         "animated_id":"int",
+         "blocked":"bool"
         },
      "2411":
         {
          "animated":"bool",
-         "animated_id":"int"
+         "animated_id":"int",
+         "blocked":"bool"
         },
      "2412":
         {
          "animated":"bool",
-         "animated_id":"int"
+         "animated_id":"int",
+         "blocked":"bool"
         },
      "2413":
         {
          "animated":"bool",
-         "animated_id":"int"
+         "animated_id":"int",
+         "blocked":"bool"
         },
      "2414":
         {
@@ -30319,6 +31858,10 @@
         {
          "blocked":"bool",
          "description":"string"
+        },
+     "2905":
+        {
+         "blocked":"bool"
         },
      "296":
         {
@@ -35773,32 +37316,38 @@
      "5136":
         {
          "bg":"string",
-         "blocked":"bool"
+         "blocked":"bool",
+         "description":"string"
         },
      "5137":
         {
          "bg":"string",
-         "blocked":"bool"
+         "blocked":"bool",
+         "description":"string"
         },
      "5138":
         {
          "bg":"string",
-         "blocked":"bool"
+         "blocked":"bool",
+         "description":"string"
         },
      "5139":
         {
          "bg":"string",
-         "blocked":"bool"
+         "blocked":"bool",
+         "description":"string"
         },
      "5140":
         {
          "bg":"string",
-         "blocked":"bool"
+         "blocked":"bool",
+         "description":"string"
         },
      "5141":
         {
          "bg":"string",
-         "blocked":"bool"
+         "blocked":"bool",
+         "description":"string"
         },
      "5142":
         {
@@ -39166,6 +40715,18 @@
         {
          "blocked":"bool"
         },
+     "6326":
+        {
+         "animated":"bool",
+         "animated_id":"int",
+         "blocked":"bool"
+        },
+     "6327":
+        {
+         "animated":"bool",
+         "animated_id":"int",
+         "blocked":"bool"
+        },
      "6328":
         {
          "blocked":"bool",
@@ -39206,12 +40767,42 @@
         {
          "blocked":"bool"
         },
+     "6448":
+        {
+         "animated":"bool",
+         "animated_id":"int",
+         "blocked":"bool"
+        },
      "6449":
         {
          "animated":"bool",
          "animated_id":"int",
          "blocked":"bool",
          "description":"string"
+        },
+     "6451":
+        {
+         "animated":"bool",
+         "animated_id":"int",
+         "blocked":"bool"
+        },
+     "6452":
+        {
+         "animated":"bool",
+         "animated_id":"int",
+         "blocked":"bool"
+        },
+     "6453":
+        {
+         "animated":"bool",
+         "animated_id":"int",
+         "blocked":"bool"
+        },
+     "6455":
+        {
+         "animated":"bool",
+         "animated_id":"int",
+         "blocked":"bool"
         },
      "6457":
         {
@@ -39791,11 +41382,31 @@
          "blocked":"bool",
          "blocks_vision":"bool"
         },
+     "704":
+        {
+         "blocked":"bool"
+        },
      "7046":
         {
          "bg":"string",
          "blocked":"string",
          "blocks_vision":"string"
+        },
+     "705":
+        {
+         "blocked":"bool"
+        },
+     "706":
+        {
+         "blocked":"bool"
+        },
+     "707":
+        {
+         "blocked":"bool"
+        },
+     "708":
+        {
+         "blocked":"bool"
         },
      "7080":
         {
@@ -39846,6 +41457,10 @@
         {
          "animated":"bool",
          "animated_id":"int"
+        },
+     "709":
+        {
+         "blocked":"bool"
         },
      "7090":
         {
@@ -39908,6 +41523,10 @@
      "71":
         {
          "blocked":"string"
+        },
+     "710":
+        {
+         "blocked":"bool"
         },
      "7100":
         {
@@ -39978,6 +41597,10 @@
          "animated_id":"int",
          "blocked":"bool",
          "blocks_vision":"bool"
+        },
+     "711":
+        {
+         "blocked":"bool"
         },
      "7110":
         {
@@ -41553,42 +43176,42 @@
      "7397":
         {
          "bg":"string",
-         "blocked":"string",
+         "blocked":"bool",
          "blocks_vision":"string",
          "description":"string"
         },
      "7398":
         {
          "bg":"string",
-         "blocked":"string",
+         "blocked":"bool",
          "blocks_vision":"string",
          "description":"string"
         },
      "7399":
         {
          "bg":"string",
-         "blocked":"string",
+         "blocked":"bool",
          "blocks_vision":"string",
          "description":"string"
         },
      "7400":
         {
          "bg":"string",
-         "blocked":"string",
+         "blocked":"bool",
          "blocks_vision":"string",
          "description":"string"
         },
      "7401":
         {
          "bg":"string",
-         "blocked":"string",
+         "blocked":"bool",
          "blocks_vision":"string",
          "description":"string"
         },
      "7402":
         {
          "bg":"string",
-         "blocked":"string",
+         "blocked":"bool",
          "blocks_vision":"string",
          "description":"string"
         },
@@ -42289,42 +43912,42 @@
      "7517":
         {
          "bg":"string",
-         "blocked":"string",
+         "blocked":"bool",
          "blocks_vision":"string",
          "description":"string"
         },
      "7518":
         {
          "bg":"string",
-         "blocked":"string",
+         "blocked":"bool",
          "blocks_vision":"string",
          "description":"string"
         },
      "7519":
         {
          "bg":"string",
-         "blocked":"string",
+         "blocked":"bool",
          "blocks_vision":"string",
          "description":"string"
         },
      "7520":
         {
          "bg":"string",
-         "blocked":"string",
+         "blocked":"bool",
          "blocks_vision":"string",
          "description":"string"
         },
      "7521":
         {
          "bg":"string",
-         "blocked":"string",
+         "blocked":"bool",
          "blocks_vision":"string",
          "description":"string"
         },
      "7522":
         {
          "bg":"string",
-         "blocked":"string",
+         "blocked":"bool",
          "blocks_vision":"string",
          "description":"string"
         },
@@ -43017,42 +44640,42 @@
      "7637":
         {
          "bg":"string",
-         "blocked":"string",
+         "blocked":"bool",
          "blocks_vision":"string",
          "description":"string"
         },
      "7638":
         {
          "bg":"string",
-         "blocked":"string",
+         "blocked":"bool",
          "blocks_vision":"string",
          "description":"string"
         },
      "7639":
         {
          "bg":"string",
-         "blocked":"string",
+         "blocked":"bool",
          "blocks_vision":"string",
          "description":"string"
         },
      "7640":
         {
          "bg":"string",
-         "blocked":"string",
+         "blocked":"bool",
          "blocks_vision":"string",
          "description":"string"
         },
      "7641":
         {
          "bg":"string",
-         "blocked":"string",
+         "blocked":"bool",
          "blocks_vision":"string",
          "description":"string"
         },
      "7642":
         {
          "bg":"string",
-         "blocked":"string",
+         "blocked":"bool",
          "blocks_vision":"string",
          "description":"string"
         },
@@ -43733,42 +45356,42 @@
      "7757":
         {
          "bg":"string",
-         "blocked":"string",
+         "blocked":"bool",
          "blocks_vision":"string",
          "description":"string"
         },
      "7758":
         {
          "bg":"string",
-         "blocked":"string",
+         "blocked":"bool",
          "blocks_vision":"string",
          "description":"string"
         },
      "7759":
         {
          "bg":"string",
-         "blocked":"string",
+         "blocked":"bool",
          "blocks_vision":"string",
          "description":"string"
         },
      "7760":
         {
          "bg":"string",
-         "blocked":"string",
+         "blocked":"bool",
          "blocks_vision":"string",
          "description":"string"
         },
      "7761":
         {
          "bg":"string",
-         "blocked":"string",
+         "blocked":"bool",
          "blocks_vision":"string",
          "description":"string"
         },
      "7762":
         {
          "bg":"string",
-         "blocked":"string",
+         "blocked":"bool",
          "blocks_vision":"string",
          "description":"string"
         },
@@ -44454,42 +46077,42 @@
      "7877":
         {
          "bg":"string",
-         "blocked":"string",
+         "blocked":"bool",
          "blocks_vision":"string",
          "description":"string"
         },
      "7878":
         {
          "bg":"string",
-         "blocked":"string",
+         "blocked":"bool",
          "blocks_vision":"string",
          "description":"string"
         },
      "7879":
         {
          "bg":"string",
-         "blocked":"string",
+         "blocked":"bool",
          "blocks_vision":"string",
          "description":"string"
         },
      "7880":
         {
          "bg":"string",
-         "blocked":"string",
+         "blocked":"bool",
          "blocks_vision":"string",
          "description":"string"
         },
      "7881":
         {
          "bg":"string",
-         "blocked":"string",
+         "blocked":"bool",
          "blocks_vision":"string",
          "description":"string"
         },
      "7882":
         {
          "bg":"string",
-         "blocked":"string",
+         "blocked":"bool",
          "blocks_vision":"string",
          "description":"string"
         },
@@ -45214,42 +46837,42 @@
      "7997":
         {
          "bg":"string",
-         "blocked":"string",
+         "blocked":"bool",
          "blocks_vision":"string",
          "description":"string"
         },
      "7998":
         {
          "bg":"string",
-         "blocked":"string",
+         "blocked":"bool",
          "blocks_vision":"string",
          "description":"string"
         },
      "7999":
         {
          "bg":"string",
-         "blocked":"string",
+         "blocked":"bool",
          "blocks_vision":"string",
          "description":"string"
         },
      "8000":
         {
          "bg":"string",
-         "blocked":"string",
+         "blocked":"bool",
          "blocks_vision":"string",
          "description":"string"
         },
      "8001":
         {
          "bg":"string",
-         "blocked":"string",
+         "blocked":"bool",
          "blocks_vision":"string",
          "description":"string"
         },
      "8002":
         {
          "bg":"string",
-         "blocked":"string",
+         "blocked":"bool",
          "blocks_vision":"string",
          "description":"string"
         },
@@ -45860,42 +47483,42 @@
      "8117":
         {
          "bg":"string",
-         "blocked":"string",
+         "blocked":"bool",
          "blocks_vision":"string",
          "description":"string"
         },
      "8118":
         {
          "bg":"string",
-         "blocked":"string",
+         "blocked":"bool",
          "blocks_vision":"string",
          "description":"string"
         },
      "8119":
         {
          "bg":"string",
-         "blocked":"string",
+         "blocked":"bool",
          "blocks_vision":"string",
          "description":"string"
         },
      "8120":
         {
          "bg":"string",
-         "blocked":"string",
+         "blocked":"bool",
          "blocks_vision":"string",
          "description":"string"
         },
      "8121":
         {
          "bg":"string",
-         "blocked":"string",
+         "blocked":"bool",
          "blocks_vision":"string",
          "description":"string"
         },
      "8122":
         {
          "bg":"string",
-         "blocked":"string",
+         "blocked":"bool",
          "blocks_vision":"string",
          "description":"string"
         },
@@ -46496,42 +48119,46 @@
      "8237":
         {
          "bg":"string",
-         "blocked":"string",
+         "blocked":"bool",
          "blocks_vision":"string",
          "description":"string"
         },
      "8238":
         {
          "bg":"string",
-         "blocked":"string",
+         "blocked":"bool",
          "blocks_vision":"string",
          "description":"string"
         },
      "8239":
         {
          "bg":"string",
-         "blocked":"string",
+         "blocked":"bool",
          "blocks_vision":"string",
          "description":"string"
+        },
+     "824":
+        {
+         "blocked":"bool"
         },
      "8240":
         {
          "bg":"string",
-         "blocked":"string",
+         "blocked":"bool",
          "blocks_vision":"string",
          "description":"string"
         },
      "8241":
         {
          "bg":"string",
-         "blocked":"string",
+         "blocked":"bool",
          "blocks_vision":"string",
          "description":"string"
         },
      "8242":
         {
          "bg":"string",
-         "blocked":"string",
+         "blocked":"bool",
          "blocks_vision":"string",
          "description":"string"
         },
@@ -46581,6 +48208,10 @@
          "blocks_vision":"bool",
          "description":"string"
         },
+     "825":
+        {
+         "blocked":"bool"
+        },
      "8250":
         {
          "bg":"string"
@@ -46626,6 +48257,18 @@
          "blocked":"bool",
          "blocks_vision":"bool",
          "description":"string"
+        },
+     "826":
+        {
+         "blocked":"bool"
+        },
+     "827":
+        {
+         "blocked":"bool"
+        },
+     "828":
+        {
+         "blocked":"bool"
         },
      "8280":
         {
@@ -46676,6 +48319,10 @@
         {
          "animated":"bool",
          "animated_id":"int"
+        },
+     "829":
+        {
+         "blocked":"bool"
         },
      "8290":
         {
@@ -46742,6 +48389,10 @@
          "blocked":"bool",
          "blocks_vision":"bool",
          "description":"string"
+        },
+     "830":
+        {
+         "blocked":"bool"
         },
      "8300":
         {
@@ -46832,6 +48483,10 @@
          "blocked":"bool",
          "blocks_vision":"bool",
          "description":"string"
+        },
+     "831":
+        {
+         "blocked":"bool"
         },
      "8310":
         {
@@ -47137,42 +48792,42 @@
      "8357":
         {
          "bg":"string",
-         "blocked":"string",
+         "blocked":"bool",
          "blocks_vision":"string",
          "description":"string"
         },
      "8358":
         {
          "bg":"string",
-         "blocked":"string",
+         "blocked":"bool",
          "blocks_vision":"string",
          "description":"string"
         },
      "8359":
         {
          "bg":"string",
-         "blocked":"string",
+         "blocked":"bool",
          "blocks_vision":"string",
          "description":"string"
         },
      "8360":
         {
          "bg":"string",
-         "blocked":"string",
+         "blocked":"bool",
          "blocks_vision":"string",
          "description":"string"
         },
      "8361":
         {
          "bg":"string",
-         "blocked":"string",
+         "blocked":"bool",
          "blocks_vision":"string",
          "description":"string"
         },
      "8362":
         {
          "bg":"string",
-         "blocked":"string",
+         "blocked":"bool",
          "blocks_vision":"string",
          "description":"string"
         },
@@ -47766,42 +49421,42 @@
      "8477":
         {
          "bg":"string",
-         "blocked":"string",
+         "blocked":"bool",
          "blocks_vision":"string",
          "description":"string"
         },
      "8478":
         {
          "bg":"string",
-         "blocked":"string",
+         "blocked":"bool",
          "blocks_vision":"string",
          "description":"string"
         },
      "8479":
         {
          "bg":"string",
-         "blocked":"string",
+         "blocked":"bool",
          "blocks_vision":"string",
          "description":"string"
         },
      "8480":
         {
          "bg":"string",
-         "blocked":"string",
+         "blocked":"bool",
          "blocks_vision":"string",
          "description":"string"
         },
      "8481":
         {
          "bg":"string",
-         "blocked":"string",
+         "blocked":"bool",
          "blocks_vision":"string",
          "description":"string"
         },
      "8482":
         {
          "bg":"string",
-         "blocked":"string",
+         "blocked":"bool",
          "blocks_vision":"string",
          "description":"string"
         },
@@ -48395,42 +50050,42 @@
      "8597":
         {
          "bg":"string",
-         "blocked":"string",
+         "blocked":"bool",
          "blocks_vision":"string",
          "description":"string"
         },
      "8598":
         {
          "bg":"string",
-         "blocked":"string",
+         "blocked":"bool",
          "blocks_vision":"string",
          "description":"string"
         },
      "8599":
         {
          "bg":"string",
-         "blocked":"string",
+         "blocked":"bool",
          "blocks_vision":"string",
          "description":"string"
         },
      "8600":
         {
          "bg":"string",
-         "blocked":"string",
+         "blocked":"bool",
          "blocks_vision":"string",
          "description":"string"
         },
      "8601":
         {
          "bg":"string",
-         "blocked":"string",
+         "blocked":"bool",
          "blocks_vision":"string",
          "description":"string"
         },
      "8602":
         {
          "bg":"string",
-         "blocked":"string",
+         "blocked":"bool",
          "blocks_vision":"string",
          "description":"string"
         },
@@ -48546,6 +50201,10 @@
          "animated":"bool",
          "animated_id":"int"
         },
+     "864":
+        {
+         "blocked":"bool"
+        },
      "8640":
         {
          "animated":"bool",
@@ -48595,6 +50254,10 @@
         {
          "animated":"bool",
          "animated_id":"int"
+        },
+     "865":
+        {
+         "blocked":"bool"
         },
      "8650":
         {
@@ -48657,6 +50320,12 @@
          "bg":"string",
          "blocked":"bool",
          "blocks_vision":"bool"
+        },
+     "866":
+        {
+         "animated":"bool",
+         "animated_id":"int",
+         "blocked":"bool"
         },
      "8660":
         {
@@ -48738,6 +50407,12 @@
          "blocked":"bool",
          "blocks_vision":"bool"
         },
+     "867":
+        {
+         "animated":"bool",
+         "animated_id":"int",
+         "blocked":"bool"
+        },
      "8670":
         {
          "animated":"bool",
@@ -48786,6 +50461,12 @@
         {
          "bg":"string"
         },
+     "868":
+        {
+         "animated":"bool",
+         "animated_id":"int",
+         "blocked":"bool"
+        },
      "8680":
         {
          "bg":"string"
@@ -48825,6 +50506,12 @@
      "8689":
         {
          "bg":"string"
+        },
+     "869":
+        {
+         "animated":"bool",
+         "animated_id":"int",
+         "blocked":"bool"
         },
      "8690":
         {
@@ -48885,6 +50572,12 @@
          "blocked":"bool",
          "blocks_vision":"bool",
          "description":"string"
+        },
+     "870":
+        {
+         "animated":"bool",
+         "animated_id":"int",
+         "blocked":"bool"
         },
      "8700":
         {
@@ -48969,6 +50662,10 @@
          "blocked":"bool",
          "blocks_vision":"bool"
         },
+     "871":
+        {
+         "blocked":"bool"
+        },
      "8710":
         {
          "animated":"bool",
@@ -49028,42 +50725,46 @@
      "8717":
         {
          "bg":"string",
-         "blocked":"string",
+         "blocked":"bool",
          "blocks_vision":"string",
          "description":"string"
         },
      "8718":
         {
          "bg":"string",
-         "blocked":"string",
+         "blocked":"bool",
          "blocks_vision":"string",
          "description":"string"
         },
      "8719":
         {
          "bg":"string",
-         "blocked":"string",
+         "blocked":"bool",
          "blocks_vision":"string",
          "description":"string"
+        },
+     "872":
+        {
+         "blocked":"bool"
         },
      "8720":
         {
          "bg":"string",
-         "blocked":"string",
+         "blocked":"bool",
          "blocks_vision":"string",
          "description":"string"
         },
      "8721":
         {
          "bg":"string",
-         "blocked":"string",
+         "blocked":"bool",
          "blocks_vision":"string",
          "description":"string"
         },
      "8722":
         {
          "bg":"string",
-         "blocked":"string",
+         "blocked":"bool",
          "blocks_vision":"string",
          "description":"string"
         },
@@ -49113,6 +50814,10 @@
          "blocks_vision":"bool",
          "description":"string"
         },
+     "873":
+        {
+         "blocked":"bool"
+        },
      "8730":
         {
          "bg":"string"
@@ -49159,10 +50864,22 @@
          "blocks_vision":"bool",
          "description":"string"
         },
+     "874":
+        {
+         "blocked":"bool"
+        },
      "8743":
         {
          "animated":"bool",
          "animated_id":"int",
+         "blocked":"bool"
+        },
+     "875":
+        {
+         "blocked":"bool"
+        },
+     "876":
+        {
          "blocked":"bool"
         },
      "8760":
@@ -49214,6 +50931,10 @@
         {
          "animated":"bool",
          "animated_id":"int"
+        },
+     "877":
+        {
+         "blocked":"bool"
         },
      "8770":
         {
@@ -49276,6 +50997,10 @@
          "bg":"string",
          "blocked":"bool",
          "blocks_vision":"bool"
+        },
+     "878":
+        {
+         "blocked":"bool"
         },
      "8780":
         {
@@ -49356,6 +51081,10 @@
          "bg":"string",
          "blocked":"bool",
          "blocks_vision":"bool"
+        },
+     "879":
+        {
+         "blocked":"bool"
         },
      "8790":
         {
@@ -49654,42 +51383,42 @@
      "8837":
         {
          "bg":"string",
-         "blocked":"string",
+         "blocked":"bool",
          "blocks_vision":"string",
          "description":"string"
         },
      "8838":
         {
          "bg":"string",
-         "blocked":"string",
+         "blocked":"bool",
          "blocks_vision":"string",
          "description":"string"
         },
      "8839":
         {
          "bg":"string",
-         "blocked":"string",
+         "blocked":"bool",
          "blocks_vision":"string",
          "description":"string"
         },
      "8840":
         {
          "bg":"string",
-         "blocked":"string",
+         "blocked":"bool",
          "blocks_vision":"string",
          "description":"string"
         },
      "8841":
         {
          "bg":"string",
-         "blocked":"string",
+         "blocked":"bool",
          "blocks_vision":"string",
          "description":"string"
         },
      "8842":
         {
          "bg":"string",
-         "blocked":"string",
+         "blocked":"bool",
          "blocks_vision":"string",
          "description":"string"
         },
@@ -50244,42 +51973,42 @@
      "8957":
         {
          "bg":"string",
-         "blocked":"string",
+         "blocked":"bool",
          "blocks_vision":"string",
          "description":"string"
         },
      "8958":
         {
          "bg":"string",
-         "blocked":"string",
+         "blocked":"bool",
          "blocks_vision":"string",
          "description":"string"
         },
      "8959":
         {
          "bg":"string",
-         "blocked":"string",
+         "blocked":"bool",
          "blocks_vision":"string",
          "description":"string"
         },
      "8960":
         {
          "bg":"string",
-         "blocked":"string",
+         "blocked":"bool",
          "blocks_vision":"string",
          "description":"string"
         },
      "8961":
         {
          "bg":"string",
-         "blocked":"string",
+         "blocked":"bool",
          "blocks_vision":"string",
          "description":"string"
         },
      "8962":
         {
          "bg":"string",
-         "blocked":"string",
+         "blocked":"bool",
          "blocks_vision":"string",
          "description":"string"
         },
@@ -50631,6 +52360,11 @@
         {
          "bg":"string"
         },
+     "905":
+        {
+         "blocked":"bool",
+         "description":"string"
+        },
      "9050":
         {
          "bg":"string"
@@ -50840,42 +52574,42 @@
      "9077":
         {
          "bg":"string",
-         "blocked":"string",
+         "blocked":"bool",
          "blocks_vision":"string",
          "description":"string"
         },
      "9078":
         {
          "bg":"string",
-         "blocked":"string",
+         "blocked":"bool",
          "blocks_vision":"string",
          "description":"string"
         },
      "9079":
         {
          "bg":"string",
-         "blocked":"string",
+         "blocked":"bool",
          "blocks_vision":"string",
          "description":"string"
         },
      "9080":
         {
          "bg":"string",
-         "blocked":"string",
+         "blocked":"bool",
          "blocks_vision":"string",
          "description":"string"
         },
      "9081":
         {
          "bg":"string",
-         "blocked":"string",
+         "blocked":"bool",
          "blocks_vision":"string",
          "description":"string"
         },
      "9082":
         {
          "bg":"string",
-         "blocked":"string",
+         "blocked":"bool",
          "blocks_vision":"string",
          "description":"string"
         },
@@ -51422,42 +53156,42 @@
      "9197":
         {
          "bg":"string",
-         "blocked":"string",
+         "blocked":"bool",
          "blocks_vision":"string",
          "description":"string"
         },
      "9198":
         {
          "bg":"string",
-         "blocked":"string",
+         "blocked":"bool",
          "blocks_vision":"string",
          "description":"string"
         },
      "9199":
         {
          "bg":"string",
-         "blocked":"string",
+         "blocked":"bool",
          "blocks_vision":"string",
          "description":"string"
         },
      "9200":
         {
          "bg":"string",
-         "blocked":"string",
+         "blocked":"bool",
          "blocks_vision":"string",
          "description":"string"
         },
      "9201":
         {
          "bg":"string",
-         "blocked":"string",
+         "blocked":"bool",
          "blocks_vision":"string",
          "description":"string"
         },
      "9202":
         {
          "bg":"string",
-         "blocked":"string",
+         "blocked":"bool",
          "blocks_vision":"string",
          "description":"string"
         },
@@ -51996,42 +53730,42 @@
      "9317":
         {
          "bg":"string",
-         "blocked":"string",
+         "blocked":"bool",
          "blocks_vision":"string",
          "description":"string"
         },
      "9318":
         {
          "bg":"string",
-         "blocked":"string",
+         "blocked":"bool",
          "blocks_vision":"string",
          "description":"string"
         },
      "9319":
         {
          "bg":"string",
-         "blocked":"string",
+         "blocked":"bool",
          "blocks_vision":"string",
          "description":"string"
         },
      "9320":
         {
          "bg":"string",
-         "blocked":"string",
+         "blocked":"bool",
          "blocks_vision":"string",
          "description":"string"
         },
      "9321":
         {
          "bg":"string",
-         "blocked":"string",
+         "blocked":"bool",
          "blocks_vision":"string",
          "description":"string"
         },
      "9322":
         {
          "bg":"string",
-         "blocked":"string",
+         "blocked":"bool",
          "blocks_vision":"string",
          "description":"string"
         },
@@ -52566,42 +54300,46 @@
      "9437":
         {
          "bg":"string",
-         "blocked":"string",
+         "blocked":"bool",
          "blocks_vision":"string",
          "description":"string"
         },
      "9438":
         {
          "bg":"string",
-         "blocked":"string",
+         "blocked":"bool",
          "blocks_vision":"string",
          "description":"string"
         },
      "9439":
         {
          "bg":"string",
-         "blocked":"string",
+         "blocked":"bool",
          "blocks_vision":"string",
          "description":"string"
+        },
+     "944":
+        {
+         "blocked":"bool"
         },
      "9440":
         {
          "bg":"string",
-         "blocked":"string",
+         "blocked":"bool",
          "blocks_vision":"string",
          "description":"string"
         },
      "9441":
         {
          "bg":"string",
-         "blocked":"string",
+         "blocked":"bool",
          "blocks_vision":"string",
          "description":"string"
         },
      "9442":
         {
          "bg":"string",
-         "blocked":"string",
+         "blocked":"bool",
          "blocks_vision":"string",
          "description":"string"
         },
@@ -52633,6 +54371,10 @@
         {
          "bg":"string"
         },
+     "945":
+        {
+         "blocked":"bool"
+        },
      "9450":
         {
          "bg":"string"
@@ -52660,6 +54402,18 @@
      "9456":
         {
          "bg":"string"
+        },
+     "946":
+        {
+         "blocked":"bool"
+        },
+     "947":
+        {
+         "blocked":"bool"
+        },
+     "948":
+        {
+         "blocked":"bool"
         },
      "9480":
         {
@@ -52710,6 +54464,10 @@
         {
          "animated":"bool",
          "animated_id":"int"
+        },
+     "949":
+        {
+         "blocked":"bool"
         },
      "9490":
         {
@@ -52772,6 +54530,10 @@
          "bg":"string",
          "blocked":"bool",
          "blocks_vision":"bool"
+        },
+     "950":
+        {
+         "blocked":"bool"
         },
      "9500":
         {
@@ -52852,6 +54614,10 @@
          "bg":"string",
          "blocked":"bool",
          "blocks_vision":"bool"
+        },
+     "951":
+        {
+         "blocked":"bool"
         },
      "9510":
         {
@@ -53150,42 +54916,42 @@
      "9557":
         {
          "bg":"string",
-         "blocked":"string",
+         "blocked":"bool",
          "blocks_vision":"string",
          "description":"string"
         },
      "9558":
         {
          "bg":"string",
-         "blocked":"string",
+         "blocked":"bool",
          "blocks_vision":"string",
          "description":"string"
         },
      "9559":
         {
          "bg":"string",
-         "blocked":"string",
+         "blocked":"bool",
          "blocks_vision":"string",
          "description":"string"
         },
      "9560":
         {
          "bg":"string",
-         "blocked":"string",
+         "blocked":"bool",
          "blocks_vision":"string",
          "description":"string"
         },
      "9561":
         {
          "bg":"string",
-         "blocked":"string",
+         "blocked":"bool",
          "blocks_vision":"string",
          "description":"string"
         },
      "9562":
         {
          "bg":"string",
-         "blocked":"string",
+         "blocked":"bool",
          "blocks_vision":"string",
          "description":"string"
         },
@@ -53734,42 +55500,42 @@
      "9677":
         {
          "bg":"string",
-         "blocked":"string",
+         "blocked":"bool",
          "blocks_vision":"string",
          "description":"string"
         },
      "9678":
         {
          "bg":"string",
-         "blocked":"string",
+         "blocked":"bool",
          "blocks_vision":"string",
          "description":"string"
         },
      "9679":
         {
          "bg":"string",
-         "blocked":"string",
+         "blocked":"bool",
          "blocks_vision":"string",
          "description":"string"
         },
      "9680":
         {
          "bg":"string",
-         "blocked":"string",
+         "blocked":"bool",
          "blocks_vision":"string",
          "description":"string"
         },
      "9681":
         {
          "bg":"string",
-         "blocked":"string",
+         "blocked":"bool",
          "blocks_vision":"string",
          "description":"string"
         },
      "9682":
         {
          "bg":"string",
-         "blocked":"string",
+         "blocked":"bool",
          "blocks_vision":"string",
          "description":"string"
         },
@@ -54323,42 +56089,42 @@
      "9797":
         {
          "bg":"string",
-         "blocked":"string",
+         "blocked":"bool",
          "blocks_vision":"string",
          "description":"string"
         },
      "9798":
         {
          "bg":"string",
-         "blocked":"string",
+         "blocked":"bool",
          "blocks_vision":"string",
          "description":"string"
         },
      "9799":
         {
          "bg":"string",
-         "blocked":"string",
+         "blocked":"bool",
          "blocks_vision":"string",
          "description":"string"
         },
      "9800":
         {
          "bg":"string",
-         "blocked":"string",
+         "blocked":"bool",
          "blocks_vision":"string",
          "description":"string"
         },
      "9801":
         {
          "bg":"string",
-         "blocked":"string",
+         "blocked":"bool",
          "blocks_vision":"string",
          "description":"string"
         },
      "9802":
         {
          "bg":"string",
-         "blocked":"string",
+         "blocked":"bool",
          "blocks_vision":"string",
          "description":"string"
         },
@@ -54907,42 +56673,42 @@
      "9917":
         {
          "bg":"string",
-         "blocked":"string",
+         "blocked":"bool",
          "blocks_vision":"string",
          "description":"string"
         },
      "9918":
         {
          "bg":"string",
-         "blocked":"string",
+         "blocked":"bool",
          "blocks_vision":"string",
          "description":"string"
         },
      "9919":
         {
          "bg":"string",
-         "blocked":"string",
+         "blocked":"bool",
          "blocks_vision":"string",
          "description":"string"
         },
      "9920":
         {
          "bg":"string",
-         "blocked":"string",
+         "blocked":"bool",
          "blocks_vision":"string",
          "description":"string"
         },
      "9921":
         {
          "bg":"string",
-         "blocked":"string",
+         "blocked":"bool",
          "blocks_vision":"string",
          "description":"string"
         },
      "9922":
         {
          "bg":"string",
-         "blocked":"string",
+         "blocked":"bool",
          "blocks_vision":"string",
          "description":"string"
         },

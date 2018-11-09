@@ -3,8 +3,16 @@ export const prefabs = []
 export function generatePrefabs(resources) {
 	for (let resourceId in resources) {
 		let resource = resources[resourceId].data
-		if (resource.properties && resource.properties.type === 'prefab') prefabs.push(new Prefab(resource))
+		if (resource && resource.properties && resource.properties.type === 'prefab') prefabs.push(new Prefab(resource))
 	}
+	let prefabHistogram = {}
+	prefabs.forEach(
+		p =>
+			`${p.width},${p.height}` in prefabHistogram
+				? prefabHistogram[`${p.width},${p.height}`]++
+				: (prefabHistogram[`${p.width},${p.height}`] = 1)
+	)
+	console.table(prefabHistogram)
 }
 
 export class Prefab {
@@ -21,10 +29,12 @@ export class Prefab {
 		for (let i = 0; i < this.height; i++) {
 			this.data.push([])
 			for (let j = 0; j < this.width; j++) {
-				let layerIds = layers.filter(layer => layer.type === 'tilelayer').map(layer => {
-					return layer.data[i * this.width + j] - 1
-				})
-				this.data[i].push(layerIds.filter(n => n !== 0))
+				let layerIds = layers
+					.filter(layer => layer.type === 'tilelayer' && (!layer.properties || !layer.properties.disabled))
+					.map(layer => {
+						return layer.data[i * this.width + j] - 1
+					})
+				this.data[i].push(layerIds.filter(n => n > 0))
 			}
 		}
 	}

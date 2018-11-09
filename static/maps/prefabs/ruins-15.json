@@ -2,7 +2,18 @@
  "infinite":false,
  "layers":[
         {
-         "data":[0, 0, 0, 0, 0, 0, 0, 5014, 0, 0, 0, 0, 6328, 5013, 0, 0, 0, 0, 0, 0],
+         "data":[0, 4410, 4411, 0, 0, 0, 0, 0, 0, 0, 0, 0, 4773, 4774, 0, 0, 0, 0, 0, 0],
+         "height":4,
+         "name":"Tile Layer 1",
+         "opacity":1,
+         "type":"tilelayer",
+         "visible":true,
+         "width":5,
+         "x":0,
+         "y":0
+        }, 
+        {
+         "data":[5009, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 4772, 6214, 0, 0, 0, 0, 0, 0, 0],
          "height":4,
          "name":"Tile Layer 2",
          "opacity":1,

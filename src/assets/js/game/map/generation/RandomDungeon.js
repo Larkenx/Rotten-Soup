@@ -578,6 +578,7 @@ export function dungeonFromTheme(width, height, theme, mapGenerator, options, ha
 	// Generate ROT map and store empty tiles in hashm ap
 	let createdLadders = 0
 	let freeCells = {}
+	const roomSizeHistogram = {}
 	let mapGeneratorCallback = (x, y, blocked) => {
 		if (!blocked) freeCells[x + ',' + y] = true
 	}
@@ -588,7 +589,13 @@ export function dungeonFromTheme(width, height, theme, mapGenerator, options, ha
 		room.getDoors((dx, dy) => {
 			freeCells[dx + ',' + dy] = true
 		})
+		let width = room.getRight() - room.getLeft() + 1
+		let height = room.getBottom() - room.getTop() + 1
+		let coord = `${width},${height}`
+		if (coord in roomSizeHistogram) roomSizeHistogram[coord]++
+		else roomSizeHistogram[coord] = 1
 	}
+	// console.log(roomSizeHistogram)
 
 	// Using bitmasking, texture the floors and walls
 	for (let y = 0; y < height; y++) {
@@ -600,6 +607,43 @@ export function dungeonFromTheme(width, height, theme, mapGenerator, options, ha
 			} else {
 				let sym = getFloorTexture(floor, computeBitmaskFloors(x, y, freeCells))
 				tile.updateTileInfo(sym, tint)
+			}
+		}
+	}
+
+	for (let corridor of rotMap.getCorridors()) {
+		let sx = corridor._startX
+		let sy = corridor._startY
+		let ex = corridor._endX
+		let ey = corridor._endY
+		let torchTexture = 4888
+		let torchesPlaced = 0
+		if (sy === ey) {
+			if (sx > ex) {
+				let temp = sx
+				sx = ex
+				ex = temp
+			}
+			let x = sx
+			while (x < ex) {
+				let ul = gameMap.getTile(x - 1, sy - 1)
+				let above = gameMap.getTile(x, sy - 1)
+				let ur = gameMap.getTile(x + 1, sy - 1)
+				const hasWallTop = tile => tile.obstacles.map(o => o.id).includes(walls.top)
+				const hasTorchAlready = tile => tile.obstacles.map(o => o.id).includes(torchTexture)
+				const noDoor = gameMap.getTile(x, sy).obstacles.every(id => id !== doors.horizontal && id !== doors.vertical)
+				if (
+					torchesPlaced < 2 &&
+					noDoor &&
+					hasWallTop(above) &&
+					!hasTorchAlready(ul) &&
+					!hasTorchAlready(ur) &&
+					getRandomInt(0, 3) === 1
+				) {
+					above.updateTileInfo(torchTexture)
+					torchesPlaced++
+				}
+				x++
 			}
 		}
 	}
@@ -643,13 +687,22 @@ export function dungeonFromTheme(width, height, theme, mapGenerator, options, ha
 		})
 	}
 
+	const shuffle = a => {
+		for (let i = a.length - 1; i > 0; i--) {
+			const j = Math.floor(Math.random() * (i + 1))
+			;[a[i], a[j]] = [a[j], a[i]]
+		}
+		return a
+	}
+
 	// create a copy of all the prefabs, and add a boolean flag of whether or
 	// not a prefab has been used in the dungeon already
-	let availablePrefabs = prefabs.map(p => {
-		p.used = false
-		return p
-	})
-
+	let availablePrefabs = shuffle(
+		prefabs.map(p => {
+			p.used = false
+			return p
+		})
+	)
 	// for each room, try to fit a prefab in it
 	for (let room of rotMap.getRooms()) {
 		let doors = {}
@@ -661,6 +714,15 @@ export function dungeonFromTheme(width, height, theme, mapGenerator, options, ha
 		}
 		const hasDoor = (x, y) => {
 			return gameMap.getTile(x, y).actors.some(a => a instanceof Door)
+		}
+		const anyIdIsObstacle = arr => {
+			return arr.some(id => {
+				if (Game.display.tileset.tileproperties[id + '']) return Game.display.tileset.tileproperties[id + ''].blocked
+				return false
+			})
+		}
+		const within = (value, maximum, diff) => {
+			return value <= maximum && value >= maximum - diff
 		}
 		let left = room.getLeft() - 1
 		let right = room.getRight() + 1
@@ -681,33 +743,31 @@ export function dungeonFromTheme(width, height, theme, mapGenerator, options, ha
 			let roomHeight = wbottom - wtop + 1
 			let offsetLeft = wleft
 			let offsetTop = wtop
+			let canPlacePrefab = prefab.width === roomWidth && prefab.height === roomHeight // within(prefab.width, roomWidth, 2) && within(prefab.height, roomHeight, 2)
 			if (prefab.walls) {
 				roomWidth = right - left + 1
 				roomHeight = bottom - top + 1
 				offsetLeft = left
 				offsetTop = top
+				canPlacePrefab = prefab.width === roomWidth && prefab.height === roomHeight
 			}
-			if (prefab.width === roomWidth && prefab.height === roomHeight) {
+			if (canPlacePrefab) {
 				for (let y = 0; y < prefab.height; y++) {
 					for (let x = 0; x < prefab.width; x++) {
 						prefab.data[y][x].forEach(id => {
 							let dx = offsetLeft + x
 							let dy = offsetTop + y
-							if (`${dx},${dy}` in doors) {
-								gameMap.getTile(dx, dy).updateTileInfo(prefab.doorFloorReplacementId)
+							if (`${dx},${dy}` in doors || (hasSurroundingDoors(dx, dy) && anyIdIsObstacle(prefab.data[y][x]))) {
+								// gameMap.getTile(dx, dy).updateTileInfo(prefab.doorFloorReplacementId)
 							} else {
 								// check above, below, right, and left for doors because we don't want to block entrances
 								gameMap.getTile(dx, dy).updateTileInfo(id)
-								if (
-									hasSurroundingDoors(dx, dy) &&
-									!(x === 0 || y === 0 || x === prefab.width - 1 || y === prefab.height - 1)
-								) {
-									gameMap.getTile(dx, dy).removeBlockedObstacles()
-								}
 							}
 						})
 					}
 				}
+				prefab.used = true
+				availablePrefabs = availablePrefabs.filter(p => !p.used)
 				break
 			}
 		}
@@ -729,8 +789,8 @@ export function dungeonFromTheme(width, height, theme, mapGenerator, options, ha
 		}
 
 		let validTiles = []
-		for (let y = wtop; y < wbottom; y++) {
-			for (let x = wleft; x < wright; x++) {
+		for (let y = top; y <= bottom; y++) {
+			for (let x = left; x <= right; x++) {
 				if (!gameMap.getTile(x, y).blocked() && gameMap.getTile(x, y).actors.length === 0) validTiles.push(x + ',' + y)
 			}
 		}
@@ -769,7 +829,6 @@ export function dungeonFromTheme(width, height, theme, mapGenerator, options, ha
 			gameMap.getTile(x, y).actors.push(actor)
 		}
 
-		// if there atleast 3 enemies in the room, we might drop a chest in the room
 		if (getNormalRandomInt(0, 10) === 8) {
 			let coords = randomTile(validTiles)
 			if (coords !== null) {
@@ -801,6 +860,17 @@ export function dungeonFromTheme(width, height, theme, mapGenerator, options, ha
 	return gameMap
 }
 
+const tryButCatchRotException = (fn, depth = 0) => {
+	if (depth < 10) {
+		try {
+			return fn()
+		} catch (exception) {
+			console.warn(exception)
+			tryButCatchRotException(fn, depth++)
+		}
+	}
+}
+
 /* Returns a randomly generated textured dungeon in GameMap form  */
 export function randomDungeon(width, height, options) {
 	let { level } = options
@@ -808,11 +878,13 @@ export function randomDungeon(width, height, options) {
 	if (level <= 5) {
 		dc = {
 			roomWidth: [5, 7],
-			roomHeight: [5, 8],
-			corridorLength: [4, 6],
+			roomHeight: [4, 8],
+			corridorLength: [4, 4],
 			roomDugPercentage: 0.2
 		}
-		return dungeonFromTheme(width, height, dungeonThemes.RUINS, new ROT.Map.Uniform(width, height, dc), options, false)
+		return tryButCatchRotException(() =>
+			dungeonFromTheme(width, height, dungeonThemes.RUINS, new ROT.Map.Uniform(width, height, dc), options, false)
+		)
 	} else if (level <= 10) {
 		dc = {
 			roomWidth: [3, 6],
@@ -820,7 +892,9 @@ export function randomDungeon(width, height, options) {
 			corridorLength: [2, 4],
 			roomDugPercentage: 0.2
 		}
-		return dungeonFromTheme(width, height, dungeonThemes.CATACOMBS, new ROT.Map.Digger(width, height, dc), options)
+		return tryButCatchRotException(() =>
+			dungeonFromTheme(width, height, dungeonThemes.CATACOMBS, new ROT.Map.Digger(width, height, dc), options)
+		)
 	} else if (level <= 15) {
 		dc = {
 			roomWidth: [3, 10],
@@ -828,7 +902,9 @@ export function randomDungeon(width, height, options) {
 			corridorLength: [1, 10],
 			roomDugPercentage: 0.4
 		}
-		return dungeonFromTheme(width, height, dungeonThemes.MINE, new ROT.Map.Uniform(width, height, dc), options, false)
+		return tryButCatchRotException(() =>
+			dungeonFromTheme(width, height, dungeonThemes.MINE, new ROT.Map.Uniform(width, height, dc), options, false)
+		)
 	} else {
 		dc = {
 			roomWidth: [3, 20],
@@ -836,7 +912,9 @@ export function randomDungeon(width, height, options) {
 			corridorLength: [4, 4],
 			roomDugPercentage: 0.4
 		}
-		return dungeonFromTheme(width, height, dungeonThemes.ICE, new ROT.Map.Digger(width, height, dc), options)
+		return tryButCatchRotException(() =>
+			dungeonFromTheme(width, height, dungeonThemes.ICE, new ROT.Map.Digger(width, height, dc), options)
+		)
 	}
 }
 

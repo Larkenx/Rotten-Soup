@@ -1,0 +1,61 @@
+{ "height":7,
+ "infinite":false,
+ "layers":[
+        {
+         "data":[0, 0, 0, 0, 0, 0, 0, 0, 9897, 9898, 9898, 9898, 9899, 0, 0, 10017, 10018, 10018, 10018, 10019, 0, 0, 10017, 10018, 10018, 10018, 10019, 0, 0, 10017, 10018, 10018, 10018, 10019, 0, 0, 10137, 10138, 10138, 10138, 10139, 0, 0, 0, 0, 0, 0, 0, 0],
+         "height":7,
+         "name":"Tile Layer 1",
+         "opacity":1,
+         "type":"tilelayer",
+         "visible":true,
+         "width":7,
+         "x":0,
+         "y":0
+        }, 
+        {
+         "data":[0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 10624, 10625, 10626, 0, 0, 0, 0, 10744, 10745, 10746, 0, 0, 0, 0, 10864, 10865, 10866, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+         "height":7,
+         "name":"Tile Layer 2",
+         "opacity":1,
+         "type":"tilelayer",
+         "visible":true,
+         "width":7,
+         "x":0,
+         "y":0
+        }, 
+        {
+         "data":[0, 0, 0, 0, 0, 0, 0, 0, 4235, 4236, 4236, 4236, 4237, 0, 0, 4355, 1243, 1244, 1243, 4355, 0, 0, 4355, 1489, 7716, 1244, 4355, 0, 0, 4355, 1725, 1490, 1363, 4355, 0, 0, 4475, 4236, 4236, 4236, 4477, 0, 0, 0, 0, 0, 0, 0, 0],
+         "height":7,
+         "name":"Tile Layer 3",
+         "opacity":1,
+         "type":"tilelayer",
+         "visible":true,
+         "width":7,
+         "x":0,
+         "y":0
+        }],
+ "nextobjectid":1,
+ "orientation":"orthogonal",
+ "properties":
+    {
+     "name":"Rug, Table & Chairs",
+     "type":"prefab"
+    },
+ "propertytypes":
+    {
+     "name":"string",
+     "type":"string"
+    },
+ "renderorder":"right-down",
+ "tiledversion":"1.1.5",
+ "tileheight":32,
+ "tilesets":[
+        {
+         "firstgid":1,
+         "source":"..\/..\/compiled_dawnlike.json"
+        }],
+ "tilewidth":32,
+ "type":"map",
+ "version":1,
+ "width":7
+}
