@@ -157,9 +157,16 @@ export class GameMap {
 			})
 		})
 	}
+
 	toString() {
 		return this.toASCII().reduce((p, c) => {
 			return `${p}\n${c.join('')}`
 		}, '')
+	}
+
+	mapTiles(fn) {
+		return this.data.map(row => {
+			return row.map(tile => fn(tile))
+		})
 	}
 }

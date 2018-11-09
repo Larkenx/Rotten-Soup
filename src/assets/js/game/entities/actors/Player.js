@@ -278,7 +278,7 @@ export default class Player extends Actor {
 		Game.map.visible_tiles = {}
 
 		// FOV calculations
-		let fov = new ROT.FOV.PreciseShadowcasting((x, y) => {
+		let fov = new ROT.FOV.RecursiveShadowcasting((x, y) => {
 			return Game.inbounds(x, y) && Game.getTile(x, y).visible()
 		})
 
@@ -343,8 +343,10 @@ export default class Player extends Actor {
 				this.climb()
 			} else if (action === 'openInventory') {
 				Game.openInventory()
+				return
 			} else if (action === 'openSpellbook' || (action === 'cast' && shiftPressed)) {
 				Game.openSpellbook()
+				return
 			} else if (action === 'fire' && !shiftPressed) {
 				let weapon = this.cb.equipment.weapon
 				let ammo = this.cb.equipment.ammo
@@ -393,8 +395,8 @@ export default class Player extends Actor {
 				return
 			} else {
 				let diff = ROT.DIRS[8][action]
-				let nx = this.x + diff[0]
 				let ny = this.y + diff[1]
+				let nx = this.x + diff[0]
 				if (!this.tryMove(nx, ny)) {
 					return
 				}

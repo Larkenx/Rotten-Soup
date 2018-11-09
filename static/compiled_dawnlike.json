@@ -2147,6 +2147,10 @@
         {
          "blocked":true
         },
+     "1192":
+        {
+         "blocked":true
+        },
      "11957":
         {
          "blocked":true
@@ -5015,67 +5019,67 @@
         },
      "4168":
         {
-         "blocked":true
+         "blocked":false
         },
      "4169":
         {
-         "blocked":true
+         "blocked":false
         },
      "4170":
         {
-         "blocked":true
+         "blocked":false
         },
      "4171":
         {
-         "blocked":true
+         "blocked":false
         },
      "4172":
         {
-         "blocked":true
+         "blocked":false
         },
      "4173":
         {
-         "blocked":true
+         "blocked":false
         },
      "4174":
         {
-         "blocked":true
+         "blocked":false
         },
      "4175":
         {
-         "blocked":true
+         "blocked":false
         },
      "4176":
         {
-         "blocked":true
+         "blocked":false
         },
      "4177":
         {
-         "blocked":true
+         "blocked":false
         },
      "4178":
         {
-         "blocked":true
+         "blocked":false
         },
      "4179":
         {
-         "blocked":true
+         "blocked":false
         },
      "4180":
         {
-         "blocked":true
+         "blocked":false
         },
      "4181":
         {
-         "blocked":true
+         "blocked":false
         },
      "4182":
         {
-         "blocked":true
+         "blocked":false
         },
      "4183":
         {
-         "blocked":true
+         "blocked":false
         },
      "4200":
         {
@@ -11933,6 +11937,10 @@
          "animated":false,
          "animated_id":0
         },
+     "594":
+        {
+         "blocked":true
+        },
      "5940":
         {
          "animated":false,
@@ -12080,6 +12088,18 @@
          "blocked":true,
          "description":"grave"
         },
+     "5981":
+        {
+         "blocked":true
+        },
+     "5982":
+        {
+         "blocked":true
+        },
+     "5983":
+        {
+         "blocked":true
+        },
      "60":
         {
          "activated_id":68,
@@ -12158,6 +12178,14 @@
          "blocked":true,
          "description":"grave"
         },
+     "6102":
+        {
+         "blocked":true
+        },
+     "6103":
+        {
+         "blocked":true
+        },
      "62":
         {
          "blocked":true
@@ -12190,6 +12218,10 @@
         {
          "blocked":true
         },
+     "6215":
+        {
+         "blocked":true
+        },
      "6216":
         {
          "description":"cobwebs"
@@ -12209,6 +12241,10 @@
      "6220":
         {
          "description":"cobwebs"
+        },
+     "6223":
+        {
+         "blocked":true
         },
      "63":
         {
@@ -12240,11 +12276,23 @@
         {
          "blocked":true
         },
+     "6331":
+        {
+         "blocked":true
+        },
+     "6332":
+        {
+         "blocked":true
+        },
      "6333":
         {
          "blocked":true
         },
      "6334":
+        {
+         "blocked":true
+        },
+     "6335":
         {
          "blocked":true
         },
@@ -12259,6 +12307,10 @@
          "description":"bloody pedestal"
         },
      "6338":
+        {
+         "blocked":true
+        },
+     "6343":
         {
          "blocked":true
         },
@@ -12279,6 +12331,10 @@
          "blocked":true,
          "description":"fountain"
         },
+     "6450":
+        {
+         "blocked":true
+        },
      "6451":
         {
          "animated":true,
@@ -12295,6 +12351,10 @@
         {
          "animated":true,
          "animated_id":6461,
+         "blocked":true
+        },
+     "6454":
+        {
          "blocked":true
         },
      "6455":
@@ -14292,7 +14352,7 @@
          "animated_id":0,
          "bg":"#014a01",
          "blocked":true,
-         "blocks_vision":true,
+         "blocks_vision":false,
          "description":"tree"
         },
      "7353":
@@ -14301,7 +14361,7 @@
          "animated_id":0,
          "bg":"#014a01",
          "blocked":true,
-         "blocks_vision":true,
+         "blocks_vision":false,
          "description":"tree"
         },
      "7354":
@@ -14310,7 +14370,7 @@
          "animated_id":0,
          "bg":"#014a01",
          "blocked":true,
-         "blocks_vision":true,
+         "blocks_vision":false,
          "description":"tree"
         },
      "7355":
@@ -14319,7 +14379,7 @@
          "animated_id":0,
          "bg":"#014a01",
          "blocked":true,
-         "blocks_vision":true,
+         "blocks_vision":false,
          "description":"tree"
         },
      "7356":
@@ -14328,7 +14388,7 @@
          "animated_id":0,
          "bg":"#014a01",
          "blocked":true,
-         "blocks_vision":true,
+         "blocks_vision":false,
          "description":"tree"
         },
      "7357":
@@ -14337,7 +14397,7 @@
          "animated_id":0,
          "bg":"#014a01",
          "blocked":true,
-         "blocks_vision":true,
+         "blocks_vision":false,
          "description":"tree"
         },
      "7358":
@@ -14346,7 +14406,7 @@
          "animated_id":0,
          "bg":"#383538",
          "blocked":true,
-         "blocks_vision":true,
+         "blocks_vision":false,
          "description":"dead tree"
         },
      "7359":
@@ -14355,7 +14415,7 @@
          "animated_id":0,
          "bg":"#383538",
          "blocked":true,
-         "blocks_vision":true,
+         "blocks_vision":false,
          "description":"dead tree"
         },
      "7360":
@@ -14364,7 +14424,7 @@
          "animated_id":0,
          "bg":"#383538",
          "blocked":true,
-         "blocks_vision":true,
+         "blocks_vision":false,
          "description":"dead tree"
         },
      "7361":
@@ -14373,7 +14433,7 @@
          "animated_id":0,
          "bg":"#383538",
          "blocked":true,
-         "blocks_vision":true,
+         "blocks_vision":false,
          "description":"dead tree"
         },
      "7362":
@@ -14382,7 +14442,7 @@
          "animated_id":0,
          "bg":"#383538",
          "blocked":true,
-         "blocks_vision":true,
+         "blocks_vision":false,
          "description":"dead tree"
         },
      "7363":
@@ -14391,7 +14451,7 @@
          "animated_id":0,
          "bg":"#383538",
          "blocked":true,
-         "blocks_vision":true,
+         "blocks_vision":false,
          "description":"dead tree"
         },
      "7364":
@@ -15028,7 +15088,7 @@
          "animated_id":0,
          "bg":"#014a01",
          "blocked":true,
-         "blocks_vision":true,
+         "blocks_vision":false,
          "description":"tree"
         },
      "7473":
@@ -15037,7 +15097,7 @@
          "animated_id":0,
          "bg":"#014a01",
          "blocked":true,
-         "blocks_vision":true,
+         "blocks_vision":false,
          "description":"tree"
         },
      "7474":
@@ -15046,7 +15106,7 @@
          "animated_id":0,
          "bg":"#014a01",
          "blocked":true,
-         "blocks_vision":true,
+         "blocks_vision":false,
          "description":"tree"
         },
      "7475":
@@ -15055,7 +15115,7 @@
          "animated_id":0,
          "bg":"#014a01",
          "blocked":true,
-         "blocks_vision":true,
+         "blocks_vision":false,
          "description":"tree"
         },
      "7476":
@@ -15064,7 +15124,7 @@
          "animated_id":0,
          "bg":"#014a01",
          "blocked":true,
-         "blocks_vision":true,
+         "blocks_vision":false,
          "description":"tree"
         },
      "7477":
@@ -15073,7 +15133,7 @@
          "animated_id":0,
          "bg":"#014a01",
          "blocked":true,
-         "blocks_vision":true,
+         "blocks_vision":false,
          "description":"tree"
         },
      "7478":
@@ -15082,7 +15142,7 @@
          "animated_id":0,
          "bg":"#383538",
          "blocked":true,
-         "blocks_vision":true,
+         "blocks_vision":false,
          "description":"dead tree"
         },
      "7479":
@@ -15091,7 +15151,7 @@
          "animated_id":0,
          "bg":"#383538",
          "blocked":true,
-         "blocks_vision":true,
+         "blocks_vision":false,
          "description":"dead tree"
         },
      "7480":
@@ -15100,7 +15160,7 @@
          "animated_id":0,
          "bg":"#383538",
          "blocked":true,
-         "blocks_vision":true,
+         "blocks_vision":false,
          "description":"dead tree"
         },
      "7481":
@@ -15109,7 +15169,7 @@
          "animated_id":0,
          "bg":"#383538",
          "blocked":true,
-         "blocks_vision":true,
+         "blocks_vision":false,
          "description":"dead tree"
         },
      "7482":
@@ -15118,7 +15178,7 @@
          "animated_id":0,
          "bg":"#383538",
          "blocked":true,
-         "blocks_vision":true,
+         "blocks_vision":false,
          "description":"dead tree"
         },
      "7483":
@@ -15127,7 +15187,7 @@
          "animated_id":0,
          "bg":"#383538",
          "blocked":true,
-         "blocks_vision":true,
+         "blocks_vision":false,
          "description":"dead tree"
         },
      "7484":
@@ -15756,7 +15816,7 @@
          "animated_id":0,
          "bg":"#014a01",
          "blocked":true,
-         "blocks_vision":true,
+         "blocks_vision":false,
          "description":"tree"
         },
      "7593":
@@ -15765,7 +15825,7 @@
          "animated_id":0,
          "bg":"#014a01",
          "blocked":true,
-         "blocks_vision":true,
+         "blocks_vision":false,
          "description":"tree"
         },
      "7594":
@@ -15774,7 +15834,7 @@
          "animated_id":0,
          "bg":"#014a01",
          "blocked":true,
-         "blocks_vision":true,
+         "blocks_vision":false,
          "description":"tree"
         },
      "7595":
@@ -15783,7 +15843,7 @@
          "animated_id":0,
          "bg":"#014a01",
          "blocked":true,
-         "blocks_vision":true,
+         "blocks_vision":false,
          "description":"tree"
         },
      "7596":
@@ -15792,7 +15852,7 @@
          "animated_id":0,
          "bg":"#014a01",
          "blocked":true,
-         "blocks_vision":true,
+         "blocks_vision":false,
          "description":"tree"
         },
      "7597":
@@ -15801,7 +15861,7 @@
          "animated_id":0,
          "bg":"#014a01",
          "blocked":true,
-         "blocks_vision":true,
+         "blocks_vision":false,
          "description":"tree"
         },
      "7598":
@@ -15810,7 +15870,7 @@
          "animated_id":0,
          "bg":"#383538",
          "blocked":true,
-         "blocks_vision":true,
+         "blocks_vision":false,
          "description":"dead tree"
         },
      "7599":
@@ -15819,7 +15879,7 @@
          "animated_id":0,
          "bg":"#383538",
          "blocked":true,
-         "blocks_vision":true,
+         "blocks_vision":false,
          "description":"dead tree"
         },
      "7600":
@@ -15828,7 +15888,7 @@
          "animated_id":0,
          "bg":"#383538",
          "blocked":true,
-         "blocks_vision":true,
+         "blocks_vision":false,
          "description":"dead tree"
         },
      "7601":
@@ -15837,7 +15897,7 @@
          "animated_id":0,
          "bg":"#383538",
          "blocked":true,
-         "blocks_vision":true,
+         "blocks_vision":false,
          "description":"dead tree"
         },
      "7602":
@@ -15846,7 +15906,7 @@
          "animated_id":0,
          "bg":"#383538",
          "blocked":true,
-         "blocks_vision":true,
+         "blocks_vision":false,
          "description":"dead tree"
         },
      "7603":
@@ -15855,7 +15915,7 @@
          "animated_id":0,
          "bg":"#383538",
          "blocked":true,
-         "blocks_vision":true,
+         "blocks_vision":false,
          "description":"dead tree"
         },
      "7604":
@@ -16484,7 +16544,7 @@
          "animated_id":0,
          "bg":"#304927",
          "blocked":true,
-         "blocks_vision":true
+         "blocks_vision":false
         },
      "7713":
         {
@@ -16492,7 +16552,7 @@
          "animated_id":0,
          "bg":"#304927",
          "blocked":true,
-         "blocks_vision":true
+         "blocks_vision":false
         },
      "7714":
         {
@@ -16500,7 +16560,7 @@
          "animated_id":0,
          "bg":"#304927",
          "blocked":true,
-         "blocks_vision":true
+         "blocks_vision":false
         },
      "7715":
         {
@@ -16508,7 +16568,7 @@
          "animated_id":0,
          "bg":"#304927",
          "blocked":true,
-         "blocks_vision":true
+         "blocks_vision":false
         },
      "7716":
         {
@@ -16516,7 +16576,7 @@
          "animated_id":0,
          "bg":"#304927",
          "blocked":true,
-         "blocks_vision":true
+         "blocks_vision":false
         },
      "7717":
         {
@@ -16524,7 +16584,7 @@
          "animated_id":0,
          "bg":"#304927",
          "blocked":true,
-         "blocks_vision":true
+         "blocks_vision":false
         },
      "7718":
         {
@@ -16532,7 +16592,7 @@
          "animated_id":0,
          "bg":"darkgreen",
          "blocked":true,
-         "blocks_vision":true
+         "blocks_vision":false
         },
      "7719":
         {
@@ -16540,7 +16600,7 @@
          "animated_id":0,
          "bg":"darkgreen",
          "blocked":true,
-         "blocks_vision":true
+         "blocks_vision":false
         },
      "7720":
         {
@@ -16548,7 +16608,7 @@
          "animated_id":0,
          "bg":"darkgreen",
          "blocked":true,
-         "blocks_vision":true
+         "blocks_vision":false
         },
      "7721":
         {
@@ -16556,7 +16616,7 @@
          "animated_id":0,
          "bg":"darkgreen",
          "blocked":true,
-         "blocks_vision":true
+         "blocks_vision":false
         },
      "7722":
         {
@@ -16564,7 +16624,7 @@
          "animated_id":0,
          "bg":"darkgreen",
          "blocked":true,
-         "blocks_vision":true
+         "blocks_vision":false
         },
      "7723":
         {
@@ -16572,7 +16632,7 @@
          "animated_id":0,
          "bg":"darkgreen",
          "blocked":true,
-         "blocks_vision":true
+         "blocks_vision":false
         },
      "7724":
         {
@@ -17200,7 +17260,7 @@
          "animated_id":0,
          "bg":"#304927",
          "blocked":true,
-         "blocks_vision":true
+         "blocks_vision":false
         },
      "7833":
         {
@@ -17208,7 +17268,7 @@
          "animated_id":0,
          "bg":"#304927",
          "blocked":true,
-         "blocks_vision":true
+         "blocks_vision":false
         },
      "7834":
         {
@@ -17216,7 +17276,7 @@
          "animated_id":0,
          "bg":"#304927",
          "blocked":true,
-         "blocks_vision":true
+         "blocks_vision":false
         },
      "7835":
         {
@@ -17224,7 +17284,7 @@
          "animated_id":0,
          "bg":"#304927",
          "blocked":true,
-         "blocks_vision":true
+         "blocks_vision":false
         },
      "7836":
         {
@@ -17232,7 +17292,7 @@
          "animated_id":0,
          "bg":"#304927",
          "blocked":true,
-         "blocks_vision":true
+         "blocks_vision":false
         },
      "7837":
         {
@@ -17240,7 +17300,7 @@
          "animated_id":0,
          "bg":"#304927",
          "blocked":true,
-         "blocks_vision":true
+         "blocks_vision":false
         },
      "7838":
         {
@@ -17248,7 +17308,7 @@
          "animated_id":0,
          "bg":"darkgreen",
          "blocked":true,
-         "blocks_vision":true
+         "blocks_vision":false
         },
      "7839":
         {
@@ -17256,7 +17316,7 @@
          "animated_id":0,
          "bg":"darkgreen",
          "blocked":true,
-         "blocks_vision":true
+         "blocks_vision":false
         },
      "784":
         {
@@ -17269,7 +17329,7 @@
          "animated_id":0,
          "bg":"darkgreen",
          "blocked":true,
-         "blocks_vision":true
+         "blocks_vision":false
         },
      "7841":
         {
@@ -17277,7 +17337,7 @@
          "animated_id":0,
          "bg":"darkgreen",
          "blocked":true,
-         "blocks_vision":true
+         "blocks_vision":false
         },
      "7842":
         {
@@ -17285,7 +17345,7 @@
          "animated_id":0,
          "bg":"darkgreen",
          "blocked":true,
-         "blocks_vision":true
+         "blocks_vision":false
         },
      "7843":
         {
@@ -17293,7 +17353,7 @@
          "animated_id":0,
          "bg":"darkgreen",
          "blocked":true,
-         "blocks_vision":true
+         "blocks_vision":false
         },
      "7844":
         {
@@ -17965,7 +18025,7 @@
          "animated_id":0,
          "bg":"#304927",
          "blocked":true,
-         "blocks_vision":true
+         "blocks_vision":false
         },
      "7953":
         {
@@ -17973,7 +18033,7 @@
          "animated_id":0,
          "bg":"#304927",
          "blocked":true,
-         "blocks_vision":true
+         "blocks_vision":false
         },
      "7954":
         {
@@ -17981,7 +18041,7 @@
          "animated_id":0,
          "bg":"#304927",
          "blocked":true,
-         "blocks_vision":true
+         "blocks_vision":false
         },
      "7955":
         {
@@ -17989,7 +18049,7 @@
          "animated_id":0,
          "bg":"#304927",
          "blocked":true,
-         "blocks_vision":true
+         "blocks_vision":false
         },
      "7956":
         {
@@ -17997,7 +18057,7 @@
          "animated_id":0,
          "bg":"#304927",
          "blocked":true,
-         "blocks_vision":true
+         "blocks_vision":false
         },
      "7957":
         {
@@ -18005,7 +18065,7 @@
          "animated_id":0,
          "bg":"#304927",
          "blocked":true,
-         "blocks_vision":true
+         "blocks_vision":false
         },
      "7958":
         {
@@ -18013,7 +18073,7 @@
          "animated_id":0,
          "bg":"darkgreen",
          "blocked":true,
-         "blocks_vision":true
+         "blocks_vision":false
         },
      "7959":
         {
@@ -18021,7 +18081,7 @@
          "animated_id":0,
          "bg":"darkgreen",
          "blocked":true,
-         "blocks_vision":true
+         "blocks_vision":false
         },
      "7960":
         {
@@ -18029,7 +18089,7 @@
          "animated_id":0,
          "bg":"darkgreen",
          "blocked":true,
-         "blocks_vision":true
+         "blocks_vision":false
         },
      "7961":
         {
@@ -18037,7 +18097,7 @@
          "animated_id":0,
          "bg":"darkgreen",
          "blocked":true,
-         "blocks_vision":true
+         "blocks_vision":false
         },
      "7962":
         {
@@ -18045,7 +18105,7 @@
          "animated_id":0,
          "bg":"darkgreen",
          "blocked":true,
-         "blocks_vision":true
+         "blocks_vision":false
         },
      "7963":
         {
@@ -18053,7 +18113,7 @@
          "animated_id":0,
          "bg":"darkgreen",
          "blocked":true,
-         "blocks_vision":true
+         "blocks_vision":false
         },
      "7964":
         {
@@ -18726,6 +18786,10 @@
      "8079":
         {
          "bg":"#00cc33"
+        },
+     "808":
+        {
+         "blocked":true
         },
      "8080":
         {
@@ -22603,75 +22667,93 @@
         },
      "8792":
         {
-         "bg":"#00cc33"
+         "bg":"#00cc33",
+         "blocked":true
         },
      "8793":
         {
-         "bg":"#00cc33"
+         "bg":"#00cc33",
+         "blocked":true
         },
      "8794":
         {
-         "bg":"#00cc33"
+         "bg":"#00cc33",
+         "blocked":true
         },
      "8795":
         {
-         "bg":"#00cc33"
+         "bg":"#00cc33",
+         "blocked":true
         },
      "8796":
         {
-         "bg":"#00cc33"
+         "bg":"#00cc33",
+         "blocked":true
         },
      "8797":
         {
-         "bg":"#00cc33"
+         "bg":"#00cc33",
+         "blocked":true
         },
      "8798":
         {
-         "bg":"#00cc33"
+         "bg":"#00cc33",
+         "blocked":true
         },
      "8799":
         {
-         "bg":"#00cc33"
+         "bg":"#00cc33",
+         "blocked":true
         },
      "8800":
         {
-         "bg":"#00cc33"
+         "bg":"#00cc33",
+         "blocked":true
         },
      "8801":
         {
-         "bg":"#00cc33"
+         "bg":"#00cc33",
+         "blocked":true
         },
      "8802":
         {
-         "bg":"#00cc33"
+         "bg":"#00cc33",
+         "blocked":true
         },
      "8803":
         {
-         "bg":"#00cc33"
+         "bg":"#00cc33",
+         "blocked":true
         },
      "8804":
         {
-         "bg":"#00cc33"
+         "bg":"#00cc33",
+         "blocked":true
         },
      "8805":
         {
-         "bg":"#00cc33"
+         "bg":"#00cc33",
+         "blocked":true
         },
      "8806":
         {
-         "bg":"#00cc33"
+         "bg":"#00cc33",
+         "blocked":true
         },
      "8807":
         {
-         "bg":"#00cc33"
+         "bg":"#00cc33",
+         "blocked":true
         },
      "8808":
         {
-         "bg":"#00cc33"
+         "bg":"#00cc33",
+         "blocked":true
         },
      "8809":
         {
-         "bg":"#00cc33"
+         "bg":"#00cc33",
+         "blocked":true
         },
      "8810":
         {
@@ -23193,75 +23275,93 @@
         },
      "8912":
         {
-         "bg":"#00cc33"
+         "bg":"#00cc33",
+         "blocked":true
         },
      "8913":
         {
-         "bg":"#00cc33"
+         "bg":"#00cc33",
+         "blocked":true
         },
      "8914":
         {
-         "bg":"#00cc33"
+         "bg":"#00cc33",
+         "blocked":true
         },
      "8915":
         {
-         "bg":"#00cc33"
+         "bg":"#00cc33",
+         "blocked":true
         },
      "8916":
         {
-         "bg":"#00cc33"
+         "bg":"#00cc33",
+         "blocked":true
         },
      "8917":
         {
-         "bg":"#00cc33"
+         "bg":"#00cc33",
+         "blocked":true
         },
      "8918":
         {
-         "bg":"#00cc33"
+         "bg":"#00cc33",
+         "blocked":true
         },
      "8919":
         {
-         "bg":"#00cc33"
+         "bg":"#00cc33",
+         "blocked":true
         },
      "8920":
         {
-         "bg":"#00cc33"
+         "bg":"#00cc33",
+         "blocked":true
         },
      "8921":
         {
-         "bg":"#00cc33"
+         "bg":"#00cc33",
+         "blocked":true
         },
      "8922":
         {
-         "bg":"#00cc33"
+         "bg":"#00cc33",
+         "blocked":true
         },
      "8923":
         {
-         "bg":"#00cc33"
+         "bg":"#00cc33",
+         "blocked":true
         },
      "8924":
         {
-         "bg":"#00cc33"
+         "bg":"#00cc33",
+         "blocked":true
         },
      "8925":
         {
-         "bg":"#00cc33"
+         "bg":"#00cc33",
+         "blocked":true
         },
      "8926":
         {
-         "bg":"#00cc33"
+         "bg":"#00cc33",
+         "blocked":true
         },
      "8927":
         {
-         "bg":"#00cc33"
+         "bg":"#00cc33",
+         "blocked":true
         },
      "8928":
         {
-         "bg":"#00cc33"
+         "bg":"#00cc33",
+         "blocked":true
         },
      "8929":
         {
-         "bg":"#00cc33"
+         "bg":"#00cc33",
+         "blocked":true
         },
      "8930":
         {
@@ -23789,75 +23889,93 @@
         },
      "9032":
         {
-         "bg":"#00cc33"
+         "bg":"#00cc33",
+         "blocked":true
         },
      "9033":
         {
-         "bg":"#00cc33"
+         "bg":"#00cc33",
+         "blocked":true
         },
      "9034":
         {
-         "bg":"#00cc33"
+         "bg":"#00cc33",
+         "blocked":true
         },
      "9035":
         {
-         "bg":"#00cc33"
+         "bg":"#00cc33",
+         "blocked":true
         },
      "9036":
         {
-         "bg":"#00cc33"
+         "bg":"#00cc33",
+         "blocked":true
         },
      "9037":
         {
-         "bg":"#00cc33"
+         "bg":"#00cc33",
+         "blocked":true
         },
      "9038":
         {
-         "bg":"#00cc33"
+         "bg":"#00cc33",
+         "blocked":true
         },
      "9039":
         {
-         "bg":"#00cc33"
+         "bg":"#00cc33",
+         "blocked":true
         },
      "9040":
         {
-         "bg":"#00cc33"
+         "bg":"#00cc33",
+         "blocked":true
         },
      "9041":
         {
-         "bg":"#00cc33"
+         "bg":"#00cc33",
+         "blocked":true
         },
      "9042":
         {
-         "bg":"#00cc33"
+         "bg":"#00cc33",
+         "blocked":true
         },
      "9043":
         {
-         "bg":"#00cc33"
+         "bg":"#00cc33",
+         "blocked":true
         },
      "9044":
         {
-         "bg":"#00cc33"
+         "bg":"#00cc33",
+         "blocked":true
         },
      "9045":
         {
-         "bg":"#00cc33"
+         "bg":"#00cc33",
+         "blocked":true
         },
      "9046":
         {
-         "bg":"#00cc33"
+         "bg":"#00cc33",
+         "blocked":true
         },
      "9047":
         {
-         "bg":"#00cc33"
+         "bg":"#00cc33",
+         "blocked":true
         },
      "9048":
         {
-         "bg":"#00cc33"
+         "bg":"#00cc33",
+         "blocked":true
         },
      "9049":
         {
-         "bg":"#00cc33"
+         "bg":"#00cc33",
+         "blocked":true
         },
      "905":
         {
@@ -24390,75 +24508,93 @@
         },
      "9152":
         {
-         "bg":"#00cc33"
+         "bg":"#00cc33",
+         "blocked":true
         },
      "9153":
         {
-         "bg":"#00cc33"
+         "bg":"#00cc33",
+         "blocked":true
         },
      "9154":
         {
-         "bg":"#00cc33"
+         "bg":"#00cc33",
+         "blocked":true
         },
      "9155":
         {
-         "bg":"#00cc33"
+         "bg":"#00cc33",
+         "blocked":true
         },
      "9156":
         {
-         "bg":"#00cc33"
+         "bg":"#00cc33",
+         "blocked":true
         },
      "9157":
         {
-         "bg":"#00cc33"
+         "bg":"#00cc33",
+         "blocked":true
         },
      "9158":
         {
-         "bg":"#00cc33"
+         "bg":"#00cc33",
+         "blocked":true
         },
      "9159":
         {
-         "bg":"#00cc33"
+         "bg":"#00cc33",
+         "blocked":true
         },
      "9160":
         {
-         "bg":"#00cc33"
+         "bg":"#00cc33",
+         "blocked":true
         },
      "9161":
         {
-         "bg":"#00cc33"
+         "bg":"#00cc33",
+         "blocked":true
         },
      "9162":
         {
-         "bg":"#00cc33"
+         "bg":"#00cc33",
+         "blocked":true
         },
      "9163":
         {
-         "bg":"#00cc33"
+         "bg":"#00cc33",
+         "blocked":true
         },
      "9164":
         {
-         "bg":"#00cc33"
+         "bg":"#00cc33",
+         "blocked":true
         },
      "9165":
         {
-         "bg":"#00cc33"
+         "bg":"#00cc33",
+         "blocked":true
         },
      "9166":
         {
-         "bg":"#00cc33"
+         "bg":"#00cc33",
+         "blocked":true
         },
      "9167":
         {
-         "bg":"#00cc33"
+         "bg":"#00cc33",
+         "blocked":true
         },
      "9168":
         {
-         "bg":"#00cc33"
+         "bg":"#00cc33",
+         "blocked":true
         },
      "9169":
         {
-         "bg":"#00cc33"
+         "bg":"#00cc33",
+         "blocked":true
         },
      "9170":
         {
@@ -24964,75 +25100,97 @@
         },
      "9272":
         {
-         "bg":"#00cc33"
+         "bg":"#00cc33",
+         "blocked":true
         },
      "9273":
         {
-         "bg":"#00cc33"
+         "bg":"#00cc33",
+         "blocked":true
         },
      "9274":
         {
-         "bg":"#00cc33"
+         "bg":"#00cc33",
+         "blocked":true
         },
      "9275":
         {
-         "bg":"#00cc33"
+         "bg":"#00cc33",
+         "blocked":true
         },
      "9276":
         {
-         "bg":"#00cc33"
+         "bg":"#00cc33",
+         "blocked":true
         },
      "9277":
         {
-         "bg":"#00cc33"
+         "bg":"#00cc33",
+         "blocked":true
         },
      "9278":
         {
-         "bg":"#00cc33"
+         "bg":"#00cc33",
+         "blocked":true
         },
      "9279":
         {
-         "bg":"#00cc33"
+         "bg":"#00cc33",
+         "blocked":true
+        },
+     "928":
+        {
+         "blocked":true
         },
      "9280":
         {
-         "bg":"#00cc33"
+         "bg":"#00cc33",
+         "blocked":true
         },
      "9281":
         {
-         "bg":"#00cc33"
+         "bg":"#00cc33",
+         "blocked":true
         },
      "9282":
         {
-         "bg":"#00cc33"
+         "bg":"#00cc33",
+         "blocked":true
         },
      "9283":
         {
-         "bg":"#00cc33"
+         "bg":"#00cc33",
+         "blocked":true
         },
      "9284":
         {
-         "bg":"#00cc33"
+         "bg":"#00cc33",
+         "blocked":true
         },
      "9285":
         {
-         "bg":"#00cc33"
+         "bg":"#00cc33",
+         "blocked":true
         },
      "9286":
         {
-         "bg":"#00cc33"
+         "bg":"#00cc33",
+         "blocked":true
         },
      "9287":
         {
-         "bg":"#00cc33"
+         "bg":"#00cc33",
+         "blocked":true
         },
      "9288":
         {
-         "bg":"#00cc33"
+         "bg":"#00cc33",
+         "blocked":true
         },
      "9289":
         {
-         "bg":"#00cc33"
+         "bg":"#00cc33",
+         "blocked":true
         },
      "9290":
         {
@@ -25534,75 +25692,93 @@
         },
      "9392":
         {
-         "bg":"#00cc33"
+         "bg":"#00cc33",
+         "blocked":true
         },
      "9393":
         {
-         "bg":"#00cc33"
+         "bg":"#00cc33",
+         "blocked":true
         },
      "9394":
         {
-         "bg":"#00cc33"
+         "bg":"#00cc33",
+         "blocked":true
         },
      "9395":
         {
-         "bg":"#00cc33"
+         "bg":"#00cc33",
+         "blocked":true
         },
      "9396":
         {
-         "bg":"#00cc33"
+         "bg":"#00cc33",
+         "blocked":true
         },
      "9397":
         {
-         "bg":"#00cc33"
+         "bg":"#00cc33",
+         "blocked":true
         },
      "9398":
         {
-         "bg":"#00cc33"
+         "bg":"#00cc33",
+         "blocked":true
         },
      "9399":
         {
-         "bg":"#00cc33"
+         "bg":"#00cc33",
+         "blocked":true
         },
      "9400":
         {
-         "bg":"#00cc33"
+         "bg":"#00cc33",
+         "blocked":true
         },
      "9401":
         {
-         "bg":"#00cc33"
+         "bg":"#00cc33",
+         "blocked":true
         },
      "9402":
         {
-         "bg":"#00cc33"
+         "bg":"#00cc33",
+         "blocked":true
         },
      "9403":
         {
-         "bg":"#00cc33"
+         "bg":"#00cc33",
+         "blocked":true
         },
      "9404":
         {
-         "bg":"#00cc33"
+         "bg":"#00cc33",
+         "blocked":true
         },
      "9405":
         {
-         "bg":"#00cc33"
+         "bg":"#00cc33",
+         "blocked":true
         },
      "9406":
         {
-         "bg":"#00cc33"
+         "bg":"#00cc33",
+         "blocked":true
         },
      "9407":
         {
-         "bg":"#00cc33"
+         "bg":"#00cc33",
+         "blocked":true
         },
      "9408":
         {
-         "bg":"#00cc33"
+         "bg":"#00cc33",
+         "blocked":true
         },
      "9409":
         {
-         "bg":"#00cc33"
+         "bg":"#00cc33",
+         "blocked":true
         },
      "9410":
         {
@@ -30645,6 +30821,10 @@
          "blocked":"bool"
         },
      "1191":
+        {
+         "blocked":"bool"
+        },
+     "1192":
         {
          "blocked":"bool"
         },
@@ -40434,6 +40614,10 @@
          "animated":"bool",
          "animated_id":"int"
         },
+     "594":
+        {
+         "blocked":"bool"
+        },
      "5940":
         {
          "animated":"bool",
@@ -40581,6 +40765,18 @@
          "blocked":"bool",
          "description":"string"
         },
+     "5981":
+        {
+         "blocked":"bool"
+        },
+     "5982":
+        {
+         "blocked":"bool"
+        },
+     "5983":
+        {
+         "blocked":"bool"
+        },
      "60":
         {
          "activated_id":"int",
@@ -40659,6 +40855,14 @@
          "blocked":"bool",
          "description":"string"
         },
+     "6102":
+        {
+         "blocked":"bool"
+        },
+     "6103":
+        {
+         "blocked":"bool"
+        },
      "62":
         {
          "blocked":"bool"
@@ -40691,6 +40895,10 @@
         {
          "blocked":"bool"
         },
+     "6215":
+        {
+         "blocked":"bool"
+        },
      "6216":
         {
          "description":"string"
@@ -40710,6 +40918,10 @@
      "6220":
         {
          "description":"string"
+        },
+     "6223":
+        {
+         "blocked":"bool"
         },
      "63":
         {
@@ -40741,11 +40953,23 @@
         {
          "blocked":"bool"
         },
+     "6331":
+        {
+         "blocked":"bool"
+        },
+     "6332":
+        {
+         "blocked":"bool"
+        },
      "6333":
         {
          "blocked":"bool"
         },
      "6334":
+        {
+         "blocked":"bool"
+        },
+     "6335":
         {
          "blocked":"bool"
         },
@@ -40760,6 +40984,10 @@
          "description":"string"
         },
      "6338":
+        {
+         "blocked":"bool"
+        },
+     "6343":
         {
          "blocked":"bool"
         },
@@ -40780,6 +41008,10 @@
          "blocked":"bool",
          "description":"string"
         },
+     "6450":
+        {
+         "blocked":"bool"
+        },
      "6451":
         {
          "animated":"bool",
@@ -40796,6 +41028,10 @@
         {
          "animated":"bool",
          "animated_id":"int",
+         "blocked":"bool"
+        },
+     "6454":
+        {
          "blocked":"bool"
         },
      "6455":
@@ -47228,6 +47464,10 @@
         {
          "bg":"string"
         },
+     "808":
+        {
+         "blocked":"bool"
+        },
      "8080":
         {
          "bg":"string"
@@ -51104,75 +51344,93 @@
         },
      "8792":
         {
-         "bg":"string"
+         "bg":"string",
+         "blocked":"bool"
         },
      "8793":
         {
-         "bg":"string"
+         "bg":"string",
+         "blocked":"bool"
         },
      "8794":
         {
-         "bg":"string"
+         "bg":"string",
+         "blocked":"bool"
         },
      "8795":
         {
-         "bg":"string"
+         "bg":"string",
+         "blocked":"bool"
         },
      "8796":
         {
-         "bg":"string"
+         "bg":"string",
+         "blocked":"bool"
         },
      "8797":
         {
-         "bg":"string"
+         "bg":"string",
+         "blocked":"bool"
         },
      "8798":
         {
-         "bg":"string"
+         "bg":"string",
+         "blocked":"bool"
         },
      "8799":
         {
-         "bg":"string"
+         "bg":"string",
+         "blocked":"bool"
         },
      "8800":
         {
-         "bg":"string"
+         "bg":"string",
+         "blocked":"bool"
         },
      "8801":
         {
-         "bg":"string"
+         "bg":"string",
+         "blocked":"bool"
         },
      "8802":
         {
-         "bg":"string"
+         "bg":"string",
+         "blocked":"bool"
         },
      "8803":
         {
-         "bg":"string"
+         "bg":"string",
+         "blocked":"bool"
         },
      "8804":
         {
-         "bg":"string"
+         "bg":"string",
+         "blocked":"bool"
         },
      "8805":
         {
-         "bg":"string"
+         "bg":"string",
+         "blocked":"bool"
         },
      "8806":
         {
-         "bg":"string"
+         "bg":"string",
+         "blocked":"bool"
         },
      "8807":
         {
-         "bg":"string"
+         "bg":"string",
+         "blocked":"bool"
         },
      "8808":
         {
-         "bg":"string"
+         "bg":"string",
+         "blocked":"bool"
         },
      "8809":
         {
-         "bg":"string"
+         "bg":"string",
+         "blocked":"bool"
         },
      "8810":
         {
@@ -51694,75 +51952,93 @@
         },
      "8912":
         {
-         "bg":"string"
+         "bg":"string",
+         "blocked":"bool"
         },
      "8913":
         {
-         "bg":"string"
+         "bg":"string",
+         "blocked":"bool"
         },
      "8914":
         {
-         "bg":"string"
+         "bg":"string",
+         "blocked":"bool"
         },
      "8915":
         {
-         "bg":"string"
+         "bg":"string",
+         "blocked":"bool"
         },
      "8916":
         {
-         "bg":"string"
+         "bg":"string",
+         "blocked":"bool"
         },
      "8917":
         {
-         "bg":"string"
+         "bg":"string",
+         "blocked":"bool"
         },
      "8918":
         {
-         "bg":"string"
+         "bg":"string",
+         "blocked":"bool"
         },
      "8919":
         {
-         "bg":"string"
+         "bg":"string",
+         "blocked":"bool"
         },
      "8920":
         {
-         "bg":"string"
+         "bg":"string",
+         "blocked":"bool"
         },
      "8921":
         {
-         "bg":"string"
+         "bg":"string",
+         "blocked":"bool"
         },
      "8922":
         {
-         "bg":"string"
+         "bg":"string",
+         "blocked":"bool"
         },
      "8923":
         {
-         "bg":"string"
+         "bg":"string",
+         "blocked":"bool"
         },
      "8924":
         {
-         "bg":"string"
+         "bg":"string",
+         "blocked":"bool"
         },
      "8925":
         {
-         "bg":"string"
+         "bg":"string",
+         "blocked":"bool"
         },
      "8926":
         {
-         "bg":"string"
+         "bg":"string",
+         "blocked":"bool"
         },
      "8927":
         {
-         "bg":"string"
+         "bg":"string",
+         "blocked":"bool"
         },
      "8928":
         {
-         "bg":"string"
+         "bg":"string",
+         "blocked":"bool"
         },
      "8929":
         {
-         "bg":"string"
+         "bg":"string",
+         "blocked":"bool"
         },
      "8930":
         {
@@ -52290,75 +52566,93 @@
         },
      "9032":
         {
-         "bg":"string"
+         "bg":"string",
+         "blocked":"bool"
         },
      "9033":
         {
-         "bg":"string"
+         "bg":"string",
+         "blocked":"bool"
         },
      "9034":
         {
-         "bg":"string"
+         "bg":"string",
+         "blocked":"bool"
         },
      "9035":
         {
-         "bg":"string"
+         "bg":"string",
+         "blocked":"bool"
         },
      "9036":
         {
-         "bg":"string"
+         "bg":"string",
+         "blocked":"bool"
         },
      "9037":
         {
-         "bg":"string"
+         "bg":"string",
+         "blocked":"bool"
         },
      "9038":
         {
-         "bg":"string"
+         "bg":"string",
+         "blocked":"bool"
         },
      "9039":
         {
-         "bg":"string"
+         "bg":"string",
+         "blocked":"bool"
         },
      "9040":
         {
-         "bg":"string"
+         "bg":"string",
+         "blocked":"bool"
         },
      "9041":
         {
-         "bg":"string"
+         "bg":"string",
+         "blocked":"bool"
         },
      "9042":
         {
-         "bg":"string"
+         "bg":"string",
+         "blocked":"bool"
         },
      "9043":
         {
-         "bg":"string"
+         "bg":"string",
+         "blocked":"bool"
         },
      "9044":
         {
-         "bg":"string"
+         "bg":"string",
+         "blocked":"bool"
         },
      "9045":
         {
-         "bg":"string"
+         "bg":"string",
+         "blocked":"bool"
         },
      "9046":
         {
-         "bg":"string"
+         "bg":"string",
+         "blocked":"bool"
         },
      "9047":
         {
-         "bg":"string"
+         "bg":"string",
+         "blocked":"bool"
         },
      "9048":
         {
-         "bg":"string"
+         "bg":"string",
+         "blocked":"bool"
         },
      "9049":
         {
-         "bg":"string"
+         "bg":"string",
+         "blocked":"bool"
         },
      "905":
         {
@@ -52891,75 +53185,93 @@
         },
      "9152":
         {
-         "bg":"string"
+         "bg":"string",
+         "blocked":"bool"
         },
      "9153":
         {
-         "bg":"string"
+         "bg":"string",
+         "blocked":"bool"
         },
      "9154":
         {
-         "bg":"string"
+         "bg":"string",
+         "blocked":"bool"
         },
      "9155":
         {
-         "bg":"string"
+         "bg":"string",
+         "blocked":"bool"
         },
      "9156":
         {
-         "bg":"string"
+         "bg":"string",
+         "blocked":"bool"
         },
      "9157":
         {
-         "bg":"string"
+         "bg":"string",
+         "blocked":"bool"
         },
      "9158":
         {
-         "bg":"string"
+         "bg":"string",
+         "blocked":"bool"
         },
      "9159":
         {
-         "bg":"string"
+         "bg":"string",
+         "blocked":"bool"
         },
      "9160":
         {
-         "bg":"string"
+         "bg":"string",
+         "blocked":"bool"
         },
      "9161":
         {
-         "bg":"string"
+         "bg":"string",
+         "blocked":"bool"
         },
      "9162":
         {
-         "bg":"string"
+         "bg":"string",
+         "blocked":"bool"
         },
      "9163":
         {
-         "bg":"string"
+         "bg":"string",
+         "blocked":"bool"
         },
      "9164":
         {
-         "bg":"string"
+         "bg":"string",
+         "blocked":"bool"
         },
      "9165":
         {
-         "bg":"string"
+         "bg":"string",
+         "blocked":"bool"
         },
      "9166":
         {
-         "bg":"string"
+         "bg":"string",
+         "blocked":"bool"
         },
      "9167":
         {
-         "bg":"string"
+         "bg":"string",
+         "blocked":"bool"
         },
      "9168":
         {
-         "bg":"string"
+         "bg":"string",
+         "blocked":"bool"
         },
      "9169":
         {
-         "bg":"string"
+         "bg":"string",
+         "blocked":"bool"
         },
      "9170":
         {
@@ -53465,75 +53777,97 @@
         },
      "9272":
         {
-         "bg":"string"
+         "bg":"string",
+         "blocked":"bool"
         },
      "9273":
         {
-         "bg":"string"
+         "bg":"string",
+         "blocked":"bool"
         },
      "9274":
         {
-         "bg":"string"
+         "bg":"string",
+         "blocked":"bool"
         },
      "9275":
         {
-         "bg":"string"
+         "bg":"string",
+         "blocked":"bool"
         },
      "9276":
         {
-         "bg":"string"
+         "bg":"string",
+         "blocked":"bool"
         },
      "9277":
         {
-         "bg":"string"
+         "bg":"string",
+         "blocked":"bool"
         },
      "9278":
         {
-         "bg":"string"
+         "bg":"string",
+         "blocked":"bool"
         },
      "9279":
         {
-         "bg":"string"
+         "bg":"string",
+         "blocked":"bool"
+        },
+     "928":
+        {
+         "blocked":"bool"
         },
      "9280":
         {
-         "bg":"string"
+         "bg":"string",
+         "blocked":"bool"
         },
      "9281":
         {
-         "bg":"string"
+         "bg":"string",
+         "blocked":"bool"
         },
      "9282":
         {
-         "bg":"string"
+         "bg":"string",
+         "blocked":"bool"
         },
      "9283":
         {
-         "bg":"string"
+         "bg":"string",
+         "blocked":"bool"
         },
      "9284":
         {
-         "bg":"string"
+         "bg":"string",
+         "blocked":"bool"
         },
      "9285":
         {
-         "bg":"string"
+         "bg":"string",
+         "blocked":"bool"
         },
      "9286":
         {
-         "bg":"string"
+         "bg":"string",
+         "blocked":"bool"
         },
      "9287":
         {
-         "bg":"string"
+         "bg":"string",
+         "blocked":"bool"
         },
      "9288":
         {
-         "bg":"string"
+         "bg":"string",
+         "blocked":"bool"
         },
      "9289":
         {
-         "bg":"string"
+         "bg":"string",
+         "blocked":"bool"
         },
      "9290":
         {
@@ -54035,75 +54369,93 @@
         },
      "9392":
         {
-         "bg":"string"
+         "bg":"string",
+         "blocked":"bool"
         },
      "9393":
         {
-         "bg":"string"
+         "bg":"string",
+         "blocked":"bool"
         },
      "9394":
         {
-         "bg":"string"
+         "bg":"string",
+         "blocked":"bool"
         },
      "9395":
         {
-         "bg":"string"
+         "bg":"string",
+         "blocked":"bool"
         },
      "9396":
         {
-         "bg":"string"
+         "bg":"string",
+         "blocked":"bool"
         },
      "9397":
         {
-         "bg":"string"
+         "bg":"string",
+         "blocked":"bool"
         },
      "9398":
         {
-         "bg":"string"
+         "bg":"string",
+         "blocked":"bool"
         },
      "9399":
         {
-         "bg":"string"
+         "bg":"string",
+         "blocked":"bool"
         },
      "9400":
         {
-         "bg":"string"
+         "bg":"string",
+         "blocked":"bool"
         },
      "9401":
         {
-         "bg":"string"
+         "bg":"string",
+         "blocked":"bool"
         },
      "9402":
         {
-         "bg":"string"
+         "bg":"string",
+         "blocked":"bool"
         },
      "9403":
         {
-         "bg":"string"
+         "bg":"string",
+         "blocked":"bool"
         },
      "9404":
         {
-         "bg":"string"
+         "bg":"string",
+         "blocked":"bool"
         },
      "9405":
         {
-         "bg":"string"
+         "bg":"string",
+         "blocked":"bool"
         },
      "9406":
         {
-         "bg":"string"
+         "bg":"string",
+         "blocked":"bool"
         },
      "9407":
         {
-         "bg":"string"
+         "bg":"string",
+         "blocked":"bool"
         },
      "9408":
         {
-         "bg":"string"
+         "bg":"string",
+         "blocked":"bool"
         },
      "9409":
         {
-         "bg":"string"
+         "bg":"string",
+         "blocked":"bool"
         },
      "9410":
         {

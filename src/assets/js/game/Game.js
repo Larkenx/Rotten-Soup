@@ -94,8 +94,8 @@ export let Game = {
 			this.engine.start()
 			this.renderMap()
 			this.changeLevels('Mulberry Dungeon', true)
-			this.player.placeAt(0, 0)
-			this.display.app.stage.scale.x = this.display.app.stage.scale.y = 0.625
+			// this.player.placeAt(0, 0)
+			// this.display.app.stage.scale.x = this.display.app.stage.scale.y = 0.625
 			this.renderMap()
 		}
 		let { width, height } = options
@@ -456,7 +456,7 @@ export let Game = {
 		if (obstacleDescriptions.length > 0) names.push(obstacleDescriptions.slice(-1)[0])
 		let prettyNames = 'nothing'
 		if (names.length === 1) {
-			prettyNames = names.slice(0, 1)[0]
+			prettyNames = addPrefix(names.slice(0, 1)[0])
 		} else if (names.length > 1) {
 			prettyNames = names.slice(1, -1).reduce((buf, str) => {
 				return buf + ', ' + addPrefix(str)

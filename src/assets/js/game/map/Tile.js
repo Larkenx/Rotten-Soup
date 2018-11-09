@@ -47,8 +47,9 @@ export default class Tile {
                 return true;
         }
         */
-		if (this.obstacles.length > 0) return this.obstacles[this.obstacles.length - 1].blocked
-		return false
+		return this.obstacles.some(o => o.blocked)
+		// if (this.obstacles.length > 0) return this.obstacles[this.obstacles.length - 1].blocked
+		// return false
 	}
 
 	blockedByObstacle() {

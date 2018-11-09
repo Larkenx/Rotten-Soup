@@ -848,13 +848,20 @@ export function dungeonFromTheme(width, height, theme, mapGenerator, options, ha
 	}
 
 	// Randomly select starting position for player
-	let start = randomProperty(freeCells).split(',')
-	let [x, y] = start.map(s => parseInt(s))
+	let possibleStarts = []
+	for (let y = 0; y < gameMap.height; y++) {
+		for (let x = 0; x < gameMap.width; x++) {
+			if (!gameMap.getTile(x, y).blocked() && gameMap.getTile(x, y).actors.length === 0 && `${x},${y}` in freeCells)
+				possibleStarts.push(`${x},${y}`)
+		}
+	}
+	let start = randomTile(possibleStarts)
+	let [x, y] = start
 	gameMap.playerLocation = [x, y]
 	// gameMap.getTile(x, y).actors.push(new Player(x, y, Game.playerID + 1)) // set random spot to be the player
 	let ladder = new Ladder(x, y, ladders.up, 'up', fromPortal)
 	gameMap.getTile(x, y).actors.push(ladder)
-	gameMap.revealed = true
+	gameMap.revealed = false
 	gameMap.type = 'dungeon'
 	gameMap.depth = level
 	return gameMap

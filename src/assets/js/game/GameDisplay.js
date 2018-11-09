@@ -18,7 +18,10 @@ export default class GameDisplay {
 		this.app = new PIXI.Application({
 			// forceCanvas: true,
 			width: this.width,
-			height: this.height
+			height: this.height,
+			antialias: true,
+			transparent: true,
+			powerPreference: 'high-performance'
 		})
 		// this will be the texture we generate by creating a container, rendering it and generating it from
 		// the renderer
