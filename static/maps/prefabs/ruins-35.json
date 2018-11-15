@@ -1,31 +1,58 @@
-{ "height":4,
+{ "height":7,
  "infinite":false,
  "layers":[
         {
-         "data":[0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-         "height":4,
+         "data":[5617, 5618, 5619, 5620, 5621, 5622, 5737, 5738, 5739, 5740, 5741, 5742, 5737, 5738, 5739, 5860, 5861, 5862, 5737, 5738, 5739, 0, 0, 0, 5737, 5738, 5739, 5620, 5621, 5622, 5737, 5738, 5739, 5740, 5741, 5742, 5857, 5858, 5859, 5860, 5861, 5862],
+         "height":7,
+         "id":4,
+         "name":"Tile Layer 3",
+         "opacity":1,
+         "type":"tilelayer",
+         "visible":true,
+         "width":6,
+         "x":0,
+         "y":0
+        }, 
+        {
+         "data":[0, 0, 0, 0, 0, 0, 0, 5132, 0, 4769, 1848, 0, 0, 5133, 0, 0, 4770, 0, 0, 5133, 0, 0, 0, 0, 0, 5133, 0, 0, 4770, 0, 0, 5134, 0, 0, 0, 4771, 0, 0, 0, 0, 0, 0],
+         "height":7,
+         "id":2,
          "name":"Tile Layer 1",
          "opacity":1,
          "type":"tilelayer",
          "visible":true,
-         "width":5,
+         "width":6,
+         "x":0,
+         "y":0
+        }, 
+        {
+         "data":[0, 0, 0, 0, 0, 0, 0, 1070, 0, 0, 0, 0, 0, 1191, 0, 0, 0, 0, 0, 1190, 1847, 0, 0, 0, 0, 1191, 0, 0, 0, 0, 0, 0, 0, 4769, 0, 0, 0, 0, 0, 0, 0, 0],
+         "height":7,
+         "id":3,
+         "name":"Tile Layer 2",
+         "opacity":1,
+         "type":"tilelayer",
+         "visible":true,
+         "width":6,
          "x":0,
          "y":0
         }],
+ "nextlayerid":5,
  "nextobjectid":1,
  "orientation":"orthogonal",
- "properties":
-    {
-     "name":"Rug, Table & Chairs",
-     "type":"prefab"
-    },
- "propertytypes":
-    {
-     "name":"string",
-     "type":"string"
-    },
+ "properties":[
+        {
+         "name":"name",
+         "type":"string",
+         "value":"Rug, Table & Chairs"
+        }, 
+        {
+         "name":"type",
+         "type":"string",
+         "value":"prefab"
+        }],
  "renderorder":"right-down",
- "tiledversion":"1.1.5",
+ "tiledversion":"1.2.1",
  "tileheight":32,
  "tilesets":[
         {
@@ -34,6 +61,6 @@
         }],
  "tilewidth":32,
  "type":"map",
- "version":1,
- "width":5
+ "version":1.2,
+ "width":6
 }

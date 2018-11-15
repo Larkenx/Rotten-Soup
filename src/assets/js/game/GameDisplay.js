@@ -23,11 +23,6 @@ export default class GameDisplay {
 			transparent: true,
 			powerPreference: 'high-performance'
 		})
-		// this will be the texture we generate by creating a container, rendering it and generating it from
-		// the renderer
-		/*
-			this.staticBackground = renderer.generateTexture(theContainer)
-		*/
 		this.staticBackground = null
 		this.animatedBackground = null
 		this.FOVBackground = null

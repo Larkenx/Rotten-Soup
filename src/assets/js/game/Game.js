@@ -93,10 +93,11 @@ export let Game = {
 			}
 			this.engine.start()
 			this.renderMap()
-			this.changeLevels('Mulberry Dungeon', true)
+			// this.changeLevels('Mulberry Dungeon', true)
+			// // Game.map.revealed = true
 			// this.player.placeAt(0, 0)
 			// this.display.app.stage.scale.x = this.display.app.stage.scale.y = 0.625
-			this.renderMap()
+			// this.renderMap()
 		}
 		let { width, height } = options
 		this.display = new GameDisplay(width, height)
@@ -160,7 +161,7 @@ export let Game = {
 	},
 
 	createDungeonFloors(origin, dungeonName, numberOfFloors) {
-		this.levels[dungeonName + 1] = randomDungeon(64, 40, {
+		this.levels[dungeonName + 1] = randomDungeon(45, 30, {
 			dungeonName,
 			lastDungeon: false,
 			fromPortal: origin,
@@ -175,9 +176,9 @@ export let Game = {
 				toPortal: dungeonName + (depth + 1),
 				level: depth
 			}
-			this.levels[dungeonName + depth] = randomDungeon(40, 40, options)
+			this.levels[dungeonName + depth] = randomDungeon(45, 30, options)
 		}
-		this.levels[dungeonName + numberOfFloors] = randomDungeon(40, 40, {
+		this.levels[dungeonName + numberOfFloors] = randomDungeon(45, 30, {
 			dungeonName,
 			lastDungeon: true,
 			fromPortal: dungeonName + (numberOfFloors - 1),
@@ -190,7 +191,7 @@ export let Game = {
 		this.minimapOptions = { ...defaultMinimapConfiguration }
 		let nextMap = this.levels[mapID]
 		if (dungeon === true && !(mapID + 1 in this.levels)) {
-			this.createDungeonFloors(this.currentLevel.name, mapID, 20)
+			this.createDungeonFloors(this.currentLevel.name, mapID, 5)
 			nextMap = this.levels[mapID + 1]
 		} else if (dungeon === true) {
 			nextMap = this.levels[mapID + 1]
@@ -512,8 +513,8 @@ export let Game = {
 		else this.messageHistory.push([message, color])
 	},
 	/* Testing Functions */
-	getNearestLadder() {
-		let ladders = this.map.getActors().filter(a => a instanceof Ladder)
+	getNearestLadder(direction = 'down') {
+		let ladders = this.map.getActors().filter(a => a instanceof Ladder && a.direction === direction)
 		if (ladders.length > 0) return ladders[0]
 		else return null
 	},

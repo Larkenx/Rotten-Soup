@@ -226,6 +226,20 @@ export default class Player extends Actor {
 		this.cb.turnsTaken++
 		if (this.cb.turnsTaken % 5 === 0) this.heal(this.cb.hpRecovery)
 		if (this.cb.turnsTaken % 10 === 0) this.restore(this.cb.manaRecovery)
+
+		// updating our vision with the most up to date information
+		Object.assign(Game.map.seen_tiles, Game.map.visible_tiles)
+		Game.map.visible_tiles = {}
+
+		// FOV calculations
+		let fov = new ROT.FOV.RecursiveShadowcasting((x, y) => {
+			return Game.inbounds(x, y) && Game.getTile(x, y).visible()
+		})
+
+		fov.compute(Game.player.x, Game.player.y, Game.player.cb.range, (x, y, r, visibility) => {
+			Game.map.visible_tiles[x + ',' + y] = true
+		})
+
 		if (this.commandQueue.length > 0) {
 			// perform player commands and unlock
 			let { fn } = this.commandQueue.pop()
@@ -272,19 +286,9 @@ export default class Player extends Actor {
 					* NPC Dialogue
 					* ...
 		 */
+		if (evt.getModifierState('Control')) return
 
-		// updating our vision with the most up to date information
-		Object.assign(Game.map.seen_tiles, Game.map.visible_tiles)
-		Game.map.visible_tiles = {}
-
-		// FOV calculations
-		let fov = new ROT.FOV.RecursiveShadowcasting((x, y) => {
-			return Game.inbounds(x, y) && Game.getTile(x, y).visible()
-		})
-
-		fov.compute(Game.player.x, Game.player.y, Game.player.cb.range, (x, y, r, visibility) => {
-			Game.map.visible_tiles[x + ',' + y] = true
-		})
+		evt.preventDefault()
 
 		if (Game.overlayData.visible) {
 			switch (Game.overlayData.component) {
@@ -309,13 +313,10 @@ export default class Player extends Actor {
 			let { keyCode } = evt
 			let shiftPressed = evt.getModifierState('Shift')
 			let movementKeys = [0, 1, 2, 3, 4, 5, 6, 7]
-
 			if (!(keyCode in this.keyMap)) {
 				// invalid key press, retry turn
 				return
 			}
-
-			// evt.preventDefault()
 
 			/* If the key event isn't repeated within the last 160 milliseconds (too soon), then we proceed but we keep track of this
 			 	key movement time */

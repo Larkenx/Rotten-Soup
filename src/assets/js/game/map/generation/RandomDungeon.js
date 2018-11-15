@@ -861,7 +861,7 @@ export function dungeonFromTheme(width, height, theme, mapGenerator, options, ha
 	// gameMap.getTile(x, y).actors.push(new Player(x, y, Game.playerID + 1)) // set random spot to be the player
 	let ladder = new Ladder(x, y, ladders.up, 'up', fromPortal)
 	gameMap.getTile(x, y).actors.push(ladder)
-	gameMap.revealed = false
+	gameMap.revealed = true
 	gameMap.type = 'dungeon'
 	gameMap.depth = level
 	return gameMap
@@ -884,7 +884,7 @@ export function randomDungeon(width, height, options) {
 	let dc = {}
 	if (level <= 5) {
 		dc = {
-			roomWidth: [5, 7],
+			roomWidth: [5, 6],
 			roomHeight: [4, 8],
 			corridorLength: [4, 4],
 			roomDugPercentage: 0.2
