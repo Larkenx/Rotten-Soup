@@ -1,6 +1,6 @@
 # Rotten Soup
 [![Donate](https://img.shields.io/badge/Donate-PayPal-green.svg)](https://www.paypal.me/larkenx)
-###### A roguelike written in JavaScript with Vue, [Vuetify](https://vuetifyjs.com/en/), [ROT.js](http://ondras.github.io/rot.js/hp/) and [PixiJS](http://www.pixijs.com/).
+###### A roguelike written in JavaScript with [Vue](https://vuejs.org/), [Vuetify](https://vuetifyjs.com/en/), [Tiled](https://www.mapeditor.org/), [ROT.js](http://ondras.github.io/rot.js/hp/) and [PixiJS](http://www.pixijs.com/).
 
 ![screenshot](static/images/screen.gif)
 
