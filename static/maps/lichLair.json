@@ -4,16 +4,15 @@
         {
          "data":[8478, 8479, 8479, 8479, 8479, 8479, 8479, 8479, 8479, 8479, 8479, 8480, 8598, 8457, 8458, 8458, 8458, 8458, 8458, 8458, 8458, 8458, 8459, 8598, 8598, 8577, 8578, 8578, 8578, 8578, 8578, 8578, 8578, 8578, 8579, 8598, 8598, 8577, 8578, 8578, 8578, 8578, 8578, 8578, 8578, 8578, 8579, 8598, 8598, 8577, 8578, 8578, 8578, 8578, 8578, 8578, 8578, 8578, 8579, 8598, 8598, 8577, 8578, 8578, 8578, 8578, 8578, 8578, 8578, 8578, 8579, 8598, 8598, 8577, 8578, 8578, 8578, 8578, 8578, 8578, 8578, 8578, 8579, 8598, 8598, 8577, 8578, 8578, 8578, 8578, 8578, 8578, 8578, 8578, 8579, 8598, 8598, 8577, 8578, 8578, 8578, 8578, 8578, 8578, 8578, 8578, 8579, 8598, 8598, 8577, 8578, 8578, 8578, 8578, 8578, 8578, 8578, 8578, 8579, 8598, 8598, 8697, 8698, 8698, 8698, 8698, 8698, 8698, 8698, 8698, 8699, 8598, 8718, 8479, 8479, 8479, 8479, 8479, 8479, 8479, 8479, 8479, 8479, 8720],
          "height":12,
+         "id":1,
          "name":"Tile Layer 1",
          "opacity":1,
-         "properties":
-            {
-             "obstacles":true
-            },
-         "propertytypes":
-            {
-             "obstacles":"bool"
-            },
+         "properties":[
+                {
+                 "name":"obstacles",
+                 "type":"bool",
+                 "value":true
+                }],
          "type":"tilelayer",
          "visible":true,
          "width":12,
@@ -23,16 +22,15 @@
         {
          "data":[0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 5612, 5613, 5613, 5613, 5613, 5613, 5613, 5613, 5613, 5614, 0, 0, 5732, 5733, 5733, 5733, 5733, 5733, 5733, 5733, 5733, 5734, 0, 0, 5732, 5733, 5733, 5733, 5733, 5733, 5733, 5733, 5733, 5734, 0, 0, 5732, 5733, 5733, 5733, 5733, 5733, 5733, 5733, 5733, 5734, 0, 0, 5732, 5733, 5733, 5733, 5733, 5733, 5733, 5733, 5733, 5734, 0, 0, 5732, 5733, 5733, 5733, 5733, 5733, 5733, 5733, 5733, 5734, 0, 0, 5732, 5733, 5733, 5733, 5733, 5733, 5733, 5733, 5733, 5734, 0, 0, 5732, 5733, 5733, 5733, 5733, 5733, 5733, 5733, 5733, 5734, 0, 0, 5732, 5733, 5733, 5733, 5733, 5733, 5733, 5733, 5733, 5734, 0, 0, 5852, 5853, 5853, 5853, 5853, 5853, 5853, 5853, 5853, 5854, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
          "height":12,
+         "id":2,
          "name":"Tile Layer 2",
          "opacity":1,
-         "properties":
-            {
-             "obstacles":true
-            },
-         "propertytypes":
-            {
-             "obstacles":"bool"
-            },
+         "properties":[
+                {
+                 "name":"obstacles",
+                 "type":"bool",
+                 "value":true
+                }],
          "type":"tilelayer",
          "visible":true,
          "width":12,
@@ -42,16 +40,15 @@
         {
          "data":[0, 0, 4053, 0, 0, 0, 0, 0, 0, 4053, 0, 0, 0, 4410, 4410, 4411, 4411, 4414, 4414, 4410, 4414, 4410, 4414, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 5012, 5012, 0, 0, 4769, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 4770, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 4769, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 4293, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 5011, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 5011, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 4289, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 6212, 0, 0, 0, 0, 0, 0, 0, 0, 6213, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
          "height":12,
+         "id":3,
          "name":"Tile Layer 3",
          "opacity":1,
-         "properties":
-            {
-             "obstacles":true
-            },
-         "propertytypes":
-            {
-             "obstacles":"bool"
-            },
+         "properties":[
+                {
+                 "name":"obstacles",
+                 "type":"bool",
+                 "value":true
+                }],
          "type":"tilelayer",
          "visible":true,
          "width":12,
@@ -60,6 +57,7 @@
         }, 
         {
          "draworder":"topdown",
+         "id":4,
          "name":"Actors",
          "objects":[
                 {
@@ -67,14 +65,12 @@
                  "height":32,
                  "id":1,
                  "name":"Player",
-                 "properties":
-                    {
-                     "entity_type":"PLAYER"
-                    },
-                 "propertytypes":
-                    {
-                     "entity_type":"string"
-                    },
+                 "properties":[
+                        {
+                         "name":"entity_type",
+                         "type":"string",
+                         "value":"PLAYER"
+                        }],
                  "rotation":0,
                  "type":"",
                  "visible":true,
@@ -87,18 +83,22 @@
                  "height":32,
                  "id":2,
                  "name":"Ladder Down",
-                 "properties":
-                    {
-                     "direction":"up",
-                     "entity_type":"LADDER",
-                     "portalID":"Mulberry Graveyard"
-                    },
-                 "propertytypes":
-                    {
-                     "direction":"string",
-                     "entity_type":"string",
-                     "portalID":"string"
-                    },
+                 "properties":[
+                        {
+                         "name":"direction",
+                         "type":"string",
+                         "value":"up"
+                        }, 
+                        {
+                         "name":"entity_type",
+                         "type":"string",
+                         "value":"LADDER"
+                        }, 
+                        {
+                         "name":"portalID",
+                         "type":"string",
+                         "value":"Mulberry Graveyard"
+                        }],
                  "rotation":0,
                  "type":"",
                  "visible":true,
@@ -111,16 +111,17 @@
                  "height":32,
                  "id":3,
                  "name":"Chest",
-                 "properties":
-                    {
-                     "entity_type":"CHEST",
-                     "items":"NECROMANCY_SPELLBOOK, MANA_POTION"
-                    },
-                 "propertytypes":
-                    {
-                     "entity_type":"string",
-                     "items":"string"
-                    },
+                 "properties":[
+                        {
+                         "name":"entity_type",
+                         "type":"string",
+                         "value":"CHEST"
+                        }, 
+                        {
+                         "name":"items",
+                         "type":"string",
+                         "value":"NECROMANCY_SPELLBOOK, MANA_POTION"
+                        }],
                  "rotation":0,
                  "type":"",
                  "visible":true,
@@ -134,10 +135,11 @@
          "x":0,
          "y":0
         }],
+ "nextlayerid":5,
  "nextobjectid":4,
  "orientation":"orthogonal",
  "renderorder":"right-down",
- "tiledversion":"1.1.5",
+ "tiledversion":"1.2.1",
  "tileheight":32,
  "tilesets":[
         {
@@ -146,6 +148,6 @@
         }],
  "tilewidth":32,
  "type":"map",
- "version":1,
+ "version":1.2,
  "width":12
 }
