@@ -62,7 +62,11 @@ export default {
 		}
 	},
 	mounted() {
-		if (window.location.host.includes('localhost')) this.loadGame(4219)
+		if (window.location.host.includes('localhost')) {
+			this.loadGame(4219)
+			this.displayFPSCounter()
+		}
+
 		let { clientWidth, clientHeight } = document.documentElement
 		let uiWidth = this.width + this.hudWidth
 		this.widthOffset = clientWidth > uiWidth ? (clientWidth - uiWidth) / 2 : 0
@@ -125,11 +129,44 @@ export default {
 				left: this.widthOffset + this.width + this.borderWidth + 'px',
 				top: this.heightOffset - this.footerHeight + 'px'
 			}
+		},
+		displayFPSCounter() {
+			var overlay, lastCount, lastTime, timeoutFun
+			overlay = document.createElement('div')
+			overlay.style.background = 'rgba(0, 0, 0, .7)'
+			overlay.style.top = '0'
+			overlay.style.color = '#ecec0e'
+			overlay.style.display = 'inline-block'
+			overlay.style.fontFamily = 'Arial'
+			overlay.style.fontSize = '10px'
+			overlay.style.lineHeight = '12px'
+			overlay.style.padding = '5px 8px'
+			overlay.style.position = 'fixed'
+			overlay.style.right = '0'
+			overlay.style.zIndex = '1000000'
+			overlay.innerHTML = 'FPS: -'
+			document.body.appendChild(overlay)
+
+			lastCount = window.mozPaintCount
+			lastTime = performance.now()
+
+			timeoutFun = function() {
+				var curCount, curTime
+
+				curCount = window.mozPaintCount
+				curTime = performance.now()
+				overlay.innerHTML = 'FPS: ' + (((curCount - lastCount) / (curTime - lastTime)) * 1000).toFixed(2)
+				lastCount = curCount
+				lastTime = curTime
+				setTimeout(timeoutFun, 1000)
+			}
+
+			setTimeout(timeoutFun, 1000)
+		},
+		beforeRouteLeave(to, from, next) {
+			this.navigateAwayModalActive = true
+			this.handleNavigateAway = next
 		}
-	},
-	beforeRouteLeave(to, from, next) {
-		this.navigateAwayModalActive = true
-		this.handleNavigateAway = next
 	}
 }
 </script>
@@ -170,6 +207,7 @@ canvas {
 .ui {
 	border: 3px solid #4f4f4f;
 	background-color: #1e1f1f;
+
 	border-radius: 4px;
 }
 

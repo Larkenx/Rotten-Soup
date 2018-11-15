@@ -1,6 +1,7 @@
 import ROT from 'rot-js'
 
 import { createMapFromJSON } from '#/map/GameMap.js'
+import Prefab from '#/map/Prefab.js'
 import Player from '#/entities/actors/Player.js'
 import { Actor } from '#/entities/actors/Actor.js'
 import NPC from '#/entities/actors/NPC.js'
@@ -17,13 +18,11 @@ export default class GameDisplay {
 		this.app = new PIXI.Application({
 			// forceCanvas: true,
 			width: this.width,
-			height: this.height
+			height: this.height,
+			antialias: true,
+			transparent: true,
+			powerPreference: 'high-performance'
 		})
-		// this will be the texture we generate by creating a container, rendering it and generating it from
-		// the renderer
-		/*
-			this.staticBackground = renderer.generateTexture(theContainer)
-		*/
 		this.staticBackground = null
 		this.animatedBackground = null
 		this.FOVBackground = null
@@ -52,85 +51,43 @@ export default class GameDisplay {
 		}
 	}
 
-	loadAssets(cb) {
-		let { renderer, stage, view } = this.app
-		let { resources } = PIXI.loader
-		/* Images & Texture Atlas */
-		const spritesheet = {
-			url: 'static/images/compiled_tileset_32x32.png',
-			name: 'spritesheet'
+	loadAssets(resources, ...callbacks) {
+		this.tileset = PIXI.loader.resources['textureAtlas'].data
+		// I want to load every 32x32 frame from the tileset image
+		for (let id = 0; id < this.tileset.tilecount; id++) {
+			let coords = this.getTilesetCoords(id)
+			let frame = new PIXI.Rectangle(coords[0], coords[1], this.tileSize, this.tileSize)
+			let texture = new PIXI.Texture(PIXI.loader.resources['spritesheet'].texture, frame)
+			this.tilesetMapping[id] = texture
 		}
-		const textureAtlas = {
-			url: 'static/compiled_dawnlike.json',
-			name: 'textureAtlas'
-		}
-		/* Maps */
-		const mulberryTown = {
-			url: 'static/maps/mulberryTown.json',
-			name: 'mulberryTown'
-		}
+		this.clear()
+		let renderLoop = delta => {
+			// maintain a track of all the sprites that should have updated movement on this tick
+			// if they are at their location, filter them from the record
+			for (let obj of this.movingSprites)
+				if (obj.sprite.x === obj.target.x && obj.sprite.y === obj.target.y)
+					this.movingSprites = this.movingSprites.filter(o => o.sprite !== obj.sprite)
 
-		const mulberryForest = {
-			url: 'static/maps/mulberryForest.json',
-			name: 'mulberryForest'
+			// update the location of every sprite
+			for (let obj of this.movingSprites) {
+				let { sprite, target } = obj
+				let x = 0
+				let y = 0
+				let distX = Math.abs(sprite.x - target.x)
+				let distY = Math.abs(sprite.y - target.y)
+				let shouldSlowDown = (distX <= 12 && distX !== 0) || (distY <= 12 && distY !== 0)
+				let movementSpeed = shouldSlowDown ? 2.0 : 4.0
+				if (target.x > sprite.x) x = movementSpeed
+				if (target.x < sprite.x) x = -movementSpeed
+				if (target.y > sprite.y) y = movementSpeed
+				if (target.y < sprite.y) y = -movementSpeed
+				if (Math.abs(x) > distX) x = distX
+				if (Math.abs(y) > distY) y = distY
+				sprite.position.set(sprite.x + x, sprite.y + y)
+			}
 		}
-
-		const mulberryGraveyard = {
-			url: 'static/maps/mulberryGraveyard.json',
-			name: 'mulberryGraveyard'
-		}
-
-		const lichLair = {
-			url: 'static/maps/lichLair.json',
-			name: 'lichLair'
-		}
-
-		PIXI.loader
-			.add(spritesheet)
-			.add(textureAtlas)
-			.add(mulberryTown)
-			.add(mulberryForest)
-			.add(mulberryGraveyard)
-			.add(lichLair)
-			.on('progress', (l, r) => this.handleAssetLoad(l, r))
-			.load(() => {
-				this.tileset = PIXI.loader.resources['textureAtlas'].data
-				// I want to load every 32x32 frame from the tileset image
-				for (let id = 0; id < this.tileset.tilecount; id++) {
-					let coords = this.getTilesetCoords(id)
-					let frame = new PIXI.Rectangle(coords[0], coords[1], this.tileSize, this.tileSize)
-					let texture = new PIXI.Texture(PIXI.loader.resources['spritesheet'].texture, frame)
-					this.tilesetMapping[id] = texture
-				}
-				this.clear()
-				let renderLoop = delta => {
-					// maintain a track of all the sprites that should have updated movement on this tick
-					// if they are at their location, filter them from the record
-					for (let obj of this.movingSprites)
-						if (obj.sprite.x === obj.target.x && obj.sprite.y === obj.target.y)
-							this.movingSprites = this.movingSprites.filter(o => o.sprite !== obj.sprite)
-
-					// update the location of every sprite
-					for (let obj of this.movingSprites) {
-						let { sprite, target } = obj
-						let x = 0
-						let y = 0
-						let distX = Math.abs(sprite.x - target.x)
-						let distY = Math.abs(sprite.y - target.y)
-						let shouldSlowDown = (distX <= 12 && distX !== 0) || (distY <= 12 && distY !== 0)
-						let movementSpeed = shouldSlowDown ? 2.0 : 4.0
-						if (target.x > sprite.x) x = movementSpeed
-						if (target.x < sprite.x) x = -movementSpeed
-						if (target.y > sprite.y) y = movementSpeed
-						if (target.y < sprite.y) y = -movementSpeed
-						if (Math.abs(x) > distX) x = distX
-						if (Math.abs(y) > distY) y = distY
-						sprite.position.set(sprite.x + x, sprite.y + y)
-					}
-				}
-				this.app.ticker.add(delta => renderLoop(delta))
-				cb()
-			})
+		this.app.ticker.add(delta => renderLoop(delta))
+		for (let cb of callbacks) if (cb) cb(resources)
 	}
 
 	getTilesetCoords(id) {

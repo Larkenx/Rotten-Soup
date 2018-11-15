@@ -1,6 +1,6 @@
 import ROT from 'rot-js'
 import * as PIXI from 'pixi.js'
-PIXI.utils.skipHello()
+import loadResources from '#/ResourceLoader.js'
 import { getTilesetCoords, createMapFromJSON } from '#/map/GameMap.js'
 import GameDisplay from '#/GameDisplay.js'
 import { Actor } from '#/entities/actors/Actor.js'
@@ -14,6 +14,9 @@ import Door from '#/entities/misc/Door.js'
 import Ladder from '#/entities/misc/Ladder.js'
 import LevelTransition from '#/entities/misc/LevelTransition.js'
 import Chest from '#/entities/misc/Chest.js'
+import { generatePrefabs } from '#/map/Prefab.js'
+
+PIXI.utils.skipHello()
 
 const { randomSimplexMap, randomDungeon, randomCave } = MapGen
 const defaultMinimapConfiguration = {
@@ -70,8 +73,7 @@ export let Game = {
 			tileHeight: 32
 		}
 		this.minimapOptions = { ...defaultMinimapConfiguration }
-		let onceLoaded = () => {
-			let { resources } = PIXI.loader
+		let onceLoaded = resources => {
 			this.levels['Mulberry Town'] = createMapFromJSON(resources['mulberryTown'].data, 'Mulberry Town')
 			this.levels['Mulberry Forest'] = createMapFromJSON(resources['mulberryForest'].data, 'Mulberry Forest')
 			this.levels['Mulberry Graveyard'] = createMapFromJSON(resources['mulberryGraveyard'].data, 'Mulberry Graveyard')
@@ -85,14 +87,25 @@ export let Game = {
 			this.player.placeAt(px, py)
 			this.scheduleAllActors()
 			this.initializeMinimap()
-			document.getElementById('game_container').appendChild(this.display.getContainer())
-			document.getElementById('minimap_container').appendChild(this.minimap.getContainer())
-			this.engine.start() // Start the engine
+			if (!options.testing) {
+				document.getElementById('game_container').appendChild(this.display.getContainer())
+				document.getElementById('minimap_container').appendChild(this.minimap.getContainer())
+			}
+			this.engine.start()
 			this.renderMap()
+			// this.changeLevels('Mulberry Dungeon', true)
+			// // Game.map.revealed = true
+			// this.player.placeAt(0, 0)
+			// this.display.app.stage.scale.x = this.display.app.stage.scale.y = 0.625
+			// this.renderMap()
 		}
 		let { width, height } = options
 		this.display = new GameDisplay(width, height)
-		this.display.loadAssets(onceLoaded)
+		let resourceLoaderCallbacks = [
+			generatePrefabs,
+			resources => this.display.loadAssets(resources, onceLoaded, options.additionalCallback)
+		]
+		loadResources(resourceLoaderCallbacks)
 	},
 
 	renderMap() {
@@ -148,7 +161,7 @@ export let Game = {
 	},
 
 	createDungeonFloors(origin, dungeonName, numberOfFloors) {
-		this.levels[dungeonName + 1] = randomDungeon(40, 40, {
+		this.levels[dungeonName + 1] = randomDungeon(45, 30, {
 			dungeonName,
 			lastDungeon: false,
 			fromPortal: origin,
@@ -163,9 +176,9 @@ export let Game = {
 				toPortal: dungeonName + (depth + 1),
 				level: depth
 			}
-			this.levels[dungeonName + depth] = randomDungeon(40, 40, options)
+			this.levels[dungeonName + depth] = randomDungeon(45, 30, options)
 		}
-		this.levels[dungeonName + numberOfFloors] = randomDungeon(40, 40, {
+		this.levels[dungeonName + numberOfFloors] = randomDungeon(45, 30, {
 			dungeonName,
 			lastDungeon: true,
 			fromPortal: dungeonName + (numberOfFloors - 1),
@@ -178,7 +191,7 @@ export let Game = {
 		this.minimapOptions = { ...defaultMinimapConfiguration }
 		let nextMap = this.levels[mapID]
 		if (dungeon === true && !(mapID + 1 in this.levels)) {
-			this.createDungeonFloors(this.currentLevel.name, mapID, 20)
+			this.createDungeonFloors(this.currentLevel.name, mapID, 5)
 			nextMap = this.levels[mapID + 1]
 		} else if (dungeon === true) {
 			nextMap = this.levels[mapID + 1]
@@ -444,7 +457,7 @@ export let Game = {
 		if (obstacleDescriptions.length > 0) names.push(obstacleDescriptions.slice(-1)[0])
 		let prettyNames = 'nothing'
 		if (names.length === 1) {
-			prettyNames = names.slice(0, 1)[0]
+			prettyNames = addPrefix(names.slice(0, 1)[0])
 		} else if (names.length > 1) {
 			prettyNames = names.slice(1, -1).reduce((buf, str) => {
 				return buf + ', ' + addPrefix(str)
@@ -500,8 +513,8 @@ export let Game = {
 		else this.messageHistory.push([message, color])
 	},
 	/* Testing Functions */
-	getNearestLadder() {
-		let ladders = this.map.getActors().filter(a => a instanceof Ladder)
+	getNearestLadder(direction = 'down') {
+		let ladders = this.map.getActors().filter(a => a instanceof Ladder && a.direction === direction)
 		if (ladders.length > 0) return ladders[0]
 		else return null
 	},

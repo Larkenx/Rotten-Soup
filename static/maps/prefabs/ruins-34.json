@@ -1,0 +1,54 @@
+{ "height":7,
+ "infinite":false,
+ "layers":[
+        {
+         "data":[0, 0, 0, 0, 0, 0, 0, 5009, 5609, 5611, 5009, 0, 0, 5012, 5729, 5731, 0, 0, 0, 0, 5729, 5731, 0, 0, 0, 5009, 5729, 5731, 5009, 0, 0, 5012, 5729, 5731, 5012, 0, 0, 0, 5849, 5851, 0, 0],
+         "height":7,
+         "id":2,
+         "name":"Tile Layer 1",
+         "opacity":1,
+         "type":"tilelayer",
+         "visible":true,
+         "width":6,
+         "x":0,
+         "y":0
+        }, 
+        {
+         "data":[0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 761, 0, 0, 4302, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1269, 0, 0, 528, 0, 0, 0, 0, 0, 0, 0],
+         "height":7,
+         "id":3,
+         "name":"Tile Layer 2",
+         "opacity":1,
+         "type":"tilelayer",
+         "visible":true,
+         "width":6,
+         "x":0,
+         "y":0
+        }],
+ "nextlayerid":4,
+ "nextobjectid":1,
+ "orientation":"orthogonal",
+ "properties":[
+        {
+         "name":"name",
+         "type":"string",
+         "value":"Rug, Table & Chairs"
+        }, 
+        {
+         "name":"type",
+         "type":"string",
+         "value":"prefab"
+        }],
+ "renderorder":"right-down",
+ "tiledversion":"1.2.1",
+ "tileheight":32,
+ "tilesets":[
+        {
+         "firstgid":1,
+         "source":"..\/..\/compiled_dawnlike.json"
+        }],
+ "tilewidth":32,
+ "type":"map",
+ "version":1.2,
+ "width":6
+}

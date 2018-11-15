@@ -1,6 +1,8 @@
 import { Game, tileset } from '#/Game.js'
 import Tile, { getTileInfo } from '#/map/Tile.js'
 import { createActor, createItem } from '#/utils/EntityFactory.js'
+import { getRandomInt } from '#/utils/HelperFunctions.js'
+
 import DIALOGUES from '#/utils/Dialogues.js'
 
 export function createMapFromJSON(json, name) {
@@ -26,6 +28,7 @@ export class GameMap {
 		this.visible_tiles = {}
 		this.seen_tiles = {}
 		this.visited = false
+		this.dungeon = null
 		// Intialize all of the tiles...
 		for (let i = 0; i < this.height; i++) {
 			this.data[i] = new Array(this.width)
@@ -77,31 +80,35 @@ export class GameMap {
 
 	createActorFromObject(object) {
 		const { gid, x, y, properties } = object
-		if (properties.entity_type === undefined) {
-			console.error(`No entity type given in properties for object ${object}`)
+		let propertiesMap = {}
+		for (let property of properties) {
+			propertiesMap[property.name] = property.value
+		}
+		if (propertiesMap.entity_type === undefined) {
+			console.error(`No entity type given in propertiesMap for object ${object}`)
 			return
 		}
-		const { entity_type } = properties
+		const { entity_type } = propertiesMap
 		let nx = x / 32
 		let ny = y / 32 - 1 // for some reason, TILED objects y position are 1-indexed..?
-		let entity = properties.item ? createItem(entity_type, nx, ny, gid - 1) : createActor(entity_type, nx, ny, gid - 1)
-		if (properties.item) entity.inInventory = false
-		if (properties.items !== undefined) {
-			let items = properties.items.split(',').map(i => createItem(i.trim(), nx, ny))
+		let entity = propertiesMap.item ? createItem(entity_type, nx, ny, gid - 1) : createActor(entity_type, nx, ny, gid - 1)
+		if (propertiesMap.item) entity.inInventory = false
+		if (propertiesMap.items !== undefined) {
+			let items = propertiesMap.items.split(',').map(i => createItem(i.trim(), nx, ny))
 			items.forEach(item => entity.addToInventory(item))
 		}
 		/* Post entity creation clean up... */
 		if (entity_type === 'NPC') {
 			// add NPC routines if any exist...
 			// NPCs may have items too!
-			entity.wanders = properties.wanders
-			if (properties.dialog !== undefined) {
-				const dialogID = properties.dialog
+			entity.wanders = propertiesMap.wanders
+			if (propertiesMap.dialog !== undefined) {
+				const dialogID = propertiesMap.dialog
 				if (dialogID in DIALOGUES) {
 					entity.dialogData = DIALOGUES[dialogID]
-					entity.dialogBubbleEnabled = 'dialogBubbleEnabled' in properties ? properties.dialogBubbleEnabled : true
-					if ('bubbleData' in properties) {
-						let [id, animated_id] = properties.bubbleData.split(',')
+					entity.dialogBubbleEnabled = 'dialogBubbleEnabled' in propertiesMap ? propertiesMap.dialogBubbleEnabled : true
+					if ('bubbleData' in propertiesMap) {
+						let [id, animated_id] = propertiesMap.bubbleData.split(',')
 						entity.bubbleData = { id, animated_id }
 					} else {
 						entity.bubbleData = null
@@ -110,9 +117,9 @@ export class GameMap {
 			}
 		} else if (entity_type === 'LADDER' || entity_type === 'LEVEL_TRANSITION') {
 			// ladders & level transitions have portal ID's
-			entity.portal = properties.portalID
-			entity.createDungeon = properties.createDungeon
-			if (entity_type === 'LADDER') entity.direction = properties.direction
+			entity.portal = propertiesMap.portalID
+			entity.createDungeon = propertiesMap.createDungeon
+			if (entity_type === 'LADDER') entity.direction = propertiesMap.direction
 		}
 		this.getTile(nx, ny).actors.push(entity)
 	}
@@ -120,11 +127,52 @@ export class GameMap {
 	processObjectGroupLayer(layer) {
 		// for each object, there is one entity to add to the map
 		for (let object of layer.objects) {
-			if (object.properties.entity_type === 'PLAYER') {
+			let objectProperties = {}
+			object.properties.forEach(p => (objectProperties[p.name] = p.value))
+			if (objectProperties.entity_type === 'PLAYER') {
 				this.playerLocation = [object.x / 32, object.y / 32 - 1] // for some reason, TILED objects y position are 1-indexed..?
 			} else {
 				this.createActorFromObject(object)
 			}
 		}
+	}
+
+	toASCII() {
+		return this.data.map(r => {
+			return r.map(tile => {
+				if (tile.actors.length > 0) {
+					let firstActor = tile.actors.slice(-1)[0]
+					if (firstActor.name.includes('ladder')) return '>'
+					if (firstActor.name.includes('door')) return '/'
+					if (firstActor.name.includes('chest')) return '$'
+
+					return firstActor.name.charAt(0).toLowerCase()
+				} else {
+					for (let o of tile.obstacles.reverse()) {
+						if (o.description !== undefined) {
+							if (o.description.includes('wall')) return '#'
+							if (o.description.includes('floor') || o.description.includes('dirt')) return ' '
+							if (o.description.includes('carpet')) return '.'
+							if (o.description.includes('grass')) return [',', '.', ';', '`'][getRandomInt(0, 3)]
+							if (o.description.includes('tree')) return '♠'
+							return o.description.charAt(0).toLowerCase()
+						}
+					}
+					return ' '
+				}
+			})
+		})
+	}
+
+	toString() {
+		return this.toASCII().reduce((p, c) => {
+			return `${p}\n${c.join('')}`
+		}, '')
+	}
+
+	mapTiles(fn) {
+		return this.data.map(row => {
+			return row.map(tile => fn(tile))
+		})
 	}
 }
