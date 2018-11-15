@@ -1,0 +1,36 @@
+{ "object":
+    {
+     "gid":4818,
+     "height":32,
+     "id":179,
+     "name":"Mayor Leonard",
+     "properties":[
+            {
+             "name":"dialog",
+             "type":"string",
+             "value":"MAYOR_LEONARD"
+            }, 
+            {
+             "name":"entity_type",
+             "type":"string",
+             "value":"NPC"
+            }, 
+            {
+             "name":"wanders",
+             "type":"bool",
+             "value":false
+            }],
+     "rotation":0,
+     "type":"",
+     "visible":true,
+     "width":32,
+     "x":0,
+     "y":0
+    },
+ "tileset":
+    {
+     "firstgid":1,
+     "source":"..\/..\/compiled_dawnlike.json"
+    },
+ "type":"template"
+}

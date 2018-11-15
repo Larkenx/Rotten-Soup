@@ -80,6 +80,7 @@ export class GameMap {
 
 	createActorFromObject(object) {
 		const { gid, x, y, properties } = object
+		console.log(object)
 		let propertiesMap = {}
 		for (let property of properties) {
 			propertiesMap[property.name] = property.value
@@ -128,8 +129,8 @@ export class GameMap {
 		// for each object, there is one entity to add to the map
 		for (let object of layer.objects) {
 			let objectProperties = {}
-			object.properties.forEach(p => (objectProperties[p.name] = p.value))
-			if (objectProperties.entity_type === 'PLAYER') {
+			if (object.properties) object.properties.forEach(p => (objectProperties[p.name] = p.value))
+			if (objectProperties.entity_type && objectProperties.entity_type === 'PLAYER') {
 				this.playerLocation = [object.x / 32, object.y / 32 - 1] // for some reason, TILED objects y position are 1-indexed..?
 			} else {
 				this.createActorFromObject(object)

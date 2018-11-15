@@ -861,7 +861,7 @@ export function dungeonFromTheme(width, height, theme, mapGenerator, options, ha
 	// gameMap.getTile(x, y).actors.push(new Player(x, y, Game.playerID + 1)) // set random spot to be the player
 	let ladder = new Ladder(x, y, ladders.up, 'up', fromPortal)
 	gameMap.getTile(x, y).actors.push(ladder)
-	gameMap.revealed = true
+	gameMap.revealed = false
 	gameMap.type = 'dungeon'
 	gameMap.depth = level
 	return gameMap

@@ -56,7 +56,8 @@ const askAboutMulberryTown = new Edge({
 // ask for quests
 const askForQuests = new Edge({
 	text: 'Is there anything I can help with?',
-	node: missingVillagerIntroduction
+	node: missingVillagerIntroduction,
+	disabled: true
 })
 // end conversation
 const exit = new Edge({
