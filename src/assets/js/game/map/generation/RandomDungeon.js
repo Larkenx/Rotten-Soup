@@ -677,12 +677,14 @@ export function dungeonFromTheme(width, height, theme, mapGenerator, options, ha
 			const containsActors = tile => {
 				return tile.actors.length > 0
 			}
-			if (above.blocked() && below.blocked() && !containsActors(left) && !containsActors(right)) {
-				// horizontal door frame
-				gameMap.getTile(dx, dy).actors.push(new Door(dx, dy, doors.vertical))
-			} else if (left.blocked() && right.blocked() && !containsActors(above) && !containsActors(below)) {
-				// vertical door frame
-				gameMap.getTile(dx, dy).actors.push(new Door(dx, dy, doors.horizontal))
+			if (!containsDoor(gameMap.getTile(dx, dy))) {
+				if (above.blocked() && below.blocked() && !containsActors(left) && !containsActors(right)) {
+					// horizontal door frame
+					gameMap.getTile(dx, dy).actors.push(new Door(dx, dy, doors.vertical))
+				} else if (left.blocked() && right.blocked() && !containsActors(above) && !containsActors(below)) {
+					// vertical door frame
+					gameMap.getTile(dx, dy).actors.push(new Door(dx, dy, doors.horizontal))
+				}
 			}
 		})
 	}

@@ -1,15 +1,16 @@
 <template>
-  <v-dialog v-if="playerIsDead()" v-model="deathDialog"  persistent max-width="600px">
-    <v-card>
-      <v-card-text class="text-xs-center">
-        <h1 class="red--text lighten-1">
+  <div id="death">
+    <v-dialog v-if="playerIsDead()" v-model="deathDialog" persistent max-width="600px">
+      <v-card>
+        <v-card-text class="text-xs-center">
+          <h1 class="red--text lighten-1">
             You have died!
-        </h1>
-      </v-card-text>
-      <v-card-text>
-        <v-layout>
+          </h1>
+        </v-card-text>
+        <v-card-text>
+          <v-layout>
 
-          <v-flex id="death_text">
+            <v-flex id="death_text">
               You played for {{cb.turnsTaken}} turns.
               <p />
 
@@ -35,18 +36,19 @@
               You looted {{formatNoOrMultiple("treasure chest", cb.chestsOpened, "treasure chests")}}.
               <p />
 
-          </v-flex>
-        </v-layout>
-      </v-card-text>
-      <v-card-actions>
-        <img src="static/images/death_icons/tombstone.png" width="100px" height="100px" />
-        <v-spacer />
-        <v-btn color="green darken-3" raised @click.stop="startNewGame()">Play Again</v-btn>
-        <v-spacer />
-        <img src="static/images/death_icons/hasty-grave.png" width="120px" height="100px" />
-      </v-card-actions>
-    </v-card>
-  </v-dialog>
+            </v-flex>
+          </v-layout>
+        </v-card-text>
+        <v-card-actions>
+          <img src="static/images/death_icons/tombstone.png" width="100px" height="100px" />
+          <v-spacer />
+          <v-btn color="green darken-3" raised @click.stop="startNewGame()">Play Again</v-btn>
+          <v-spacer />
+          <img src="static/images/death_icons/hasty-grave.png" width="120px" height="100px" />
+        </v-card-actions>
+      </v-card>
+    </v-dialog>
+  </div>
 </template>
 
 <script>
@@ -74,10 +76,7 @@ export default {
 }
 </script>
 <style>
-#death_text {
-	/* background-image: url('/static/images/tombstone.png');
-	background-size: 200px 150px;
-	background-repeat: no-repeat;
-	background-position: center; */
+#death {
+	z-index: 12500;
 }
 </style>

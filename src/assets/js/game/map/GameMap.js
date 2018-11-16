@@ -80,7 +80,6 @@ export class GameMap {
 
 	createActorFromObject(object) {
 		const { gid, x, y, properties } = object
-		console.log(object)
 		let propertiesMap = {}
 		for (let property of properties) {
 			propertiesMap[property.name] = property.value

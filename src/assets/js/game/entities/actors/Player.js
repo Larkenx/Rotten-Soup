@@ -928,5 +928,6 @@ export default class Player extends Actor {
 		this.cb.dead = true
 		// Game.scheduler.remove(Game.player);
 		Game.scheduler.clear()
+		Game.closeGameOverlayScreen()
 	}
 }

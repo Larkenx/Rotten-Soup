@@ -13,7 +13,7 @@
 }
 
 .picker {
-	color: #535353;
+	color: #116820;
 }
 
 div.v-expansion-panel__header {
@@ -47,8 +47,8 @@ div.v-expansion-panel__header {
 }
 
 code {
-	background-color: #424242;
-	color: white;
+	background-color: #1e1f1f !important;
+	color: white !important;
 }
 
 /* .selectedItem {
@@ -108,6 +108,13 @@ code {
 									</v-flex>
 									<v-flex class="pl-12" style="flex-grow: 1">
 										<span>{{selectedItemSlot.item.name || selectedItemSlot.item.type}}</span>
+									</v-flex>
+									<v-flex style="max-width: 85px" v-if="selectedItemSlot.item.cb && selectedItemSlot.item.cb.equipped">
+										<v-chip small color="#1e1f1f">
+											<span class="white--text">
+												equipped
+											</span>
+										</v-chip>
 									</v-flex>
 								</v-layout>
 								<v-layout class="pa-2" wrap align-center>

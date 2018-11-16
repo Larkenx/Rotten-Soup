@@ -14,7 +14,7 @@
                 <v-card-text>
                     <v-expansion-panel>
                         <v-expansion-panel-content>
-                            <div slot="header">All Keybinds</div>
+                            <div slot="header" class="pl-2"><b>All Keybinds</b></div>
                             <v-card flat>
                                 <v-card-text class="pb-0 pt-0">
                                     <v-container>
@@ -39,12 +39,12 @@
                             </v-card>
                         </v-expansion-panel-content>
                         <v-expansion-panel-content>
-                            <div slot="header">Magic and Ranged Combat</div>
+                            <div slot="header" class="pl-2"><b>Magic and Ranged Combat</b></div>
                             <v-card flat>
                                 <v-card-text class="pt-0">
                                     <v-container fluid>
                                         <p><b>Magic</b></p>
-                                        <p>To cast a spell, first select a spell from your spellbook. Then, you can press <code>z</code> to cast the selected spell. If your spell is targeted, you will enter targeting mode.
+                                        <p>To cast a spell, first select a spell from your spellbook by opening it with <code>s</code> or <code>m</code>. Then, you can press <code>z</code> to cast the selected spell. If your spell is targeted, you will enter targeting mode.
 
                                             <p><b>Ranged</b></p>
 
@@ -58,7 +58,7 @@
                             </v-card>
                         </v-expansion-panel-content>
                         <v-expansion-panel-content>
-                            <div slot="header">Movement and Examining</div>
+                            <div slot="header" class="pl-2"><b>Movement and Examining</b></div>
                             <v-card flat>
                                 <v-card-text class="pb-0 pt-0">
                                     <v-container>
@@ -79,7 +79,7 @@
                             </v-card>
                         </v-expansion-panel-content>
                         <v-expansion-panel-content>
-                            <div slot="header">Melee Combat</div>
+                            <div slot="header" class="pl-2"><b>Melee Combat</b></div>
                             <v-card flat>
                                 <v-card-text class="pt-0">
                                     <v-container fluid>
@@ -91,7 +91,7 @@
 
                         <v-expansion-panel-content>
                             <v-card flat>
-                                <div slot="header">Ladders, Resting, and Picking up Items</div>
+                                <div slot="header" class="pl-2"><b>Ladders, Resting, and Picking up Items</b></div>
                                 <v-card-text class="pt-0">
                                     <v-container fluid>
                                         <p>To pick up items off the ground, press <code>,</code> or <code>g</code>.</p>
@@ -103,7 +103,7 @@
                         </v-expansion-panel-content>
 
                         <v-expansion-panel-content>
-                            <div slot="header">Inventory Management</div>
+                            <div slot="header" class="pl-2"><b>Inventory Management</b></div>
                             <v-card flat>
                                 <v-card-text class="pt-0">
                                     <v-container fluid>
@@ -153,8 +153,11 @@ export default {
 }
 </script>
 <style>
+#help {
+	z-index: 12500;
+}
 code {
-	background-color: #2f3136;
-	color: white;
+	background-color: #1e1f1f !important;
+	color: white !important;
 }
 </style>
