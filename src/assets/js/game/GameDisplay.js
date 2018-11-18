@@ -52,7 +52,20 @@ export default class GameDisplay {
 	}
 
 	loadAssets(resources, ...callbacks) {
-		this.tileset = PIXI.loader.resources['textureAtlas'].data
+		let { tilecount, columns, tilewidth, tileheight, tiles } = PIXI.loader.resources['textureAtlas'].data
+		this.tileset = {
+			tileproperties: {},
+			tilecount,
+			columns,
+			tilewidth,
+			tileheight
+		}
+		console.log(tiles)
+		tiles.forEach(tile => {
+			let properties = {}
+			if (tile.properties) tile.properties.forEach(p => (properties[p.name] = p.value))
+			this.tileset.tileproperties[tile.id] = { ...properties }
+		})
 		// I want to load every 32x32 frame from the tileset image
 		for (let id = 0; id < this.tileset.tilecount; id++) {
 			let coords = this.getTilesetCoords(id)
