@@ -45,9 +45,7 @@ export default class Player extends Actor {
 			blocked: true,
 			leveled_up: true,
 			mouseEnabled: false,
-			combat: {
-				/* options.combat, dedicated to all things related to combat */
-				description: [' attacked ', ' stabbed ', ' jabbed ', ' smashed '],
+			cb: {
 				/* stat caps */
 				maxhp: 50,
 				maxmana: 15,

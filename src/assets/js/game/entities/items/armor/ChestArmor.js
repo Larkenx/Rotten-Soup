@@ -8,7 +8,7 @@ export default class ChestArmor extends Armor {
 			name: name,
 			type: 'Chest Plate',
 			fg: 'orange',
-			combat: {
+			cb: {
 				def,
 				equipmentSlot: 'torso'
 			},

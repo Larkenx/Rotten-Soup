@@ -19,9 +19,9 @@ import Item from '#/entities/items/Item.js'
 export class Actor extends Entity {
 	constructor(x, y, options, routine = null) {
 		super(x, y, options)
-		this.cb = this.combat
+		this.visible = true
+		this.blocked = true
 		if (this.corpseType === undefined) this.corpseType = corpseTypes.HUMANOID
-
 		this.cb.effects = []
 		this.cb.equipment = {
 			head: null,
@@ -332,7 +332,7 @@ export class Actor extends Entity {
 			}
 			// if we find an enemy on the tile, we damage it and the projectile stops moving
 			let enemies = tile.actors.filter(function(e) {
-				return e.combat && e.cb.hostile
+				return e.cb && e.cb.hostile
 			})
 			if (enemies.length > 0) {
 				let enemy = enemies[0]

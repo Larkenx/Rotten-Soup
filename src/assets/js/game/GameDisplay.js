@@ -171,7 +171,12 @@ export default class GameDisplay {
 		let endingPos = [startingPos[0] + camera.width, startingPos[1] + camera.height]
 		this.background.position.set(-startingPos[0] * this.tileSize, -startingPos[1] * this.tileSize)
 		// draw the actors last because they should be on the top-most layer
-		for (let a of map.getActors()) {
+		let actors = map.getActors().sort((a1, a2) => {
+			if (a1 instanceof Player) return 1
+			if (a2 instanceof Player) return -1
+			return 0
+		})
+		for (let a of actors) {
 			if (!(a instanceof Item) || !a.inInventory) {
 				this.assignSprite(a)
 			}

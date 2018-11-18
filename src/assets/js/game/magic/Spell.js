@@ -6,8 +6,6 @@ import { RegenerationEffect } from '#/modifiers/Effect.js'
 import { StrengthBuff } from '#/modifiers/Buff.js'
 import { Game } from '#/Game.js'
 import { Corpse, corpseTypes } from '#/entities/items/misc/Corpse.js'
-import Skeleton from '#/entities/actors/enemies/Skeleton.js'
-import Zombie from '#/entities/actors/enemies/Zombie.js'
 
 export const spellTypes = {
 	CONJURATION: 'CONJURATION',
@@ -46,7 +44,7 @@ export class Spell {
 		Object.assign(this, options)
 	}
 
-	cast() { } // to be overwritten
+	cast() {} // to be overwritten
 }
 
 /* Restoration Spells */
@@ -158,7 +156,7 @@ export class Rage extends Spell {
 		super({
 			name: 'Rage',
 			hoverInfo: 'Overcome with rage and fury, your strength is boosted by 3 for 5 turns.',
-			action: (entity) => {
+			action: entity => {
 				let buff = new StrengthBuff(3)
 				buff.duration += 2
 				entity.addNewBuff(buff)
@@ -179,7 +177,6 @@ export class Rage extends Spell {
 		this.action(caster)
 	}
 }
-
 
 /* Necromancy Spells */
 
@@ -283,12 +280,12 @@ export const reanimate = corpse => {
 
 /* returns an array of corpses :) */
 export const getNearbyCorpses = actor => {
-	let fov = new ROT.FOV.PreciseShadowcasting(function (x, y) {
+	let fov = new ROT.FOV.PreciseShadowcasting(function(x, y) {
 		return Game.inbounds(x, y) && Game.map.data[y][x].visible()
 	})
 
 	let visibleTiles = []
-	fov.compute(actor.x, actor.y, actor.cb.range, function (x, y, r, visibility) {
+	fov.compute(actor.x, actor.y, actor.cb.range, function(x, y, r, visibility) {
 		if (Game.inbounds(x, y)) visibleTiles.push(Game.map.data[y][x])
 	})
 

@@ -8,7 +8,7 @@ export default class LegArmor extends Armor {
 			name: name,
 			type: 'Plate Legs',
 			fg: 'orange',
-			combat: {
+			cb: {
 				def,
 				equipmentSlot: 'legs'
 			},

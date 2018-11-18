@@ -5,7 +5,7 @@ import ROT from 'rot-js'
 /* Simple enemy class to encapsulate all enemies with very simple AI.
  Essentially, these enemies have a range that they can see the player from, and if the player
  enters within the distance between the enemy and player */
-export default class SimpleEnemy extends StatelessAI {
+export class SimpleEnemy extends StatelessAI {
 	constructor(x, y, options, wanders = true) {
 		super(x, y, options, {
 			/* AI parameters */

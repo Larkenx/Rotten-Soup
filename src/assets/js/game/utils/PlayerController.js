@@ -9,7 +9,7 @@ export default class PlayerController {
 
 	act() {
 		Game.engine.lock()
-		Game.player.cb.invulnerable = true
+		Game.player.invulnerable = true
 		this.turns++
 		const pathfinding = (x, y) => {
 			if (x <= 0 || x >= Game.map.width || y <= 0 || y >= Game.map.height) return false

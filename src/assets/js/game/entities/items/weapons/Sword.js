@@ -10,7 +10,7 @@ export class Sword extends Weapon {
 			name: name,
 			type: 'Sword',
 			fg: 'orange',
-			combat: {
+			cb: {
 				sides,
 				rolls
 			},

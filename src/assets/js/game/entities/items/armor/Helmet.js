@@ -8,7 +8,7 @@ export default class Helmet extends Armor {
 			name: name,
 			type: 'Helmet',
 			fg: 'orange',
-			combat: {
+			cb: {
 				def,
 				equipmentSlot: 'head'
 			},

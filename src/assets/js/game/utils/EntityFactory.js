@@ -7,11 +7,11 @@ import Ladder from '#/entities/misc/Ladder.js'
 import Key from '#/entities/items/misc/Key.js'
 import Gold from '#/entities/items/misc/Gold.js'
 import Beer from '#/entities/items/misc/Beer.js'
-
 import { NecromancySpellBook } from '#/entities/items/misc/Spellbook.js'
-
+// Entities
 import NPC from '#/entities/actors/NPC.js'
 import { Corpse, corpseTypes } from '#/entities/items/misc/Corpse.js'
+import Lich from '#/entities/actors/enemies/boss/Lich.js'
 // Items
 import HealthPotion from '#/entities/items/potions/HealthPotion.js'
 import StrengthPotion from '#/entities/items/potions/StrengthPotion.js'
@@ -25,32 +25,48 @@ import { createChestArmor } from '#/entities/items/armor/ChestArmor.js'
 import { createLegArmor } from '#/entities/items/armor/LegArmor.js'
 import { createHelmet } from '#/entities/items/armor/Helmet.js'
 import { createBoots } from '#/entities/items/armor/Boots.js'
-
-// Enemies
-import Orc from '#/entities/actors/enemies/Orc.js'
-import Kobold from '#/entities/actors/enemies/Kobold.js'
-import Goblin from '#/entities/actors/enemies/Goblin.js'
-import Bat from '#/entities/actors/enemies/Bat.js'
-import Rat from '#/entities/actors/enemies/Rat.js'
-import Skeleton from '#/entities/actors/enemies/Skeleton.js'
-import Zombie from '#/entities/actors/enemies/Zombie.js'
-import Troll from '#/entities/actors/enemies/Troll.js'
-import Mummy from '#/entities/actors/enemies/Mummy.js'
-import Ghost from '#/entities/actors/enemies/Ghost.js'
-import IceElemental from '#/entities/actors/enemies/IceElemental.js'
-import Golem from '#/entities/actors/enemies/Golem.js'
-import Imp from '#/entities/actors/enemies/Imp.js'
-import Snake from '#/entities/actors/enemies/Snake.js'
-import Siren from '#/entities/actors/enemies/Siren.js'
-import Vampire from '#/entities/actors/enemies/Vampire.js'
-import Banshee from '#/entities/actors/enemies/Banshee.js'
-import Minotaur from '#/entities/actors/enemies/Minotaur.js'
-import Cyclops from '#/entities/actors/enemies/Cyclops.js'
-import Demon from '#/entities/actors/enemies/Demon.js'
-import BoneMan from '#/entities/actors/enemies/BoneMan.js'
-import Lich from '#/entities/actors/enemies/boss/Lich.js'
-
+// Utils
 import { getRandomInt, getNormalRandomInt, randomProperty, getWeightedValue } from '#/utils/HelperFunctions.js'
+import entitySpreadsheet from '#/utils/data/data.xlsx'
+import xlsx from 'xlsx'
+import { StatelessAI } from '#/entities/actors/enemies/StatelessAI'
+
+const entityData = xlsx.utils.sheet_to_json(entitySpreadsheet.Sheets['Enemies'], { raw: true })
+const entityShop = {
+	NPC: (x, y, t) => new NPC(x, y, t),
+	LEVEL_TRANSITION: (x, y, t) => new LevelTransition(x, y, t),
+	CHEST: (x, y, t) => new Chest(x, y, t),
+	DOOR: (x, y, t) => new Door(x, y, t),
+	LOCKED_DOOR: (x, y, t) => new LockedDoor(x, y, t),
+	LADDER: (x, y, t) => new Ladder(x, y, t),
+	ZOMBIE_CORPSE: (x, y, t) => new Corpse(x, y, 'undead', t),
+	SKELETON_CORPSE: (x, y, t) => new Corpse(x, y, 'Skeleton', t),
+	LICH: (x, y, t) => new Lich(x, y, t)
+}
+
+entityData.forEach(entity => {
+	let { id, hp, mana, maxhp, maxmana, str, def, range, morale, wanders, description, name } = entity
+	entityShop[id] = (x, y, t) => {
+		return new StatelessAI(x, y, {
+			id: t,
+			name,
+			description,
+			wanders,
+			cb: {
+				hp,
+				maxhp,
+				mana,
+				maxmana,
+				str,
+				def,
+				range,
+				morale,
+				invulnerable: false,
+				hostile: true
+			}
+		})
+	}
+})
 
 const itemShop = {
 	GOLD: (x, y, t, options) => new Gold(x, y, t, options.quantity !== null ? options.quantity : 1),
@@ -143,41 +159,6 @@ export const actorTextures = {
 	BANSHEE: [3154],
 	DEMON: [2409, 2410, 2411, 2412, 2413, 2414, 2415],
 	BONE_MAN: [3392, 3393]
-}
-
-const entityShop = {
-	NPC: (x, y, t) => new NPC(x, y, t),
-	LEVEL_TRANSITION: (x, y, t) => new LevelTransition(x, y, t),
-	CHEST: (x, y, t) => new Chest(x, y, t),
-	DOOR: (x, y, t) => new Door(x, y, t),
-	LOCKED_DOOR: (x, y, t) => new LockedDoor(x, y, t),
-	LADDER: (x, y, t) => new Ladder(x, y, t),
-	ORC: (x, y, t) => new Orc(x, y, t),
-	EMPOWERED_ORC: (x, y, t) => new Orc(x, y, t, true),
-	KOBOLD: (x, y, t) => new Kobold(x, y, t),
-	GOBLIN: (x, y, t) => new Goblin(x, y, t),
-	BAT: (x, y, t) => new Bat(x, y, t),
-	RAT: (x, y, t) => new Rat(x, y, t),
-	SNAKE: (x, y, t) => new Snake(x, y, t),
-	SKELETON: (x, y, t) => new Skeleton(x, y, t),
-	ZOMBIE: (x, y, t) => new Zombie(x, y, t),
-	TROLL: (x, y, t) => new Troll(x, y, t),
-	MUMMY: (x, y, t) => new Mummy(x, y, t),
-	GHOST: (x, y, t) => new Ghost(x, y, t),
-	ICE_ELEMENTAL: (x, y, t) => new IceElemental(x, y, t),
-	GOLEM: (x, y, t) => new Golem(x, y, t),
-	IMP: (x, y, t) => new Imp(x, y, t),
-	SNAKE: (x, y, t) => new Snake(x, y, t),
-	SIREN: (x, y, t) => new Siren(x, y, t),
-	BANSHEE: (x, y, t) => new Banshee(x, y, t),
-	VAMPIRE: (x, y, t) => new Vampire(x, y, t),
-	MINOTAUR: (x, y, t) => new Minotaur(x, y, t),
-	CYCLOPS: (x, y, t) => new Cyclops(x, y, t),
-	DEMON: (x, y, t) => new Demon(x, y, t),
-	BONE_MAN: (x, y, t) => new BoneMan(x, y, t),
-	ZOMBIE_CORPSE: (x, y, t) => new Corpse(x, y, 'undead', t),
-	SKELETON_CORPSE: (x, y, t) => new Corpse(x, y, 'Skeleton', t),
-	LICH: (x, y, t) => new Lich(x, y, t)
 }
 
 export function createActor(actorString, x, y, id = null) {
