@@ -350,9 +350,9 @@ export default class Player extends Actor {
 				let weapon = this.cb.equipment.weapon
 				let ammo = this.cb.equipment.ammo
 				if (weapon !== null && ammo !== null && weapon.cb.ranged && ammo.cb.ammoType === weapon.cb.ammoType && ammo.quantity > 0) {
-					Game.log(`You take aim with your ${weapon.type.toLowerCase()}.`, 'darkgreen')
-					this.validTarget = Game.selectNearestEnemyTile()
-					if (!this.validTarget) Game.changeSelectedTile(Game.getTile(this.x, this.y))
+					this.validTarget = Game.selectNearestEnemyTile(`You are aiming with your ${weapon.type.toLowerCase()}. `)
+					if (!this.validTarget)
+						Game.changeSelectedTile(Game.getTile(this.x, this.y), `You are aiming with your ${weapon.type.toLowerCase()}. `)
 					this.targeting = true
 					return
 				} else {
@@ -380,17 +380,15 @@ export default class Player extends Actor {
 					currentSpell.cast(this, this)
 					this.cb.mana -= currentSpell.manaCost
 				} else if (currentSpell.targetType === targetTypes.TARGET) {
-					Game.log(`You begin casting ${currentSpell.name}.`, 'magic')
-					this.validTarget = Game.selectNearestEnemyTile()
-					if (!this.validTarget) Game.changeSelectedTile(Game.getTile(this.x, this.y))
+					this.validTarget = Game.selectNearestEnemyTile(`You are casting ${currentSpell.name}. `)
+					if (!this.validTarget) Game.changeSelectedTile(Game.getTile(this.x, this.y), `You are casting ${currentSpell.name}. `)
 					this.casting = true
 					// our first selected tile can be the nearest enemy
 					return
 				}
 			} else if (action === 'examine') {
-				Game.log('You begin examining the area.', 'information')
 				this.examining = true
-				Game.changeSelectedTile(Game.getTile(this.x, this.y))
+				Game.changeSelectedTile(Game.getTile(this.x, this.y), 'You are examining the area. ')
 				return
 			} else {
 				let diff = ROT.DIRS[8][action]

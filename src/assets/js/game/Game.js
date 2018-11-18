@@ -43,12 +43,13 @@ export let Game = {
 	engine: null,
 	loaded: false,
 	levels: {},
-	currentLevel: { name: 'Mulberry Town', depth: 0 },
+	currentLevel: { name: 'Mulberry Forest', depth: 0 },
 	map: null,
 	messageHistory: [],
 	tempMessages: [],
 	minimap: null,
 	selectedTile: null,
+	selectedTileMessagePrepend: '',
 	pathToTarget: {},
 	targetReticle: null,
 	enemyCycle: null,
@@ -321,40 +322,29 @@ export let Game = {
 			// at the bottom of the map
 			startingPos[1] = Game.map.height - camera.height
 		}
-		this.camera = {
+		camera = {
 			x: startingPos[0],
-			y: startingPos[1]
+			y: startingPos[1],
+			xend: startingPos[0] + camera.width,
+			yend: startingPos[1] + camera.height
 		}
-		let endingPos = [startingPos[0] + camera.width, startingPos[1] + camera.height]
-		let dx = 0
-		let dy = 0
-		let actors = []
-		for (let x = startingPos[0]; x < endingPos[0]; x++) {
-			for (let y = startingPos[1]; y < endingPos[1]; y++) {
-				let tile = this.getTile(x, y)
-				// if (tile.x + ',' + tile.y in this.map.visible_tiles) {
-				actors = actors.concat(tile.actors)
-				// }
-
-				// if (this.map.revealed) {
-				//     actors = actors.concat(tile.actors);
-				// } else {
-				//     if (tile.x + "," + tile.y in this.map.visible_tiles)
-				//         actors = actors.concat(tile.actors);
-				// }
-			}
-			dx++
-			dy = 0
-		}
-		let enemies = actors.filter(actor => {
-			return actor.cb !== undefined && actor.cb.hostile
+		let enemies = this.map.getActors().filter(actor => {
+			return (
+				actor.cb &&
+				actor.cb.hostile &&
+				actor.x >= camera.x &&
+				actor.x <= camera.xend &&
+				actor.y >= camera.y &&
+				actor.y <= camera.yend
+			)
 		})
-
 		// we sort the enemies closest to farthest away
-		return enemies.sort((a1, a2) => {
-			if (a1.distanceTo(this.player) < a2.distanceTo(this.player)) {
+		return enemies.sort((a, b) => {
+			let aDistance = a.distanceTo(this.player)
+			let bDistance = b.distanceTo(this.player)
+			if (aDistance < bDistance) {
 				return -1
-			} else if (a2.distanceTo(this.player) < a1.distanceTo(this.player)) {
+			} else if (bDistance < aDistance) {
 				return 1
 			} else {
 				return 0
@@ -371,9 +361,11 @@ export let Game = {
 		this.pathToTarget = {}
 		this.clearTempLog() // clear the temporary log which describes the tile we're on
 		this.targetReticle.visible = false
+		this.selectedTileMessagePrepend = ''
 	},
 
-	changeSelectedTile(tile) {
+	changeSelectedTile(tile, messagePrepend = '') {
+		if (messagePrepend !== '') this.selectedTileMessagePrepend = messagePrepend
 		this.selectedTile = tile
 		let { x, y } = tile
 		let blockedTile = this.selectedTile.blocked() || this.map.visible_tiles[x + ',' + y] === undefined
@@ -408,16 +400,16 @@ export let Game = {
 		this.targetReticle.visible = true
 		this.targetReticle.position.set(tile.x * this.display.tileSize, tile.y * this.display.tileSize)
 		this.describeSelectedTile()
-
 		return !blockedTile
 	},
 
-	selectNearestEnemyTile() {
+	selectNearestEnemyTile(messagePrepend = '') {
+		if (messagePrepend !== '') this.selectedTileMessagePrepend = messagePrepend
 		this.clearSelectedTile()
 		let enemy = this.getClosestEnemyToPlayer()
 		if (enemy !== undefined) {
 			let { x, y } = enemy
-			return this.changeSelectedTile(this.getTile(x, y))
+			return this.changeSelectedTile(this.getTile(x, y), messagePrepend)
 		} else {
 			return false
 		}
@@ -425,20 +417,17 @@ export let Game = {
 
 	cycleThroughSelectableEnemies() {
 		if (this.enemyCycle === null) {
-			this.enemyCycle = this.getNearbyEnemies().filter(e => this.map.visible_tiles[e.x + ',' + e.y])
+			this.enemyCycle = this.getNearbyEnemies().filter(e => `${e.x},${e.y}` in this.map.visible_tiles)
 			this.enemyCycleIndex = 0
-		}
-		// if there's more than one enemy, we can cycle to the next closest enemy
-		if (this.enemyCycle.length > 1) {
-			this.clearSelectedTile()
+		} else {
 			this.enemyCycleIndex += 1
 			if (this.enemyCycleIndex === this.enemyCycle.length) {
 				this.enemyCycleIndex = 0
 			}
-
-			let newTarget = this.enemyCycle[this.enemyCycleIndex]
-			return this.changeSelectedTile(this.getTile(newTarget.x, newTarget.y))
 		}
+		// if there's more than one enemy, we can cycle to the next closest enemy
+		let newTarget = this.enemyCycle[this.enemyCycleIndex]
+		return this.changeSelectedTile(this.getTile(newTarget.x, newTarget.y))
 	},
 
 	describeSelectedTile() {
@@ -470,9 +459,9 @@ export let Game = {
 			const { x, y } = this.selectedTile
 			let visible = x + ',' + y in this.map.visible_tiles && !this.getTile(x, y).obstacles.some(o => o.blocked)
 			let inView = !visible ? ' This tile is out of range or blocked.' : ''
-			this.log(`[You see ${prettyNames} here.${inView}]`, 'player_move', true)
+			this.log(`[${this.selectedTileMessagePrepend}You see ${prettyNames} here.${inView}]`, 'player_move', true)
 		} else {
-			this.log(`[You see ${prettyNames} here.]`, 'player_move', true)
+			this.log(`[${this.selectedTileMessagePrepend}You see ${prettyNames} here.]`, 'player_move', true)
 		}
 	},
 
