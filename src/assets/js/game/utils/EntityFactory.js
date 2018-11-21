@@ -27,9 +27,9 @@ import { createHelmet } from '#/entities/items/armor/Helmet.js'
 import { createBoots } from '#/entities/items/armor/Boots.js'
 // Utils
 import { getRandomInt, getNormalRandomInt, randomProperty, getWeightedValue } from '#/utils/HelperFunctions.js'
+import { StatelessAI } from '#/entities/actors/enemies/StatelessAI'
 import entitySpreadsheet from '#/utils/data/data.xlsx'
 import xlsx from 'xlsx'
-import { StatelessAI } from '#/entities/actors/enemies/StatelessAI'
 
 const entityData = xlsx.utils.sheet_to_json(entitySpreadsheet.Sheets['Enemies'], { raw: true })
 const entityShop = {

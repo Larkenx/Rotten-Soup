@@ -48,6 +48,39 @@ export class Spell {
 }
 
 /* Restoration Spells */
+export class HealOther extends Spell {
+	constructor(options) {
+		super({
+			name: 'Minor Heal',
+			hoverInfo: 'Heal another entity for 15 hp.',
+			action: entity => {
+				entity.heal(15)
+			},
+			splashArt: 'minor_heal',
+			type: spellTypes.RESTORATION,
+			targetType: targetTypes.TARGET,
+			manaCost: 5
+		})
+		Object.assign(this, options)
+	}
+
+	cast(target, caster) {
+		let healthRecovered = Math.max(0, target.cb.maxhp - target.cb.hp - 15)
+		if (caster === Game.player)
+			Game.log(
+				`You mend the wounds of ${target.name.capitalize()} with a healing spell. It recovers ${healthRecovered}HP.`,
+				'#e3c91c'
+			)
+		else
+			Game.log(
+				`${caster.name.capitalize()} used minor heal to heal the ${caster.name.capitalize()} for ${healthRecovered}HP.`,
+				'plum'
+			)
+
+		this.action(target)
+	}
+}
+
 export class MinorHeal extends Spell {
 	constructor(options) {
 		super({
@@ -66,9 +99,8 @@ export class MinorHeal extends Spell {
 
 	cast(target, caster) {
 		let healthRecovered = Math.max(0, caster.cb.maxhp - caster.cb.hp - 15)
-		if (caster === Game.player)
-			Game.log(`You mend your wounds with a healing spell and recover ${healthRecovered} health points.`, '#e3c91c')
-		else Game.log(`${caster.name.capitalize()} used minor heal to regenerate 20 health points.`, 'plum')
+		if (caster === Game.player) Game.log(`You mend your wounds with a healing spell and recover ${healthRecovered}HP.`, '#e3c91c')
+		else Game.log(`${caster.name.capitalize()} used minor heal to regenerate ${healthRecovered}HP.`, 'plum')
 
 		this.action(target)
 	}
