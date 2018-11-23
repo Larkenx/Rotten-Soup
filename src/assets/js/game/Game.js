@@ -43,7 +43,7 @@ export let Game = {
 	engine: null,
 	loaded: false,
 	levels: {},
-	currentLevel: { name: 'Mulberry Forest', depth: 0 },
+	currentLevel: { name: 'Mulberry Town', depth: 0 },
 	map: null,
 	messageHistory: [],
 	tempMessages: [],
@@ -94,11 +94,11 @@ export let Game = {
 			}
 			this.engine.start()
 			this.renderMap()
-			// this.changeLevels('Mulberry Dungeon', true)
-			// // Game.map.revealed = true
-			// this.player.placeAt(0, 0)
+			this.changeLevels('Mulberry Dungeon', true)
+			Game.map.revealed = true
+			this.player.placeAt(0, 0)
 			// this.display.app.stage.scale.x = this.display.app.stage.scale.y = 0.625
-			// this.renderMap()
+			this.renderMap()
 		}
 		let { width, height } = options
 		this.display = new GameDisplay(width, height)
@@ -162,7 +162,7 @@ export let Game = {
 	},
 
 	createDungeonFloors(origin, dungeonName, numberOfFloors) {
-		this.levels[dungeonName + 1] = randomDungeon(45, 30, {
+		this.levels[dungeonName + 1] = randomDungeon(64, 40, {
 			dungeonName,
 			lastDungeon: false,
 			fromPortal: origin,
@@ -177,9 +177,9 @@ export let Game = {
 				toPortal: dungeonName + (depth + 1),
 				level: depth
 			}
-			this.levels[dungeonName + depth] = randomDungeon(45, 30, options)
+			this.levels[dungeonName + depth] = randomDungeon(64, 40, options)
 		}
-		this.levels[dungeonName + numberOfFloors] = randomDungeon(45, 30, {
+		this.levels[dungeonName + numberOfFloors] = randomDungeon(64, 40, {
 			dungeonName,
 			lastDungeon: true,
 			fromPortal: dungeonName + (numberOfFloors - 1),

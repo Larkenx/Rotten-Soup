@@ -15,7 +15,7 @@ import Key from '#/entities/items/misc/Key.js'
 import { NecromancySpellBook } from '#/entities/items/misc/Spellbook.js'
 import Ladder from '#/entities/misc/Ladder.js'
 import LevelTransition from '#/entities/misc/LevelTransition.js'
-import { getRandomInt, getNormalRandomInt, randomProperty } from '#/utils/HelperFunctions.js'
+import { getRandomInt, getNormalRandomInt, computeBitmaskFloors, computeBitmaskWalls, randomProperty } from '#/utils/HelperFunctions.js'
 import { createActor, getItemsFromDropTable } from '#/utils/EntityFactory.js'
 // Wall & Floor textures
 import { wallTypes, floorTypes } from '#/utils/Constants.js'
@@ -195,80 +195,6 @@ const ladders = {
 const chestTexture = 57
 
 const flatten = arr => arr.reduce((acc, val) => acc.concat(Array.isArray(val) ? flatten(val) : val), [])
-let computeBitmaskFloors = (x, y, freeCells) => {
-	let sum = 0
-	let above = `${x},${y - 1}`
-	let below = `${x},${y + 1}`
-	let left = `${x - 1},${y}`
-	let right = `${x + 1},${y}`
-
-	let ur = `${x + 1},${y - 1}`
-	let ll = `${x - 1},${y + 1}`
-
-	let ul = `${x - 1},${y - 1}`
-	let lr = `${x + 1},${y + 1}`
-
-	let debug = () => {
-		console.log(ul in freeCells, above in freeCells)
-	}
-
-	let free = coord => {
-		return coord in freeCells
-	}
-
-	if (free(above)) sum += 1
-	if (free(right)) sum += 2
-	if (free(below)) sum += 4
-	if (free(left)) sum += 8
-	if (sum == 0) {
-		if (free(ul)) {
-			return 16
-		} else if (free(ur)) {
-			return 17
-		} else if (free(ll)) {
-			return 18
-		} else if (free(lr)) {
-			return 19
-		}
-	}
-	return sum
-}
-let computeBitmaskWalls = (x, y, freeCells) => {
-	let sum = 0
-	let above = `${x},${y - 1}`
-	let below = `${x},${y + 1}`
-	let left = `${x - 1},${y}`
-	let right = `${x + 1},${y}`
-
-	let ur = `${x + 1},${y - 1}`
-	let ll = `${x - 1},${y + 1}`
-
-	let ul = `${x - 1},${y - 1}`
-	let lr = `${x + 1},${y + 1}`
-
-	let debug = () => {
-		console.log(ul in freeCells, above in freeCells)
-	}
-
-	let free = coord => {
-		return coord in freeCells
-	}
-
-	if (free(above)) sum += 1
-	if (free(right)) sum += 2
-	if (free(below)) sum += 4
-	if (free(left)) sum += 8
-	if (free(above) && !free(below) && !free(right) && !free(left) && (free(ll) || free(lr))) {
-		return 20
-	}
-	if (sum == 0) {
-		if (free(ul)) return 16
-		else if (free(ur)) return 17
-		else if (free(ll)) return 18
-		else if (free(lr)) return 19
-	}
-	return sum
-}
 
 // function that will yield a random free space in the room
 const randomTile = validTiles => {

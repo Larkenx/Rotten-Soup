@@ -23,6 +23,7 @@ export default class GameDisplay {
 			transparent: true,
 			powerPreference: 'high-performance'
 		})
+		this.app.stage.scale.x = this.app.stage.scale.y = 0.625
 		this.staticBackground = null
 		this.animatedBackground = null
 		this.FOVBackground = null
@@ -60,7 +61,6 @@ export default class GameDisplay {
 			tilewidth,
 			tileheight
 		}
-		console.log(tiles)
 		tiles.forEach(tile => {
 			let properties = {}
 			if (tile.properties) tile.properties.forEach(p => (properties[p.name] = p.value))
