@@ -5,6 +5,6 @@ export default class EventHandler {
 
 	on(topic, fn) {
 		this.eventStream.addEventListener(topic, fn)
-		return this.eventStream
+		return this
 	}
 }
