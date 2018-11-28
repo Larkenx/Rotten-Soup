@@ -5,7 +5,7 @@ import Chest from '#/entities/misc/Chest.js'
 import {
 	LootFilter,
 	EntityFilter,
-	FindGoldLooterGoal,
+	FindLooterGoal,
 	DoNothingGoal,
 	RandomMovementGoal,
 	FindGoldGoal,
@@ -50,7 +50,7 @@ export class LootGoblin extends GoalBasedEnemy {
 			events: [
 				{
 					topic: 'LootPickedUpEvent',
-					fn: e => LootFilter(e, [Gold], FindGoldLooterGoal)
+					fn: e => LootFilter(e, [Gold], FindLooterGoal)
 				},
 				{
 					topic: 'EntitySpawnedEvent',

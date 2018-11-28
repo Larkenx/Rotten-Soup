@@ -63,7 +63,7 @@ export const AStarPathingGoal = (target, history = null) => {
 }
 
 /* Miscellaneous */
-export const FindGoldLooterGoal = lootInfo => {
+export const FindLooterGoal = lootInfo => {
 	return actor => {
 		let { looter } = lootInfo
 		actor.addGoal(AStarPathingGoal(looter))
