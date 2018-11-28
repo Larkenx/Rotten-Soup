@@ -1,19 +1,18 @@
 import ROT from 'rot-js'
 import * as PIXI from 'pixi.js'
 import loadResources from '#/ResourceLoader.js'
-import { getTilesetCoords, createMapFromJSON } from '#/map/GameMap.js'
+import { createMapFromJSON } from '#/map/GameMap.js'
 import GameDisplay from '#/GameDisplay.js'
 import { Actor } from '#/entities/actors/Actor.js'
 import { Entity } from '#/entities/Entity.js'
-import { getItemsFromDropTable, addPrefix } from '#/utils/HelperFunctions.js'
+import { addPrefix } from '#/utils/HelperFunctions.js'
+import EventStream from '#/utils/EventStream.js'
 import PlayerController from '#/utils/PlayerController.js'
 import Item from '#/entities/items/Item.js'
 import Player from '#/entities/actors/Player.js'
 import MapGen from '#/map/generation/index.js'
-import Door from '#/entities/misc/Door.js'
 import Ladder from '#/entities/misc/Ladder.js'
 import LevelTransition from '#/entities/misc/LevelTransition.js'
-import Chest from '#/entities/misc/Chest.js'
 import { generatePrefabs } from '#/map/Prefab.js'
 
 PIXI.utils.skipHello()
@@ -30,6 +29,7 @@ export let Game = {
 	app: null,
 	overview: null,
 	dialogController: null,
+	eventStream: null,
 	dev: false,
 	display: null,
 	HUD: null,
@@ -64,6 +64,7 @@ export let Game = {
 	init(playerSpriteID, options) {
 		this.playerID = playerSpriteID
 		this.player = new Player(0, 0, playerSpriteID)
+		this.eventStream = new EventStream()
 		this.displayOptions = {
 			width: 32,
 			height: 20,

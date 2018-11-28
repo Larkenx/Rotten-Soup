@@ -72,7 +72,16 @@ export default function test() {
 	let goblin = new Goblin()
 	eventStream.emit('goldFoundSomewhere', { x: 2, y: 2, amount: 20 })
 	for (let i = 0; i < 5; i++) goblin.act()
-	eventStream.emit('goldFoundSomewhere', { x: 2, y: 2, amount: 20 })
-	eventStream.emit('nearbyGoblinDied', { x: 2, y: 2 })
+	eventStream.emit('goldFoundSomewhere', { x: 2, y: 2, amount: 20 }).emit('nearbyGoblinDied', { x: 2, y: 2 })
 	for (let i = 0; i < 10; i++) goblin.act()
 }
+
+// Gold was found somewhere...adding new find the gold goal
+// 3x Goblin is trying to find 20 gold pieces somewhere around 2,2!
+// Goblin is at the original gold pieces location!
+// The entity does nothing
+// Gold was found somewhere...adding new find the gold goal
+// Goblin is running away because a nearby goblin died!
+// 6x Goblin is running away from the danger at 2,2!
+// Goblin has escaped the danger!
+// 4x Goblin is trying to find 20 gold pieces somewhere around 2,2!
