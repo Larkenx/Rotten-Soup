@@ -1,7 +1,17 @@
 import { Game } from '#/Game.js'
 import GoalBasedAI from '#/entities/actors/GoalBasedAI.js'
-import { LootFilter, DoNothingGoal, RandomMovementGoal } from '#/utils/Goals.js'
 import Gold from '#/entities/items/misc/Gold.js'
+import Chest from '#/entities/misc/Chest.js'
+import {
+	LootFilter,
+	EntityFilter,
+	FindGoldLooterGoal,
+	DoNothingGoal,
+	RandomMovementGoal,
+	FindGoldGoal,
+	FindTreasureGoal
+} from '#/utils/Goals.js'
+import { AStarPathingGoal } from '../../../utils/Goals'
 export default class GoalBasedEnemy extends GoalBasedAI {
 	constructor(x, y, options) {
 		super(x, y, options)
@@ -18,12 +28,12 @@ export default class GoalBasedEnemy extends GoalBasedAI {
 	}
 }
 
-export class GreedyGoblin extends GoalBasedEnemy {
+export class LootGoblin extends GoalBasedEnemy {
 	constructor(x, y, id) {
 		super(x, y, {
 			id,
-			name: 'Greedy Goblin',
-			description: 'A goblin with an unfulfillable desire for treasure.',
+			name: 'Loot Goblin',
+			description: 'A goblin with an unfulfillable desire for treasure & loot.',
 			visible: true,
 			blocked: true,
 			chasing: false,
@@ -40,9 +50,24 @@ export class GreedyGoblin extends GoalBasedEnemy {
 			events: [
 				{
 					topic: 'LootPickedUpEvent',
-					fn: e => LootFilter(e, [Gold], FindGoldGoal)
+					fn: e => LootFilter(e, [Gold], FindGoldLooterGoal)
+				},
+				{
+					topic: 'EntitySpawnedEvent',
+					fn: e => EntityFilter(e, [Chest], AStarPathingGoal)
 				}
 			]
 		})
+	}
+
+	interact() {
+		// A Loot Goblin has a unique interact method
+		// It will be able to try and steal gold from other entities,
+		// and from chests!
+	}
+
+	tryMove(x, y) {
+		// Whenever a loot goblin moves it has a chance to drop gold
+		super.tryMove(x, y)
 	}
 }

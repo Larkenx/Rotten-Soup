@@ -4,7 +4,7 @@
 import ROT from 'rot-js'
 import { Game } from '#/Game.js'
 import { Actor } from '#/entities/actors/Actor.js'
-import { addPrefix } from '#/utils/HelperFunctions.js'
+import { addPrefix, pathfinding } from '#/utils/HelperFunctions.js'
 import Item from '#/entities/items/Item.js'
 // Weapons
 import { materialTypes } from '#/utils/Constants.js'
@@ -25,10 +25,6 @@ import Ladder from '#/entities/misc/Ladder.js'
 import { xp_levels } from '#/entities/Entity.js'
 import Gold from '#/entities/items/misc/Gold.js'
 import { createItem } from '#/utils/EntityFactory.js'
-
-function pathfinding(x, y) {
-	return !Game.getTile(x, y).blocked() && Game.inbounds(x, y)
-}
 
 export default class Player extends Actor {
 	constructor(x, y, id) {

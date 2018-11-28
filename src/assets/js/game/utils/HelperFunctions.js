@@ -7,6 +7,10 @@ import ManaPotion from '#/entities/items/potions/ManaPotion.js'
 import { createSword } from '#/entities/items/weapons/Sword.js'
 import { SteelArrow } from '#/entities/items/weapons/ranged/ammo/Arrow.js'
 
+export function pathfinding(x, y) {
+	return !Game.getTile(x, y).blocked() && Game.inbounds(x, y)
+}
+
 export function getRandomInt(min, max) {
 	min = Math.ceil(min)
 	max = Math.floor(max)
