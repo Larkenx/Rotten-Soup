@@ -1,6 +1,6 @@
 import { Game } from '#/Game.js'
 import GoalBasedAI from '#/entities/actors/GoalBasedAI.js'
-import { DoNothingGoal, RandomMovementGoal } from '#/utils/Goals.js'
+import { LootFilter, DoNothingGoal, RandomMovementGoal } from '#/utils/Goals.js'
 import Gold from '#/entities/items/misc/Gold.js'
 export default class GoalBasedEnemy extends GoalBasedAI {
 	constructor(x, y, options) {
@@ -40,7 +40,7 @@ export class GreedyGoblin extends GoalBasedEnemy {
 			events: [
 				{
 					topic: 'LootPickedUpEvent',
-					fn: e => LootFilter(e, Gold, FindGoldGoal)
+					fn: e => LootFilter(e, [Gold], FindGoldGoal)
 				}
 			]
 		})
