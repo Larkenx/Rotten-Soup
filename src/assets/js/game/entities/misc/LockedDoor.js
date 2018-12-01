@@ -8,6 +8,7 @@ import Key from '#/entities/items/misc/Key.js'
 export default class LockedDoor extends Door {
 	constructor(x, y, id) {
 		super(x, y, id)
+		this.locked = true
 		this.name = 'locked door'
 	}
 
@@ -25,6 +26,7 @@ export default class LockedDoor extends Door {
 				Game.log('You use a key to unlock the door.', 'player_move')
 				actor.removeFromInventory(keys[0])
 				this.openDoor()
+				this.locked = false
 			}
 		}
 	}

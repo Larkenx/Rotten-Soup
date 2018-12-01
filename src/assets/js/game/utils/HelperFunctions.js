@@ -8,7 +8,25 @@ import { createSword } from '#/entities/items/weapons/Sword.js'
 import { SteelArrow } from '#/entities/items/weapons/ranged/ammo/Arrow.js'
 
 export function pathfinding(x, y) {
-	return !Game.getTile(x, y).blocked() && Game.inbounds(x, y)
+	return Game.inbounds(x, y) && !Game.getTile(x, y).blocked()
+}
+
+export function configurablePathfinding(options = {}) {
+	let andConditions = []
+	let orConditions = []
+	andConditions.push((x, y) => {
+		return Game.inbounds(x, y) && !Game.getTile(x, y).blockedByAnything()
+	})
+	// if we exlude the starting location, a tile is considered not blocked
+	// if we're standing on it
+	if (options.excludeOrigin && options.origin) {
+		orConditions.push((x, y) => options.origin.x === x && options.origin.y === y)
+	}
+
+	if (options.excludeTarget && options.target) {
+		orConditions.push((x, y) => options.target.x === x && options.target.y === y)
+	}
+	return (x, y) => andConditions.every(c => c(x, y)) || orConditions.some(c => c(x, y))
 }
 
 export function getRandomInt(min, max) {
@@ -34,6 +52,10 @@ export function randomProperty(object) {
 
 export function between(a, n, b) {
 	return a <= n && n <= b
+}
+
+export function within(a, n, b) {
+	return a <= b + n || a >= b - n
 }
 
 export function addPrefix(word) {

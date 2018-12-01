@@ -12,6 +12,7 @@ import { NecromancySpellBook } from '#/entities/items/misc/Spellbook.js'
 import NPC from '#/entities/actors/NPC.js'
 import { Corpse, corpseTypes } from '#/entities/items/misc/Corpse.js'
 import Lich from '#/entities/actors/enemies/boss/Lich.js'
+import { LootGoblin } from '#/entities/actors/enemies/GoalBasedEnemy.js'
 // Items
 import HealthPotion from '#/entities/items/potions/HealthPotion.js'
 import StrengthPotion from '#/entities/items/potions/StrengthPotion.js'
@@ -41,7 +42,8 @@ const entityShop = {
 	LADDER: (x, y, t) => new Ladder(x, y, t),
 	ZOMBIE_CORPSE: (x, y, t) => new Corpse(x, y, 'undead', t),
 	SKELETON_CORPSE: (x, y, t) => new Corpse(x, y, 'Skeleton', t),
-	LICH: (x, y, t) => new Lich(x, y, t)
+	LICH: (x, y, t) => new Lich(x, y, t),
+	LOOT_GOBLIN: (x, y, t) => new LootGoblin(x, y, t)
 }
 
 entityData.forEach(entity => {
@@ -69,7 +71,7 @@ entityData.forEach(entity => {
 })
 
 const itemShop = {
-	GOLD: (x, y, t, options) => new Gold(x, y, t, options.quantity !== null ? options.quantity : 1),
+	GOLD: (x, y, t, options) => new Gold(x, y, t, options.quantity ? options.quantity : 1),
 	BEER: (x, y, t) => new Beer(x, y, t),
 	HEALTH_POTION: (x, y, t) => new HealthPotion(x, y, t),
 	STRENGTH_POTION: (x, y, t) => new StrengthPotion(x, y, t),

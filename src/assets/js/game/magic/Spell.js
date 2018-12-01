@@ -6,6 +6,7 @@ import { RegenerationEffect } from '#/modifiers/Effect.js'
 import { StrengthBuff } from '#/modifiers/Buff.js'
 import { Game } from '#/Game.js'
 import { Corpse, corpseTypes } from '#/entities/items/misc/Corpse.js'
+import { createActor } from '#/utils/EntityFactory.js'
 
 export const spellTypes = {
 	CONJURATION: 'CONJURATION',
@@ -302,7 +303,7 @@ export const reanimate = corpse => {
 	// remove the corpse from the ground
 	ctile.removeActor(corpse)
 	Game.display.removeChild(corpse)
-	let undeadActor = corpse.id === corpseTypes.HUMANOID ? new Zombie(corpse.x, corpse.y, 2317) : new Skeleton(corpse.x, corpse.y, 2552)
+	let undeadActor = corpse.id === corpseTypes.HUMANOID ? createActor('ZOMBIE', corpse.x, corpse.y) : ('SKELETON', corpse.x, corpse.y)
 
 	undeadActor.chasing = true
 	ctile.actors.push(undeadActor)

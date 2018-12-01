@@ -6,12 +6,20 @@ import { getRandomInt } from '#/utils/HelperFunctions.js'
 import DIALOGUES from '#/utils/Dialogues.js'
 
 export function createMapFromJSON(json, name) {
-	let { layers, width, height } = json
+	let { layers, width, height, properties } = json
+	let mapProperties = convertTiledPropertiesToMap(properties)
 	let gameMap = new GameMap(width, height, name)
 	gameMap.createFromJSON(json)
 	gameMap.revealed = true
+	if ('revealed' in mapProperties) gameMap.revealed = mapProperties.revealed
 	gameMap.type = 'static'
 	return gameMap
+}
+
+export function convertTiledPropertiesToMap(properties) {
+	let map = {}
+	if (properties) properties.forEach(p => (map[p.name] = p.value))
+	return map
 }
 
 /**
@@ -80,10 +88,7 @@ export class GameMap {
 
 	createActorFromObject(object) {
 		const { gid, x, y, properties } = object
-		let propertiesMap = {}
-		for (let property of properties) {
-			propertiesMap[property.name] = property.value
-		}
+		let propertiesMap = convertTiledPropertiesToMap(properties)
 		if (propertiesMap.entity_type === undefined) {
 			console.error(`No entity type given in propertiesMap for object ${object}`)
 			return
@@ -91,7 +96,9 @@ export class GameMap {
 		const { entity_type } = propertiesMap
 		let nx = x / 32
 		let ny = y / 32 - 1 // for some reason, TILED objects y position are 1-indexed..?
-		let entity = propertiesMap.item ? createItem(entity_type, nx, ny, gid - 1) : createActor(entity_type, nx, ny, gid - 1)
+		let entity = propertiesMap.item
+			? createItem(entity_type, nx, ny, gid - 1, propertiesMap)
+			: createActor(entity_type, nx, ny, gid - 1)
 		if (propertiesMap.item) entity.inInventory = false
 		if (propertiesMap.items !== undefined) {
 			let items = propertiesMap.items.split(',').map(i => createItem(i.trim(), nx, ny))
@@ -127,8 +134,7 @@ export class GameMap {
 	processObjectGroupLayer(layer) {
 		// for each object, there is one entity to add to the map
 		for (let object of layer.objects) {
-			let objectProperties = {}
-			if (object.properties) object.properties.forEach(p => (objectProperties[p.name] = p.value))
+			let objectProperties = convertTiledPropertiesToMap(object.properties)
 			if (objectProperties.entity_type && objectProperties.entity_type === 'PLAYER') {
 				this.playerLocation = [object.x / 32, object.y / 32 - 1] // for some reason, TILED objects y position are 1-indexed..?
 			} else {

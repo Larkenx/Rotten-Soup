@@ -20245,6 +20245,11 @@
                  "name":"blocked",
                  "type":"bool",
                  "value":true
+                }, 
+                {
+                 "name":"description",
+                 "type":"string",
+                 "value":"coffin"
                 }]
         }, 
         {
@@ -21542,7 +21547,7 @@
                 {
                  "name":"description",
                  "type":"string",
-                 "value":"bones"
+                 "value":"coffin"
                 }]
         }, 
         {
@@ -21556,7 +21561,7 @@
                 {
                  "name":"description",
                  "type":"string",
-                 "value":"bones"
+                 "value":"coffin"
                 }]
         }, 
         {
@@ -22854,7 +22859,7 @@
                 {
                  "name":"description",
                  "type":"string",
-                 "value":"bones"
+                 "value":"coffin"
                 }]
         }, 
         {
@@ -22868,7 +22873,7 @@
                 {
                  "name":"description",
                  "type":"string",
-                 "value":"bones"
+                 "value":"coffin"
                 }]
         }, 
         {
@@ -24109,18 +24114,28 @@
          "id":5614,
          "properties":[
                 {
+                 "name":"blocked",
+                 "type":"bool",
+                 "value":true
+                }, 
+                {
                  "name":"description",
                  "type":"string",
-                 "value":"carpet"
+                 "value":"coffin"
                 }]
         }, 
         {
          "id":5615,
          "properties":[
                 {
+                 "name":"blocked",
+                 "type":"bool",
+                 "value":true
+                }, 
+                {
                  "name":"description",
                  "type":"string",
-                 "value":"carpet"
+                 "value":"coffin"
                 }]
         }, 
         {
@@ -25313,18 +25328,28 @@
          "id":5734,
          "properties":[
                 {
+                 "name":"blocked",
+                 "type":"bool",
+                 "value":true
+                }, 
+                {
                  "name":"description",
                  "type":"string",
-                 "value":"carpet"
+                 "value":"pedestal"
                 }]
         }, 
         {
          "id":5735,
          "properties":[
                 {
+                 "name":"blocked",
+                 "type":"bool",
+                 "value":true
+                }, 
+                {
                  "name":"description",
                  "type":"string",
-                 "value":"carpet"
+                 "value":"coffin"
                 }]
         }, 
         {
@@ -84794,6 +84819,34 @@
                  "name":"bg",
                  "type":"string",
                  "value":"#00cc33"
+                }]
+        }, 
+        {
+         "id":10200,
+         "properties":[
+                {
+                 "name":"animated",
+                 "type":"bool",
+                 "value":true
+                }, 
+                {
+                 "name":"animated_id",
+                 "type":"int",
+                 "value":10201
+                }]
+        }, 
+        {
+         "id":10202,
+         "properties":[
+                {
+                 "name":"animated",
+                 "type":"bool",
+                 "value":true
+                }, 
+                {
+                 "name":"animated_id",
+                 "type":"int",
+                 "value":10203
                 }]
         }, 
         {

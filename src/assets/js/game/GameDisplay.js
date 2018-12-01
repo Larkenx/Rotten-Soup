@@ -10,6 +10,8 @@ import { Game } from '#/Game.js'
 import Item from '#/entities/items/Item.js'
 import * as PIXI from 'pixi.js'
 
+PIXI.settings.SCALE_MODE = PIXI.SCALE_MODES.NEAREST
+
 export default class GameDisplay {
 	constructor(width, height) {
 		this.width = width
@@ -19,11 +21,10 @@ export default class GameDisplay {
 			// forceCanvas: true,
 			width: this.width,
 			height: this.height,
-			antialias: true,
+			antialias: false,
 			transparent: true,
 			powerPreference: 'high-performance'
 		})
-		this.app.stage.scale.x = this.app.stage.scale.y = 0.625
 		this.staticBackground = null
 		this.animatedBackground = null
 		this.FOVBackground = null
@@ -35,20 +36,13 @@ export default class GameDisplay {
 		this.objectTemplates = null
 		this.tilesetMapping = {}
 		this.spriteBox = [] // Game.width * Game.height sprites to overlay screen for FOV
+		this.rescale(1.25)
 	}
 
-	resize(scaleRatio = null) {
-		let smallerScreen = window.innerHeight <= 800 || window.innerWidth <= 1400
-		let newWidth = smallerScreen ? 800 : 1024
-		let newHeight = smallerScreen ? 500 : 640
-		let scale = smallerScreen ? 0.72 : 1.0
-		if (scaleRatio !== null) scale = scaleRatio
-		if (this.width !== newWidth || this.height !== newHeight || this.scale !== scale) {
-			this.app.renderer.resize(newWidth, newHeight)
-			this.app.stage.scale.x = this.app.stage.scale.y = scale
-			this.scale = scale
-			this.width = newWidth
-			this.height = newHeight
+	rescale(ratio) {
+		let newTileSize = this.tileSize * ratio
+		if (newTileSize % 2 === 0) {
+			this.app.stage.scale.x = this.app.stage.scale.y = this.scale = ratio
 		}
 	}
 
@@ -156,7 +150,7 @@ export default class GameDisplay {
 		this.background.addChild(this.staticBackground)
 		this.background.addChild(this.animatedBackground)
 		stage.addChild(this.background)
-		let viewPort = { width: this.width / this.tileSize, height: this.height / this.tileSize }
+		let viewPort = { width: this.width / (this.tileSize * this.scale), height: this.height / (this.tileSize * this.scale) }
 		let camera = {
 			// camera x,y resides in the upper left corner
 			x: Game.player.x - ~~(viewPort.width / 2),
@@ -247,8 +241,8 @@ export default class GameDisplay {
 		// Center of the camera should not be offset by the game's map width or height,
 		// but by the view / canvas width & height
 		let viewPort = {
-			width: this.width / this.tileSize,
-			height: this.height / this.tileSize
+			width: this.width / (this.tileSize * this.scale),
+			height: this.height / (this.tileSize * this.scale)
 		}
 		let camera = {
 			// camera x,y resides in the upper left corner
@@ -290,6 +284,7 @@ export default class GameDisplay {
 						// tile is not directly visible
 						this.spriteBox[y][x].visible = true
 						if (Game.map.seen_tiles[x + ',' + y]) {
+							let maxLightingFallOffDistance = Game.player.cb.range + 4
 							// we can do some special transparency to make tiles closest to visible tiles brighter, giving some illusion of
 							// less & less vision as you go farther back
 							let visible = (...s) => s.some(c => Game.map.visible_tiles[c])
@@ -313,7 +308,8 @@ export default class GameDisplay {
 							//     `${x - 2},${y + 2}`,
 							//     `${x + 2},${y - 2}`
 							// )
-							this.spriteBox[y][x].alpha = lighter1 ? 0.5 : 0.7
+							// this.spriteBox[y][x].alpha = lighter1 ? 0.5 : 0.7
+							this.spriteBox[y][x].alpha = 0.7
 						} else {
 							this.spriteBox[y][x].alpha = 1
 						}
@@ -398,7 +394,7 @@ export default class GameDisplay {
 		}
 	}
 
-	assignSprite(actor, belowPlayer = false, index = 1) {
+	assignSprite(actor, belowActor = false, index = 1) {
 		let { x, y, id } = actor
 		let props = this.tileset.tileproperties[actor.id]
 		// if (actor.sprite === null || actor.sprite === undefined) {
@@ -414,13 +410,13 @@ export default class GameDisplay {
 			sprite.animationSpeed = 0.065
 			let randomInterval = ~~(Math.random() * 1000)
 			setTimeout(() => sprite.play(), randomInterval)
-			if (belowPlayer) this.background.addChildAt(sprite, index)
+			if (belowActor) this.background.addChildAt(sprite, index)
 			else this.background.addChild(sprite)
 			sprite.position.set(actor.x * this.tileSize, actor.y * this.tileSize)
 		} else {
 			let sprite = new PIXI.Sprite(this.getTexture(actor.id))
 			actor.setSprite(sprite)
-			if (belowPlayer) this.background.addChildAt(sprite, 1)
+			if (belowActor) this.background.addChildAt(sprite, 1)
 			else this.background.addChild(sprite)
 			sprite.position.set(actor.x * this.tileSize, actor.y * this.tileSize)
 		}

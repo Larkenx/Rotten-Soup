@@ -264,7 +264,6 @@ export function dungeonFromTheme(width, height, theme, mapGenerator, options, ha
 	const { tint, type, mobDistribution, dropTable, floorType, wallType, doors } = theme
 	const walls = wallTextures[wallType]
 	const floors = floorTextures[floorType]
-	console.log(walls, floors)
 	// Generate ROT map and store empty tiles in hashm ap
 	let createdLadders = 0
 	let freeCells = {}

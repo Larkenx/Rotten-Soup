@@ -14,6 +14,7 @@ export default class Door extends Entity {
 			visible: false,
 			blocked: true
 		})
+		this.openable = true
 		this.closed = true
 	}
 

@@ -43,7 +43,7 @@ export let Game = {
 	engine: null,
 	loaded: false,
 	levels: {},
-	currentLevel: { name: 'Mulberry Town', depth: 0 },
+	currentLevel: { name: 'Loot Goblin Lair', depth: 0 },
 	map: null,
 	messageHistory: [],
 	tempMessages: [],
@@ -80,6 +80,7 @@ export let Game = {
 			this.levels['Mulberry Forest'] = createMapFromJSON(resources['mulberryForest'].data, 'Mulberry Forest')
 			this.levels['Mulberry Graveyard'] = createMapFromJSON(resources['mulberryGraveyard'].data, 'Mulberry Graveyard')
 			this.levels['Lich Lair'] = createMapFromJSON(resources['lichLair'].data, 'Lich Lair')
+			this.levels['Loot Goblin Lair'] = createMapFromJSON(resources['lootGoblinLair'].data, 'Loot Goblin Lair')
 			this.map = this.levels[this.currentLevel.name]
 			this.width = this.map.width < this.displayOptions.width ? this.map.width : this.displayOptions.width
 			this.height = this.map.height < this.displayOptions.height ? this.map.height : this.displayOptions.height
@@ -95,11 +96,11 @@ export let Game = {
 			}
 			this.engine.start()
 			this.renderMap()
-			this.changeLevels('Mulberry Dungeon', true)
-			Game.map.revealed = true
-			this.player.placeAt(0, 0)
+			// this.changeLevels('Mulberry Forest', true)
+			// Game.map.revealed = true
+			// this.player.placeAt(0, 0)
 			// this.display.app.stage.scale.x = this.display.app.stage.scale.y = 0.625
-			this.renderMap()
+			// this.renderMap()
 		}
 		let { width, height } = options
 		this.display = new GameDisplay(width, height)
@@ -130,12 +131,16 @@ export let Game = {
 		this.scheduler.add(this.player, true) // Add the player to the scheduler
 		this.scheduler.add(this.display, true)
 		let actors = this.map.getActors()
-		for (let i = 0; i < actors.length; i++) {
+		for (let actor of actors) {
 			// Some 'actor' objects do not take turns, such as ladders / items
-			if (actors[i] !== this.player && actors[i] instanceof Actor) {
-				this.scheduler.add(actors[i], true)
+			if (actor !== this.player && actor instanceof Actor) {
+				this.scheduler.add(actor, true)
+				// if the actor is goal driven, clear their current goals
+				if (actor.subscribeToEventStream) actor.clearGoals()
 			}
 		}
+		// emit a new spawned event when each actor gets loaded in
+		actors.forEach(actor => this.eventStream.emit('EntitySpawnedEvent', { entity: actor }))
 		this.engine = new ROT.Engine(this.scheduler) // Create new engine with the newly created scheduler
 	},
 

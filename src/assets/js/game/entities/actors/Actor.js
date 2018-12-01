@@ -57,7 +57,7 @@ export class Actor extends Entity {
 	placeEntityBelow(entity) {
 		if (entity instanceof Item) {
 			entity.placeAt(this.x, this.y)
-			Game.display.assignSprite(item)
+			Game.display.assignSprite(entity)
 		} else {
 			Game.map.data[this.y][this.x].actors.push(entity)
 		}
@@ -107,7 +107,8 @@ export class Actor extends Entity {
 				if (actor instanceof Door) {
 					actor.react()
 					if (actor.closed === true) return true
-				} else if (actor instanceof Chest) {
+				} else if (actor instanceof Chest && this.canLoot) {
+					actor.react(this)
 					return false
 				}
 			}
@@ -371,6 +372,12 @@ export class Actor extends Entity {
 		}
 	}
 
+	removeZeroQuantityItems() {
+		this.inventory = this.inventory.filter(i => {
+			return !i.hasOwnProperty('quantity') || i.quantity > 0
+		})
+	}
+
 	addToInventory(newItem) {
 		if ('quantity' in newItem) {
 			// some items change textures on quantity changes (gold pieces)
@@ -411,5 +418,26 @@ export class Actor extends Entity {
 		item.placeAt(this.x, this.y)
 		Game.display.assignSprite(item, true, 2)
 		this.removeFromInventory(item)
+	}
+
+	pickup() {
+		let ctile = Game.map.data[this.y][this.x]
+		let items = ctile.actors.filter(el => {
+			return el instanceof Item
+		})
+		if (items.length > 0) Game.eventStream.emit('LootPickedUpEvent', { items, looter: this })
+		if (items.length === 1) {
+			Game.display.clearSprite(items[0])
+			this.addToInventory(items[0])
+			ctile.removeActor(items[0])
+		} else if (items.length > 1) {
+			let itemTypes = []
+			for (let item of items) {
+				itemTypes.push(item.type.toLowerCase())
+				Game.display.clearSprite(item)
+				this.addToInventory(item)
+				ctile.removeActor(item)
+			}
+		}
 	}
 }

@@ -31,6 +31,11 @@ export default function loadResources(callbacks) {
 		name: 'lichLair'
 	}
 
+	const lootGoblinLair = {
+		url: 'static/maps/lootGoblinLair.json',
+		name: 'lootGoblinLair'
+	}
+
 	const prefabs = []
 	for (let i = 1; i <= 35; i++) {
 		prefabs.push({
@@ -46,6 +51,7 @@ export default function loadResources(callbacks) {
 		.add(mulberryForest)
 		.add(mulberryGraveyard)
 		.add(lichLair)
+		.add(lootGoblinLair)
 		.add(prefabs)
 		.load((loader, resources) => {
 			for (let cb of callbacks) cb(resources)

@@ -12,7 +12,7 @@ export function generatePrefabs(resources) {
 				? prefabHistogram[`${p.width},${p.height}`]++
 				: (prefabHistogram[`${p.width},${p.height}`] = 1)
 	)
-	console.table(prefabHistogram)
+	// console.table(prefabHistogram)
 }
 
 export class Prefab {

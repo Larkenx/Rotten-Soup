@@ -41,6 +41,7 @@ export default class Player extends Actor {
 			blocked: true,
 			leveled_up: true,
 			mouseEnabled: false,
+			canLoot: true,
 			cb: {
 				/* stat caps */
 				maxhp: 50,
@@ -120,7 +121,7 @@ export default class Player extends Actor {
 			[ROT.VK_PERIOD]: 'rest',
 			[ROT.VK_X]: 'examine'
 		}
-		this.path = new ROT.Path.AStar(this.x, this.y, pathfinding)
+		this.recalculatePath()
 		this.nearbyEnemies = []
 		this.currentLevel = Game.currentLevel
 		// Inventory is an array of objects that contain items and an action that can be done with that item.
@@ -213,7 +214,7 @@ export default class Player extends Actor {
 
 	act() {
 		super.act()
-		this.path = new ROT.Path.AStar(this.x, this.y, pathfinding)
+		this.recalculatePath()
 		this.nearbyEnemies = Game.getNearbyEnemies()
 		this.currentLevel = Game.currentLevel
 		Game.engine.lock()
@@ -844,6 +845,7 @@ export default class Player extends Actor {
 		let tileItems = ctile.actors.filter(el => {
 			return el instanceof Item
 		})
+		if (tileItems.length > 0) Game.eventStream.emit('LootPickedUpEvent', { items: tileItems, looter: this })
 		if (tileItems.length === 1) {
 			Game.log(`You picked up ${addPrefix(tileItems[0].type.toLowerCase())}.`, 'information')
 			Game.display.clearSprite(tileItems[0])

@@ -1,5 +1,6 @@
 import { Game } from '#/Game.js'
-import Actor from '#/entities/actors/Actor.js'
+import { Actor } from '#/entities/actors/Actor.js'
+import EventHandler from '#/utils/EventHandler.js'
 import { DoNothingGoal, RandomMovementGoal } from '#/utils/Goals.js'
 /* 
     Inspired by: https://youtu.be/4uxN5GqXcaA (Caves of Qud goal driven AI), 
@@ -9,13 +10,18 @@ import { DoNothingGoal, RandomMovementGoal } from '#/utils/Goals.js'
 export default class GoalBasedAI extends Actor {
 	constructor(x, y, options) {
 		super(x, y, options)
+		this.goalHistory = []
 		this.goals = []
 		this.eventHandler = new EventHandler(Game.eventStream)
-		options.events.forEach(({ topic, fn }) => this.eventHandler.on(topic, fn))
+		this.subscribeToEventStream()
+	}
+
+	subscribeToEventStream() {
+		this.events.forEach(({ topic, fn }) => this.eventHandler.on(topic, fn))
 	}
 
 	addGoal(goal) {
-		this.goals.unshift(goal)
+		if (goal !== null) this.goals.unshift(goal)
 	}
 
 	/* every entity must have an idle goal defined */
@@ -27,7 +33,9 @@ export default class GoalBasedAI extends Actor {
 		}
 	}
 
+	// goals are cleared whenever an actor is scheduled back into the game (level changes)
 	clearGoals() {
+		this.goalHistory = [...this.goalHistory, ...this.goals]
 		this.goals = []
 	}
 
@@ -39,6 +47,7 @@ export default class GoalBasedAI extends Actor {
 	act() {
 		super.act()
 		Game.engine.lock()
+		// console.log(this, `${this.name} is taking a turn.`, this.goals)
 		this.performGoal()
 		Game.engine.unlock()
 	}
