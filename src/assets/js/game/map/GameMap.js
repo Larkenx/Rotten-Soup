@@ -63,6 +63,10 @@ export class GameMap {
 		return this.data[y][x]
 	}
 
+	inbounds(x, y) {
+		return !(x < 0 || x >= this.width || y < 0 || y >= this.height)
+	}
+
 	createFromJSON({ layers }) {
 		let itemLayers = []
 		let portalLayers = []
@@ -181,4 +185,13 @@ export class GameMap {
 			return row.map(tile => fn(tile))
 		})
 	}
+
+	forEachTile(fn) {
+		return this.data.forEach(row => {
+			return row.forEach(tile => fn(tile))
+		})
+	}
+
 }
+
+// Game.inbounds(x, y) && Game.getTile(x, y).blocked()

@@ -29974,12 +29974,12 @@
                 {
                  "name":"blocked",
                  "type":"bool",
-                 "value":false
+                 "value":true
                 }, 
                 {
                  "name":"blocks_vision",
                  "type":"bool",
-                 "value":false
+                 "value":true
                 }]
         }, 
         {
@@ -30232,13 +30232,13 @@
                 }, 
                 {
                  "name":"blocked",
-                 "type":"string",
-                 "value":"true"
+                 "type":"bool",
+                 "value":true
                 }, 
                 {
                  "name":"blocks_vision",
-                 "type":"string",
-                 "value":"true"
+                 "type":"bool",
+                 "value":true
                 }]
         }, 
         {

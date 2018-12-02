@@ -2,7 +2,7 @@ import ROT from 'rot-js'
 import { getRandomInt, within, configurablePathfinding } from '#/utils/HelperFunctions.js'
 
 export const DoNothingGoal = () => {
-	return actor => {}
+	return actor => { }
 }
 
 /* Event Filters */
@@ -102,13 +102,10 @@ export const AStarPathingGoal = data => {
 	}
 }
 
-export function createFovDijkstraMap(notSeenTiles) {
-	let frontier = []
-	frontier.unshift()
-}
+
 
 export const AutoexploreGoal = data => {
-	return actor => {}
+	return actor => { }
 }
 
 /* Miscellaneous */

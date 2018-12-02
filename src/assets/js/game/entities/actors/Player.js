@@ -281,7 +281,7 @@ export default class Player extends Actor {
 					* NPC Dialogue
 					* ...
 		 */
-		if (evt.getModifierState('Control')) return
+		if (evt.getModifierState('Control') || evt.metaKey) return
 
 		evt.preventDefault()
 
@@ -560,9 +560,9 @@ export default class Player extends Actor {
 		}
 	}
 
-	handleHelpScreenEvent(evt) {}
+	handleHelpScreenEvent(evt) { }
 
-	resetSelectedItem() {}
+	resetSelectedItem() { }
 
 	initializeSelectedItem() {
 		const initialSelectedInventoryItemSlot = { contextMenuOpen: false, index: null, item: null }

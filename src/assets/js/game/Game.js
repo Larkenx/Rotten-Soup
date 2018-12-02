@@ -156,7 +156,7 @@ export let Game = {
 	},
 
 	inbounds(x, y) {
-		return !(x < 0 || x >= this.map.width || y < 0 || y >= this.map.height)
+		return this.map.inbounds(x, y)
 	},
 
 	inViewport(x, y) {
@@ -173,7 +173,9 @@ export let Game = {
 			lastDungeon: false,
 			fromPortal: origin,
 			toPortal: dungeonName + 2,
-			level: 1
+			level: 1,
+			addPrefabs: true,
+			addEntities: true
 		})
 		for (let depth = 2; depth < numberOfFloors; depth++) {
 			let options = {
@@ -181,7 +183,9 @@ export let Game = {
 				lastDungeon: false,
 				fromPortal: dungeonName + (depth - 1),
 				toPortal: dungeonName + (depth + 1),
-				level: depth
+				level: depth,
+				addPrefabs: true,
+				addEntities: true
 			}
 			this.levels[dungeonName + depth] = randomDungeon(64, 40, options)
 		}
@@ -190,7 +194,9 @@ export let Game = {
 			lastDungeon: true,
 			fromPortal: dungeonName + (numberOfFloors - 1),
 			toPortal: origin,
-			level: numberOfFloors
+			level: numberOfFloors,
+			addPrefabs: true,
+			addEntities: true
 		})
 	},
 
@@ -472,7 +478,7 @@ export let Game = {
 	},
 
 	getTile(x, y) {
-		return this.map.data[y][x]
+		return this.map.getTile(x, y)
 	},
 
 	printPlayerTile() {
