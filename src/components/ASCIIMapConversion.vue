@@ -1,15 +1,15 @@
 <template>
   <v-container>
-    <v-card class="pa-2">
-      <v-layout justify-center>
-        <code style="background-color: black; color: white; line-height: 1;">{{ dungeon}}</code>
-      </v-layout>
-      <v-card-actions>
+    <!-- <v-card class="pa-2"> -->
+    <v-layout justify-center>
+      <code style="background-color: black; color: white; line-height: 1; font-size: 15px;">{{ dungeon}}</code>
+    </v-layout>
+    <!-- <v-card-actions>
         <v-spacer/>
         <v-text-field class="mr-2" style="max-width: 40px" label="Floor" v-model="level"></v-text-field>
         <v-btn flat color="yellow darken-4" @click.native="createDungeon()">Generate</v-btn>
-      </v-card-actions>
-    </v-card>
+      </v-card-actions> -->
+    <!-- </v-card> -->
   </v-container>
 </template>
 

@@ -196,7 +196,6 @@ export function computeBitmaskWalls(x, y, freeCells) {
 // frontier.put(next)
 // distance[next] = 1 + distance[current]
 
-
 export function neighbors({ x, y }, predicate) {
 	let coords = []
 	for (let dir of ROT.DIRS[8]) {
@@ -211,7 +210,7 @@ export function inboundsOrBlocked(x, y) {
 }
 
 export function key({ x, y }) {
-	return x + "," + y
+	return x + ',' + y
 }
 
 export function val(coord) {
@@ -240,7 +239,6 @@ export function createFovDijkstraMap(start, notVisibleTiles, blockedPredicate = 
 		}
 	}
 	return distanceTransform
-
 }
 
 // export function createFovDijkstraMap({ x, y }, visitedTiles, neighborsPredicate = inboundsOrBlocked) {
@@ -279,11 +277,11 @@ export function stringifyDijkstraMap(map, start, width, height) {
 			if (key({ x, y }) in map) {
 				let distance = map[key({ x, y })]
 				character = distance <= 36 ? distance.toString(36) : '!'
+				if (start.x === x && start.y === y) character = '@'
+			} else {
+				character = Game.inbounds(x, y) && Game.getTile(x, y).blocked() ? ' ' : '.'
 			}
-			if (start.x === x && start.y === y)
-				characterMap[y].push("@")
-			else
-				characterMap[y].push(character)
+			characterMap[y].push(character)
 		}
 	}
 	return characterMap

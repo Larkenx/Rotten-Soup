@@ -77,32 +77,31 @@ export default class Player extends Actor {
 			keyTimer: null
 		})
 		this.keyMap = {
-			// Arrow Key movement
-
-			39: 2,
-			37: 6,
-			38: 0,
-			40: 4,
-			// Num Pad Movement
-			104: 0,
-			105: 1,
-			102: 2,
-			99: 3,
-			98: 4,
-			97: 5,
-			100: 6,
-			103: 7,
-			// Rest using '5' in numpad
-			101: 'rest',
+			// Arrow Pad
+			[ROT.VK_RIGHT]: 2,
+			[ROT.VK_LEFT]: 6,
+			[ROT.VK_UP]: 0,
+			[ROT.VK_DOWN]: 4,
+			// Numpad Movement
+			[ROT.VK_NUMPAD8]: 0,
+			[ROT.VK_NUMPAD9]: 1,
+			[ROT.VK_NUMPAD6]: 2,
+			[ROT.VK_NUMPAD3]: 3,
+			[ROT.VK_NUMPAD2]: 4,
+			[ROT.VK_NUMPAD1]: 5,
+			[ROT.VK_NUMPAD4]: 6,
+			[ROT.VK_NUMPAD7]: 7,
 			// vi movement
-			75: 0,
-			85: 1,
-			76: 2,
-			78: 3,
-			74: 4,
-			66: 5,
-			72: 6,
-			89: 7,
+			[ROT.VK_H]: 6,
+			[ROT.VK_U]: 1,
+			[ROT.VK_L]: 2,
+			[ROT.VK_N]: 3,
+			[ROT.VK_J]: 4,
+			[ROT.VK_B]: 5,
+			[ROT.VK_K]: 0,
+			[ROT.VK_Y]: 7,
+			// Rest using '5' in numpad
+			[ROT.VK_NUMPAD5]: 'rest',
 			// Fire a weapon
 			[ROT.VK_F]: 'fire',
 			// Cast a spell
