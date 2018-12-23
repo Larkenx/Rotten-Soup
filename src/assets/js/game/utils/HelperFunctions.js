@@ -218,6 +218,11 @@ export function val(coord) {
 	return { x, y }
 }
 
+export function unexploredTiles(actor) {
+	let allWalkableTiles = Game.map.getTiles().filter(t => !t.blocked())
+	return allWalkableTiles.filter(t => !actor.seenTiles.includes(t))
+}
+
 export function createFovDijkstraMap(start, notVisibleTiles, blockedPredicate = inboundsOrBlocked) {
 	let dijkstraMap = new ROT.Path.Dijkstra(start.x, start.y, blockedPredicate)
 	let distanceTransform = {}

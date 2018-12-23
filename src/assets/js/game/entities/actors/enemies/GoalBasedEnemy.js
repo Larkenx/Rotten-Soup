@@ -14,6 +14,7 @@ import {
 } from '#/utils/Goals.js'
 import { getRandomInt } from '../../../utils/HelperFunctions'
 import { createItem } from '#/utils/EntityFactory.js'
+import { AutoexploreGoal } from '../../../utils/Goals';
 export default class GoalBasedEnemy extends GoalBasedAI {
 	constructor(x, y, options) {
 		super(x, y, options)
@@ -58,7 +59,7 @@ export class LootGoblin extends GoalBasedEnemy {
 				},
 				{
 					topic: 'EntitySpawnedEvent',
-					fn: e => this.addGoal(EntityFilter(e, [Chest], AStarPathingGoal))
+					fn: e => this.addGoal(EntityFilter(e, [Chest], AutoexploreGoal))
 				}
 			]
 		})

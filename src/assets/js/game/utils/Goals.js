@@ -1,5 +1,6 @@
 import ROT from 'rot-js'
-import { getRandomInt, within, configurablePathfinding } from '#/utils/HelperFunctions.js'
+import { getRandomInt, within, configurablePathfinding, createFovDijkstraMap, key } from '#/utils/HelperFunctions.js'
+import { unexploredTiles } from './HelperFunctions';
 
 export const DoNothingGoal = () => {
 	return actor => { }
@@ -102,10 +103,27 @@ export const AStarPathingGoal = data => {
 	}
 }
 
-
-
 export const AutoexploreGoal = data => {
-	return actor => { }
+	return actor => {
+		let toVisit = unexploredTiles(actor)
+		if (toVisit.length > 0) {
+			let distances = createFovDijkstraMap(actor, toVisit)
+			const possiblePositions = []
+			ROT.DIRS[8].forEach(([dx, dy]) => {
+				if (key(actor.x + dx, actor.y + dy) in distances) possiblePositions.push([actor.x + dx, actor.y + dy])
+			})
+			const [dx, dy] = possiblePositions.sort().reduce(
+				(a, b) => {
+					const [ax, ay] = a
+					const [bx, by] = b
+					return distances[key(ax, ay)] <= distances[key(bx, by)] ? a : b
+				},
+				[actor.x, actor.y]
+			)
+			actor.tryMove(dx, dy)
+			actor.addGoal(AutoexploreGoal(data))
+		}
+	}
 }
 
 /* Miscellaneous */

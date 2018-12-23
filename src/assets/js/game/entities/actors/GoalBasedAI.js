@@ -2,6 +2,8 @@ import { Game } from '#/Game.js'
 import { Actor } from '#/entities/actors/Actor.js'
 import EventHandler from '#/utils/EventHandler.js'
 import { DoNothingGoal, RandomMovementGoal } from '#/utils/Goals.js'
+import { getVisibleTiles } from '#/utils/HelperFunctions'
+
 /* 
     Inspired by: https://youtu.be/4uxN5GqXcaA (Caves of Qud goal driven AI), 
     this class will host some methods and instantiation to make way for adding dynamic goals for an AI
@@ -10,6 +12,7 @@ import { DoNothingGoal, RandomMovementGoal } from '#/utils/Goals.js'
 export default class GoalBasedAI extends Actor {
 	constructor(x, y, options) {
 		super(x, y, options)
+		this.seenTiles = []
 		this.goalHistory = []
 		this.goals = []
 		this.eventHandler = new EventHandler(Game.eventStream)
@@ -47,7 +50,13 @@ export default class GoalBasedAI extends Actor {
 	act() {
 		super.act()
 		Game.engine.lock()
-		// console.log(this, `${this.name} is taking a turn.`, this.goals)
+		// Update our list of seen tiles
+		let visibleTiles = getVisibleTiles(this)
+		for (let t of visibleTiles) {
+			if (!this.seenTiles.includes(t)) {
+				this.seenTiles.push(t)
+			}
+		}
 		this.performGoal()
 		Game.engine.unlock()
 	}
