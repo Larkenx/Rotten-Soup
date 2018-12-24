@@ -43,7 +43,7 @@ export default function loadResources(callbacks) {
 			url: `maps/prefabs/ruins-${i}.json`
 		})
 	}
-
+	PIXI.loader.reset()
 	PIXI.loader
 		.add(spritesheet)
 		.add(textureAtlas)

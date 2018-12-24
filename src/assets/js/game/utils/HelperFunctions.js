@@ -209,13 +209,11 @@ export function inboundsOrBlocked(x, y) {
 	return Game.inbounds(x, y) && Game.getTile(x, y).blocked()
 }
 
-export function key({ x, y }) {
+export const key = (x, y) => {
 	return x + ',' + y
 }
-
-export function val(coord) {
-	let [x, y] = coord.split(',')
-	return { x, y }
+export const unkey = k => {
+	return k.split(',').map(s => parseInt(s))
 }
 
 export function unexploredTiles(actor) {
@@ -224,11 +222,11 @@ export function unexploredTiles(actor) {
 }
 
 export function createFovDijkstraMap(start, notVisibleTiles, blockedPredicate = inboundsOrBlocked) {
-	let dijkstraMap = new ROT.Path.Dijkstra(start.x, start.y, blockedPredicate)
+	let dijkstraMap = new ROT.Path.Dijkstra(start.x, start.y, (x, y) => !blockedPredicate(x, y))
 	let distanceTransform = {}
-	for (let coord of Object.keys(notVisibleTiles)) {
+	for (let { x, y } of notVisibleTiles) {
+		let coord = key(x, y)
 		distanceTransform[coord] = 0
-		let { x, y } = val(coord)
 		let steps = []
 		dijkstraMap.compute(x, y, (sx, sy) => {
 			steps.push({ x: sx, y: sy })
@@ -236,13 +234,14 @@ export function createFovDijkstraMap(start, notVisibleTiles, blockedPredicate = 
 		let distance = 0
 		for (let step of steps) {
 			distance += 1
-			let stepKey = key(step)
+			let stepKey = key(step.x, step.y)
 			if (stepKey in distanceTransform && distance > distanceTransform[stepKey]) {
 				distance = distanceTransform[stepKey]
 			}
 			distanceTransform[stepKey] = distance
 		}
 	}
+	distanceTransform[key(start.x, start.y)] = Number.MAX_VALUE
 	return distanceTransform
 }
 
