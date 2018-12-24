@@ -44,7 +44,8 @@ export default class GoalBasedAI extends Actor {
 
 	performGoal() {
 		if (this.goals.length === 0) this.addIdleGoal()
-		this.goals.shift()(this)
+		let goal = this.goals.shift()
+		goal(this)
 	}
 
 	act() {

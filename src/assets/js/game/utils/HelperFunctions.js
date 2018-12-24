@@ -209,6 +209,10 @@ export function inboundsOrBlocked(x, y) {
 	return Game.inbounds(x, y) && Game.getTile(x, y).blocked()
 }
 
+export function inboundsOrBlockedByAnything(x, y) {
+	return Game.inbounds(x, y) && Game.getTile(x, y).blockedByAnything()
+}
+
 export const key = (x, y) => {
 	return x + ',' + y
 }
@@ -221,7 +225,7 @@ export function unexploredTiles(actor) {
 	return allWalkableTiles.filter(t => !actor.seenTiles.includes(t))
 }
 
-export function createFovDijkstraMap(start, notVisibleTiles, blockedPredicate = inboundsOrBlocked) {
+export function createFovDijkstraMap(start, notVisibleTiles, blockedPredicate = inboundsOrBlockedByAnything) {
 	let dijkstraMap = new ROT.Path.Dijkstra(start.x, start.y, (x, y) => !blockedPredicate(x, y))
 	let distanceTransform = {}
 	for (let { x, y } of notVisibleTiles) {

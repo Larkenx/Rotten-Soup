@@ -83,7 +83,7 @@ export class Actor extends Entity {
 	}
 
 	/* Used to react to the interaction of another actor - to be overwritten */
-	react(actor) {}
+	react(actor) { }
 
 	tryMove(nx, ny) {
 		// returns true if the turn should end here
@@ -132,6 +132,9 @@ export class Actor extends Entity {
 		let { def } = actor.cb
 		let deflectedDamage = getNormalRandomInt(0, def + actor.getDefenceRating() + 1)
 		dmg -= deflectedDamage
+		if (dmg < 0) {
+			dmg = 0
+		}
 
 		let verb,
 			message = ''
@@ -140,7 +143,9 @@ export class Actor extends Entity {
 			verb = attackVerbs[~~(Math.random() * attackVerbs.length)]
 			message = `${addPrefix(this.name).capitalize()} ${verb} ${addPrefix(actor.name)} with ${addPrefix(
 				type.toLowerCase()
-			)} and dealt ${dmg} damage.`
+			)}`
+			let endOfMsg = dmg > 0 ? ` and dealt ${dmg} damage.` : ` but failed to hit.`
+			message += endOfMsg
 		} else {
 			if (dmg > 0) message = `${addPrefix(this.name).capitalize()} attacked ${addPrefix(actor.name)} and dealt ${dmg} damage.`
 			else message = `${addPrefix(this.name).capitalize()} tried to attack ${addPrefix(actor.name)} but failed to hit.`
@@ -240,7 +245,7 @@ export class Actor extends Entity {
 				return
 			}
 			// if we find an enemy on the tile, we damage it and the projectile stops moving
-			let enemies = tile.actors.filter(function(e) {
+			let enemies = tile.actors.filter(function (e) {
 				return e.cb && e.cb.hostile
 			})
 			if (enemies.length > 0) {

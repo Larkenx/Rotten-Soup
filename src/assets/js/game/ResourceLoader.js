@@ -7,7 +7,7 @@ export default function loadResources(callbacks) {
 		name: 'spritesheet'
 	}
 	const textureAtlas = {
-		url: 'tileset/compiled_dawnlike.json',
+		url: 'compiled_dawnlike.json',
 		name: 'textureAtlas'
 	}
 	/* Maps */

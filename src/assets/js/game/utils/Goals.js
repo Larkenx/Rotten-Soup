@@ -81,6 +81,8 @@ export const RandomMovementGoal = () => {
 export const AStarPathingGoal = data => {
 	return actor => {
 		let target = data.entity
+		let stopCondition = data.stopCondition ? data.stopCondition : (...args) => false
+		if (stopCondition(data)) return
 		let configuredPathfinding = configurablePathfinding({
 			excludeOrigin: true,
 			origin: { x: actor.x, y: actor.y },
@@ -95,6 +97,7 @@ export const AStarPathingGoal = data => {
 		if (steps.length >= 1) {
 			let { x, y } = steps[0]
 			actor.tryMove(x, y)
+			if (data.finalAction) data.finalAction()
 		}
 		if (steps.length > 1) {
 			actor.addGoal(AStarPathingGoal(data))
@@ -104,8 +107,9 @@ export const AStarPathingGoal = data => {
 
 export const AutoexploreGoal = data => {
 	return actor => {
-		console.log(`${actor.name} is autoexploring...`)
 		let toVisit = unexploredTiles(actor)
+		let stopCondition = data.stopCondition ? data.stopCondition : (...args) => false
+		if (stopCondition(data)) return
 		if (toVisit.length > 0) {
 			let distances = createFovDijkstraMap(actor, toVisit)
 			const possiblePositions = []
@@ -116,10 +120,16 @@ export const AutoexploreGoal = data => {
 				(a, b) => {
 					const [ax, ay] = a
 					const [bx, by] = b
-					return distances[key(ax, ay)] <= distances[key(bx, by)] ? a : b
+					if (distances[key(ax, ay)] < distances[key(bx, by)]) return a
+					if (distances[key(ax, ay)] > distances[key(bx, by)]) return b
+					return [a, b][getRandomInt(0, 1)]
 				}, [actor.x, actor.y])
-			actor.tryMove(dx, dy)
-			actor.addGoal(AutoexploreGoal(data))
+			if (dx === actor.x && dy === actor.y) {
+				actor.addIdleGoal()
+			} else {
+				actor.tryMove(dx, dy)
+				actor.addGoal(AutoexploreGoal(data))
+			}
 		}
 	}
 }
@@ -129,5 +139,11 @@ export const FindLooterGoal = lootInfo => {
 	return actor => {
 		let { looter } = lootInfo
 		actor.addGoal(AStarPathingGoal({ entity: looter }))
+	}
+}
+
+export const PickupGoal = () => {
+	return actor => {
+		actor.pickup()
 	}
 }

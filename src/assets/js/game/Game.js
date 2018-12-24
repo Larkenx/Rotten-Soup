@@ -43,7 +43,7 @@ export let Game = {
 	engine: null,
 	loaded: false,
 	levels: {},
-	currentLevel: { name: 'Loot Goblin Lair', depth: 0 },
+	currentLevel: { name: 'Mulberry Town', depth: 0 },
 	map: null,
 	messageHistory: [],
 	tempMessages: [],

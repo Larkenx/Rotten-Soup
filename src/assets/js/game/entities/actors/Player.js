@@ -4,8 +4,8 @@
 import ROT from 'rot-js'
 import { Game } from '#/Game.js'
 import { Actor } from '#/entities/actors/Actor.js'
-import { addPrefix, pathfinding } from '#/utils/HelperFunctions.js'
-import Item from '#/entities/items/Item.js'
+
+import { addPrefix, pathfinding, getVisibleTiles } from '#/utils/HelperFunctions.js'
 // Weapons
 import { materialTypes } from '#/utils/Constants.js'
 import { Sword } from '#/entities/items/weapons/Sword.js'
@@ -24,7 +24,10 @@ import { BleedEnchantment } from '#/modifiers/Enchantment.js'
 import Ladder from '#/entities/misc/Ladder.js'
 import { xp_levels } from '#/entities/Entity.js'
 import Gold from '#/entities/items/misc/Gold.js'
+import Chest from '#/entities/misc/Chest.js'
+import Item from '#/entities/items/Item.js'
 import { createItem } from '#/utils/EntityFactory.js'
+import { AutoexploreGoal } from '../../utils/Goals';
 
 export default class Player extends Actor {
 	constructor(x, y, id) {
@@ -118,7 +121,8 @@ export default class Player extends Actor {
 			[ROT.VK_COMMA]: 'pickup',
 			[ROT.VK_G]: 'pickup',
 			[ROT.VK_PERIOD]: 'rest',
-			[ROT.VK_X]: 'examine'
+			[ROT.VK_X]: 'examine',
+			[ROT.VK_TAB]: 'autoexplore'
 		}
 		this.recalculatePath()
 		this.nearbyEnemies = []
@@ -150,6 +154,7 @@ export default class Player extends Actor {
 		this.commandQueue = []
 		this.selectedItemSlot = { item: null, index: null }
 		this.selectedSpellSlot = { spell: null, index: null }
+		this.seenTiles = []
 	}
 
 	swapInventorySlots(origin, target) {
@@ -230,15 +235,23 @@ export default class Player extends Actor {
 			return Game.inbounds(x, y) && Game.getTile(x, y).visible()
 		})
 
+		let visibleTiles = getVisibleTiles(this)
+		for (let t of visibleTiles) {
+			if (!this.seenTiles.includes(t)) {
+				this.seenTiles.push(t)
+			}
+		}
+
 		fov.compute(Game.player.x, Game.player.y, Game.player.cb.range, (x, y, r, visibility) => {
 			Game.map.visible_tiles[x + ',' + y] = true
 		})
 
 		if (this.commandQueue.length > 0) {
 			// perform player commands and unlock
-			let { fn } = this.commandQueue.pop()
-			fn()
-			Game.engine.unlock()
+			setTimeout(() => {
+				this.commandQueue.shift()(this)
+				Game.engine.unlock()
+			}, 150)
 			return
 		}
 
@@ -334,6 +347,17 @@ export default class Player extends Actor {
 				// Game.log('You rest for a turn.', 'player_move')
 			} else if (action === 'pickup' && !shiftPressed) {
 				this.pickup()
+			} else if (action === 'autoexplore') {
+				// stop autoexploring when we find a tile
+				// with a hostile actor or if there's loot
+				this.addGoal(AutoexploreGoal({
+					stopCondition: () => {
+						let visibleTiles = getVisibleTiles(this)
+						return visibleTiles.some(t => t.actors.some(a => a.hostile)) ||
+							visibleTiles.some(t => t.actors.some(a => a instanceof Chest && a.closed)) ||
+							visibleTiles.some(t => t.actors.some(a => a instanceof Item))
+					}
+				}))
 			} else if ((action === 'rest' && shiftPressed) || (action === 'pickup' && shiftPressed) || action === 'interact') {
 				this.climb()
 			} else if (action === 'openInventory') {
@@ -922,5 +946,9 @@ export default class Player extends Actor {
 		// Game.scheduler.remove(Game.player);
 		Game.scheduler.clear()
 		Game.closeGameOverlayScreen()
+	}
+
+	addGoal(goal) {
+		if (goal !== null) this.commandQueue.unshift(goal)
 	}
 }

@@ -2,6 +2,7 @@ import { Game } from '#/Game.js'
 import GoalBasedAI from '#/entities/actors/GoalBasedAI.js'
 import Gold from '#/entities/items/misc/Gold.js'
 import Chest from '#/entities/misc/Chest.js'
+import { getVisibleTiles, getRandomInt } from '#/utils/HelperFunctions'
 import {
 	LootFilter,
 	EntityFilter,
@@ -10,11 +11,10 @@ import {
 	RandomMovementGoal,
 	FindGoldGoal,
 	FindTreasureGoal,
-	AStarPathingGoal
+	AStarPathingGoal,
+	AutoexploreGoal
 } from '#/utils/Goals.js'
-import { getRandomInt } from '../../../utils/HelperFunctions'
 import { createItem } from '#/utils/EntityFactory.js'
-import { AutoexploreGoal } from '../../../utils/Goals';
 export default class GoalBasedEnemy extends GoalBasedAI {
 	constructor(x, y, options) {
 		super(x, y, options)
@@ -53,16 +53,37 @@ export class LootGoblin extends GoalBasedEnemy {
 			},
 			invulnerable: false,
 			events: [
-				{
-					topic: 'LootPickedUpEvent',
-					fn: e => this.addGoal(LootFilter(e, [Gold], FindLooterGoal))
-				},
+				// {
+				// 	topic: 'LootPickedUpEvent',
+				// 	fn: e => this.addGoal(LootFilter(e, [Gold], FindLooterGoal))
+				// },
 				{
 					topic: 'EntitySpawnedEvent',
 					fn: e => this.addGoal(EntityFilter(e, [Chest], AutoexploreGoal))
 				}
 			]
 		})
+		this.interactedEntities = []
+	}
+
+	performGoal() {
+		let visibleTiles = getVisibleTiles(this)
+		const tileHasGoldOrChest = t => {
+			return t.actors.some(a => (a instanceof Chest && a.closed) || a instanceof Gold)
+		}
+		let tilesWithTreasure = visibleTiles.filter(t => !this.interactedEntities.includes(t) && tileHasGoldOrChest(t))
+		if (tilesWithTreasure.length > 0) { // TODO: need to make sure we don't revisit the same target twice
+			let entity = tilesWithTreasure.pop()
+			this.addGoal(AStarPathingGoal(
+				{
+					entity,
+					stopCondition: ({ entity }) => !tileHasGoldOrChest(entity),
+					finalAction: () => this.pickup()
+
+				}))
+			this.interactedEntities.push(entity)
+		}
+		super.performGoal()
 	}
 
 	// interact() {
@@ -79,20 +100,20 @@ export class LootGoblin extends GoalBasedEnemy {
 	tryMove(x, y) {
 		// Whenever a loot goblin moves it has a chance to drop gold
 		super.tryMove(x, y)
-		// if (getRandomInt(0, 10) === 0) {
-		// 	const gold = this.inventory.filter(item => item instanceof Gold && item.quantity >= 3)
-		// 	if (gold.length >= 1) {
-		// 		let quantity = getRandomInt(1, 3)
-		// 		for (let item of this.inventory) {
-		// 			if (item instanceof Gold) {
-		// 				item.quantity -= quantity
-		// 				item.updateQuantity()
-		// 				this.removeZeroQuantityItems()
-		// 				break
-		// 			}
-		// 		}
-		// 		this.placeEntityBelow(createItem('GOLD', this.x, this.y, null, { quantity }))
-		// 	}
-		// }
+		if (getRandomInt(0, 10) === 0) {
+			const gold = this.inventory.filter(item => item instanceof Gold && item.quantity >= 3)
+			if (gold.length >= 1) {
+				let quantity = getRandomInt(1, 3)
+				for (let item of this.inventory) {
+					if (item instanceof Gold) {
+						item.quantity -= quantity
+						item.updateQuantity()
+						this.removeZeroQuantityItems()
+						break
+					}
+				}
+				this.placeEntityBelow(createItem('GOLD', this.x, this.y, null, { quantity }))
+			}
+		}
 	}
 }
