@@ -1,35 +1,39 @@
 <template >
-	<v-container class="pa-0" fill-height>
-		<div class="pa-0" v-show="playerSelected">
-			<div id="root_container">
-				<!-- Game Display -->
-				<div id="game_container" :style="getGameContainerStyling()" />
-				<!-- The game overlay  -->
-				<div id="game_overlay_view" v-show="overlayVisible()" :is="overlayData.component" :style="getGameOverlayStyling()" :positioning="getGameOverlayPositioning()" />
-				<!-- The HUD -->
-				<div id="hud" :style="getHUDStyling()" v-if="playerSelected">
-					<hud />
-				</div>
-			</div>
-			<death-modal v-if="playerSelected"></death-modal>
-			<v-dialog v-model="navigateAwayModalActive" max-width="600px">
-				<v-card>
-					<v-card-text class="text-xs-center">
-						<h2 class="pa-1">Navigating Away</h2>
-					</v-card-text>
-					<v-card-text>
-						If you navigate away, you will lose your progress with this game! Are you sure you want to navigate away?
-					</v-card-text>
-					<v-card-actions>
-						<v-spacer></v-spacer>
-						<v-btn color="yellow darken-4" raised @click.native="navigate(true)">Continue</v-btn>
-						<v-btn color="yellow darken-4" flat @click.native="navigate(false)">Cancel</v-btn>
-					</v-card-actions>
-				</v-card>
-			</v-dialog>
-		</div>
-		<start-menu v-show="!playerSelected" v-on:spriteSelected="loadGame"></start-menu>
-	</v-container>
+  <v-container class="pa-0" fill-height>
+    <div class="pa-0" v-show="playerSelected">
+      <div id="root_container">
+        <!-- Game Display -->
+        <div id="game_container" :style="getGameContainerStyling()"/>
+        <!-- The game overlay  -->
+        <div
+          id="game_overlay_view"
+          v-show="overlayVisible()"
+          :is="overlayData.component"
+          :style="getGameOverlayStyling()"
+          :positioning="getGameOverlayPositioning()"
+        />
+        <!-- The HUD -->
+        <div id="hud" :style="getHUDStyling()" v-if="playerSelected">
+          <hud/>
+        </div>
+      </div>
+      <death-modal v-if="playerSelected"></death-modal>
+      <v-dialog v-model="navigateAwayModalActive" max-width="600px">
+        <v-card>
+          <v-card-text class="text-xs-center">
+            <h2 class="pa-1">Navigating Away</h2>
+          </v-card-text>
+          <v-card-text>If you navigate away, you will lose your progress with this game! Are you sure you want to navigate away?</v-card-text>
+          <v-card-actions>
+            <v-spacer></v-spacer>
+            <v-btn color="yellow darken-4" raised @click.native="navigate(true)">Continue</v-btn>
+            <v-btn color="yellow darken-4" flat @click.native="navigate(false)">Cancel</v-btn>
+          </v-card-actions>
+        </v-card>
+      </v-dialog>
+    </div>
+    <start-menu v-show="!playerSelected" v-on:spriteSelected="loadGame"></start-menu>
+  </v-container>
 </template>
 
 <script>

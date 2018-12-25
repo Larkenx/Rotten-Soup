@@ -25,30 +25,30 @@
 </style>
 
 <template>
-    <v-container fluid grid-list-xl>
-        <v-layout row>
-            <v-flex xs12>
-                <h2>Welcome to Rotten Soup</h2>
-            </v-flex>
-        </v-layout>
-        <v-layout row>
-            <v-flex>
-                <h3>Select your hero by clicking on the character you want to play</h3>
-            </v-flex>
-        </v-layout>
-        <v-layout row wrap>
-            <v-flex style="padding: 10px" xs4 v-for="(sprite, index) in playerSprites" :key="index">
-                <!-- Card representing player class -->
-                <v-card style="padding: 25px">
-                    <!-- Class name and short description  -->
-                    <v-layout row>
-                        <div>
-                            <h3>{{sprite.name}}</h3>
-                            <p>{{sprite.description}}</p>
-                        </div>
-                    </v-layout>
-                    <!--  Class abilities and stats-->
-                    <!-- <v-layout row>
+  <v-container fluid grid-list-xl>
+    <v-layout row>
+      <v-flex xs12>
+        <h2>Welcome to Rotten Soup</h2>
+      </v-flex>
+    </v-layout>
+    <v-layout row>
+      <v-flex>
+        <h3>Select your hero by clicking on the character you want to play</h3>
+      </v-flex>
+    </v-layout>
+    <v-layout row wrap>
+      <v-flex style="padding: 10px" xs4 v-for="(sprite, index) in playerSprites" :key="index">
+        <!-- Card representing player class -->
+        <v-card style="padding: 25px">
+          <!-- Class name and short description  -->
+          <v-layout row>
+            <div>
+              <h3>{{sprite.name}}</h3>
+              <p>{{sprite.description}}</p>
+            </div>
+          </v-layout>
+          <!--  Class abilities and stats-->
+          <!-- <v-layout row>
                         <div>
                             <p>
                                 Abilities
@@ -68,22 +68,24 @@
                                 </v-layout>
                             </v-flex>
                         </div>
-                    </v-layout> -->
-                    <!-- Possible sprites player can choose to play  -->
-                    <v-layout row>
-                        <h5>
-													Characters
-												</h5>
-                    </v-layout>
-                    <v-layout row>
-                        <v-flex class="mr-2 ml-2" xs1 v-for="id in sprite.sprites" :key="id">
-                          <img v-on:click="selectSprite(id)" v-bind:class="{spriteIsSelected : (selectedSprite === id), sprite : (selectedSprite !== id)}" :src="getPlayerSpriteImage(id)" />
-                        </v-flex>
-                    </v-layout>
-                </v-card>
+          </v-layout>-->
+          <!-- Possible sprites player can choose to play  -->
+          <v-layout row>
+            <h5>Characters</h5>
+          </v-layout>
+          <v-layout row>
+            <v-flex class="mr-2 ml-2" xs1 v-for="id in sprite.sprites" :key="id">
+              <img
+                v-on:click="selectSprite(id)"
+                v-bind:class="{spriteIsSelected : (selectedSprite === id), sprite : (selectedSprite !== id)}"
+                :src="getPlayerSpriteImage(id)"
+              >
             </v-flex>
-        </v-layout>
-    </v-container>
+          </v-layout>
+        </v-card>
+      </v-flex>
+    </v-layout>
+  </v-container>
 </template>
 
 <script>
@@ -216,7 +218,7 @@ export default {
 	created() {},
 	methods: {
 		getPlayerSpriteImage(id) {
-			return `../static/images/player_sprites/${id}.png`
+			return `images/player_sprites/${id}.png`
 		},
 		selectSprite(id) {
 			this.$emit('spriteSelected', id)
@@ -224,7 +226,7 @@ export default {
 			// this.loadGame()
 		},
 		getSpellSplashArt(school, name) {
-			return `../static/images/spells/${school}/${name}.png`
+			return `images/spells/${school}/${name}.png`
 		}
 	}
 }
