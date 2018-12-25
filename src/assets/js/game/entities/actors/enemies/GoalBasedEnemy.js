@@ -52,18 +52,14 @@ export class LootGoblin extends GoalBasedEnemy {
 				range: 7
 			},
 			invulnerable: false,
-			events: [
-				// {
-				// 	topic: 'LootPickedUpEvent',
-				// 	fn: e => this.addGoal(LootFilter(e, [Gold], FindLooterGoal))
-				// },
-				{
-					topic: 'EntitySpawnedEvent',
-					fn: e => this.addGoal(EntityFilter(e, [Chest], AutoexploreGoal))
-				}
-			]
+			events: []
 		})
 		this.interactedEntities = []
+	}
+
+	addIdleGoal() {
+		this.seenTiles = []
+		this.addGoal(AutoexploreGoal())
 	}
 
 	performGoal() {

@@ -160,7 +160,8 @@ export const actorTextures = {
 	CYCLOPS: [7081],
 	BANSHEE: [3154],
 	DEMON: [2409, 2410, 2411, 2412, 2413, 2414, 2415],
-	BONE_MAN: [3392, 3393]
+	BONE_MAN: [3392, 3393],
+	LOOT_GOBLIN: [10200, 10202]
 }
 
 export function createActor(actorString, x, y, id = null) {

@@ -105,7 +105,7 @@ export const AStarPathingGoal = data => {
 	}
 }
 
-export const AutoexploreGoal = data => {
+export const AutoexploreGoal = (data = {}) => {
 	return actor => {
 		let toVisit = unexploredTiles(actor)
 		let stopCondition = data.stopCondition ? data.stopCondition : (...args) => false
@@ -125,7 +125,8 @@ export const AutoexploreGoal = data => {
 					return [a, b][getRandomInt(0, 1)]
 				}, [actor.x, actor.y])
 			if (dx === actor.x && dy === actor.y) {
-				actor.addIdleGoal()
+				if (actor.addIdleGoal)
+					actor.addIdleGoal()
 			} else {
 				actor.tryMove(dx, dy)
 				actor.addGoal(AutoexploreGoal(data))

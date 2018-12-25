@@ -36,7 +36,6 @@ export default class GameDisplay {
 		this.objectTemplates = null
 		this.tilesetMapping = {}
 		this.spriteBox = [] // Game.width * Game.height sprites to overlay screen for FOV
-		// this.rescale(1.5)
 	}
 
 	rescale(ratio) {

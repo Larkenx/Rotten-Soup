@@ -45,12 +45,12 @@ const dungeonThemes = {
 	RUINS: {
 		tint: null,
 		mobDistribution: {
-			ORC: 5,
+			ORC: 7,
 			GOBLIN: 30,
 			BAT: 20,
 			RAT: 30,
 			SNAKE: 25,
-			LOOT_GOBLIN: 3
+			LOOT_GOBLIN: 5
 		},
 		type: dungeonTypes.RUINS,
 		dropTable: {
@@ -58,7 +58,7 @@ const dungeonThemes = {
 			HEALTH_POTION: { chance: 30 },
 			STEEL_ARROW: { chance: 30 },
 			MANA_POTION: { chance: 30 },
-			GOLD: { chance: 40, options: { quantity: getRandomInt(10, 30) } },
+			GOLD: { chance: 40, options: { quantity: getRandomInt(5, 30) } },
 			IRON_SWORD: { chance: 15, options: { materialType: 'IRON' } },
 			IRON_BATTLEAXE: { chance: 15, options: { materialType: 'IRON' } },
 			IRON_CHEST_ARMOR: { chance: 15, options: { materialType: 'IRON' } },
@@ -521,20 +521,21 @@ export function dungeonFromTheme(width, height, theme, mapGenerator, options, ha
 			gameMap.getTile(x, y).actors.push(actor)
 		}
 
-		if (getNormalRandomInt(0, 10) === 8) {
+		if (getRandomInt(0, 4) === 2) {
 			let coords = randomTile(validTiles)
 			if (coords !== null) {
 				let [x, y] = coords
 				let chest = new Chest(x, y, chestTexture)
 				let items = getItemsFromDropTable({
 					minItems: 1,
-					maxItems: 2,
+					maxItems: 3,
 					dropTable,
 					x: chest.x,
 					y: chest.y
 				})
 				items.forEach(item => chest.addToInventory(item))
 				gameMap.getTile(x, y).actors.push(chest)
+				// console.log(`Placing new chest with items at floor ${level}`, items)
 			}
 		}
 	}
