@@ -132,6 +132,7 @@ export let Game = {
 		this.scheduler.add(this.display, true)
 		let actors = this.map.getActors()
 		for (let actor of actors) {
+			if (actor.seenTiles) actor.seenTiles = []
 			// Some 'actor' objects do not take turns, such as ladders / items
 			if (actor !== this.player && actor instanceof Actor) {
 				this.scheduler.add(actor, true)
@@ -499,6 +500,7 @@ export let Game = {
 	},
 
 	log(message, type, tmp = false) {
+
 		let message_color = {
 			defend: 'lightblue',
 			magic: '#6757c6',

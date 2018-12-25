@@ -98,7 +98,7 @@ export function getDiceRoll(rolls, sides) {
 export function getVisibleTiles(actor, map = Game.map) {
 	let { x, y } = actor
 	let { range } = actor.cb
-	let fov = new ROT.FOV.PreciseShadowcasting((x, y) => {
+	let fov = new ROT.FOV.RecursiveShadowcasting((x, y) => {
 		return map.inbounds(x, y) && map.getTile(x, y).visible()
 	})
 
@@ -205,12 +205,12 @@ export function neighbors({ x, y }, predicate) {
 	return coords
 }
 
-export function inboundsOrBlocked(x, y) {
-	return Game.inbounds(x, y) && Game.getTile(x, y).blocked()
+export function outOfBoundsOrBlocked(x, y) {
+	return !Game.inbounds(x, y) || Game.getTile(x, y).blocked()
 }
 
-export function inboundsOrBlockedByAnything(x, y) {
-	return Game.inbounds(x, y) && Game.getTile(x, y).blockedByAnything()
+export function outOfBoundsOrBlockedByAnything(x, y) {
+	return !Game.inbounds(x, y) || Game.getTile(x, y).blockedByAnything()
 }
 
 export const key = (x, y) => {
@@ -225,8 +225,26 @@ export function unexploredTiles(actor) {
 	return allWalkableTiles.filter(t => !actor.seenTiles.includes(t))
 }
 
-export function createFovDijkstraMap(start, notVisibleTiles, blockedPredicate = inboundsOrBlockedByAnything) {
-	let dijkstraMap = new ROT.Path.Dijkstra(start.x, start.y, (x, y) => !blockedPredicate(x, y))
+export function floodFill(start) {
+	let neighbors = [start]
+	let visited = {}
+	while (neighbors.length > 0) {
+		let v = neighbors.pop()
+		visited[key(v.x, v.y)] = true
+		ROT.DIRS[8].forEach(([dx, dy]) => {
+			let x = v.x + dx
+			let y = v.y + dy
+			if (!outOfBoundsOrBlockedByAnything(x, y) && !visited[key(x, y)]) {
+				neighbors.push({ x, y })
+			}
+		})
+	}
+	return visited
+}
+
+export function createFovDijkstraMap(start, notVisibleTiles, blockedPredicate = outOfBoundsOrBlockedByAnything) {
+	const reachable = floodFill(start)
+	let dijkstraMap = new ROT.Path.Dijkstra(start.x, start.y, (x, y) => !blockedPredicate(x, y) && reachable[key(x, y)])
 	let distanceTransform = {}
 	for (let { x, y } of notVisibleTiles) {
 		let coord = key(x, y)
@@ -249,7 +267,7 @@ export function createFovDijkstraMap(start, notVisibleTiles, blockedPredicate = 
 	return distanceTransform
 }
 
-// export function createFovDijkstraMap({ x, y }, visitedTiles, neighborsPredicate = inboundsOrBlocked) {
+// export function createFovDijkstraMap({ x, y }, visitedTiles, neighborsPredicate = outOfBoundsOrBlocked) {
 // 	let frontier = []
 // 	let start = { x, y }
 // 	frontier.unshift({ x, y })

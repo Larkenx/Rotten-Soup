@@ -29,6 +29,8 @@ import Item from '#/entities/items/Item.js'
 import { createItem } from '#/utils/EntityFactory.js'
 import { AutoexploreGoal } from '../../utils/Goals';
 
+const movementKeys = [ROT.VK_RIGHT, ROT.VK_LEFT, ROT.VK_UP, ROT.VK_DOWN, ROT.VK_NUMPAD8, ROT.VK_NUMPAD9, ROT.VK_NUMPAD6, ROT.VK_NUMPAD3, ROT.VK_NUMPAD2, ROT.VK_NUMPAD1, ROT.VK_NUMPAD4, ROT.VK_NUMPAD7, ROT.VK_H, ROT.VK_U, ROT.VK_L, ROT.VK_N, ROT.VK_J, ROT.VK_B, ROT.VK_K, ROT.VK_Y,]
+
 export default class Player extends Actor {
 	constructor(x, y, id) {
 		super(x, y, {
@@ -122,7 +124,8 @@ export default class Player extends Actor {
 			[ROT.VK_G]: 'pickup',
 			[ROT.VK_PERIOD]: 'rest',
 			[ROT.VK_X]: 'examine',
-			[ROT.VK_TAB]: 'autoexplore'
+			[ROT.VK_TAB]: 'autoexplore',
+			[ROT.VK_SPACE]: 'interact'
 		}
 		this.recalculatePath()
 		this.nearbyEnemies = []
@@ -155,6 +158,12 @@ export default class Player extends Actor {
 		this.selectedItemSlot = { item: null, index: null }
 		this.selectedSpellSlot = { spell: null, index: null }
 		this.seenTiles = []
+		// Event Handling boolean flags
+		this.interacting = false
+		this.examining = false
+		this.casting = false
+		this.targeting = false
+		this.helpDialogOpen = false
 	}
 
 	swapInventorySlots(origin, target) {
@@ -234,6 +243,8 @@ export default class Player extends Actor {
 		let fov = new ROT.FOV.RecursiveShadowcasting((x, y) => {
 			return Game.inbounds(x, y) && Game.getTile(x, y).visible()
 		})
+		if (Game.map.revealed)
+			this.seenTiles = Game.map.getTiles()
 
 		let visibleTiles = getVisibleTiles(this)
 		for (let t of visibleTiles) {
@@ -308,6 +319,9 @@ export default class Player extends Actor {
 				default:
 					console.error('Game is showing overlay for which the player cannot handle')
 			}
+
+		} else if (this.interacting) {
+			this.handleInteract(evt)
 		} else if (this.examining) {
 			this.handleExamineEvent(evt)
 		} else if (this.casting) {
@@ -326,7 +340,7 @@ export default class Player extends Actor {
 			}
 
 			/* If the key event isn't repeated within the last 160 milliseconds (too soon), then we proceed but we keep track of this
-			 	key movement time */
+				  key movement time */
 			if (evt.type === 'keydown' && movementKeys.includes(this.keyMap[keyCode])) {
 				if (this.keyTimer === null) {
 					this.keyTimer = new Date()
@@ -353,12 +367,17 @@ export default class Player extends Actor {
 				this.addGoal(AutoexploreGoal({
 					stopCondition: () => {
 						let visibleTiles = getVisibleTiles(this)
-						return visibleTiles.some(t => t.actors.some(a => a.hostile)) ||
+						let shouldStop = visibleTiles.some(t => t.actors.some(a => a.hostile)) ||
 							visibleTiles.some(t => t.actors.some(a => a instanceof Chest && a.closed)) ||
 							visibleTiles.some(t => t.actors.some(a => a instanceof Item))
+						if (shouldStop) Game.log('You stop autoexploring because you see something!', 'information')
+						return shouldStop
+					},
+					doneCallback: () => {
+						Game.log(`There's nothing else to explore!`, 'information')
 					}
 				}))
-			} else if ((action === 'rest' && shiftPressed) || (action === 'pickup' && shiftPressed) || action === 'interact') {
+			} else if ((action === 'rest' && shiftPressed) || (action === 'pickup' && shiftPressed)) {
 				this.climb()
 			} else if (action === 'openInventory') {
 				Game.openInventory()
@@ -409,6 +428,10 @@ export default class Player extends Actor {
 			} else if (action === 'examine') {
 				this.examining = true
 				Game.changeSelectedTile(Game.getTile(this.x, this.y), 'You are examining the area. ')
+				return
+			} else if (action === 'interact') {
+				this.interacting = true
+				Game.log(`[Interact with what?]`, 'player_move', true)
 				return
 			} else {
 				let diff = ROT.DIRS[8][action]
@@ -584,6 +607,30 @@ export default class Player extends Actor {
 	}
 
 	handleHelpScreenEvent(evt) { }
+
+
+	handleInteract(evt) {
+		let { keyCode } = evt
+		const cancelKeys = [ROT.VK_SPACE, ROT.VK_ESCAPE]
+		if (movementKeys.includes(keyCode)) {
+			let [x, y] = ROT.DIRS[8][this.keyMap[keyCode]]
+			let dx = this.x + x
+			let dy = this.y + y
+			if (Game.inbounds(dx, dy)) {
+				let { actors } = Game.getTile(dx, dy)
+				if (actors.length > 0) {
+					this.interact(actors.slice(-1).pop())
+				}
+
+			}
+			Game.clearTempLog()
+			this.interacting = false
+			this.endTurn()
+		} else if (cancelKeys.includes(keyCode)) {
+			this.interacting = false
+			Game.clearTempLog()
+		}
+	}
 
 	resetSelectedItem() { }
 

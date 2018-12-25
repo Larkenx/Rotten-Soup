@@ -130,6 +130,8 @@ export const AutoexploreGoal = data => {
 				actor.tryMove(dx, dy)
 				actor.addGoal(AutoexploreGoal(data))
 			}
+		} else {
+			if (data.doneCallback) data.doneCallback()
 		}
 	}
 }

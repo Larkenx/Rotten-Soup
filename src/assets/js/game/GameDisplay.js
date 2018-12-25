@@ -36,7 +36,7 @@ export default class GameDisplay {
 		this.objectTemplates = null
 		this.tilesetMapping = {}
 		this.spriteBox = [] // Game.width * Game.height sprites to overlay screen for FOV
-		this.rescale(1.25)
+		// this.rescale(1.5)
 	}
 
 	rescale(ratio) {
@@ -90,6 +90,7 @@ export default class GameDisplay {
 				if (target.y < sprite.y) y = -movementSpeed
 				if (Math.abs(x) > distX) x = distX
 				if (Math.abs(y) > distY) y = distY
+				obj.currentTime += delta
 				sprite.position.set(sprite.x + x, sprite.y + y)
 			}
 		}
@@ -244,6 +245,7 @@ export default class GameDisplay {
 			width: this.width / (this.tileSize * this.scale),
 			height: this.height / (this.tileSize * this.scale)
 		}
+
 		let camera = {
 			// camera x,y resides in the upper left corner
 			x: Game.player.x - ~~(viewPort.width / 2),
@@ -372,7 +374,8 @@ export default class GameDisplay {
 		return this.tilesetMapping[id]
 	}
 
-	moveSprite(sprite, x, y, animate = true) {
+	moveSprite(sprite, x, y, options = { animate: true, duration: 500 }) {
+		let { animate, duration } = options
 		// used to smoothly pan the map from its curent location to a new one
 		// by adding it to the list of sprites who should smoothly progress towards some location
 		let nx = x * this.tileSize
@@ -388,7 +391,7 @@ export default class GameDisplay {
 				})
 			}
 
-			this.movingSprites.push({ sprite, target: { x: nx, y: ny } })
+			this.movingSprites.push({ sprite, target: { x: nx, y: ny }, start: new Date().getTime(), duration })
 		} else {
 			sprite.position.set(nx, ny)
 		}

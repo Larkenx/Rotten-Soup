@@ -45,11 +45,12 @@ const dungeonThemes = {
 	RUINS: {
 		tint: null,
 		mobDistribution: {
-			ORC: 1,
-			GOBLIN: 15,
-			BAT: 10,
-			RAT: 15,
-			SNAKE: 10
+			ORC: 5,
+			GOBLIN: 30,
+			BAT: 20,
+			RAT: 30,
+			SNAKE: 25,
+			LOOT_GOBLIN: 3
 		},
 		type: dungeonTypes.RUINS,
 		dropTable: {
@@ -381,7 +382,7 @@ export function dungeonFromTheme(width, height, theme, mapGenerator, options, ha
 	const shuffle = a => {
 		for (let i = a.length - 1; i > 0; i--) {
 			const j = Math.floor(Math.random() * (i + 1))
-			;[a[i], a[j]] = [a[j], a[i]]
+				;[a[i], a[j]] = [a[j], a[i]]
 		}
 		return a
 	}
