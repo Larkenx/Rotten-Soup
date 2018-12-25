@@ -14,6 +14,7 @@ export default class Door extends Entity {
 			visible: false,
 			blocked: true
 		})
+		this.openable = true
 		this.closed = true
 	}
 
@@ -32,9 +33,10 @@ export default class Door extends Entity {
 	}
 
 	closeDoor() {
-		this.closed = false
-		this.blocked = false
-		this.visible = true
-		this.id = this.id
+		this.closed = true
+		this.blocked = true
+		this.visible = false
+		this.id = Game.display.tileset.tileproperties[this.id].activated_id
+		this.sprite.texture = Game.display.tilesetMapping[this.id]
 	}
 }

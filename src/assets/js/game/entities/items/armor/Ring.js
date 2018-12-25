@@ -5,7 +5,7 @@ export default class Ring extends Armor {
 			name: name,
 			type: 'Ring',
 			fg: 'orange',
-			combat: {
+			cb: {
 				def,
 				equipmentSlot: 'ring'
 			}

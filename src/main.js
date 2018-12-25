@@ -14,12 +14,8 @@ Vue.use(VueDragDrop)
 
 Vue.config.productionTip = false
 
-/* eslint-disable no-new */
-var vm = new Vue({
-	el: '#app',
+new Vue({
 	router,
-	components: { App },
-	template: '<App />',
-	iconfont: 'fa'
-})
-window.vm = vm
+	iconfont: 'fa',
+	render: h => h(App)
+}).$mount('#app')

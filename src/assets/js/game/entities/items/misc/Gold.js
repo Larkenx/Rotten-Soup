@@ -13,13 +13,13 @@ export default class Gold extends Item {
 	}
 
 	updateQuantity() {
-		if (this.quantity <= 0) {
-			Game.player.removeFromInventory(this)
-		} else if (this.quantity === 1) {
+		if (this.quantity === 1) {
 			this.id = 1388
-		} else if (this.quantity <= 10) {
+		} else if (this.quantity <= 3) {
+			this.id = 1385
+		} else if (this.quantity <= 5) {
 			this.id = 1387
-		} else {
+		} else if (this.quantity <= 10) {
 			this.id = 1386
 		}
 	}
@@ -31,6 +31,5 @@ export default class Gold extends Item {
 				value: `${this.quantity}`
 			}
 		]
-		return `Quantity: ${this.quantity}`
 	}
 }

@@ -6,8 +6,7 @@ import { RegenerationEffect } from '#/modifiers/Effect.js'
 import { StrengthBuff } from '#/modifiers/Buff.js'
 import { Game } from '#/Game.js'
 import { Corpse, corpseTypes } from '#/entities/items/misc/Corpse.js'
-import Skeleton from '#/entities/actors/enemies/Skeleton.js'
-import Zombie from '#/entities/actors/enemies/Zombie.js'
+import { createActor } from '#/utils/EntityFactory.js'
 
 export const spellTypes = {
 	CONJURATION: 'CONJURATION',
@@ -46,10 +45,43 @@ export class Spell {
 		Object.assign(this, options)
 	}
 
-	cast() { } // to be overwritten
+	cast() {} // to be overwritten
 }
 
 /* Restoration Spells */
+export class HealOther extends Spell {
+	constructor(options) {
+		super({
+			name: 'Minor Heal',
+			hoverInfo: 'Heal another entity for 15 hp.',
+			action: entity => {
+				entity.heal(15)
+			},
+			splashArt: 'minor_heal',
+			type: spellTypes.RESTORATION,
+			targetType: targetTypes.TARGET,
+			manaCost: 5
+		})
+		Object.assign(this, options)
+	}
+
+	cast(target, caster) {
+		let healthRecovered = Math.max(0, target.cb.maxhp - target.cb.hp - 15)
+		if (caster === Game.player)
+			Game.log(
+				`You mend the wounds of ${target.name.capitalize()} with a healing spell. It recovers ${healthRecovered}HP.`,
+				'#e3c91c'
+			)
+		else
+			Game.log(
+				`${caster.name.capitalize()} used minor heal to heal the ${caster.name.capitalize()} for ${healthRecovered}HP.`,
+				'plum'
+			)
+
+		this.action(target)
+	}
+}
+
 export class MinorHeal extends Spell {
 	constructor(options) {
 		super({
@@ -68,9 +100,8 @@ export class MinorHeal extends Spell {
 
 	cast(target, caster) {
 		let healthRecovered = Math.max(0, caster.cb.maxhp - caster.cb.hp - 15)
-		if (caster === Game.player)
-			Game.log(`You mend your wounds with a healing spell and recover ${healthRecovered} health points.`, '#e3c91c')
-		else Game.log(`${caster.name.capitalize()} used minor heal to regenerate 20 health points.`, 'plum')
+		if (caster === Game.player) Game.log(`You mend your wounds with a healing spell and recover ${healthRecovered}HP.`, '#e3c91c')
+		else Game.log(`${caster.name.capitalize()} used minor heal to regenerate ${healthRecovered}HP.`, 'plum')
 
 		this.action(target)
 	}
@@ -158,7 +189,7 @@ export class Rage extends Spell {
 		super({
 			name: 'Rage',
 			hoverInfo: 'Overcome with rage and fury, your strength is boosted by 3 for 5 turns.',
-			action: (entity) => {
+			action: entity => {
 				let buff = new StrengthBuff(3)
 				buff.duration += 2
 				entity.addNewBuff(buff)
@@ -179,7 +210,6 @@ export class Rage extends Spell {
 		this.action(caster)
 	}
 }
-
 
 /* Necromancy Spells */
 
@@ -273,7 +303,7 @@ export const reanimate = corpse => {
 	// remove the corpse from the ground
 	ctile.removeActor(corpse)
 	Game.display.removeChild(corpse)
-	let undeadActor = corpse.id === corpseTypes.HUMANOID ? new Zombie(corpse.x, corpse.y, 2317) : new Skeleton(corpse.x, corpse.y, 2552)
+	let undeadActor = corpse.id === corpseTypes.HUMANOID ? createActor('ZOMBIE', corpse.x, corpse.y) : ('SKELETON', corpse.x, corpse.y)
 
 	undeadActor.chasing = true
 	ctile.actors.push(undeadActor)
@@ -283,12 +313,12 @@ export const reanimate = corpse => {
 
 /* returns an array of corpses :) */
 export const getNearbyCorpses = actor => {
-	let fov = new ROT.FOV.PreciseShadowcasting(function (x, y) {
+	let fov = new ROT.FOV.PreciseShadowcasting(function(x, y) {
 		return Game.inbounds(x, y) && Game.map.data[y][x].visible()
 	})
 
 	let visibleTiles = []
-	fov.compute(actor.x, actor.y, actor.cb.range, function (x, y, r, visibility) {
+	fov.compute(actor.x, actor.y, actor.cb.range, function(x, y, r, visibility) {
 		if (Game.inbounds(x, y)) visibleTiles.push(Game.map.data[y][x])
 	})
 

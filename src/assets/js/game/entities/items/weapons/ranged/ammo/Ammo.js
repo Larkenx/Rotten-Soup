@@ -12,13 +12,13 @@ export class Ammo extends Equippable {
 	constructor(x, y, options) {
 		options.visible = true
 		options.blocked = false
-		options.combat.equippable = true
-		options.combat.equipped = false
-		options.combat.equipmentSlot = 'ammo'
+		options.cb.equippable = true
+		options.cb.equipped = false
+		options.cb.equipmentSlot = 'ammo'
 		options.action = 'Equip'
 		super(x, y, options)
 		Object.assign(this, options)
-		this.cb = this.combat
+		this.cb = this.cb
 	}
 
 	getAction() {

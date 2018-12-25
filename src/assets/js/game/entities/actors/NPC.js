@@ -15,7 +15,7 @@ export default class NPC extends Actor {
 			name: 'non-player character',
 			visible: true,
 			blocked: true,
-			combat: {
+			cb: {
 				hostile: false
 			}
 		})

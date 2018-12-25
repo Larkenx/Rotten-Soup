@@ -4,15 +4,15 @@ import { getRandomInt, getNormalRandomInt } from '#/utils/HelperFunctions.js'
 
 export default class Equippable extends Item {
 	constructor(x, y, options) {
-		if (options.combat === null) throw `Error - no combat property defined. Bad armor creation for ${options.name}`
-		else if (options.combat.equipmentSlot === null)
+		if (options.cb === null) throw `Error - no combat property defined. Bad armor creation for ${options.name}`
+		else if (options.cb.equipmentSlot === null)
 			throw `Error - no equipmentSlot property defined. Bad armor creation for ${options.name}`
 		options.visible = true
 		options.blocked = false
-		options.combat.equippable = true
-		options.combat.equipped = false
+		options.cb.equippable = true
+		options.cb.equipped = false
 		super(x, y, options)
-		this.cb = this.combat
+		this.cb = this.cb
 		this.cb.enchantments = []
 		this.action = 'Equip'
 	}

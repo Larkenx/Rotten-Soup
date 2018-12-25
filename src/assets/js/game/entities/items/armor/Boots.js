@@ -8,7 +8,7 @@ export default class Boots extends Armor {
 			name: name,
 			type: 'Boots',
 			fg: 'orange',
-			combat: {
+			cb: {
 				def,
 				equipmentSlot: 'boots'
 			},

@@ -4,8 +4,8 @@
 import ROT from 'rot-js'
 import { Game } from '#/Game.js'
 import { Actor } from '#/entities/actors/Actor.js'
-import { addPrefix } from '#/utils/HelperFunctions.js'
-import Item from '#/entities/items/Item.js'
+
+import { addPrefix, pathfinding, getVisibleTiles } from '#/utils/HelperFunctions.js'
 // Weapons
 import { materialTypes } from '#/utils/Constants.js'
 import { Sword } from '#/entities/items/weapons/Sword.js'
@@ -24,11 +24,12 @@ import { BleedEnchantment } from '#/modifiers/Enchantment.js'
 import Ladder from '#/entities/misc/Ladder.js'
 import { xp_levels } from '#/entities/Entity.js'
 import Gold from '#/entities/items/misc/Gold.js'
+import Chest from '#/entities/misc/Chest.js'
+import Item from '#/entities/items/Item.js'
 import { createItem } from '#/utils/EntityFactory.js'
+import { AutoexploreGoal } from '../../utils/Goals';
 
-function pathfinding(x, y) {
-	return !Game.getTile(x, y).blocked() && Game.inbounds(x, y)
-}
+const movementKeys = [ROT.VK_RIGHT, ROT.VK_LEFT, ROT.VK_UP, ROT.VK_DOWN, ROT.VK_NUMPAD8, ROT.VK_NUMPAD9, ROT.VK_NUMPAD6, ROT.VK_NUMPAD3, ROT.VK_NUMPAD2, ROT.VK_NUMPAD1, ROT.VK_NUMPAD4, ROT.VK_NUMPAD7, ROT.VK_H, ROT.VK_U, ROT.VK_L, ROT.VK_N, ROT.VK_J, ROT.VK_B, ROT.VK_K, ROT.VK_Y,]
 
 export default class Player extends Actor {
 	constructor(x, y, id) {
@@ -45,9 +46,8 @@ export default class Player extends Actor {
 			blocked: true,
 			leveled_up: true,
 			mouseEnabled: false,
-			combat: {
-				/* options.combat, dedicated to all things related to combat */
-				description: [' attacked ', ' stabbed ', ' jabbed ', ' smashed '],
+			canLoot: true,
+			cb: {
 				/* stat caps */
 				maxhp: 50,
 				maxmana: 15,
@@ -82,32 +82,31 @@ export default class Player extends Actor {
 			keyTimer: null
 		})
 		this.keyMap = {
-			// Arrow Key movement
-
-			39: 2,
-			37: 6,
-			38: 0,
-			40: 4,
-			// Num Pad Movement
-			104: 0,
-			105: 1,
-			102: 2,
-			99: 3,
-			98: 4,
-			97: 5,
-			100: 6,
-			103: 7,
-			// Rest using '5' in numpad
-			101: 'rest',
+			// Arrow Pad
+			[ROT.VK_RIGHT]: 2,
+			[ROT.VK_LEFT]: 6,
+			[ROT.VK_UP]: 0,
+			[ROT.VK_DOWN]: 4,
+			// Numpad Movement
+			[ROT.VK_NUMPAD8]: 0,
+			[ROT.VK_NUMPAD9]: 1,
+			[ROT.VK_NUMPAD6]: 2,
+			[ROT.VK_NUMPAD3]: 3,
+			[ROT.VK_NUMPAD2]: 4,
+			[ROT.VK_NUMPAD1]: 5,
+			[ROT.VK_NUMPAD4]: 6,
+			[ROT.VK_NUMPAD7]: 7,
 			// vi movement
-			75: 0,
-			85: 1,
-			76: 2,
-			78: 3,
-			74: 4,
-			66: 5,
-			72: 6,
-			89: 7,
+			[ROT.VK_H]: 6,
+			[ROT.VK_U]: 1,
+			[ROT.VK_L]: 2,
+			[ROT.VK_N]: 3,
+			[ROT.VK_J]: 4,
+			[ROT.VK_B]: 5,
+			[ROT.VK_K]: 0,
+			[ROT.VK_Y]: 7,
+			// Rest using '5' in numpad
+			[ROT.VK_NUMPAD5]: 'rest',
 			// Fire a weapon
 			[ROT.VK_F]: 'fire',
 			// Cast a spell
@@ -124,9 +123,11 @@ export default class Player extends Actor {
 			[ROT.VK_COMMA]: 'pickup',
 			[ROT.VK_G]: 'pickup',
 			[ROT.VK_PERIOD]: 'rest',
-			[ROT.VK_X]: 'examine'
+			[ROT.VK_X]: 'examine',
+			[ROT.VK_TAB]: 'autoexplore',
+			[ROT.VK_SPACE]: 'interact'
 		}
-		this.path = new ROT.Path.AStar(this.x, this.y, pathfinding)
+		this.recalculatePath()
 		this.nearbyEnemies = []
 		this.currentLevel = Game.currentLevel
 		// Inventory is an array of objects that contain items and an action that can be done with that item.
@@ -156,6 +157,13 @@ export default class Player extends Actor {
 		this.commandQueue = []
 		this.selectedItemSlot = { item: null, index: null }
 		this.selectedSpellSlot = { spell: null, index: null }
+		this.seenTiles = []
+		// Event Handling boolean flags
+		this.interacting = false
+		this.examining = false
+		this.casting = false
+		this.targeting = false
+		this.helpDialogOpen = false
 	}
 
 	swapInventorySlots(origin, target) {
@@ -219,7 +227,7 @@ export default class Player extends Actor {
 
 	act() {
 		super.act()
-		this.path = new ROT.Path.AStar(this.x, this.y, pathfinding)
+		this.recalculatePath()
 		this.nearbyEnemies = Game.getNearbyEnemies()
 		this.currentLevel = Game.currentLevel
 		Game.engine.lock()
@@ -235,6 +243,15 @@ export default class Player extends Actor {
 		let fov = new ROT.FOV.RecursiveShadowcasting((x, y) => {
 			return Game.inbounds(x, y) && Game.getTile(x, y).visible()
 		})
+		if (Game.map.revealed)
+			this.seenTiles = Game.map.getTiles()
+
+		let visibleTiles = getVisibleTiles(this)
+		for (let t of visibleTiles) {
+			if (!this.seenTiles.includes(t)) {
+				this.seenTiles.push(t)
+			}
+		}
 
 		fov.compute(Game.player.x, Game.player.y, Game.player.cb.range, (x, y, r, visibility) => {
 			Game.map.visible_tiles[x + ',' + y] = true
@@ -242,9 +259,10 @@ export default class Player extends Actor {
 
 		if (this.commandQueue.length > 0) {
 			// perform player commands and unlock
-			let { fn } = this.commandQueue.pop()
-			fn()
-			Game.engine.unlock()
+			setTimeout(() => {
+				this.commandQueue.shift()(this)
+				Game.engine.unlock()
+			}, 150)
 			return
 		}
 
@@ -286,7 +304,7 @@ export default class Player extends Actor {
 					* NPC Dialogue
 					* ...
 		 */
-		if (evt.getModifierState('Control')) return
+		if (evt.getModifierState('Control') || evt.metaKey) return
 
 		evt.preventDefault()
 
@@ -301,6 +319,9 @@ export default class Player extends Actor {
 				default:
 					console.error('Game is showing overlay for which the player cannot handle')
 			}
+
+		} else if (this.interacting) {
+			this.handleInteract(evt)
 		} else if (this.examining) {
 			this.handleExamineEvent(evt)
 		} else if (this.casting) {
@@ -319,7 +340,7 @@ export default class Player extends Actor {
 			}
 
 			/* If the key event isn't repeated within the last 160 milliseconds (too soon), then we proceed but we keep track of this
-			 	key movement time */
+				  key movement time */
 			if (evt.type === 'keydown' && movementKeys.includes(this.keyMap[keyCode])) {
 				if (this.keyTimer === null) {
 					this.keyTimer = new Date()
@@ -340,7 +361,23 @@ export default class Player extends Actor {
 				// Game.log('You rest for a turn.', 'player_move')
 			} else if (action === 'pickup' && !shiftPressed) {
 				this.pickup()
-			} else if ((action === 'rest' && shiftPressed) || (action === 'pickup' && shiftPressed) || action === 'interact') {
+			} else if (action === 'autoexplore') {
+				// stop autoexploring when we find a tile
+				// with a hostile actor or if there's loot
+				this.addGoal(AutoexploreGoal({
+					stopCondition: () => {
+						let visibleTiles = getVisibleTiles(this)
+						let shouldStop = visibleTiles.some(t => t.actors.some(a => a.hostile)) ||
+							visibleTiles.some(t => t.actors.some(a => a instanceof Chest && a.closed)) ||
+							visibleTiles.some(t => t.actors.some(a => a instanceof Item))
+						if (shouldStop) Game.log('You stop autoexploring because you see something!', 'information')
+						return shouldStop
+					},
+					doneCallback: () => {
+						Game.log(`There's nothing else to explore!`, 'information')
+					}
+				}))
+			} else if ((action === 'rest' && shiftPressed) || (action === 'pickup' && shiftPressed)) {
 				this.climb()
 			} else if (action === 'openInventory') {
 				Game.openInventory()
@@ -352,9 +389,9 @@ export default class Player extends Actor {
 				let weapon = this.cb.equipment.weapon
 				let ammo = this.cb.equipment.ammo
 				if (weapon !== null && ammo !== null && weapon.cb.ranged && ammo.cb.ammoType === weapon.cb.ammoType && ammo.quantity > 0) {
-					Game.log(`You take aim with your ${weapon.type.toLowerCase()}.`, 'darkgreen')
-					this.validTarget = Game.selectNearestEnemyTile()
-					if (!this.validTarget) Game.changeSelectedTile(Game.getTile(this.x, this.y))
+					this.validTarget = Game.selectNearestEnemyTile(`You are aiming with your ${weapon.type.toLowerCase()}. `)
+					if (!this.validTarget)
+						Game.changeSelectedTile(Game.getTile(this.x, this.y), `You are aiming with your ${weapon.type.toLowerCase()}. `)
 					this.targeting = true
 					return
 				} else {
@@ -382,17 +419,19 @@ export default class Player extends Actor {
 					currentSpell.cast(this, this)
 					this.cb.mana -= currentSpell.manaCost
 				} else if (currentSpell.targetType === targetTypes.TARGET) {
-					Game.log(`You begin casting ${currentSpell.name}.`, 'magic')
-					this.validTarget = Game.selectNearestEnemyTile()
-					if (!this.validTarget) Game.changeSelectedTile(Game.getTile(this.x, this.y))
+					this.validTarget = Game.selectNearestEnemyTile(`You are casting ${currentSpell.name}. `)
+					if (!this.validTarget) Game.changeSelectedTile(Game.getTile(this.x, this.y), `You are casting ${currentSpell.name}. `)
 					this.casting = true
 					// our first selected tile can be the nearest enemy
 					return
 				}
 			} else if (action === 'examine') {
-				Game.log('You begin examining the area.', 'information')
 				this.examining = true
-				Game.changeSelectedTile(Game.getTile(this.x, this.y))
+				Game.changeSelectedTile(Game.getTile(this.x, this.y), 'You are examining the area. ')
+				return
+			} else if (action === 'interact') {
+				this.interacting = true
+				Game.log(`[Interact with what?]`, 'player_move', true)
 				return
 			} else {
 				let diff = ROT.DIRS[8][action]
@@ -567,9 +606,33 @@ export default class Player extends Actor {
 		}
 	}
 
-	handleHelpScreenEvent(evt) {}
+	handleHelpScreenEvent(evt) { }
 
-	resetSelectedItem() {}
+
+	handleInteract(evt) {
+		let { keyCode } = evt
+		const cancelKeys = [ROT.VK_SPACE, ROT.VK_ESCAPE]
+		if (movementKeys.includes(keyCode)) {
+			let [x, y] = ROT.DIRS[8][this.keyMap[keyCode]]
+			let dx = this.x + x
+			let dy = this.y + y
+			if (Game.inbounds(dx, dy)) {
+				let { actors } = Game.getTile(dx, dy)
+				if (actors.length > 0) {
+					this.interact(actors.slice(-1).pop())
+				}
+
+			}
+			Game.clearTempLog()
+			this.interacting = false
+			this.endTurn()
+		} else if (cancelKeys.includes(keyCode)) {
+			this.interacting = false
+			Game.clearTempLog()
+		}
+	}
+
+	resetSelectedItem() { }
 
 	initializeSelectedItem() {
 		const initialSelectedInventoryItemSlot = { contextMenuOpen: false, index: null, item: null }
@@ -852,6 +915,7 @@ export default class Player extends Actor {
 		let tileItems = ctile.actors.filter(el => {
 			return el instanceof Item
 		})
+		if (tileItems.length > 0) Game.eventStream.emit('LootPickedUpEvent', { items: tileItems, looter: this })
 		if (tileItems.length === 1) {
 			Game.log(`You picked up ${addPrefix(tileItems[0].type.toLowerCase())}.`, 'information')
 			Game.display.clearSprite(tileItems[0])
@@ -929,5 +993,9 @@ export default class Player extends Actor {
 		// Game.scheduler.remove(Game.player);
 		Game.scheduler.clear()
 		Game.closeGameOverlayScreen()
+	}
+
+	addGoal(goal) {
+		if (goal !== null) this.commandQueue.unshift(goal)
 	}
 }

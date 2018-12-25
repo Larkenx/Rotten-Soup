@@ -8,15 +8,6 @@ import { Game } from '#/Game.js'
 import { GameMap } from '#/map/GameMap.js'
 import Player from '#/entities/actors/Player.js'
 import NPC from '#/entities/actors/NPC.js'
-// Enemies
-import Goblin from '#/entities/actors/enemies/Goblin.js'
-import Kobold from '#/entities/actors/enemies/Kobold.js'
-import Orc from '#/entities/actors/enemies/Orc.js'
-import Rat from '#/entities/actors/enemies/Rat.js'
-import Bat from '#/entities/actors/enemies/Bat.js'
-import WildGoat from '#/entities/actors/enemies/WildGoat.js'
-import Skeleton from '#/entities/actors/enemies/Skeleton.js'
-import Zombie from '#/entities/actors/enemies/Zombie.js'
 // Items
 // Weapons
 import { createSword, Sword } from '#/entities/items/weapons/Sword.js'
@@ -268,26 +259,26 @@ export function randomSimplexMap(width, height, zoom) {
 		WILD_GOAT: 3
 	}
 
-	const createActor = (actorString, x, y, id) => {
-		switch (actorString) {
-			case 'ORC':
-				return new Orc(x, y, id)
-			case 'EMPOWERED_ORC':
-				return new Orc(x, y, id, true)
-			case 'KOBOLD':
-				return new Kobold(x, y, id)
-			case 'GOBLIN':
-				return new Goblin(x, y, id)
-			case 'BAT':
-				return new Bat(x, y, id)
-			case 'RAT':
-				return new Rat(x, y, id)
-			case 'WILD_GOAT':
-				return new WildGoat(x, y, id)
-			default:
-				throw 'Unidentified actor given to create actor'
-		}
-	}
+	// const createActor = (actorString, x, y, id) => {
+	// 	switch (actorString) {
+	// 		case 'ORC':
+	// 			return new Orc(x, y, id)
+	// 		case 'EMPOWERED_ORC':
+	// 			return new Orc(x, y, id, true)
+	// 		case 'KOBOLD':
+	// 			return new Kobold(x, y, id)
+	// 		case 'GOBLIN':
+	// 			return new Goblin(x, y, id)
+	// 		case 'BAT':
+	// 			return new Bat(x, y, id)
+	// 		case 'RAT':
+	// 			return new Rat(x, y, id)
+	// 		case 'WILD_GOAT':
+	// 			return new WildGoat(x, y, id)
+	// 		default:
+	// 			throw 'Unidentified actor given to create actor'
+	// 	}
+	// }
 
 	const noise1 = (nx, ny) => {
 		return gen1.noise2D(nx, ny) / 2 + 0.5
@@ -444,8 +435,8 @@ export function randomSimplexMap(width, height, zoom) {
 						let chosenActor = ROT.RNG.getWeightedValue(mobDistribution)
 						let possibleActorTextures = actorTextures[chosenActor]
 						let randomTexture = possibleActorTextures[getRandomInt(0, possibleActorTextures.length - 1)]
-						let actor = createActor(chosenActor, x, y, randomTexture)
-						tile.actors.push(actor)
+						// let actor = createActor(chosenActor, x, y, randomTexture)
+						// tile.actors.push(actor)
 					}
 				}
 			}

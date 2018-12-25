@@ -43,10 +43,11 @@ const goodbye = new Edge({
 const confirmBeerPurchase = new Edge({
 	text: '[Pay two gold pieces]',
 	action: g => {
-		for (let slot of g.player.inventory) {
-			if (slot.item instanceof Gold) {
-				slot.item.quantity -= 2
-				slot.item.updateQuantity()
+		for (let item of g.player.inventory) {
+			if (item instanceof Gold) {
+				item.quantity -= 2
+				item.updateQuantity()
+				g.player.removeZeroQuantityItems()
 				break
 			}
 		}

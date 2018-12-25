@@ -2,7 +2,7 @@ import { Ammo, AMMO_TYPES } from '#/entities/items/weapons/ranged/ammo/Ammo.js'
 
 export class Arrow extends Ammo {
 	constructor(x, y, options) {
-		options.combat.ammoType = AMMO_TYPES.ARROW
+		options.cb.ammoType = AMMO_TYPES.ARROW
 		super(x, y, options)
 	}
 }
@@ -12,7 +12,7 @@ export class SteelArrow extends Arrow {
 		super(x, y, {
 			id: id,
 			type: 'Steel Arrows',
-			combat: {
+			cb: {
 				damage: 0
 			},
 			quantity: quantity

@@ -7,7 +7,7 @@ export class Bow extends RangedWeapon {
 			id: id,
 			name: name,
 			type: 'Bow',
-			combat: {
+			cb: {
 				rolls: rolls,
 				sides: sides,
 				range: range,

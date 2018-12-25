@@ -15,8 +15,21 @@ import Key from '#/entities/items/misc/Key.js'
 import { NecromancySpellBook } from '#/entities/items/misc/Spellbook.js'
 import Ladder from '#/entities/misc/Ladder.js'
 import LevelTransition from '#/entities/misc/LevelTransition.js'
-import { getRandomInt, getNormalRandomInt, randomProperty } from '#/utils/HelperFunctions.js'
+import { getRandomInt, getNormalRandomInt, computeBitmaskFloors, computeBitmaskWalls, randomProperty } from '#/utils/HelperFunctions.js'
 import { createActor, getItemsFromDropTable } from '#/utils/EntityFactory.js'
+// Wall & Floor textures
+import { wallTypes, floorTypes } from '#/utils/Constants.js'
+import data from '#/utils/data/data.xlsx'
+import xlsx from 'xlsx'
+
+const wallTexturesData = xlsx.utils.sheet_to_json(data.Sheets['Wall Textures'], { raw: true })
+const floorTexturesData = xlsx.utils.sheet_to_json(data.Sheets['Floor Textures'], { raw: true })
+
+const wallTextures = {}
+const floorTextures = {}
+
+wallTexturesData.forEach(wt => (wallTextures[wt.id] = { ...wt }))
+floorTexturesData.forEach(ft => (floorTextures[ft.id] = { ...ft }))
 
 import * as PIXI from 'pixi.js' // for importing the prefabs from PIXI.loader.resources
 
@@ -32,11 +45,12 @@ const dungeonThemes = {
 	RUINS: {
 		tint: null,
 		mobDistribution: {
-			ORC: 1,
-			GOBLIN: 15,
-			BAT: 10,
-			RAT: 15,
-			SNAKE: 10
+			ORC: 5,
+			GOBLIN: 30,
+			BAT: 20,
+			RAT: 30,
+			SNAKE: 25,
+			LOOT_GOBLIN: 3
 		},
 		type: dungeonTypes.RUINS,
 		dropTable: {
@@ -52,66 +66,11 @@ const dungeonThemes = {
 			IRON_HELMET: { chance: 15, options: { materialType: 'IRON' } },
 			IRON_BOOTS: { chance: 15, options: { materialType: 'IRON' } }
 		},
-		textures: {
-			floor: {
-				upperLeft: 7736,
-				top: 7737,
-				upperRight: 7738,
-
-				left: 7856,
-				center: 7857,
-				right: 7858,
-
-				lowerLeft: 7976,
-				bottom: 7977,
-				lowerRight: 7978,
-
-				endLeft: 7860,
-				middleCorridorHorizontal: 7861,
-				endRight: 7862,
-
-				endTop: 7739,
-				middleCorridorVertical: 7859,
-				endBottom: 7979,
-
-				single: 7740
-			},
-			corridorFloor: {
-				horizontal: {
-					left: 7861,
-					middle: 7862,
-					right: 7863
-				},
-				vertical: {
-					top: 7740,
-					middle: 7860,
-					bottom: 7980
-				}
-			},
-			walls: {
-				upperLeft: 8117,
-				top: 8118,
-				upperRight: 8119,
-				left: 8237,
-				center: 8238,
-				right: 8237,
-				lowerLeft: 8357,
-				bottom: 8118,
-				lowerRight: 8359,
-				endBottom: 8238,
-				endTop: 8239,
-				island: 8120,
-
-				leftT: 8242,
-				middleT: 8241,
-				rightT: 8240,
-				topT: 8121,
-				bottomT: 8361
-			},
-			doors: {
-				vertical: 569,
-				horizontal: 568
-			}
+		floorType: floorTypes.STONE,
+		wallType: wallTypes.DARK_STONE,
+		doors: {
+			vertical: 569,
+			horizontal: 568
 		}
 	},
 	CATACOMBS: {
@@ -138,60 +97,11 @@ const dungeonThemes = {
 			STEEL_HELMET: { chance: 13, options: { materialType: 'STEEL' } },
 			STEEL_BOOTS: { chance: 13, options: { materialType: 'STEEL' } }
 		},
-		textures: {
-			floor: {
-				upperLeft: 8096,
-				top: 8097,
-				upperRight: 8098,
-				left: 8216,
-				center: 8217,
-				right: 8218,
-				lowerLeft: 8336,
-				bottom: 8337,
-				lowerRight: 8338,
-				endLeft: 8220,
-				middleCorridorHorizontal: 8221,
-				endRight: 8222,
-				endTop: 8099,
-				middleCorridorVertical: 8219,
-				endBottom: 8339,
-				single: 8100
-			},
-			corridorFloor: {
-				horizontal: {
-					left: 8221,
-					middle: 8222,
-					right: 8223
-				},
-				vertical: {
-					top: 8100,
-					middle: 8220,
-					bottom: 8340
-				}
-			},
-			walls: {
-				upperLeft: 8477,
-				top: 8478,
-				upperRight: 8479,
-				left: 8597,
-				center: 8598,
-				right: 8597,
-				lowerLeft: 8717,
-				bottom: 8478,
-				lowerRight: 8719,
-				endBottom: 8598,
-				endTop: 8599,
-				island: 8480,
-				leftT: 8602,
-				middleT: 8601,
-				rightT: 8600,
-				topT: 8481,
-				bottomT: 8721
-			},
-			doors: {
-				vertical: 569,
-				horizontal: 568
-			}
+		floorType: floorTypes.STONE,
+		wallType: wallTypes.DARK_STONE,
+		doors: {
+			vertical: 569,
+			horizontal: 568
 		}
 	},
 	MINE: {
@@ -219,60 +129,11 @@ const dungeonThemes = {
 			MITHRIL_HELMET: { chance: 10, options: { materialType: 'MITHRIL' } },
 			MITHRIL_BOOTS: { chance: 10, options: { materialType: 'MITHRIL' } }
 		},
-		textures: {
-			floor: {
-				upperLeft: 9176,
-				top: 9177,
-				upperRight: 9178,
-				left: 9296,
-				center: 9297,
-				right: 9298,
-				lowerLeft: 9416,
-				bottom: 9417,
-				lowerRight: 9418,
-				endLeft: 9300,
-				middleCorridorHorizontal: 9301,
-				endRight: 9302,
-				endTop: 9179,
-				middleCorridorVertical: 9299,
-				endBottom: 9419,
-				single: 9180
-			},
-			corridorFloor: {
-				horizontal: {
-					left: 9301,
-					middle: 9302,
-					right: 9303
-				},
-				vertical: {
-					top: 9180,
-					middle: 9300,
-					bottom: 9420
-				}
-			},
-			walls: {
-				upperLeft: 7771,
-				top: 7772,
-				upperRight: 7773,
-				left: 7891,
-				center: 7892,
-				right: 7891,
-				lowerLeft: 8011,
-				bottom: 7772,
-				lowerRight: 8013,
-				endBottom: 7892,
-				endTop: 7893,
-				island: 7774,
-				leftT: 7896,
-				middleT: 7895,
-				rightT: 7894,
-				topT: 7775,
-				bottomT: 8015
-			},
-			doors: {
-				vertical: 569,
-				horizontal: 568
-			}
+		floorType: floorTypes.STONE,
+		wallType: wallTypes.DARK_STONE,
+		doors: {
+			vertical: 569,
+			horizontal: 568
 		}
 	},
 	ICE: {
@@ -300,60 +161,11 @@ const dungeonThemes = {
 			ADAMANTIUM_HELMET: { chance: 8, options: { materialType: 'ADAMANTIUM' } },
 			ADAMANTIUM_BOOTS: { chance: 8, options: { materialType: 'ADAMANTIUM' } }
 		},
-		textures: {
-			floor: {
-				upperLeft: 7376,
-				top: 7377,
-				upperRight: 7378,
-				left: 7496,
-				center: 7497,
-				right: 7498,
-				lowerLeft: 7616,
-				bottom: 7617,
-				lowerRight: 7618,
-				endLeft: 7500,
-				middleCorridorHorizontal: 7501,
-				endRight: 7502,
-				endTop: 7379,
-				middleCorridorVertical: 7499,
-				endBottom: 7619,
-				single: 7380
-			},
-			corridorFloor: {
-				horizontal: {
-					left: 7501,
-					middle: 7502,
-					right: 7503
-				},
-				vertical: {
-					top: 7380,
-					middle: 7500,
-					bottom: 7620
-				}
-			},
-			walls: {
-				upperLeft: 7757,
-				top: 7758,
-				upperRight: 7759,
-				left: 7877,
-				center: 7878,
-				right: 7877,
-				lowerLeft: 7997,
-				bottom: 7758,
-				lowerRight: 7999,
-				endBottom: 7878,
-				endTop: 7879,
-				island: 7760,
-				leftT: 7882,
-				middleT: 7881,
-				rightT: 7880,
-				topT: 7761,
-				bottomT: 8001
-			},
-			doors: {
-				vertical: 569,
-				horizontal: 568
-			}
+		floorType: floorTypes.STONE,
+		wallType: wallTypes.DARK_STONE,
+		doors: {
+			vertical: 569,
+			horizontal: 568
 		}
 	},
 	HELL: {
@@ -367,60 +179,11 @@ const dungeonThemes = {
 			BAT: 10,
 			RAT: 10
 		},
-		textures: {
-			floor: {
-				upperLeft: 7736,
-				top: 7737,
-				upperRight: 7738,
-				left: 7856,
-				center: 7857,
-				right: 7858,
-				lowerLeft: 7976,
-				bottom: 7977,
-				lowerRight: 7978,
-				endLeft: 7860,
-				middleCorridorHorizontal: 7861,
-				endRight: 7862,
-				endTop: 7739,
-				middleCorridorVertical: 7859,
-				endBottom: 7979,
-				single: 7740
-			},
-			corridorFloor: {
-				horizontal: {
-					left: 7861,
-					middle: 7862,
-					right: 7863
-				},
-				vertical: {
-					top: 7740,
-					middle: 7860,
-					bottom: 7980
-				}
-			},
-			walls: {
-				upperLeft: 8117,
-				top: 8118,
-				upperRight: 8119,
-				left: 8237,
-				center: 8238,
-				right: 8237,
-				lowerLeft: 8357,
-				bottom: 8118,
-				lowerRight: 8359,
-				endBottom: 8238,
-				endTop: 8239,
-				island: 8120,
-				leftT: 8242,
-				middleT: 8241,
-				rightT: 8240,
-				topT: 8121,
-				bottomT: 8361
-			},
-			doors: {
-				vertical: 569,
-				horizontal: 568
-			}
+		floorType: floorTypes.STONE,
+		wallType: wallTypes.DARK_STONE,
+		doors: {
+			vertical: 569,
+			horizontal: 568
 		}
 	}
 }
@@ -433,80 +196,6 @@ const ladders = {
 const chestTexture = 57
 
 const flatten = arr => arr.reduce((acc, val) => acc.concat(Array.isArray(val) ? flatten(val) : val), [])
-let computeBitmaskFloors = (x, y, freeCells) => {
-	let sum = 0
-	let above = `${x},${y - 1}`
-	let below = `${x},${y + 1}`
-	let left = `${x - 1},${y}`
-	let right = `${x + 1},${y}`
-
-	let ur = `${x + 1},${y - 1}`
-	let ll = `${x - 1},${y + 1}`
-
-	let ul = `${x - 1},${y - 1}`
-	let lr = `${x + 1},${y + 1}`
-
-	let debug = () => {
-		console.log(ul in freeCells, above in freeCells)
-	}
-
-	let free = coord => {
-		return coord in freeCells
-	}
-
-	if (free(above)) sum += 1
-	if (free(right)) sum += 2
-	if (free(below)) sum += 4
-	if (free(left)) sum += 8
-	if (sum == 0) {
-		if (free(ul)) {
-			return 16
-		} else if (free(ur)) {
-			return 17
-		} else if (free(ll)) {
-			return 18
-		} else if (free(lr)) {
-			return 19
-		}
-	}
-	return sum
-}
-let computeBitmaskWalls = (x, y, freeCells) => {
-	let sum = 0
-	let above = `${x},${y - 1}`
-	let below = `${x},${y + 1}`
-	let left = `${x - 1},${y}`
-	let right = `${x + 1},${y}`
-
-	let ur = `${x + 1},${y - 1}`
-	let ll = `${x - 1},${y + 1}`
-
-	let ul = `${x - 1},${y - 1}`
-	let lr = `${x + 1},${y + 1}`
-
-	let debug = () => {
-		console.log(ul in freeCells, above in freeCells)
-	}
-
-	let free = coord => {
-		return coord in freeCells
-	}
-
-	if (free(above)) sum += 1
-	if (free(right)) sum += 2
-	if (free(below)) sum += 4
-	if (free(left)) sum += 8
-	if (free(above) && !free(below) && !free(right) && !free(left) && (free(ll) || free(lr))) {
-		return 20
-	}
-	if (sum == 0) {
-		if (free(ul)) return 16
-		else if (free(ur)) return 17
-		else if (free(ll)) return 18
-		else if (free(lr)) return 19
-	}
-	return sum
-}
 
 // function that will yield a random free space in the room
 const randomTile = validTiles => {
@@ -573,8 +262,9 @@ const getWallTexture = (walls, sum) => {
 export function dungeonFromTheme(width, height, theme, mapGenerator, options, hasDoors = true) {
 	let { dungeonName, lastDungeon, fromPortal, toPortal, level } = options
 	let gameMap = new GameMap(width, height, dungeonName)
-	const { tint, type, textures, mobDistribution, dropTable } = theme
-	const { floor, corridorFloor, walls, doors } = textures
+	const { tint, type, mobDistribution, dropTable, floorType, wallType, doors } = theme
+	const walls = wallTextures[wallType]
+	const floors = floorTextures[floorType]
 	// Generate ROT map and store empty tiles in hashm ap
 	let createdLadders = 0
 	let freeCells = {}
@@ -605,7 +295,7 @@ export function dungeonFromTheme(width, height, theme, mapGenerator, options, ha
 				let sym = getWallTexture(walls, computeBitmaskWalls(x, y, freeCells))
 				tile.updateTileInfo(sym, tint)
 			} else {
-				let sym = getFloorTexture(floor, computeBitmaskFloors(x, y, freeCells))
+				let sym = getFloorTexture(floors, computeBitmaskFloors(x, y, freeCells))
 				tile.updateTileInfo(sym, tint)
 			}
 		}
@@ -692,7 +382,7 @@ export function dungeonFromTheme(width, height, theme, mapGenerator, options, ha
 	const shuffle = a => {
 		for (let i = a.length - 1; i > 0; i--) {
 			const j = Math.floor(Math.random() * (i + 1))
-			;[a[i], a[j]] = [a[j], a[i]]
+				;[a[i], a[j]] = [a[j], a[i]]
 		}
 		return a
 	}
@@ -870,12 +560,12 @@ export function dungeonFromTheme(width, height, theme, mapGenerator, options, ha
 }
 
 const tryButCatchRotException = (fn, depth = 0) => {
-	if (depth < 10) {
+	if (depth < 3) {
 		try {
 			return fn()
 		} catch (exception) {
-			console.warn(exception)
-			tryButCatchRotException(fn, depth++)
+			console.error(exception)
+			return tryButCatchRotException(fn, depth++)
 		}
 	}
 }

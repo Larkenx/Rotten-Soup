@@ -47,9 +47,13 @@ export default class Tile {
                 return true;
         }
         */
-		return this.obstacles.some(o => o.blocked)
+		return this.obstacles.some(o => o.blocked) // || this.actors.some(actor => actor.blocked)
 		// if (this.obstacles.length > 0) return this.obstacles[this.obstacles.length - 1].blocked
 		// return false
+	}
+
+	blockedByAnything() {
+		return this.obstacles.some(o => o.blocked) || this.actors.some(actor => actor.blocked && !actor.openable && !actor.locked)
 	}
 
 	blockedByObstacle() {

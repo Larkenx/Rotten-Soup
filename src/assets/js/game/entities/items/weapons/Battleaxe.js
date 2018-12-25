@@ -13,7 +13,7 @@ export class Battleaxe extends Weapon {
 			name: name,
 			type: 'Battleaxe',
 			fg: 'orange',
-			combat: {
+			cb: {
 				rolls: rolls,
 				sides: sides
 			},

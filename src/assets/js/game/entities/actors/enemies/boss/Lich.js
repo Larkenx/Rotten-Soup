@@ -13,22 +13,17 @@ export default class Lich extends Actor {
 			visible: true,
 			blocked: true,
 			chasing: false,
-			combat: {
-				/* options.combat, dedicated to all things related to combat */
-				description: [' attacked '],
-				/* max stats */
+			cb: {
 				maxhp: 40,
 				maxmana: 25,
-				/* current stats */
 				hp: 40,
 				mana: 25,
 				str: 5,
 				def: 1,
-				/* misc */
-				hostile: true,
-				range: 7,
-				invulnerable: false
-			}
+				range: 7
+			},
+			invulnerable: false,
+			hostile: true
 		})
 
 		this.spells = {

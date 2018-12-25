@@ -7,7 +7,7 @@ import { getRandomInt } from '#/utils/HelperFunctions.js'
 
 export default class Weapon extends Equippable {
 	constructor(x, y, options) {
-		options.combat.equipmentSlot = 'weapon'
+		options.cb.equipmentSlot = 'weapon'
 		super(x, y, options)
 	}
 

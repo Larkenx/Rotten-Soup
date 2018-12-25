@@ -3,15 +3,11 @@
  */
 import ROT from 'rot-js'
 import * as PIXI from 'pixi.js'
-
 import { Game } from '#/Game.js'
 import { Entity } from '#/entities/Entity.js'
 import { getRandomInt, getNormalRandomInt, addPrefix } from '#/utils/HelperFunctions.js'
 import Door from '#/entities/misc/Door.js'
 import Chest from '#/entities/misc/Chest.js'
-import Ladder from '#/entities/misc/Ladder.js'
-import Weapon from '#/entities/items/weapons/Weapon.js'
-import { Ammo } from '#/entities/items/weapons/ranged/ammo/Ammo.js'
 import { Buff } from '#/modifiers/Buff.js'
 import { Corpse, corpseTypes } from '#/entities/items/misc/Corpse.js'
 import Item from '#/entities/items/Item.js'
@@ -19,9 +15,9 @@ import Item from '#/entities/items/Item.js'
 export class Actor extends Entity {
 	constructor(x, y, options, routine = null) {
 		super(x, y, options)
-		this.cb = this.combat
+		this.visible = true
+		this.blocked = true
 		if (this.corpseType === undefined) this.corpseType = corpseTypes.HUMANOID
-
 		this.cb.effects = []
 		this.cb.equipment = {
 			head: null,
@@ -49,18 +45,6 @@ export class Actor extends Entity {
 		// if any effects have expired, we remove them
 	}
 
-	// goes through all of the actor's equipment and adds up the defensive value of each piece of armor
-	getDefenceRating() {
-		let def = 0
-		for (let slot in this.cb.equipment) {
-			let item = this.cb.equipment[slot]
-			if (item !== null && item.cb.def !== undefined) {
-				def += item.cb.def
-			}
-		}
-		return def
-	}
-
 	addNewEffect(effect) {
 		this.cb.effects.push(effect)
 	}
@@ -70,87 +54,13 @@ export class Actor extends Entity {
 		this.cb.effects.push(buff)
 	}
 
-	memberOfInventory(item) {
-		return (
-			-1 <
-			this.inventory.findIndex(i => {
-				return Object.is(item, i)
-			})
-		)
-	}
-
-	hasItem(itemType) {
-		return this.inventory.some(i => i instanceof itemType)
-	}
-
-	hasExactItem(item) {
-		return this.inventory.some(i => i === item)
-	}
-
-	removeItemType(itemType) {
-		for (let item of this.inventory) {
-			if (item instanceof itemType) {
-				this.removeFromInventory(item)
-				return
-			}
-		}
-	}
-
-	addToInventory(newItem) {
-		if ('quantity' in newItem) {
-			// some items change textures on quantity changes (gold pieces)
-			if (newItem.updateQuantity !== undefined) {
-				newItem.updateQuantity()
-			}
-
-			for (let i = 0; i < this.inventory.length; i++) {
-				let item = this.inventory[i]
-				if (item !== null && item.type === newItem.type) {
-					item.quantity += newItem.quantity
-					return
-				}
-			}
-		}
-
-		this.inventory.push(newItem)
-	}
-
 	placeEntityBelow(entity) {
 		if (entity instanceof Item) {
 			entity.placeAt(this.x, this.y)
-			Game.display.assignSprite(item)
+			Game.display.assignSprite(entity)
 		} else {
 			Game.map.data[this.y][this.x].actors.push(entity)
 		}
-	}
-
-	removeFromInventory(removeItem) {
-		let idx = this.inventory.findIndex(i => {
-			return Object.is(removeItem, i)
-		})
-		if (idx != -1) {
-			this.inventory.splice(idx, 1)
-		} else {
-			throw 'invalid item removal - trying to remove an item that cannot be found in inventory!'
-		}
-	}
-
-	dropItem(item) {
-		if (!this.memberOfInventory(item)) throw "Error - trying to drop an item you don't have in your inventory"
-		item.inInventory = false
-		if (item !== null && 'cb' in item) {
-			item.cb.equipped = false
-			if (this.cb.equipment[item.cb.equipmentSlot] === item) this.cb.equipment[item.cb.equipmentSlot] = null
-		}
-		item.placeAt(this.x, this.y)
-		Game.display.assignSprite(item, true, 2)
-		this.removeFromInventory(item)
-	}
-
-	/* The inventory property of actors is an array of object 'slots'. This function
-     * returns the actual items that are held at any given time */
-	items() {
-		return this.inventory
 	}
 
 	distanceTo(actor) {
@@ -172,10 +82,8 @@ export class Actor extends Entity {
 		return null
 	}
 
-	/* Used to react to the interaction of another actor */
-	react(actor) {
-		return null
-	}
+	/* Used to react to the interaction of another actor - to be overwritten */
+	react(actor) { }
 
 	tryMove(nx, ny) {
 		// returns true if the turn should end here
@@ -199,7 +107,8 @@ export class Actor extends Entity {
 				if (actor instanceof Door) {
 					actor.react()
 					if (actor.closed === true) return true
-				} else if (actor instanceof Chest) {
+				} else if (actor instanceof Chest && this.canLoot) {
+					actor.react(this)
 					return false
 				}
 			}
@@ -223,6 +132,9 @@ export class Actor extends Entity {
 		let { def } = actor.cb
 		let deflectedDamage = getNormalRandomInt(0, def + actor.getDefenceRating() + 1)
 		dmg -= deflectedDamage
+		if (dmg < 0) {
+			dmg = 0
+		}
 
 		let verb,
 			message = ''
@@ -231,7 +143,9 @@ export class Actor extends Entity {
 			verb = attackVerbs[~~(Math.random() * attackVerbs.length)]
 			message = `${addPrefix(this.name).capitalize()} ${verb} ${addPrefix(actor.name)} with ${addPrefix(
 				type.toLowerCase()
-			)} and dealt ${dmg} damage.`
+			)}`
+			let endOfMsg = dmg > 0 ? ` and dealt ${dmg} damage.` : ` but failed to hit.`
+			message += endOfMsg
 		} else {
 			if (dmg > 0) message = `${addPrefix(this.name).capitalize()} attacked ${addPrefix(actor.name)} and dealt ${dmg} damage.`
 			else message = `${addPrefix(this.name).capitalize()} tried to attack ${addPrefix(actor.name)} but failed to hit.`
@@ -331,8 +245,8 @@ export class Actor extends Entity {
 				return
 			}
 			// if we find an enemy on the tile, we damage it and the projectile stops moving
-			let enemies = tile.actors.filter(function(e) {
-				return e.combat && e.cb.hostile
+			let enemies = tile.actors.filter(function (e) {
+				return e.cb && e.cb.hostile
 			})
 			if (enemies.length > 0) {
 				let enemy = enemies[0]
@@ -396,12 +310,18 @@ export class Actor extends Entity {
 		}
 	}
 
-	isDead() {
-		return this.cb.hp <= 0
+	removeActor() {
+		let idx = Game.engine._scheduler.remove(this)
+		let ctile = Game.map.data[this.y][this.x]
+		// remove this actor from the global actors list and the occupied tile
+		ctile.removeActor(this)
+		Game.display.background.removeChild(this.sprite)
+		if (this.spriteAbove !== undefined) Game.display.background.removeChild(this.spriteAbove)
 	}
 
-	getHoverInfo() {
-		return `HP: ${this.cb.hp} / ${this.cb.maxhp}<br />\"${this.description}\"`
+	/* >>> dynamic stats getters <<< */
+	isDead() {
+		return this.cb.hp <= 0
 	}
 
 	getMinDmg() {
@@ -416,12 +336,113 @@ export class Actor extends Entity {
 		return this.cb.str + maxWeaponDmg
 	}
 
-	removeActor() {
-		let idx = Game.engine._scheduler.remove(this)
+	getDefenceRating() {
+		// goes through all of the actor's equipment and adds up the defensive value of each piece of armor
+
+		let def = 0
+		for (let slot in this.cb.equipment) {
+			let item = this.cb.equipment[slot]
+			if (item !== null && item.cb.def !== undefined) {
+				def += item.cb.def
+			}
+		}
+		return def
+	}
+
+	/* >>> inventory management <<< */
+
+	memberOfInventory(item) {
+		return (
+			-1 <
+			this.inventory.findIndex(i => {
+				return Object.is(item, i)
+			})
+		)
+	}
+
+	hasItem(itemType) {
+		return this.inventory.some(i => i instanceof itemType)
+	}
+
+	hasExactItem(item) {
+		return this.inventory.some(i => i === item)
+	}
+
+	removeItemType(itemType) {
+		for (let item of this.inventory) {
+			if (item instanceof itemType) {
+				this.removeFromInventory(item)
+				return
+			}
+		}
+	}
+
+	removeZeroQuantityItems() {
+		this.inventory = this.inventory.filter(i => {
+			return !i.hasOwnProperty('quantity') || i.quantity > 0
+		})
+	}
+
+	addToInventory(newItem) {
+		if ('quantity' in newItem) {
+			// some items change textures on quantity changes (gold pieces)
+			if (newItem.updateQuantity !== undefined) {
+				newItem.updateQuantity()
+			}
+
+			for (let i = 0; i < this.inventory.length; i++) {
+				let item = this.inventory[i]
+				if (item !== null && item.type === newItem.type) {
+					item.quantity += newItem.quantity
+					return
+				}
+			}
+		}
+
+		this.inventory.push(newItem)
+	}
+
+	removeFromInventory(removeItem) {
+		let idx = this.inventory.findIndex(i => {
+			return Object.is(removeItem, i)
+		})
+		if (idx != -1) {
+			this.inventory.splice(idx, 1)
+		} else {
+			throw 'invalid item removal - trying to remove an item that cannot be found in inventory!'
+		}
+	}
+
+	dropItem(item) {
+		if (!this.memberOfInventory(item)) throw "Error - trying to drop an item you don't have in your inventory"
+		item.inInventory = false
+		if (item !== null && 'cb' in item) {
+			item.cb.equipped = false
+			if (this.cb.equipment[item.cb.equipmentSlot] === item) this.cb.equipment[item.cb.equipmentSlot] = null
+		}
+		item.placeAt(this.x, this.y)
+		Game.display.assignSprite(item, true, 2)
+		this.removeFromInventory(item)
+	}
+
+	pickup() {
 		let ctile = Game.map.data[this.y][this.x]
-		// remove this actor from the global actors list and the occupied tile
-		ctile.removeActor(this)
-		Game.display.background.removeChild(this.sprite)
-		if (this.spriteAbove !== undefined) Game.display.background.removeChild(this.spriteAbove)
+		let items = ctile.actors.filter(el => {
+			return el instanceof Item
+		})
+		if (items.length > 0) Game.eventStream.emit('LootPickedUpEvent', { items, looter: this })
+		if (items.length === 1) {
+			Game.display.clearSprite(items[0])
+			this.addToInventory(items[0])
+			ctile.removeActor(items[0])
+		} else if (items.length > 1) {
+			let itemTypes = []
+			for (let item of items) {
+				itemTypes.push(item.type.toLowerCase())
+				Game.display.clearSprite(item)
+				this.addToInventory(item)
+				ctile.removeActor(item)
+			}
+		}
 	}
 }

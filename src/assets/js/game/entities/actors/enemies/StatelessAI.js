@@ -11,10 +11,10 @@ import ROT from 'rot-js'
    * based on http://www.roguebasin.com/index.php?title=Roguelike_Intelligence_-_Stateless_AIs
 */
 export class StatelessAI extends Actor {
-	constructor(x, y, options, config) {
+	constructor(x, y, options) {
 		super(x, y, options)
+		this.hostile = true
 		this.fg = this.bg = 'red'
-		this.ai = config
 	}
 
 	act() {
@@ -40,10 +40,9 @@ export class StatelessAI extends Actor {
 			return a === Game.player
 		})
 
-		let { wanders, morale, minPlayerDist, maxPlayerDist, ranged, melee, magic } = this.ai
 		if (playerInView) {
 			if (!this.chasing) {
-				Game.log(`A ${this.name} sees you.`, 'alert')
+				// Game.log(`${addPrefix(this.name)} sees you.`, 'alert')
 			}
 
 			this.chasing = true
@@ -88,11 +87,11 @@ export class StatelessAI extends Actor {
 			}
 
 			// if morale is greater than the health remaining, we need to flee!
-			if (morale >= healthRemainingPercentage) {
+			if (this.cb.morale >= healthRemainingPercentage) {
 				let tile = getFarthestAwayTile()
 				if (tile.x !== this.x || tile.y !== this.y) {
-					if (!this.fleeing)
-						Game.log(`The ${this.name.toLowerCase()} trembles at your might and attempts to escape death.`, 'purple')
+					// if (!this.fleeing)
+					// 	Game.log(`The ${this.name.toLowerCase()} trembles at your might and attempts to escape death.`, 'purple')
 					this.fleeing = true
 					// if we can run away
 					this.tryMove(tile.x, tile.y)
@@ -111,38 +110,8 @@ export class StatelessAI extends Actor {
 					this.tryMove(newPos[0], newPos[1])
 				}
 			}
-
-			/*
-                              TYPICAL AI
-                     If damage > morale
-                        if can-run-away-from-player
-                           run-away-from-player
-                        else if can-attack-player
-                           attack-player
-                     else if too-far-from-player
-                        AND can-attack-player
-                        AND can-move-toward-player
-                            if  random < charge-probability
-                                move-toward-player
-                            else attack-player
-                     else if too-close-to-character
-                        AND can-attack-player
-                        AND can-move-away-from-player
-                            if random < retreat-probability
-                               move-away-from-player
-                            else attack-player
-                     else if can-attack-player
-                        attack-player
-                     else if too-far-from-player
-                        AND can-move-toward-player
-                  move-toward-player
-                     else if too-close-to-player
-                        AND can-move-away-from-player
-                            move-away-from-player
-                     else stand-still
-                  */
 		} else {
-			if (wanders) {
+			if (this.wanders) {
 				let dx = this.x + getRandomInt(-1, 1)
 				let dy = this.y + getRandomInt(-1, 1)
 				this.tryMove(dx, dy)
@@ -161,3 +130,33 @@ export class StatelessAI extends Actor {
 		}
 	}
 }
+
+/*
+		TYPICAL AI
+If damage > morale
+	if can-run-away-from-player
+		run-away-from-player
+	else if can-attack-player
+		attack-player
+	else if too-far-from-player
+AND can-attack-player
+AND can-move-toward-player
+	if  random < charge-probability
+		move-toward-player
+	else attack-player
+else if too-close-to-character
+AND can-attack-player
+AND can-move-away-from-player
+	if random < retreat-probability
+		move-away-from-player
+	else attack-player
+else if can-attack-player
+attack-player
+else if too-far-from-player
+AND can-move-toward-player
+move-toward-player
+else if too-close-to-player
+AND can-move-away-from-player
+	move-away-from-player
+else stand-still
+*/

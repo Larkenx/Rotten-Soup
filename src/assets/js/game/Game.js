@@ -1,19 +1,18 @@
 import ROT from 'rot-js'
 import * as PIXI from 'pixi.js'
 import loadResources from '#/ResourceLoader.js'
-import { getTilesetCoords, createMapFromJSON } from '#/map/GameMap.js'
+import { createMapFromJSON } from '#/map/GameMap.js'
 import GameDisplay from '#/GameDisplay.js'
 import { Actor } from '#/entities/actors/Actor.js'
 import { Entity } from '#/entities/Entity.js'
-import { getItemsFromDropTable, addPrefix } from '#/utils/HelperFunctions.js'
+import { addPrefix } from '#/utils/HelperFunctions.js'
+import EventStream from '#/utils/EventStream.js'
 import PlayerController from '#/utils/PlayerController.js'
 import Item from '#/entities/items/Item.js'
 import Player from '#/entities/actors/Player.js'
 import MapGen from '#/map/generation/index.js'
-import Door from '#/entities/misc/Door.js'
 import Ladder from '#/entities/misc/Ladder.js'
 import LevelTransition from '#/entities/misc/LevelTransition.js'
-import Chest from '#/entities/misc/Chest.js'
 import { generatePrefabs } from '#/map/Prefab.js'
 
 PIXI.utils.skipHello()
@@ -30,6 +29,7 @@ export let Game = {
 	app: null,
 	overview: null,
 	dialogController: null,
+	eventStream: null,
 	dev: false,
 	display: null,
 	HUD: null,
@@ -49,6 +49,7 @@ export let Game = {
 	tempMessages: [],
 	minimap: null,
 	selectedTile: null,
+	selectedTileMessagePrepend: '',
 	pathToTarget: {},
 	targetReticle: null,
 	enemyCycle: null,
@@ -63,6 +64,7 @@ export let Game = {
 	init(playerSpriteID, options) {
 		this.playerID = playerSpriteID
 		this.player = new Player(0, 0, playerSpriteID)
+		this.eventStream = new EventStream()
 		this.displayOptions = {
 			width: 32,
 			height: 20,
@@ -78,6 +80,7 @@ export let Game = {
 			this.levels['Mulberry Forest'] = createMapFromJSON(resources['mulberryForest'].data, 'Mulberry Forest')
 			this.levels['Mulberry Graveyard'] = createMapFromJSON(resources['mulberryGraveyard'].data, 'Mulberry Graveyard')
 			this.levels['Lich Lair'] = createMapFromJSON(resources['lichLair'].data, 'Lich Lair')
+			this.levels['Loot Goblin Lair'] = createMapFromJSON(resources['lootGoblinLair'].data, 'Loot Goblin Lair')
 			this.map = this.levels[this.currentLevel.name]
 			this.width = this.map.width < this.displayOptions.width ? this.map.width : this.displayOptions.width
 			this.height = this.map.height < this.displayOptions.height ? this.map.height : this.displayOptions.height
@@ -93,8 +96,8 @@ export let Game = {
 			}
 			this.engine.start()
 			this.renderMap()
-			// this.changeLevels('Mulberry Dungeon', true)
-			// // Game.map.revealed = true
+			// this.changeLevels('Mulberry Forest', true)
+			// Game.map.revealed = true
 			// this.player.placeAt(0, 0)
 			// this.display.app.stage.scale.x = this.display.app.stage.scale.y = 0.625
 			// this.renderMap()
@@ -128,12 +131,17 @@ export let Game = {
 		this.scheduler.add(this.player, true) // Add the player to the scheduler
 		this.scheduler.add(this.display, true)
 		let actors = this.map.getActors()
-		for (let i = 0; i < actors.length; i++) {
+		for (let actor of actors) {
+			if (actor.seenTiles) actor.seenTiles = []
 			// Some 'actor' objects do not take turns, such as ladders / items
-			if (actors[i] !== this.player && actors[i] instanceof Actor) {
-				this.scheduler.add(actors[i], true)
+			if (actor !== this.player && actor instanceof Actor) {
+				this.scheduler.add(actor, true)
+				// if the actor is goal driven, clear their current goals
+				if (actor.subscribeToEventStream) actor.clearGoals()
 			}
 		}
+		// emit a new spawned event when each actor gets loaded in
+		actors.forEach(actor => this.eventStream.emit('EntitySpawnedEvent', { entity: actor }))
 		this.engine = new ROT.Engine(this.scheduler) // Create new engine with the newly created scheduler
 	},
 
@@ -149,7 +157,7 @@ export let Game = {
 	},
 
 	inbounds(x, y) {
-		return !(x < 0 || x >= this.map.width || y < 0 || y >= this.map.height)
+		return this.map.inbounds(x, y)
 	},
 
 	inViewport(x, y) {
@@ -161,12 +169,14 @@ export let Game = {
 	},
 
 	createDungeonFloors(origin, dungeonName, numberOfFloors) {
-		this.levels[dungeonName + 1] = randomDungeon(45, 30, {
+		this.levels[dungeonName + 1] = randomDungeon(64, 40, {
 			dungeonName,
 			lastDungeon: false,
 			fromPortal: origin,
 			toPortal: dungeonName + 2,
-			level: 1
+			level: 1,
+			addPrefabs: true,
+			addEntities: true
 		})
 		for (let depth = 2; depth < numberOfFloors; depth++) {
 			let options = {
@@ -174,16 +184,20 @@ export let Game = {
 				lastDungeon: false,
 				fromPortal: dungeonName + (depth - 1),
 				toPortal: dungeonName + (depth + 1),
-				level: depth
+				level: depth,
+				addPrefabs: true,
+				addEntities: true
 			}
-			this.levels[dungeonName + depth] = randomDungeon(45, 30, options)
+			this.levels[dungeonName + depth] = randomDungeon(64, 40, options)
 		}
-		this.levels[dungeonName + numberOfFloors] = randomDungeon(45, 30, {
+		this.levels[dungeonName + numberOfFloors] = randomDungeon(64, 40, {
 			dungeonName,
 			lastDungeon: true,
 			fromPortal: dungeonName + (numberOfFloors - 1),
 			toPortal: origin,
-			level: numberOfFloors
+			level: numberOfFloors,
+			addPrefabs: true,
+			addEntities: true
 		})
 	},
 
@@ -321,40 +335,29 @@ export let Game = {
 			// at the bottom of the map
 			startingPos[1] = Game.map.height - camera.height
 		}
-		this.camera = {
+		camera = {
 			x: startingPos[0],
-			y: startingPos[1]
+			y: startingPos[1],
+			xend: startingPos[0] + camera.width,
+			yend: startingPos[1] + camera.height
 		}
-		let endingPos = [startingPos[0] + camera.width, startingPos[1] + camera.height]
-		let dx = 0
-		let dy = 0
-		let actors = []
-		for (let x = startingPos[0]; x < endingPos[0]; x++) {
-			for (let y = startingPos[1]; y < endingPos[1]; y++) {
-				let tile = this.getTile(x, y)
-				// if (tile.x + ',' + tile.y in this.map.visible_tiles) {
-				actors = actors.concat(tile.actors)
-				// }
-
-				// if (this.map.revealed) {
-				//     actors = actors.concat(tile.actors);
-				// } else {
-				//     if (tile.x + "," + tile.y in this.map.visible_tiles)
-				//         actors = actors.concat(tile.actors);
-				// }
-			}
-			dx++
-			dy = 0
-		}
-		let enemies = actors.filter(actor => {
-			return actor.cb !== undefined && actor.cb.hostile
+		let enemies = this.map.getActors().filter(actor => {
+			return (
+				actor.cb &&
+				actor.cb.hostile &&
+				actor.x >= camera.x &&
+				actor.x <= camera.xend &&
+				actor.y >= camera.y &&
+				actor.y <= camera.yend
+			)
 		})
-
 		// we sort the enemies closest to farthest away
-		return enemies.sort((a1, a2) => {
-			if (a1.distanceTo(this.player) < a2.distanceTo(this.player)) {
+		return enemies.sort((a, b) => {
+			let aDistance = a.distanceTo(this.player)
+			let bDistance = b.distanceTo(this.player)
+			if (aDistance < bDistance) {
 				return -1
-			} else if (a2.distanceTo(this.player) < a1.distanceTo(this.player)) {
+			} else if (bDistance < aDistance) {
 				return 1
 			} else {
 				return 0
@@ -371,9 +374,11 @@ export let Game = {
 		this.pathToTarget = {}
 		this.clearTempLog() // clear the temporary log which describes the tile we're on
 		this.targetReticle.visible = false
+		this.selectedTileMessagePrepend = ''
 	},
 
-	changeSelectedTile(tile) {
+	changeSelectedTile(tile, messagePrepend = '') {
+		if (messagePrepend !== '') this.selectedTileMessagePrepend = messagePrepend
 		this.selectedTile = tile
 		let { x, y } = tile
 		let blockedTile = this.selectedTile.blocked() || this.map.visible_tiles[x + ',' + y] === undefined
@@ -408,16 +413,16 @@ export let Game = {
 		this.targetReticle.visible = true
 		this.targetReticle.position.set(tile.x * this.display.tileSize, tile.y * this.display.tileSize)
 		this.describeSelectedTile()
-
 		return !blockedTile
 	},
 
-	selectNearestEnemyTile() {
+	selectNearestEnemyTile(messagePrepend = '') {
+		if (messagePrepend !== '') this.selectedTileMessagePrepend = messagePrepend
 		this.clearSelectedTile()
 		let enemy = this.getClosestEnemyToPlayer()
 		if (enemy !== undefined) {
 			let { x, y } = enemy
-			return this.changeSelectedTile(this.getTile(x, y))
+			return this.changeSelectedTile(this.getTile(x, y), messagePrepend)
 		} else {
 			return false
 		}
@@ -425,20 +430,17 @@ export let Game = {
 
 	cycleThroughSelectableEnemies() {
 		if (this.enemyCycle === null) {
-			this.enemyCycle = this.getNearbyEnemies().filter(e => this.map.visible_tiles[e.x + ',' + e.y])
+			this.enemyCycle = this.getNearbyEnemies().filter(e => `${e.x},${e.y}` in this.map.visible_tiles)
 			this.enemyCycleIndex = 0
-		}
-		// if there's more than one enemy, we can cycle to the next closest enemy
-		if (this.enemyCycle.length > 1) {
-			this.clearSelectedTile()
+		} else {
 			this.enemyCycleIndex += 1
 			if (this.enemyCycleIndex === this.enemyCycle.length) {
 				this.enemyCycleIndex = 0
 			}
-
-			let newTarget = this.enemyCycle[this.enemyCycleIndex]
-			return this.changeSelectedTile(this.getTile(newTarget.x, newTarget.y))
 		}
+		// if there's more than one enemy, we can cycle to the next closest enemy
+		let newTarget = this.enemyCycle[this.enemyCycleIndex]
+		return this.changeSelectedTile(this.getTile(newTarget.x, newTarget.y))
 	},
 
 	describeSelectedTile() {
@@ -470,14 +472,14 @@ export let Game = {
 			const { x, y } = this.selectedTile
 			let visible = x + ',' + y in this.map.visible_tiles && !this.getTile(x, y).obstacles.some(o => o.blocked)
 			let inView = !visible ? ' This tile is out of range or blocked.' : ''
-			this.log(`[You see ${prettyNames} here.${inView}]`, 'player_move', true)
+			this.log(`[${this.selectedTileMessagePrepend}You see ${prettyNames} here.${inView}]`, 'player_move', true)
 		} else {
-			this.log(`[You see ${prettyNames} here.]`, 'player_move', true)
+			this.log(`[${this.selectedTileMessagePrepend}You see ${prettyNames} here.]`, 'player_move', true)
 		}
 	},
 
 	getTile(x, y) {
-		return this.map.data[y][x]
+		return this.map.getTile(x, y)
 	},
 
 	printPlayerTile() {
@@ -498,6 +500,7 @@ export let Game = {
 	},
 
 	log(message, type, tmp = false) {
+
 		let message_color = {
 			defend: 'lightblue',
 			magic: '#6757c6',
