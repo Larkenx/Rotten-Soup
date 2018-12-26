@@ -140,3 +140,7 @@ class Arrow extends Stackable(Equippable(Entity, 'quiver')) {
     }
 }
 ```
+
+### Some good resources
+https://www.reddit.com/r/roguelikedev/comments/4pru74/implementation_of_brian_bucklews_component_system/
+https://www.reddit.com/r/roguelikedev/comments/4lrr89/overview_of_my_component_system_as_requested_in/
