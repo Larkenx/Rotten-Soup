@@ -46,12 +46,12 @@ The gist is that if you have an OOP architecture for your items and entities of 
 > Object oriented design isn't enemy! We still want *classes* and inheritance for shared functionality. We just want to limit the depth of the inheritance tree to prevent complexity and code duplication.
 
 ## Overview of  Entity Component Systems & some lousy examples
-So, like every other cool developer on the block, I'm looking to *borrow* some ideas from ECS - but I don't want to drink the entire pitcher of ECS Koolaid. Instead of having some kind of horrible convoluted object inheritance structure, we can use multiple inheritance to inherit properties of several different components. Here's a few examples of what that might look like if we have a language that allows multiple inheritance:
+So, like every other cool developer on the block, I'm looking to *borrow* some ideas from ECS - but I don't want to drink the entire pitcher of ECS Koolaid. Instead of having some kind of horrible convoluted object inheritance structure, we can use multiple inheritance to inherit properties of several different components. Here's a couple of python (?) examples of what that might look like if we have a language that allows multiple inheritance:
 
-```javascript
-class AcidPotion extends Throwable, Consumable, Stackable {...}
-class FlamingThrowingKnife extends Flaming, Throwable, Stackable {...}
-class Spellbook extends Wearable, Throwable, Consumable {...}
+```python
+class AcidPotion(Throwable, Consumable, Stackable): pass
+class FlamingThrowingKnife(Flaming, Throwable, Stackable): pass
+class Spellbook(Wearable, Throwable, Consumable): pass
 ```
 
 More traditional ECS designs would probably have a class that has a list of components:
