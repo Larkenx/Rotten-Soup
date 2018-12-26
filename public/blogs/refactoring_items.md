@@ -1,7 +1,7 @@
 # Refactoring items in Rotten Soup 
 > In this article, I'm going to talk through where my item implementation currently stands and what its major drawbacks are. I'm looking to change that by moving away from an object-oriented approach towards an entity-component-system (lite) approach using concepts of javascript multiple inheritance, or mixins.
 
-When I first started Rotten Soup 2 years ago, I was even more of a baby developer than I am today. I created a new javascript class for every type of item, some of them extending some more abstract classes. This has a lot of major drawbacks - the biggest issue being that as you add more and more functionality to the game, every new item produces exponential code complexity. The class hierarchy as it is today is as follows:
+When I first started Rotten Soup 2 years ago, I created a new javascript class for every type of item, all of them extending a base `Item` class. This has a lot of major drawbacks - the biggest issue being that as you add more and more functionality to the game, every new item produces exponential code complexity. The class hierarchy as it is today is as follows:
 
 ```
 ├── Equippable.js
