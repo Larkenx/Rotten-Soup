@@ -43,7 +43,7 @@ The gist is that if you have an OOP architecture for your items and entities of 
 - Difficulty (impossibility) of finding the right inheritance structure for unique items that fall under many trees (the `Fire-Ice-Stackable-Throwable-Wieldable-Battleaxe`).
 - Duplicated code for the same functionality in different classes that can't share an inheritance structure
 
-> Object oriented design isn't enemy! We still want *classes* and inheritance for shared functionality. An `Actor` class is always going to have to take an action when it's time for it take a turn, and it's always going to have a `move` method. We just want to limit the depth of the inheritance tree to prevent complexity and code duplication.
+> Object oriented design isn't enemy! We still want *classes* and inheritance for shared functionality. We just want to limit the depth of the inheritance tree to prevent complexity and code duplication.
 
 ## Overview of  Entity Component Systems & some lousy examples
 So, like every other cool developer on the block, I'm looking to *borrow* some ideas from ECS - but I don't want to drink the entire pitcher of ECS Koolaid. Instead of having some kind of horrible convoluted object inheritance structure, we can use multiple inheritance to inherit properties of several different components. Here's a few examples of what that might look like if we have a language that allows multiple inheritance:
