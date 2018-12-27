@@ -1,12 +1,8 @@
-<template>
-</template>
+<template></template>
 
 <script>
-import test from '#/utils/EventStreamTest.js'
 export default {
-	mounted() {
-		test()
-	},
+	mounted() {},
 	data() {
 		return {}
 	},

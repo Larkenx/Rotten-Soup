@@ -1,3 +1,19 @@
+export const ammoTypes = {
+	ARROW: 'ARROW',
+	RUNE: 'RUNE',
+	ANY: 'ANY'
+}
+
+export const equipmentSlots = {
+	HEAD: 'HEAD',
+	TORSO: 'TORSO',
+	LEGS: 'LEGS',
+	BOOTS: 'BOOTS',
+	WEAPON: 'WEAPON',
+	AMMO: 'AMMO',
+	RING: 'RING'
+}
+
 export const materialTypes = {
 	BRONZE: 'BRONZE',
 	IRON: 'IRON',
