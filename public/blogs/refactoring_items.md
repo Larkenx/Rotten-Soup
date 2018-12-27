@@ -109,35 +109,94 @@ const flamingSteelArrow = {
 
 ## JavaScript Multiple Inheritance Implementations (Mixins)
 
-There are a few ways we can approach implementing this in JavaScript specifically. Multiple inheritance, or mixins, is not a feature of the language; however, it's a commonly discussed problem. Many of the ideas I'm about to explore are covered in [this article](http://justinfagnani.com/2015/12/21/real-mixins-with-javascript-classes/). The [MDN article for classes](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Classes#Mix-ins) also does a pretty good job of showing a way of implementing mixins as well. High level idea is that I can create a function that accepts a class, and returns a new sub-class. You can chain those functions together so your mixins basically extend each other over and over again. Here's a less pretty code example, more or less from the MDN docs:
+There are a few ways we can approach implementing this in JavaScript specifically. Multiple inheritance, or mixins, is not a feature of the language; however, it's a commonly discussed problem. Many of the ideas I'm about to explore are covered in [this article](http://justinfagnani.com/2015/12/21/real-mixins-with-javascript-classes/). The [MDN article for classes](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Classes#Mix-ins) also does a pretty good job of showing a way of implementing mixins as well. High level idea is that I can create a function that accepts a class, and returns a new class extending the given class. You can chain those functions together so your mixins basically extend each other over and over again. Here's an example mixins implementation, some possible item mixins I might use, and finally proof of concept Bow & Arrow items.
 
 ```javascript
-/* The entity base class that everything extends */
-class Entity {
-    constructor(options) {
-        Object.assign(this, options)
+// Mixins.js 
+export const mix = superclass => new MixinBuilder(superclass)
+
+class MixinBuilder {
+    constructor(superclass) {
+        this.superclass = superclass
     }
-    
-    /* shared code by all entities */
-}
 
-/* A function that accepts a Base class, and returns a new class extending it, adding methods to handle getting/setting quantity */
-const Stackable = Base => class extends Base {
-    getQuantity() {}
-
-    setQuantity() {}
-}
-/* Similar to the above mixin, but takes in a paramter that sets what equipment slot should be used  */
-const Equippable = (Base, slot) => class extends Base { 
-    constructor() {
-        this.slot = slot
+    with(...mixins) {
+        return mixins.reduce((c, mixin) => mixin(c), this.superclass)
     }
 }
-
-class Arrow extends Stackable(Equippable(Entity, 'quiver')) {
-    constructor(){
-        super({ name: 'Arrow', description: 'shooty shooty'})
+```
+```javascript
+// ItemMixins.js
+import { ammoTypes } from "#/utils/Constants";
+export const Stackable = superclass => class extends superclass {
+    constructor(configuration) {
+        super(configuration)
+        this.quantity = configuration.quantity || 1
     }
+}
+
+export const Equippable = superclass => class extends superclass {
+    constructor(configuration) {
+        super(configuration)
+        this.equipmentSlot = configuration.equipmentSlot
+    }
+}
+
+export const Consumable = superclass => class extends superclass {
+    constructor(configuration) {
+        super(configuration)
+        this.use = configuration.use
+    }
+}
+
+export const Fireable = superclass => class extends superclass {
+    constructor(configuration) {
+        super(configuration)
+        this.cb.range = configuration.range || null
+        this.cb.ranged = true
+    }
+}
+
+export const AmmunitionTyped = superclass => class extends superclass {
+    constructor(configuration) {
+        super(configuration)
+        this.ammoType = configuration.ammoType || ammoTypes.ANY
+    }
+}
+```
+```javascript
+// Items.js
+import { Entity } from '#/entities/Entity.js'
+import { itemTypes, equipmentSlots, ammoTypes } from '#/utils/Constants';
+import { mix } from '#/utils/Mixins'
+import { Stackable, Equippable, AmmunitionTyped, Fireable } from './ItemMixins';
+
+export default class Item extends Entity {
+	constructor(options) {
+		super(options)
+		this.category = options.category || itemTypes.MISCELLANEOUS
+		this.description = options.description || []
+	}
+}
+
+export class Arrow extends mix(Item).with(Stackable, Equippable, AmmunitionTyped) {
+	constructor(configuration) {
+		super({
+			equipmentSlot: equipmentSlots.AMMO,
+			ammoType: ammoTypes.ARROW,
+			...configuration
+	})
+	}
+}
+
+export class Bow extends mix(Item).with(Equippable, AmmunitionTyped, Fireable) {
+	constructor(configuration) {
+		super({
+			equipmentSlot: equipmentSlots.WEAPON,
+			ammoType: ammoTypes.ARROW,
+			...configuration
+		})
+	}
 }
 ```
 
