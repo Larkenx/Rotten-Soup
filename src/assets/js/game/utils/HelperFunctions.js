@@ -1,11 +1,11 @@
 import ROT from 'rot-js'
-
 import { Game } from '#/Game.js'
-import HealthPotion from '#/entities/items/potions/HealthPotion.js'
-import StrengthPotion from '#/entities/items/potions/StrengthPotion.js'
-import ManaPotion from '#/entities/items/potions/ManaPotion.js'
-import { createSword } from '#/entities/items/weapons/Sword.js'
-import { SteelArrow } from '#/entities/items/weapons/ranged/ammo/Arrow.js'
+
+export function verifyProps(object, props) {
+	if (!props.every(p => object.hasOwnProperty(p))) {
+		console.trace(`Missing property for one of: ${props} for object: ${object}`)
+	}
+}
 
 export function pathfinding(x, y) {
 	return Game.inbounds(x, y) && !Game.getTile(x, y).blocked()

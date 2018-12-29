@@ -292,7 +292,7 @@ export let Game = {
 						const bg = tile.x + ',' + tile.y in this.map.visible_tiles ? this.brightenColor(tile.bg()) : tile.bg()
 						this.minimap.draw(dx, dy, ' ', tile.bg(), bg)
 						for (let a of tile.actors) {
-							if (a.bg !== undefined) this.minimap.draw(dx, dy, '●', a.bg, bg)
+							if (a.bg !== undefined) this.minimap.draw(dx, dy, '◝', a.bg, bg)
 						}
 					}
 				}
@@ -482,6 +482,10 @@ export let Game = {
 		return this.map.getTile(x, y)
 	},
 
+	tileAt(x, y) {
+		return this.map.getTile(x, y)
+	},
+
 	printPlayerTile() {
 		console.log(Game.map.data[this.player.y][this.player.x])
 	},
@@ -500,7 +504,6 @@ export let Game = {
 	},
 
 	log(message, type, tmp = false) {
-
 		let message_color = {
 			defend: 'lightblue',
 			magic: '#6757c6',
