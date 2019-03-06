@@ -96,20 +96,20 @@ export class LootGoblin extends GoalBasedEnemy {
 	tryMove(x, y) {
 		// Whenever a loot goblin moves it has a chance to drop gold
 		super.tryMove(x, y)
-		if (getRandomInt(0, 10) === 0) {
-			const gold = this.inventory.filter(item => item instanceof Gold && item.quantity >= 3)
-			if (gold.length >= 1) {
-				let quantity = getRandomInt(1, 3)
-				for (let item of this.inventory) {
-					if (item instanceof Gold) {
-						item.quantity -= quantity
-						item.updateQuantity()
-						this.removeZeroQuantityItems()
-						break
-					}
-				}
-				this.placeEntityBelow(createItem('GOLD', this.x, this.y, null, { quantity }))
-			}
-		}
+		// if (getRandomInt(0, 10) === 0) {
+		// 	const gold = this.inventory.filter(item => item instanceof Gold && item.quantity >= 3)
+		// 	if (gold.length >= 1) {
+		// 		let quantity = getRandomInt(1, 3)
+		// 		for (let item of this.inventory) {
+		// 			if (item instanceof Gold) {
+		// 				item.quantity -= quantity
+		// 				item.updateQuantity()
+		// 				this.removeZeroQuantityItems()
+		// 				break
+		// 			}
+		// 		}
+		// 		this.placeEntityBelow(createItem('GOLD', this.x, this.y, null, { quantity }))
+		// 	}
+		// }
 	}
 }

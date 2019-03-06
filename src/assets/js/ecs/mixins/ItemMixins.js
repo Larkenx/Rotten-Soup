@@ -1,4 +1,21 @@
 import { ammoTypes } from "#/utils/Constants";
+import { verifyProps } from "#/utils/HelperFunctions";
+
+
+export const Combat = superclass => class extends superclass {
+    constructor(config) {
+        this.cb = {}
+        super(config)
+    }
+}
+
+export const DamageRoll = superclass => class extends superclass {
+    constructor(config) {
+        verifyProps(config, ['cb'])
+        verifyProps(config.cb, ['sides', 'rolls'])
+        super(config)
+    }
+}
 
 export const Stackable = superclass => class extends superclass {
     constructor(configuration) {
@@ -39,4 +56,8 @@ export const AmmunitionTyped = superclass => class extends superclass {
         if (!configuration.ammoType) console.warn(`No ammunition type specified for this item, assuming it can be fired with anything: ${this}`)
         this.ammoType = configuration.ammoType || ammoTypes.ANY
     }
+}
+
+export const Shielding = superclass => class extends superclass {
+
 }

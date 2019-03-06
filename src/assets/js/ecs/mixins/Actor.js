@@ -4,13 +4,14 @@
 import ROT from 'rot-js'
 import * as PIXI from 'pixi.js'
 import { Game } from '#/Game.js'
-import { Entity } from '#/entities/Entity.js'
 import { getRandomInt, getNormalRandomInt, addPrefix } from '#/utils/HelperFunctions.js'
 import Door from '#/entities/misc/Door.js'
 import Chest from '#/entities/misc/Chest.js'
 import { Buff } from '#/modifiers/Buff.js'
 import { Corpse, corpseTypes } from '#/entities/items/misc/Corpse.js'
-import Item from '#/entities/items/Item.js'
+import Item from '#/ecs/mixins/Item.js'
+import { HasInstance } from 'mixwith'
+import { actorTextures } from '#/utils/EntityFactory';
 
 export const Actor = superclass =>
 	class extends superclass {
@@ -33,7 +34,6 @@ export const Actor = superclass =>
 			super(config)
 		}
 
-		/* Called by the ROT.js game scheduler to indicate a turn */
 		act() {
 			this.applyEffects()
 		}
@@ -42,7 +42,6 @@ export const Actor = superclass =>
 			this.cb.effects = this.cb.effects.filter(e => {
 				return e.duration > 0
 			})
-			// apply all of the effects on this Actor at the beginning of their turn
 			for (let effect of this.cb.effects) {
 				if (!(effect instanceof Buff)) Game.log(effect.description(this), 'alert')
 				effect.applyEffect(this)
@@ -58,24 +57,16 @@ export const Actor = superclass =>
 			this.cb.effects.push(buff)
 		}
 
-		placeEntityBelow(entity) {
-			if (entity instanceof Item) {
-				entity.placeAt(this.x, this.y)
-				Game.display.assignSprite(entity)
-			} else {
-				Game.map.data[this.y][this.x].actors.push(entity)
-			}
-		}
-
 		distanceTo(actor) {
 			return Math.sqrt(Math.pow(this.x - actor.x, 2) + Math.pow(this.y - actor.y, 2))
 		}
 
-		interact(actor) {
-			if (super.interact) super.interact(actor)
-		}
+		react(entity) { }
 
-		react(actor) {}
+		interact(entity) {
+			if (super.interact) super.interact(entity)
+			entity.react(this)
+		}
 
 		tryMove(nx, ny) {
 			if (!Game.inbounds(nx, ny) || Game.tileAt(nx, ny).blocked()) return false
@@ -84,29 +75,21 @@ export const Actor = superclass =>
 				this.move(nx, ny)
 				return true
 			} else {
-				for (let actor of tile.actors) {
-					if (actor instanceof Actor && actor.blocked && actor.visible) {
-						if (!actor.isDead()) {
-							this.interact(actor)
-						}
-						return true
-					}
+				let actors = tile.actors.filter(entity => HasInstance(entity, Actor))
+				let interactableEntities = tile.actors.filter(entity => HasInstance(entity, Interactable))
+				if (0 < actors.length) {
+					this.interact(actors.slice(-1)[0])
+					return true
+				}
+				if (0 < interactableEntities.length) {
+					this.interact(interactableEntities.slice(-1)[0])
+					return true
 
-					// actor has stumbled upon a non-Actor entity (an item or miscellaneous entity like a door)
-					if (actor instanceof Door) {
-						actor.react()
-						if (actor.closed === true) return true
-					} else if (actor instanceof Chest && this.canLoot) {
-						actor.react(this)
-						return false
-					}
 				}
 			}
-
 			return false
 		}
 
-		/* attacks another actor with a melee attack */
 		attack(actor) {
 			// get this actor's weapon & calculate weapon damage based on a roll & current str level
 			let { weapon } = this.cb.equipment
@@ -167,24 +150,19 @@ export const Actor = superclass =>
 
 		unequip(item) {
 			let { equipmentSlot } = item.cb
-
 			if (this.cb.equipment[equipmentSlot] !== null) {
 				this.cb.equipment[equipmentSlot].cb.equipped = false
 				this.cb.equipment[equipmentSlot] = null
 			}
 		}
 
-		/* Reduce hp. If less than 0, causes death */
 		damage(hp) {
 			if (this.cb.invulnerable) return
 			this.cb.damageTaken += hp
-
 			if (this.cb.hp <= hp) this.cb.hp = 0
 			else this.cb.hp -= hp
-
 			if (this.isDead()) {
 				if (this !== Game.player) Game.player.gain_xp(Math.floor(this.cb.maxhp * 0.5))
-
 				this.death()
 			}
 			if (this.sprite !== null && !this.isDead) {
@@ -193,20 +171,17 @@ export const Actor = superclass =>
 			}
 		}
 
-		/* Restore HP up to maxhp */
 		heal(hp) {
 			this.cb.healthRestored += hp
 			if (this.cb.hp + hp > this.cb.maxhp) this.cb.hp = this.cb.maxhp
 			else this.cb.hp += hp
 		}
 
-		/* Restores mana up to max */
 		restore(mana) {
 			if (this.cb.mana + mana > this.cb.maxmana) this.cb.mana = this.cb.maxmana
 			else this.cb.mana += mana
 		}
 
-		/* Starting out with basic 8 dir firing */
 		fireRangedWeapon(ammo, dir) {
 			// assuming we have a ranged weapon and ammunition to fire
 			let weapon = this.cb.equipment.weapon
@@ -227,7 +202,7 @@ export const Actor = superclass =>
 					return
 				}
 				// if we find an enemy on the tile, we damage it and the projectile stops moving
-				let enemies = tile.actors.filter(function(e) {
+				let enemies = tile.actors.filter(function (e) {
 					return e.cb && e.cb.hostile
 				})
 				if (enemies.length > 0) {
