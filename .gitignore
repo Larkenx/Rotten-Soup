@@ -66,3 +66,8 @@ dist/
 .vscode
 .DS_Store
 **/*.DS_Store
+dist_electron/
+
+# lock files
+yarn.lock
+package-lock.json
