@@ -39,6 +39,8 @@ Once you do that, you can run the app with `yarn serve`.
 
 If you have any feedback, please send me an email at larkenx@gmail.com or drop an issue on GitHub. Any feedback is welcome and greatly appreciated.
 
+We now have a [Discord](https://discord.gg/dwtUY9N)! So come check out the Community!<3
+
 ## Donate
 If you've really enjoyed my game and want to buy me a cup of coffee, I won't stop you!
 
