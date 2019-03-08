@@ -44,7 +44,7 @@ yarn
 
 To Run in Desktop
 ```
-npm run as desktop app
+npm run desktop
 # or
 yarn desktop
 ```
