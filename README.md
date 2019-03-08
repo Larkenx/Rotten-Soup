@@ -35,7 +35,26 @@ npm install -g @vue/cli
 yarn global add @vue/cli
 ```
 
-To Run in 
+To Install other Dependencies
+```
+npm i
+# or
+yarn
+```
+
+To Run in Desktop
+```
+npm run as desktop app
+# or
+yarn desktop
+```
+
+To Run as Web App
+```
+npm run serve
+# or
+yarn serve
+```
 
 Once you do that, you can run the app with `yarn serve`. 
 
