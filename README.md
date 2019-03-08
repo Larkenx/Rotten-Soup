@@ -19,13 +19,6 @@ While maintaining some roots in traditional roguelike gameplay with features lik
 * [x] Weapon enchantments
 * [x] Goal-based enemies
 
-## Stuff I'm working on
-* [ ] Shops where you can sell/buy items
-* [ ] Unique characters classes, skills, and abilities
-* [ ] More weapons (Axes, Polearms, Bows, Staves, Morningstar, Whips, Daggers, Clubs, Spears)
-* [ ] Enemies that used ranged and magical attacks
-
-
 ## Running the game locally
 To run Rotten Soup locally, you can clone this repository and install its dependencies with `yarn`. You will probably need to install `vue-cli`.
 
