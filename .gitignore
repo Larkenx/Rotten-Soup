@@ -67,5 +67,3 @@ dist/
 .DS_Store
 **/*.DS_Store
 dist_electron/
-
-package-lock\.json
