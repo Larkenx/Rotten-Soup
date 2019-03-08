@@ -30,14 +30,37 @@ While maintaining some roots in traditional roguelike gameplay with features lik
 To run Rotten Soup locally, you can clone this repository and install its dependencies with `yarn`. You will probably need to install `vue-cli`.
 
 ```
-npm install vue-cli -g
+npm install -g @vue/cli
+# OR
+yarn global add @vue/cli
 ```
 
-Once you do that, you can run the app with `yarn serve`. 
+To Install other Dependencies
+```
+npm i
+# or
+yarn
+```
+
+To Run in Desktop
+```
+npm run as desktop app
+# or
+yarn desktop
+```
+
+To Run as Web App
+```
+npm run serve
+# or
+yarn serve
+```
 
 ## Contact / Feedback
 
 If you have any feedback, please send me an email at larkenx@gmail.com or drop an issue on GitHub. Any feedback is welcome and greatly appreciated.
+
+We now have a [Discord](https://discord.gg/dwtUY9N)! So come check out the Community!❤️
 
 ## Donate
 If you've really enjoyed my game and want to buy me a cup of coffee, I won't stop you!
