@@ -66,3 +66,4 @@ dist/
 .vscode
 .DS_Store
 **/*.DS_Store
+dist_electron/
