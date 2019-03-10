@@ -192,6 +192,8 @@ export default {
 
 #root_container > div {
 	position: absolute;
+	margin-left: auto;
+	margin-right: auto;
 }
 
 #game_overlay_view {
@@ -200,6 +202,11 @@ export default {
 	border: 2px solid #4f4f4f;
 	border-radius: 4px;
 }
+#hud,
+#game_container{
+	margin-top:15px;
+}
+
 
 canvas {
 	border: 3px solid #4f4f4f;
