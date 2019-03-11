@@ -303,8 +303,7 @@ export const reanimate = corpse => {
 	// remove the corpse from the ground
 	ctile.removeActor(corpse)
 	Game.display.removeChild(corpse)
-	let undeadActor = corpse.id === corpseTypes.HUMANOID ? createActor('ZOMBIE', corpse.x, corpse.y) : ('SKELETON', corpse.x, corpse.y)
-
+	let undeadActor = corpse.id === corpseTypes.HUMANOID ? createActor('ZOMBIE', corpse.x, corpse.y) : createActor('SKELETON', corpse.x, corpse.y)
 	undeadActor.chasing = true
 	ctile.actors.push(undeadActor)
 	Game.display.assignSprite(undeadActor)
