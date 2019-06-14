@@ -1,12 +1,25 @@
 <template>
   <div id="help">
-    <v-tooltip bottom align-center>
+    <v-tooltip
+      bottom
+      align-center
+    >
       <span>Help</span>
-      <v-btn small flat icon color="yellow darken-4" slot="activator" @click.stop="helpDialog=true">
+      <v-btn
+        small
+        flat
+        icon
+        color="yellow darken-4"
+        slot="activator"
+        @click.stop="helpDialog=true"
+      >
         <v-icon small>fa-question-circle</v-icon>
       </v-btn>
     </v-tooltip>
-    <v-dialog v-model="helpDialog" max-width="800px">
+    <v-dialog
+      v-model="helpDialog"
+      max-width="800px"
+    >
       <v-card style="background-color: #1e1f1f">
         <v-card-text class="text-xs-center">
           <h2 class="pa-1">Controls</h2>
@@ -14,13 +27,19 @@
         <v-card-text>
           <v-expansion-panel>
             <v-expansion-panel-content>
-              <div slot="header" class="pl-2">
+              <div
+                slot="header"
+                class="pl-2"
+              >
                 <b>All Keybinds</b>
               </div>
               <v-card flat>
                 <v-card-text class="pb-0 pt-0">
                   <v-container>
-                    <v-layout row class="pb-2">
+                    <v-layout
+                      row
+                      class="pb-2"
+                    >
                       <v-flex xs6>
                         <b>Keys</b>
                       </v-flex>
@@ -28,10 +47,18 @@
                         <b>Description</b>
                       </v-flex>
                     </v-layout>
-                    <v-layout row wrap v-for="(cheat, index) in cheatSheet" :key="index">
+                    <v-layout
+                      row
+                      wrap
+                      v-for="(cheat, index) in cheatSheet"
+                      :key="index"
+                    >
                       <v-flex xs6>
                         <v-layout justify-start>
-                          <div v-for="code in cheat.code.split('|')" :key="code">
+                          <div
+                            v-for="code in cheat.code.split('|')"
+                            :key="code"
+                          >
                             <code class="mr-2 text-xs-center">{{code}}</code>
                           </div>
                         </v-layout>
@@ -45,7 +72,10 @@
               </v-card>
             </v-expansion-panel-content>
             <v-expansion-panel-content>
-              <div slot="header" class="pl-2">
+              <div
+                slot="header"
+                class="pl-2"
+              >
                 <b>Magic and Ranged Combat</b>
               </div>
               <v-card flat>
@@ -83,7 +113,10 @@
               </v-card>
             </v-expansion-panel-content>
             <v-expansion-panel-content>
-              <div slot="header" class="pl-2">
+              <div
+                slot="header"
+                class="pl-2"
+              >
                 <b>Movement and Examining</b>
               </div>
               <v-card flat>
@@ -109,7 +142,10 @@
               </v-card>
             </v-expansion-panel-content>
             <v-expansion-panel-content>
-              <div slot="header" class="pl-2">
+              <div
+                slot="header"
+                class="pl-2"
+              >
                 <b>Melee Combat</b>
               </div>
               <v-card flat>
@@ -126,7 +162,10 @@
 
             <v-expansion-panel-content>
               <v-card flat>
-                <div slot="header" class="pl-2">
+                <div
+                  slot="header"
+                  class="pl-2"
+                >
                   <b>Ladders, Resting, and Picking up Items</b>
                 </div>
                 <v-card-text class="pt-0">
@@ -152,7 +191,10 @@
             </v-expansion-panel-content>
 
             <v-expansion-panel-content>
-              <div slot="header" class="pl-2">
+              <div
+                slot="header"
+                class="pl-2"
+              >
                 <b>Inventory Management</b>
               </div>
               <v-card flat>
@@ -173,7 +215,11 @@
         </v-card-text>
         <v-card-actions>
           <v-spacer></v-spacer>
-          <v-btn color="yellow darken-4" flat @click.stop="helpDialog=false">Close</v-btn>
+          <v-btn
+            color="yellow darken-4"
+            flat
+            @click.stop="helpDialog=false"
+          >Close</v-btn>
         </v-card-actions>
       </v-card>
     </v-dialog>
@@ -190,8 +236,8 @@ export default {
 				{ code: ',|g', description: 'Pick up an item' },
 				{ code: 'e|space| + a direction', description: 'Interact with entity in a direction' },
 
-				{ code: '<|>', description: 'Use a ladder' },
-				{ code: 'tab', description: 'Autoexplore' },
+				{ code: '<|>|+|-', description: 'Use a ladder' },
+				{ code: 'tab|Numpad-0', description: 'Autoexplore' },
 				{ code: 'f', description: 'Fire a ranged weapon' },
 				{ code: 'Z|m|s', description: 'Open spellbook' },
 				{ code: 'i', description: 'Open inventory' },

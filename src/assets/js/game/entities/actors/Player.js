@@ -27,9 +27,30 @@ import Gold from '#/entities/items/misc/Gold.js'
 import Chest from '#/entities/misc/Chest.js'
 import Item from '#/entities/items/Item.js'
 import { createItem } from '#/utils/EntityFactory.js'
-import { AutoexploreGoal } from '../../utils/Goals';
+import { AutoexploreGoal } from '../../utils/Goals'
 
-const movementKeys = [ROT.VK_RIGHT, ROT.VK_LEFT, ROT.VK_UP, ROT.VK_DOWN, ROT.VK_NUMPAD8, ROT.VK_NUMPAD9, ROT.VK_NUMPAD6, ROT.VK_NUMPAD3, ROT.VK_NUMPAD2, ROT.VK_NUMPAD1, ROT.VK_NUMPAD4, ROT.VK_NUMPAD7, ROT.VK_H, ROT.VK_U, ROT.VK_L, ROT.VK_N, ROT.VK_J, ROT.VK_B, ROT.VK_K, ROT.VK_Y,]
+const movementKeys = [
+	ROT.VK_RIGHT,
+	ROT.VK_LEFT,
+	ROT.VK_UP,
+	ROT.VK_DOWN,
+	ROT.VK_NUMPAD8,
+	ROT.VK_NUMPAD9,
+	ROT.VK_NUMPAD6,
+	ROT.VK_NUMPAD3,
+	ROT.VK_NUMPAD2,
+	ROT.VK_NUMPAD1,
+	ROT.VK_NUMPAD4,
+	ROT.VK_NUMPAD7,
+	ROT.VK_H,
+	ROT.VK_U,
+	ROT.VK_L,
+	ROT.VK_N,
+	ROT.VK_J,
+	ROT.VK_B,
+	ROT.VK_K,
+	ROT.VK_Y
+]
 
 export default class Player extends Actor {
 	constructor(x, y, id) {
@@ -113,8 +134,8 @@ export default class Player extends Actor {
 			[ROT.VK_Z]: 'cast',
 			// Interact
 			[ROT.VK_E]: 'interact',
-			[ROT.VK_ADD]: 'interact',
-			[ROT.VK_SUBTRACT]: 'interact',
+			[ROT.VK_ADD]: 'climb',
+			[ROT.VK_SUBTRACT]: 'climb',
 
 			// Misc
 			[ROT.VK_I]: 'openInventory',
@@ -125,6 +146,7 @@ export default class Player extends Actor {
 			[ROT.VK_PERIOD]: 'rest',
 			[ROT.VK_X]: 'examine',
 			[ROT.VK_TAB]: 'autoexplore',
+			[ROT.VK_NUMPAD0]: 'autoexplore',
 			[ROT.VK_SPACE]: 'interact'
 		}
 		this.recalculatePath()
@@ -243,8 +265,7 @@ export default class Player extends Actor {
 		let fov = new ROT.FOV.RecursiveShadowcasting((x, y) => {
 			return Game.inbounds(x, y) && Game.getTile(x, y).visible()
 		})
-		if (Game.map.revealed)
-			this.seenTiles = Game.map.getTiles()
+		if (Game.map.revealed) this.seenTiles = Game.map.getTiles()
 
 		let visibleTiles = getVisibleTiles(this)
 		for (let t of visibleTiles) {
@@ -319,7 +340,6 @@ export default class Player extends Actor {
 				default:
 					console.error('Game is showing overlay for which the player cannot handle')
 			}
-
 		} else if (this.interacting) {
 			this.handleInteract(evt)
 		} else if (this.examining) {
@@ -364,20 +384,23 @@ export default class Player extends Actor {
 			} else if (action === 'autoexplore') {
 				// stop autoexploring when we find a tile
 				// with a hostile actor or if there's loot
-				this.addGoal(AutoexploreGoal({
-					stopCondition: () => {
-						let visibleTiles = getVisibleTiles(this)
-						let shouldStop = visibleTiles.some(t => t.actors.some(a => a.hostile)) ||
-							visibleTiles.some(t => t.actors.some(a => a instanceof Chest && a.closed)) ||
-							visibleTiles.some(t => t.actors.some(a => a instanceof Item))
-						if (shouldStop) Game.log('You stop autoexploring because you see something!', 'information')
-						return shouldStop
-					},
-					doneCallback: () => {
-						Game.log(`There's nothing else to explore!`, 'information')
-					}
-				}))
-			} else if ((action === 'rest' && shiftPressed) || (action === 'pickup' && shiftPressed)) {
+				this.addGoal(
+					AutoexploreGoal({
+						stopCondition: () => {
+							let visibleTiles = getVisibleTiles(this)
+							let shouldStop =
+								visibleTiles.some(t => t.actors.some(a => a.hostile)) ||
+								visibleTiles.some(t => t.actors.some(a => a instanceof Chest && a.closed)) ||
+								visibleTiles.some(t => t.actors.some(a => a instanceof Item))
+							if (shouldStop) Game.log('You stop autoexploring because you see something!', 'information')
+							return shouldStop
+						},
+						doneCallback: () => {
+							Game.log(`There's nothing else to explore!`, 'information')
+						}
+					})
+				)
+			} else if ((action === 'rest' && shiftPressed) || (action === 'pickup' && shiftPressed) || action === 'climb') {
 				this.climb()
 			} else if (action === 'openInventory') {
 				Game.openInventory()
@@ -606,8 +629,7 @@ export default class Player extends Actor {
 		}
 	}
 
-	handleHelpScreenEvent(evt) { }
-
+	handleHelpScreenEvent(evt) {}
 
 	handleInteract(evt) {
 		let { keyCode } = evt
@@ -621,7 +643,6 @@ export default class Player extends Actor {
 				if (actors.length > 0) {
 					this.interact(actors.slice(-1).pop())
 				}
-
 			}
 			Game.clearTempLog()
 			this.interacting = false
@@ -632,7 +653,7 @@ export default class Player extends Actor {
 		}
 	}
 
-	resetSelectedItem() { }
+	resetSelectedItem() {}
 
 	initializeSelectedItem() {
 		const initialSelectedInventoryItemSlot = { contextMenuOpen: false, index: null, item: null }

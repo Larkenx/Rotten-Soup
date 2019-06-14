@@ -99,7 +99,7 @@ export class StatelessAI extends Actor {
 					return
 				} else {
 					// we can't flee, so we might as well fight
-					if (pathToPlayer.length <= 2) {
+					if (pathToPlayer.length === 2) {
 						let newPos = pathToPlayer[1]
 						this.tryMove(newPos[0], newPos[1])
 					}
