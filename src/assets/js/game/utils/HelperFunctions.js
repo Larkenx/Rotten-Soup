@@ -312,3 +312,32 @@ export function stringifyDijkstraMap(map, start, width, height) {
 	}
 	return characterMap
 }
+
+export function bfs(sx, sy, map) {
+	let queue = [[sx, sy]]
+	let visited = new Set()
+	visited.add(key(sx, sy))
+	while (queue.length > 0) {
+		let [x, y] = queue.pop()
+		// Fetch the neighbors of the tiles. we also want to grab tiles
+		// that are blocked, but have an adjacent unblocked tile (so we can grab walls that are)
+		// visible to the player
+		let findTilesWithAdjacentUnblockedTiles = (nx, ny) => {
+			return (
+				!visited.has(key(nx, ny)) &&
+				map.inbounds(nx, ny) &&
+				neighbors({ x: nx, y: ny }, (a, b) => {
+					return map.inbounds(a, b)
+				}).some(nestedNeighbor => {
+					let tile = map.getTile(nestedNeighbor.x, nestedNeighbor.y)
+					return tile.obstacles.length < 1 || !tile.obstacles[0].blocked
+				})
+			)
+		}
+		for (let neighbor of neighbors({ x, y }, (a, b) => findTilesWithAdjacentUnblockedTiles(a, b))) {
+			visited.add(key(neighbor.x, neighbor.y))
+			queue.unshift([neighbor.x, neighbor.y])
+		}
+	}
+	return visited
+}

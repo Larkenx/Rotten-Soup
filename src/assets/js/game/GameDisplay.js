@@ -237,34 +237,7 @@ export default class GameDisplay {
 		Game.drawMiniMap()
 	}
 
-	updateMap() {
-		// Center of the camera should not be offset by the game's map width or height,
-		// but by the view / canvas width & height
-		let viewPort = {
-			width: this.width / (this.tileSize * this.scale),
-			height: this.height / (this.tileSize * this.scale)
-		}
-
-		let camera = {
-			// camera x,y resides in the upper left corner
-			x: Game.player.x - ~~(viewPort.width / 2),
-			y: Game.player.y - ~~(viewPort.height / 2),
-			width: Math.ceil(viewPort.width),
-			height: viewPort.height
-		}
-		let startingPos = [camera.x, camera.y]
-		if (camera.x < 0) {
-			startingPos[0] = 0
-		}
-		if (camera.x + camera.width > Game.map.width) {
-			startingPos[0] = Game.map.width - camera.width
-		}
-		if (camera.y <= 0) {
-			startingPos[1] = 0
-		}
-		if (camera.y + camera.height > Game.map.height) {
-			startingPos[1] = Game.map.height - camera.height
-		}
+	updateFOV() {
 		if (!Game.map.revealed) {
 			Object.assign(Game.map.seen_tiles, Game.map.visible_tiles)
 			Game.map.visible_tiles = {}
@@ -318,6 +291,37 @@ export default class GameDisplay {
 				}
 			}
 		}
+	}
+
+	updateMap() {
+		// Center of the camera should not be offset by the game's map width or height,
+		// but by the view / canvas width & height
+		let viewPort = {
+			width: this.width / (this.tileSize * this.scale),
+			height: this.height / (this.tileSize * this.scale)
+		}
+
+		let camera = {
+			// camera x,y resides in the upper left corner
+			x: Game.player.x - ~~(viewPort.width / 2),
+			y: Game.player.y - ~~(viewPort.height / 2),
+			width: Math.ceil(viewPort.width),
+			height: viewPort.height
+		}
+		let startingPos = [camera.x, camera.y]
+		if (camera.x < 0) {
+			startingPos[0] = 0
+		}
+		if (camera.x + camera.width > Game.map.width) {
+			startingPos[0] = Game.map.width - camera.width
+		}
+		if (camera.y <= 0) {
+			startingPos[1] = 0
+		}
+		if (camera.y + camera.height > Game.map.height) {
+			startingPos[1] = Game.map.height - camera.height
+		}
+		this.updateFOV()
 		if (!Game.userSettings.hpBars) {
 			for (let actor of Game.map.getActors()) {
 				if (actor.spriteAbove !== undefined && !(actor instanceof NPC)) {

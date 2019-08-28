@@ -28,6 +28,7 @@ import Chest from '#/entities/misc/Chest.js'
 import Item from '#/entities/items/Item.js'
 import { createItem } from '#/utils/EntityFactory.js'
 import { AutoexploreGoal } from '../../utils/Goals'
+import MapRevealingScroll from '../items/scrolls/MapRevealingScroll'
 
 const movementKeys = [
 	ROT.VK_RIGHT,
@@ -169,6 +170,7 @@ export default class Player extends Actor {
 		this.addToInventory(new SteelArrow(this.x, this.y, 784, 7))
 		this.addToInventory(new HealthPotion(this.x, this.y, 488))
 		this.addToInventory(new ManaPotion(this.x, this.y, 608))
+		this.addToInventory(new MapRevealingScroll(this.x, this.y, 918))
 		this.cb.spells.push(new MagicDart())
 		this.cb.spells.push(new MinorHeal())
 		this.cb.spells.push(new Shock())

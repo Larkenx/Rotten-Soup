@@ -8,6 +8,7 @@ import Key from '#/entities/items/misc/Key.js'
 import Gold from '#/entities/items/misc/Gold.js'
 import Beer from '#/entities/items/misc/Beer.js'
 import { NecromancySpellBook } from '#/entities/items/misc/Spellbook.js'
+import MapRevealingScroll from '#/entities/items/scrolls/MapRevealingScroll.js'
 // Entities
 import NPC from '#/entities/actors/NPC.js'
 import { Corpse, corpseTypes } from '#/entities/items/misc/Corpse.js'
@@ -85,7 +86,8 @@ const itemShop = {
 	BOW: (x, y, t) => createBow(x, y, t),
 	STEEL_ARROW: (x, y, t) => new SteelArrow(x, y, t, 5),
 	KEY: (x, y, t) => new Key(x, y, t),
-	NECROMANCY_SPELLBOOK: (x, y, t) => new NecromancySpellBook(x, y, t)
+	NECROMANCY_SPELLBOOK: (x, y, t) => new NecromancySpellBook(x, y, t),
+	MAP_REVEALING_SCROLL: (x, y, t) => new MapRevealingScroll(x, y, t)
 }
 
 export function createItem(itemString, x, y, id, options = {}) {
@@ -100,7 +102,8 @@ export function createItem(itemString, x, y, id, options = {}) {
 		BOW: 664,
 		STEEL_ARROW: 784,
 		NECROMANCY_SPELLBOOK: 3264,
-		BATTLEAXE: 153
+		BATTLEAXE: 153,
+		MAP_REVEALING_SCROLL: 1157
 	}
 
 	const texture = id == null ? defaultItemTextures[itemString] : id
