@@ -1,0 +1,12 @@
+{
+    "compilerOptions": {
+      "target": "es2017",
+      "allowSyntheticDefaultImports": false,
+      "baseUrl": "./",
+      "paths": {
+        "src/*": ["src/*"],
+        "#/*": ["src/assets/js/game/*"]
+      }
+    },
+    "exclude": ["node_modules", "dist"]
+  }

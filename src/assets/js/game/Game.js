@@ -96,7 +96,7 @@ export let Game = {
 			}
 			this.engine.start()
 			this.renderMap()
-			// this.changeLevels('Mulberry Forest', true)
+			// this.changeLevels('Dungeon 1', true)
 			// Game.map.revealed = true
 			// this.player.placeAt(0, 0)
 			// this.display.app.stage.scale.x = this.display.app.stage.scale.y = 0.625
@@ -500,7 +500,6 @@ export let Game = {
 	},
 
 	log(message, type, tmp = false) {
-
 		let message_color = {
 			defend: 'lightblue',
 			magic: '#6757c6',
@@ -551,6 +550,11 @@ export let Game = {
 		this.overlayData.dialogue = dialogue
 		this.overlayData.dialogue.init(this, this.overlayData.dialogue)
 		// this.overlayData.dialogue.initializeOrigin()
+	},
+
+	openStore(store) {
+		this.overlayData.visible = true
+		this.overlayData.component = 'npc-store'
 	},
 
 	getValidPlaceableTilesForMap(mapIdentifier, x1, y1, x2, y2) {

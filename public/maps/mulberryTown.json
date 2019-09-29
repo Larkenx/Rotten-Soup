@@ -909,7 +909,7 @@
                  "type":"",
                  "visible":true,
                  "width":32,
-                 "x":1088,
+                 "x":1120,
                  "y":1184
                 }, 
                 {
@@ -939,8 +939,13 @@
                  "gid":8402,
                  "height":32,
                  "id":206,
-                 "name":"NPC",
+                 "name":"Mulberry Blacksmith",
                  "properties":[
+                        {
+                         "name":"dialog",
+                         "type":"string",
+                         "value":"MULBERRY_BLACKSMITH"
+                        }, 
                         {
                          "name":"entity_type",
                          "type":"string",
@@ -1284,6 +1289,158 @@
                  "width":32,
                  "x":1088,
                  "y":1024
+                }, 
+                {
+                 "gid":5138,
+                 "height":32,
+                 "id":230,
+                 "name":"Store Counter",
+                 "properties":[
+                        {
+                         "name":"description",
+                         "type":"string",
+                         "value":"store counter"
+                        }, 
+                        {
+                         "name":"dialog",
+                         "type":"string",
+                         "value":"MULBERRY_BLACKSMITH"
+                        }, 
+                        {
+                         "name":"dialogBubbleEnabled",
+                         "type":"bool",
+                         "value":false
+                        }, 
+                        {
+                         "name":"entity_type",
+                         "type":"string",
+                         "value":"NPC"
+                        }, 
+                        {
+                         "name":"wanders",
+                         "type":"bool",
+                         "value":false
+                        }],
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":32,
+                 "x":1056,
+                 "y":1216
+                }, 
+                {
+                 "gid":5138,
+                 "height":32,
+                 "id":231,
+                 "name":"Store Counter",
+                 "properties":[
+                        {
+                         "name":"description",
+                         "type":"string",
+                         "value":"store counter"
+                        }, 
+                        {
+                         "name":"dialog",
+                         "type":"string",
+                         "value":"MULBERRY_BLACKSMITH"
+                        }, 
+                        {
+                         "name":"dialogBubbleEnabled",
+                         "type":"bool",
+                         "value":false
+                        }, 
+                        {
+                         "name":"entity_type",
+                         "type":"string",
+                         "value":"NPC"
+                        }, 
+                        {
+                         "name":"wanders",
+                         "type":"bool",
+                         "value":false
+                        }],
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":32,
+                 "x":1088,
+                 "y":1216
+                }, 
+                {
+                 "gid":5137,
+                 "height":32,
+                 "id":232,
+                 "name":"Store Counter",
+                 "properties":[
+                        {
+                         "name":"description",
+                         "type":"string",
+                         "value":"store counter"
+                        }, 
+                        {
+                         "name":"dialog",
+                         "type":"string",
+                         "value":"MULBERRY_BLACKSMITH"
+                        }, 
+                        {
+                         "name":"dialogBubbleEnabled",
+                         "type":"bool",
+                         "value":false
+                        }, 
+                        {
+                         "name":"entity_type",
+                         "type":"string",
+                         "value":"NPC"
+                        }, 
+                        {
+                         "name":"wanders",
+                         "type":"bool",
+                         "value":false
+                        }],
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":32,
+                 "x":1024,
+                 "y":1216
+                }, 
+                {
+                 "gid":5139,
+                 "height":32,
+                 "id":233,
+                 "name":"Store Counter",
+                 "properties":[
+                        {
+                         "name":"description",
+                         "type":"string",
+                         "value":"store counter"
+                        }, 
+                        {
+                         "name":"dialog",
+                         "type":"string",
+                         "value":"MULBERRY_BLACKSMITH"
+                        }, 
+                        {
+                         "name":"dialogBubbleEnabled",
+                         "type":"bool",
+                         "value":false
+                        }, 
+                        {
+                         "name":"entity_type",
+                         "type":"string",
+                         "value":"NPC"
+                        }, 
+                        {
+                         "name":"wanders",
+                         "type":"bool",
+                         "value":false
+                        }],
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":32,
+                 "x":1120,
+                 "y":1216
                 }],
          "opacity":1,
          "type":"objectgroup",
@@ -1292,7 +1449,7 @@
          "y":0
         }],
  "nextlayerid":5,
- "nextobjectid":227,
+ "nextobjectid":234,
  "orientation":"orthogonal",
  "renderorder":"right-down",
  "tiledversion":"1.2.1",
