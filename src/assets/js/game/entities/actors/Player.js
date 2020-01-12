@@ -391,7 +391,7 @@ export default class Player extends Actor {
 						stopCondition: () => {
 							let visibleTiles = getVisibleTiles(this)
 							let shouldStop =
-								visibleTiles.some(t => t.actors.some(a => a.hostile)) ||
+								visibleTiles.some(t => t.actors.some(a => a.cb.hostile)) ||
 								visibleTiles.some(t => t.actors.some(a => a instanceof Chest && a.closed)) ||
 								visibleTiles.some(t => t.actors.some(a => a instanceof Item))
 							if (shouldStop) Game.log('You stop autoexploring because you see something!', 'information')

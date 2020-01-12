@@ -20,10 +20,10 @@ export default class Lich extends Actor {
 				mana: 25,
 				str: 5,
 				def: 1,
-				range: 7
+				range: 7,
+				hostile: true
 			},
-			invulnerable: false,
-			hostile: true
+			invulnerable: false
 		})
 
 		this.spells = {
