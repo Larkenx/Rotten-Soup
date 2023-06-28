@@ -1,8 +1,7 @@
 {
-  "printWidth": 140,
-  "parser": "flow",
-  "semi": false,
-  "singleQuote": true,
-  "tabWidth": 4,
-  "useTabs": true
+    "printWidth": 140,
+    "semi": false,
+    "singleQuote": true,
+    "tabWidth": 4,
+    "useTabs": true
 }
