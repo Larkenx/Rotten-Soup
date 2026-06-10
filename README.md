@@ -34,12 +34,3 @@ npm install vue-cli -g
 ```
 
 Once you do that, you can run the app with `yarn serve`. 
-
-## Contact / Feedback
-
-If you have any feedback, please send me an email at larkenx@gmail.com or drop an issue on GitHub. Any feedback is welcome and greatly appreciated.
-
-## Donate
-If you've really enjoyed my game and want to buy me a cup of coffee, I won't stop you!
-
-[![paypal](https://www.paypalobjects.com/en_US/i/btn/btn_donateCC_LG.gif)](https://www.paypal.me/larkenx)
